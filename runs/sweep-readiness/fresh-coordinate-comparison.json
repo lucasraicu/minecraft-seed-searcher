@@ -1,0 +1,211 @@
+{
+  "source": {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-07",
+    "points": [
+      {
+        "seed": "3471015484745077182",
+        "x": 4432,
+        "z": -2056,
+        "website_y": 77,
+        "website_biome": "birch_forest",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-overworld.ax.txt"
+      },
+      {
+        "seed": "514794171988716146",
+        "x": -4424,
+        "z": 3688,
+        "website_y": 74,
+        "website_biome": "plains",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1432,
+        "z": -3248,
+        "website_y": 70,
+        "website_biome": "plains",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1296,
+        "z": -3264,
+        "website_y": 62,
+        "website_biome": "stony_shore",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1320,
+        "z": -3256,
+        "website_y": 63,
+        "website_biome": "stony_shore",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1320_-3256.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1296,
+        "z": -3248,
+        "website_y": 39,
+        "website_biome": "stony_shore",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3248.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1272,
+        "z": -3256,
+        "website_y": 46,
+        "website_biome": "stony_shore",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1272_-3256.ax.txt"
+      },
+      {
+        "seed": "7300246764159736452",
+        "x": -1296,
+        "z": -3272,
+        "website_y": 62,
+        "website_biome": "stony_shore",
+        "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3272.ax.txt"
+      }
+    ],
+    "limits": "Eight chosen candidate-center/shoreline predictions on three new seeds, including an apparent stone-colored neck with underwater heights. Not random samples, complete biome coverage or actual game measurements. Earlier review center Y values not retained in readable AX are excluded."
+  },
+  "backend_identity": {
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "sha256": {
+      "native/bridge.c": "fd0f2eb2c9fe251dfab0b753779fc9c02572580d7ef02cf9593a783153b5e94e",
+      "native/bridge.h": "22284db478c1e65b8f5bd2622713436c68a5e34c78623a8261a1e1b6ef1d17c4",
+      "vendor/backend.json": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838",
+      "src/seed_search/__init__.py": "eaa142a1ddca6c98f92e2ec3ea37c7b8312196b345bdc85e5526799799047606",
+      "src/seed_search/backend.py": "bb8cf77375d8fd959023bbdb699a106e0d608050b015aac82328c5a0beae50f9",
+      "src/seed_search/config.py": "3408602ab8bccbb6b0461b5cafb8d9c14537c440bdcaa5933aaad0e147364615",
+      "src/seed_search/geometry.py": "ab4c5cae47e588703a5ad2d756d1a5a2131bada11a7cdabef790a35688603794",
+      "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+      "src/seed_search/wood.py": "f0dcea3ada050362d7fb7b719d15904d2aafb64c3753004e9ad04fe25f3e1f49",
+      "src/seed_search/terrain.py": "165571d71482913c4f361dd0e209ef259385dea09952175772f9e6b91b0ac261",
+      "src/seed_search/structures.py": "f8624a085edd3ac169f280661762d684198184690273aef31d90d3c810d2ab7f",
+      "src/seed_search/scoring.py": "adbed30d0ed04937e6060d14bf0ef675c7d13e4f0192e90b68db6bfdb4e93882",
+      "src/seed_search/storage.py": "da628c0224284a536b284f621b9302a1075f51084a2d5f392db5487c5b81980e",
+      "src/seed_search/search.py": "1a06314056ca7fa64e0c32df45020d3902de5185b6bb7d2f6079704443314605",
+      "src/seed_search/review.py": "c05c2f6a750e54627956976a318556c81d52c7176aea722deea15a0f1ac4c66b",
+      "src/seed_search/_native.abi3.so": "8b5365179743aedae8a99d68406df75a5d0360aa70444d5a7233a1aa8072b426"
+    }
+  },
+  "points": [
+    {
+      "seed": "3471015484745077182",
+      "x": 4432,
+      "z": -2056,
+      "website_y": 77,
+      "website_biome": "birch_forest",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-overworld.ax.txt",
+      "local_y": 75,
+      "local_biome": "birch_forest",
+      "height_delta": -2,
+      "biome_matches": true
+    },
+    {
+      "seed": "514794171988716146",
+      "x": -4424,
+      "z": 3688,
+      "website_y": 74,
+      "website_biome": "plains",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld.ax.txt",
+      "local_y": 75,
+      "local_biome": "plains",
+      "height_delta": 1,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1432,
+      "z": -3248,
+      "website_y": 70,
+      "website_biome": "plains",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld.ax.txt",
+      "local_y": 69,
+      "local_biome": "plains",
+      "height_delta": -1,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1296,
+      "z": -3264,
+      "website_y": 62,
+      "website_biome": "stony_shore",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.ax.txt",
+      "local_y": 62,
+      "local_biome": "stony_shore",
+      "height_delta": 0,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1320,
+      "z": -3256,
+      "website_y": 63,
+      "website_biome": "stony_shore",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1320_-3256.ax.txt",
+      "local_y": 62,
+      "local_biome": "stony_shore",
+      "height_delta": -1,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1296,
+      "z": -3248,
+      "website_y": 39,
+      "website_biome": "stony_shore",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3248.ax.txt",
+      "local_y": 39,
+      "local_biome": "stony_shore",
+      "height_delta": 0,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1272,
+      "z": -3256,
+      "website_y": 46,
+      "website_biome": "stony_shore",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1272_-3256.ax.txt",
+      "local_y": 43,
+      "local_biome": "stony_shore",
+      "height_delta": -3,
+      "biome_matches": true
+    },
+    {
+      "seed": "7300246764159736452",
+      "x": -1296,
+      "z": -3272,
+      "website_y": 62,
+      "website_biome": "stony_shore",
+      "evidence": "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3272.ax.txt",
+      "local_y": 62,
+      "local_biome": "stony_shore",
+      "height_delta": 0,
+      "biome_matches": true
+    }
+  ],
+  "height_mae": 1.0,
+  "height_max_error": 3,
+  "biome_matches": 8
+}

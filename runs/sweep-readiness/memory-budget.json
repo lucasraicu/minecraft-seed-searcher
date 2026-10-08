@@ -1,0 +1,12 @@
+{
+  "host_ram_bytes": 68719476736,
+  "physical_cores": 18,
+  "logical_cpus": 36,
+  "cpu": "Intel Xeon W-2191B @2.30GHz",
+  "pilot_decoded_results_bytes": 120566060,
+  "pilot_seeds": 100,
+  "finite_sweep_seeds": 2000,
+  "projected_decoded_results_bytes": 2411321200,
+  "conservative_four_decoded_buffers_bytes": 9645284800,
+  "scope": "Measured recursive Python object size of all100 results, extrapolated linearly to2000 seeds; four-buffer allowance covers store/batch/review/serialization copies, plus about1GiB reporting and2GiB workers. An estimate, not measured future peak RAM. Choose2000 as initial finite sweep rather than10000 to bound wall time and export memory."
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "game_version": "26.52",
+  "seed": "12345",
+  "observation_source": "phone_actual_game",
+  "points": [
+    {
+      "x": 0,
+      "z": 0,
+      "predicted_density_ground_y": 48,
+      "predicted_surface_kind": "water",
+      "predicted_surface_biome": "ocean",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    },
+    {
+      "x": 256,
+      "z": 256,
+      "predicted_density_ground_y": 90,
+      "predicted_surface_kind": "land",
+      "predicted_surface_biome": "dark_forest",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    },
+    {
+      "x": 256,
+      "z": -256,
+      "predicted_density_ground_y": 146,
+      "predicted_surface_kind": "land",
+      "predicted_surface_biome": "grove",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    }
+  ],
+  "border_center": [
+    -3712,
+    3328
+  ],
+  "default_generation_confirmed": null,
+  "landscape": {
+    "actual_island_separated": null,
+    "known_bridge_example": null,
+    "actual_surrounding_mountains": null,
+    "actual_surrounding_forest_abundant": null
+  },
+  "structures": [
+    {
+      "type": "trial_chamber",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "stronghold",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "mineshaft",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "ancient_city",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "village",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "ruined_portal",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "shipwreck",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "monument",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "outpost",
+      "dimension": "overworld",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "fortress",
+      "dimension": "nether",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    },
+    {
+      "type": "bastion",
+      "dimension": "nether",
+      "actual_x": null,
+      "actual_y": null,
+      "actual_z": null,
+      "actual_generated": null,
+      "notes": ""
+    }
+  ],
+  "notes": "Fill actual observations only; leave unvisited facts null. border_center is diagnostic, not a verified island."
+}

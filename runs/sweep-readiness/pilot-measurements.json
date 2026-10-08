@@ -1,0 +1,73 @@
+{
+  "unique_seeds": 100,
+  "center_count": 781,
+  "total_wall_seconds": 2474.1782490840415,
+  "analysis_wall_seconds": 1890.5440726850647,
+  "reports_wall_seconds": 583.6341763989767,
+  "seconds_per_seed_including_exports": 24.741782490840414,
+  "analysis_seconds_per_seed": 18.905440726850646,
+  "seeds_per_hour_including_exports": 145.5028553958368,
+  "stage_worker_seconds": {
+    "discovery": 41.05562153889332,
+    "structures": 117.30479587020818,
+    "preliminary": 518.4015629865462,
+    "coast": 7144.420996361063,
+    "landscape": 6111.888917872915,
+    "scoring": 15.348272355040535
+  },
+  "rejection_and_deferred_counts": {
+    "finite_discovery_boundary": 189,
+    "no_required_local_raw_in_possible_center_neighborhood": 827,
+    "preliminary_density_connected_or_no_closed_land": 587,
+    "deferred_preliminary_budget": 1399,
+    "deferred_refinement_budget": 1707,
+    "density_connected_or_no_closed_component": 19,
+    "preliminary_patch_budget": 32
+  },
+  "pipeline_counts": {
+    "discovery_points": 4202500,
+    "discovery_components": 5448,
+    "early_required_target_screened_components": 5259,
+    "early_missing_required_components": 827,
+    "preliminary_density_points": 2938438,
+    "preliminary_attempts": 3128,
+    "preliminary_closed_components": 2507,
+    "refinement_attempts": 800,
+    "deferred_components": 1707,
+    "coast_density_points": 38380799,
+    "landscape_density_points": 35156646,
+    "scored_centers": 781,
+    "predicted_both_nether_centers": 710,
+    "disputed_required_centers": 22,
+    "all_three_core_centers": 287
+  },
+  "worker_recommendation": 8,
+  "actual_worker_pids_per_invocation": [
+    [
+      13329,
+      13330,
+      13331,
+      13332,
+      13333,
+      13334,
+      13335,
+      13336
+    ],
+    [
+      13477,
+      13478,
+      13479,
+      13480,
+      13481,
+      13482,
+      13483,
+      13484
+    ]
+  ],
+  "maximum_worker_peak_rss_mb": 244.1015625,
+  "maximum_parent_peak_rss_mb": 1062.859375,
+  "projected_sweep_seconds": 38394.51563010027,
+  "conservative_sweep_seconds": 49483.56498168083,
+  "uncertainty_multiplier": 1.5,
+  "scope": "Current fixed +/-5000 center axes, 205x205 discovery,32 preliminary/8 coast budgets, full landscape and eleven structure families, eight processes, one numeric thread each. Runtime extrapolations exclude manual website/game review and are not guarantees."
+}

@@ -1,0 +1,1377 @@
+{
+  "schema": 1,
+  "ready": true,
+  "recorded_at": "2026-10-08T02:42:24.757740+00:00",
+  "config_path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/config/sweep.yaml",
+  "config_sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e",
+  "backend_identity": {
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "sha256": {
+      "native/bridge.c": "fd0f2eb2c9fe251dfab0b753779fc9c02572580d7ef02cf9593a783153b5e94e",
+      "native/bridge.h": "22284db478c1e65b8f5bd2622713436c68a5e34c78623a8261a1e1b6ef1d17c4",
+      "vendor/backend.json": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838",
+      "src/seed_search/__init__.py": "eaa142a1ddca6c98f92e2ec3ea37c7b8312196b345bdc85e5526799799047606",
+      "src/seed_search/backend.py": "bb8cf77375d8fd959023bbdb699a106e0d608050b015aac82328c5a0beae50f9",
+      "src/seed_search/config.py": "3408602ab8bccbb6b0461b5cafb8d9c14537c440bdcaa5933aaad0e147364615",
+      "src/seed_search/geometry.py": "ab4c5cae47e588703a5ad2d756d1a5a2131bada11a7cdabef790a35688603794",
+      "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+      "src/seed_search/wood.py": "f0dcea3ada050362d7fb7b719d15904d2aafb64c3753004e9ad04fe25f3e1f49",
+      "src/seed_search/terrain.py": "165571d71482913c4f361dd0e209ef259385dea09952175772f9e6b91b0ac261",
+      "src/seed_search/structures.py": "f8624a085edd3ac169f280661762d684198184690273aef31d90d3c810d2ab7f",
+      "src/seed_search/scoring.py": "adbed30d0ed04937e6060d14bf0ef675c7d13e4f0192e90b68db6bfdb4e93882",
+      "src/seed_search/storage.py": "da628c0224284a536b284f621b9302a1075f51084a2d5f392db5487c5b81980e",
+      "src/seed_search/search.py": "1a06314056ca7fa64e0c32df45020d3902de5185b6bb7d2f6079704443314605",
+      "src/seed_search/review.py": "c05c2f6a750e54627956976a318556c81d52c7176aea722deea15a0f1ac4c66b",
+      "src/seed_search/_native.abi3.so": "8b5365179743aedae8a99d68406df75a5d0360aa70444d5a7233a1aa8072b426"
+    }
+  },
+  "maximum_sweep_count": 2000,
+  "checks": {
+    "native_build": true,
+    "dependencies": true,
+    "tests": true,
+    "external_regression": true,
+    "deterministic_resume": true,
+    "end_to_end_pilot": true,
+    "fresh_chunkbase": true,
+    "candidate_quality": true,
+    "finite_command_validation": true
+  },
+  "evidence": {
+    "verification": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/verification.json",
+    "regression": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/regression/regression.json",
+    "resume": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/resume-proof.json",
+    "pilot": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100",
+    "fresh_reviews": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/fresh-holdout-reviews.json",
+    "fresh_geometry": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/fresh-geometry.json",
+    "command_validation": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/command-validation.json"
+  },
+  "artifacts": [
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/SWEEP_READINESS.md",
+      "sha256": "7bc433ec5498ce338aa196382133809d8c874be15fd10c4e1483825b8343c6b7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/chunkbase-accuracy-audit.json",
+      "sha256": "fb0c3f2650f2966d4fec71a63885bc31c7d8170046d7472d825e84b3c5e4d62d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/fresh-coordinate-points.json",
+      "sha256": "67773041d8527ade61ab409652c91d489142d0a2a977942d5f202c9adb823eb3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/local-regression-baseline.json",
+      "sha256": "fade34fd110aee23852bad16c698f741a116086f018382df5040c5263c57c868"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/native/bridge.c",
+      "sha256": "fd0f2eb2c9fe251dfab0b753779fc9c02572580d7ef02cf9593a783153b5e94e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/native/bridge.h",
+      "sha256": "22284db478c1e65b8f5bd2622713436c68a5e34c78623a8261a1e1b6ef1d17c4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/native/build.py",
+      "sha256": "ddfa6bb78a8e86d34674e3e3beb351feb1c316de8bdc3c19f7223feea59c5169"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/pyproject.toml",
+      "sha256": "c11972fdd99d13a26f5334f5497dc3e86e1935f7b5a4633838edd7b309080e86"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/requirements.lock",
+      "sha256": "0f04c5dbc449aedeb9a76eef867eba947d9ba6b198d74f24330ddf17a7ad0da9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/STRUCTURE_HANDLING.md",
+      "sha256": "103c7b5e16cd8422a8776797489b27503e8ce386779f98e35f5e7d7379106312"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/dependency-versions.json",
+      "sha256": "1d3cf6ce197a8eb403f567c3158115aaa08c75979a2b52b1fd0cf50cd5774ad4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/doctor.json",
+      "sha256": "4278988d906d1101957c9d50d6103d69729aed18df4e62b7d5270978e0856ec3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/exact-land-optimization.json",
+      "sha256": "5839455d85660d11006c108389e84b8e914076aede1256a33dfeacace356ce70"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/final-checks.json",
+      "sha256": "244adefbdb81ef46ea2d37617ca47db3bde604939f75d7930405c2262c204606"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-coordinate-comparison.json",
+      "sha256": "fcd37b483feeacddf6648e8488a2f4b5df885fbf480d60cbf08069cbef741492"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/gate-tests.log",
+      "sha256": "f4b7bfb5afe4bf74948764105d66a19777319a50f0d91ed0c31cdc2abf0f36d2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/installed-license.json",
+      "sha256": "f3e9f7778857278540e0c6765271a5183f65a6bc446b3b1c17664f5ba4a5bf5f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/large-gate-rejection.log",
+      "sha256": "94081fd2c764fdd93e5c74b589e5de85b74291df6b3a9bd643d903c3a60d3532"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/large-sweep-dry-run.json",
+      "sha256": "28d8afd4ff83a6eb8f7145b28931f332b1eb16c3e6d95375118dff6f4266a313"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/memory-budget.json",
+      "sha256": "360e9b08d98c02257cd9b98e781d8c0a817f0b043a2a0e5bfcb4f1ef84a56204"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-measurements.json",
+      "sha256": "3b84ca864cd1aa50f480c18da3c70251a7a2af93b54fbc5e8ded327857ea64c3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-resume-dry-run.json",
+      "sha256": "e2f37dfe1c0ab8d150edededddf4705b2b65a904f26fa7dbe433b73b974678fa"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/review-refresh-measurement.json",
+      "sha256": "6b8b2f32960628dfba7f9e466f5f6fd4d08eac64bae62ca29fef8764d37208d5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/review-refresh.log",
+      "sha256": "0ca0992d86ac5e3966b730dce9209e291df2594b1c3d971a4482b0a28bb670d6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/structure-diagnostics.json",
+      "sha256": "5e96ce256cccf913b625fbf0e6fbbea48bcc8d2a6c741f5ba4844244ae67db06"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/tiny-command-dry-run.json",
+      "sha256": "5deabbf450b32a7015266ae34d6b926dc36e8e73340bf6d2c5856e9a0e01ea00"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/assemble_sweep_readiness.py",
+      "sha256": "f08537541436246b875d5675e5548f9e17a88667e35ed862e209036019d77dde"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/compare_fresh_coordinates.py",
+      "sha256": "8b77cca3d2364da1ff31331299973e7d08cf47fac4f424b5bdfbc5aee1b64032"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/write_sweep_readiness_report.py",
+      "sha256": "cc5ad3a5c0076afa5521e84123ba2c86f8b504f298a38bc20483ec53b82f013a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/__init__.py",
+      "sha256": "eaa142a1ddca6c98f92e2ec3ea37c7b8312196b345bdc85e5526799799047606"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/__main__.py",
+      "sha256": "3129adff95e0f38b87ab34cddfc27082c7892bcaec267ff5d40f160fdf55b44a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/backend.py",
+      "sha256": "bb8cf77375d8fd959023bbdb699a106e0d608050b015aac82328c5a0beae50f9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/cli.py",
+      "sha256": "c8368b0a7b3404c1c95789b1b211e4d72c4c4f9fa4f9990400d59c10f5124ba0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/config.py",
+      "sha256": "3408602ab8bccbb6b0461b5cafb8d9c14537c440bdcaa5933aaad0e147364615"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/geometry.py",
+      "sha256": "ab4c5cae47e588703a5ad2d756d1a5a2131bada11a7cdabef790a35688603794"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/observations.py",
+      "sha256": "4f338797b1dbbb40deb29e9c0d88fa8a417c0d6e1eb947fd6660b219aeefbe5a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/preflight.py",
+      "sha256": "5d56997e8fafe1ad0e2b90859b86a25945dc7d7248a978039493119834d2536e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/readiness.py",
+      "sha256": "d641329b45ac3db834a75c11af22ee169f5b33db21209ce5eb3d774c2d3c2f06"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/regression.py",
+      "sha256": "87a0adfc8ca27a06639eb3f16bf83c04256285822fa72e86aad51700aefa1d74"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/reports.py",
+      "sha256": "50b13d3e67d7e92589210b86bc697a41e2df8d41778e67b345124f52c3c1a919"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/review.py",
+      "sha256": "c05c2f6a750e54627956976a318556c81d52c7176aea722deea15a0f1ac4c66b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/scoring.py",
+      "sha256": "adbed30d0ed04937e6060d14bf0ef675c7d13e4f0192e90b68db6bfdb4e93882"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/search.py",
+      "sha256": "1a06314056ca7fa64e0c32df45020d3902de5185b6bb7d2f6079704443314605"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/seeds.py",
+      "sha256": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/storage.py",
+      "sha256": "da628c0224284a536b284f621b9302a1075f51084a2d5f392db5487c5b81980e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/structures.py",
+      "sha256": "f8624a085edd3ac169f280661762d684198184690273aef31d90d3c810d2ab7f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/terrain.py",
+      "sha256": "165571d71482913c4f361dd0e209ef259385dea09952175772f9e6b91b0ac261"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/wood.py",
+      "sha256": "f0dcea3ada050362d7fb7b719d15904d2aafb64c3753004e9ad04fe25f3e1f49"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_backend.py",
+      "sha256": "99ce1ce62a7970846f975868c1e0b488ef7e51d889fd20ec563f3fd1eb40a8b6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_geometry.py",
+      "sha256": "1c3b0880df9efbe8d34efbf329444ede87a1ec7d64a4bd8de96e29950c1766f6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_observations.py",
+      "sha256": "7cc4e6b2650056ad614e7540fa0af8de79358f4266bae2272ad63f80b743d0d8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_preflight.py",
+      "sha256": "1023c54cca9c74d57ae8edac41aeee36d2ee187f46a8334ce079a02e732caae2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_search_pipeline.py",
+      "sha256": "1c13e3c3e91eadd04794808d349a87e159079dd2745acffb14cc311d6ef7c21f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_seeds.py",
+      "sha256": "fb7d1646759a5e587979c792d62e7d2f29bb5a7406185437db1dae20d65374d6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/backend.json",
+      "sha256": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/LICENSE",
+      "sha256": "894d391566a3bb235b1df6c278960b2083769076b0199a0a367c771b05a74120"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomenoise.c",
+      "sha256": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomenoise.h",
+      "sha256": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomes.c",
+      "sha256": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomes.h",
+      "sha256": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/cave.c",
+      "sha256": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/cave.h",
+      "sha256": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c",
+      "sha256": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.h",
+      "sha256": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/generator.c",
+      "sha256": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/generator.h",
+      "sha256": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c",
+      "sha256": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.h",
+      "sha256": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/mt.c",
+      "sha256": "853e8b94e2fb024f2c9489d08144fa81e502d641bbb8f2f35c7b5d3b1a59358b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/mt.h",
+      "sha256": "21e1acc1311d4f6109f26669e600646e214c008d14294f5a1a5a57c8d8ea3f5a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/noise.c",
+      "sha256": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/noise.h",
+      "sha256": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/quadbase.c",
+      "sha256": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/quadbase.h",
+      "sha256": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/rng.h",
+      "sha256": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree18.h",
+      "sha256": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree19.h",
+      "sha256": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree192.h",
+      "sha256": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree20.h",
+      "sha256": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree215.h",
+      "sha256": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree21wd.h",
+      "sha256": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree262.h",
+      "sha256": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree263.h",
+      "sha256": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree264.h",
+      "sha256": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tables/btree266.h",
+      "sha256": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/tests.c",
+      "sha256": "16d343f46ac0edfb929aa186329cf7a176584604c93ed2446107ca679214ee41"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/util.c",
+      "sha256": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/util.h",
+      "sha256": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/fresh-geometry.json",
+      "sha256": "abe11631b17d5f07f5184786674f0dd9c8a96f0b3073623036b5140fc96f23e1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/fixtures/bedrock-26.52/fresh-holdout-reviews.json",
+      "sha256": "5ffb6be84907a309512ed71536e940ac76816dde7afa05a347605d81f2b7e2f6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/command-validation.json",
+      "sha256": "0d2c9a052a166879b910befa95ea1fd27dc6b8838e52d209e01bb7fcc51c1bd4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/config/sweep.yaml",
+      "sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/dependencies.log",
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/evidence.json",
+      "sha256": "80690ea021bb782a2f1ab762cb710f58cd576d1bdabbdc31b354b7c616b927b6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-bastion-results.ax.txt",
+      "sha256": "d48e3a26dce1289cc059ed58d4f4c96ba40e313c6b7522450e28ed313b373829"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-fortress-results.ax.txt",
+      "sha256": "85dd5f93dfd9941cb577afec16a9dee078ac04a0ac1b9597e87bfba6baab86e1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-island-close.png",
+      "sha256": "3439c0fd2e2f3cc577f942803b370cc24eb9931f4bfbde54f778187aa69e192b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-nether.ax.txt",
+      "sha256": "a4ed551934ca700b0021d07a09dac6272b28ce37c8160fe030cdf90e48b93d8a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-nether.png",
+      "sha256": "0f21c4c2e9d5a6ca2c4fd85817404c19a1e16c95f0f9bb1613ed55bd1429c573"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-overworld-setting.png",
+      "sha256": "b176076ce5b698e4664f9a14cb3c0a9460edd0116fff9fb1797921386f8836ec"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-overworld.ax.txt",
+      "sha256": "2d8b782f710867e73b5d3c011c65b27e403bbb0c444ecae25079477b267b1a7b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-bastion-results.ax.txt",
+      "sha256": "dafb459e0cf780674f7c113c6088d8f060c09fd58b981153d5ed530e53baac6c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-fortress-results.ax.txt",
+      "sha256": "cda2f6b83f1dbd1ca573bbe22a29c19e2da6aad96062c9acd6f1d8886e28d65d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-island-close.png",
+      "sha256": "775c133ff57ffd4415c852e6f685fc9d7d1c4fdc325ee46fe5403df9d7294687"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-nether.ax.txt",
+      "sha256": "727d5e379e730f9d66d43ebebef3759678293d708c7f7df453edca6b75aaf2a3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-nether.png",
+      "sha256": "7f10ce2a43d5568657044c0270d68586d6d8f18098cd3c15852f7afdb2e08da0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-overworld.ax.txt",
+      "sha256": "ff27a858a49cf053f94b33b2efe4bd9445b989685116370145b039bdb0ab88e0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-setting-screen.png",
+      "sha256": "5b9627f49c015dc95e261d4aa96b049836ae212c557d006de1a141255c221ab7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-bastion-results.ax.txt",
+      "sha256": "130da473559ce62b684a1ce47aae5d49343d4c3a8abdc5efb0225841ef3ab198"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-fortress-results.ax.txt",
+      "sha256": "c5501ce38b1170c64be5238148528f43f9ecda7c6c1d04b53fc03a4e16a02593"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-island-close.png",
+      "sha256": "d43afcb9c9bb9c8ccb77f28c653ed2be09f32d44e0ea6c46e02d04d37f2d3452"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-nether.ax.txt",
+      "sha256": "b36ce7892e351490b3b76f407c3e5ebeab0b97140a0e300fc6798441b89c13cb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-nether.png",
+      "sha256": "c3278c1aec5766e6441b0b25e0e43c5f557094827684a3f778ffcf008fde1c76"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld-setting.png",
+      "sha256": "f222ccf52ab90455e86a6e3e3ce6ec40c9920459fa44d3428d4ec8b6fbe1a4cd"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld.ax.txt",
+      "sha256": "761ad178cdec7eb510a1520acd68e55ffcef48da83d4bba882a6a642b0baa7d0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-connected-shore-overworld.ax.txt",
+      "sha256": "617ea4b52c2eebe41b166e4896fadb550058bc0395cd4d432d896d8d0189cbff"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-connected-shore-overworld.png",
+      "sha256": "515934ea70c4c0a346fa8fd2528cdb635ec9eb638eafffbe81cf9e40393625b5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-rejected-center-overworld.ax.txt",
+      "sha256": "8065f265639c99dae7d95ee208efcd4fd2e7cdcae97e1d91e841fafda60d62fa"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-rejected-center-overworld.png",
+      "sha256": "c135fec81bb679bac00ba2ddf41b1df6b7806830ef87445f5dbaf8a36489288c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-bastion-results.ax.txt",
+      "sha256": "d7e448c2763827c7732d19c061042af95b78bb01f9e7e2c204b7b908e900029c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.ax.txt",
+      "sha256": "3544bf664a3bd1fd320c24aec099bd62f8d8d40a35a8742a96b2e80be5fcde01"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.png",
+      "sha256": "c3b337bbc6b6f514cd3c7c149a63020a86ada23ed4991515b56d833aac61fe5a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-fortress-results.ax.txt",
+      "sha256": "87abf9f5e98ed1617e1f75687e310149946162a761a0c06c963957d196850998"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-island-close.png",
+      "sha256": "509837564a76cc85c37923a425f75f686ebec0b8b17454a3fbf309d8e6b533ae"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1272_-3256.ax.txt",
+      "sha256": "5e788c650f99cee2e7fe1c0262deeb269d77215694a2fd2b0fc768e11c774c3e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3248.ax.txt",
+      "sha256": "4a21fbcd9269cc564c3259f664b795fd9323ad5a3ed752ae6e030ceaea2e1c1d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3272.ax.txt",
+      "sha256": "92e00f0b744c910c036e1a4e8f23725721e888995fe2ba3bab571c01f954317d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1320_-3256.ax.txt",
+      "sha256": "bd5654a5f36bc2b950f721d26b6fd8057876a5705cbdd55dcf69d52c1d53cb99"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-nether.ax.txt",
+      "sha256": "4074751ba38ea10a20919161fe5686a87d2de93685ba99811308af1c1b48938f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-nether.png",
+      "sha256": "cfa7ff45849a1766c1338d3be1173d28d2dbb7e4037c0f4aa7a997b7b2d11167"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld-setting.png",
+      "sha256": "e8b78288cfbc14bc7984f109192906e9e93692e76d319f22f1af9ed3d70c89e2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld.ax.txt",
+      "sha256": "4c9ae2f6a78df5cfb01afcc960a59cf5d95963ba602092d08be3cc13cfdc8f68"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/optimized-native-build.log",
+      "sha256": "4073f76938ce30a8a8769f1b6baeb584593b840f68876a50e24b4bfb0c2586c9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/candidates.csv",
+      "sha256": "25473f6c861d43e56a0c236390be493aac49b84814f36d65c91caf998392c025"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/candidates.json",
+      "sha256": "116a64a5c579fe6ca76be83b1f322262d638173cfe7246e076ed504d89b1adcd"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/checkpoint.sqlite",
+      "sha256": "9137ba1de0c38917dab374af8ccb894413b6ef8005d9f2cc53feff300122c858"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/invocation-000.json",
+      "sha256": "b6e11cbd2c3a6db14a6bc55f4ea0aeefdd454cc015526f758922f5b603e1b3dc"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/invocation-001.json",
+      "sha256": "01bdda3d23a8fceebd90963aa1400388ac03bf536fac7b2e6afc7adb5d2a6e73"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/run.json",
+      "sha256": "303fb3128af63edba4f81669efd87094eb0a2048484604d52aeb09a248a0549e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/chunkbase_supported/01_514794171988716146_-4424_3688/candidate.json",
+      "sha256": "1f3a4e75d5c29349a1f2f3448c89b00bbf51290b5229cbe071be85a4b562ec40"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/chunkbase_supported/01_514794171988716146_-4424_3688/nether.png",
+      "sha256": "61d91d3f0b03232c9eb297530494c739e85130f5f04c41d67653348d553c07fb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/chunkbase_supported/01_514794171988716146_-4424_3688/overworld.png",
+      "sha256": "ba53a0c379d903009bd2cf189f7d11bcaad56fa1d3f8170a99b375b0220753d1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/01_3471015484745077182_4432_-2056/candidate.json",
+      "sha256": "0d00653b83aa4c70b13a2b2541db09499b0e04e4d757b38cef93a9ae31c17c12"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/01_3471015484745077182_4432_-2056/nether.png",
+      "sha256": "2a7cc2919d105eb493a44ae1c67fbe2d7682fc336cdb63b91de452b0c44a6bdb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/01_3471015484745077182_4432_-2056/overworld.png",
+      "sha256": "f70fac4de58a438f02a1921560ccb23b1fe198ee09ef4cd936514174ad404a0b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/02_3622748380379877116_-1640_-544/candidate.json",
+      "sha256": "9513a7e2f33d6672db01015c1ae311e1895d06dcda7323a56ed07d6c0ae3bfe8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/02_3622748380379877116_-1640_-544/nether.png",
+      "sha256": "d083a71f666cadb070a52cca186aea08b10ea673fa075416829652c4751d75c0"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/02_3622748380379877116_-1640_-544/overworld.png",
+      "sha256": "52066ea9bbcbccb2508ece6e49fcde3bdf7883775828bc1f2e7faa2d8a78d76e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/03_-2438314906133138794_2288_-2296/candidate.json",
+      "sha256": "a8a4c6cf1583aef95c9e408855fd8bff6550fdd1fac127df141f77f75479cf24"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/03_-2438314906133138794_2288_-2296/nether.png",
+      "sha256": "a5bafa1e1495dbcf51aeeac6679fe83dd2c70e486f8990adef8699ec1444adbc"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/03_-2438314906133138794_2288_-2296/overworld.png",
+      "sha256": "aa9c1f79dd967f3c62ae3bb936aeef5e1b073f3a67a46fb7bbb03058d4cc769f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/04_7717048380801830571_-2208_-3560/candidate.json",
+      "sha256": "c1395aa1839ae5751a45646d16f5f0486265f34b38afd427f2898fe15ea558b4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/04_7717048380801830571_-2208_-3560/nether.png",
+      "sha256": "3b47606b51f94c1adb4aa315ebcc882e2612fa111d04adaff26cc2931553b8cb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/04_7717048380801830571_-2208_-3560/overworld.png",
+      "sha256": "4d46b214b55b2ac5d04ad54ad4daa8c43f20f371fc1f1ea725942723bb263749"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/05_-4145200877325244356_-3080_3656/candidate.json",
+      "sha256": "6bae5a547f65b7de77fde360bcbe7ee28faf82f66a760a2a2b97d59f8d17d152"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/05_-4145200877325244356_-3080_3656/nether.png",
+      "sha256": "00763c78debb2a40844048081aa41c0db17a9df29cf6cc026f2921a15ad40ad1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/05_-4145200877325244356_-3080_3656/overworld.png",
+      "sha256": "df90e40f8ecfe031926f8be0b66104a000b5e8e9c7d7f25e22074cd6ef43b7ed"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/06_-3053740504190104904_4984_1784/candidate.json",
+      "sha256": "c244980b06bb92a8a3899cd5cbe76aa5262769cf0bb8c5668c6c0eeac643b701"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/06_-3053740504190104904_4984_1784/nether.png",
+      "sha256": "3a58adda2c9708d965feada598cd469c6f8c56a235f12758c21bd48a7a7b4e7e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/06_-3053740504190104904_4984_1784/overworld.png",
+      "sha256": "a4b20adf8b09650e26c17462d92521e05d6ae76038f6ebfface4567ceb1fe3de"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/07_5041659218346326752_-4296_-3208/candidate.json",
+      "sha256": "ee5e9df251f49c124f6a94f9fe904dec6eb8de2c143d7733e22d19566d7c031b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/07_5041659218346326752_-4296_-3208/nether.png",
+      "sha256": "d3429d4a219061846c0c369043ffb11cbf157d7e6f3b47c440f62e1d48920555"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/07_5041659218346326752_-4296_-3208/overworld.png",
+      "sha256": "ae7e19dd25925817a6369603fc0dc9555960e9237cd745139b62c436fe2e1d06"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/08_2667808336030093935_808_3144/candidate.json",
+      "sha256": "0e9168f1ff5956447d6c4b7bd7958eebfefcbd71d64e7a201df5338eaf5f521c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/08_2667808336030093935_808_3144/nether.png",
+      "sha256": "915d35875cd3c918ed931bba9803f339e5399617bca667a58a8c0e3ec801714b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/08_2667808336030093935_808_3144/overworld.png",
+      "sha256": "383ef04cab8fd110a453cdc483c2c87545cbb9664eba5a625d1345500069b42c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/09_514794171988716146_-3944_720/candidate.json",
+      "sha256": "a75f23a70a3f95aca0045722c89fe4cd5aad72e888bc6dc9eea222482a1722c1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/09_514794171988716146_-3944_720/nether.png",
+      "sha256": "563b317ad25e38e663d6bb8007387dbd65acabd2b34562068db9ff38151b0850"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/09_514794171988716146_-3944_720/overworld.png",
+      "sha256": "104a444ec4c62bae28123d854224a46af715d87781472db285f7f7ab84cac96e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/10_7356269083696073767_-4736_3920/candidate.json",
+      "sha256": "215fba0fd3a0724d137766b0334fd55c000e9a4cbeb219e97bc51d765fb23ef3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/10_7356269083696073767_-4736_3920/nether.png",
+      "sha256": "813bd56d1905a57553b2f9ad7e16fc919421e1fd357e45fef522004d60ccd19f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/10_7356269083696073767_-4736_3920/overworld.png",
+      "sha256": "0931be3985b145f9efaca02d5d20937807458b138eb88261c61dce5c1a2788b9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/11_-2906648318936089032_-808_-240/candidate.json",
+      "sha256": "5241898394ebc915890167d2b46e8a3a4ec44e1ed188653c9feb99d2bd5bcdea"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/11_-2906648318936089032_-808_-240/nether.png",
+      "sha256": "edb4f82b6f611ddebc8bd8bdbb8d320f7dbee004d39ee9bd9103939c43842c70"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/11_-2906648318936089032_-808_-240/overworld.png",
+      "sha256": "2c5292e663c224d794bb0bc4991c674f260b639f793fee21949f2eb981b5961f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/12_2692132535155015209_-4072_1144/candidate.json",
+      "sha256": "3e7da70d0ceaa6bc022f6d791a3229a7083a020af1ac36667f0497f724c977c1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/12_2692132535155015209_-4072_1144/nether.png",
+      "sha256": "d6275885b2f33d396d90a9ace8eb8b8091ac71ff0e4551a8fcff54a2b97659bf"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/12_2692132535155015209_-4072_1144/overworld.png",
+      "sha256": "89bd5bf629ff6af38aad488d3c0f85310e54f7f57df1b7638470c0d1a79d909a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/13_-5910096296252822203_-4824_-1600/candidate.json",
+      "sha256": "1001ae4e016194b40956924b7753a4e68ea33dbb720a87864511b44fbfd7af2c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/13_-5910096296252822203_-4824_-1600/nether.png",
+      "sha256": "1275ffe88090732a40d58fa9916b7b4609b327410c5b70d70b3e8f4243f03995"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/13_-5910096296252822203_-4824_-1600/overworld.png",
+      "sha256": "115752e0045cf768061b4278c3e3e5fed1d8fdbdb5ad0d0351b19a46fc647048"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/14_2103579030696018535_-2592_-4528/candidate.json",
+      "sha256": "6d74e6fd76f497586b2a5a23ee8c91e8bafe84972ae802db8745ad4bc27eb73d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/14_2103579030696018535_-2592_-4528/nether.png",
+      "sha256": "5f59b2b9e720dc5100ae45c68569da705c58bc6f7a0b8faf657e9c07c436e3d2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/14_2103579030696018535_-2592_-4528/overworld.png",
+      "sha256": "dfa9e0b518787067b3b287af9026b2729dcd03987206f60f55c265951426e229"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/15_7072182788822321375_2056_4640/candidate.json",
+      "sha256": "ef5906e4ac9e753c8a91d80245753757acb5f94eb5f4bea034341c8f6fb9d3c1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/15_7072182788822321375_2056_4640/nether.png",
+      "sha256": "686fb392db86b4c6b2232522e3225e306072bd3e633b61eeabbb1e78a64a4011"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/15_7072182788822321375_2056_4640/overworld.png",
+      "sha256": "8dae954475e3e4152de99d13dff4fc29e4754a1a0baa0c742e6cbed3dfa9f4b7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/16_-5836808829438595943_-4432_1296/candidate.json",
+      "sha256": "71de9ec5fbe987c4016706e69a5ff86200fccce37783036f082d2ee84e365a07"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/16_-5836808829438595943_-4432_1296/nether.png",
+      "sha256": "1b121f01de55e0a2213dcb3d91082b05c18a71ff0943c642b8173d4de7c3fefe"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/16_-5836808829438595943_-4432_1296/overworld.png",
+      "sha256": "76a7af43ee31fcd93ee8197573ac8ace67692111165ee9d07f6b84fc5a5f6fc4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/17_-7898075767587713217_-584_-4048/candidate.json",
+      "sha256": "8e466716c393fc23d61914281852ae31624fff3710632254f643a7770ed25fcb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/17_-7898075767587713217_-584_-4048/nether.png",
+      "sha256": "927167e42d1299992dac3992cc259153f9170f1d8dd1bc1e09a335ad21aab225"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/17_-7898075767587713217_-584_-4048/overworld.png",
+      "sha256": "c0906aac1368af48894474c2415d3286f4c961e0c8eed9cf20f885cea5bb30aa"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/18_257397085994358073_3120_2368/candidate.json",
+      "sha256": "3916d8a98ed2946a97c66921e6bcab9225a27f53d57d69b861b9822bb3b68136"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/18_257397085994358073_3120_2368/nether.png",
+      "sha256": "267c0b13bd426dcf0a8b0a2ce05ab6d42ab982b211b16837813badc51e0a6715"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/18_257397085994358073_3120_2368/overworld.png",
+      "sha256": "cb2b1e8c6eee0f03c01b121416304e6d5086cee9569a9d6e04a08e6a98f0b046"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/19_5273935210954647344_-2192_1688/candidate.json",
+      "sha256": "b0bee10a7942ae6c2bc759497c6ff6e720e90fb2038a9c883220b3bd50d3f1b9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/19_5273935210954647344_-2192_1688/nether.png",
+      "sha256": "57a49af92ea0928a3af50de60f9e25c6f906b795034c636ceffda1d00181dece"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/19_5273935210954647344_-2192_1688/overworld.png",
+      "sha256": "554cdc6ea0c5b83dbdda72ac174aa1d7fa42c5853b4df9db5e25b42bb8063777"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/20_-347915606478439689_200_-3536/candidate.json",
+      "sha256": "d8bbf85728aab1756391b093c68642b5371c1ec5024c4ec3381367ef27a199b2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/20_-347915606478439689_200_-3536/nether.png",
+      "sha256": "62f22bafe622c15001329fd5b761e5476e192742e56cc1d2fa167827b4cbdcc4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/near_misses/20_-347915606478439689_200_-3536/overworld.png",
+      "sha256": "36d9cfe999004ca0e6a3b1553bca9d295a471a9049aed7aac3adbcf1ff4a2768"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/01_-6599178473802089740_-1264_4216/candidate.json",
+      "sha256": "435c29f01984663100c641155c094fd750ab43b86325458183120aaf7008732c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/01_-6599178473802089740_-1264_4216/nether.png",
+      "sha256": "498f5197fdd764927aaac834afa3638c31d678c531efbd277fb368bce13515ef"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/01_-6599178473802089740_-1264_4216/overworld.png",
+      "sha256": "a6a8020d80db19ae6c7373531b1c4d88db5ee2142132cff6d9ff634e7b7a727f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/02_-5237731412505554139_-2560_376/candidate.json",
+      "sha256": "07f4e33486dbd083a48db75544d6fc93488ca7cf1d6cc0e2d4a6d8eef8489acb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/02_-5237731412505554139_-2560_376/nether.png",
+      "sha256": "176c034f11e4cd6e5a0d22e253cedab15259ccf7450e18f70b7100d4795fa47c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/02_-5237731412505554139_-2560_376/overworld.png",
+      "sha256": "a96b77209ba367ce4f4cce488dbb647b6eb7bdf0b5b33fcf2f932a2b7f0f47b8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/03_-6387817139659442654_1984_-1160/candidate.json",
+      "sha256": "d5ab10e87de2a3e8fa16bbd1f4567e79a1a878e8fa888dafa46380559b50efc4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/03_-6387817139659442654_1984_-1160/nether.png",
+      "sha256": "31ee36d26f756119feaf3c1c70c8b42c394cbba6021d3772e7961aba0d4052e2"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/03_-6387817139659442654_1984_-1160/overworld.png",
+      "sha256": "1471964bf5a975f1b4496f2527e39769d877c354759926e8d2d459bb9da52534"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/04_2692132535155015209_4544_2448/candidate.json",
+      "sha256": "b765723cc90f3b82d00db6d90e1a82f14e99472fffa75ad3790389793f09ff49"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/04_2692132535155015209_4544_2448/nether.png",
+      "sha256": "7e09ab062b6f16cc18ff9091c054404eb23a9ed8190cdd1aa69e01306ad38b2d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/04_2692132535155015209_4544_2448/overworld.png",
+      "sha256": "1a64292c6617288a0c7017a85763aebd77bd54738fd5fb84c4086679076e4c90"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/05_-6471561078180941468_2256_-3880/candidate.json",
+      "sha256": "d41ecba51f423dc7aa3439556e680be33605f8acddf4d874694d0ce19111768a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/05_-6471561078180941468_2256_-3880/nether.png",
+      "sha256": "68dc95b0517eab9620f5a299aec3daf0b85288239a77ae7c23a85067e2894cc3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/05_-6471561078180941468_2256_-3880/overworld.png",
+      "sha256": "07b9255a384537ad1109e5c562d06baca45f9eb75912240c115a18ed3f70434e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/06_1346066267577507604_-2568_2056/candidate.json",
+      "sha256": "80a1b41eb2b69d9a297905bdc79151b31ba8536a5e8f82e8d71e2282594695dd"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/06_1346066267577507604_-2568_2056/nether.png",
+      "sha256": "51c3441e983fbaa7a3cb8ae0d4c27d74c11eaeaf87921437bc97b80b4a1248ae"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/06_1346066267577507604_-2568_2056/overworld.png",
+      "sha256": "0f81c528c0263fdc1abd6dd8ddc5ed2f49b75d1f157554cab5dde8b3ba1a9179"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/07_7356269083696073767_3904_3464/candidate.json",
+      "sha256": "346a4d9a21aa60cefd9399566970b7c4322f551039f88eeebb5cfa695e2d19c8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/07_7356269083696073767_3904_3464/nether.png",
+      "sha256": "34ccc8afdec1afb053da5c0b50c595b9f04ca1ae6b5ebad7274ce1731ceb95d5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/07_7356269083696073767_3904_3464/overworld.png",
+      "sha256": "21b323491c971d4eb22c7138e3c5642b864b0fb44ba04dca9a01556d1bd9b4fe"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/08_-8660529869706214020_-1464_-824/candidate.json",
+      "sha256": "01ac989bc50ee604c4e5149249fa7e62370822f406010254af0e6cbfb80fefcc"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/08_-8660529869706214020_-1464_-824/nether.png",
+      "sha256": "d823fdd078f30f8142f9845d42e66f94f1b3af01068c2d6dcb15c65f4f5affdf"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/08_-8660529869706214020_-1464_-824/overworld.png",
+      "sha256": "f7a57290e7a82c7bc591e5b8d17aebc040de05da2e44bf0dac2e04dad3901fcb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/09_-347915606478439689_640_4992/candidate.json",
+      "sha256": "7a6da5e772074f734992b005dd28914cd28d6ce2527ccf5d415df51143ba5a4e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/09_-347915606478439689_640_4992/nether.png",
+      "sha256": "aba5b405414990b6993840662262a2c1fd698d504cf899c6cd30a518cc7d4219"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/09_-347915606478439689_640_4992/overworld.png",
+      "sha256": "617c8cd5a0baf68e850c94cfa415dd0d0606a0bd54a0bc787e43bb1942a3c1ca"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/10_5336822671484852701_-176_-2280/candidate.json",
+      "sha256": "79406898ceb61185443eb485546e7c6bda37a8a88bd31f05236ba249afaa5fa1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/10_5336822671484852701_-176_-2280/nether.png",
+      "sha256": "7c35e6672315461603c91a771e382f4857bbb5045fcfa41e640598a655060d50"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/10_5336822671484852701_-176_-2280/overworld.png",
+      "sha256": "9a525bba343cb385015e4e618bd017a19cbcf4a9c16da9933ad6d2ba0073d0eb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/11_-2438314906133138794_848_-1736/candidate.json",
+      "sha256": "b05c2353dbfff7e198767d271672a7fcf24d9301ce8878033f80ea8e2dcbe536"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/11_-2438314906133138794_848_-1736/nether.png",
+      "sha256": "7a1a189151c643031a45836200824edbda6362424ed6f2697684c4ea40a85ba7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/11_-2438314906133138794_848_-1736/overworld.png",
+      "sha256": "0519893c3242ef77a7dd304528ef9ca0510295ec6c8898a089f7e95b3083e622"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/12_-2523540445830020655_2136_1864/candidate.json",
+      "sha256": "85a2584cfad200e429d39c85c10118bcc76688feded27e9617bb3fbc3844d5be"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/12_-2523540445830020655_2136_1864/nether.png",
+      "sha256": "227acc181577102efb3cf0eb5167440759bcd127c022a0f2042f9fc93bb80b79"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/12_-2523540445830020655_2136_1864/overworld.png",
+      "sha256": "36fc7ed02aa881f3feb452063471629ee6ec8bf19b6c7392c4d90dccd20c2e5d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/13_-3353203050545663124_-2256_-1120/candidate.json",
+      "sha256": "bb18d6f0f9284d98d7e9082db18d7128207539e1b100a85fd26d23d1454ffeca"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/13_-3353203050545663124_-2256_-1120/nether.png",
+      "sha256": "939acb5efa2aa211861e8e7b667b44f221f6178cc6974c9a0fa0fd33f57a3f29"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/13_-3353203050545663124_-2256_-1120/overworld.png",
+      "sha256": "b61ece3bba9ad9e96ff6230ebfec4c7392903103920ad9b196f3e787d6019dde"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/14_-8861467613328155225_4512_2320/candidate.json",
+      "sha256": "ae02ccfd6a09562f666ef96588fe7c3cbcfae92de69dbc45390edf18bea5897d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/14_-8861467613328155225_4512_2320/nether.png",
+      "sha256": "ab6d9da5bf3d78e6543abfcb1a545debb20e3f6433af652c5125b42a25ccff7f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/14_-8861467613328155225_4512_2320/overworld.png",
+      "sha256": "c704b9809f94d81262411e74eaac15677f32f5c793f1fa18253af8a07d917a8c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/15_7300246764159736452_-4672_-3000/candidate.json",
+      "sha256": "2a27fb75161689cb26425647da634ccaacd918bd32d1a4fcdf5f23b1f74dea10"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/15_7300246764159736452_-4672_-3000/nether.png",
+      "sha256": "dd9341e7e2d1752cccf5aab9e9b8c292d9067c0d24c87b887f1840f1e84a2dbb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/15_7300246764159736452_-4672_-3000/overworld.png",
+      "sha256": "24265c3bc401b8fe3efa796a126a0e492d9a0f9cb190026c8a95e2edfc1fda79"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/16_5304946280059244056_-4600_-2176/candidate.json",
+      "sha256": "bef938dbbf4de39fc8ebd00af7d66d98f1751d0b12ad04d02c9c7aeef74abf6e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/16_5304946280059244056_-4600_-2176/nether.png",
+      "sha256": "21775a04b9fa5847ed9b584337399703be39e7866017d2b5404ffb60da61c429"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/16_5304946280059244056_-4600_-2176/overworld.png",
+      "sha256": "1bec82134fcc473f7d09af7694ce1504ff0a34ddf03f13acbf36960e391f128d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/17_-5583609928015648887_-2000_2432/candidate.json",
+      "sha256": "f890ee7d2ef6225c97e43279d7662934deadcbf4209e10aead865eadda973493"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/17_-5583609928015648887_-2000_2432/nether.png",
+      "sha256": "c6d136557a216460167973cca7aac1ae40c5bbdea2336cf8636401ede0e04ef1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/17_-5583609928015648887_-2000_2432/overworld.png",
+      "sha256": "a8676df77df15e839e7147c414daca0aad54daf227915191c13720586bdefcf6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/18_3471015484745077182_1680_-472/candidate.json",
+      "sha256": "ef5a97351745d821f7b16b8208cba520cef48cf0c8f8fd2ee466a2df8df3cb68"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/18_3471015484745077182_1680_-472/nether.png",
+      "sha256": "2394c758150c403b7ba9a4a3bfc6dddbff5996e4b28a54384d997fdcdb46573b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/18_3471015484745077182_1680_-472/overworld.png",
+      "sha256": "adde3ae6d2a2d9f73b564d0bae8b07667b01eaf58dcf53e011421194e139ef86"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/19_7072182788822321375_-1592_4152/candidate.json",
+      "sha256": "1e9c918a42fd0bf2133b0a2b34ca949fea7228fb6663c562e8e2f342795193ce"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/19_7072182788822321375_-1592_4152/nether.png",
+      "sha256": "a13ad0c54f34b85fb6c2f99b0e4ff89ac576c49602b22ce3959d116d2a2e3af6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/19_7072182788822321375_-1592_4152/overworld.png",
+      "sha256": "876e5318750cce3d0d0b909162b6409584ff13bc0a2ccc3acca9814826bad45b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/20_3730694915902580491_-2712_-1832/candidate.json",
+      "sha256": "ebe874c71eb9a36f5f66ef5e7cc6150320245e7b09c478141e7716c71c3e0775"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/20_3730694915902580491_-2712_-1832/nether.png",
+      "sha256": "183f0f41fc7a4ed2cc1dcbeb90fcb0f582de9f44e515a78f2664d84236044276"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/ranked/20_3730694915902580491_-2712_-1832/overworld.png",
+      "sha256": "5f6f7f07f83204e7bf4a04acc8c29fecb97ff129734d5bfe9131085517ee67ea"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/01_7300246764159736452_-1432_-3248/candidate.json",
+      "sha256": "65685bb1edda42b035807847521909cbc0fa13e0f8d2796b2d978efe2ac99d1d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/01_7300246764159736452_-1432_-3248/nether.png",
+      "sha256": "91f36e0f497b33c17f41b3284febce825e54ed002be51398fbf3fdb3f2e663fe"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/01_7300246764159736452_-1432_-3248/overworld.png",
+      "sha256": "e4bdc7c0ca255a6879a1e57e14040b792b40781073d0dd9b4aa75d3cc06e9936"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/02_514794171988716146_-4424_3688/candidate.json",
+      "sha256": "1f3a4e75d5c29349a1f2f3448c89b00bbf51290b5229cbe071be85a4b562ec40"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/02_514794171988716146_-4424_3688/nether.png",
+      "sha256": "61d91d3f0b03232c9eb297530494c739e85130f5f04c41d67653348d553c07fb"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/02_514794171988716146_-4424_3688/overworld.png",
+      "sha256": "ba53a0c379d903009bd2cf189f7d11bcaad56fa1d3f8170a99b375b0220753d1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/03_4725800167843106944_1232_-3280/candidate.json",
+      "sha256": "f7f4eee9cdbdbdd3ee7c7418217f7ff457e03ab279414d96c34f7b070bc21c09"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/03_4725800167843106944_1232_-3280/nether.png",
+      "sha256": "0c0ed7f8b06e43d78429dd195d9a162b2479401b1077222a7b4a175759bb0bb9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/03_4725800167843106944_1232_-3280/overworld.png",
+      "sha256": "1b67a37206563afd2523e1050ddce7677ab12fa5b5ddbf8f6cbd0cc7f047e10d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/04_4002107291894103205_-696_-1064/candidate.json",
+      "sha256": "e5017916702947944dbf400c5f64bc19c528918a3fc7660e0bd3c90ee74044da"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/04_4002107291894103205_-696_-1064/nether.png",
+      "sha256": "b3a11a8058a6cb9758196d31c57d378f3caea2165174795936ae15efe64aabe7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/04_4002107291894103205_-696_-1064/overworld.png",
+      "sha256": "d1c23b0aec5c1bc0f72362f74337112a963c82767798deabe17e8c3171afde78"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/05_-5836808829438595943_-4248_-4640/candidate.json",
+      "sha256": "f52abb94993bff6d3f54e53423d44e0295101f2fb622667a0da84dbd6c306a9e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/05_-5836808829438595943_-4248_-4640/nether.png",
+      "sha256": "629cddcbefdc3cfa6254d0ee2284bbb649c2e81a343a7bf8ffc78cb9e7c6c5b1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/05_-5836808829438595943_-4248_-4640/overworld.png",
+      "sha256": "5b53a69cd9f151836c9fbb21b88427aa17b053862c5aa2816e7208c6e26a554b"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/06_6585537390336906094_-4064_-4112/candidate.json",
+      "sha256": "6a2b6624426324252250cc5413b5b0f6313c648520b59743c4743de1c97dffc7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/06_6585537390336906094_-4064_-4112/nether.png",
+      "sha256": "fbfb2b657f9dffd2f8347943a71ed5e21459321dd6c485abea413f1bccc59cf6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/06_6585537390336906094_-4064_-4112/overworld.png",
+      "sha256": "63a1ce544fe267f0cd148d29c3a9c1609daf6b330e6e92f9f04b2d42df8cec5c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/07_-347915606478439689_-2416_-320/candidate.json",
+      "sha256": "e3b429ea1efd03ee67e650f44cc92ac06003901102c811471f99310389e03ed5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/07_-347915606478439689_-2416_-320/nether.png",
+      "sha256": "aa028644d380c11c3d060885ca9dd2de61430769531d130330f19f503f68f713"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/07_-347915606478439689_-2416_-320/overworld.png",
+      "sha256": "8e2bcee0cef65d818c72e74416b99e649eef19ef6a55c61f2375125e9148f05e"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/08_6408577403062300676_4976_4568/candidate.json",
+      "sha256": "ede9704d4fa17f8dc0f543befa418c626945ad8ecccfd556e82ffe01bbad9dfd"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/08_6408577403062300676_4976_4568/nether.png",
+      "sha256": "2369e5fb98dbdb14b1afa7da5951bc9f61326f571e0fdc83cc97206eefca2d09"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/08_6408577403062300676_4976_4568/overworld.png",
+      "sha256": "432804008e287575b9cb4fa99de669a6219f7d4acae1ea4c304d49c6605a5751"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/09_-8456553050427055661_-2592_4520/candidate.json",
+      "sha256": "397e916eecb3f9d915f1e0c154681df7fbb18bcea3a15d629a97a8cb9ccf85b8"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/09_-8456553050427055661_-2592_4520/nether.png",
+      "sha256": "7974b3ade43849cbbfc16fc9c6b38dc12fe0bd05f4c9204334fbeedb327d0be3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/09_-8456553050427055661_-2592_4520/overworld.png",
+      "sha256": "bf1c1451dcfde4f8ebceea127067dfc577bb76ddab58b7ca1f1e50c1c82af866"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/10_-2438314906133138794_2352_3392/candidate.json",
+      "sha256": "291cb938e21584ed44e90f03c26a51097cf18203126dc9eede901c269bda3b62"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/10_-2438314906133138794_2352_3392/nether.png",
+      "sha256": "3a8193303e3606d2619650a6875752808153d2a2c0ea3dd5b1754ae9433be0a5"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/10_-2438314906133138794_2352_3392/overworld.png",
+      "sha256": "86c19db1ee6bf5d6be47ba118d42b693e1f0907875da8922051aeaddd212fb45"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/11_-6599178473802089740_-1624_4544/candidate.json",
+      "sha256": "5ff87d7861bdb9d02f91ab1b52c4f39835cef5802d8f427811ef236f944be9e3"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/11_-6599178473802089740_-1624_4544/nether.png",
+      "sha256": "55496f3b9ddf0c4a289e1b95ba42a29c34e888500454fbda7c1f644f878a35c1"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/11_-6599178473802089740_-1624_4544/overworld.png",
+      "sha256": "33e561a4be3681b44d6d145c739ea986f74ec9983d778e8ffb84f32854a5084d"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/12_3240998215670010520_-1136_1184/candidate.json",
+      "sha256": "0d243c5985753287d90208ec4826b5f711333385b3d36ad71db3317939109bfe"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/12_3240998215670010520_-1136_1184/nether.png",
+      "sha256": "42ea7a578c5213d08e6078fdb096a0c6e75f4f5adfe92de417476a40ec5b04fe"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/12_3240998215670010520_-1136_1184/overworld.png",
+      "sha256": "47fc9aeca1ecd439c254d263a4df1ac53f4185d8b38b56a137dcbe6ca6885322"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/13_2185194620014831856_-3464_-4984/candidate.json",
+      "sha256": "ec25078419b053e4d0e10e820b05770c2c60ac3f54dfce94c6cee3415dd4689c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/13_2185194620014831856_-3464_-4984/nether.png",
+      "sha256": "0e4dc8840b6bce0dc33b1c307bfbefd1039d9d5e18e2454d78ea47b4551a9e09"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/13_2185194620014831856_-3464_-4984/overworld.png",
+      "sha256": "b78f793fe521d544e896d90e67d6376b4a552830109c051f52882482d84065a6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/14_-7296554920297362789_-1840_1168/candidate.json",
+      "sha256": "25ae202008b23410d42729db6de660cf67730e89bb7b633a60c3255542e87593"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/14_-7296554920297362789_-1840_1168/nether.png",
+      "sha256": "f94acdfaf9217037b5c6fdb828de14e68ed118ef2358ff2cdecd77d7fdefad87"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/14_-7296554920297362789_-1840_1168/overworld.png",
+      "sha256": "6ec70e13185217122a39dc862aaec02bf745f9135f49e66b1fa444553facbfb4"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/15_-3524726180458539719_-2088_-752/candidate.json",
+      "sha256": "1f60901e1be3b4e654c27f5ca1e21b6e529bf42b037f9a1d164ff700ce71cd00"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/15_-3524726180458539719_-2088_-752/nether.png",
+      "sha256": "73a972bab2576fa814f5e0dbd6c4c7fc82e9a726c9bb57564e3b4bf06fa82440"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/15_-3524726180458539719_-2088_-752/overworld.png",
+      "sha256": "cf5830e36031a3655a706cce2be3c481c340df5e5c5ac7105994493cbca2654a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/16_3730694915902580491_-944_-4992/candidate.json",
+      "sha256": "d2a5446ea10788e41aee4ffc9d995b084745e705935d3c559c95b9c2c1de4d3c"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/16_3730694915902580491_-944_-4992/nether.png",
+      "sha256": "bbedf3b806a385a93c08ad5054f9c7535f92b19d95362b8b8dd7e0b31f7c5625"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/16_3730694915902580491_-944_-4992/overworld.png",
+      "sha256": "5901f4afe4582e767ce95a5f2f76d5f7e1b40b83c6d0e7c3096dd098e7b6288a"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/17_530445201382180217_2688_-2184/candidate.json",
+      "sha256": "596ce18248cb49916375385bdb32848be62317e8cd29b67b88b963f0da0fb8a9"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/17_530445201382180217_2688_-2184/nether.png",
+      "sha256": "d6bda7b25b305e2a273ffb767ba65268531b5164e30a9e21a943c48d8e829430"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/17_530445201382180217_2688_-2184/overworld.png",
+      "sha256": "daa8bfdc92523a4974969dd97eb8d9e7f1f8421a5b36053b1eef62ab006e9b16"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/18_-9048740180577658153_-376_-3056/candidate.json",
+      "sha256": "02966ba8f81a4a8b7c5ff53b4918969bba7966272f9069226c24ada6db369b62"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/18_-9048740180577658153_-376_-3056/nether.png",
+      "sha256": "e353f6c9d59c0f989b2c7f536b7194ae078592235448bfbb5077afeaf0bf4728"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/18_-9048740180577658153_-376_-3056/overworld.png",
+      "sha256": "a02305c68b6cb041c85f6d6f4918d1a133384bd26a074e53e858224d0a6fada6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/19_0_-3456_-3080/candidate.json",
+      "sha256": "024f59e48534eb907975787c795090c2c45c14c6451066355bf844e3ab861ccf"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/19_0_-3456_-3080/nether.png",
+      "sha256": "f11844edfe5e2104a4d6a55a727bc24ffcf6932190c0c9afe1573686e4e11f15"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/19_0_-3456_-3080/overworld.png",
+      "sha256": "4cc72ceeaab03e33cb8314fe82df375e52f6faafc9ba37e9d8fc751f53081e38"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/20_7408963384981888293_-5000_-1656/candidate.json",
+      "sha256": "f744b6a3b63f50f08b2c12caa92f78862f0430da1f80d0b9d52ba28e3a4b970f"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/20_7408963384981888293_-5000_-1656/nether.png",
+      "sha256": "f0212f6f1e88c29ee954e42f97410309bd0b83e1803643a7f045d01f24eb2297"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/shortlist/review/20_7408963384981888293_-5000_-1656/overworld.png",
+      "sha256": "1353b78d2d45dca791c91070aaa0aed888e31f25d5d36140ddb09f392f745cd7"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/pilot-100/summary.json",
+      "sha256": "0ca0992d86ac5e3966b730dce9209e291df2594b1c3d971a4482b0a28bb670d6"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/regression/regression.json",
+      "sha256": "cb22dd8c6c6261b8afd55b71257869808997245dae89cb52f741c8f80aeb6287"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/resume-proof.json",
+      "sha256": "4959e71db2af4aca7c107c2476db98eff3f63950eaa9bfd55d136173486b4c74"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/tests.log",
+      "sha256": "3ffd128fbf869852566951a3c1c4c86940c4dc786b0dcd78b0798d261bf12671"
+    },
+    {
+      "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/verification.json",
+      "sha256": "273ffb030b5242050634c984b818831f5d304defe6e7154ccb42b86c8f61b6c5"
+    }
+  ],
+  "sweep_command": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python -m seed_search --config /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/config/sweep.yaml search --count 2000 --start-index 100 --workers 8 --readiness /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/readiness.json --output /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-2000",
+  "resume_command": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python -m seed_search resume --run /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-2000 --workers 8",
+  "sweep_unstarted": true
+}

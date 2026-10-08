@@ -1,0 +1,15 @@
+{
+  "maximum_count": 2000,
+  "tiny_equivalent_exit_code": 0,
+  "tiny_equivalent_evidence": "runs/sweep-readiness/tiny-command-dry-run.json",
+  "large_gate_rejection_exit_code": 2,
+  "large_gate_rejection_evidence": "runs/sweep-readiness/large-gate-rejection.log",
+  "resume_dry_run_exit_code": 0,
+  "resume_evidence": "runs/sweep-readiness/pilot-resume-dry-run.json",
+  "sweep_unstarted": true,
+  "sweep_command": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python -m seed_search --config /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/config/sweep.yaml search --count 2000 --start-index 100 --workers 8 --readiness /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-readiness/readiness.json --output /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-2000",
+  "resume_command": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python -m seed_search resume --run /Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/sweep-2000 --workers 8",
+  "sweep_dry_run_exit_code": 0,
+  "large_sweep_dry_run_evidence": "runs/sweep-readiness/large-sweep-dry-run.json",
+  "sweep_dry_run_working_directory": "/tmp"
+}

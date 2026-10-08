@@ -1,0 +1,65 @@
+{
+  "seed_count": 20,
+  "scored_centers": 96,
+  "wall_seconds": 345.57881125295535,
+  "analysis_wall_seconds": 310.8860593830468,
+  "report_wall_seconds": 34.692751869908534,
+  "effective_seconds_per_seed": 17.27894056264777,
+  "worker_seed_seconds_mean": 80.79307690319838,
+  "worker_seed_seconds_percentiles": [
+    40.8774210360134,
+    55.667270505742636,
+    80.55413801502436,
+    99.5087773516658,
+    129.1522143089678
+  ],
+  "stage_seconds_summed": {
+    "discovery": 8.244041956262663,
+    "structures": 13.970866007148288,
+    "proxy": 5.879216859582812,
+    "preliminary": 379.4873175441753,
+    "coast": 767.4006773250876,
+    "landscape": 435.03013844799716,
+    "scoring": 4.254648079397157
+  },
+  "stage_percentages": {
+    "discovery": 0.5106988147064763,
+    "structures": 0.8654619600587471,
+    "proxy": 0.3642035178278526,
+    "preliminary": 23.50833781464755,
+    "coast": 47.538648929018464,
+    "landscape": 26.949083622532196,
+    "scoring": 0.2635653412087129
+  },
+  "scored_by_type": {
+    "enclosed_island": 49,
+    "ocean_island": 47,
+    "mountain_basin": 0
+  },
+  "nominated_by_type": {
+    "enclosed_island": 1096,
+    "ocean_island": 656,
+    "mountain_basin": 1762
+  },
+  "rejection_reasons": {
+    "deferred_component_no_joint_required_prediction": 2063,
+    "preliminary_density_connected_or_no_closed_land": 39,
+    "deferred_preliminary_budget": 820,
+    "deferred_refinement_budget": 421,
+    "basin_necessary_bound_failed": 38,
+    "density_or_biomes_not_majority_ocean": 2,
+    "deferred_exact_center_no_joint_required_prediction": 19,
+    "ocean_density_not_closed_within_finite_patch": 7,
+    "density_connected_or_no_closed_component": 2,
+    "density_not_dry_flat_mountain_basin": 1
+  },
+  "peak_parent_rss_mb": 554.9375,
+  "peak_worker_rss_mb": 434.265625,
+  "decoded_result_mb": 16.316611289978027,
+  "actual_worker_counts": [
+    5,
+    8
+  ],
+  "future_2000_naive_hours": 9.599411423693205,
+  "limits": "Two invocations include startup and partial plus final exports. First invocation has only five available jobs; second has fifteen jobs and eight workers. Twenty chosen seeds are not an unbiased yield estimate. No basin passed this bounded sample."
+}

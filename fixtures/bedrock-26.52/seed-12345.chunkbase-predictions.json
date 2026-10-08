@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "seed": "12345",
+  "recorded_date": "2026-10-07",
+  "source_kind": "third_party_predictions_read_from_interactive_UI",
+  "source_url": "https://www.chunkbase.com/apps/seed-map",
+  "selected_version_label": "Bedrock 26.50 - 26.52",
+  "platform_url_value": "bedrock_26_50",
+  "overworld_reference_xz": [
+    -3712,
+    3328
+  ],
+  "overworld_comparisons": [
+    {
+      "type": "trial_chamber",
+      "phone_xz": [
+        -3689,
+        3513
+      ],
+      "chunkbase_xz": [
+        -3689,
+        3513
+      ],
+      "chunkbase_y": -23,
+      "chunkbase_label": "Trial Chamber",
+      "local_start_xz": [
+        -3672,
+        3512
+      ],
+      "phone_offset_blocks": 0.0
+    },
+    {
+      "type": "stronghold",
+      "phone_xz": [
+        -5134,
+        5522
+      ],
+      "chunkbase_xz": [
+        -5132,
+        5524
+      ],
+      "chunkbase_label": "Stronghold (Stairway)",
+      "local_start_xz": [
+        -5132,
+        5524
+      ],
+      "phone_offset_blocks": 2.8284271247461903
+    },
+    {
+      "type": "mineshaft",
+      "phone_xz": [
+        -3680,
+        3312
+      ],
+      "chunkbase_xz": [
+        -3672,
+        3320
+      ],
+      "chunkbase_label": "Mineshaft",
+      "local_start_xz": [
+        -3672,
+        3320
+      ],
+      "search_result_index": 7,
+      "phone_offset_blocks": 11.313708498984761
+    }
+  ],
+  "nether_reference_xz": [
+    -464,
+    416
+  ],
+  "nether_border_bounds_xz": [
+    -960,
+    -80,
+    32,
+    912
+  ],
+  "nether_predictions": [
+    {
+      "type": "fortress",
+      "chunkbase_xz": [
+        75,
+        827
+      ],
+      "chunkbase_label": "Nether Fortress (Crossing)",
+      "local_corresponding_start_xz": [
+        72,
+        824
+      ],
+      "inside_diagnostic_square": false,
+      "beyond_east_edge_blocks": 43,
+      "phone_locate_xz": [
+        64,
+        816
+      ],
+      "phone_to_chunkbase_offset_blocks": 15.556349186104045,
+      "phone_to_local_offset_blocks": 11.313708498984761
+    },
+    {
+      "type": "bastion",
+      "chunkbase_xz": [
+        -418,
+        765
+      ],
+      "chunkbase_y": 33,
+      "chunkbase_label": "Bastion (Treasure room)",
+      "local_corresponding_start_xz": [
+        -392,
+        792
+      ],
+      "inside_diagnostic_square": true
+    },
+    {
+      "type": "bastion",
+      "chunkbase_xz": [
+        -642,
+        829
+      ],
+      "chunkbase_label": "Bastion (Treasure room)",
+      "local_corresponding_start_xz": [
+        -616,
+        856
+      ],
+      "inside_diagnostic_square": true
+    },
+    {
+      "type": "bastion",
+      "chunkbase_xz": [
+        -537,
+        -6
+      ],
+      "chunkbase_label": "Bastion (Housing units)",
+      "local_corresponding_start_xz": [
+        -552,
+        24
+      ],
+      "inside_diagnostic_square": true
+    },
+    {
+      "type": "bastion",
+      "chunkbase_xz": [
+        -669,
+        -194
+      ],
+      "chunkbase_label": "Bastion (Treasure room)",
+      "local_corresponding_start_xz": [
+        -680,
+        -168
+      ],
+      "inside_diagnostic_square": false,
+      "search_result_index": 4,
+      "provenance": "Previously observed matching-version Chunkbase Bastion result list in this conversation, reference (-464,416); fourth result.",
+      "phone_locate_xz": [
+        -680,
+        -168
+      ],
+      "phone_to_chunkbase_offset_blocks": 28.231188426986208,
+      "phone_to_local_offset_blocks": 0.0,
+      "phone_beyond_minimum_z_edge_blocks": 88
+    }
+  ],
+  "fortress_discrepancy": {
+    "local_start_xz": [
+      -152,
+      120
+    ],
+    "local_region_xz": [
+      -1,
+      0
+    ],
+    "direct_fortress_attempt": null,
+    "bastion_attempt_xz": [
+      -152,
+      120
+    ],
+    "local_bastion_viable": false,
+    "local_biome_at_y33": "basalt_deltas",
+    "chunkbase_search_list_contains_corresponding_fortress": false,
+    "search_result_limit": 99,
+    "diagnosis": "Local adapter promotes biome-rejected Bastion attempts to Fortress predictions; this additional predicted Fortress is not shown by the observed Chunkbase search list.",
+    "status": "user_reports_absence_local_adapter_fallback_removed",
+    "actual_phone_locate_xz": [
+      64,
+      816
+    ],
+    "point_inspection": {
+      "xyz": [
+        -152,
+        70,
+        120
+      ],
+      "reported_material": "netherrack",
+      "structure_visible": false,
+      "broader_inspection_complete": false,
+      "actual_generated": null
+    },
+    "subsequent_area_inspection": {
+      "actual_generated": false,
+      "source": "User report after looking around supposed Fortress area",
+      "inspection_extent": null
+    },
+    "local_fortress_scan_returns_attempt_before_fix": true,
+    "local_fortress_scan_returns_attempt_after_fix": false
+  },
+  "limitations": [
+    "Chunkbase evidence is third-party prediction, not an actual-game observation or independent generation confirmation.",
+    "Search result order is not strictly distance-sorted; the first result must not be assumed nearest.",
+    "Chunkbase reported 99-result search limits; missing list entries are not proof of absence in game.",
+    "Only coordinate anchors are compared; differing anchor definitions do not prove structural equivalence or full-border containment.",
+    "Actual Fortress and Bastion locate outputs are recorded separately; actual command references and structure visits, island separation, a real bridge contrast, and forest/mountain calibration remain pending."
+  ],
+  "large_search_enabled": false
+}

@@ -1,0 +1,12 @@
+{
+  "host_physical_cores": 18,
+  "host_logical_cpus": 36,
+  "host_ram_gib": 64,
+  "recommended_workers": 12,
+  "decoded_20_results_mib": 16.316611289978027,
+  "linear_2000_results_gib": 1.5934190712869167,
+  "four_result_buffers_gib": 6.373676285147667,
+  "worker_allowance_gib": 5.304473876953125,
+  "disk_free_gib": 692.5385818481445,
+  "scope": "Linear result-size and process-peak allowances, not a measured simultaneous whole-sweep memory maximum. Finite2000 bound on a64GiB host."
+}

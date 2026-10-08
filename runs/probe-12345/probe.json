@@ -1,0 +1,1631 @@
+{
+  "metadata": {
+    "target_game_version": "26.52",
+    "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+    "backend": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "config_sha256": "4a4105e6284b6b6bbc3672e09a465b1d40f351c830502ce8a9a88ec83a106ad7",
+    "real_game_compatibility": "pending_phone_observations",
+    "terrain_accuracy": "unvalidated_against_game",
+    "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+    "cpu_logical_count": 36,
+    "python": "3.13.15",
+    "large_search_enabled": false
+  },
+  "seed": "12345",
+  "center": [
+    -3712,
+    3328
+  ],
+  "nether_center": [
+    -464,
+    416
+  ],
+  "island_isolation": "unverified",
+  "raw_density_refinement_seconds": 3.652612334000878,
+  "approximation_limitations": [
+    "Caves, aquifers, decorations and actual chunk interpolation excluded.",
+    "Vertical stride eight may miss thin overhangs.",
+    "Woodland biome coverage is not actual canopy or log density."
+  ],
+  "discovery_candidates": [
+    {
+      "center": [
+        -3712,
+        3328
+      ],
+      "predicted_area_blocks2": 77824,
+      "equivalent_diameter": 314.78340859941983,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 1.0
+    },
+    {
+      "center": [
+        1920,
+        -2304
+      ],
+      "predicted_area_blocks2": 299008,
+      "equivalent_diameter": 617.0160531073495,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 1.0
+    },
+    {
+      "center": [
+        3648,
+        -3392
+      ],
+      "predicted_area_blocks2": 163840,
+      "equivalent_diameter": 456.73577373510943,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 1.0
+    },
+    {
+      "center": [
+        4224,
+        4544
+      ],
+      "predicted_area_blocks2": 77824,
+      "equivalent_diameter": 314.78340859941983,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 1.0
+    },
+    {
+      "center": [
+        1984,
+        -3200
+      ],
+      "predicted_area_blocks2": 57344,
+      "equivalent_diameter": 270.20852772126415,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.9006950924042139
+    },
+    {
+      "center": [
+        2432,
+        -2048
+      ],
+      "predicted_area_blocks2": 57344,
+      "equivalent_diameter": 270.20852772126415,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.9006950924042139
+    },
+    {
+      "center": [
+        3008,
+        -3136
+      ],
+      "predicted_area_blocks2": 57344,
+      "equivalent_diameter": 270.20852772126415,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.9006950924042139
+    },
+    {
+      "center": [
+        2112,
+        -4032
+      ],
+      "predicted_area_blocks2": 53248,
+      "equivalent_diameter": 260.379452488206,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.8679315082940201
+    },
+    {
+      "center": [
+        1536,
+        -3264
+      ],
+      "predicted_area_blocks2": 45056,
+      "equivalent_diameter": 239.51426038461153,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7983808679487051
+    },
+    {
+      "center": [
+        1920,
+        576
+      ],
+      "predicted_area_blocks2": 45056,
+      "equivalent_diameter": 239.51426038461153,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7983808679487051
+    },
+    {
+      "center": [
+        4416,
+        -2176
+      ],
+      "predicted_area_blocks2": 45056,
+      "equivalent_diameter": 239.51426038461153,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7983808679487051
+    },
+    {
+      "center": [
+        768,
+        1856
+      ],
+      "predicted_area_blocks2": 40960,
+      "equivalent_diameter": 228.36788686755472,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7612262895585157
+    },
+    {
+      "center": [
+        -4736,
+        320
+      ],
+      "predicted_area_blocks2": 36864,
+      "equivalent_diameter": 216.64880008233843,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7221626669411281
+    },
+    {
+      "center": [
+        1024,
+        1344
+      ],
+      "predicted_area_blocks2": 36864,
+      "equivalent_diameter": 216.64880008233843,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.7221626669411281
+    },
+    {
+      "center": [
+        -4736,
+        -2688
+      ],
+      "predicted_area_blocks2": 32768,
+      "equivalent_diameter": 204.25844756553354,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.6808614918851118
+    },
+    {
+      "center": [
+        3072,
+        4608
+      ],
+      "predicted_area_blocks2": 24576,
+      "equivalent_diameter": 176.89300452932378,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.5896433484310792
+    },
+    {
+      "center": [
+        -4096,
+        -384
+      ],
+      "predicted_area_blocks2": 20480,
+      "equivalent_diameter": 161.48048140929026,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.5382682713643009
+    },
+    {
+      "center": [
+        3904,
+        -1088
+      ],
+      "predicted_area_blocks2": 20480,
+      "equivalent_diameter": 161.48048140929026,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.5382682713643009
+    },
+    {
+      "center": [
+        3968,
+        -3584
+      ],
+      "predicted_area_blocks2": 20480,
+      "equivalent_diameter": 161.48048140929026,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.5382682713643009
+    },
+    {
+      "center": [
+        4480,
+        3712
+      ],
+      "predicted_area_blocks2": 20480,
+      "equivalent_diameter": 161.48048140929026,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.5382682713643009
+    },
+    {
+      "center": [
+        -2816,
+        -3008
+      ],
+      "predicted_area_blocks2": 16384,
+      "equivalent_diameter": 144.4325333882256,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.48144177796075205
+    },
+    {
+      "center": [
+        2560,
+        -4160
+      ],
+      "predicted_area_blocks2": 16384,
+      "equivalent_diameter": 144.4325333882256,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.48144177796075205
+    },
+    {
+      "center": [
+        4160,
+        3200
+      ],
+      "predicted_area_blocks2": 16384,
+      "equivalent_diameter": 144.4325333882256,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.48144177796075205
+    },
+    {
+      "center": [
+        -960,
+        -2688
+      ],
+      "predicted_area_blocks2": 12288,
+      "equivalent_diameter": 125.0822430471475,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.41694081015715834
+    },
+    {
+      "center": [
+        64,
+        2112
+      ],
+      "predicted_area_blocks2": 12288,
+      "equivalent_diameter": 125.0822430471475,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.41694081015715834
+    },
+    {
+      "center": [
+        1152,
+        -2560
+      ],
+      "predicted_area_blocks2": 12288,
+      "equivalent_diameter": 125.0822430471475,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.41694081015715834
+    },
+    {
+      "center": [
+        1344,
+        -3840
+      ],
+      "predicted_area_blocks2": 12288,
+      "equivalent_diameter": 125.0822430471475,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.41694081015715834
+    },
+    {
+      "center": [
+        2880,
+        -2752
+      ],
+      "predicted_area_blocks2": 12288,
+      "equivalent_diameter": 125.0822430471475,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.41694081015715834
+    },
+    {
+      "center": [
+        -4864,
+        3968
+      ],
+      "predicted_area_blocks2": 8192,
+      "equivalent_diameter": 102.12922378276677,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.3404307459425559
+    },
+    {
+      "center": [
+        -4416,
+        3008
+      ],
+      "predicted_area_blocks2": 8192,
+      "equivalent_diameter": 102.12922378276677,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.3404307459425559
+    },
+    {
+      "center": [
+        -896,
+        -2240
+      ],
+      "predicted_area_blocks2": 8192,
+      "equivalent_diameter": 102.12922378276677,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.3404307459425559
+    },
+    {
+      "center": [
+        3200,
+        -3264
+      ],
+      "predicted_area_blocks2": 8192,
+      "equivalent_diameter": 102.12922378276677,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.3404307459425559
+    },
+    {
+      "center": [
+        -4864,
+        -2496
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        -4672,
+        3968
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        -4544,
+        576
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        -3840,
+        3520
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        -2624,
+        2880
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        -1472,
+        4544
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        64,
+        3136
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        1472,
+        -2944
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        1600,
+        -2944
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        2112,
+        704
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        2240,
+        704
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        2368,
+        -1792
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        2944,
+        -2880
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        3584,
+        1472
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        3840,
+        -1728
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        4288,
+        3264
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    },
+    {
+      "center": [
+        4352,
+        2688
+      ],
+      "predicted_area_blocks2": 4096,
+      "equivalent_diameter": 72.2162666941128,
+      "evidence": "predicted",
+      "isolation_verified": false,
+      "size_score": 0.24072088898037602
+    }
+  ],
+  "structures": {
+    "trial_chamber": [
+      [
+        -5192,
+        2360
+      ],
+      [
+        -5096,
+        3816
+      ],
+      [
+        -4872,
+        3288
+      ],
+      [
+        -4776,
+        4504
+      ],
+      [
+        -4648,
+        2984
+      ],
+      [
+        -4568,
+        2520
+      ],
+      [
+        -4552,
+        3992
+      ],
+      [
+        -4312,
+        3576
+      ],
+      [
+        -4264,
+        2440
+      ],
+      [
+        -4136,
+        1896
+      ],
+      [
+        -4104,
+        4648
+      ],
+      [
+        -4088,
+        3960
+      ],
+      [
+        -4040,
+        3032
+      ],
+      [
+        -3704,
+        2760
+      ],
+      [
+        -3672,
+        3512
+      ],
+      [
+        -3544,
+        4376
+      ],
+      [
+        -3512,
+        3960
+      ],
+      [
+        -3464,
+        2264
+      ],
+      [
+        -3112,
+        3576
+      ],
+      [
+        -3032,
+        1944
+      ],
+      [
+        -3000,
+        4392
+      ],
+      [
+        -2984,
+        3960
+      ],
+      [
+        -2968,
+        2472
+      ],
+      [
+        -2936,
+        2856
+      ],
+      [
+        -2712,
+        4040
+      ],
+      [
+        -2632,
+        4664
+      ],
+      [
+        -2552,
+        3368
+      ],
+      [
+        -2472,
+        2456
+      ],
+      [
+        -2424,
+        2872
+      ]
+    ],
+    "stronghold": [],
+    "mineshaft": [
+      [
+        -5208,
+        3448
+      ],
+      [
+        -5176,
+        3928
+      ],
+      [
+        -5160,
+        3320
+      ],
+      [
+        -5160,
+        3400
+      ],
+      [
+        -5128,
+        2584
+      ],
+      [
+        -5112,
+        4296
+      ],
+      [
+        -5112,
+        4776
+      ],
+      [
+        -5080,
+        2824
+      ],
+      [
+        -5080,
+        3736
+      ],
+      [
+        -5032,
+        2424
+      ],
+      [
+        -5032,
+        4280
+      ],
+      [
+        -5000,
+        4488
+      ],
+      [
+        -4984,
+        2056
+      ],
+      [
+        -4920,
+        4040
+      ],
+      [
+        -4888,
+        2616
+      ],
+      [
+        -4888,
+        2856
+      ],
+      [
+        -4888,
+        3512
+      ],
+      [
+        -4872,
+        3336
+      ],
+      [
+        -4824,
+        4024
+      ],
+      [
+        -4808,
+        4040
+      ],
+      [
+        -4728,
+        3464
+      ],
+      [
+        -4728,
+        4360
+      ],
+      [
+        -4728,
+        4520
+      ],
+      [
+        -4712,
+        4344
+      ],
+      [
+        -4680,
+        3064
+      ],
+      [
+        -4600,
+        3352
+      ],
+      [
+        -4568,
+        3016
+      ],
+      [
+        -4536,
+        3288
+      ],
+      [
+        -4520,
+        3848
+      ],
+      [
+        -4504,
+        2232
+      ],
+      [
+        -4504,
+        2744
+      ],
+      [
+        -4504,
+        3144
+      ],
+      [
+        -4472,
+        2152
+      ],
+      [
+        -4472,
+        4264
+      ],
+      [
+        -4456,
+        4360
+      ],
+      [
+        -4392,
+        3480
+      ],
+      [
+        -4376,
+        2920
+      ],
+      [
+        -4360,
+        3976
+      ],
+      [
+        -4344,
+        3416
+      ],
+      [
+        -4344,
+        4088
+      ],
+      [
+        -4312,
+        3288
+      ],
+      [
+        -4296,
+        2760
+      ],
+      [
+        -4296,
+        2888
+      ],
+      [
+        -4248,
+        2984
+      ],
+      [
+        -4232,
+        2552
+      ],
+      [
+        -4216,
+        4328
+      ],
+      [
+        -4200,
+        3704
+      ],
+      [
+        -4200,
+        4200
+      ],
+      [
+        -4152,
+        3016
+      ],
+      [
+        -4152,
+        4632
+      ],
+      [
+        -4104,
+        2152
+      ],
+      [
+        -4104,
+        2856
+      ],
+      [
+        -4104,
+        3448
+      ],
+      [
+        -4072,
+        2600
+      ],
+      [
+        -4072,
+        4632
+      ],
+      [
+        -4056,
+        2424
+      ],
+      [
+        -4040,
+        4136
+      ],
+      [
+        -4040,
+        4584
+      ],
+      [
+        -4024,
+        2040
+      ],
+      [
+        -4024,
+        4424
+      ],
+      [
+        -3992,
+        3512
+      ],
+      [
+        -3992,
+        3704
+      ],
+      [
+        -3992,
+        3992
+      ],
+      [
+        -3976,
+        2840
+      ],
+      [
+        -3960,
+        4536
+      ],
+      [
+        -3928,
+        4632
+      ],
+      [
+        -3896,
+        2088
+      ],
+      [
+        -3896,
+        2392
+      ],
+      [
+        -3880,
+        2520
+      ],
+      [
+        -3880,
+        3080
+      ],
+      [
+        -3848,
+        2520
+      ],
+      [
+        -3848,
+        2712
+      ],
+      [
+        -3848,
+        4760
+      ],
+      [
+        -3816,
+        3368
+      ],
+      [
+        -3816,
+        4344
+      ],
+      [
+        -3768,
+        3384
+      ],
+      [
+        -3752,
+        4680
+      ],
+      [
+        -3736,
+        4008
+      ],
+      [
+        -3736,
+        4776
+      ],
+      [
+        -3704,
+        2856
+      ],
+      [
+        -3704,
+        3688
+      ],
+      [
+        -3672,
+        3320
+      ],
+      [
+        -3624,
+        2184
+      ],
+      [
+        -3608,
+        3800
+      ],
+      [
+        -3608,
+        4360
+      ],
+      [
+        -3576,
+        3304
+      ],
+      [
+        -3528,
+        4392
+      ],
+      [
+        -3512,
+        2280
+      ],
+      [
+        -3496,
+        3496
+      ],
+      [
+        -3480,
+        3752
+      ],
+      [
+        -3464,
+        3720
+      ],
+      [
+        -3448,
+        3624
+      ],
+      [
+        -3432,
+        2680
+      ],
+      [
+        -3416,
+        2328
+      ],
+      [
+        -3368,
+        3880
+      ],
+      [
+        -3336,
+        2472
+      ],
+      [
+        -3336,
+        4408
+      ],
+      [
+        -3256,
+        2552
+      ],
+      [
+        -3240,
+        2472
+      ],
+      [
+        -3192,
+        1832
+      ],
+      [
+        -3128,
+        1864
+      ],
+      [
+        -3128,
+        3272
+      ],
+      [
+        -3128,
+        4184
+      ],
+      [
+        -3128,
+        4200
+      ],
+      [
+        -3080,
+        3544
+      ],
+      [
+        -3080,
+        3896
+      ],
+      [
+        -3032,
+        2088
+      ],
+      [
+        -3032,
+        2808
+      ],
+      [
+        -3032,
+        3352
+      ],
+      [
+        -3032,
+        3976
+      ],
+      [
+        -3016,
+        2696
+      ],
+      [
+        -3016,
+        4744
+      ],
+      [
+        -3000,
+        2680
+      ],
+      [
+        -3000,
+        3560
+      ],
+      [
+        -2984,
+        3704
+      ],
+      [
+        -2984,
+        4168
+      ],
+      [
+        -2968,
+        2392
+      ],
+      [
+        -2968,
+        2824
+      ],
+      [
+        -2968,
+        4504
+      ],
+      [
+        -2952,
+        4040
+      ],
+      [
+        -2936,
+        2840
+      ],
+      [
+        -2936,
+        4120
+      ],
+      [
+        -2920,
+        3704
+      ],
+      [
+        -2904,
+        4744
+      ],
+      [
+        -2856,
+        1928
+      ],
+      [
+        -2856,
+        2936
+      ],
+      [
+        -2856,
+        3592
+      ],
+      [
+        -2840,
+        3000
+      ],
+      [
+        -2840,
+        4696
+      ],
+      [
+        -2792,
+        2104
+      ],
+      [
+        -2792,
+        4728
+      ],
+      [
+        -2776,
+        3800
+      ],
+      [
+        -2744,
+        3928
+      ],
+      [
+        -2712,
+        4232
+      ],
+      [
+        -2696,
+        1960
+      ],
+      [
+        -2696,
+        4424
+      ],
+      [
+        -2648,
+        2312
+      ],
+      [
+        -2648,
+        2648
+      ],
+      [
+        -2600,
+        3592
+      ],
+      [
+        -2584,
+        3672
+      ],
+      [
+        -2584,
+        3880
+      ],
+      [
+        -2584,
+        4040
+      ],
+      [
+        -2584,
+        4344
+      ],
+      [
+        -2568,
+        3016
+      ],
+      [
+        -2552,
+        4264
+      ],
+      [
+        -2536,
+        4440
+      ],
+      [
+        -2456,
+        3432
+      ],
+      [
+        -2456,
+        3960
+      ],
+      [
+        -2408,
+        3992
+      ],
+      [
+        -2392,
+        3656
+      ],
+      [
+        -2376,
+        1944
+      ],
+      [
+        -2376,
+        4296
+      ],
+      [
+        -2360,
+        4536
+      ],
+      [
+        -2328,
+        2568
+      ],
+      [
+        -2280,
+        3480
+      ],
+      [
+        -2248,
+        3432
+      ],
+      [
+        -2216,
+        2520
+      ],
+      [
+        -2216,
+        4744
+      ]
+    ],
+    "ancient_city": [],
+    "village": [
+      [
+        -4216,
+        1880
+      ],
+      [
+        -4072,
+        4552
+      ],
+      [
+        -2520,
+        1944
+      ],
+      [
+        -2392,
+        4696
+      ]
+    ],
+    "ruined_portal": [
+      [
+        -5112,
+        3256
+      ],
+      [
+        -5032,
+        2008
+      ],
+      [
+        -4936,
+        4184
+      ],
+      [
+        -4920,
+        2712
+      ],
+      [
+        -4456,
+        2168
+      ],
+      [
+        -4344,
+        4648
+      ],
+      [
+        -4312,
+        3848
+      ],
+      [
+        -4232,
+        3256
+      ],
+      [
+        -4152,
+        2888
+      ],
+      [
+        -3816,
+        4088
+      ],
+      [
+        -3752,
+        2792
+      ],
+      [
+        -3640,
+        1960
+      ],
+      [
+        -3560,
+        3528
+      ],
+      [
+        -3144,
+        3240
+      ],
+      [
+        -3096,
+        3864
+      ],
+      [
+        -3096,
+        4536
+      ],
+      [
+        -3064,
+        2040
+      ],
+      [
+        -2808,
+        2728
+      ],
+      [
+        -2552,
+        4616
+      ],
+      [
+        -2520,
+        2024
+      ],
+      [
+        -2504,
+        3272
+      ],
+      [
+        -2328,
+        3944
+      ],
+      [
+        -2248,
+        2616
+      ]
+    ],
+    "shipwreck": [
+      [
+        -4984,
+        4024
+      ],
+      [
+        -4904,
+        4248
+      ],
+      [
+        -4840,
+        3144
+      ],
+      [
+        -4760,
+        3544
+      ],
+      [
+        -4600,
+        3272
+      ],
+      [
+        -4424,
+        3624
+      ],
+      [
+        -4168,
+        4040
+      ],
+      [
+        -4072,
+        3336
+      ],
+      [
+        -3992,
+        3544
+      ],
+      [
+        -3912,
+        2984
+      ],
+      [
+        -3752,
+        3096
+      ],
+      [
+        -3256,
+        4344
+      ],
+      [
+        -2792,
+        3752
+      ],
+      [
+        -2760,
+        3208
+      ],
+      [
+        -2760,
+        3960
+      ],
+      [
+        -2488,
+        3576
+      ],
+      [
+        -2232,
+        3112
+      ]
+    ],
+    "monument": [
+      [
+        -4408,
+        3864
+      ],
+      [
+        -3000,
+        3640
+      ],
+      [
+        -2456,
+        3240
+      ]
+    ],
+    "outpost": [],
+    "fortress": [],
+    "bastion": [
+      [
+        -616,
+        856
+      ],
+      [
+        -552,
+        24
+      ],
+      [
+        -392,
+        792
+      ]
+    ]
+  },
+  "initial_phone_points": [
+    {
+      "x": 0,
+      "z": 0,
+      "predicted_density_ground_y": 48,
+      "predicted_surface_kind": "water",
+      "predicted_surface_biome": "ocean",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    },
+    {
+      "x": 256,
+      "z": 256,
+      "predicted_density_ground_y": 90,
+      "predicted_surface_kind": "land",
+      "predicted_surface_biome": "dark_forest",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    },
+    {
+      "x": 256,
+      "z": -256,
+      "predicted_density_ground_y": 146,
+      "predicted_surface_kind": "land",
+      "predicted_surface_biome": "grove",
+      "actual_ground_y": null,
+      "actual_surface_kind": null,
+      "actual_wooded": null
+    }
+  ],
+  "surface_biome_inventory": {
+    "ocean": 5114,
+    "plains": 4494,
+    "windswept_hills": 153,
+    "forest": 3316,
+    "taiga": 120,
+    "swamp": 812,
+    "river": 1730,
+    "beach": 1975,
+    "jungle": 750,
+    "sparse_jungle": 293,
+    "deep_ocean": 1791,
+    "stony_shore": 99,
+    "birch_forest": 895,
+    "dark_forest": 1190,
+    "windswept_forest": 15,
+    "savanna": 1314,
+    "savanna_plateau": 224,
+    "badlands": 43,
+    "lukewarm_ocean": 2696,
+    "cold_ocean": 3401,
+    "deep_lukewarm_ocean": 792,
+    "deep_cold_ocean": 2098,
+    "sunflower_plains": 14,
+    "windswept_gravelly_hills": 14,
+    "flower_forest": 195,
+    "old_growth_birch_forest": 1239,
+    "old_growth_spruce_taiga": 210,
+    "windswept_savanna": 73,
+    "bamboo_jungle": 291,
+    "pale_garden": 41,
+    "dappled_forest": 329
+  },
+  "structure_correction": {
+    "date": "2026-10-07",
+    "reason": "User reports Fortress absent around failed Bastion attempt (-152,120); removed promotion of Bastion attempts to Fortress.",
+    "previous_in_border_fortress_starts": [
+      [
+        -152,
+        120
+      ]
+    ],
+    "current_in_border_fortress_starts": [],
+    "terrain_regenerated": false
+  }
+}

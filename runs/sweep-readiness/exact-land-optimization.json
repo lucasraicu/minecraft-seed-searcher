@@ -1,0 +1,34 @@
+{
+  "scope": "local density sea-level classification, not external accuracy or end-to-end throughput",
+  "rows": [
+    {
+      "seed": "12345",
+      "points": 10201,
+      "reference_stride_one_seconds": 3.253248866996728,
+      "exact_land_classifier_seconds": 1.1340113849146292,
+      "identical": true,
+      "speedup": 2.8687973597739846,
+      "land_fraction": 0.6839525536712087
+    },
+    {
+      "seed": "-1",
+      "points": 10201,
+      "reference_stride_one_seconds": 3.6981485409196466,
+      "exact_land_classifier_seconds": 2.810163907939568,
+      "identical": true,
+      "speedup": 1.3159903343969552,
+      "land_fraction": 0.1810606803254583
+    },
+    {
+      "seed": "4294979641",
+      "points": 10201,
+      "reference_stride_one_seconds": 3.620477522024885,
+      "exact_land_classifier_seconds": 1.7958216060651466,
+      "identical": true,
+      "speedup": 2.016056333099684,
+      "land_fraction": 0.48661895892559554
+    }
+  ],
+  "total_points": 30603,
+  "all_identical": true
+}

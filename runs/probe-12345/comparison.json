@@ -1,0 +1,349 @@
+{
+  "metadata": {
+    "target_game_version": "26.52",
+    "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+    "backend": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "config_sha256": "4a4105e6284b6b6bbc3672e09a465b1d40f351c830502ce8a9a88ec83a106ad7",
+    "real_game_compatibility": "pending_phone_observations",
+    "terrain_accuracy": "unvalidated_against_game",
+    "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+    "cpu_logical_count": 36,
+    "python": "3.13.15",
+    "large_search_enabled": false
+  },
+  "seed": "12345",
+  "game_version": "26.52",
+  "points": [
+    {
+      "x": 0,
+      "z": 0,
+      "predicted_ground_y": 48,
+      "actual_ground_y": null,
+      "height_error": null,
+      "surface_kind_matches": true,
+      "actual_wooded": null,
+      "predicted_biome": "ocean",
+      "actual_tree_description": null,
+      "actual_tree_top_y": null,
+      "measurement_method": null
+    },
+    {
+      "x": -256,
+      "z": -256,
+      "predicted_ground_y": 114,
+      "actual_ground_y": null,
+      "height_error": null,
+      "surface_kind_matches": null,
+      "actual_wooded": null,
+      "predicted_biome": "forest",
+      "actual_tree_description": null,
+      "actual_tree_top_y": null,
+      "measurement_method": null
+    },
+    {
+      "x": 256,
+      "z": 256,
+      "predicted_ground_y": 90,
+      "actual_ground_y": 91,
+      "height_error": -1,
+      "surface_kind_matches": true,
+      "actual_wooded": null,
+      "predicted_biome": "dark_forest",
+      "actual_tree_description": "dark-log tree; top observed at Y=101",
+      "actual_tree_top_y": 101,
+      "measurement_method": null
+    },
+    {
+      "x": 256,
+      "z": -256,
+      "predicted_ground_y": 146,
+      "actual_ground_y": 147,
+      "height_error": -1,
+      "surface_kind_matches": true,
+      "actual_wooded": true,
+      "predicted_biome": "grove",
+      "actual_tree_description": "wooded spruce area",
+      "actual_tree_top_y": null,
+      "measurement_method": "User confirms feet Y minus one was applied; keep originally reported natural ground Y=147."
+    }
+  ],
+  "border_center": [
+    -3712,
+    3328
+  ],
+  "structures": [
+    {
+      "type": "trial_chamber",
+      "dimension": "overworld",
+      "actual_position_xz": [
+        -3689,
+        3513
+      ],
+      "actual_y": null,
+      "actual_generated": null,
+      "actual_reported_position_inside_border": true,
+      "prediction_window_bounds": [
+        -3945,
+        3257,
+        -3433,
+        3769
+      ],
+      "nearest_viable_prediction": {
+        "position": [
+          -3672,
+          3512
+        ],
+        "delta_xz": [
+          17,
+          -1
+        ],
+        "horizontal_offset_blocks": 17.029386365926403
+      },
+      "nearest_placement_attempt": {
+        "position": [
+          -3672,
+          3512
+        ],
+        "delta_xz": [
+          17,
+          -1
+        ],
+        "horizontal_offset_blocks": 17.029386365926403
+      },
+      "manual_review_required": true,
+      "status": "reported_position_pending_review",
+      "notes": "Located by command; visit confirmation not supplied.",
+      "predicted_start_inside_border": true,
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    },
+    {
+      "type": "stronghold",
+      "dimension": "overworld",
+      "actual_position_xz": [
+        -5134,
+        5522
+      ],
+      "actual_y": null,
+      "actual_generated": null,
+      "actual_reported_position_inside_border": false,
+      "prediction_window_bounds": [
+        -5390,
+        5266,
+        -4878,
+        5778
+      ],
+      "nearest_viable_prediction": {
+        "position": [
+          -5132,
+          5524
+        ],
+        "delta_xz": [
+          2,
+          2
+        ],
+        "horizontal_offset_blocks": 2.8284271247461903
+      },
+      "nearest_placement_attempt": {
+        "position": [
+          -5132,
+          5524
+        ],
+        "delta_xz": [
+          2,
+          2
+        ],
+        "horizontal_offset_blocks": 2.8284271247461903
+      },
+      "manual_review_required": true,
+      "status": "reported_position_pending_review",
+      "notes": "Located by command; visit confirmation not supplied.",
+      "predicted_start_inside_border": false,
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    },
+    {
+      "type": "mineshaft",
+      "dimension": "overworld",
+      "actual_position_xz": [
+        -3680,
+        3312
+      ],
+      "actual_y": null,
+      "actual_generated": null,
+      "actual_reported_position_inside_border": true,
+      "prediction_window_bounds": [
+        -3936,
+        3056,
+        -3424,
+        3568
+      ],
+      "nearest_viable_prediction": {
+        "position": [
+          -3672,
+          3320
+        ],
+        "delta_xz": [
+          8,
+          8
+        ],
+        "horizontal_offset_blocks": 11.313708498984761
+      },
+      "nearest_placement_attempt": {
+        "position": [
+          -3672,
+          3320
+        ],
+        "delta_xz": [
+          8,
+          8
+        ],
+        "horizontal_offset_blocks": 11.313708498984761
+      },
+      "manual_review_required": true,
+      "status": "reported_position_pending_review",
+      "notes": "Located by command; visit confirmation not supplied.",
+      "predicted_start_inside_border": true,
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    },
+    {
+      "type": "fortress",
+      "dimension": "nether",
+      "actual_position_xz": [
+        64,
+        816
+      ],
+      "actual_y": null,
+      "actual_generated": null,
+      "actual_reported_position_inside_border": false,
+      "prediction_window_bounds": [
+        -192,
+        560,
+        320,
+        1072
+      ],
+      "nearest_viable_prediction": {
+        "position": [
+          72,
+          824
+        ],
+        "delta_xz": [
+          8,
+          8
+        ],
+        "horizontal_offset_blocks": 11.313708498984761
+      },
+      "nearest_placement_attempt": {
+        "position": [
+          72,
+          824
+        ],
+        "delta_xz": [
+          8,
+          8
+        ],
+        "horizontal_offset_blocks": 11.313708498984761
+      },
+      "manual_review_required": true,
+      "status": "reported_position_pending_review",
+      "notes": "Interpreted as X=64, Z=816; Y unspecified. Reference was requested, not independently verified. Locate anchor outside diagnostic square; no visit supplied. This supports the ordinary nearby start and leaves the separate fallback (-152,120) disputed.",
+      "predicted_start_inside_border": false,
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    },
+    {
+      "type": "bastion",
+      "dimension": "nether",
+      "actual_position_xz": [
+        -680,
+        -168
+      ],
+      "actual_y": null,
+      "actual_generated": null,
+      "actual_reported_position_inside_border": false,
+      "prediction_window_bounds": [
+        -936,
+        -424,
+        -424,
+        88
+      ],
+      "nearest_viable_prediction": {
+        "position": [
+          -680,
+          -168
+        ],
+        "delta_xz": [
+          0,
+          0
+        ],
+        "horizontal_offset_blocks": 0.0
+      },
+      "nearest_placement_attempt": {
+        "position": [
+          -680,
+          -168
+        ],
+        "delta_xz": [
+          0,
+          0
+        ],
+        "horizontal_offset_blocks": 0.0
+      },
+      "manual_review_required": true,
+      "status": "reported_position_pending_review",
+      "notes": "Interpreted as X=-680, Z=-168, Y unknown. Actual locate reference was not supplied; user was also inspecting a disputed Fortress spot. Exact local viable start at this coordinate. Locate anchor outside diagnostic square, 88 blocks beyond its northern/minimum-Z boundary. Visit unconfirmed.",
+      "predicted_start_inside_border": false,
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    },
+    {
+      "type": "fortress",
+      "dimension": "nether",
+      "actual_position_xz": [
+        -152,
+        120
+      ],
+      "actual_y": 70,
+      "actual_generated": false,
+      "actual_reported_position_inside_border": true,
+      "prediction_window_bounds": [
+        -408,
+        -136,
+        104,
+        376
+      ],
+      "nearest_viable_prediction": null,
+      "nearest_placement_attempt": null,
+      "manual_review_required": true,
+      "status": "no_viable_prediction_in_window_pending_review",
+      "notes": "Initial point at (-152,70,120) was netherrack and obstructed. User subsequently reports inspecting the surrounding supposed Fortress area and finding none. Record user-reported generation absence. Exact inspected horizontal/vertical extent is unspecified; do not generalize one negative fixture to all seeds.",
+      "comparison_scope": "Nearest starts only within the reported 512-square diagnostic window; offsets are not automatic match decisions."
+    }
+  ],
+  "landscape_observations": {
+    "actual_island_separated": null,
+    "known_bridge_example": null,
+    "actual_surrounding_mountains": null,
+    "actual_surrounding_forest_abundant": null
+  },
+  "default_generation_confirmed": null,
+  "observed_structure_positions": 6,
+  "visited_structure_positions": 1,
+  "observed_woodland_points": 1,
+  "observation_notes": "User phone observations on 2026-10-07: (0,0) water; (256,-256) wooded spruce, ground Y=147, feet-Y-minus-one method confirmed; (256,256) natural ground Y=91 and dark-log tree top Y=101. The user requested skipping (-256,-256). Phone screenshot supplies Trial Chamber, Stronghold and Mineshaft locate outputs from commanded Overworld reference (-3712,320,3328). Actual visits and landscape connectivity remain unobserved. Seed/default-generation confirmation not explicitly received. User text response also supplies Nether Fortress locate X=64, Z=816; Y and visit status unknown. User reported Bastion locate X=-680, Z=-168; Y, actual command reference and visit status unknown. User attempted disputed Fortress point (-152,70,120), found netherrack and no visible structure, and could not inspect farther; absence across nearby heights remains unconfirmed. User subsequently inspected around the disputed Nether Fortress (-152,120) and reports no Fortress there. The snowy forest refers to the Overworld return command, not a Nether inspection location.",
+  "observed_points": 3,
+  "compatibility": "pending_full_fixture_review",
+  "large_search_enabled": false,
+  "notes": "A small sample does not certify all terrain, biomes, or structures."
+}

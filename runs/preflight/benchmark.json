@@ -1,0 +1,367 @@
+{
+  "metadata": {
+    "target_game_version": "26.52",
+    "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+    "backend": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "config_sha256": "4a4105e6284b6b6bbc3672e09a465b1d40f351c830502ce8a9a88ec83a106ad7",
+    "real_game_compatibility": "pending_phone_observations",
+    "terrain_accuracy": "unvalidated_against_game",
+    "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+    "cpu_logical_count": 36,
+    "python": "3.13.15",
+    "large_search_enabled": false
+  },
+  "workload": "bounded_stage_microbenchmarks_not_complete_search",
+  "profile_seed_count": 3,
+  "unique_seeds_including_parallel_tests": 10,
+  "coarse_grid": {
+    "x0": -6528,
+    "z0": -6528,
+    "nx": 204,
+    "nz": 204,
+    "spacing": 64
+  },
+  "overworld_structure_bounds": [
+    -6528,
+    -6528,
+    6528,
+    6528
+  ],
+  "nether_structure_bounds": [
+    -1121,
+    -1121,
+    1121,
+    1121
+  ],
+  "surface_estimator": "raw_terrain_density_without_caves_aquifers_or_chunk_interpolation",
+  "density_vertical_step": 8,
+  "stage_seconds": {
+    "generator_setup_seconds": {
+      "median": 0.00014328095130622387,
+      "minimum": 0.00013697997201234102,
+      "maximum": 0.0001646979944780469
+    },
+    "coarse_biome_climate_seconds": {
+      "median": 0.3350146450102329,
+      "minimum": 0.3283692919649184,
+      "maximum": 0.3426377789583057
+    },
+    "coarse_component_seconds": {
+      "median": 0.003832889022305608,
+      "minimum": 0.003360128030180931,
+      "maximum": 0.004640132072381675
+    },
+    "one_full_border_density_refinement_seconds": {
+      "median": 3.678407386993058,
+      "minimum": 3.4653294590534642,
+      "maximum": 3.720471292035654
+    },
+    "one_256_block_shoreline_patch_seconds": {
+      "median": 0.42562632402405143,
+      "minimum": 0.41543776798062027,
+      "maximum": 0.4524723329814151
+    },
+    "all_structure_adapter_seconds": {
+      "median": 0.5795002488885075,
+      "minimum": 0.5764783136546612,
+      "maximum": 0.5894741558004171
+    }
+  },
+  "rows": [
+    {
+      "seed": "0",
+      "generator_setup_seconds": 0.00014328095130622387,
+      "coarse_biome_climate_seconds": 0.3350146450102329,
+      "coarse_points": 41616,
+      "coarse_component_seconds": 0.004640132072381675,
+      "diagnostic_component_count": 56,
+      "structure_seconds": {
+        "trial_chamber": 0.005828674999065697,
+        "stronghold": 0.0004698049742728472,
+        "mineshaft": 0.4294857500353828,
+        "ancient_city": 0.010464175953529775,
+        "village": 0.008766310987994075,
+        "ruined_portal": 0.0007985350675880909,
+        "shipwreck": 0.07811218698043376,
+        "monument": 0.04455019801389426,
+        "outpost": 0.0008022149559110403,
+        "fortress": 0.00014340097550302744,
+        "bastion": 7.899594493210316e-05
+      },
+      "predicted_structure_counts": {
+        "trial_chamber": 565,
+        "stronghold": 5,
+        "mineshaft": 2771,
+        "ancient_city": 22,
+        "village": 172,
+        "ruined_portal": 416,
+        "shipwreck": 233,
+        "monument": 50,
+        "outpost": 34,
+        "fortress": 8,
+        "bastion": 13
+      },
+      "one_full_border_density_refinement_seconds": 3.678407386993058,
+      "refinement_points": 35721,
+      "density_height_range": [
+        29,
+        164
+      ],
+      "one_256_block_shoreline_patch_seconds": 0.41543776798062027,
+      "shoreline_patch_points": 4225
+    },
+    {
+      "seed": "1",
+      "generator_setup_seconds": 0.00013697997201234102,
+      "coarse_biome_climate_seconds": 0.3426377789583057,
+      "coarse_points": 41616,
+      "coarse_component_seconds": 0.003360128030180931,
+      "diagnostic_component_count": 44,
+      "structure_seconds": {
+        "trial_chamber": 0.005163684021681547,
+        "stronghold": 0.0003792939241975546,
+        "mineshaft": 0.42612090101465583,
+        "ancient_city": 0.010916917934082448,
+        "village": 0.00784552691038698,
+        "ruined_portal": 0.000812698039226234,
+        "shipwreck": 0.0773007950047031,
+        "monument": 0.04665125091560185,
+        "outpost": 0.0009559869067743421,
+        "fortress": 0.00023416697513312101,
+        "bastion": 9.709200821816921e-05
+      },
+      "predicted_structure_counts": {
+        "trial_chamber": 548,
+        "stronghold": 6,
+        "mineshaft": 2689,
+        "ancient_city": 57,
+        "village": 130,
+        "ruined_portal": 413,
+        "shipwreck": 205,
+        "monument": 52,
+        "outpost": 24,
+        "fortress": 9,
+        "bastion": 15
+      },
+      "one_full_border_density_refinement_seconds": 3.720471292035654,
+      "refinement_points": 35721,
+      "density_height_range": [
+        30,
+        143
+      ],
+      "one_256_block_shoreline_patch_seconds": 0.4524723329814151,
+      "shoreline_patch_points": 4225
+    },
+    {
+      "seed": "12345",
+      "generator_setup_seconds": 0.0001646979944780469,
+      "coarse_biome_climate_seconds": 0.3283692919649184,
+      "coarse_points": 41616,
+      "coarse_component_seconds": 0.003832889022305608,
+      "diagnostic_component_count": 49,
+      "structure_seconds": {
+        "trial_chamber": 0.0053090499714016914,
+        "stronghold": 0.0005236850120127201,
+        "mineshaft": 0.4154801130061969,
+        "ancient_city": 0.010057462961412966,
+        "village": 0.008223060984164476,
+        "ruined_portal": 0.0007549090078100562,
+        "shipwreck": 0.09190122794825584,
+        "monument": 0.05591426801402122,
+        "outpost": 0.0008351888973265886,
+        "fortress": 0.0004023520741611719,
+        "bastion": 7.283792365342379e-05
+      },
+      "predicted_structure_counts": {
+        "trial_chamber": 555,
+        "stronghold": 7,
+        "mineshaft": 2643,
+        "ancient_city": 33,
+        "village": 146,
+        "ruined_portal": 409,
+        "shipwreck": 256,
+        "monument": 67,
+        "outpost": 27,
+        "fortress": 10,
+        "bastion": 9
+      },
+      "one_full_border_density_refinement_seconds": 3.4653294590534642,
+      "refinement_points": 35721,
+      "density_height_range": [
+        28,
+        205
+      ],
+      "one_256_block_shoreline_patch_seconds": 0.42562632402405143,
+      "shoreline_patch_points": 4225
+    }
+  ],
+  "coarse_only_parallel": [
+    {
+      "workers": 4,
+      "seed_count": 10,
+      "wall_seconds_including_startup": 1.5810919080395252,
+      "effective_seconds_per_seed": 0.15810919080395253,
+      "worker_samples": [
+        {
+          "seed": "0",
+          "seconds": 0.34519082691986114
+        },
+        {
+          "seed": "1",
+          "seconds": 0.34532660199329257
+        },
+        {
+          "seed": "12345",
+          "seconds": 0.34381092502735555
+        },
+        {
+          "seed": "6238072747940578789",
+          "seconds": 0.34123873501084745
+        },
+        {
+          "seed": "-2606959012126976886",
+          "seconds": 0.35502842999994755
+        },
+        {
+          "seed": "2185194620014831856",
+          "seconds": 0.3721726220101118
+        },
+        {
+          "seed": "-5213918032843888364",
+          "seconds": 0.35259684291668236
+        },
+        {
+          "seed": "-5278393320434088484",
+          "seconds": 0.3525219039293006
+        },
+        {
+          "seed": "-3353203050545663124",
+          "seconds": 0.34472396795172244
+        },
+        {
+          "seed": "1346066267577507604",
+          "seconds": 0.3424825380789116
+        }
+      ]
+    },
+    {
+      "workers": 8,
+      "seed_count": 10,
+      "wall_seconds_including_startup": 1.2908321369905025,
+      "effective_seconds_per_seed": 0.12908321369905024,
+      "worker_samples": [
+        {
+          "seed": "0",
+          "seconds": 0.3814076359849423
+        },
+        {
+          "seed": "1",
+          "seconds": 0.3824779320275411
+        },
+        {
+          "seed": "12345",
+          "seconds": 0.37844555894844234
+        },
+        {
+          "seed": "6238072747940578789",
+          "seconds": 0.37708784092683345
+        },
+        {
+          "seed": "-2606959012126976886",
+          "seconds": 0.37797803804278374
+        },
+        {
+          "seed": "2185194620014831856",
+          "seconds": 0.3837248641066253
+        },
+        {
+          "seed": "-5213918032843888364",
+          "seconds": 0.3732017200672999
+        },
+        {
+          "seed": "-5278393320434088484",
+          "seconds": 0.38185768900439143
+        },
+        {
+          "seed": "-3353203050545663124",
+          "seconds": 0.33894029597286135
+        },
+        {
+          "seed": "1346066267577507604",
+          "seconds": 0.3384419330395758
+        }
+      ]
+    },
+    {
+      "workers": 12,
+      "seed_count": 10,
+      "wall_seconds_including_startup": 1.0496835970552638,
+      "effective_seconds_per_seed": 0.10496835970552638,
+      "worker_samples": [
+        {
+          "seed": "0",
+          "seconds": 0.39097025291994214
+        },
+        {
+          "seed": "1",
+          "seconds": 0.39176453894469887
+        },
+        {
+          "seed": "12345",
+          "seconds": 0.3878972389502451
+        },
+        {
+          "seed": "6238072747940578789",
+          "seconds": 0.3869182300986722
+        },
+        {
+          "seed": "-2606959012126976886",
+          "seconds": 0.38955489301588386
+        },
+        {
+          "seed": "2185194620014831856",
+          "seconds": 0.3939076620154083
+        },
+        {
+          "seed": "-5213918032843888364",
+          "seconds": 0.3839673260226846
+        },
+        {
+          "seed": "-5278393320434088484",
+          "seconds": 0.38284888793714345
+        },
+        {
+          "seed": "-3353203050545663124",
+          "seconds": 0.38946362398564816
+        },
+        {
+          "seed": "1346066267577507604",
+          "seconds": 0.3862065279390663
+        }
+      ]
+    }
+  ],
+  "main_process_peak_rss_mb": 59.2421875,
+  "full_search_seconds_per_seed": null,
+  "notes": [
+    "Refinement is a fixed 3008-square workload, not automatic multi-center refinement.",
+    "Actual total cost depends on survivors and number/size of refined candidate regions.",
+    "Parallel tests measure only coarse sampling and include process import/startup overhead.",
+    "Predicted counts do not certify real-world structures or target rarity."
+  ]
+}

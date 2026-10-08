@@ -1,0 +1,41 @@
+{
+  "source_kind": "fresh_chunkbase_browser_UI",
+  "version": "Bedrock 26.50 - 26.52",
+  "source_url": "https://www.chunkbase.com/apps/seed-map",
+  "recorded_at": "2026-10-07",
+  "seed": "6238072747940578789",
+  "terrain_enabled": true,
+  "role": "calibration_and_rejection_audit",
+  "cases": [
+    {
+      "anchor": [
+        -2176,
+        -832
+      ],
+      "website_terrain_observation": "visually_separated_forested_island",
+      "local_policy": "preliminary_density_expands_component_before_coast_sampling",
+      "evidence": [
+        "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-rejected-center-overworld.png",
+        "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-rejected-center-overworld.ax.txt"
+      ]
+    },
+    {
+      "anchor": [
+        -1152,
+        -3200
+      ],
+      "website_marker_y": 62,
+      "website_biome": "Beach",
+      "website_terrain_observation": "connected_shore_land_immediately_south_of_water_anchor; narrow visible connection links western land to eastern shore",
+      "local_policy": "connected_or_no_closed_land_remains_unknown_rejection; anchor_not_forced_to_land",
+      "evidence": [
+        "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-connected-shore-overworld.png",
+        "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-connected-shore-overworld.ax.txt"
+      ]
+    }
+  ],
+  "limits": [
+    "Terrain-enabled visual predictor comparison, not observed game blocks.",
+    "A finite-patch rejection is unknown rather than a certified mainland label."
+  ]
+}

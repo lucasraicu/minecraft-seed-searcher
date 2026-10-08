@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_date": "2026-10-07",
+    "source_kind": "UI_predictions_not_in_game",
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "backend": {
+      "repository": "https://github.com/FragrantResult186/cubiomes-bedrock",
+      "commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+      "source_archive_sha256": "289f3407e32a0fa980a296d057f3b54ba3c56b684f72ade2e5efbe487a8d3e99",
+      "files": {
+        "LICENSE": "894d391566a3bb235b1df6c278960b2083769076b0199a0a367c771b05a74120",
+        "biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+        "biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+        "biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+        "biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+        "cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+        "cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+        "finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+        "finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+        "generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+        "generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+        "layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+        "layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+        "mt.c": "853e8b94e2fb024f2c9489d08144fa81e502d641bbb8f2f35c7b5d3b1a59358b",
+        "mt.h": "21e1acc1311d4f6109f26669e600646e214c008d14294f5a1a5a57c8d8ea3f5a",
+        "noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+        "noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+        "quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+        "quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+        "rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+        "tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+        "tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+        "tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+        "tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+        "tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+        "tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+        "tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+        "tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+        "tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+        "tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+        "tests.c": "16d343f46ac0edfb929aa186329cf7a176584604c93ed2446107ca679214ee41",
+        "util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+        "util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943"
+      }
+    },
+    "seeds": [
+      "12345",
+      "0",
+      "-1",
+      "4294979641"
+    ],
+    "hashes": {
+      "native/bridge.c": "d584aa4755ed9c20d783d09de1519b3083d782c490ea6a2f9367e7d014ecfaa7",
+      "native/bridge.h": "9fe4b47522387cf71133686d2c89c3264da95ba4e06f6d81c8b1a143a1c94818",
+      "vendor/backend.json": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838",
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/_native.abi3.so": "0b01c1f08b46cefc4388834fcedaa4efde7dfa50f343548617a80d7d59d3d6cf",
+      "search.example.yaml": "4a4105e6284b6b6bbc3672e09a465b1d40f351c830502ce8a9a88ec83a106ad7",
+      "scripts/prepare_accuracy_audit.py": "0646a6da4c80ca34eb91906fb8853f858554d3873fdb39c74b6ceff383cad831",
+      "scripts/compare_accuracy_audit.py": "23d8512d3d64ebed2987c78478a58f0143009a0746283b0ef92d1779dccd7171",
+      "scripts/report_accuracy_audit.py": "69f4a687bd9da7481054f5a809d0ade17d7ba4df421b3b550df26a3959a153c7",
+      "scripts/plot_accuracy_audit.py": "6ac0a62b989bff37601acb599e9adc74c9e37a0c29768edc8a2b92f1c96a06f4",
+      "runs/accuracy-audit/chunkbase-points.compact.json": "caf5fd43a22015b7f8a71f85aed8698a9a9d04f902c61a97e184d8ef02c50965",
+      "runs/accuracy-audit/chunkbase-structures.compact.json": "fd25ceac8b8ada81f7ad6cadd1ad006a58a0561db98cbb08acf6421dd3477f07",
+      "runs/accuracy-audit/chunkbase-caves.json": "36ae1b95be8836b495219381c771c5463ee9f7b4b5b8bc323b3e0ab845afbd69"
+    }
+  },
+  "metrics": {
+    "surface_biomes": {
+      "samples": 135,
+      "exact_matches": 129,
+      "types": 52
+    },
+    "nether_biomes": {
+      "samples": 20,
+      "exact_matches": 20,
+      "types": 5
+    },
+    "cave_biomes": {
+      "samples": 4,
+      "exact_matches_at_minus51": 4,
+      "types": 4
+    },
+    "height": {
+      "samples": 135,
+      "mean_absolute_error": 1.0,
+      "median_absolute_error": 1.0,
+      "p95_absolute_error": 3.0,
+      "max_absolute_error": 5,
+      "exact": 46,
+      "within2": 125,
+      "within3": 132,
+      "land_water_threshold_agreement": 131,
+      "stride8_vs_stride1_agreement": 133
+    },
+    "cheap_proxy": {
+      "mean_absolute_error": 2.8359649122807022,
+      "max_absolute_error": 19.184210526315795,
+      "land_water_threshold_agreement": 129
+    },
+    "structures": {
+      "samples": 880,
+      "matches_within64": 874,
+      "exact_coordinate_matches": 477
+    }
+  }
+}

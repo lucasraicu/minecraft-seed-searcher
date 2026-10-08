@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-m",
+    "seed_search",
+    "review",
+    "--run",
+    "runs/sweep-readiness/pilot-100",
+    "--evidence",
+    "fixtures/bedrock-26.52/fresh-holdout-reviews.json"
+  ],
+  "exit_code": 0,
+  "wall_seconds": 472.15616762510035,
+  "scope": "Post-pilot website review/report refresh; no new seed analyses, excluded from forecast pipeline throughput"
+}

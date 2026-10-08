@@ -1,0 +1,9 @@
+{
+  "verification": "runs/sweep-readiness/verification.json",
+  "regression": "runs/sweep-readiness/regression/regression.json",
+  "resume": "runs/sweep-readiness/resume-proof.json",
+  "pilot": "runs/sweep-readiness/pilot-100",
+  "fresh_reviews": "fixtures/bedrock-26.52/fresh-holdout-reviews.json",
+  "fresh_geometry": "fixtures/bedrock-26.52/fresh-geometry.json",
+  "command_validation": "runs/sweep-readiness/command-validation.json"
+}

@@ -1,0 +1,49 @@
+{
+  "equal": true,
+  "seeds_compared": 10,
+  "candidate_count": 57,
+  "prediction_sha256": "91801fd5aaa2cd164576bf7931f56ddb17307741dd909cfb8fe504544dfe45c6",
+  "uninterrupted_prediction_sha256": "91801fd5aaa2cd164576bf7931f56ddb17307741dd909cfb8fe504544dfe45c6",
+  "current_backend_identity": {
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "sha256": {
+      "native/bridge.c": "fd0f2eb2c9fe251dfab0b753779fc9c02572580d7ef02cf9593a783153b5e94e",
+      "native/bridge.h": "22284db478c1e65b8f5bd2622713436c68a5e34c78623a8261a1e1b6ef1d17c4",
+      "vendor/backend.json": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838",
+      "src/seed_search/__init__.py": "eaa142a1ddca6c98f92e2ec3ea37c7b8312196b345bdc85e5526799799047606",
+      "src/seed_search/backend.py": "bb8cf77375d8fd959023bbdb699a106e0d608050b015aac82328c5a0beae50f9",
+      "src/seed_search/cache.py": "8376c17f24c3de9181eb9f8614bc5d2aed1c2f3390e9b5adcf095bf857fd4ac2",
+      "src/seed_search/landscapes.py": "2c167fada57058c9f03d4fbc4b08124577d749e74f3c27d34f0e0f6628b2a889",
+      "src/seed_search/config.py": "671048944967c8662a0a1a5c8f94bf35fe335342a9ab280dc221a4a96fb3475c",
+      "src/seed_search/geometry.py": "ab4c5cae47e588703a5ad2d756d1a5a2131bada11a7cdabef790a35688603794",
+      "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+      "src/seed_search/wood.py": "f0dcea3ada050362d7fb7b719d15904d2aafb64c3753004e9ad04fe25f3e1f49",
+      "src/seed_search/terrain.py": "165571d71482913c4f361dd0e209ef259385dea09952175772f9e6b91b0ac261",
+      "src/seed_search/structures.py": "fc5023949c926a892c21cfdea821704a12adce398b75d53dcc7271c5d0506c0f",
+      "src/seed_search/scoring.py": "e18beff6e5e51c16c651a2f5a085f405d7bc1a7ac0f586351eb11e399797bafa",
+      "src/seed_search/storage.py": "c2253524fdb651922d09431429ef0999ce6ec772a0c5b3999f3bb5ae4ca6ff80",
+      "src/seed_search/search.py": "3a6f771c4d95c1bb032c2cd1e739326247d378d5168612d45511c33f4f1c7bfa",
+      "src/seed_search/review.py": "ac0795b98d48e7e1de4530c9f3553e7be7d0603851794e43fea84131a99ac078",
+      "src/seed_search/_native.abi3.so": "8b5365179743aedae8a99d68406df75a5d0360aa70444d5a7233a1aa8072b426"
+    }
+  },
+  "config_sha256": "80cf31c33db46a374e978fda3f64ffb59a973e5d410ceab758317b3876e3b59e",
+  "worker_variation_test_passed": true,
+  "worker_variation_evidence": "test_expanded_real_checkpoint_resume_matches_worker_variation in tests.log: real scored pipeline with one versus two workers; full-envelope interrupted/resumed pilot versus independently repeated ten seeds both with eight requested workers.",
+  "limits": "Only measured timings/RSS/PIDs excluded; predictions, metrics, cache counts, rejections and stage counts compared exactly."
+}

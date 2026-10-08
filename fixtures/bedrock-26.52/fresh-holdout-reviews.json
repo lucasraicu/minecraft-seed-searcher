@@ -1,0 +1,248 @@
+[
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "recorded_at": "2026-10-07",
+    "seed": "2185194620014831856",
+    "center": [
+      -3464,
+      -4984
+    ],
+    "config_sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "island_separated": true,
+    "mountain_setting": true,
+    "external_wood_abundant": true,
+    "buildability": null,
+    "structures": {
+      "fortress": [
+        [
+          -661,
+          -277
+        ]
+      ],
+      "bastion": [
+        [
+          -143,
+          -264
+        ],
+        [
+          0,
+          -472
+        ],
+        [
+          -205,
+          -861
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-island-close.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-overworld.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-overworld-setting.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-fortress-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-bastion-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-nether.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-2185194620014831856-nether.png"
+    ],
+    "review_role": "holdout_candidate_quality",
+    "notes": "Actual matching-version Terrain map shows a water-separated small forest/stony/snowy island, with high mountains north/east/south, wooded external slopes and an opening west. Center website Y=126. Buildability remains uncertain because the island is steep; do not certify a settlement area from the appearance alone. Exact Nether center (-433,-623), square X[-929,63], Z[-1119,-127]. Listed Fortress and three Bastion markers all lie inside. Query distance ordering/capped99 results do not establish recall, absent starts, or accessible structure footprints. No actual game inspected."
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "recorded_at": "2026-10-07",
+    "seed": "3471015484745077182",
+    "center": [
+      4432,
+      -2056
+    ],
+    "config_sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "island_separated": true,
+    "mountain_setting": false,
+    "external_wood_abundant": true,
+    "buildability": true,
+    "structures": {
+      "fortress": [
+        [
+          779,
+          -437
+        ],
+        [
+          331,
+          -293
+        ],
+        [
+          651,
+          -645
+        ],
+        [
+          811,
+          11
+        ]
+      ],
+      "bastion": [
+        [
+          1102,
+          -424
+        ],
+        [
+          1144,
+          158
+        ],
+        [
+          390,
+          -22
+        ],
+        [
+          399,
+          -711
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-overworld.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-setting-screen.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-island-close.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-fortress-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-bastion-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-nether.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-3471015484745077182-nether.png"
+    ],
+    "review_role": "holdout_candidate_quality",
+    "notes": "Actual Terrain fine view shows a large fully water-separated gently sloping Birch Forest island with a sheltered inlet and a separate tiny rock inside it; website center Y77. Landscape broad view is open ocean east/south, with forested high terrain west/north; it does not establish the desired surrounding mountain setting. Buildability is supported by the visible broad low slopes but actual trees/blocks are unverified. Nether center(554,-257), square X[58,1050],Z[-753,239]. First Bastion marker1102,-424 is OUTSIDE, later390,-22 and399,-711 are inside. Positive capped search rows are not complete recall or structure footprint/access evidence. No actual game inspected."
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "recorded_at": "2026-10-07",
+    "seed": "514794171988716146",
+    "center": [
+      -4424,
+      3688
+    ],
+    "config_sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "island_separated": true,
+    "mountain_setting": true,
+    "external_wood_abundant": true,
+    "buildability": true,
+    "structures": {
+      "fortress": [
+        [
+          -549,
+          491
+        ],
+        [
+          -901,
+          299
+        ],
+        [
+          -165,
+          11
+        ]
+      ],
+      "bastion": [
+        [
+          -270,
+          648
+        ],
+        [
+          -695,
+          944
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-overworld-setting.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-island-close.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-fortress-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-bastion-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-nether.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-514794171988716146-nether.png"
+    ],
+    "review_role": "holdout_candidate_quality",
+    "notes": "Actual matching-version Terrain view at fine shoreline scale shows a continuous water channel around the main Plains island, including the narrow northwest channel separating the neighboring peninsula/islet. Broad gentle slopes and usable open land support settlement buildability at website prediction level; center Plains Y74. Surrounding woodland is extensive west and north, with nearby forested high terrain/scarps west/northwest, snowy/cherry high terrain northeast, and rugged plateau slopes east. This supports a water/high-terrain setting, but it is not a uniformly enclosed mountain basin: local directional high-terrain coverage0.322 remains below the preferred0.75. Local equivalent diameter295 is slightly below the soft300\u2013700 preference, without relaxing it. External woodland proxy0.48 exceeds preferred0.30 but not full-credit0.60. Nether center(-553,461),squareX[-1049,-57],Z[-35,957]. Fortress(-549,491) and Bastion(-270,648) are comfortably inside. The second Bastion(-695,944) is only13blocks from the south edge; its full accessible footprint remains unresolved and it is not needed for eligibility. Capped positive lists do not establish recall. Thin bridges, actual trees/blocks, portal arrival and accessible footprints remain optional actual-game checks; no game observation invented."
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "recorded_at": "2026-10-07",
+    "seed": "7300246764159736452",
+    "center": [
+      -1432,
+      -3248
+    ],
+    "config_sha256": "2e588a59bc0e9a0962d5eb2555849b7e9c93cadcb8d576bddc0e83c9e317894e",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "island_separated": null,
+    "mountain_setting": true,
+    "external_wood_abundant": true,
+    "buildability": true,
+    "structures": {
+      "fortress": [
+        [
+          11,
+          -389
+        ],
+        [
+          -277,
+          11
+        ]
+      ],
+      "bastion": [
+        [
+          207,
+          184
+        ],
+        [
+          -382,
+          -455
+        ],
+        [
+          183,
+          -942
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-overworld-setting.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-island-close.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-connecting-neck.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-fortress-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-bastion-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-nether.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-nether.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1320_-3256.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3248.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1272_-3256.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-7300246764159736452-neck--1296_-3272.ax.txt"
+    ],
+    "review_role": "holdout_candidate_quality",
+    "notes": "Strong mountain/water setting: forested and snowy high terrain north/west/south plus cherry/rugged slopes east; external forest is extensive, and low Plains ground around centerY70 supports buildability. Equivalent diameter198 remains below the soft300\u2013700 preference. Separation remains UNRESOLVED: the fine Terrain view appears to show a stone-colored neck to the east, but independently queried Stony Shore positions there have websiteY39 and46 (local39 and43), with nearbyY62/63. A shoreline biome/terrain color cannot establish dry connectivity or water isolation; sampled heights support submerged portions but do not prove every possible neck path. Keep review status unresolved and possible thin bridge/sea-level ambiguity visible. Nether center(-179,-406),squareX[-675,317],Z[-902,90]. Fortress(11,-389) and Bastion(-382,-455) inside; first Bastion207,184 and another183,-942 outside. Positive capped lists are not full recall or accessible footprint evidence. No game observation invented."
+  }
+]

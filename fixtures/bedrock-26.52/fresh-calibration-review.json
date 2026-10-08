@@ -1,0 +1,54 @@
+[
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "version": "Bedrock 26.50 - 26.52",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "recorded_at": "2026-10-07",
+    "seed": "6238072747940578789",
+    "center": [
+      -600,
+      -3720
+    ],
+    "config_sha256": "f7e359f99fc34e24063e2b158cd06eacbdeb625de0f28035d62a4818ae7fb4b6",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "island_separated": true,
+    "mountain_setting": false,
+    "external_wood_abundant": true,
+    "buildability": true,
+    "structures": {
+      "fortress": [
+        [
+          -437,
+          -741
+        ]
+      ],
+      "bastion": [
+        [
+          8,
+          -367
+        ],
+        [
+          -159,
+          -248
+        ],
+        [
+          -18,
+          -909
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-overworld.png",
+      "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-overworld.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-fortress-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-bastion-results.ax.txt",
+      "runs/sweep-readiness/fresh-chunkbase/seed-6238072747940578789-nether.png"
+    ],
+    "review_role": "calibration_near_miss",
+    "notes": "Terrain-enabled map at 1 block/pixel visibly shows an open Plains island with a continuous water channel around it, wooded external land south/east, and mostly low surrounding terrain. The numerical diameter is smaller than the preferred interval and mountain setting is weak. Both required Nether marker types are inside center (-75,-465), square X [-571,421], Z [-961,31]. Positive capped search rows establish these markers, not complete recall or accessible footprints. No actual Minecraft generation/trees/footprints were inspected."
+  }
+]

@@ -1,0 +1,106 @@
+{
+  "cases": [
+    {
+      "seed": "12345",
+      "type": "bastion",
+      "start": [
+        1208,
+        408
+      ],
+      "quart_sample": [
+        296,
+        8,
+        94
+      ],
+      "sample_biome": "basalt_deltas",
+      "rotation": 2,
+      "variant": 1,
+      "piece_offset": [
+        -29,
+        -47
+      ],
+      "piece_size": [
+        30,
+        48
+      ],
+      "start_biome": "nether_wastes"
+    },
+    {
+      "seed": "4294979641",
+      "type": "bastion",
+      "start": [
+        1208,
+        408
+      ],
+      "quart_sample": [
+        296,
+        8,
+        94
+      ],
+      "sample_biome": "basalt_deltas",
+      "rotation": 2,
+      "variant": 1,
+      "piece_offset": [
+        -29,
+        -47
+      ],
+      "piece_size": [
+        30,
+        48
+      ],
+      "start_biome": "nether_wastes"
+    },
+    {
+      "seed": "-1",
+      "type": "ancient_city",
+      "start": [
+        -3048,
+        3256
+      ],
+      "quart_sample": [
+        -762,
+        -7,
+        814
+      ],
+      "sample_biome": "birch_forest",
+      "rotation": 0,
+      "variant": 0,
+      "piece_offset": [
+        0,
+        0
+      ],
+      "piece_size": [
+        0,
+        0
+      ],
+      "start_biome": "deep_dark"
+    },
+    {
+      "seed": "4294979641",
+      "type": "ancient_city",
+      "start": [
+        -680,
+        6216
+      ],
+      "quart_sample": [
+        -170,
+        -7,
+        1554
+      ],
+      "sample_biome": "savanna_plateau",
+      "rotation": 0,
+      "variant": 0,
+      "piece_offset": [
+        0,
+        0
+      ],
+      "piece_size": [
+        0,
+        0
+      ],
+      "start_biome": "savanna_plateau"
+    }
+  ],
+  "resolution": "No coordinate exceptions or unproven generation rule changes; raw starts retained for review.",
+  "stronghold": "Both static regional plus first three village-associated paths are already enumerated. Missing -1 markers persist; missing coverage is unknown, not absence."
+}

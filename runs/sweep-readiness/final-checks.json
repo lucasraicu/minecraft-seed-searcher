@@ -1,0 +1,29 @@
+{
+  "verified_ready": true,
+  "verified_count": 2000,
+  "tamper_checks": [
+    {
+      "case": "budget_enlarged",
+      "rejected": true,
+      "reason": "Readiness finite budget/commands differ from verified evidence"
+    },
+    {
+      "case": "artifact_hash_changed",
+      "rejected": true,
+      "reason": "Readiness artifact missing or changed: /Users/lucasraicu/Downloads/minecraft-seed-searcher/SWEEP_READINESS.md"
+    },
+    {
+      "case": "unready",
+      "rejected": true,
+      "reason": "Readiness record is not ready"
+    },
+    {
+      "case": "backend_changed",
+      "rejected": true,
+      "reason": "Readiness identity is incompatible with current configuration/backend"
+    }
+  ],
+  "all_current_shortlist_packets_and_maps_verified": true,
+  "exact_start_command_dry_run_from_tmp_exit_code": 0,
+  "sweep_unstarted": true
+}
