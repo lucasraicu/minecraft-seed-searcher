@@ -1,0 +1,184 @@
+{
+  "scope": "Predictor diagnosis and proposals; no production modifications or real-game certification.",
+  "million": {
+    "mineshaft_ms_per_check": 22.227098629401688,
+    "biome_ms_per_inventory": 12.606096671208377,
+    "timed_stage_shares_percent": {
+      "mineshaft": 50.609947277620535,
+      "wooded_biomes": 28.703426324050884
+    },
+    "inventory_calls": 1205024,
+    "mineshaft_pending": 0
+  },
+  "mineshaft": [
+    {
+      "side": 1280,
+      "seconds": {
+        "installed": 0.004994236980564892,
+        "vector4_full": 0.0026563325081951916,
+        "existence_only": 0.0001519049983471632
+      }
+    },
+    {
+      "side": 2380,
+      "seconds": {
+        "installed": 0.014067935466300696,
+        "vector4_full": 0.007771939563099295,
+        "existence_only": 0.00018094544066116214
+      }
+    },
+    {
+      "side": 2688,
+      "seconds": {
+        "installed": 0.017489932070020586,
+        "vector4_full": 0.009433296974748373,
+        "existence_only": 5.053449422121048e-05
+      }
+    }
+  ],
+  "baseline": [
+    {
+      "ow": 2688,
+      "nether": 1024,
+      "reference_seconds": 4.786458795075305,
+      "prototype_seconds": 3.761874396004714,
+      "seconds_reduction_percent": 21.40589615280436,
+      "exact_biome_repeat_percent": 0.3940823641284471
+    },
+    {
+      "ow": 1280,
+      "nether": 896,
+      "reference_seconds": 0.31762694101780653,
+      "prototype_seconds": 0.27537476597353816,
+      "seconds_reduction_percent": 13.302453157429007,
+      "exact_biome_repeat_percent": 0.0
+    }
+  ],
+  "eligibility_first": [
+    {
+      "ow": 2688,
+      "nether": 1024,
+      "reference_seconds": 4.356567265000194,
+      "prototype_seconds": 0.3740068129263818,
+      "ratio": 11.648363383844897,
+      "biome_samples": 3136,
+      "full_biome_samples": 218736,
+      "deferred": [
+        "full Mineshaft start inventory",
+        "full biome inventory/bonuses",
+        "optional structure inventories/bonuses"
+      ]
+    },
+    {
+      "ow": 1280,
+      "nether": 896,
+      "reference_seconds": 0.26680846710223705,
+      "prototype_seconds": 0.1146884870249778,
+      "ratio": 2.3263753321999032,
+      "biome_samples": 976,
+      "full_biome_samples": 8800,
+      "deferred": [
+        "full Mineshaft start inventory",
+        "full biome inventory/bonuses",
+        "optional structure inventories/bonuses"
+      ]
+    }
+  ],
+  "raw": [
+    {
+      "discovery": 5000,
+      "ow": 2688,
+      "nether": 1024,
+      "joint_missing_percent": 0.7568359375,
+      "guaranteed_counts": [
+        196,
+        400,
+        0,
+        0,
+        0
+      ],
+      "capped_ranking_seconds": 0.030922084930352867,
+      "original_count_seconds": 0.2290433559101075
+    },
+    {
+      "discovery": 4000,
+      "ow": 1280,
+      "nether": 768,
+      "joint_missing_percent": 7.7392578125,
+      "guaranteed_counts": [
+        81,
+        169,
+        0,
+        0,
+        0
+      ],
+      "capped_ranking_seconds": 0.02685610402841121,
+      "original_count_seconds": 0.12268666899763048
+    },
+    {
+      "discovery": 4000,
+      "ow": 1280,
+      "nether": 896,
+      "joint_missing_percent": 4.0283203125,
+      "guaranteed_counts": [
+        81,
+        169,
+        0,
+        0,
+        0
+      ],
+      "capped_ranking_seconds": 0.02618920593522489,
+      "original_count_seconds": 0.12120531999971718
+    },
+    {
+      "discovery": 4000,
+      "ow": 1536,
+      "nether": 896,
+      "joint_missing_percent": 4.0283203125,
+      "guaranteed_counts": [
+        100,
+        196,
+        0,
+        0,
+        0
+      ],
+      "capped_ranking_seconds": 0.02697288093622774,
+      "original_count_seconds": 0.14596229197923094
+    }
+  ],
+  "raw_presence_scale": [
+    {
+      "ow": 2688,
+      "nether": 1024,
+      "inputs": 262144,
+      "necessary_missing_percent": 0.7228851318359375,
+      "seconds": {
+        "18": 0.2618503849953413,
+        "36": 0.1786967939697206
+      },
+      "36_thread_full32_compute_only_minutes": 48.79613787333171
+    },
+    {
+      "ow": 1280,
+      "nether": 768,
+      "inputs": 262144,
+      "necessary_missing_percent": 7.36236572265625,
+      "seconds": {
+        "18": 0.3207453830400482,
+        "36": 0.21766338997986168
+      },
+      "36_thread_full32_compute_only_minutes": 59.43661635716756
+    },
+    {
+      "ow": 1280,
+      "nether": 896,
+      "inputs": 262144,
+      "necessary_missing_percent": 3.836822509765625,
+      "seconds": {
+        "18": 0.29523591697216034,
+        "36": 0.21336021600291133
+      },
+      "36_thread_full32_compute_only_minutes": 58.261562983194985
+    }
+  ]
+}

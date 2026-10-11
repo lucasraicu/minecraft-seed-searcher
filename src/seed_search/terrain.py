@@ -29,11 +29,30 @@ def raster(backend,bounds,step,adaptive=True):
     return {'height':h.reshape(shape),'biomes':b.reshape(shape),'bounds':[x0,z0,int(xa[-1]),int(za[-1])],
             'step':step,'points':len(pts),'sea_level_stride1_points':more}
 
-def coast_component(backend,discovered,cfg,analysis_bounds):
+def coast_request_bounds(discovered,cfg,analysis_bounds):
     step=cfg['search']['shoreline_spacing_blocks']; pad=64
-    a=discovered['bounds'];cap=cfg['search']['maximum_refinement_patch_side_blocks']
-    bounds=[max(analysis_bounds[0],(a[0]-pad)//step*step),max(analysis_bounds[1],(a[1]-pad)//step*step),
+    a=discovered['bounds']
+    return [max(analysis_bounds[0],(a[0]-pad)//step*step),max(analysis_bounds[1],(a[1]-pad)//step*step),
             min(analysis_bounds[2],-(-(a[2]+pad)//step)*step),min(analysis_bounds[3],-(-(a[3]+pad)//step)*step)]
+
+def island_necessary_bound(discovered,cfg,analysis_bounds,scans):
+    """Optimistic full coast-center domain, including component fallback/snap.
+
+    This bounds predicted required placement, not terrain connectivity. Unsampled
+    cells can connect or split components; diameter/enclosure preferences cannot
+    prove a hard failure. Missing Strongholds remain deferred recovery evidence.
+    """
+    from .structures import possible_required_centers
+    box=coast_request_bounds(discovered,cfg,analysis_bounds);lo,hi=cfg['search']['center_axis_bounds_blocks']
+    domain=(max(lo,box[0]-8),max(lo,box[1]-8),min(hi,box[2]+8),min(hi,box[3]+8))
+    joint=possible_required_centers(scans,cfg,domain)
+    return {'terrain_impossible':False,'predicted_required_window_impossible':not joint,
+            'center_domain':list(domain),'reason':'no_joint_predicted_window_in_complete_coast_center_domain' if not joint else 'unknown_topology_and_score_only_preferences',
+            'policy':'shadow_only; absent Stronghold is not proven absent','additional_native_points':0}
+
+def coast_component(backend,discovered,cfg,analysis_bounds):
+    step=cfg['search']['shoreline_spacing_blocks'];cap=cfg['search']['maximum_refinement_patch_side_blocks']
+    bounds=coast_request_bounds(discovered,cfg,analysis_bounds)
     if max(bounds[2]-bounds[0],bounds[3]-bounds[1])>cap:
         return None,{'reason':'refinement_patch_budget','center':discovered['center'],'isolation':'unknown'}
     r=raster(backend,bounds,step)

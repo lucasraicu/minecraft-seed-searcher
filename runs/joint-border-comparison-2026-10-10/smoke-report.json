@@ -1,0 +1,173 @@
+{
+  "seconds": 14.487499492941424,
+  "summary": {
+    "candidates": 1,
+    "results": 20,
+    "resumed": 0,
+    "resumed_tasks": 0,
+    "work_completed": 22,
+    "durable_raster_hits": 1,
+    "cache_hits": 0,
+    "cache_misses": 21,
+    "blocked_variants": 0,
+    "pool_revision": "pool-00000001",
+    "pool_uninitialized_by_variant": {
+      "v1": 0,
+      "v2": 0
+    },
+    "uninitialized_variant_tasks": 0,
+    "requested_uninitialized_variant_tasks": 0,
+    "pool_cursor": "2970013792866407086:-828:996",
+    "work_status": {
+      "pending": 3639,
+      "deferred": 0,
+      "leased": 0,
+      "complete": 22
+    },
+    "pending_work": 3639,
+    "deferred_work": 0,
+    "elapsed_seconds": 14.463565518031828
+  },
+  "variants": [
+    {
+      "variant": "v1",
+      "center": [
+        436,
+        1620
+      ],
+      "qualification": "PREDICTED_NEAR_MATCH",
+      "geometry_pass": false,
+      "border_fit": {
+        "border_fit": "outside",
+        "complete": false,
+        "footprint": [
+          -438,
+          698,
+          1298,
+          2514
+        ],
+        "minimum_addon_side_blocks": 4256,
+        "minimum_centered_size": 4252,
+        "minimum_is_lower_bound": true,
+        "minimum_side_blocks": 4252,
+        "minimum_size_is_lower_bound": true,
+        "overflow": {
+          "east": 782,
+          "north": 0,
+          "south": 174,
+          "west": 0
+        },
+        "policy": "local-formation-v1",
+        "state": "outside",
+        "status": "outside"
+      },
+      "resolution": 4,
+      "geometry_score": 89.32646705752852
+    },
+    {
+      "variant": "v1",
+      "center": [
+        436,
+        1684
+      ],
+      "qualification": "PREDICTED_NEAR_MATCH",
+      "geometry_pass": false,
+      "border_fit": {
+        "border_fit": "outside",
+        "complete": false,
+        "footprint": [
+          -78,
+          1054,
+          926,
+          2166
+        ],
+        "minimum_addon_side_blocks": 3520,
+        "minimum_centered_size": 3508,
+        "minimum_is_lower_bound": true,
+        "minimum_side_blocks": 3508,
+        "minimum_size_is_lower_bound": true,
+        "overflow": {
+          "east": 410,
+          "north": 0,
+          "south": 0,
+          "west": 0
+        },
+        "policy": "local-formation-v1",
+        "state": "outside",
+        "status": "outside"
+      },
+      "resolution": 4,
+      "geometry_score": 86.49241533339058
+    },
+    {
+      "variant": "v2",
+      "center": [
+        -1020,
+        212
+      ],
+      "qualification": "PREDICTED_NEAR_MATCH",
+      "geometry_pass": false,
+      "border_fit": {
+        "border_fit": "outside",
+        "complete": false,
+        "footprint": [
+          -1370,
+          -866,
+          -22,
+          566
+        ],
+        "minimum_addon_side_blocks": 3744,
+        "minimum_centered_size": 3724,
+        "minimum_is_lower_bound": true,
+        "minimum_side_blocks": 3724,
+        "minimum_size_is_lower_bound": true,
+        "overflow": {
+          "east": 0,
+          "north": 518,
+          "south": 0,
+          "west": 0
+        },
+        "policy": "local-formation-v1",
+        "state": "outside",
+        "status": "outside"
+      },
+      "resolution": 4,
+      "geometry_score": 68.203125
+    },
+    {
+      "variant": "v2",
+      "center": [
+        -300,
+        36
+      ],
+      "qualification": "PREDICTED_NEAR_MATCH",
+      "geometry_pass": false,
+      "border_fit": {
+        "border_fit": "outside",
+        "complete": true,
+        "footprint": [
+          -1110,
+          -742,
+          218,
+          554
+        ],
+        "minimum_addon_side_blocks": 3488,
+        "minimum_centered_size": 3476,
+        "minimum_is_lower_bound": false,
+        "minimum_side_blocks": 3476,
+        "minimum_size_is_lower_bound": false,
+        "overflow": {
+          "east": 0,
+          "north": 394,
+          "south": 0,
+          "west": 0
+        },
+        "policy": "local-formation-v1",
+        "state": "outside",
+        "status": "outside"
+      },
+      "resolution": 4,
+      "geometry_score": 62.28317307692308
+    }
+  ]
+}

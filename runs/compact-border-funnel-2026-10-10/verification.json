@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "baseline_pair_count": 35,
+  "baseline_trials": 70,
+  "distinct_full64_inputs": 1000,
+  "total_baseline_evaluations": 70000,
+  "terrain_anchor_border_evaluations": 42,
+  "distinct_terrain_seeds": 12,
+  "terrain_strict_passes": 0,
+  "actual_generation_verified": false,
+  "production_sources_unchanged": 191,
+  "visual_charts_inspected": true,
+  "artifact_sha256": {
+    "REPORT.md": "e032b61631d130ccc8729f9dab72769d5dc5bcea9024e6e650381d9977fea015",
+    "report.json": "ee1eb7216eaf28c41ad81960d276fd656e40ec5b62385f0ec4d426e3bb8b7674",
+    "independent-audit.json": "2808f1f4a7a6094e030f037afd15615f73ef4d441ac654988a674210a3d46a26",
+    "recommended-target.json": "a571096f803bc929e7ac0a9139dcd3038eb88e458fe15021168103e33f70eba0",
+    "baseline.json": "ae72dd7fe1edd930bdc80c40f189ab59cb6fc73bfe9dd1e4720130bf0128694a",
+    "selection.json": "950795ee928b7bbe68faa6f13d23ed835732120113e24ff4374a5959274b19d1",
+    "terrain.json": "eb9ddc12f2a2a20f0f94e85144ae7b5ea908c30a710a9e795a2184d859544d93",
+    "biome-lattice-replay.json": "455b8841998edf735509df1809077eb9aaa95f4b5f3dd0957e7f982bc62c6f03",
+    "border-matrix.csv": "9c18255ac1c455beb4b9ebf182c606fb165aecdd58d70ed58cecf20d47b82895",
+    "filter-funnels.csv": "f63be8cffde99e8dbe5009b08e75b1e7413f8066994d7524c9cc0533ca0cf70a",
+    "terrain-stages.csv": "290c83bea02a3b2887f69c2875abf3317e1ebf6d5451bdcd6680d40c8f4bf471",
+    "border-matrix.png": "7c6c5e7cbbc993a4b894222c2c12da16e04565cde65344e12d3eafde057a14bb",
+    "filter-funnel.png": "016b7271e90c9eedde829cb596fac6ec9a14e3b5404eac498947af6704b51e26"
+  },
+  "diagnostic_script_sha256": {
+    "scripts/measure_compact_border_funnel.py": "db95266570c02992db0cf9ea7eeadb4d6224cb9a8080fc40f6b99d8239bcd3f1",
+    "scripts/audit_compact_border_funnel.py": "4565e121d956508589635ef23b92c260d674e537e2398a43e589040fc2b96e2e",
+    "scripts/report_compact_border_funnel.py": "9da645920efdec197f8a6c80c9f482065f5645041c1decd5a210886f7288f6be"
+  }
+}

@@ -1,3 +1,29 @@
+> **Current Realm target, 10 October 2026:** 4000×4000 discovery in both dimensions; 1536×1536 Overworld centered on the Stronghold; 896×896 Nether centered on exact Stronghold/8. See [COMPACT_SEARCH_IMPLEMENTATION_PLAN.md](COMPACT_SEARCH_IMPLEMENTATION_PLAN.md) and `config/realm.yaml`. The specifications, commands and measurements below describe earlier contracts; they do not override this target.
+
+# Current query targets — 8 October 2026
+
+The implemented target is **2304 × 2304 Overworld / 928 × 928 Nether**. All four categories require Stronghold and Fortress; other structures are preferences. [SEED_SELECTION_WORKFLOW.md](SEED_SELECTION_WORKFLOW.md) describes live stages and evidence. Implementation and bounded verification are complete; the production sweep is unstarted.
+
+| Query | Live bounds / sampling |
+|---|---|
+| Allowed Overworld centers | X/Z each -5000..5000; eight-block grid |
+| Playable Overworld | Selected center ±1152 on each axis |
+| Playable Nether | Selected center divided by eight, then ±464 on each axis |
+| Structure scan envelopes | Overworld ±6152; Nether ±1089 |
+| Coarse discovery | Outward 64-block snapping to ±6208; 195 × 195 samples |
+| Full landscape / structures-only surface inventory | 16-block spacing; 145 × 145 samples per playable square |
+| Nether biome inventory | 32-block spacing, Y=33; sampled evidence |
+| Refinement budgets | 32 preliminary components, eight terrain centers; independent two structures-only centers |
+| Coast refinement patch | Finite 2048-block side limit; clipped requests remain unresolved |
+| Staged experiment | 10,000 low32 layouts, 64 retained, four upper32 siblings each, 256 full64 inputs |
+
+The Nether side equals 2304/8 + 2×320; the add-on's radius inputs are **72 chunks Overworld / 29 chunks Nether**. Proximity distance and square membership are different calculations. Structure footprints and actual portal access remain separate review questions.
+
+## Historical specifications below
+
+The original 3008/992 specification is retained below for old artifacts and must not be used for the current configuration.
+
+
 > Current policy update (7 October 2026): Fortress and Stronghold are required inside their exact 992/3008 squares; Bastion is optional with 20% of the Nether proximity category (at most two total points). The current default also searches ocean islands and dry flat mountain basins. The distance/border definitions below remain applicable; legacy landscape and Bastion-required descriptions are historical. Current type-specific criteria are in search.example.yaml and LANDSCAPE_EXPANSION.md.
 
 # Query targets, distances, and areas

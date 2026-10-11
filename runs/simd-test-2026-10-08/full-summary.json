@@ -1,0 +1,1490 @@
+{
+  "rows": [
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 35.5101724161068,
+      "stage_seconds": {
+        "discovery": 0.35738244804088026,
+        "structures": 0.5815697979414836,
+        "proxy": 0.14675014000386,
+        "preliminary": 11.3185026391875,
+        "coast": 13.816621620906517,
+        "landscape": 9.207750202040188,
+        "scoring": 0.07709704397711903
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 26.117862086975947,
+      "stage_seconds": {
+        "discovery": 0.34481270506512374,
+        "structures": 0.580664484994486,
+        "proxy": 0.12341044098138809,
+        "preliminary": 11.303323639906012,
+        "coast": 4.476137980935164,
+        "landscape": 9.215803761035204,
+        "scoring": 0.07033605012111366
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 34.35805495898239,
+      "stage_seconds": {
+        "discovery": 0.3390237239655107,
+        "structures": 0.5911117850337178,
+        "proxy": 0.11829124565701932,
+        "preliminary": 10.9992611015914,
+        "coast": 13.289908517152071,
+        "landscape": 8.944729113020003,
+        "scoring": 0.07245019602123648
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 25.489914351026528,
+      "stage_seconds": {
+        "discovery": 0.3408529160078615,
+        "structures": 0.5846338480478153,
+        "proxy": 0.11764792585745454,
+        "preliminary": 11.114377939025871,
+        "coast": 4.320090255932882,
+        "landscape": 8.933862969977781,
+        "scoring": 0.07412464614026248
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 36.68919054605067,
+      "stage_seconds": {
+        "discovery": 0.3425062400056049,
+        "structures": 0.5802647069795057,
+        "proxy": 0.11575891496613622,
+        "preliminary": 11.46909118280746,
+        "coast": 14.722422341932543,
+        "landscape": 9.38369698903989,
+        "scoring": 0.0708516868762672
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "-1",
+      "seconds": 26.30176969000604,
+      "stage_seconds": {
+        "discovery": 0.3573729620547965,
+        "structures": 0.5766345900483429,
+        "proxy": 0.12968526501208544,
+        "preliminary": 11.4249151480617,
+        "coast": 4.498321375926025,
+        "landscape": 9.239692480070516,
+        "scoring": 0.0716450490290299
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 64.83429266593885,
+      "stage_seconds": {
+        "discovery": 0.3352785169845447,
+        "structures": 0.6010498270625249,
+        "proxy": 0.11898560693953186,
+        "preliminary": 13.873490817844868,
+        "coast": 41.972167366882786,
+        "landscape": 7.8521404332714155,
+        "scoring": 0.07535413489677012
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 38.823096226900816,
+      "stage_seconds": {
+        "discovery": 0.33342556399293244,
+        "structures": 0.5961622571339831,
+        "proxy": 0.12263039778918028,
+        "preliminary": 13.773775200010277,
+        "coast": 16.08411631907802,
+        "landscape": 7.831661818083376,
+        "scoring": 0.07508559501729906
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 62.95118737104349,
+      "stage_seconds": {
+        "discovery": 0.33494723902549595,
+        "structures": 0.6038070799550042,
+        "proxy": 0.12033927685115486,
+        "preliminary": 13.411224687937647,
+        "coast": 40.76684264501091,
+        "landscape": 7.632915837923065,
+        "scoring": 0.0736240450059995
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 37.926731050014496,
+      "stage_seconds": {
+        "discovery": 0.341429976047948,
+        "structures": 0.5925069879740477,
+        "proxy": 0.12350575579330325,
+        "preliminary": 13.373261789907701,
+        "coast": 15.780689716921188,
+        "landscape": 7.63152929302305,
+        "scoring": 0.07816187699791044
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 67.53826406097505,
+      "stage_seconds": {
+        "discovery": 0.3411595239304006,
+        "structures": 0.5981358730932698,
+        "proxy": 0.11845436075236648,
+        "preliminary": 13.945411635097116,
+        "coast": 44.50443732412532,
+        "landscape": 7.944170987000689,
+        "scoring": 0.0785328249912709
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "12345",
+      "seconds": 39.56094517291058,
+      "stage_seconds": {
+        "discovery": 0.3344967330340296,
+        "structures": 0.596297026029788,
+        "proxy": 0.14070437394548208,
+        "preliminary": 14.011086851009168,
+        "coast": 16.453592362930067,
+        "landscape": 7.944724285043776,
+        "scoring": 0.07312249089591205
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 76.99157005408779,
+      "stage_seconds": {
+        "discovery": 0.34356241300702095,
+        "structures": 0.5580948709975928,
+        "proxy": 0.11253351520281285,
+        "preliminary": 22.97031706594862,
+        "coast": 22.768023796845227,
+        "landscape": 29.958642111043446,
+        "scoring": 0.27034054801333696
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 62.91677503695246,
+      "stage_seconds": {
+        "discovery": 0.3443685909733176,
+        "structures": 0.5635717390105128,
+        "proxy": 0.1108488270547241,
+        "preliminary": 23.060258993995376,
+        "coast": 8.731540576787665,
+        "landscape": 29.82184580829926,
+        "scoring": 0.2754300150554627
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 74.72925746196415,
+      "stage_seconds": {
+        "discovery": 0.3412992029916495,
+        "structures": 0.5698435720987618,
+        "proxy": 0.12548655306454748,
+        "preliminary": 22.30657569738105,
+        "coast": 22.105212301947176,
+        "landscape": 29.006632063072175,
+        "scoring": 0.2674074510578066
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 61.193230982054956,
+      "stage_seconds": {
+        "discovery": 0.3434149749809876,
+        "structures": 0.5700541238766164,
+        "proxy": 0.11514699878171086,
+        "preliminary": 22.45781710476149,
+        "coast": 8.465031760046259,
+        "landscape": 28.973625146900304,
+        "scoring": 0.2589000500738621
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 79.04643533297349,
+      "stage_seconds": {
+        "discovery": 0.34443711896892637,
+        "structures": 0.5598136819899082,
+        "proxy": 0.12088743888307363,
+        "preliminary": 23.323581988341175,
+        "coast": 24.195254149846733,
+        "landscape": 30.23474186693784,
+        "scoring": 0.25857828999869525
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 0,
+      "seed": "4294979641",
+      "seconds": 63.79398080392275,
+      "stage_seconds": {
+        "discovery": 0.34516675607301295,
+        "structures": 0.602050581946969,
+        "proxy": 0.111792599898763,
+        "preliminary": 23.389346046024002,
+        "coast": 8.849056659964845,
+        "landscape": 30.228480131947435,
+        "scoring": 0.25685510190669447
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 26.412216580007225,
+      "stage_seconds": {
+        "discovery": 0.3390546359587461,
+        "structures": 0.5802758249919862,
+        "proxy": 0.11385131988208741,
+        "preliminary": 11.442632299149409,
+        "coast": 4.503758755046874,
+        "landscape": 9.351629724027589,
+        "scoring": 0.07614361704327166
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 36.48274979693815,
+      "stage_seconds": {
+        "discovery": 0.3406649869866669,
+        "structures": 0.5930968079483137,
+        "proxy": 0.11551645188592374,
+        "preliminary": 11.449428012827411,
+        "coast": 14.574779921094887,
+        "landscape": 9.326193172950298,
+        "scoring": 0.07905252208001912
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 25.471765251015313,
+      "stage_seconds": {
+        "discovery": 0.33912284998223186,
+        "structures": 0.5812818970298395,
+        "proxy": 0.12635289714671671,
+        "preliminary": 11.0629979952937,
+        "coast": 4.321455467958003,
+        "landscape": 8.961941898800433,
+        "scoring": 0.07521967100910842
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 34.52774517796934,
+      "stage_seconds": {
+        "discovery": 0.340476086945273,
+        "structures": 0.5897167379735038,
+        "proxy": 0.11937372584361583,
+        "preliminary": 11.068203030154109,
+        "coast": 13.318153150961734,
+        "landscape": 9.011932301102206,
+        "scoring": 0.07634259399492294
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 26.17226155498065,
+      "stage_seconds": {
+        "discovery": 0.34605246398132294,
+        "structures": 0.6061633159406483,
+        "proxy": 0.11869557609315962,
+        "preliminary": 11.34467565594241,
+        "coast": 4.463777905213647,
+        "landscape": 9.205189147032797,
+        "scoring": 0.0828163200058043
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "experiment_land_quart": {
+            "requested_points": 62552,
+            "computed_points": 3966,
+            "reused_points": 58586
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23707648,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "-1",
+      "seconds": 35.46691469696816,
+      "stage_seconds": {
+        "discovery": 0.3385820189723745,
+        "structures": 0.5904933040728793,
+        "proxy": 0.12602516391780227,
+        "preliminary": 11.334872575942427,
+        "coast": 13.719852383947,
+        "landscape": 9.27328836999368,
+        "scoring": 0.07576832314953208
+      },
+      "equal": false,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 201982,
+            "computed_points": 130215,
+            "reused_points": 71767
+          },
+          "height_stride_1": {
+            "requested_points": 47869,
+            "computed_points": 33903,
+            "reused_points": 13966
+          },
+          "exact_land": {
+            "requested_points": 62552,
+            "computed_points": 62552,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 23986176,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 39.608812885009684,
+      "stage_seconds": {
+        "discovery": 0.3357070150086656,
+        "structures": 0.6031336729647592,
+        "proxy": 0.11891354329418391,
+        "preliminary": 13.999684218550101,
+        "coast": 16.544051798060536,
+        "landscape": 7.926126669975929,
+        "scoring": 0.0747749920701608
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 67.5834874890279,
+      "stage_seconds": {
+        "discovery": 0.3366200909949839,
+        "structures": 0.5926891568815336,
+        "proxy": 0.12240365392062813,
+        "preliminary": 13.944084110902622,
+        "coast": 44.51646530197468,
+        "landscape": 7.980111255077645,
+        "scoring": 0.08108102693222463
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 37.7603857050417,
+      "stage_seconds": {
+        "discovery": 0.342293102061376,
+        "structures": 0.6240631180116907,
+        "proxy": 0.1197944669984281,
+        "preliminary": 13.396378578851,
+        "coast": 15.628346060984768,
+        "landscape": 7.563704013009556,
+        "scoring": 0.077361005009152
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 63.4141492980998,
+      "stage_seconds": {
+        "discovery": 0.3439520460087806,
+        "structures": 0.6091434649424627,
+        "proxy": 0.1210325910942629,
+        "preliminary": 13.418033130466938,
+        "coast": 41.14726069394965,
+        "landscape": 7.688513812958263,
+        "scoring": 0.08052762900479138
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 38.993565859040245,
+      "stage_seconds": {
+        "discovery": 0.34002655604854226,
+        "structures": 0.6151359640061855,
+        "proxy": 0.12050420488230884,
+        "preliminary": 13.792497363639995,
+        "coast": 16.17427937593311,
+        "landscape": 7.864175338996574,
+        "scoring": 0.07865572301670909
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "experiment_land_quart": {
+            "requested_points": 185293,
+            "computed_points": 10989,
+            "reused_points": 174304
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 29065216,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "12345",
+      "seconds": 64.70669391006231,
+      "stage_seconds": {
+        "discovery": 0.339985364000313,
+        "structures": 0.6025952519848943,
+        "proxy": 0.12044576997868717,
+        "preliminary": 13.882185871014372,
+        "coast": 41.85485416604206,
+        "landscape": 7.821702626068145,
+        "scoring": 0.07790708099491894
+      },
+      "equal": true,
+      "candidate_count": 2,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 304148,
+            "computed_points": 211756,
+            "reused_points": 92392
+          },
+          "height_stride_1": {
+            "requested_points": 55359,
+            "computed_points": 43492,
+            "reused_points": 11867
+          },
+          "exact_land": {
+            "requested_points": 185293,
+            "computed_points": 173253,
+            "reused_points": 12040
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 30048256,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 63.569132107077166,
+      "stage_seconds": {
+        "discovery": 0.34665920806583017,
+        "structures": 0.5662023529876024,
+        "proxy": 0.11478385492227972,
+        "preliminary": 23.261438474990427,
+        "coast": 8.820852257194929,
+        "landscape": 30.18402740790043,
+        "scoring": 0.26807434600777924
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 78.96231549500953,
+      "stage_seconds": {
+        "discovery": 0.3449926299508661,
+        "structures": 0.5634123820345849,
+        "proxy": 0.11342222290113568,
+        "preliminary": 23.438963940250687,
+        "coast": 24.077619908028282,
+        "landscape": 30.14066326105967,
+        "scoring": 0.27785315399523824
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 61.570787002914585,
+      "stage_seconds": {
+        "discovery": 0.3460749649675563,
+        "structures": 0.5606120680458844,
+        "proxy": 0.1150080852676183,
+        "preliminary": 22.575878449482843,
+        "coast": 8.51865466707386,
+        "landscape": 29.172638926887885,
+        "scoring": 0.27432237076573074
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 74.9305688389577,
+      "stage_seconds": {
+        "discovery": 0.3446017970563844,
+        "structures": 0.5640399660915136,
+        "proxy": 0.1293719451641664,
+        "preliminary": 22.441230686963536,
+        "coast": 22.138451623148285,
+        "landscape": 29.036406609113328,
+        "scoring": 0.2676898930221796
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 63.04152880597394,
+      "stage_seconds": {
+        "discovery": 0.34397969499696046,
+        "structures": 0.5645937309600413,
+        "proxy": 0.11478787416126579,
+        "preliminary": 23.13894224842079,
+        "coast": 8.763362072175369,
+        "landscape": 29.829231103067286,
+        "scoring": 0.2780220069689676
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "experiment_land_quart": {
+            "requested_points": 93531,
+            "computed_points": 5926,
+            "reused_points": 87605
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 60473344,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "trial": 1,
+      "seed": "4294979641",
+      "seconds": 78.4989466270199,
+      "stage_seconds": {
+        "discovery": 0.3468280379893258,
+        "structures": 0.5723197860643268,
+        "proxy": 0.11401553801260889,
+        "preliminary": 23.18526729219593,
+        "coast": 23.272330163046718,
+        "landscape": 30.719009077060036,
+        "scoring": 0.2781812461325899
+      },
+      "equal": true,
+      "candidate_count": 6,
+      "cache": {
+        "operations": {
+          "height_stride_8": {
+            "requested_points": 494097,
+            "computed_points": 325897,
+            "reused_points": 168200
+          },
+          "height_stride_1": {
+            "requested_points": 123554,
+            "computed_points": 86160,
+            "reused_points": 37394
+          },
+          "exact_land": {
+            "requested_points": 93531,
+            "computed_points": 93531,
+            "reused_points": 0
+          }
+        },
+        "maximum_bytes": 67108864,
+        "peak_bytes": 61046784,
+        "evictions": 0,
+        "scope": "One seed/backend instance; X/Z, operation and vertical stride kept separate."
+      }
+    }
+  ],
+  "config_sha256": "89414ed421ecc1fd363b1f5ba3c2b0ec1c3e5653918629732050f3cf9f8ef71c",
+  "compared_fields": [
+    "index",
+    "seed",
+    "candidates",
+    "near_misses",
+    "counts",
+    "filter_policy"
+  ],
+  "scope": "Sequential complete-seed analysis, no cProfile/pool/export. Geometry remains current 3008/992."
+}

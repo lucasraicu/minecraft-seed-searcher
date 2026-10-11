@@ -31,11 +31,13 @@ __declspec(thread) static MTState state;
 __declspec(thread) uint64_t mt_ws = (uint64_t)-1;
 __declspec(thread) int mt_a;
 __declspec(thread) int mt_b;
+__declspec(thread) int mt_initialized;
 #else
 static __thread MTState state;
 __thread uint64_t mt_ws = (uint64_t)-1;
 __thread int mt_a;
 __thread int mt_b;
+__thread int mt_initialized;
 #endif
 
 #define M32(x) ((x) & 0x80000000)
@@ -115,6 +117,7 @@ void mt_get_state(MTRngState *out)
   out->ws = mt_ws;
   out->a = mt_a;
   out->b = mt_b;
+  out->initialized = mt_initialized;
 }
 
 void mt_set_state(const MTRngState *in)
@@ -127,4 +130,5 @@ void mt_set_state(const MTRngState *in)
   mt_ws = in->ws;
   mt_a = in->a;
   mt_b = in->b;
+  mt_initialized = in->initialized;
 }

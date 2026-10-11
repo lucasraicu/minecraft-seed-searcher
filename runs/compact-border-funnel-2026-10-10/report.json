@@ -1,0 +1,4463 @@
+{
+  "plan": {
+    "overworld_sides": [
+      1024,
+      1280,
+      1536,
+      1792,
+      2048,
+      2304,
+      2380
+    ],
+    "nether_sides": [
+      512,
+      640,
+      768,
+      896,
+      1024
+    ],
+    "discovery_side": 4000,
+    "distinct_full64_inputs_per_arm": 1000,
+    "trials_per_arm": 2,
+    "baseline_processes": 30,
+    "native_threads_per_baseline_worker": 1,
+    "terrain_threads": 18,
+    "terrain_independent_seeds_per_overworld": 6,
+    "terrain_centers_per_variant": 8,
+    "terrain_resolutions": [
+      128,
+      64,
+      32,
+      16,
+      8,
+      4
+    ],
+    "scope": "Finite diagnostics only; unchanged terrain/biome/structure thresholds; no production sweep or BDS."
+  },
+  "summary": [
+    {
+      "pair": "ow-1024-nether-512",
+      "overworld_side": 1024,
+      "nether_side": 512,
+      "median_seeds_per_second": 497.32564358038934,
+      "range_seeds_per_second": [
+        496.9046107368763,
+        497.7466764239024
+      ],
+      "qualifying_anchors": 32,
+      "qualifying_seeds": 31,
+      "qualifying_anchors_per_second": 15.914420594572459,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 37,
+          "surviving_seeds": 36,
+          "newly_pending_anchors": 161,
+          "conditional_retention_percent": 18.68686868686869
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 36,
+          "surviving_seeds": 35,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 97.29729729729729
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 36,
+          "surviving_seeds": 35,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 36,
+          "surviving_seeds": 35,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 32,
+          "surviving_seeds": 31,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 88.88888888888889
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.0348033033660613,
+        "final_bastion": 0.12086192378774285,
+        "final_fortress": 0.11912702699191868,
+        "initial_fortress": 0.2885009557940066,
+        "mineshaft": 0.1229238259838894,
+        "optional_structures": 0.02607849147170782,
+        "stronghold": 0.41534850822063163,
+        "trial_chamber": 0.003818803234025836,
+        "village": 0.00646338815568015,
+        "wooded_biomes": 0.08364838059060276
+      },
+      "median_storage_bytes": 14153728.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1024-nether-640",
+      "overworld_side": 1024,
+      "nether_side": 640,
+      "median_seeds_per_second": 488.2784479856267,
+      "range_seeds_per_second": [
+        477.84520565786835,
+        498.7116903133851
+      ],
+      "qualifying_anchors": 70,
+      "qualifying_seeds": 65,
+      "qualifying_anchors_per_second": 34.17949135899387,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 88,
+          "surviving_seeds": 79,
+          "newly_pending_anchors": 398,
+          "conditional_retention_percent": 18.106995884773664
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 83,
+          "surviving_seeds": 76,
+          "newly_pending_anchors": 5,
+          "conditional_retention_percent": 94.31818181818181
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 82,
+          "surviving_seeds": 75,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 98.79518072289157
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 82,
+          "surviving_seeds": 75,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 70,
+          "surviving_seeds": 65,
+          "newly_pending_anchors": 12,
+          "conditional_retention_percent": 85.36585365853658
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.08512851188424975,
+        "final_bastion": 0.1330593201564625,
+        "final_fortress": 0.12976119463564828,
+        "initial_fortress": 0.2916772851604037,
+        "mineshaft": 0.2785029379883781,
+        "optional_structures": 0.04993068112526089,
+        "stronghold": 0.4142191295977682,
+        "trial_chamber": 0.007796336023602635,
+        "village": 0.015986820741090924,
+        "wooded_biomes": 0.19056231871945783
+      },
+      "median_storage_bytes": 14487552.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1024-nether-768",
+      "overworld_side": 1024,
+      "nether_side": 768,
+      "median_seeds_per_second": 470.54500832107755,
+      "range_seeds_per_second": [
+        468.98552857456826,
+        472.10448806758683
+      ],
+      "qualifying_anchors": 103,
+      "qualifying_seeds": 96,
+      "qualifying_anchors_per_second": 48.46613585707099,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 136,
+          "surviving_seeds": 122,
+          "newly_pending_anchors": 705,
+          "conditional_retention_percent": 16.171224732461354
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 125,
+          "surviving_seeds": 114,
+          "newly_pending_anchors": 11,
+          "conditional_retention_percent": 91.91176470588235
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 123,
+          "surviving_seeds": 112,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 98.4
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 123,
+          "surviving_seeds": 112,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 103,
+          "surviving_seeds": 96,
+          "newly_pending_anchors": 20,
+          "conditional_retention_percent": 83.73983739837398
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.14777967805275694,
+        "final_bastion": 0.15450153639540076,
+        "final_fortress": 0.1415139168384485,
+        "initial_fortress": 0.2786319184815511,
+        "mineshaft": 0.41530632082140073,
+        "optional_structures": 0.07188504288205877,
+        "stronghold": 0.40238773997407407,
+        "trial_chamber": 0.011439323716331273,
+        "village": 0.02400061668595299,
+        "wooded_biomes": 0.2729561500600539
+      },
+      "median_storage_bytes": 14831616.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 3,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1024-nether-896",
+      "overworld_side": 1024,
+      "nether_side": 896,
+      "median_seeds_per_second": 461.16658220400257,
+      "range_seeds_per_second": [
+        454.0028344901331,
+        468.33032991787195
+      ],
+      "qualifying_anchors": 150,
+      "qualifying_seeds": 137,
+      "qualifying_anchors_per_second": 69.17498733060039,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 201,
+          "surviving_seeds": 176,
+          "newly_pending_anchors": 1002,
+          "conditional_retention_percent": 16.708229426433917
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 184,
+          "surviving_seeds": 163,
+          "newly_pending_anchors": 17,
+          "conditional_retention_percent": 91.54228855721394
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 177,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 7,
+          "conditional_retention_percent": 96.19565217391305
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 177,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 150,
+          "surviving_seeds": 137,
+          "newly_pending_anchors": 27,
+          "conditional_retention_percent": 84.7457627118644
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.2010367052280344,
+        "final_bastion": 0.1574781397357583,
+        "final_fortress": 0.14108178077731282,
+        "initial_fortress": 0.26538513344712555,
+        "mineshaft": 0.5935663115233183,
+        "optional_structures": 0.09957103035412729,
+        "stronghold": 0.3928695012582466,
+        "trial_chamber": 0.018207458488177508,
+        "village": 0.03393498744117096,
+        "wooded_biomes": 0.3840089453733526
+      },
+      "median_storage_bytes": 15247360.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 3,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1024-nether-1024",
+      "overworld_side": 1024,
+      "nether_side": 1024,
+      "median_seeds_per_second": 446.09900199281435,
+      "range_seeds_per_second": [
+        438.55981837940277,
+        453.6381856062259
+      ],
+      "qualifying_anchors": 181,
+      "qualifying_seeds": 160,
+      "qualifying_anchors_per_second": 80.7439193606994,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 240,
+          "surviving_seeds": 203,
+          "newly_pending_anchors": 1216,
+          "conditional_retention_percent": 16.483516483516482
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 219,
+          "surviving_seeds": 187,
+          "newly_pending_anchors": 21,
+          "conditional_retention_percent": 91.25
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 212,
+          "surviving_seeds": 182,
+          "newly_pending_anchors": 7,
+          "conditional_retention_percent": 96.80365296803653
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 212,
+          "surviving_seeds": 182,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 181,
+          "surviving_seeds": 160,
+          "newly_pending_anchors": 31,
+          "conditional_retention_percent": 85.37735849056604
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.24642975413007662,
+        "final_bastion": 0.17778787546558306,
+        "final_fortress": 0.16254375176504254,
+        "initial_fortress": 0.285607133875601,
+        "mineshaft": 0.7146472081076354,
+        "optional_structures": 0.11729897768236697,
+        "stronghold": 0.3983198840287514,
+        "trial_chamber": 0.01953279017470777,
+        "village": 0.04113179800333455,
+        "wooded_biomes": 0.4696257537580095
+      },
+      "median_storage_bytes": 15558656.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-512",
+      "overworld_side": 1280,
+      "nether_side": 512,
+      "median_seeds_per_second": 501.5025557211892,
+      "range_seeds_per_second": [
+        490.40103216284723,
+        512.6040792795312
+      ],
+      "qualifying_anchors": 41,
+      "qualifying_seeds": 39,
+      "qualifying_anchors_per_second": 20.561604784568758,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 45,
+          "surviving_seeds": 43,
+          "newly_pending_anchors": 153,
+          "conditional_retention_percent": 22.727272727272727
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 44,
+          "surviving_seeds": 42,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 97.77777777777777
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 44,
+          "surviving_seeds": 42,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 44,
+          "surviving_seeds": 42,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 41,
+          "surviving_seeds": 39,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 93.18181818181819
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.04369556321762502,
+        "final_bastion": 0.10760859865695238,
+        "final_fortress": 0.1110375237185508,
+        "initial_fortress": 0.26098906056722626,
+        "mineshaft": 0.22783745604101568,
+        "optional_structures": 0.044222194934263825,
+        "stronghold": 0.389651755860541,
+        "trial_chamber": 0.005442835332360119,
+        "village": 0.010557075846008956,
+        "wooded_biomes": 0.14108247047988698
+      },
+      "median_storage_bytes": 14272512.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-640",
+      "overworld_side": 1280,
+      "nether_side": 640,
+      "median_seeds_per_second": 473.55995431845645,
+      "range_seeds_per_second": [
+        469.631506192279,
+        477.48840244463395
+      ],
+      "qualifying_anchors": 110,
+      "qualifying_seeds": 99,
+      "qualifying_anchors_per_second": 52.09159497503021,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 124,
+          "surviving_seeds": 111,
+          "newly_pending_anchors": 362,
+          "conditional_retention_percent": 25.51440329218107
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 120,
+          "surviving_seeds": 108,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 96.7741935483871
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 120,
+          "surviving_seeds": 108,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 120,
+          "surviving_seeds": 108,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 110,
+          "surviving_seeds": 99,
+          "newly_pending_anchors": 10,
+          "conditional_retention_percent": 91.66666666666667
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.11284430650994182,
+        "final_bastion": 0.13115144078619778,
+        "final_fortress": 0.1190999154932797,
+        "initial_fortress": 0.2569951344630681,
+        "mineshaft": 0.6220817060675472,
+        "optional_structures": 0.10721308941720054,
+        "stronghold": 0.38520775421056896,
+        "trial_chamber": 0.01752624975051731,
+        "village": 0.02986630634404719,
+        "wooded_biomes": 0.3923390452982858
+      },
+      "median_storage_bytes": 14878720.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-768",
+      "overworld_side": 1280,
+      "nether_side": 768,
+      "median_seeds_per_second": 455.35853505289094,
+      "range_seeds_per_second": [
+        449.2528927989156,
+        461.4641773068663
+      ],
+      "qualifying_anchors": 174,
+      "qualifying_seeds": 156,
+      "qualifying_anchors_per_second": 79.23238509920301,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 203,
+          "surviving_seeds": 177,
+          "newly_pending_anchors": 638,
+          "conditional_retention_percent": 24.137931034482758
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 193,
+          "surviving_seeds": 171,
+          "newly_pending_anchors": 10,
+          "conditional_retention_percent": 95.07389162561576
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 193,
+          "surviving_seeds": 171,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 193,
+          "surviving_seeds": 171,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 174,
+          "surviving_seeds": 156,
+          "newly_pending_anchors": 19,
+          "conditional_retention_percent": 90.15544041450777
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.1889425782719627,
+        "final_bastion": 0.14131357724545524,
+        "final_fortress": 0.12750761630013585,
+        "initial_fortress": 0.27713622758165,
+        "mineshaft": 0.9951692746835761,
+        "optional_structures": 0.1758417779346928,
+        "stronghold": 0.38688590325182304,
+        "trial_chamber": 0.02484548359643668,
+        "village": 0.048433920135721564,
+        "wooded_biomes": 0.6279686888447031
+      },
+      "median_storage_bytes": 15497216.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-896",
+      "overworld_side": 1280,
+      "nether_side": 896,
+      "median_seeds_per_second": 430.79800466066484,
+      "range_seeds_per_second": [
+        428.4840606546662,
+        433.11194866666347
+      ],
+      "qualifying_anchors": 249,
+      "qualifying_seeds": 215,
+      "qualifying_anchors_per_second": 107.26870316050555,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 288,
+          "surviving_seeds": 244,
+          "newly_pending_anchors": 915,
+          "conditional_retention_percent": 23.940149625935163
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 275,
+          "surviving_seeds": 235,
+          "newly_pending_anchors": 13,
+          "conditional_retention_percent": 95.48611111111111
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 275,
+          "surviving_seeds": 235,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 275,
+          "surviving_seeds": 235,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 249,
+          "surviving_seeds": 215,
+          "newly_pending_anchors": 26,
+          "conditional_retention_percent": 90.54545454545455
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.28583544975845143,
+        "final_bastion": 0.16626232577254996,
+        "final_fortress": 0.14828131918329746,
+        "initial_fortress": 0.27513705025194213,
+        "mineshaft": 1.4397090694401413,
+        "optional_structures": 0.27097760478500277,
+        "stronghold": 0.40096642886055633,
+        "trial_chamber": 0.039602235541678965,
+        "village": 0.07125718321185559,
+        "wooded_biomes": 0.9327506063273177
+      },
+      "median_storage_bytes": 16193536.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 3,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-1024",
+      "overworld_side": 1280,
+      "nether_side": 1024,
+      "median_seeds_per_second": 404.39319007186646,
+      "range_seeds_per_second": [
+        393.8056728826073,
+        414.9807072611256
+      ],
+      "qualifying_anchors": 303,
+      "qualifying_seeds": 252,
+      "qualifying_anchors_per_second": 122.53113659177554,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 350,
+          "surviving_seeds": 284,
+          "newly_pending_anchors": 1106,
+          "conditional_retention_percent": 24.03846153846154
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 332,
+          "surviving_seeds": 273,
+          "newly_pending_anchors": 18,
+          "conditional_retention_percent": 94.85714285714286
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 332,
+          "surviving_seeds": 273,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 332,
+          "surviving_seeds": 273,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 303,
+          "surviving_seeds": 252,
+          "newly_pending_anchors": 29,
+          "conditional_retention_percent": 91.26506024096386
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.3492642820929177,
+        "final_bastion": 0.19814672239590436,
+        "final_fortress": 0.1600503278314136,
+        "initial_fortress": 0.272753449738957,
+        "mineshaft": 1.7423190520494245,
+        "optional_structures": 0.318931172543671,
+        "stronghold": 0.40629872505087405,
+        "trial_chamber": 0.04740353289525956,
+        "village": 0.08826235885499045,
+        "wooded_biomes": 1.1527227615588345
+      },
+      "median_storage_bytes": 16723968.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-512",
+      "overworld_side": 1536,
+      "nether_side": 512,
+      "median_seeds_per_second": 491.7414441958133,
+      "range_seeds_per_second": [
+        479.79419552185897,
+        503.68869286976764
+      ],
+      "qualifying_anchors": 60,
+      "qualifying_seeds": 55,
+      "qualifying_anchors_per_second": 29.504486651748795,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 65,
+          "surviving_seeds": 60,
+          "newly_pending_anchors": 133,
+          "conditional_retention_percent": 32.82828282828283
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 64,
+          "surviving_seeds": 59,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 98.46153846153847
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 64,
+          "surviving_seeds": 59,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 64,
+          "surviving_seeds": 59,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 60,
+          "surviving_seeds": 55,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 93.75
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.05805040552513674,
+        "final_bastion": 0.10676394490292296,
+        "final_fortress": 0.11197778466157615,
+        "initial_fortress": 0.2607611682615243,
+        "mineshaft": 0.4764526012004353,
+        "optional_structures": 0.1117226198548451,
+        "stronghold": 0.37822431983659044,
+        "trial_chamber": 0.01565322239184752,
+        "village": 0.017673014721367508,
+        "wooded_biomes": 0.2838764319312759
+      },
+      "median_storage_bytes": 14477312.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-640",
+      "overworld_side": 1536,
+      "nether_side": 640,
+      "median_seeds_per_second": 449.17454901086256,
+      "range_seeds_per_second": [
+        443.0972187744156,
+        455.25187924730955
+      ],
+      "qualifying_anchors": 143,
+      "qualifying_seeds": 124,
+      "qualifying_anchors_per_second": 64.23196050855334,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 156,
+          "surviving_seeds": 135,
+          "newly_pending_anchors": 330,
+          "conditional_retention_percent": 32.098765432098766
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 153,
+          "surviving_seeds": 133,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 98.07692307692308
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 153,
+          "surviving_seeds": 133,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 153,
+          "surviving_seeds": 133,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 143,
+          "surviving_seeds": 124,
+          "newly_pending_anchors": 10,
+          "conditional_retention_percent": 93.4640522875817
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.14437165879644454,
+        "final_bastion": 0.13365772261749953,
+        "final_fortress": 0.12218750733882189,
+        "initial_fortress": 0.2706511679571122,
+        "mineshaft": 1.1347143369494006,
+        "optional_structures": 0.23988476966042072,
+        "stronghold": 0.38565488217864186,
+        "trial_chamber": 0.0281729600392282,
+        "village": 0.0453779004747048,
+        "wooded_biomes": 0.7119750932324678
+      },
+      "median_storage_bytes": 15276032.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-768",
+      "overworld_side": 1536,
+      "nether_side": 768,
+      "median_seeds_per_second": 421.3225511488848,
+      "range_seeds_per_second": [
+        412.25509703675834,
+        430.39000526101125
+      ],
+      "qualifying_anchors": 232,
+      "qualifying_seeds": 204,
+      "qualifying_anchors_per_second": 97.74683186654129,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 263,
+          "surviving_seeds": 223,
+          "newly_pending_anchors": 578,
+          "conditional_retention_percent": 31.27229488703924
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 254,
+          "surviving_seeds": 219,
+          "newly_pending_anchors": 9,
+          "conditional_retention_percent": 96.57794676806084
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 254,
+          "surviving_seeds": 219,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 254,
+          "surviving_seeds": 219,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 232,
+          "surviving_seeds": 204,
+          "newly_pending_anchors": 22,
+          "conditional_retention_percent": 91.33858267716535
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.2747387048439123,
+        "final_bastion": 0.14982198999496177,
+        "final_fortress": 0.1436883582500741,
+        "initial_fortress": 0.27425193175440654,
+        "mineshaft": 1.9015558787505142,
+        "optional_structures": 0.398354280681815,
+        "stronghold": 0.4049041999387555,
+        "trial_chamber": 0.044225758814718574,
+        "village": 0.0828250553458929,
+        "wooded_biomes": 1.243745610525366
+      },
+      "median_storage_bytes": 16205824.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-896",
+      "overworld_side": 1536,
+      "nether_side": 896,
+      "median_seeds_per_second": 386.27051917636686,
+      "range_seeds_per_second": [
+        371.17954067101783,
+        401.36149768171583
+      ],
+      "qualifying_anchors": 337,
+      "qualifying_seeds": 281,
+      "qualifying_anchors_per_second": 130.17316496243564,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 372,
+          "surviving_seeds": 301,
+          "newly_pending_anchors": 831,
+          "conditional_retention_percent": 30.92269326683292
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 363,
+          "surviving_seeds": 298,
+          "newly_pending_anchors": 9,
+          "conditional_retention_percent": 97.58064516129032
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 363,
+          "surviving_seeds": 298,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 363,
+          "surviving_seeds": 298,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 337,
+          "surviving_seeds": 281,
+          "newly_pending_anchors": 26,
+          "conditional_retention_percent": 92.8374655647383
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.38555218296824023,
+        "final_bastion": 0.1780222550733015,
+        "final_fortress": 0.1529856234556064,
+        "initial_fortress": 0.2826608255272731,
+        "mineshaft": 2.7314930080319755,
+        "optional_structures": 0.5871281441068277,
+        "stronghold": 0.4184162745368667,
+        "trial_chamber": 0.06399990851059556,
+        "village": 0.11922452540602535,
+        "wooded_biomes": 1.8179166354238987
+      },
+      "median_storage_bytes": 17260544.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 3,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-1024",
+      "overworld_side": 1536,
+      "nether_side": 1024,
+      "median_seeds_per_second": 367.7419892730921,
+      "range_seeds_per_second": [
+        367.37059286678453,
+        368.11338567939964
+      ],
+      "qualifying_anchors": 411,
+      "qualifying_seeds": 331,
+      "qualifying_anchors_per_second": 151.14195759124084,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 452,
+          "surviving_seeds": 354,
+          "newly_pending_anchors": 1004,
+          "conditional_retention_percent": 31.043956043956044
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 439,
+          "surviving_seeds": 349,
+          "newly_pending_anchors": 13,
+          "conditional_retention_percent": 97.12389380530973
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 439,
+          "surviving_seeds": 349,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 439,
+          "surviving_seeds": 349,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 411,
+          "surviving_seeds": 331,
+          "newly_pending_anchors": 28,
+          "conditional_retention_percent": 93.62186788154898
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.4733673558803275,
+        "final_bastion": 0.1893191171111539,
+        "final_fortress": 0.1715670227422379,
+        "initial_fortress": 0.290219574701041,
+        "mineshaft": 3.3216923565487377,
+        "optional_structures": 0.6881590310367756,
+        "stronghold": 0.4219887926010415,
+        "trial_chamber": 0.08268133591627702,
+        "village": 0.15155946847517043,
+        "wooded_biomes": 2.226145219116006
+      },
+      "median_storage_bytes": 17999872.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1792-nether-512",
+      "overworld_side": 1792,
+      "nether_side": 512,
+      "median_seeds_per_second": 470.50847797260803,
+      "range_seeds_per_second": [
+        470.3036345202668,
+        470.7133214249493
+      ],
+      "qualifying_anchors": 73,
+      "qualifying_seeds": 66,
+      "qualifying_anchors_per_second": 34.34711889200038,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 78,
+          "surviving_seeds": 71,
+          "newly_pending_anchors": 120,
+          "conditional_retention_percent": 39.39393939393939
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 76,
+          "surviving_seeds": 69,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 97.43589743589743
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 76,
+          "surviving_seeds": 69,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 76,
+          "surviving_seeds": 69,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 73,
+          "surviving_seeds": 66,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 96.05263157894737
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.07694864156655967,
+        "final_bastion": 0.11772313411347568,
+        "final_fortress": 0.11590279871597886,
+        "initial_fortress": 0.26177995098987594,
+        "mineshaft": 0.763949646439869,
+        "optional_structures": 0.1831898518721573,
+        "stronghold": 0.39901532395742834,
+        "trial_chamber": 0.014404764398932457,
+        "village": 0.025153963186312467,
+        "wooded_biomes": 0.4776064764591865
+      },
+      "median_storage_bytes": 14604288.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1792-nether-640",
+      "overworld_side": 1792,
+      "nether_side": 640,
+      "median_seeds_per_second": 438.76541629485996,
+      "range_seeds_per_second": [
+        435.52336292059,
+        442.00746966912993
+      ],
+      "qualifying_anchors": 172,
+      "qualifying_seeds": 145,
+      "qualifying_anchors_per_second": 75.4676516027159,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 183,
+          "surviving_seeds": 153,
+          "newly_pending_anchors": 303,
+          "conditional_retention_percent": 37.65432098765432
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 179,
+          "surviving_seeds": 151,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 97.81420765027322
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 179,
+          "surviving_seeds": 151,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 179,
+          "surviving_seeds": 151,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 172,
+          "surviving_seeds": 145,
+          "newly_pending_anchors": 7,
+          "conditional_retention_percent": 96.08938547486034
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.19248587096808478,
+        "final_bastion": 0.12513272126670927,
+        "final_fortress": 0.12456123734591529,
+        "initial_fortress": 0.26884721039095894,
+        "mineshaft": 1.798278744914569,
+        "optional_structures": 0.40467848075786605,
+        "stronghold": 0.3907858812599443,
+        "trial_chamber": 0.034277908969670534,
+        "village": 0.06230916135245934,
+        "wooded_biomes": 1.139288428297732
+      },
+      "median_storage_bytes": 15548416.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1792-nether-768",
+      "overworld_side": 1792,
+      "nether_side": 768,
+      "median_seeds_per_second": 381.05492996462095,
+      "range_seeds_per_second": [
+        374.6037464927528,
+        387.5061134364891
+      ],
+      "qualifying_anchors": 288,
+      "qualifying_seeds": 239,
+      "qualifying_anchors_per_second": 109.74381982981083,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 309,
+          "surviving_seeds": 253,
+          "newly_pending_anchors": 532,
+          "conditional_retention_percent": 36.74197384066587
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 300,
+          "surviving_seeds": 249,
+          "newly_pending_anchors": 9,
+          "conditional_retention_percent": 97.0873786407767
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 300,
+          "surviving_seeds": 249,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 300,
+          "surviving_seeds": 249,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 288,
+          "surviving_seeds": 239,
+          "newly_pending_anchors": 12,
+          "conditional_retention_percent": 96.0
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.3602768132695928,
+        "final_bastion": 0.15659288235474378,
+        "final_fortress": 0.1425028051598929,
+        "initial_fortress": 0.28437133686384186,
+        "mineshaft": 3.049506318930071,
+        "optional_structures": 0.7190021236310713,
+        "stronghold": 0.4248824585811235,
+        "trial_chamber": 0.06238263827981427,
+        "village": 0.11575997853651643,
+        "wooded_biomes": 2.0384752997779287
+      },
+      "median_storage_bytes": 16709632.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 3,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1792-nether-896",
+      "overworld_side": 1792,
+      "nether_side": 896,
+      "median_seeds_per_second": 354.2119400114141,
+      "range_seeds_per_second": [
+        347.07883996428376,
+        361.3450400585444
+      ],
+      "qualifying_anchors": 420,
+      "qualifying_seeds": 331,
+      "qualifying_anchors_per_second": 148.7690148047939,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 449,
+          "surviving_seeds": 350,
+          "newly_pending_anchors": 754,
+          "conditional_retention_percent": 37.323358270989196
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 437,
+          "surviving_seeds": 344,
+          "newly_pending_anchors": 12,
+          "conditional_retention_percent": 97.32739420935413
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 437,
+          "surviving_seeds": 344,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 437,
+          "surviving_seeds": 344,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 420,
+          "surviving_seeds": 331,
+          "newly_pending_anchors": 17,
+          "conditional_retention_percent": 96.10983981693364
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.5148642192361876,
+        "final_bastion": 0.1761319127981551,
+        "final_fortress": 0.16147911397274584,
+        "initial_fortress": 0.2971260426566005,
+        "mineshaft": 4.4705315859173425,
+        "optional_structures": 1.042262791073881,
+        "stronghold": 0.4241895826999098,
+        "trial_chamber": 0.09811100160004571,
+        "village": 0.16998856468126178,
+        "wooded_biomes": 3.025990152556915
+      },
+      "median_storage_bytes": 18003968.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-1792-nether-1024",
+      "overworld_side": 1792,
+      "nether_side": 1024,
+      "median_seeds_per_second": 325.0717866195007,
+      "range_seeds_per_second": [
+        321.91877497751824,
+        328.2247982614832
+      ],
+      "qualifying_anchors": 516,
+      "qualifying_seeds": 393,
+      "qualifying_anchors_per_second": 167.73704189566237,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 552,
+          "surviving_seeds": 417,
+          "newly_pending_anchors": 904,
+          "conditional_retention_percent": 37.91208791208791
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 536,
+          "surviving_seeds": 408,
+          "newly_pending_anchors": 16,
+          "conditional_retention_percent": 97.10144927536231
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 536,
+          "surviving_seeds": 408,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 536,
+          "surviving_seeds": 408,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 516,
+          "surviving_seeds": 393,
+          "newly_pending_anchors": 20,
+          "conditional_retention_percent": 96.26865671641791
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.6311166445957497,
+        "final_bastion": 0.2048760182224214,
+        "final_fortress": 0.18277692433912307,
+        "initial_fortress": 0.3005790888564661,
+        "mineshaft": 5.5376133364625275,
+        "optional_structures": 1.2581799836480059,
+        "stronghold": 0.4377128385240212,
+        "trial_chamber": 0.12393384409369901,
+        "village": 0.21509654371766374,
+        "wooded_biomes": 3.785146257490851
+      },
+      "median_storage_bytes": 18964480.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-512",
+      "overworld_side": 2048,
+      "nether_side": 512,
+      "median_seeds_per_second": 464.1168393587511,
+      "range_seeds_per_second": [
+        459.3271107362025,
+        468.9065679812997
+      ],
+      "qualifying_anchors": 87,
+      "qualifying_seeds": 77,
+      "qualifying_anchors_per_second": 40.37816502421134,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 91,
+          "surviving_seeds": 81,
+          "newly_pending_anchors": 107,
+          "conditional_retention_percent": 45.95959595959596
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 90,
+          "surviving_seeds": 80,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 98.9010989010989
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 90,
+          "surviving_seeds": 80,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 90,
+          "surviving_seeds": 80,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 87,
+          "surviving_seeds": 77,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 96.66666666666667
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.09620204183738679,
+        "final_bastion": 0.10908553912304342,
+        "final_fortress": 0.11624697124352679,
+        "initial_fortress": 0.2720800500246696,
+        "mineshaft": 1.1798292296007276,
+        "optional_structures": 0.2825453740078956,
+        "stronghold": 0.38745215826202184,
+        "trial_chamber": 0.021404618688393384,
+        "village": 0.03648547542979941,
+        "wooded_biomes": 0.7266529589542188
+      },
+      "median_storage_bytes": 14845952.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-640",
+      "overworld_side": 2048,
+      "nether_side": 640,
+      "median_seeds_per_second": 403.73232257232866,
+      "range_seeds_per_second": [
+        399.2582345741769,
+        408.2064105704804
+      ],
+      "qualifying_anchors": 207,
+      "qualifying_seeds": 171,
+      "qualifying_anchors_per_second": 83.57259077247203,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 213,
+          "surviving_seeds": 175,
+          "newly_pending_anchors": 273,
+          "conditional_retention_percent": 43.82716049382716
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 212,
+          "surviving_seeds": 174,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 99.53051643192488
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 212,
+          "surviving_seeds": 174,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 212,
+          "surviving_seeds": 174,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 207,
+          "surviving_seeds": 171,
+          "newly_pending_anchors": 5,
+          "conditional_retention_percent": 97.64150943396227
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.24811373400734738,
+        "final_bastion": 0.13362261455040425,
+        "final_fortress": 0.1326278198393993,
+        "initial_fortress": 0.28165961551712826,
+        "mineshaft": 2.7956256576580927,
+        "optional_structures": 0.7115993792540394,
+        "stronghold": 0.41231381840771064,
+        "trial_chamber": 0.05507898097857833,
+        "village": 0.0953799236449413,
+        "wooded_biomes": 1.7941962140612304
+      },
+      "median_storage_bytes": 16150528.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-768",
+      "overworld_side": 2048,
+      "nether_side": 768,
+      "median_seeds_per_second": 352.73661535058557,
+      "range_seeds_per_second": [
+        350.446515123631,
+        355.0267155775402
+      ],
+      "qualifying_anchors": 353,
+      "qualifying_seeds": 279,
+      "qualifying_anchors_per_second": 124.5160252187567,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 367,
+          "surviving_seeds": 286,
+          "newly_pending_anchors": 474,
+          "conditional_retention_percent": 43.63852556480381
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 362,
+          "surviving_seeds": 283,
+          "newly_pending_anchors": 5,
+          "conditional_retention_percent": 98.6376021798365
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 362,
+          "surviving_seeds": 283,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 362,
+          "surviving_seeds": 283,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 353,
+          "surviving_seeds": 279,
+          "newly_pending_anchors": 9,
+          "conditional_retention_percent": 97.51381215469613
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.4568772320635617,
+        "final_bastion": 0.1521420847857371,
+        "final_fortress": 0.14685568906133994,
+        "initial_fortress": 0.27767928410321474,
+        "mineshaft": 4.830657900776714,
+        "optional_structures": 1.2796218791627325,
+        "stronghold": 0.4188986665685661,
+        "trial_chamber": 0.09880895621608943,
+        "village": 0.1725024525076151,
+        "wooded_biomes": 3.229584376036655
+      },
+      "median_storage_bytes": 17774592.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-896",
+      "overworld_side": 2048,
+      "nether_side": 896,
+      "median_seeds_per_second": 303.9430952016421,
+      "range_seeds_per_second": [
+        303.03895415008265,
+        304.8472362532016
+      ],
+      "qualifying_anchors": 516,
+      "qualifying_seeds": 385,
+      "qualifying_anchors_per_second": 156.83463712404733,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 533,
+          "surviving_seeds": 395,
+          "newly_pending_anchors": 670,
+          "conditional_retention_percent": 44.30590191188695
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 527,
+          "surviving_seeds": 391,
+          "newly_pending_anchors": 6,
+          "conditional_retention_percent": 98.87429643527204
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 527,
+          "surviving_seeds": 391,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 527,
+          "surviving_seeds": 391,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 516,
+          "surviving_seeds": 385,
+          "newly_pending_anchors": 11,
+          "conditional_retention_percent": 97.91271347248576
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.6709920694120228,
+        "final_bastion": 0.1794760498451069,
+        "final_fortress": 0.16256111447000876,
+        "initial_fortress": 0.29574241081718355,
+        "mineshaft": 7.109840728866402,
+        "optional_structures": 1.9366865482297726,
+        "stronghold": 0.44977143924916163,
+        "trial_chamber": 0.14648640621453524,
+        "village": 0.26360735652269796,
+        "wooded_biomes": 4.914419796783477
+      },
+      "median_storage_bytes": 19628032.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-1024",
+      "overworld_side": 2048,
+      "nether_side": 1024,
+      "median_seeds_per_second": 281.89986449253,
+      "range_seeds_per_second": [
+        280.8500335858574,
+        282.94969539920265
+      ],
+      "qualifying_anchors": 638,
+      "qualifying_seeds": 456,
+      "qualifying_anchors_per_second": 179.85211354623416,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 659,
+          "surviving_seeds": 469,
+          "newly_pending_anchors": 797,
+          "conditional_retention_percent": 45.260989010989015
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 650,
+          "surviving_seeds": 463,
+          "newly_pending_anchors": 9,
+          "conditional_retention_percent": 98.63429438543247
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 650,
+          "surviving_seeds": 463,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 650,
+          "surviving_seeds": 463,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 638,
+          "surviving_seeds": 456,
+          "newly_pending_anchors": 12,
+          "conditional_retention_percent": 98.15384615384616
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.8105276056448929,
+        "final_bastion": 0.20377744029974565,
+        "final_fortress": 0.1863761434215121,
+        "initial_fortress": 0.29782783309929073,
+        "mineshaft": 8.742275175347459,
+        "optional_structures": 2.3747584635857493,
+        "stronghold": 0.4382145382114686,
+        "trial_chamber": 0.18283168994821608,
+        "village": 0.32564954715780914,
+        "wooded_biomes": 6.0722305866656825
+      },
+      "median_storage_bytes": 20977664.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2304-nether-512",
+      "overworld_side": 2304,
+      "nether_side": 512,
+      "median_seeds_per_second": 445.2941706052465,
+      "range_seeds_per_second": [
+        441.71485610566174,
+        448.8734851048313
+      ],
+      "qualifying_anchors": 97,
+      "qualifying_seeds": 84,
+      "qualifying_anchors_per_second": 43.19353454870891,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 101,
+          "surviving_seeds": 88,
+          "newly_pending_anchors": 97,
+          "conditional_retention_percent": 51.01010101010101
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 99,
+          "surviving_seeds": 86,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 98.01980198019803
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 99,
+          "surviving_seeds": 86,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 99,
+          "surviving_seeds": 86,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 97,
+          "surviving_seeds": 84,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 97.97979797979798
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.11923054023645818,
+        "final_bastion": 0.11225972062675282,
+        "final_fortress": 0.11725268355803564,
+        "initial_fortress": 0.26138455473119393,
+        "mineshaft": 1.6369693406741135,
+        "optional_structures": 0.45047668542247266,
+        "stronghold": 0.3939767191768624,
+        "trial_chamber": 0.03146997548174113,
+        "village": 0.05513811617856845,
+        "wooded_biomes": 0.9925565410521813
+      },
+      "median_storage_bytes": 15142912.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2304-nether-640",
+      "overworld_side": 2304,
+      "nether_side": 640,
+      "median_seeds_per_second": 376.54658462462044,
+      "range_seeds_per_second": [
+        373.65258309984813,
+        379.4405861493928
+      ],
+      "qualifying_anchors": 236,
+      "qualifying_seeds": 188,
+      "qualifying_anchors_per_second": 88.86499397141041,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 240,
+          "surviving_seeds": 189,
+          "newly_pending_anchors": 246,
+          "conditional_retention_percent": 49.382716049382715
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 238,
+          "surviving_seeds": 188,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 99.16666666666667
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 238,
+          "surviving_seeds": 188,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 238,
+          "surviving_seeds": 188,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 236,
+          "surviving_seeds": 188,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 99.15966386554622
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.311596289742738,
+        "final_bastion": 0.1375028567854315,
+        "final_fortress": 0.13722684484673664,
+        "initial_fortress": 0.2836974452366121,
+        "mineshaft": 3.972080256091431,
+        "optional_structures": 1.1602552899857983,
+        "stronghold": 0.4184828674187884,
+        "trial_chamber": 0.08347471564775333,
+        "village": 0.14176019403384998,
+        "wooded_biomes": 2.5984626092831604
+      },
+      "median_storage_bytes": 16885760.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2304-nether-768",
+      "overworld_side": 2304,
+      "nether_side": 768,
+      "median_seeds_per_second": 307.9906740209408,
+      "range_seeds_per_second": [
+        303.7844428399894,
+        312.19690520189215
+      ],
+      "qualifying_anchors": 411,
+      "qualifying_seeds": 312,
+      "qualifying_anchors_per_second": 126.58416702260665,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 417,
+          "surviving_seeds": 314,
+          "newly_pending_anchors": 424,
+          "conditional_retention_percent": 49.58382877526754
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 414,
+          "surviving_seeds": 313,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 99.28057553956835
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 414,
+          "surviving_seeds": 313,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 414,
+          "surviving_seeds": 313,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 411,
+          "surviving_seeds": 312,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 99.27536231884058
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.5608613580116071,
+        "final_bastion": 0.1636608422268182,
+        "final_fortress": 0.15115557424724102,
+        "initial_fortress": 0.29832769033964723,
+        "mineshaft": 7.04550033970736,
+        "optional_structures": 2.1400604022783227,
+        "stronghold": 0.434163172962144,
+        "trial_chamber": 0.15552560053765774,
+        "village": 0.263875751523301,
+        "wooded_biomes": 4.789115552324802
+      },
+      "median_storage_bytes": 19159040.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        }
+      }
+    },
+    {
+      "pair": "ow-2304-nether-896",
+      "overworld_side": 2304,
+      "nether_side": 896,
+      "median_seeds_per_second": 272.61486563486415,
+      "range_seeds_per_second": [
+        269.5062956732142,
+        275.7234355965141
+      ],
+      "qualifying_anchors": 593,
+      "qualifying_seeds": 427,
+      "qualifying_anchors_per_second": 161.66061532147444,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 601,
+          "surviving_seeds": 431,
+          "newly_pending_anchors": 602,
+          "conditional_retention_percent": 49.958437240232755
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 597,
+          "surviving_seeds": 429,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 99.33444259567388
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 597,
+          "surviving_seeds": 429,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 597,
+          "surviving_seeds": 429,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 593,
+          "surviving_seeds": 427,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 99.32998324958123
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.8245989937568083,
+        "final_bastion": 0.1838795350631699,
+        "final_fortress": 0.17937206896021962,
+        "initial_fortress": 0.2861939606955275,
+        "mineshaft": 10.167523886368144,
+        "optional_structures": 3.1135913449688815,
+        "stronghold": 0.4552907528122887,
+        "trial_chamber": 0.2247173165087588,
+        "village": 0.3834588507306762,
+        "wooded_biomes": 7.008058926265221
+      },
+      "median_storage_bytes": 21491712.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        }
+      }
+    },
+    {
+      "pair": "ow-2304-nether-1024",
+      "overworld_side": 2304,
+      "nether_side": 1024,
+      "median_seeds_per_second": 240.42691676571647,
+      "range_seeds_per_second": [
+        239.3117644648141,
+        241.54206906661884
+      ],
+      "qualifying_anchors": 730,
+      "qualifying_seeds": 495,
+      "qualifying_anchors_per_second": 175.511649238973,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 739,
+          "surviving_seeds": 500,
+          "newly_pending_anchors": 717,
+          "conditional_retention_percent": 50.755494505494504
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 734,
+          "surviving_seeds": 497,
+          "newly_pending_anchors": 5,
+          "conditional_retention_percent": 99.3234100135318
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 734,
+          "surviving_seeds": 497,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 734,
+          "surviving_seeds": 497,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 730,
+          "surviving_seeds": 495,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 99.4550408719346
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 1.006161742436234,
+        "final_bastion": 0.20467403100337833,
+        "final_fortress": 0.17982829659013078,
+        "initial_fortress": 0.29328544216696173,
+        "mineshaft": 12.535460668499582,
+        "optional_structures": 3.857230977911968,
+        "stronghold": 0.4515998503193259,
+        "trial_chamber": 0.28990913898451254,
+        "village": 0.47670830227434635,
+        "wooded_biomes": 8.729297211219091
+      },
+      "median_storage_bytes": 23291904.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        }
+      }
+    },
+    {
+      "pair": "ow-2380-nether-512",
+      "overworld_side": 2380,
+      "nether_side": 512,
+      "median_seeds_per_second": 430.8723677912054,
+      "range_seeds_per_second": [
+        421.950472184523,
+        439.7942633978879
+      ],
+      "qualifying_anchors": 105,
+      "qualifying_seeds": 88,
+      "qualifying_anchors_per_second": 45.241598618076566,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 648,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 1187,
+          "conditional_retention_percent": 35.3133514986376
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 198,
+          "surviving_seeds": 158,
+          "newly_pending_anchors": 450,
+          "conditional_retention_percent": 30.555555555555557
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 106,
+          "surviving_seeds": 89,
+          "newly_pending_anchors": 92,
+          "conditional_retention_percent": 53.535353535353536
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 105,
+          "surviving_seeds": 88,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 99.05660377358491
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 105,
+          "surviving_seeds": 88,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 105,
+          "surviving_seeds": 88,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 105,
+          "surviving_seeds": 88,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.1312761366716586,
+        "final_bastion": 0.11686980491504073,
+        "final_fortress": 0.12312120769638568,
+        "initial_fortress": 0.27774680516449735,
+        "mineshaft": 1.8839070637477562,
+        "optional_structures": 0.5536522443289869,
+        "stronghold": 0.4085837278398685,
+        "trial_chamber": 0.03793957590823993,
+        "village": 0.06541713525075465,
+        "wooded_biomes": 1.2645699542481452
+      },
+      "median_storage_bytes": 15284224.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 0,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2380-nether-640",
+      "overworld_side": 2380,
+      "nether_side": 640,
+      "median_seeds_per_second": 359.1993860721534,
+      "range_seeds_per_second": [
+        355.205164758745,
+        363.1936073855618
+      ],
+      "qualifying_anchors": 257,
+      "qualifying_seeds": 199,
+      "qualifying_anchors_per_second": 92.31424222054342,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 909,
+          "surviving_seeds": 548,
+          "newly_pending_anchors": 926,
+          "conditional_retention_percent": 49.536784741144416
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 486,
+          "surviving_seeds": 342,
+          "newly_pending_anchors": 423,
+          "conditional_retention_percent": 53.46534653465346
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 258,
+          "surviving_seeds": 199,
+          "newly_pending_anchors": 228,
+          "conditional_retention_percent": 53.08641975308642
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 257,
+          "surviving_seeds": 199,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 99.6124031007752
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 257,
+          "surviving_seeds": 199,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 257,
+          "surviving_seeds": 199,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 257,
+          "surviving_seeds": 199,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.3344221848528832,
+        "final_bastion": 0.13544997165445238,
+        "final_fortress": 0.13350604084553197,
+        "initial_fortress": 0.28693459718488157,
+        "mineshaft": 4.605809204280376,
+        "optional_structures": 1.417923279455863,
+        "stronghold": 0.43153224349953234,
+        "trial_chamber": 0.09954813827062026,
+        "village": 0.16362281306646764,
+        "wooded_biomes": 3.15580925316317
+      },
+      "median_storage_bytes": 17246208.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2380-nether-768",
+      "overworld_side": 2380,
+      "nether_side": 768,
+      "median_seeds_per_second": 303.71593029724045,
+      "range_seeds_per_second": [
+        303.2895542084001,
+        304.14230638608075
+      ],
+      "qualifying_anchors": 440,
+      "qualifying_seeds": 323,
+      "qualifying_anchors_per_second": 133.6350093307858,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1134,
+          "surviving_seeds": 642,
+          "newly_pending_anchors": 701,
+          "conditional_retention_percent": 61.798365122615806
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 841,
+          "surviving_seeds": 525,
+          "newly_pending_anchors": 293,
+          "conditional_retention_percent": 74.16225749559082
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 442,
+          "surviving_seeds": 324,
+          "newly_pending_anchors": 399,
+          "conditional_retention_percent": 52.55648038049941
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 440,
+          "surviving_seeds": 323,
+          "newly_pending_anchors": 2,
+          "conditional_retention_percent": 99.5475113122172
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 440,
+          "surviving_seeds": 323,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 440,
+          "surviving_seeds": 323,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 440,
+          "surviving_seeds": 323,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.6064208603929728,
+        "final_bastion": 0.16076605883426964,
+        "final_fortress": 0.15708202845416963,
+        "initial_fortress": 0.293729598633945,
+        "mineshaft": 8.012695873330813,
+        "optional_structures": 2.4425149097223766,
+        "stronghold": 0.44248737691668794,
+        "trial_chamber": 0.1684851276804693,
+        "village": 0.30313895019935444,
+        "wooded_biomes": 5.638493181788363
+      },
+      "median_storage_bytes": 19656704.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 1,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        }
+      }
+    },
+    {
+      "pair": "ow-2380-nether-896",
+      "overworld_side": 2380,
+      "nether_side": 896,
+      "median_seeds_per_second": 251.69266540926452,
+      "range_seeds_per_second": [
+        251.59345645889226,
+        251.79187435963675
+      ],
+      "qualifying_anchors": 637,
+      "qualifying_seeds": 443,
+      "qualifying_anchors_per_second": 160.3282278657015,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1374,
+          "surviving_seeds": 728,
+          "newly_pending_anchors": 461,
+          "conditional_retention_percent": 74.87738419618529
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1203,
+          "surviving_seeds": 676,
+          "newly_pending_anchors": 171,
+          "conditional_retention_percent": 87.55458515283843
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 640,
+          "surviving_seeds": 445,
+          "newly_pending_anchors": 563,
+          "conditional_retention_percent": 53.20033250207814
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 637,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 3,
+          "conditional_retention_percent": 99.53125
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 637,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 637,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 637,
+          "surviving_seeds": 443,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 0.8882592220325023,
+        "final_bastion": 0.18056904419790953,
+        "final_fortress": 0.16990841005463153,
+        "initial_fortress": 0.3059689814108424,
+        "mineshaft": 11.670855573087465,
+        "optional_structures": 3.6571550532244146,
+        "stronghold": 0.44314800936263055,
+        "trial_chamber": 0.25559662200976163,
+        "village": 0.44850236957427114,
+        "wooded_biomes": 8.408365255629178
+      },
+      "median_storage_bytes": 22237184.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        }
+      }
+    },
+    {
+      "pair": "ow-2380-nether-1024",
+      "overworld_side": 2380,
+      "nether_side": 1024,
+      "median_seeds_per_second": 230.30371421143147,
+      "range_seeds_per_second": [
+        229.99580023640866,
+        230.61162818645428
+      ],
+      "qualifying_anchors": 777,
+      "qualifying_seeds": 511,
+      "qualifying_anchors_per_second": 178.94598594228225,
+      "funnel": [
+        {
+          "stage": "discovered_stronghold",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "initial_fortress",
+          "surviving_anchors": 1835,
+          "surviving_seeds": 874,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "final_fortress",
+          "surviving_anchors": 1523,
+          "surviving_seeds": 774,
+          "newly_pending_anchors": 312,
+          "conditional_retention_percent": 82.99727520435967
+        },
+        {
+          "stage": "final_bastion",
+          "surviving_anchors": 1456,
+          "surviving_seeds": 755,
+          "newly_pending_anchors": 67,
+          "conditional_retention_percent": 95.60078791858174
+        },
+        {
+          "stage": "ancient_city",
+          "surviving_anchors": 782,
+          "surviving_seeds": 515,
+          "newly_pending_anchors": 674,
+          "conditional_retention_percent": 53.70879120879121
+        },
+        {
+          "stage": "village",
+          "surviving_anchors": 778,
+          "surviving_seeds": 512,
+          "newly_pending_anchors": 4,
+          "conditional_retention_percent": 99.48849104859335
+        },
+        {
+          "stage": "trial_chamber",
+          "surviving_anchors": 778,
+          "surviving_seeds": 512,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "mineshaft",
+          "surviving_anchors": 778,
+          "surviving_seeds": 512,
+          "newly_pending_anchors": 0,
+          "conditional_retention_percent": 100.0
+        },
+        {
+          "stage": "wooded_families",
+          "surviving_anchors": 777,
+          "surviving_seeds": 511,
+          "newly_pending_anchors": 1,
+          "conditional_retention_percent": 99.87146529562982
+        }
+      ],
+      "median_summed_stage_seconds": {
+        "ancient_city": 1.0814650827669539,
+        "final_bastion": 0.20750839018728584,
+        "final_fortress": 0.18167209695093334,
+        "initial_fortress": 0.29994114697910845,
+        "mineshaft": 14.229173336876556,
+        "optional_structures": 4.528633116395213,
+        "stronghold": 0.4480008775717579,
+        "trial_chamber": 0.3116779840202071,
+        "village": 0.562274499097839,
+        "wooded_biomes": 10.380461461783852
+      },
+      "median_storage_bytes": 24104960.0,
+      "terrain_sample": {
+        "common_control": {
+          "evaluated_anchors": 2,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 0
+        },
+        "random_eligible": {
+          "evaluated_anchors": 4,
+          "strict_v1_passes": 0,
+          "strict_v2_passes": 0,
+          "strict_either_passes": 0,
+          "finest_complete_within": 1
+        }
+      }
+    }
+  ],
+  "baseline": {
+    "discovered_anchors": 1835,
+    "distinct_inputs": 1000,
+    "total_evaluations": 70000,
+    "matched_prior_arms": [
+      "ow-1280-nether-1024",
+      "ow-1280-nether-768",
+      "ow-1536-nether-1024",
+      "ow-1536-nether-768",
+      "ow-2048-nether-1024",
+      "ow-2048-nether-768"
+    ],
+    "full_baseline_nesting_exceptions": [
+      {
+        "smaller_pair": "ow-2304-nether-1024",
+        "larger_pair": "ow-2380-nether-1024",
+        "candidate_id": "7980124511283784280:772:-1996",
+        "pending_reasons": [
+          "wooded_family_coverage"
+        ],
+        "interpretation": "Changed 64-block biome sample lattice; all required structure predictions still qualify."
+      }
+    ],
+    "input_sequence_sha256": "f4cb61296b6c4882ed94de03cea1fbb305883289f0d30a6fabe0f12caad84723",
+    "source_files_unchanged": 191
+  },
+  "terrain_evaluations": 42,
+  "terrain_seconds": 581.0498275139835,
+  "terrain_by_overworld": {
+    "1024": {
+      "median_seconds_per_anchor": 10.325128390453756,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 1536,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 29,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 24,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 409,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 24,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 1593,
+          "geometry_pass": 3,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 40,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 35,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 408,
+          "geometry_pass": 5,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 35,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 3033,
+      "deferred_work": 53
+    },
+    "1280": {
+      "median_seconds_per_anchor": 11.892125073994976,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 2401,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 21,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 19,
+          "geometry_pass": 1,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 402,
+          "geometry_pass": 27,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 19,
+          "geometry_pass": 1,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 2501,
+          "geometry_pass": 7,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 28,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 23,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 414,
+          "geometry_pass": 11,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 25,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 4806,
+      "deferred_work": 65
+    },
+    "1536": {
+      "median_seconds_per_anchor": 11.534600561484694,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 3456,
+          "geometry_pass": 3,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 17,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 13,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 402,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 13,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 3604,
+          "geometry_pass": 10,
+          "complete_within": 10,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 30,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 27,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 420,
+          "geometry_pass": 9,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 27,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 6964,
+      "deferred_work": 65
+    },
+    "1792": {
+      "median_seconds_per_anchor": 13.388807226030622,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 4705,
+          "geometry_pass": 18,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 20,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 9,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 17,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 411,
+          "geometry_pass": 84,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 17,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 4927,
+          "geometry_pass": 2,
+          "complete_within": 56,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 32,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 3,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 30,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 429,
+          "geometry_pass": 0,
+          "complete_within": 4,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 30,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 9536,
+      "deferred_work": 62
+    },
+    "2048": {
+      "median_seconds_per_anchor": 15.889758821984287,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 6146,
+          "geometry_pass": 39,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 24,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 11,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 20,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 429,
+          "geometry_pass": 96,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 20,
+          "geometry_pass": 7,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 6432,
+          "geometry_pass": 4,
+          "complete_within": 123,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 33,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 33,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 432,
+          "geometry_pass": 3,
+          "complete_within": 16,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 33,
+          "geometry_pass": 0,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 12482,
+      "deferred_work": 53
+    },
+    "2304": {
+      "median_seconds_per_anchor": 17.931734748533927,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 7777,
+          "geometry_pass": 65,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 26,
+          "geometry_pass": 13,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 17,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 22,
+          "geometry_pass": 12,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 414,
+          "geometry_pass": 102,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 22,
+          "geometry_pass": 12,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 8156,
+          "geometry_pass": 19,
+          "complete_within": 136,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 39,
+          "geometry_pass": 2,
+          "complete_within": 2,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 5,
+          "complete_within": 3,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 38,
+          "geometry_pass": 3,
+          "complete_within": 2,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 432,
+          "geometry_pass": 40,
+          "complete_within": 46,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 38,
+          "geometry_pass": 2,
+          "complete_within": 2,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 15837,
+      "deferred_work": 53
+    },
+    "2380": {
+      "median_seconds_per_anchor": 17.62637942400761,
+      "stage_observations": {
+        "v1:resolution-128": {
+          "evaluated_center_observations": 8667,
+          "geometry_pass": 44,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-16": {
+          "evaluated_center_observations": 15,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 2,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-4": {
+          "evaluated_center_observations": 11,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-64": {
+          "evaluated_center_observations": 393,
+          "geometry_pass": 39,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v1:resolution-8": {
+          "evaluated_center_observations": 11,
+          "geometry_pass": 0,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-128": {
+          "evaluated_center_observations": 9070,
+          "geometry_pass": 35,
+          "complete_within": 144,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-16": {
+          "evaluated_center_observations": 33,
+          "geometry_pass": 7,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-32": {
+          "evaluated_center_observations": 48,
+          "geometry_pass": 10,
+          "complete_within": 0,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-4": {
+          "evaluated_center_observations": 29,
+          "geometry_pass": 6,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-64": {
+          "evaluated_center_observations": 414,
+          "geometry_pass": 45,
+          "complete_within": 5,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        },
+        "v2:resolution-8": {
+          "evaluated_center_observations": 30,
+          "geometry_pass": 7,
+          "complete_within": 1,
+          "geometry_and_complete_within": 0,
+          "strict_finest_pass": 0
+        }
+      },
+      "pending_work": 17641,
+      "deferred_work": 66
+    }
+  },
+  "strict_pass_definition": "PREDICTED, geometry_pass, complete footprint within exact border, last height resolution 4",
+  "stage_timing_scope": "Sum of elapsed native/Python stage call seconds across workers, not wall time or whole-run CPU attribution.",
+  "source_files_unchanged": 191,
+  "actual_generation_verified": false,
+  "limitations": [
+    "Short matched baseline timing includes startup/IPC/persistence, not sustained sweep speed.",
+    "Missing predictions remain pending, not actual-world absence.",
+    "Six independent seeds per OW, two common controls plus four separately selected eligible seeds; no population terrain-rate estimate.",
+    "Eight nominated centers per variant; deferred fine/halo tasks and other centers remain unresolved.",
+    "Nether variants reuse geometry only at their own baseline-eligible anchors; no Nether access/footprint certification.",
+    "Native MC_26_50 predictions, not actual Bedrock 26.52 certification."
+  ]
+}

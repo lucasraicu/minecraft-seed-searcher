@@ -1,0 +1,1524 @@
+{
+  "rows": [
+    {
+      "seed": "-1",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-1",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-1",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 205,
+          "max_absolute_difference": 6.988378231653769e-07
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-1",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "0",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "0",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "0",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 199,
+          "max_absolute_difference": 7.333218476901493e-10
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "0",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "9",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "9",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "9",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 190,
+          "max_absolute_difference": 7.510185469072894e-07
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "9",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "12345",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "12345",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "12345",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 186,
+          "max_absolute_difference": 1.8775463672682235e-07
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "12345",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "4294979641",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "4294979641",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "4294979641",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 185,
+          "max_absolute_difference": 3.604220353281562e-07
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "4294979641",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-9048740180577658153",
+      "variant": "scalar",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-9048740180577658153",
+      "variant": "avx2",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-9048740180577658153",
+      "variant": "gemini",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": false,
+          "different_values": 197,
+          "max_absolute_difference": 3.056003952117692e-07
+        }
+      },
+      "density_sign_equal": true
+    },
+    {
+      "seed": "-9048740180577658153",
+      "variant": "vector4",
+      "fields": {
+        "height1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes1": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes8": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "height16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "biomes16": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "land": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_biomes": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_climate": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "grid_approx_height": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        },
+        "density4": {
+          "equal": true,
+          "different_values": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "density_sign_equal": true
+    }
+  ],
+  "points_per_seed": 384,
+  "density_samples_per_seed": 1024
+}

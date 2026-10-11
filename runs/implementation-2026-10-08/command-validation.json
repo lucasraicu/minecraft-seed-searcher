@@ -1,0 +1,21 @@
+{
+  "maximum_count": 2000,
+  "maximum_raw_layout_count": 0,
+  "search_mode": "full_64_bit_reference",
+  "sweep_unstarted": true,
+  "tiny_equivalent_command": ".venv/bin/python -m seed_search --config config/reference-sweep.yaml search --count 2 --start-index 0 --workers 2 --output runs/implementation-2026-10-08/command-tiny",
+  "tiny_equivalent_exit_code": 0,
+  "tiny_equivalent_evidence": "runs/implementation-2026-10-08/command-tiny.log",
+  "large_gate_rejection_exit_code": 2,
+  "large_gate_rejection_evidence": "runs/implementation-2026-10-08/missing-readiness-rejection.log",
+  "stale_gate_rejection_exit_code": 2,
+  "stale_gate_rejection_evidence": "runs/implementation-2026-10-08/stale-readiness-rejection.log",
+  "resume_dry_run_exit_code": 0,
+  "resume_evidence": "runs/implementation-2026-10-08/command-resume-dry-run.log",
+  "staged_dry_run_exit_code": 0,
+  "staged_dry_run_evidence": "runs/implementation-2026-10-08/staged-command-dry-run.log",
+  "large_sweep_dry_run_evidence": "runs/implementation-2026-10-08/reference-command-dry-run.log",
+  "sweep_command": ".venv/bin/python -m seed_search --config config/reference-sweep.yaml search --count 2000 --start-index 256 --workers 12 --readiness runs/implementation-2026-10-08/readiness.json --output runs/reference-sweep-2000",
+  "resume_command": ".venv/bin/python -m seed_search resume --run runs/reference-sweep-2000 --workers 12",
+  "limits": "Tiny actual search and resume use the same frozen configuration in a separate verification directory. Future production commands are only dry-run validated; neither sweep has started."
+}

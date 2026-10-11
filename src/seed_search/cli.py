@@ -13,6 +13,10 @@ from .preflight import benchmark,probe,metadata,compare_observations,save_json
 from .seeds import parse_seed
 
 def main(argv=None):
+    from .realm.cli import handles
+    if handles(argv):
+        from .realm.cli import main as realm_main
+        return realm_main(argv)
     parser=argparse.ArgumentParser(description="Bedrock 26.52 finite search with measured evidence readiness gate")
     parser.add_argument("--config",help="Configuration path (default search.example.yaml; resume defaults to persisted configuration)")
     sub=parser.add_subparsers(dest="command",required=True)

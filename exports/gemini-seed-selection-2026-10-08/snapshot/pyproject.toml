@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools==84.0.0", "wheel==0.48.0", "cffi==2.1.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bedrock-island-preflight"
+version = "0.1.0"
+description = "Bounded Bedrock prediction validation and performance prototype"
+license-files = ["vendor/cubiomes-bedrock/LICENSE"]
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "cffi==2.1.1", "numpy==2.5.3", "scipy==1.18.1", "PyYAML==6.0.3",
+  "matplotlib==3.11.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+seed-preflight = "seed_search.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

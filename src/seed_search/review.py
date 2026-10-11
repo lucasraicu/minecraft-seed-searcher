@@ -8,6 +8,7 @@ from .preflight import save_json
 
 
 def landscape_review_fields(kind):
+    if kind=='structures_only':return ()
     if kind=='ocean_island':return ('island_separated','ocean_setting','nearby_wood_abundant','buildability')
     if kind=='mountain_basin':return ('dry_flat_floor','mountain_setting','nearby_wood_abundant','buildability')
     if kind!='enclosed_island':raise ValueError('Unsupported reviewed landscape type')
@@ -21,7 +22,7 @@ def validate_review(r,cfg=None):
         raise ValueError('Review requires date, source link and browser evidence references')
     parse_seed(r['seed'])
     if len(r['center'])!=2 or any(not isinstance(v,int) or isinstance(v,bool) or v%8 for v in r['center']):raise ValueError('Review requires exact eight-block center')
-    if r.get('terrain_enabled') is not True or set(r.get('dimensions_checked',[]))!={'overworld','nether'}:
+    if (r.get('landscape_type')!='structures_only' and r.get('terrain_enabled') is not True) or set(r.get('dimensions_checked',[]))!={'overworld','nether'}:
         raise ValueError('Review requires Terrain enabled and both dimensions checked')
     for name in landscape_review_fields(r.get('landscape_type','enclosed_island')):
         if r.get(name) is not None and not isinstance(r.get(name),bool):raise ValueError(f'Invalid review field {name}')

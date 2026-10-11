@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import tempfile
 from pathlib import Path
 from datetime import datetime,timezone
 from seed_search.config import load_config
@@ -23,7 +24,12 @@ def assemble(config,evidence_path,output,maximum_count):
     geometry=json.loads(Path(evidence['fresh_geometry']).read_text())
     paths=set(required_sources())|{Path(config),Path(evidence_path),Path(__file__),ROOT/'requirements.lock'}
     paths|={Path(v) for k,v in evidence.items() if k!='pilot'}
+    if 'implementation_validation' in evidence:
+        implementation=json.loads(Path(evidence['implementation_validation']).read_text())
+        paths|={Path(v) for v in implementation.get('evidence',{}).values()}
+        paths|={Path(v) for v in implementation.get('artifacts',[])}
     paths|={Path(verification[k]['log']) for k in ('native_build','dependencies','tests')}
+    paths|={Path(verification[k]) for k in ('installed_license_evidence','dependency_versions_evidence')}
     paths|={pilot/'checkpoint.sqlite',pilot/'run.json',pilot/'summary.json',pilot/'candidates.json',pilot/'candidates.csv',*pilot.glob('invocation-*.json'),*pilot.rglob('shortlist/*/candidate.json')}
     paths|={Path(p) for r in reviews for p in r['browser_evidence']}
     paths|={Path(p) for r in geometry['cases'] for p in r['evidence']}
@@ -58,9 +64,15 @@ def assemble(config,evidence_path,output,maximum_count):
                 work/'config/review-all.yaml',work/'WORK.md',pilot/'stronghold-deferred.json',
                 pilot/'stronghold-deferred-seeds.txt'}
     artifacts=[{'path':str(p.resolve()),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(paths) if p.is_file()]
-    r={'schema':1,'ready':True,'recorded_at':datetime.now(timezone.utc).isoformat(),'config_path':str(Path(config).resolve()),'config_sha256':h,'backend_identity':backend_identity(),'maximum_sweep_count':maximum_count,'checks':checks,'evidence':{k:str(Path(v).resolve()) for k,v in evidence.items()},'artifacts':artifacts,'sweep_command':command['sweep_command'],'resume_command':command['resume_command'],'sweep_unstarted':True}
-    Path(output).write_text(json.dumps(r,indent=2)+'\n')
-    check_readiness(output,cfg,h,maximum_count)
+    r={'schema':2,'ready':True,'recorded_at':datetime.now(timezone.utc).isoformat(),'config_path':str(Path(config).resolve()),'config_sha256':h,'backend_identity':backend_identity(),'maximum_sweep_count':maximum_count,'maximum_raw_layout_count':command.get('maximum_raw_layout_count',0),'search_mode':cfg['search']['mode'],'checks':checks,'evidence':{k:str(Path(v).resolve()) for k,v in evidence.items()},'artifacts':artifacts,'sweep_command':command['sweep_command'],'resume_command':command['resume_command'],'sweep_unstarted':True}
+    destination=Path(output);destination.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode='w',dir=destination.parent,delete=False) as stream:
+        temporary=Path(stream.name);stream.write(json.dumps(r,indent=2)+'\n')
+    try:
+        check_readiness(temporary,cfg,h,maximum_count,r['maximum_raw_layout_count'])
+        temporary.replace(destination)
+    finally:
+        temporary.unlink(missing_ok=True)
     return r
 
 

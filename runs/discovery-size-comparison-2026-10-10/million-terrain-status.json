@@ -1,0 +1,23 @@
+{
+  "variants": 0,
+  "terrain_work": 0,
+  "terrain_pools": 0,
+  "observations": 0,
+  "variant_task_statuses": [
+    {
+      "variant": "v1",
+      "status": "pending",
+      "count": 2629026
+    },
+    {
+      "variant": "v2",
+      "status": "pending",
+      "count": 2629026
+    }
+  ],
+  "scope": "Million pilot checkpoint only; historical independent terrain/BDS fixtures are excluded.",
+  "predictive_terrain_candidates_evaluated": 0,
+  "predictive_terrain_pass_count": null,
+  "interpretation": "No candidates evaluated; terrain pass/fail rate is unknown.",
+  "checkpoint": "runs/master-implementation-2026-10-10/million/workers-30/realm.sqlite"
+}

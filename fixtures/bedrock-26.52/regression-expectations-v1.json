@@ -1,0 +1,65 @@
+{
+  "version": "pinned-plus-mt-init-v1",
+  "source": "runs/sweep-readiness/regression/regression.json",
+  "fixture_sha256": "fb0c3f2650f2966d4fec71a63885bc31c7d8170046d7472d825e84b3c5e4d62d",
+  "baseline_sha256": "fade34fd110aee23852bad16c698f741a116086f018382df5040c5263c57c868",
+  "known_disagreements": [
+    {
+      "seed": "12345",
+      "type": "bastion",
+      "marker": [
+        1185,
+        376
+      ],
+      "status": "missing"
+    },
+    {
+      "seed": "-1",
+      "type": "stronghold",
+      "marker": [
+        6212,
+        -4700
+      ],
+      "status": "missing"
+    },
+    {
+      "seed": "-1",
+      "type": "stronghold",
+      "marker": [
+        3524,
+        -7276
+      ],
+      "status": "missing"
+    },
+    {
+      "seed": "-1",
+      "type": "ancient_city",
+      "marker": [
+        -3048,
+        3256
+      ],
+      "status": "missing"
+    },
+    {
+      "seed": "4294979641",
+      "type": "ancient_city",
+      "marker": [
+        -680,
+        6216
+      ],
+      "status": "missing"
+    },
+    {
+      "seed": "4294979641",
+      "type": "bastion",
+      "marker": [
+        1185,
+        376
+      ],
+      "status": "missing"
+    }
+  ],
+  "reviewed_changes": [
+    "MT initialization fixes cold seed -1 Mineshaft scans; the normal frozen query order already initialized these coefficients, so its 880/159 rows remain unchanged."
+  ]
+}

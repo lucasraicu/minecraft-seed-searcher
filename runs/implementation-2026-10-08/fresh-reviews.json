@@ -1,0 +1,84 @@
+[
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-08",
+    "config_sha256": "e63b40cdacde83241f612a7c2afeb3e4216792c36157b60317611c2903764444",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "structures_only",
+    "actual_minecraft": null,
+    "seed": "12853964",
+    "center": [
+      224,
+      -832
+    ],
+    "review_role": "user_reference_calibration",
+    "structures": {
+      "stronghold": [
+        [
+          228,
+          -828
+        ]
+      ],
+      "fortress": [
+        [
+          155,
+          11
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/implementation-2026-10-08/browser/reference-stronghold.txt",
+      "runs/implementation-2026-10-08/browser/reference-stronghold.jpg",
+      "runs/implementation-2026-10-08/browser/reference-fortress.txt",
+      "runs/implementation-2026-10-08/browser/reference-fortress.jpg"
+    ],
+    "notes": "Fresh legacy compatibility UI from the site after its new map stalled. Exact Stronghold stairway and Fortress crossing markers inspected. Both fit the new squares. Terrain visible; no island/basin suitability, resources, structure footprint, access or game generation certified."
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-08",
+    "config_sha256": "e63b40cdacde83241f612a7c2afeb3e4216792c36157b60317611c2903764444",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "structures_only",
+    "actual_minecraft": null,
+    "seed": "4294979641",
+    "center": [
+      -1216,
+      4368
+    ],
+    "review_role": "holdout_candidate_quality",
+    "structures": {
+      "stronghold": [
+        [
+          -1212,
+          4372
+        ]
+      ],
+      "fortress": [
+        [
+          75,
+          827
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/implementation-2026-10-08/browser/holdout-stronghold.txt",
+      "runs/implementation-2026-10-08/browser/holdout-stronghold.jpg",
+      "runs/implementation-2026-10-08/browser/holdout-fortress.txt",
+      "runs/implementation-2026-10-08/browser/holdout-fortress.jpg"
+    ],
+    "notes": "Fresh legacy compatibility UI from the site after its new map stalled. Exact Stronghold stairway and Fortress crossing markers inspected. Both fit the new squares. Terrain visible; no island/basin suitability, resources, structure footprint, access or game generation certified."
+  }
+]

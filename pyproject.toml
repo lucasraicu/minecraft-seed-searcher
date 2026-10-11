@@ -18,9 +18,13 @@ dev = ["pytest==9.1.1"]
 
 [project.scripts]
 seed-preflight = "seed_search.cli:main"
+seedfinder = "seed_search.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"seed_search.realm.bds_tools" = ["*.js", "*.json", "*.properties", "*.sh", "Dockerfile"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

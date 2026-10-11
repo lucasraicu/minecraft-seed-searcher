@@ -1,0 +1,173 @@
+{
+  "rows": [
+    {
+      "discovery": 5000,
+      "ow": 2688,
+      "nether": 1024,
+      "inputs": 262144,
+      "necessary_missing": 1895,
+      "timings": [
+        {
+          "trial": 0,
+          "threads": 18,
+          "seconds": 0.2618503849953413,
+          "cpu_seconds": 4.6557889999999995
+        },
+        {
+          "trial": 0,
+          "threads": 36,
+          "seconds": 0.16890346293803304,
+          "cpu_seconds": 5.682683999999999
+        },
+        {
+          "trial": 1,
+          "threads": 36,
+          "seconds": 0.17890897300094366,
+          "cpu_seconds": 6.143528
+        },
+        {
+          "trial": 1,
+          "threads": 18,
+          "seconds": 0.2624890349106863,
+          "cpu_seconds": 7.811606999999999
+        },
+        {
+          "trial": 2,
+          "threads": 18,
+          "seconds": 0.25523585791233927,
+          "cpu_seconds": 4.576036000000002
+        },
+        {
+          "trial": 2,
+          "threads": 36,
+          "seconds": 0.1786967939697206,
+          "cpu_seconds": 6.220426
+        }
+      ],
+      "presence_sha256": "e20842b60b7ec2fccfc1f1a2f64f175ffba5940b9a79aefc047e98c64fbff67d"
+    },
+    {
+      "discovery": 4000,
+      "ow": 1280,
+      "nether": 768,
+      "inputs": 262144,
+      "necessary_missing": 19300,
+      "timings": [
+        {
+          "trial": 0,
+          "threads": 18,
+          "seconds": 0.3207453830400482,
+          "cpu_seconds": 8.373156000000002
+        },
+        {
+          "trial": 0,
+          "threads": 36,
+          "seconds": 0.20454408100340515,
+          "cpu_seconds": 7.155706000000002
+        },
+        {
+          "trial": 1,
+          "threads": 36,
+          "seconds": 0.21766338997986168,
+          "cpu_seconds": 7.537072000000002
+        },
+        {
+          "trial": 1,
+          "threads": 18,
+          "seconds": 0.32510847004596144,
+          "cpu_seconds": 9.020885999999997
+        },
+        {
+          "trial": 2,
+          "threads": 18,
+          "seconds": 0.3128238229546696,
+          "cpu_seconds": 5.613360999999998
+        },
+        {
+          "trial": 2,
+          "threads": 36,
+          "seconds": 0.22275061102118343,
+          "cpu_seconds": 7.636285999999998
+        }
+      ],
+      "presence_sha256": "ece9ed17a54f049f8cea7c145a9bdc06c7a447b6c2dd94c2f978abf845c4aced"
+    },
+    {
+      "discovery": 4000,
+      "ow": 1280,
+      "nether": 896,
+      "inputs": 262144,
+      "necessary_missing": 10058,
+      "timings": [
+        {
+          "trial": 0,
+          "threads": 18,
+          "seconds": 0.2964320440078154,
+          "cpu_seconds": 7.961627000000007
+        },
+        {
+          "trial": 0,
+          "threads": 36,
+          "seconds": 0.2165815040934831,
+          "cpu_seconds": 7.5020039999999995
+        },
+        {
+          "trial": 1,
+          "threads": 36,
+          "seconds": 0.21336021600291133,
+          "cpu_seconds": 7.384335000000007
+        },
+        {
+          "trial": 1,
+          "threads": 18,
+          "seconds": 0.29523591697216034,
+          "cpu_seconds": 8.381889999999999
+        },
+        {
+          "trial": 2,
+          "threads": 18,
+          "seconds": 0.288807439035736,
+          "cpu_seconds": 5.184770999999998
+        },
+        {
+          "trial": 2,
+          "threads": 36,
+          "seconds": 0.20797870494425297,
+          "cpu_seconds": 7.15355000000001
+        }
+      ],
+      "presence_sha256": "cc5c623667eca5d171b93fb85a9d594801958b1bdcaa0f6102f8287a44a5bf1c"
+    }
+  ],
+  "starts": [
+    0,
+    4294934528,
+    1570715518,
+    430292778,
+    3425104369,
+    402746,
+    147797616,
+    864484300
+  ],
+  "block_size": 32768,
+  "boundary_full_count_controls": 96,
+  "thread_outputs_match": true,
+  "native_build": {
+    "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/filter-cost-investigation-2026-10-10/native-v2/_filter_cost_private_v2.cpython-313-darwin.so",
+    "module": "_filter_cost_private_v2",
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-Xpreprocessor",
+      "-fopenmp"
+    ],
+    "architecture": "x86_64",
+    "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+    "sha256": "8ad77856dfd675a11c5692895cee985e32291680280dcd57fe8d2f82a5248567",
+    "bridge_sha256": "1ef0735bbe63195a050681d3c5918b074078ca0d5b704e3591b0942996247af6",
+    "seconds": 6.0137320349458605,
+    "installed": false
+  },
+  "scope": "262144 low32 values in eight dispersed blocks; existence flags only, no ranking, joint witnesses, persistence or full64 validation."
+}

@@ -1,0 +1,355 @@
+{
+  "status": "PASS",
+  "audit_seconds": 1134.2982314639958,
+  "coverage_range": [
+    0,
+    1000000
+  ],
+  "distinct_full64_inputs": 1000000,
+  "complete_nonoverlapping_ranges": 31250,
+  "seed_sequence_sha256": "1d9d2115d0fab9ef7e0c4db0c896f09e799606433ebfab4b763e0f51f102597f",
+  "quick_check": "ok",
+  "mandatory_nether_violations": 0,
+  "all_stored_final_nether_start_violations": {
+    "fortress": 0,
+    "bastion": 0
+  },
+  "all_candidate_nether_bounds_checked": 2629026,
+  "stored_final_nether_starts_checked": 10650483,
+  "launch_source_hashes_preserved": 178,
+  "launch_documentation_changes": {
+    "MASTER_IMPLEMENTATION_PLAN.md": {
+      "launch_sha256": "dde3f95b408e8aa937f815500fade91de0cf22466759bf165e4a640d86d7f11e",
+      "current_sha256": "2f8e815ef4a44c0a256efd914f0216c268c1ab2ef4ddc0d84e892a8e3b1ba1d4",
+      "reason": "Post-launch execution/checklist documentation; not a computational input"
+    }
+  },
+  "exact_border_sampled_candidates": 1024,
+  "candidate_counts": {
+    "PENDING": 1426716,
+    "PREDICTED": 1202310
+  },
+  "counts": {
+    "baseline_pending": 1426716,
+    "baseline_predicted": 1202310,
+    "biome_samples": 2125662336,
+    "confirmed_rejections": 0,
+    "initial_fortress_predicted": 1000000,
+    "pending_ancient_city": 860380,
+    "pending_final_bastion": 107346,
+    "pending_final_fortress": 456956,
+    "pending_village": 2487,
+    "stronghold_anchors": 2629026,
+    "unresolved_discovery": 50117,
+    "unresolved_fortress_coverage": 1000000,
+    "unresolved_stronghold_coverage": 1000000
+  },
+  "benchmark": {
+    "workers": 30,
+    "count": 1000000,
+    "wall_seconds": 5768.167702445062,
+    "seeds_per_second": 173.3652784706851,
+    "completed_seeds": 1000000,
+    "qualified_pool_sha256": "a389a4ceccd58ac8ba5017b59f75a350519836402a02482cce287674c6187bfa",
+    "candidate_counts": {
+      "PENDING": 1426716,
+      "PREDICTED": 1202310
+    },
+    "counts": {
+      "baseline_pending": 1426716,
+      "baseline_predicted": 1202310,
+      "biome_samples": 2125662336,
+      "confirmed_rejections": 0,
+      "initial_fortress_predicted": 1000000,
+      "pending_ancient_city": 860380,
+      "pending_final_bastion": 107346,
+      "pending_final_fortress": 456956,
+      "pending_village": 2487,
+      "stronghold_anchors": 2629026,
+      "unresolved_discovery": 50117,
+      "unresolved_fortress_coverage": 1000000,
+      "unresolved_stronghold_coverage": 1000000
+    },
+    "memory": {
+      "above_target": false,
+      "available": true,
+      "ceiling_bytes": 32212254720,
+      "combined_budget_estimate_bytes": 9179140096,
+      "cpu_percent": 39.0,
+      "docker_reserved_bytes": 8589934592,
+      "peak_process_tree_rss_bytes": 4531060736,
+      "processes": [
+        {
+          "cpu_percent": 39.0,
+          "pid": 15445,
+          "rss_bytes": 581230592
+        },
+        {
+          "cpu_percent": 0.0,
+          "pid": 15448,
+          "rss_bytes": 5992448
+        },
+        {
+          "cpu_percent": 0.0,
+          "pid": 19326,
+          "rss_bytes": 1982464
+        }
+      ],
+      "rss_bytes": 589205504,
+      "sampled_at": 1791651472.64974,
+      "shared_memory_caveat": "RSS sum can double-count shared pages",
+      "target_bytes": 26843545600,
+      "units": "bytes; GiB=2**30 bytes"
+    },
+    "worker_statistics": {
+      "batches": 31250,
+      "error": null,
+      "interrupted": false,
+      "invocation_completed_seeds": 1000000,
+      "invocation_seconds": 5767.084992646938,
+      "max_outstanding_batches": 30,
+      "native_threads": 1,
+      "numerical_threads": 1,
+      "recovered_assignments": 0,
+      "requested_workers": 30,
+      "stage_seconds": {
+        "ancient_city": 1540.5542369504692,
+        "final_bastion": 235.2120512687834,
+        "final_fortress": 416.63413135265,
+        "initial_fortress": 332.7460628565168,
+        "mineshaft": 26784.18729879614,
+        "optional_structures": 6863.27714683814,
+        "stronghold": 367.66859089792706,
+        "trial_chamber": 446.6264275877038,
+        "village": 745.217594775022,
+        "wooded_biomes": 15190.649035126204
+      },
+      "worker_cpu_seconds": 53693.76840799962,
+      "worker_seconds": 53856.96140350378,
+      "workers": {
+        "15450": {
+          "batches": 1042,
+          "cpu_seconds": 1774.972490999998,
+          "peak_rss_bytes": 132116480,
+          "seeds": 33344,
+          "wall_seconds": 1780.0474430414615
+        },
+        "15451": {
+          "batches": 1041,
+          "cpu_seconds": 1795.5730660000036,
+          "peak_rss_bytes": 140918784,
+          "seeds": 33312,
+          "wall_seconds": 1801.2952559822006
+        },
+        "15452": {
+          "batches": 1043,
+          "cpu_seconds": 1789.5206569999966,
+          "peak_rss_bytes": 128229376,
+          "seeds": 33376,
+          "wall_seconds": 1795.2172790608602
+        },
+        "15453": {
+          "batches": 1042,
+          "cpu_seconds": 1789.4890570000005,
+          "peak_rss_bytes": 135798784,
+          "seeds": 33344,
+          "wall_seconds": 1795.228561075055
+        },
+        "15454": {
+          "batches": 1041,
+          "cpu_seconds": 1776.7516870000034,
+          "peak_rss_bytes": 133709824,
+          "seeds": 33312,
+          "wall_seconds": 1782.264374360093
+        },
+        "15455": {
+          "batches": 1043,
+          "cpu_seconds": 1792.705582000001,
+          "peak_rss_bytes": 139026432,
+          "seeds": 33376,
+          "wall_seconds": 1798.5336045647273
+        },
+        "15456": {
+          "batches": 1042,
+          "cpu_seconds": 1789.5047050000028,
+          "peak_rss_bytes": 132198400,
+          "seeds": 33344,
+          "wall_seconds": 1794.609889831976
+        },
+        "15457": {
+          "batches": 1042,
+          "cpu_seconds": 1797.8735270000004,
+          "peak_rss_bytes": 132866048,
+          "seeds": 33344,
+          "wall_seconds": 1803.7489159493707
+        },
+        "15458": {
+          "batches": 1042,
+          "cpu_seconds": 1794.1525859999972,
+          "peak_rss_bytes": 130215936,
+          "seeds": 33344,
+          "wall_seconds": 1799.2133893631399
+        },
+        "15459": {
+          "batches": 1040,
+          "cpu_seconds": 1788.1758459999962,
+          "peak_rss_bytes": 130523136,
+          "seeds": 33280,
+          "wall_seconds": 1793.9306134587387
+        },
+        "15460": {
+          "batches": 1042,
+          "cpu_seconds": 1791.033845999998,
+          "peak_rss_bytes": 137551872,
+          "seeds": 33344,
+          "wall_seconds": 1796.7811721359612
+        },
+        "15461": {
+          "batches": 1041,
+          "cpu_seconds": 1787.6190329999993,
+          "peak_rss_bytes": 133156864,
+          "seeds": 33312,
+          "wall_seconds": 1792.7865734045627
+        },
+        "15462": {
+          "batches": 1041,
+          "cpu_seconds": 1787.9861949999977,
+          "peak_rss_bytes": 132608000,
+          "seeds": 33312,
+          "wall_seconds": 1792.9753183728317
+        },
+        "15463": {
+          "batches": 1040,
+          "cpu_seconds": 1791.9740060000004,
+          "peak_rss_bytes": 134586368,
+          "seeds": 33280,
+          "wall_seconds": 1797.7807077693287
+        },
+        "15464": {
+          "batches": 1041,
+          "cpu_seconds": 1805.6511900000005,
+          "peak_rss_bytes": 132382720,
+          "seeds": 33312,
+          "wall_seconds": 1811.3309441879392
+        },
+        "15465": {
+          "batches": 1043,
+          "cpu_seconds": 1796.1223350000039,
+          "peak_rss_bytes": 129880064,
+          "seeds": 33376,
+          "wall_seconds": 1801.129928615177
+        },
+        "15466": {
+          "batches": 1043,
+          "cpu_seconds": 1794.254683000004,
+          "peak_rss_bytes": 133423104,
+          "seeds": 33376,
+          "wall_seconds": 1800.0339059546823
+        },
+        "15467": {
+          "batches": 1041,
+          "cpu_seconds": 1776.5200959999986,
+          "peak_rss_bytes": 130723840,
+          "seeds": 33312,
+          "wall_seconds": 1781.5195789698046
+        },
+        "15468": {
+          "batches": 1042,
+          "cpu_seconds": 1804.4582349999985,
+          "peak_rss_bytes": 133427200,
+          "seeds": 33344,
+          "wall_seconds": 1810.2292067188537
+        },
+        "15469": {
+          "batches": 1042,
+          "cpu_seconds": 1784.9267010000008,
+          "peak_rss_bytes": 131080192,
+          "seeds": 33344,
+          "wall_seconds": 1789.988820889499
+        },
+        "15470": {
+          "batches": 1041,
+          "cpu_seconds": 1805.662144999998,
+          "peak_rss_bytes": 131756032,
+          "seeds": 33312,
+          "wall_seconds": 1811.4962661965983
+        },
+        "15471": {
+          "batches": 1041,
+          "cpu_seconds": 1796.9139309999969,
+          "peak_rss_bytes": 136142848,
+          "seeds": 33312,
+          "wall_seconds": 1802.6240067856852
+        },
+        "15472": {
+          "batches": 1042,
+          "cpu_seconds": 1774.8708480000003,
+          "peak_rss_bytes": 126947328,
+          "seeds": 33344,
+          "wall_seconds": 1779.8628827920184
+        },
+        "15473": {
+          "batches": 1042,
+          "cpu_seconds": 1772.357343999999,
+          "peak_rss_bytes": 135622656,
+          "seeds": 33344,
+          "wall_seconds": 1777.4184201182798
+        },
+        "15474": {
+          "batches": 1041,
+          "cpu_seconds": 1786.3932060000013,
+          "peak_rss_bytes": 126844928,
+          "seeds": 33312,
+          "wall_seconds": 1791.9581983891549
+        },
+        "15475": {
+          "batches": 1042,
+          "cpu_seconds": 1782.2354240000016,
+          "peak_rss_bytes": 128659456,
+          "seeds": 33344,
+          "wall_seconds": 1787.3284236823674
+        },
+        "15476": {
+          "batches": 1041,
+          "cpu_seconds": 1788.949462000002,
+          "peak_rss_bytes": 130301952,
+          "seeds": 33312,
+          "wall_seconds": 1793.971387389698
+        },
+        "15477": {
+          "batches": 1042,
+          "cpu_seconds": 1797.8547380000011,
+          "peak_rss_bytes": 136441856,
+          "seeds": 33344,
+          "wall_seconds": 1803.6460335407173
+        },
+        "15478": {
+          "batches": 1042,
+          "cpu_seconds": 1787.3861990000019,
+          "peak_rss_bytes": 130174976,
+          "seeds": 33344,
+          "wall_seconds": 1793.144759962801
+        },
+        "15479": {
+          "batches": 1042,
+          "cpu_seconds": 1791.8795870000024,
+          "peak_rss_bytes": 127410176,
+          "seeds": 33344,
+          "wall_seconds": 1796.8655409401981
+        }
+      }
+    },
+    "storage_bytes": 37096873984
+  },
+  "forecast_point_hours": 1.3740025543892342,
+  "measured_hours": 1.6022688062347394,
+  "speed_ratio_vs_forecast": 0.85753560766004,
+  "within_working_range": true,
+  "historical_hours": [
+    1.355436710864747,
+    2.700411002554589
+  ],
+  "actual_generation_verified": false,
+  "production_sweep_started": false,
+  "scope": "Baseline prediction only; terrain/BDS not included; pending evidence retained"
+}

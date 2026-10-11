@@ -1,0 +1,535 @@
+{
+  "within_trial_parity": [
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "-1",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "12345",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 0,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "vector4",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "avx2",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": true,
+      "equal": true,
+      "different_paths": []
+    },
+    {
+      "seed": "4294979641",
+      "trial": 1,
+      "variant": "scalar",
+      "quart_reuse": false,
+      "equal": true,
+      "different_paths": []
+    }
+  ],
+  "cross_trial_scalar_different_paths": {
+    "-1": [
+      "/candidates/0/score/interval/0",
+      "/candidates/0/score/interval/1",
+      "/candidates/0/structure_score_factors/mineshaft",
+      "/candidates/0/structures/mineshaft/distance",
+      "/candidates/0/structures/mineshaft/nearest_viable",
+      "/candidates/0/structures/mineshaft/raw/length",
+      "/candidates/0/structures/mineshaft/review_required",
+      "/candidates/0/structures/mineshaft/starts_near_border/length",
+      "/candidates/0/structures/mineshaft/status",
+      "/candidates/0/structures/mineshaft/viable/length",
+      "/candidates/1/score/interval/0",
+      "/candidates/1/score/interval/1",
+      "/candidates/1/structure_score_factors/mineshaft",
+      "/candidates/1/structures/mineshaft/distance",
+      "/candidates/1/structures/mineshaft/nearest_viable",
+      "/candidates/1/structures/mineshaft/raw/length",
+      "/candidates/1/structures/mineshaft/review_required",
+      "/candidates/1/structures/mineshaft/starts_near_border/length",
+      "/candidates/1/structures/mineshaft/status",
+      "/candidates/1/structures/mineshaft/viable/length",
+      "/counts/all_three_core_centers"
+    ],
+    "12345": [],
+    "4294979641": []
+  },
+  "original_cross_trial_mismatches": 6,
+  "per_seed_timings": [
+    {
+      "seed": "-1",
+      "variant": "scalar",
+      "quart_reuse": false,
+      "median_seconds": 35.48854355653748,
+      "trial_seconds": [
+        35.5101724161068,
+        35.46691469696816
+      ]
+    },
+    {
+      "seed": "-1",
+      "variant": "scalar",
+      "quart_reuse": true,
+      "median_seconds": 26.1450618209783,
+      "trial_seconds": [
+        26.117862086975947,
+        26.17226155498065
+      ]
+    },
+    {
+      "seed": "-1",
+      "variant": "avx2",
+      "quart_reuse": false,
+      "median_seconds": 34.442900068475865,
+      "trial_seconds": [
+        34.35805495898239,
+        34.52774517796934
+      ]
+    },
+    {
+      "seed": "-1",
+      "variant": "avx2",
+      "quart_reuse": true,
+      "median_seconds": 25.48083980102092,
+      "trial_seconds": [
+        25.489914351026528,
+        25.471765251015313
+      ]
+    },
+    {
+      "seed": "-1",
+      "variant": "vector4",
+      "quart_reuse": false,
+      "median_seconds": 36.58597017149441,
+      "trial_seconds": [
+        36.68919054605067,
+        36.48274979693815
+      ]
+    },
+    {
+      "seed": "-1",
+      "variant": "vector4",
+      "quart_reuse": true,
+      "median_seconds": 26.356993135006633,
+      "trial_seconds": [
+        26.30176969000604,
+        26.412216580007225
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "scalar",
+      "quart_reuse": false,
+      "median_seconds": 64.77049328800058,
+      "trial_seconds": [
+        64.83429266593885,
+        64.70669391006231
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "scalar",
+      "quart_reuse": true,
+      "median_seconds": 38.90833104297053,
+      "trial_seconds": [
+        38.823096226900816,
+        38.993565859040245
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "avx2",
+      "quart_reuse": false,
+      "median_seconds": 63.182668334571645,
+      "trial_seconds": [
+        62.95118737104349,
+        63.4141492980998
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "avx2",
+      "quart_reuse": true,
+      "median_seconds": 37.8435583775281,
+      "trial_seconds": [
+        37.926731050014496,
+        37.7603857050417
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "vector4",
+      "quart_reuse": false,
+      "median_seconds": 67.56087577500148,
+      "trial_seconds": [
+        67.53826406097505,
+        67.5834874890279
+      ]
+    },
+    {
+      "seed": "12345",
+      "variant": "vector4",
+      "quart_reuse": true,
+      "median_seconds": 39.58487902896013,
+      "trial_seconds": [
+        39.56094517291058,
+        39.608812885009684
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "scalar",
+      "quart_reuse": false,
+      "median_seconds": 77.74525834055385,
+      "trial_seconds": [
+        76.99157005408779,
+        78.4989466270199
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "scalar",
+      "quart_reuse": true,
+      "median_seconds": 62.9791519214632,
+      "trial_seconds": [
+        62.91677503695246,
+        63.04152880597394
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "avx2",
+      "quart_reuse": false,
+      "median_seconds": 74.82991315046092,
+      "trial_seconds": [
+        74.72925746196415,
+        74.9305688389577
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "avx2",
+      "quart_reuse": true,
+      "median_seconds": 61.38200899248477,
+      "trial_seconds": [
+        61.193230982054956,
+        61.570787002914585
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "vector4",
+      "quart_reuse": false,
+      "median_seconds": 79.00437541399151,
+      "trial_seconds": [
+        79.04643533297349,
+        78.96231549500953
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "variant": "vector4",
+      "quart_reuse": true,
+      "median_seconds": 63.68155645549996,
+      "trial_seconds": [
+        63.79398080392275,
+        63.569132107077166
+      ]
+    }
+  ],
+  "aggregate_timings": [
+    {
+      "variant": "scalar",
+      "quart_reuse": false,
+      "sum_per_seed_median_seconds": 178.0042951850919
+    },
+    {
+      "variant": "scalar",
+      "quart_reuse": true,
+      "sum_per_seed_median_seconds": 128.03254478541203
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": false,
+      "sum_per_seed_median_seconds": 172.45548155350843
+    },
+    {
+      "variant": "avx2",
+      "quart_reuse": true,
+      "sum_per_seed_median_seconds": 124.70640717103379
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": false,
+      "sum_per_seed_median_seconds": 183.1512213604874
+    },
+    {
+      "variant": "vector4",
+      "quart_reuse": true,
+      "sum_per_seed_median_seconds": 129.62342861946672
+    }
+  ],
+  "scope": "Match initialization history within each trial. Cold -1 repeat defect remains a failed production invariant."
+}

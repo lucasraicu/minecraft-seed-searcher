@@ -68,7 +68,7 @@ def candidate_maps(out,c,cfg,run=None):
         axes[1].legend(fontsize=6,loc='upper left',ncol=2)
         for ax in axes:
             ax.plot(*c['center'],marker='+',color='red',markersize=10)
-            ax.add_patch(Rectangle((bounds[0],bounds[1]),3008,3008,fill=False,edgecolor='black',linewidth=2))
+            ax.add_patch(Rectangle((bounds[0],bounds[1]),bounds[2]-bounds[0],bounds[3]-bounds[1],fill=False,edgecolor='black',linewidth=2))
             for side,style in ((cfg['overworld']['report_core_side_blocks'],':'),(cfg['overworld']['report_primary_side_blocks'],'--')):
                 ax.add_patch(Rectangle((c['center'][0]-side/2,c['center'][1]-side/2),side,side,fill=False,edgecolor='gray',linestyle=style))
             ax.set_xlabel('X (blocks)');ax.set_ylabel('Z (blocks)')
@@ -87,8 +87,8 @@ def candidate_maps(out,c,cfg,run=None):
                 if r[key]:
                     pts=np.array(r[key]);ax.scatter(pts[:,0],pts[:,1],c=color,marker=marker,s=75,label=f'{typ}: {key}')
         ax.plot(*c['nether_center'],marker='+',color='cyan',markersize=15)
-        ax.add_patch(Rectangle((nb[0],nb[1]),992,992,fill=False,edgecolor='black',linewidth=2))
-        ax.set_title(f"Nether · seed {c['seed']}\ncenter {tuple(c['nether_center'])}; 992 × 992 square\nStarts/markers do not establish accessible footprints")
+        ax.add_patch(Rectangle((nb[0],nb[1]),nb[2]-nb[0],nb[3]-nb[1],fill=False,edgecolor='black',linewidth=2))
+        ax.set_title(f"Nether · seed {c['seed']}\ncenter {tuple(c['nether_center'])}; {nb[2]-nb[0]} × {nb[3]-nb[1]} square\nStarts/markers do not establish accessible footprints")
         ax.set_xlabel('X (blocks)');ax.set_ylabel('Z (blocks)');ax.legend(fontsize=8)
         fig.savefig(out/'nether.png',dpi=120);plt.close(fig)
     if cache_key is not None:
@@ -97,31 +97,35 @@ def candidate_maps(out,c,cfg,run=None):
     return time.perf_counter()-started
 
 
-def export_search(run,results,cfg,config_hash,identity):
+def score_lists(candidates,limit):
+    """Required-evidence eligibility and numeric-score certainty are separate.
+
+    A website-supported candidate with uncertain optional points remains eligible,
+    but its score interval belongs in the review list, not a known-total ranking.
+    """
+    from .scoring import distinct_rank,ranking_key,candidate_route
+    lists=distinct_rank([c for c in candidates if c['score']['total'] is not None or candidate_route(c)!='ranked'],limit)
+    uncertain=[c for c in candidates if candidate_route(c)=='review' or
+               (candidate_route(c)=='ranked' and c['score']['total'] is None)]
+    values=[];seen=set()
+    for c in sorted(uncertain,key=ranking_key):
+        if c['seed'] not in seen and len(values)<limit:values.append(c);seen.add(c['seed'])
+    lists['review']=values
+    return lists
+
+
+def _export_search(view,results,cfg,config_hash,identity,run):
     import csv
     import json
-    from .scoring import distinct_rank,ranking_key
+    from .scoring import distinct_rank,ranking_key,candidate_route,candidate_eligible
     from .preflight import save_json
     from .review import apply_review,landscape_review_fields
     from .structures import required_types
     run=Path(run)
-    # A resumed/refreshed ranking can change every folder ordinal. Preserve the
-    # prior generated view, but never leave stale folders in the active list.
-    if (run/'shortlist').exists():
-        history=run/'report-history';history.mkdir(exist_ok=True)
-        generation=0
-        while (history/f'shortlist-{generation:03d}').exists():generation+=1
-        (run/'shortlist').rename(history/f'shortlist-{generation:03d}')
+    view=Path(view)
     reviews=json.loads((run/'reviews.json').read_text()) if (run/'reviews.json').exists() else []
     candidates=[apply_review(c,reviews,cfg,config_hash) for r in results for c in r['candidates']]
-    rejected=[c for c in candidates if c['chunkbase_checked'] and any(c['chunkbase_review'].get(k) is False for k in landscape_review_fields(c.get('landscape_type','enclosed_island')))]
-    rejected_keys={(c['seed'],tuple(c['center']),c.get('landscape_type','enclosed_island')) for c in rejected}
-    lists=distinct_rank([c for c in candidates if (c['seed'],tuple(c['center']),c.get('landscape_type','enclosed_island')) not in rejected_keys],cfg['search']['report_top_distinct_seeds'])
-    near=[];seen=set()
-    for c in sorted(lists['near_misses']+rejected,key=ranking_key):
-        if c['seed'] not in seen and len(near)<cfg['search']['report_top_distinct_seeds']:
-            near.append(c);seen.add(c['seed'])
-    lists['near_misses']=near
+    lists=score_lists(candidates,cfg['search']['report_top_distinct_seeds'])
     supported=[];seen=set()
     for c in sorted(candidates,key=ranking_key):
         if c['selection_status']=='chunkbase_supported_candidate' and c['seed'] not in seen and len(supported)<cfg['search']['report_top_distinct_seeds']:
@@ -129,11 +133,10 @@ def export_search(run,results,cfg,config_hash,identity):
     lists['chunkbase_supported']=supported
     if 'landscapes' in cfg:
         for kind in cfg['landscapes']['enabled']:
-            eligible=[c for c in candidates if c.get('landscape_type')==kind and c['nether_status']!='missing_required_local_prediction' and (c['seed'],tuple(c['center']),kind) not in {(v['seed'],tuple(v['center']),v.get('landscape_type')) for v in rejected}]
-            seen=set();values=[]
-            for c in sorted(eligible,key=ranking_key):
-                if c['seed'] not in seen and len(values)<cfg['search']['report_top_distinct_seeds']:values.append(c);seen.add(c['seed'])
-            lists[kind]=values
+            category=score_lists([c for c in candidates if c.get('landscape_type')==kind],cfg['search']['report_top_distinct_seeds'])
+            lists[kind]=category['ranked']
+            lists[kind+'_review']=category['review']
+    if 'landscapes' in cfg:lists['ranked']=[]
     summary={'completed_seeds':len(results),'scored_centers':len(candidates),
              'filter_policy':cfg.get('optimization',{}).get('stronghold_prefilter','review_all'),
              'structure_deferred_locations':sum(r['counts'].get('early_structure_deferred',0) for r in results),
@@ -141,33 +144,63 @@ def export_search(run,results,cfg,config_hash,identity):
              'scored_with_all_three_core':sum(all(c['structures'][t]['viable'] for t in ('trial_chamber','stronghold','mineshaft')) for c in candidates),
              'required_structure_types':list(required_types(cfg)),
              'scored_with_required_structures':sum(all(c['structures'][t]['viable'] for t in required_types(cfg)) for c in candidates),
-             'list_counts':{k:len(v) for k,v in lists.items()},'map_generation_seconds':0}
+             'list_counts':{k:len(v) for k,v in lists.items()},'unique_qualifying_seeds':len({c['seed'] for c in candidates if candidate_eligible(c)}),
+             'category_memberships':{kind:len({c['seed'] for c in candidates if c.get('landscape_type')==kind and candidate_eligible(c)}) for kind in cfg.get('landscapes',{}).get('enabled',[])},'map_generation_seconds':0}
     if 'csv' in cfg['output']['summary_formats']:
-        with (run/'candidates.csv').open('w',newline='') as f:
-            w=csv.writer(f);w.writerow(['seed','index','landscape_type','center_x','center_z','nether_x','nether_z','total','score_lower','score_upper','required_structure_status','chunkbase_checked','actual_minecraft'])
-            for c in candidates:w.writerow([c['seed'],c['index'],c.get('landscape_type','enclosed_island'),*c['center'],*c['nether_center'],c['score']['total'],*c['score']['interval'],c['nether_status'],c['chunkbase_checked'],c['actual_minecraft']])
+        with (view/'candidates.csv').open('w',newline='') as f:
+            w=csv.writer(f);w.writerow(['seed','index','landscape_type','center_x','center_z','nether_x','nether_z','total','score_lower','score_upper','base_total','base_lower','base_upper','biome_bonus','score_maximum','biome_surface_spacing','required_structure_status','chunkbase_checked','actual_minecraft'])
+            for c in candidates:
+                s=c['score']
+                w.writerow([c['seed'],c['index'],c.get('landscape_type','enclosed_island'),*c['center'],*c['nether_center'],s['total'],*s['interval'],s.get('base_total',s['total']),*s.get('base_interval',s['interval']),s.get('biome_bonus',0),s.get('maximum',100),s.get('biome_surface_spacing'),c['nether_status'],c['chunkbase_checked'],c['actual_minecraft']])
     for group,cs in lists.items():
         # Near misses remain fully exported in JSON/CSV; maps focus on the same
         # shortlist depth, including a representative rejected seed for review.
         for i,c in enumerate(cs):
-            out=run/'shortlist'/group/f'{i+1:02d}_{c["seed"]}_{c["center"][0]}_{c["center"][1]}'
+            out=view/'shortlist'/group/f'{i+1:02d}_{c["seed"]}_{c["center"][0]}_{c["center"][1]}'
             out.mkdir(parents=True,exist_ok=True)
             save_json(out/'candidate.json',{'config_sha256':config_hash,'backend_identity':identity['backend'],**c})
             if 'overworld.png' in cfg['output']['candidate_files'] or 'nether.png' in cfg['output']['candidate_files']:
                 summary['map_generation_seconds']+=candidate_maps(out,c,cfg,run)
             lines=[f"# Seed {c['seed']}",'',f"Overworld center {c['center']}, bounds {c['bounds']['overworld']}; Nether center {c['nether_center']}, bounds {c['bounds']['nether']}.",'',
                    f"Status: {c['selection_status']}. Chunkbase checked: {c['chunkbase_checked']}; actual Minecraft evidence: {c['actual_minecraft']}.",'',
-                   f"Score: {c['score']['total']} / interval {c['score']['interval']}. See candidate.json for each metric and raw/viable/website statuses.",'',
+                   f"Score: {c['score']['total']} / interval {c['score']['interval']}; maximum {c['score'].get('maximum',100)}. Base interval {c['score'].get('base_interval',c['score']['interval'])}; biome bonus {c['score'].get('biome_bonus',0)}. See candidate.json for metrics, sampling evidence and raw/viable/website statuses.",'',
                    'Review in [Chunkbase](https://www.chunkbase.com/apps/seed-map) with Bedrock 26.50–26.52 and Terrain enabled in the Overworld. Required structure markers must lie inside their reported squares. Starts and markers cannot establish whole-structure access.','']
             lines.extend('- [ ] '+v for v in c.get('remaining_review',cfg['verification']['final_required_checks']))
             lines.extend(['','Optional actual-game checks: '+', '.join(cfg['verification'].get('optional_actual_game_checks',[])), '',*c['approximation_limits']])
             (out/'inspection.md').write_text('\n'.join(lines)+'\n')
-    save_json(run/'summary.json',summary)
+    save_json(view/'summary.json',summary)
     deferred=[{'seed':r['seed'],'index':r['index'],**v} for r in results for v in r['near_misses'] if v['reason'].startswith('deferred_') and 'required_prediction' in v['reason']]
-    save_json(run/'stronghold-deferred.json',{'scope':'Fast prediction exclusions; not proven absent. Recover with review_all and a new run.',
+    save_json(view/'stronghold-deferred.json',{'scope':'Fast prediction exclusions; not proven absent. Recover with review_all and a new run.',
                                               'records':deferred,'seeds':sorted({v['seed'] for v in deferred},key=int)})
-    (run/'stronghold-deferred-seeds.txt').write_text(''.join(seed+'\n' for seed in sorted({v['seed'] for v in deferred},key=int)))
+    (view/'stronghold-deferred-seeds.txt').write_text(''.join(seed+'\n' for seed in sorted({v['seed'] for v in deferred},key=int)))
     if 'json' in cfg['output']['summary_formats']:
-        save_json(run/'candidates.json',{'identity':identity,'summary':summary,'lists':lists,'all_centers':candidates,
+        save_json(view/'candidates.json',{'identity':identity,'summary':summary,'lists':lists,'all_centers':candidates,
                                          'rejections_and_deferred':[{'seed':r['seed'],**v} for r in results for v in r['near_misses']]})
+    from .preflight import save_json
+    (view/'shortlist').mkdir(exist_ok=True)
+    with (view/'decisions.jsonl').open('w') as f:
+        for r in results:
+            for d in r.get('decisions',[]):f.write(json.dumps({'seed':r['seed'],'index':r['index'],**d},sort_keys=True)+'\n')
+    return summary
+
+
+def export_search(run,results,cfg,config_hash,identity):
+    """Render a complete generation before atomically switching the active view."""
+    import os,uuid,shutil
+    run=Path(run);history=run/'report-history';history.mkdir(exist_ok=True)
+    generation=history/('generation-'+uuid.uuid4().hex);generation.mkdir()
+    try:
+        summary=_export_search(generation,results,cfg,config_hash,identity,run)
+    except Exception:
+        shutil.rmtree(generation)
+        raise
+    # All public aliases point through this one atomic generation pointer.
+    aliases=('shortlist','summary.json','candidates.json','candidates.csv','stronghold-deferred.json','stronghold-deferred-seeds.txt','decisions.jsonl')
+    for name in aliases:
+        p=run/name
+        if p.exists() and not p.is_symlink():p.rename(history/('legacy-'+uuid.uuid4().hex+'-'+name))
+        if not p.is_symlink():p.symlink_to('reports-current/'+name,target_is_directory=name=='shortlist')
+    temporary=run/('.reports-'+uuid.uuid4().hex)
+    temporary.symlink_to(generation.relative_to(run),target_is_directory=True)
+    os.replace(temporary,run/'reports-current')
     return summary

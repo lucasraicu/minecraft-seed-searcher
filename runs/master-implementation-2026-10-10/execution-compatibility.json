@@ -1,0 +1,148 @@
+{
+  "target_version": "26.52",
+  "bds_version": "1.26.52.3",
+  "prediction_model": "MC_26_50",
+  "backend": {
+    "model": "26.50",
+    "structure_rng": {
+      "trial_chamber": 1,
+      "stronghold": 0,
+      "mineshaft": 0,
+      "ancient_city": 0,
+      "village": 0,
+      "ruined_portal": 0,
+      "shipwreck": 0,
+      "monument": 0,
+      "outpost": 0,
+      "fortress": 0,
+      "bastion": 0
+    }
+  },
+  "features": {
+    "trial_chamber": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 64,
+      "viability_seed_bits": 64
+    },
+    "stronghold": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 64,
+      "viability_seed_bits": 64,
+      "enumerator_completeness": "incomplete; known reference misses"
+    },
+    "mineshaft": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 64,
+      "viability_seed_bits": 64
+    },
+    "ancient_city": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64,
+      "known_disagreement": "candidate/viability disagreement in frozen reference fixture"
+    },
+    "village": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "ruined_portal": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "shipwreck": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "monument": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "outpost": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "fortress": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64
+    },
+    "bastion": {
+      "candidate_placement": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false,
+      "effective_placement_seed_bits": 32,
+      "viability_seed_bits": 64,
+      "known_disagreement": "candidate/viability disagreement in frozen reference fixture"
+    },
+    "buried_treasure": {
+      "candidate_placement": "UNSUPPORTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false
+    },
+    "monster_room": {
+      "candidate_placement": "UNSUPPORTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false
+    },
+    "dappled_forest": {
+      "biome_id": 188,
+      "prediction": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false
+    },
+    "sulfur_caves": {
+      "biome_id": 187,
+      "prediction": "PREDICTED",
+      "generation": "UNVERIFIED",
+      "complete_negative_evidence": false
+    },
+    "terrain": {
+      "prediction": "MC_26_50 raw density without actual liquids/aquifers/decoration",
+      "bds_actual_blocks": "supported in bounded isolated tests",
+      "natural_ground_provenance": "PARTIAL; structures/waterlogging/ice not fully validated",
+      "exact_variant_qualification": "UNVERIFIED"
+    }
+  },
+  "large_search_ready": false,
+  "prediction_scale_available": true,
+  "edition": "bedrock",
+  "silent_fallback": false,
+  "remaining_gates": [
+    "version-matched required structure validation",
+    "complete stronghold recall",
+    "surface-biome coverage",
+    "actual natural-ground and water geometry calibration"
+  ],
+  "missing_support_policy": "unknown or unsupported, never confirmed absent",
+  "caves": "manual invocation only",
+  "variants": [
+    "v1",
+    "v2"
+  ],
+  "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O"
+}

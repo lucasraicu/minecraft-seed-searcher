@@ -1,0 +1,698 @@
+{
+  "plan": {
+    "discovery_side_blocks": 4000,
+    "overworld_sides": [
+      1280,
+      1536,
+      2048,
+      2688
+    ],
+    "nether_sides": [
+      768,
+      1024,
+      1280
+    ],
+    "baseline_count_per_trial": 1000,
+    "baseline_trials": 3,
+    "terrain_random_union_sample_target": 12,
+    "terrain_common_control_target": 4,
+    "terrain_max_refinements_per_anchor_per_variant": 2,
+    "terrain_resolutions": [
+      128,
+      64,
+      32,
+      16,
+      8,
+      4
+    ],
+    "terrain_native_threads": 18,
+    "selection": "Seed/anchor hash ordering, fixed sample key; union sample reported separately from common matched controls",
+    "scope": "Bounded predictive comparison, independent V1/V2, unchanged eligibility thresholds, no BDS or production config changes"
+  },
+  "summary": [
+    {
+      "pair": "ow-1280-nether-768",
+      "overworld_side_blocks": 1280,
+      "nether_side_blocks": 768,
+      "median_seeds_per_second": 465.42722386361055,
+      "range_seeds_per_second": [
+        463.30321112118867,
+        470.49971559039636
+      ],
+      "predicted_qualifying_anchors": 174,
+      "predicted_qualifying_seeds": 156,
+      "predicted_qualifying_anchors_per_second": 80.98433695226824,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 0,
+          "terrain_evaluated_anchors": 0,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": null,
+          "mean_terrain_seconds_per_eligible_anchor": null,
+          "total_pending_work": 0,
+          "total_deferred_work": 0
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.055593463534024,
+          "mean_terrain_seconds_per_eligible_anchor": 5.673655582271749,
+          "total_pending_work": 3248,
+          "total_deferred_work": 9
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-1024",
+      "overworld_side_blocks": 1280,
+      "nether_side_blocks": 1024,
+      "median_seeds_per_second": 421.2466707584928,
+      "range_seeds_per_second": [
+        421.17160751583685,
+        429.341818370639
+      ],
+      "predicted_qualifying_anchors": 303,
+      "predicted_qualifying_seeds": 252,
+      "predicted_qualifying_anchors_per_second": 127.63774123982333,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 2,
+          "terrain_evaluated_anchors": 2,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.497882356576156,
+          "mean_terrain_seconds_per_eligible_anchor": 5.497882356576156,
+          "total_pending_work": 1618,
+          "total_deferred_work": 6
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.055593463534024,
+          "mean_terrain_seconds_per_eligible_anchor": 5.673655582271749,
+          "total_pending_work": 3248,
+          "total_deferred_work": 9
+        }
+      }
+    },
+    {
+      "pair": "ow-1280-nether-1280",
+      "overworld_side_blocks": 1280,
+      "nether_side_blocks": 1280,
+      "median_seeds_per_second": 401.03895492768305,
+      "range_seeds_per_second": [
+        389.80744315156426,
+        401.830587130673
+      ],
+      "predicted_qualifying_anchors": 357,
+      "predicted_qualifying_seeds": 294,
+      "predicted_qualifying_anchors_per_second": 143.17090690918283,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 2,
+          "terrain_evaluated_anchors": 2,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.497882356576156,
+          "mean_terrain_seconds_per_eligible_anchor": 5.497882356576156,
+          "total_pending_work": 1618,
+          "total_deferred_work": 6
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.055593463534024,
+          "mean_terrain_seconds_per_eligible_anchor": 5.673655582271749,
+          "total_pending_work": 3248,
+          "total_deferred_work": 9
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-768",
+      "overworld_side_blocks": 1536,
+      "nether_side_blocks": 768,
+      "median_seeds_per_second": 429.9625422255131,
+      "range_seeds_per_second": [
+        406.6461845771429,
+        452.56790233056995
+      ],
+      "predicted_qualifying_anchors": 232,
+      "predicted_qualifying_seeds": 204,
+      "predicted_qualifying_anchors_per_second": 99.75130979631905,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 0,
+          "terrain_evaluated_anchors": 0,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": null,
+          "mean_terrain_seconds_per_eligible_anchor": null,
+          "total_pending_work": 0,
+          "total_deferred_work": 0
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.936587079020683,
+          "mean_terrain_seconds_per_eligible_anchor": 5.958853608521167,
+          "total_pending_work": 4694,
+          "total_deferred_work": 10
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-1024",
+      "overworld_side_blocks": 1536,
+      "nether_side_blocks": 1024,
+      "median_seeds_per_second": 371.661592111577,
+      "range_seeds_per_second": [
+        370.24399772936323,
+        384.567113450556
+      ],
+      "predicted_qualifying_anchors": 411,
+      "predicted_qualifying_seeds": 331,
+      "predicted_qualifying_anchors_per_second": 152.75291435785815,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 3,
+          "terrain_evaluated_anchors": 3,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.934331463067792,
+          "mean_terrain_seconds_per_eligible_anchor": 6.038627877715044,
+          "total_pending_work": 3493,
+          "total_deferred_work": 8
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.936587079020683,
+          "mean_terrain_seconds_per_eligible_anchor": 5.958853608521167,
+          "total_pending_work": 4694,
+          "total_deferred_work": 10
+        }
+      }
+    },
+    {
+      "pair": "ow-1536-nether-1280",
+      "overworld_side_blocks": 1536,
+      "nether_side_blocks": 1280,
+      "median_seeds_per_second": 359.8934311270505,
+      "range_seeds_per_second": [
+        354.66278791419364,
+        361.32744774117253
+      ],
+      "predicted_qualifying_anchors": 480,
+      "predicted_qualifying_seeds": 378,
+      "predicted_qualifying_anchors_per_second": 172.74884694098424,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 3,
+          "terrain_evaluated_anchors": 3,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.934331463067792,
+          "mean_terrain_seconds_per_eligible_anchor": 6.038627877715044,
+          "total_pending_work": 3493,
+          "total_deferred_work": 8
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 5.936587079020683,
+          "mean_terrain_seconds_per_eligible_anchor": 5.958853608521167,
+          "total_pending_work": 4694,
+          "total_deferred_work": 10
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-768",
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 768,
+      "median_seeds_per_second": 363.97766654845384,
+      "range_seeds_per_second": [
+        351.54087514651775,
+        365.3865548643127
+      ],
+      "predicted_qualifying_anchors": 353,
+      "predicted_qualifying_seeds": 279,
+      "predicted_qualifying_anchors_per_second": 128.4841162916042,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 0,
+          "terrain_evaluated_anchors": 0,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": null,
+          "mean_terrain_seconds_per_eligible_anchor": null,
+          "total_pending_work": 0,
+          "total_deferred_work": 0
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 8.579870361485519,
+          "mean_terrain_seconds_per_eligible_anchor": 8.193006278510438,
+          "total_pending_work": 8383,
+          "total_deferred_work": 11
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-1024",
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 1024,
+      "median_seeds_per_second": 286.521253500288,
+      "range_seeds_per_second": [
+        279.66434723908947,
+        286.83222018606006
+      ],
+      "predicted_qualifying_anchors": 638,
+      "predicted_qualifying_seeds": 456,
+      "predicted_qualifying_anchors_per_second": 182.80055973318377,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 5,
+          "terrain_evaluated_anchors": 5,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 8.859680981026031,
+          "mean_terrain_seconds_per_eligible_anchor": 8.779681666009129,
+          "total_pending_work": 10399,
+          "total_deferred_work": 13
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 8.579870361485519,
+          "mean_terrain_seconds_per_eligible_anchor": 8.193006278510438,
+          "total_pending_work": 8383,
+          "total_deferred_work": 11
+        }
+      }
+    },
+    {
+      "pair": "ow-2048-nether-1280",
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 1280,
+      "median_seeds_per_second": 264.06659925808674,
+      "range_seeds_per_second": [
+        261.68968783866006,
+        264.6802862829473
+      ],
+      "predicted_qualifying_anchors": 752,
+      "predicted_qualifying_seeds": 521,
+      "predicted_qualifying_anchors_per_second": 198.57808264208123,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 5,
+          "terrain_evaluated_anchors": 5,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 8.859680981026031,
+          "mean_terrain_seconds_per_eligible_anchor": 8.779681666009129,
+          "total_pending_work": 10399,
+          "total_deferred_work": 13
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 8.579870361485519,
+          "mean_terrain_seconds_per_eligible_anchor": 8.193006278510438,
+          "total_pending_work": 8383,
+          "total_deferred_work": 11
+        }
+      }
+    },
+    {
+      "pair": "ow-2688-nether-768",
+      "overworld_side_blocks": 2688,
+      "nether_side_blocks": 768,
+      "median_seeds_per_second": 271.0929807529424,
+      "range_seeds_per_second": [
+        269.8384224660261,
+        271.10635516204735
+      ],
+      "predicted_qualifying_anchors": 504,
+      "predicted_qualifying_seeds": 356,
+      "predicted_qualifying_anchors_per_second": 136.63086229948297,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 14.287838871532585,
+          "mean_terrain_seconds_per_eligible_anchor": 14.806478365528164,
+          "total_pending_work": 14344,
+          "total_deferred_work": 7
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 13.757730898971204,
+          "mean_terrain_seconds_per_eligible_anchor": 12.881023701222148,
+          "total_pending_work": 14490,
+          "total_deferred_work": 11
+        }
+      }
+    },
+    {
+      "pair": "ow-2688-nether-1024",
+      "overworld_side_blocks": 2688,
+      "nether_side_blocks": 1024,
+      "median_seeds_per_second": 196.84581517495434,
+      "range_seeds_per_second": [
+        193.58988967410681,
+        198.39696726551142
+      ],
+      "predicted_qualifying_anchors": 897,
+      "predicted_qualifying_seeds": 559,
+      "predicted_qualifying_anchors_per_second": 176.57069621193403,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 11,
+          "terrain_evaluated_anchors": 11,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 3,
+          "median_terrain_seconds_per_eligible_anchor": 15.235462951939553,
+          "mean_terrain_seconds_per_eligible_anchor": 15.262388852287337,
+          "total_pending_work": 39533,
+          "total_deferred_work": 20
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 13.757730898971204,
+          "mean_terrain_seconds_per_eligible_anchor": 12.881023701222148,
+          "total_pending_work": 14490,
+          "total_deferred_work": 11
+        }
+      }
+    },
+    {
+      "pair": "ow-2688-nether-1280",
+      "overworld_side_blocks": 2688,
+      "nether_side_blocks": 1280,
+      "median_seeds_per_second": 175.32283509906676,
+      "range_seeds_per_second": [
+        167.85847901969333,
+        175.72958121534487
+      ],
+      "predicted_qualifying_anchors": 1047,
+      "predicted_qualifying_seeds": 629,
+      "predicted_qualifying_anchors_per_second": 183.5630083487229,
+      "terrain_samples": {
+        "random_union": {
+          "sample_denominator": 12,
+          "baseline_eligible_anchors": 12,
+          "terrain_evaluated_anchors": 12,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 3,
+          "median_terrain_seconds_per_eligible_anchor": 15.158144788467325,
+          "mean_terrain_seconds_per_eligible_anchor": 15.235663456677381,
+          "total_pending_work": 43145,
+          "total_deferred_work": 22
+        },
+        "common_control": {
+          "sample_denominator": 4,
+          "baseline_eligible_anchors": 4,
+          "terrain_evaluated_anchors": 4,
+          "strict_v1_pass_anchors": 0,
+          "strict_v2_pass_anchors": 0,
+          "strict_either_pass_anchors": 0,
+          "finest_complete_within_anchors": 0,
+          "median_terrain_seconds_per_eligible_anchor": 13.757730898971204,
+          "mean_terrain_seconds_per_eligible_anchor": 12.881023701222148,
+          "total_pending_work": 14490,
+          "total_deferred_work": 11
+        }
+      }
+    }
+  ],
+  "selection": {
+    "sample_key": "joint-borders-2026-10-10-union-v1:",
+    "union_anchors": 1047,
+    "intersection_anchors": 174,
+    "random_union_sample": [
+      "-2662030230916354222:1812:-460",
+      "-1429330161668867327:-348:1316",
+      "3150267018574764802:-876:1908",
+      "-2257462080737006554:-860:-924",
+      "-7837249014595548945:1364:324",
+      "27994056673689133:1396:-1404",
+      "6349343671384948599:-236:1844",
+      "-7725394575922706452:-1020:148",
+      "-6597907953688312739:-1564:-1020",
+      "-8436639316869440577:-844:-1356",
+      "-7812838389146862617:-1196:-1644",
+      "3095765831458305725:772:1700"
+    ],
+    "additional_common_controls": [
+      "1523699478526397950:164:1188",
+      "8573806941170606022:1764:-1916",
+      "8904063527300135841:-1004:1060",
+      "-802218945143673179:1220:228"
+    ],
+    "membership": {
+      "-2662030230916354222:1812:-460": [
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-1429330161668867327:-348:1316": [
+        "ow-2688-nether-1280"
+      ],
+      "3150267018574764802:-876:1908": [
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-2257462080737006554:-860:-924": [
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-7837249014595548945:1364:324": [
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "27994056673689133:1396:-1404": [
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "6349343671384948599:-236:1844": [
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-7725394575922706452:-1020:148": [
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-6597907953688312739:-1564:-1020": [
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-8436639316869440577:-844:-1356": [
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-7812838389146862617:-1196:-1644": [
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "3095765831458305725:772:1700": [
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "1523699478526397950:164:1188": [
+        "ow-1280-nether-768",
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-768",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-768",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "8573806941170606022:1764:-1916": [
+        "ow-1280-nether-768",
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-768",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-768",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "8904063527300135841:-1004:1060": [
+        "ow-1280-nether-768",
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-768",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-768",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ],
+      "-802218945143673179:1220:228": [
+        "ow-1280-nether-768",
+        "ow-1280-nether-1024",
+        "ow-1280-nether-1280",
+        "ow-1536-nether-768",
+        "ow-1536-nether-1024",
+        "ow-1536-nether-1280",
+        "ow-2048-nether-768",
+        "ow-2048-nether-1024",
+        "ow-2048-nether-1280",
+        "ow-2688-nether-768",
+        "ow-2688-nether-1024",
+        "ow-2688-nether-1280"
+      ]
+    },
+    "scope": "Uniform hash selection over anchors, not independent seeds; common controls are reported separately."
+  },
+  "baseline_total_evaluations": 36000,
+  "distinct_baseline_full64_inputs": 1000,
+  "terrain_anchor_border_evaluations": 38,
+  "terrain_seconds": 386.6641748385737,
+  "script_sha256": "107386b44d8969aab23b23be8f48ad440a0cb24ab0fe0ac6e6315d8e41b5dfbd",
+  "sealed_sources_unchanged": 191,
+  "production_config_unchanged": true,
+  "actual_generation_verified": false,
+  "geometry_reuse": "Same seed, Stronghold and Overworld border; Nether eligibility taken from each pair independently. Overall score includes source-arm baseline bonuses and is not compared across Nether arms.",
+  "pass_definition": "PREDICTED + geometry_pass + complete footprint within border + finest height resolution 4.",
+  "limitations": [
+    "12 hash-selected union anchors; 4 additional common controls reported separately.",
+    "Two centers per variant instead of production eight; thousands of pending centers retained.",
+    "A nonpass means no qualifying terrain found within this budget, not no suitable terrain exists.",
+    "Native density/biome prediction only; no authoritative Bedrock/BDS or actual liquid/ground validation.",
+    "Short baseline trials include startup; speed is not a sustained billion-seed forecast."
+  ]
+}

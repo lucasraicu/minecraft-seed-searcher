@@ -126,7 +126,7 @@ def benchmark(cfg,config_hash,output,count=3,worker_counts=(4,8,12)):
             "density_vertical_step":8,"stage_seconds":summary,"rows":rows,"coarse_only_parallel":parallel,
             "main_process_peak_rss_mb":rss/(1024*1024 if platform.system()=="Darwin" else 1024),
             "full_search_seconds_per_seed":None,
-            "notes":["Refinement is a fixed 3008-square workload, not automatic multi-center refinement.",
+            "notes":[f"Refinement is a fixed {cfg['deployment']['overworld_side_blocks']}-square workload, not automatic multi-center refinement.",
                      "Actual total cost depends on survivors and number/size of refined candidate regions.",
                      "Parallel tests measure only coarse sampling and include process import/startup overhead.",
                      "Predicted counts do not certify real-world structures or target rarity."]}

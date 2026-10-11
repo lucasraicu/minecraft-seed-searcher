@@ -1,0 +1,92 @@
+{
+  "database": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/realm-implementation-2026-10-10/scale-100000/workers-30/realm.sqlite",
+  "read_only": true,
+  "queries": {
+    "range_counts": {
+      "rows": [
+        [
+          "complete",
+          3125
+        ]
+      ],
+      "seconds": [
+        0.0009539959719404578,
+        0.00018637999892234802,
+        0.00017825094982981682,
+        0.00017772510182112455,
+        0.0001773480325937271
+      ],
+      "query_plan": [
+        [
+          6,
+          0,
+          213,
+          "SCAN ranges USING COVERING INDEX ranges_status"
+        ]
+      ]
+    },
+    "candidate_counts": {
+      "rows": [
+        [
+          "PENDING",
+          109681
+        ],
+        [
+          "PREDICTED",
+          153394
+        ]
+      ],
+      "seconds": [
+        0.026793256984092295,
+        0.023112353053875268,
+        0.02270342200063169,
+        0.022516970988363028,
+        0.021642128005623817
+      ],
+      "query_plan": [
+        [
+          6,
+          0,
+          213,
+          "SCAN candidates USING COVERING INDEX candidate_status"
+        ]
+      ]
+    },
+    "variant_task_counts": {
+      "rows": [
+        [
+          "v1",
+          "pending",
+          263075
+        ],
+        [
+          "v2",
+          "pending",
+          263075
+        ]
+      ],
+      "seconds": [
+        0.3300541900098324,
+        0.3315268880687654,
+        0.32644158008042723,
+        0.33790893701370806,
+        0.33736418397165835
+      ],
+      "query_plan": [
+        [
+          6,
+          0,
+          216,
+          "SCAN variant_tasks"
+        ],
+        [
+          8,
+          0,
+          0,
+          "USE TEMP B-TREE FOR GROUP BY"
+        ]
+      ]
+    }
+  },
+  "note": "timings on final completed checkpoint; not concurrent with native benchmark"
+}

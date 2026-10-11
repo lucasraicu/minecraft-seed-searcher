@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "baseline_trials": 36,
+  "distinct_full64_inputs": 1000,
+  "terrain_databases_audited": 38,
+  "sample_border_evaluations": 38,
+  "deterministic_hash_sample_verified": true,
+  "pair_specific_eligibility_verified": true,
+  "stored_variant_results_and_pass_counts_verified": true,
+  "two_centers_per_variant_budget_verified": true,
+  "sealed_source_hashes_unchanged": 191,
+  "artifact_sha256": {
+    "plan.json": "b93f9f3baff704182d91e7ea330b1838702c0166229521276370e8089f11b4bf",
+    "baseline.json": "12bedf3b142d9d4ef809d6af32da5a39c9d3a16368e00da9e7ee87804f3e6579",
+    "selection.json": "9f374cfe0d6bb7a8c17b1aa8fdbdb84fd7178781f888b7ee87d6ce8862314ea8",
+    "terrain-progress.json": "0bb18019801204dc1c548e7e76d89367c7b67e73acda938d50d089f0f393df66",
+    "report.json": "00d796082831c16a47f924be503c99e252c768a4a10e4ec22390b9a37c380cbe",
+    "verification.json": "fae5e654042dfa1a1495d9850771e915b25adfe75e96fa0b53d9bdb1288af557",
+    "REPORT.md": "da3c0ff25bf5a64724f229a4092446a51ab8762b4591be13a5e399f745cb38b2",
+    "recommended-target.json": "407b98c1d77a8dad985bddc7ed82f3b656e4b8d043083192ebe8d085c7363324"
+  },
+  "audit_sha256": "4e3762abe8889d1f0d39afc9c0fef319eee3c1fc2d7d8577bf1eedd141a224db",
+  "actual_generation_verified": false
+}

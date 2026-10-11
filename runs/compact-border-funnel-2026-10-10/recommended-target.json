@@ -1,0 +1,24 @@
+{
+  "status": "recommended_next_pilot_target; production_configuration_unchanged",
+  "discovery_side_blocks": 4000,
+  "compact_target": {
+    "overworld_side_blocks": 1280,
+    "nether_side_blocks": 896
+  },
+  "smallest_preferred_target": {
+    "overworld_side_blocks": 1280,
+    "nether_side_blocks": 768
+  },
+  "roomier_compact_fallback": {
+    "overworld_side_blocks": 1536,
+    "nether_side_blocks": 896
+  },
+  "largest_baseline_layout_throughput_pair": "ow-2048-nether-1024",
+  "strict_terrain_pass_evaluations": 0,
+  "actual_generation_verified": false,
+  "compactness_checks": {
+    "best_layouts_per_overworld_area_at_nether_896": "ow-1280-nether-896",
+    "best_layouts_per_nether_area_at_overworld_1280": "ow-1280-nether-896"
+  },
+  "selection_basis": "User prioritizes compact playable area. 1280/896 keeps Overworld at the preferred size and substantially improves the mandatory Fortress+Bastion and full baseline yield versus 1280/768. Terrain optimum remains unresolved."
+}

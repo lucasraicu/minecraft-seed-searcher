@@ -11,7 +11,7 @@ from pathlib import Path
 from .storage import backend_identity, ROOT
 from .review import validate_review, apply_review
 
-CHECKS={'native_build','dependencies','tests','external_regression','deterministic_resume','end_to_end_pilot','fresh_chunkbase','candidate_quality','finite_command_validation'}
+CHECKS={'native_build','dependencies','tests','external_regression','deterministic_resume','end_to_end_pilot','fresh_chunkbase','candidate_quality','finite_command_validation','implementation_validation'}
 
 
 def artifact_path(value):
@@ -22,7 +22,34 @@ def artifact_path(value):
 def required_sources():
     return sorted([*ROOT.glob('src/seed_search/*.py'),*ROOT.glob('tests/test_*.py'),
                    ROOT/'native/build.py',ROOT/'native/bridge.c',ROOT/'native/bridge.h',
-                   ROOT/'vendor/backend.json',ROOT/'pyproject.toml',ROOT/'requirements.lock',ROOT/'scripts/assemble_sweep_readiness.py'])
+                   ROOT/'vendor/backend.json',ROOT/'fixtures/bedrock-26.52/regression-expectations-v1.json',ROOT/'pyproject.toml',ROOT/'requirements.lock',ROOT/'scripts/assemble_sweep_readiness.py'])
+
+
+def implementation_checks(record):
+    """Validate measured subrecords; a top-level passed flag is insufficient."""
+    expected={'quart_parity','worker_resume','raw_resume','recovery','mode_comparison'}
+    links=record.get('evidence',{})
+    if set(links)!=expected:return False
+    data={k:json.loads(artifact_path(v).read_text()) for k,v in links.items()}
+    quart=data['quart_parity'];worker=data['worker_resume'];raw=data['raw_resume']
+    recovery=data['recovery'];comparison=data['mode_comparison'];arms=comparison.get('arms',[])
+    keys=set(comparison.get('run_keys',[]));modes={'full_64_bit_reference','lower32_staged'}
+    pairs={(a.get('run_key'),a.get('search_mode')) for a in arms}
+    current=backend_identity()
+    return (
+        record.get('backend_identity')==current and record.get('passed') is True
+        and quart.get('equal') is True and quart.get('seeds_per_trial',0)>=20
+        and len(quart.get('trials',[]))>=3 and all(t.get('equal') is True for t in quart['trials'])
+        and worker.get('equal') is True and set(worker.get('worker_counts',[]))=={1,8,12}
+        and worker.get('full64_count',0)>=10 and worker.get('backend_identity')==current
+        and raw.get('exit_code')==0 and bool(raw.get('command')) and raw.get('backend_identity')==current
+        and recovery.get('complete') is True and len(recovery.get('declared_seeds',[]))>=4
+        and recovery.get('summary',{}).get('backend_identity')==current
+        and comparison.get('complete') is True and len(keys)>=2
+        and len(arms)==len(keys)*len(modes) and pairs=={(k,m) for k in keys for m in modes}
+        and all(a.get('full64_count',0)>=256 and a.get('backend_identity')==current for a in arms)
+        and all(t.get(mode,{}).get('backend_identity')==current for t in quart['trials'] for mode in ('original','quart'))
+    )
 
 
 def derive_checks(evidence,cfg,config_hash):
@@ -41,6 +68,9 @@ def derive_checks(evidence,cfg,config_hash):
     versions=json.loads(artifact_path(verification['dependency_versions_evidence']).read_text())
     dependency_valid=versions.get('all_locked_versions_match') is True and bool(versions.get('packages')) and all(version(name)==p['locked']==p['installed'] for name,p in versions['packages'].items())
     regression=read('regression')
+    expectation_path=ROOT/'fixtures/bedrock-26.52/regression-expectations-v1.json'
+    expectation=json.loads(expectation_path.read_text())
+    known_keys=lambda records:{(r['seed'],r['type'],tuple(r['marker']),r['status']) for r in records}
     resume=read('resume')
     from .storage import Store
     pilot=artifact_path(evidence['pilot'])
@@ -76,20 +106,25 @@ def derive_checks(evidence,cfg,config_hash):
     controls=read('fresh_geometry')
     fresh=bool(holdouts) and any(int(c['seed'])>>32 for c in matched) and any(min(c['center'])<0 for c in matched) and controls.get('source_kind')=='fresh_chunkbase_browser_UI' and controls.get('terrain_enabled') is True and len(controls.get('cases',[]))>=2 and all(artifact_path(p).is_file() for case in controls['cases'] for p in case['evidence'])
     command=read('command_validation')
+    implementation_valid=cfg['schema_version']==3
+    if cfg['schema_version']==4 and 'implementation_validation' in evidence:
+        implementation=read('implementation_validation')
+        implementation_valid=implementation_checks(implementation)
     return {
         'native_build':successful('native_build') and verification.get('vendor_source_hashes_verified') is True and vendor_valid and license_valid,
         'dependencies':successful('dependencies') and dependency_valid,
         'tests':successful('tests') and tests.get('passed_count',0)>=74 and tests.get('failed_count')==0 and passed is not None and int(passed.group(1))==tests['passed_count'] and not re.search(r'\d+ failed|ERROR|FAILED',test_log),
-        'external_regression':regression.get('passed') is True and regression['summary']['unique_type_correspondences']==874 and regression['summary']['known_structure_disagreements']==6 and regression['summary']['reused_starts']==0,
+        'external_regression':regression.get('passed') is True and regression.get('expectations_version')==expectation['version'] and regression.get('expectations_sha256')==hashlib.sha256(expectation_path.read_bytes()).hexdigest() and known_keys(regression['known_disagreements'])==known_keys(expectation['known_disagreements']) and regression['summary']['reused_starts']==0,
         'deterministic_resume':resume.get('equal') is True and resume.get('candidate_count',0)>0 and resume.get('seeds_compared',0)>=10 and resume.get('prediction_sha256')==resume.get('uninterrupted_prediction_sha256') and resume.get('current_backend_identity')==backend_identity() and resume.get('config_sha256')==config_hash and resume.get('worker_variation_test_passed') is True,
         'end_to_end_pilot':current and complete and measurements and bool(candidates) and output_current,
         'fresh_chunkbase':fresh,
         'candidate_quality':quality,
-        'finite_command_validation':command.get('tiny_equivalent_exit_code')==0 and command.get('large_gate_rejection_exit_code')==2 and command.get('resume_dry_run_exit_code')==0 and command.get('sweep_unstarted') is True and command.get('maximum_count',0)>1000,
+        'finite_command_validation':command.get('tiny_equivalent_exit_code')==0 and command.get('large_gate_rejection_exit_code')==2 and command.get('resume_dry_run_exit_code')==0 and command.get('sweep_unstarted') is True and (command.get('maximum_count',0)>1000 or command.get('maximum_raw_layout_count',0)>10000),
+        'implementation_validation':implementation_valid,
     }
 
 
-def check_readiness(path,cfg,config_hash,count):
+def check_readiness(path,cfg,config_hash,count,raw_count=0):
     if not path:raise ValueError('Large sweep requires --readiness pointing to verified evidence')
     p=Path(path);r=json.loads(p.read_text())
     if r.get('ready') is not True:raise ValueError('Readiness record is not ready')
@@ -97,7 +132,8 @@ def check_readiness(path,cfg,config_hash,count):
         raise ValueError('Readiness identity is incompatible with current configuration/backend')
     if set(r.get('checks',{}))!=CHECKS or not all(v is True for v in r['checks'].values()):
         raise ValueError('Readiness checks are incomplete')
-    if not 1000<count<=r.get('maximum_sweep_count',0):raise ValueError('Sweep exceeds measured readiness budget')
+    if not 0<count<=r.get('maximum_sweep_count',0) or raw_count>r.get('maximum_raw_layout_count',0):raise ValueError('Sweep exceeds measured raw/full64 readiness budget')
+    if r.get('search_mode',cfg['search']['mode'])!=cfg['search']['mode']:raise ValueError('Readiness search mode differs')
     artifacts=r.get('artifacts',[])
     if not artifacts:raise ValueError('Readiness requires verification artifacts')
     covered=set()
@@ -108,8 +144,13 @@ def check_readiness(path,cfg,config_hash,count):
     if not set(required_sources())<=covered:raise ValueError('Readiness source/test manifest is incomplete')
     evidence=r.get('evidence',{})
     needed={'verification','regression','resume','pilot','fresh_reviews','fresh_geometry','command_validation'}
+    if cfg['schema_version']==4:needed.add('implementation_validation')
     if set(evidence)!=needed:raise ValueError('Readiness evidence links are incomplete')
     linked={artifact_path(v).resolve() for k,v in evidence.items() if k!='pilot'}
+    if cfg['schema_version']==4:
+        implementation=json.loads(artifact_path(evidence['implementation_validation']).read_text())
+        linked|={artifact_path(v).resolve() for v in implementation.get('evidence',{}).values()}
+        linked|={artifact_path(v).resolve() for v in implementation.get('artifacts',[])}
     verification=json.loads(artifact_path(evidence['verification']).read_text())
     linked|={artifact_path(verification[k]['log']).resolve() for k in ('native_build','dependencies','tests')}
     linked|={artifact_path(verification[k]).resolve() for k in ('installed_license_evidence','dependency_versions_evidence')}
@@ -125,6 +166,8 @@ def check_readiness(path,cfg,config_hash,count):
     command=json.loads(artifact_path(evidence['command_validation']).read_text())
     if r['maximum_sweep_count']!=command['maximum_count'] or r.get('sweep_command')!=command['sweep_command'] or r.get('resume_command')!=command['resume_command']:
         raise ValueError('Readiness finite budget/commands differ from verified evidence')
+    if raw_count and (r.get('maximum_raw_layout_count')!=command.get('maximum_raw_layout_count') or command.get('search_mode')!=cfg['search']['mode']):
+        raise ValueError('Readiness raw budget/mode differs from verified command evidence')
     actual=derive_checks(evidence,cfg,config_hash)
     if actual!=r['checks']:raise ValueError('Readiness assertions do not match measured evidence')
     return r

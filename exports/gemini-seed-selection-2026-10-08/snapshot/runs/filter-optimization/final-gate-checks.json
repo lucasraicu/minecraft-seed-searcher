@@ -1,0 +1,16 @@
+{
+  "positive_gate": true,
+  "maximum_count": 2000,
+  "negative_checks": {
+    "not_ready": "Readiness record is not ready",
+    "backend_identity": "Readiness identity is incompatible with current configuration/backend",
+    "incomplete_checks": "Readiness checks are incomplete",
+    "artifact_tamper": "Readiness artifact missing or changed: /Users/lucasraicu/Downloads/minecraft-seed-searcher/CHUNKBASE_WORKFLOW.md",
+    "source_manifest": "Readiness source/test manifest is incomplete",
+    "command_tamper": "Readiness finite budget/commands differ from verified evidence",
+    "missing_readiness": "Large sweep requires --readiness pointing to verified evidence",
+    "budget_overrun": "Sweep exceeds measured readiness budget",
+    "config_identity": "Readiness identity is incompatible with current configuration/backend"
+  },
+  "sweep_unstarted": true
+}

@@ -5,12 +5,13 @@ from .backend import Backend
 
 
 class CachedBackend(Backend):
-    def __init__(self,seed,cache_mb=64,raw_cache_entries=0):
+    def __init__(self,seed,cache_mb=64,raw_cache_entries=0,quart_land_reuse=True):
         super().__init__(seed,raw_cache_entries)
         self.limit=int(cache_mb*1024**2)
         if self.limit<32768:raise ValueError('Cache must hold at least one 32 KiB tile')
         self.tiles=OrderedDict();self.bytes=0;self.peak_bytes=0;self.evictions=0
         self.stats=defaultdict(lambda:{'requested_points':0,'computed_points':0,'reused_points':0})
+        self.quart_land_reuse=quart_land_reuse
 
     def _sample(self,points,kind,scale,side,fields,dtype,missing,compute):
         points=np.asarray(points)
@@ -50,7 +51,8 @@ class CachedBackend(Backend):
     def heights(self,points,vertical_step=8):
         if isinstance(vertical_step,bool) or not isinstance(vertical_step,int) or not 1<=vertical_step<=16:
             raise ValueError('Vertical step must be an integer in 1–16')
-        p=np.asarray(points);scale=4 if np.issubdtype(p.dtype,np.integer) and np.all(p%4==0) else 1
+        # Height and block-selected surface biome remain keyed by original X/Z.
+        p=np.asarray(points);scale=1
         def compute(p):
             h,b=super(CachedBackend,self).heights(p,vertical_step)
             return np.column_stack((h,b))
@@ -58,13 +60,14 @@ class CachedBackend(Backend):
         return out[:,0].copy(),out[:,1].copy()
 
     def land(self,points):
-        out=self._sample(points,'exact_land',1,128,1,np.int8,-128,
+        out=self._sample(points,'exact_land',4 if self.quart_land_reuse else 1,128,1,np.int8,-128,
                          lambda p:super(CachedBackend,self).land(p))
         return out[:,0].astype(bool)
 
     def cache_statistics(self):
         return {'operations':dict(self.stats),'maximum_bytes':self.limit,'peak_bytes':self.peak_bytes,'evictions':self.evictions,
-                'scope':'One seed/backend instance; X/Z, operation and vertical stride kept separate.'}
+                'raw_land_capability':'pinned_raw_density_quart_xz_v1' if self.quart_land_reuse else 'original_xz',
+                'scope':'One seed/backend instance; raw land only shares quart cells; surface biomes and height strides remain separate.'}
 
     def close(self):
         self.tiles.clear();self.bytes=0

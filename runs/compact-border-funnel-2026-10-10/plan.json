@@ -1,0 +1,35 @@
+{
+  "overworld_sides": [
+    1024,
+    1280,
+    1536,
+    1792,
+    2048,
+    2304,
+    2380
+  ],
+  "nether_sides": [
+    512,
+    640,
+    768,
+    896,
+    1024
+  ],
+  "discovery_side": 4000,
+  "distinct_full64_inputs_per_arm": 1000,
+  "trials_per_arm": 2,
+  "baseline_processes": 30,
+  "native_threads_per_baseline_worker": 1,
+  "terrain_threads": 18,
+  "terrain_independent_seeds_per_overworld": 6,
+  "terrain_centers_per_variant": 8,
+  "terrain_resolutions": [
+    128,
+    64,
+    32,
+    16,
+    8,
+    4
+  ],
+  "scope": "Finite diagnostics only; unchanged terrain/biome/structure thresholds; no production sweep or BDS."
+}

@@ -1,0 +1,790 @@
+{
+  "decision_anchor_checks": 3807,
+  "differences": [],
+  "sampling_revision_changes": {
+    "tuning": [
+      {
+        "id": "-3007842339093404875:820:1492",
+        "from": "PENDING",
+        "to": "PREDICTED",
+        "old_reasons": [
+          "wooded_family_coverage"
+        ],
+        "new_reasons": []
+      },
+      {
+        "id": "-5519633321828063788:-1452:-1900",
+        "from": "PREDICTED",
+        "to": "PENDING",
+        "old_reasons": [],
+        "new_reasons": [
+          "wooded_family_coverage"
+        ]
+      },
+      {
+        "id": "3127824488405572432:852:1204",
+        "from": "PENDING",
+        "to": "PREDICTED",
+        "old_reasons": [
+          "wooded_family_coverage"
+        ],
+        "new_reasons": []
+      },
+      {
+        "id": "3886861310065160407:1748:260",
+        "from": "PREDICTED",
+        "to": "PENDING",
+        "old_reasons": [],
+        "new_reasons": [
+          "wooded_family_coverage"
+        ]
+      },
+      {
+        "id": "4907118429503221898:-972:900",
+        "from": "PREDICTED",
+        "to": "PENDING",
+        "old_reasons": [],
+        "new_reasons": [
+          "wooded_family_coverage"
+        ]
+      },
+      {
+        "id": "7030830750040570409:-1004:-444",
+        "from": "PREDICTED",
+        "to": "PENDING",
+        "old_reasons": [],
+        "new_reasons": [
+          "wooded_family_coverage"
+        ]
+      }
+    ],
+    "holdout": [
+      {
+        "id": "-1611453323078018396:-828:196",
+        "from": "PREDICTED",
+        "to": "PENDING",
+        "old_reasons": [],
+        "new_reasons": [
+          "wooded_family_coverage"
+        ]
+      },
+      {
+        "id": "-571911014139128720:1828:292",
+        "from": "PENDING",
+        "to": "PREDICTED",
+        "old_reasons": [
+          "wooded_family_coverage"
+        ],
+        "new_reasons": []
+      }
+    ]
+  },
+  "completion_sample": [
+    {
+      "id": "-1038974483233593356:1284:628",
+      "seconds": 0.0158157889964059,
+      "cpu_seconds": 0.015816000000000052,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1105212771627681288:740:1268",
+      "seconds": 0.015404180041514337,
+      "cpu_seconds": 0.015404999999999891,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1210038666261163786:-1948:-1276",
+      "seconds": 0.018274027039296925,
+      "cpu_seconds": 0.0182739999999999,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1256712447377371837:-1868:740",
+      "seconds": 0.018704824964515865,
+      "cpu_seconds": 0.01870700000000003,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1359511304669102227:1252:1316",
+      "seconds": 0.016926971031352878,
+      "cpu_seconds": 0.016928000000000054,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-136108765923920733:-1020:-1340",
+      "seconds": 0.018425825983285904,
+      "cpu_seconds": 0.018406000000000144,
+      "new_treasure_bonus": 0,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1425488499635949938:788:-236",
+      "seconds": 0.014574631000868976,
+      "cpu_seconds": 0.014575999999999922,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1429330161668867327:1412:-1100",
+      "seconds": 0.017544459085911512,
+      "cpu_seconds": 0.01754699999999998,
+      "new_treasure_bonus": 0,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1442748998313676230:1300:1444",
+      "seconds": 0.01467635401058942,
+      "cpu_seconds": 0.014677000000000273,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1625711755520134253:708:644",
+      "seconds": 0.01467262301594019,
+      "cpu_seconds": 0.014673999999999854,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1657294063421617779:-940:724",
+      "seconds": 0.016541967052035034,
+      "cpu_seconds": 0.01654399999999967,
+      "new_treasure_bonus": 0,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1787935298587753226:-940:116",
+      "seconds": 0.014689812087453902,
+      "cpu_seconds": 0.014690000000000314,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1818684554534176707:-172:1668",
+      "seconds": 0.01290704496204853,
+      "cpu_seconds": 0.012908000000000364,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1832811246487305668:1188:260",
+      "seconds": 0.013649831991642714,
+      "cpu_seconds": 0.013650999999999858,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1862839128001187847:180:-796",
+      "seconds": 0.013768118107691407,
+      "cpu_seconds": 0.01376899999999992,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-186723495250380041:-1164:1748",
+      "seconds": 0.015170720987953246,
+      "cpu_seconds": 0.015172000000000185,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1959034902387864372:116:-1948",
+      "seconds": 0.015585495973937213,
+      "cpu_seconds": 0.015587000000000018,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1982829329425322606:1796:628",
+      "seconds": 0.013486608979292214,
+      "cpu_seconds": 0.013488000000000167,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1983460260339807825:-332:1124",
+      "seconds": 0.014507233980111778,
+      "cpu_seconds": 0.014508999999999883,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2007821275277906068:-1068:-1340",
+      "seconds": 0.01575459400191903,
+      "cpu_seconds": 0.0157569999999998,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2049024840082573532:-1292:-1468",
+      "seconds": 0.012939315056428313,
+      "cpu_seconds": 0.012941000000000091,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2067029539262278373:-1468:1604",
+      "seconds": 0.013341048965230584,
+      "cpu_seconds": 0.013341999999999743,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2097045071918930947:1332:-268",
+      "seconds": 0.013777832966297865,
+      "cpu_seconds": 0.013778999999999986,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2100603550739777666:-1468:-1564",
+      "seconds": 0.014354403014294803,
+      "cpu_seconds": 0.014356000000000257,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2100603550739777666:-1964:-1436",
+      "seconds": 0.013792491983622313,
+      "cpu_seconds": 0.013793000000000166,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2100603550739777666:1188:-1164",
+      "seconds": 0.012260425952263176,
+      "cpu_seconds": 0.012261999999999773,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2227007316769981354:-1484:1348",
+      "seconds": 0.014008762896992266,
+      "cpu_seconds": 0.01401100000000044,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2257462080737006554:692:1844",
+      "seconds": 0.014684822992421687,
+      "cpu_seconds": 0.014686000000000199,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2280101953477123810:740:164",
+      "seconds": 0.01605837605893612,
+      "cpu_seconds": 0.016058999999999823,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2308461479726106343:-332:1764",
+      "seconds": 0.017985165934078395,
+      "cpu_seconds": 0.017987999999999893,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2339327221930255454:-204:-1516",
+      "seconds": 0.018005145015195012,
+      "cpu_seconds": 0.017952999999999886,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2384417169309218007:-1356:148",
+      "seconds": 0.01523640495724976,
+      "cpu_seconds": 0.015238000000000085,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1031004248702596458:-1612:-1260",
+      "seconds": 0.015555571997538209,
+      "cpu_seconds": 0.015556000000000125,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1031004248702596458:180:1156",
+      "seconds": 0.013690739986486733,
+      "cpu_seconds": 0.013694000000000095,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1031004248702596458:1956:-1036",
+      "seconds": 0.012662224005907774,
+      "cpu_seconds": 0.012662999999999869,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1053455553094052615:596:788",
+      "seconds": 0.012351278914138675,
+      "cpu_seconds": 0.012354000000000198,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-115347185571332707:-1068:-1996",
+      "seconds": 0.013803664012812078,
+      "cpu_seconds": 0.013804000000000372,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1165987317954764144:68:1956",
+      "seconds": 0.013384294114075601,
+      "cpu_seconds": 0.013386000000000564,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1226444494562757482:1156:-1836",
+      "seconds": 0.012361514964140952,
+      "cpu_seconds": 0.01236499999999996,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1303380590034412674:-172:-780",
+      "seconds": 0.009248982998542488,
+      "cpu_seconds": 0.009251000000000786,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1312129946778772797:-1228:-1628",
+      "seconds": 0.01382102002389729,
+      "cpu_seconds": 0.013822000000000223,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1312129946778772797:-348:-908",
+      "seconds": 0.012933810008689761,
+      "cpu_seconds": 0.012934999999999697,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1312129946778772797:788:132",
+      "seconds": 0.018739114981144667,
+      "cpu_seconds": 0.018739999999999313,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1357413353543192584:-220:772",
+      "seconds": 0.020501976017840207,
+      "cpu_seconds": 0.020503999999999856,
+      "new_treasure_bonus": 0,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1450852162677173072:-524:-860",
+      "seconds": 0.014055503066629171,
+      "cpu_seconds": 0.014057000000000208,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1503860632151056887:68:-1452",
+      "seconds": 0.015030542039312422,
+      "cpu_seconds": 0.015031999999999712,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1524696978346780310:1748:852",
+      "seconds": 0.012392371078021824,
+      "cpu_seconds": 0.01239300000000032,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1611453323078018396:-828:196",
+      "seconds": 0.013005116023123264,
+      "cpu_seconds": 0.01300600000000074,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1611453323078018396:1860:-940",
+      "seconds": 0.01242968998849392,
+      "cpu_seconds": 0.012431000000000303,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1712290383229344754:180:-1500",
+      "seconds": 0.012990784947760403,
+      "cpu_seconds": 0.01299099999999953,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1759533199314466261:-1372:1348",
+      "seconds": 0.015023239073343575,
+      "cpu_seconds": 0.015023999999999482,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1812172450741793950:180:756",
+      "seconds": 0.014559905044734478,
+      "cpu_seconds": 0.01456100000000049,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1906547891946430384:692:-396",
+      "seconds": 0.01344554009847343,
+      "cpu_seconds": 0.013448000000000349,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1916315567776183968:-1548:-780",
+      "seconds": 0.013456591055728495,
+      "cpu_seconds": 0.01345699999999983,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-1916315567776183968:788:804",
+      "seconds": 0.013007297995500267,
+      "cpu_seconds": 0.01300900000000027,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-194289748450288853:-1468:-268",
+      "seconds": 0.014318382018245757,
+      "cpu_seconds": 0.014319999999999666,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2118230755037428097:1268:244",
+      "seconds": 0.014460492064245045,
+      "cpu_seconds": 0.014461000000000723,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2199348363753902707:-876:1284",
+      "seconds": 0.017663917038589716,
+      "cpu_seconds": 0.017665000000000042,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2252257017230989591:-284:-1884",
+      "seconds": 0.01355178002268076,
+      "cpu_seconds": 0.013554000000000066,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2258893648202128456:292:1300",
+      "seconds": 0.012782895006239414,
+      "cpu_seconds": 0.012783999999999907,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2279341795114595562:1732:-396",
+      "seconds": 0.014253536937758327,
+      "cpu_seconds": 0.014253999999999323,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2305387438659852298:-1500:164",
+      "seconds": 0.01749498804565519,
+      "cpu_seconds": 0.017495999999999512,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2305387438659852298:-812:-364",
+      "seconds": 0.014510159031488001,
+      "cpu_seconds": 0.014511999999999858,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    },
+    {
+      "id": "-2311211298579109417:-236:1396",
+      "seconds": 0.013755780993960798,
+      "cpu_seconds": 0.01375700000000002,
+      "new_treasure_bonus": 1,
+      "families": 23,
+      "supplemental_dimensions": [
+        "nether",
+        "end"
+      ]
+    }
+  ],
+  "thread_point_checks": 95256,
+  "scope": "Frozen-lattice exact decisions and canonical inventory/old score parity. New buried-treasure capability deliberately adds its configured bonus. World-lattice/refinement is a separately versioned sampling revision."
+}

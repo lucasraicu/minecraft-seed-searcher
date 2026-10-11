@@ -1,0 +1,96 @@
+{
+  "source_kind": "fresh_chunkbase_browser_UI",
+  "recorded_at": "2026-10-08",
+  "terrain_enabled": true,
+  "geometry": [
+    2304,
+    928
+  ],
+  "cases": [
+    {
+      "seed": "12853964",
+      "center": [
+        224,
+        -832
+      ],
+      "bounds": {
+        "overworld": [
+          -928,
+          -1984,
+          1376,
+          320
+        ],
+        "nether": [
+          -436,
+          -568,
+          492,
+          360
+        ]
+      },
+      "markers": {
+        "stronghold": [
+          [
+            228,
+            -828
+          ]
+        ],
+        "fortress": [
+          [
+            155,
+            11
+          ]
+        ]
+      },
+      "both_required_markers_inside": true,
+      "evidence": [
+        "runs/implementation-2026-10-08/browser/reference-stronghold.txt",
+        "runs/implementation-2026-10-08/browser/reference-stronghold.jpg",
+        "runs/implementation-2026-10-08/browser/reference-fortress.txt",
+        "runs/implementation-2026-10-08/browser/reference-fortress.jpg"
+      ]
+    },
+    {
+      "seed": "4294979641",
+      "center": [
+        -1216,
+        4368
+      ],
+      "bounds": {
+        "overworld": [
+          -2368,
+          3216,
+          -64,
+          5520
+        ],
+        "nether": [
+          -616,
+          82,
+          312,
+          1010
+        ]
+      },
+      "markers": {
+        "stronghold": [
+          [
+            -1212,
+            4372
+          ]
+        ],
+        "fortress": [
+          [
+            75,
+            827
+          ]
+        ]
+      },
+      "both_required_markers_inside": true,
+      "evidence": [
+        "runs/implementation-2026-10-08/browser/holdout-stronghold.txt",
+        "runs/implementation-2026-10-08/browser/holdout-stronghold.jpg",
+        "runs/implementation-2026-10-08/browser/holdout-fortress.txt",
+        "runs/implementation-2026-10-08/browser/holdout-fortress.jpg"
+      ]
+    }
+  ],
+  "limits": "Marker membership only. Browser map does not implement our addon borders and cannot certify accessible footprints or all terrain categories."
+}

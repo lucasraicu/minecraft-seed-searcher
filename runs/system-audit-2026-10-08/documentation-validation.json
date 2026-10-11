@@ -1,0 +1,17 @@
+{
+  "new_document_links_valid": true,
+  "audit_driver_syntax_valid": true,
+  "production_source_config_native_unchanged": true,
+  "historical_readiness_gate": {
+    "rejected": true,
+    "reason": "Readiness artifact missing or changed: /Users/lucasraicu/Downloads/minecraft-seed-searcher/PROGRESS.md"
+  },
+  "sweep_directory_absent": true,
+  "changed_tracked_files": [
+    "IMPLEMENTATION_PLAN.md",
+    "PROGRESS.md",
+    "README.md",
+    "SEARCH_TARGETS.md",
+    "SWEEP_READINESS.md"
+  ]
+}

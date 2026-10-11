@@ -1,0 +1,342 @@
+{
+  "status": "checkpoint_only_full_goal_unfinished",
+  "tests": {
+    "passed": 560,
+    "seconds": 119.03,
+    "exit_code": 0,
+    "log": "runs/realm-implementation-2026-10-10/surface-terrain-queue-final-source-tests.log"
+  },
+  "new_baseline_inputs": 0,
+  "production_distinct_inputs": 100000,
+  "runtime_evidence": "selected_points_and_small_columns_not_full_formations",
+  "files": {
+    "README.md": {
+      "bytes": 15308,
+      "sha256": "35b2372b9b35286719d131deb0811f3164c40f12c10f2896016297fe53b013ca"
+    },
+    "REALM_IMPLEMENTATION_RESULTS.md": {
+      "bytes": 16392,
+      "sha256": "b8179d57720607d5da0302a08ee3b245b161e561d3c49441f434eca062c7301c"
+    },
+    "config/realm.yaml": {
+      "bytes": 2787,
+      "sha256": "1e44e87dd2840b7d470a8a456627005ec62a56d736585a546a4ee7063e2941a0"
+    },
+    "runs/realm-implementation-2026-10-10/BDS_INTEGRATION.md": {
+      "bytes": 16598,
+      "sha256": "57b53a066c82403d9cf8b5d006e7d90e8198d85a7f893ea85b08ca0030721615"
+    },
+    "runs/realm-implementation-2026-10-10/FIX_BACKLOG.md": {
+      "bytes": 14058,
+      "sha256": "9ee2411c46efbd6097862e31275d07a5f508aa5f912e096dd75491a720699441"
+    },
+    "runs/realm-implementation-2026-10-10/PROGRESS.md": {
+      "bytes": 8409,
+      "sha256": "69d3d0bce9d4dfbb660e87a46b983157cc19309408a60a52a74c5f2ebfe19fd8"
+    },
+    "runs/realm-implementation-2026-10-10/RESOURCE_FORECAST.md": {
+      "bytes": 2368,
+      "sha256": "be809ecc35b4dce9c58ab82ef45e4f879d96191366ef491d60149492724d46cf"
+    },
+    "runs/realm-implementation-2026-10-10/SURFACE_TERRAIN_QUEUE_FOLLOWUP.md": {
+      "bytes": 9381,
+      "sha256": "50e03a56e2c890bed7a1f1410ce37fa9a95820ab2262d298612bdaadb8a80969"
+    },
+    "runs/realm-implementation-2026-10-10/TERRAIN.md": {
+      "bytes": 20583,
+      "sha256": "b8650fb17155463d0dda48f664228b865d345d9202af148155b5edfa62846a74"
+    },
+    "runs/realm-implementation-2026-10-10/TERRAIN_WORK_STORAGE.md": {
+      "bytes": 3636,
+      "sha256": "e079e585c5293213aea91c1e8966effdb2f3e2dc8dad32c787ecf3c7a0a1951b"
+    },
+    "runs/realm-implementation-2026-10-10/actual-surface-verification-8601a6/natural-surface-observation.json": {
+      "bytes": 73054,
+      "sha256": "38bf286a6c4fdf067ee45162fa0768873d67abd1d39f59a2f2d85328ffce5cc5"
+    },
+    "runs/realm-implementation-2026-10-10/actual-surface-verification-8601a6/summary.json": {
+      "bytes": 17296,
+      "sha256": "63707f029a5626f76a76ef67b99453c46a50bdf7caefa83f676a7e9fa6cc069e"
+    },
+    "runs/realm-implementation-2026-10-10/actual-surface-verification-8601a6/surface-family-observation.json": {
+      "bytes": 27148,
+      "sha256": "464d911ba321c77f39297fec9f288806a841a3abe445b8090ca0d4378ccef700"
+    },
+    "runs/realm-implementation-2026-10-10/bds-positive-column-fixtures-0a5b7c/initial-columns.json": {
+      "bytes": 18745,
+      "sha256": "ebd9a6a45ee27fab3f2fec95ea30ad5e1571ffc5b3708d1dbddb447097ddfa86"
+    },
+    "runs/realm-implementation-2026-10-10/bds-positive-column-fixtures-0a5b7c/mutation-journal.json": {
+      "bytes": 187365,
+      "sha256": "018f9e83ec84c12cdc456155057f331a9fea5979f52a6080436b7991b2fa307c"
+    },
+    "runs/realm-implementation-2026-10-10/bds-positive-column-fixtures-0a5b7c/readonly-restart-air.json": {
+      "bytes": 60434,
+      "sha256": "8d8c75a47612a4f1fa7249251cd5856002c6b317c4e08135206732181866e9ce"
+    },
+    "runs/realm-implementation-2026-10-10/bds-positive-column-fixtures-0a5b7c/settled-columns.json": {
+      "bytes": 18455,
+      "sha256": "cb04c0bc17e1d5311357cfb88d357125a64bfefe0d4ba7f413340820fdeb515e"
+    },
+    "runs/realm-implementation-2026-10-10/bds-positive-column-fixtures-0a5b7c/summary.json": {
+      "bytes": 547170,
+      "sha256": "d1686febebd7a071fef718041a443ec0d3dc7e74d9a87e8022e30b693a5ce86d"
+    },
+    "runs/realm-implementation-2026-10-10/surface-terrain-queue-compatibility.json": {
+      "bytes": 4591,
+      "sha256": "738cde2aaba520e6f6b030d088c129b1f227f24d09110bf4490c583af0f17c51"
+    },
+    "runs/realm-implementation-2026-10-10/surface-terrain-queue-final-source-tests.log": {
+      "bytes": 672,
+      "sha256": "f5d683ce8d2386131633635346d150ffbaefd1a7fe3af890fc0f998c4c6a89fc"
+    },
+    "src/seed_search/realm/__init__.py": {
+      "bytes": 140,
+      "sha256": "d7d78917b635cfb0894a5c09b5207bd9b6e690a899a1a62f1329dfacda4e1f6b"
+    },
+    "src/seed_search/realm/baseline.py": {
+      "bytes": 9776,
+      "sha256": "d69f465065cb87ec647d4042c5822b519b8abb69773bcf4c49bdd314cb5cfb93"
+    },
+    "src/seed_search/realm/bds_tools/COLUMN_POLICY.md": {
+      "bytes": 8364,
+      "sha256": "29835ae3b51be8aee8b5be05693975425531cad18e622d752a066fb19cf0f81f"
+    },
+    "src/seed_search/realm/bds_tools/Dockerfile": {
+      "bytes": 700,
+      "sha256": "d37e1596ee0c43207305a7c5a1414541043760255955b02ff24b5dc09158f227"
+    },
+    "src/seed_search/realm/bds_tools/__init__.py": {
+      "bytes": 54,
+      "sha256": "95a8a15c6b28d645904dc87a42c8a351960256b96c7f116e7b839a5338344e84"
+    },
+    "src/seed_search/realm/bds_tools/column_policy.js": {
+      "bytes": 6402,
+      "sha256": "2918f5b18d00e1b9eac1bffe5b25611a727cfe1f5832870315ffcd7d173eb1c0"
+    },
+    "src/seed_search/realm/bds_tools/compare_saved_blocks.py": {
+      "bytes": 5166,
+      "sha256": "46d12a075135516b9b77deaa469af8e370ce0501206c06088ad1863dcedaf1c0"
+    },
+    "src/seed_search/realm/bds_tools/entrypoint.sh": {
+      "bytes": 280,
+      "sha256": "aabcce467d0fda2ad75378cf9ffc7ed32d24718c3b949fa0c1a28b2524302c4d"
+    },
+    "src/seed_search/realm/bds_tools/fixture_policy.js": {
+      "bytes": 8932,
+      "sha256": "c3e706b9eef2fa3b0f727e5f63b2315da7d0859224e23dbddea26f25c10c5cb0"
+    },
+    "src/seed_search/realm/bds_tools/main.js": {
+      "bytes": 10845,
+      "sha256": "bb262add4e9e70226a8618143b66c57ca2eebfbca7a110cd8dc90f59115d3770"
+    },
+    "src/seed_search/realm/bds_tools/manifest.json": {
+      "bytes": 735,
+      "sha256": "e61fce23c4216d00be9923efa94747cbdd9f68f645027c24de5302ac5179654e"
+    },
+    "src/seed_search/realm/bds_tools/poc-server.properties": {
+      "bytes": 13391,
+      "sha256": "bba5387a7e5461d98dfedb40aadd9726b21861e6a1e5623804f8e45e0807a332"
+    },
+    "src/seed_search/realm/bds_tools/poc_control.py": {
+      "bytes": 10465,
+      "sha256": "aaad55225a9fba8151604c4791f897533df14ac8f7b53089edc4a1dd615a6927"
+    },
+    "src/seed_search/realm/bds_tools/probe_tools.py": {
+      "bytes": 10652,
+      "sha256": "5c1896a4e7742f5c98e42e8714408a19e66fc9cd66ca6600f9473f263245e28f"
+    },
+    "src/seed_search/realm/bds_tools/snapshot_reader.py": {
+      "bytes": 1456,
+      "sha256": "f953f2d90d939214b84b3f11e719e99a47e13e0d15dae49eef34573836900bc7"
+    },
+    "src/seed_search/realm/bds_tools/world_behavior_packs.json": {
+      "bytes": 116,
+      "sha256": "a349a61a1e812b2b5fd647a6e9194da6e1986081976c27df5ad4679374e4a0b8"
+    },
+    "src/seed_search/realm/biomes.py": {
+      "bytes": 12055,
+      "sha256": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04"
+    },
+    "src/seed_search/realm/bounds.py": {
+      "bytes": 2147,
+      "sha256": "63389661c77bb81a14e9071a0a32f4f1a92bd04480a417baf57f34d106b57c0a"
+    },
+    "src/seed_search/realm/calibration.py": {
+      "bytes": 6020,
+      "sha256": "5c668b602af40781c7b24d3f5d4c933f304b90d5a11673e01f18689e2e7f253b"
+    },
+    "src/seed_search/realm/capabilities.py": {
+      "bytes": 3005,
+      "sha256": "a9236f7023d0349deec6fb5141d4ecf30b0a30331014e619664fdf29ab390592"
+    },
+    "src/seed_search/realm/caves.py": {
+      "bytes": 7982,
+      "sha256": "ffb23c47e4c10bafa56da5b8a6d5b6ede903b9bb67e2692de905a386ce7221f1"
+    },
+    "src/seed_search/realm/cli.py": {
+      "bytes": 27264,
+      "sha256": "7228bc39580ba30730c9b97b5a096f5bad8f3a7b6f142a21405971ed933d9ad4"
+    },
+    "src/seed_search/realm/config.py": {
+      "bytes": 8930,
+      "sha256": "d962c2f46bec6a584bdbba13c814e9f5b71dd5807acb2ac67e08bd904a427962"
+    },
+    "src/seed_search/realm/raster.py": {
+      "bytes": 13327,
+      "sha256": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc"
+    },
+    "src/seed_search/realm/reports.py": {
+      "bytes": 20052,
+      "sha256": "91072ef42b087ad694b8fff8337fdcdb4dcab647b539c89efa38de85741f1ad6"
+    },
+    "src/seed_search/realm/runner.py": {
+      "bytes": 14997,
+      "sha256": "46892ced953d623e0b32ce7aa235fe07c8660df8319b7f3eb56ef56b86c476d5"
+    },
+    "src/seed_search/realm/store.py": {
+      "bytes": 51526,
+      "sha256": "3a6112187b53d567944b23dc8edb8fe5dd3e06a36599e5422eaaf964238c96de"
+    },
+    "src/seed_search/realm/surface.py": {
+      "bytes": 4152,
+      "sha256": "000b75e421fcf3f7a4e3aadae20945c63631563e4fe0df98fe5d91eaf9c35025"
+    },
+    "src/seed_search/realm/terrain.py": {
+      "bytes": 60196,
+      "sha256": "394507e42f573b32d16408e80beb5ddbf6e7bba7efcf48f6088818b96523a065"
+    },
+    "src/seed_search/realm/verification.py": {
+      "bytes": 52506,
+      "sha256": "9c0ec97a995cec32d1f8bb60b9f98e2688a4a9851c8bf827918094e9443ed020"
+    },
+    "src/seed_search/realm/verification_plan.py": {
+      "bytes": 1957,
+      "sha256": "80aa65397df95ee68dde992a8a4e7575b6864ad1b5329e44c31deaa6312060d1"
+    },
+    "tests/test_realm_actual_columns.py": {
+      "bytes": 6543,
+      "sha256": "0b6b80ca2125720e464618a14ed82f590fea9d5ba23ffba5380fa4916d64584c"
+    },
+    "tests/test_realm_baseline.py": {
+      "bytes": 4444,
+      "sha256": "e2a54f60055c66c643f8fff02bc540c8cf7e22fbfc2226436078b960fcd18d5a"
+    },
+    "tests/test_realm_bds_cleanup.py": {
+      "bytes": 11824,
+      "sha256": "ec51a026eb8379a8c08e217da4843eb9c3394896bc47394f947cd2e403279643"
+    },
+    "tests/test_realm_bds_fixtures.py": {
+      "bytes": 21329,
+      "sha256": "fd47acbfe2f07b5a99155f8d72068ba4b4bcd955b3058b5a675bfb19062456a8"
+    },
+    "tests/test_realm_bds_semantics.py": {
+      "bytes": 12351,
+      "sha256": "aeb4dbe3a7231e20e6fc55f1cbc7e0fa1527c9a7b249d16c6fc44fd9f1ab4e2d"
+    },
+    "tests/test_realm_biome_postprocessing.py": {
+      "bytes": 2139,
+      "sha256": "59f8e136d538da98b98ec09ede6c9eb02bb35a7614636884ca56cf84489c0940"
+    },
+    "tests/test_realm_biome_uncertainty.py": {
+      "bytes": 3048,
+      "sha256": "6c846a8639aa945b5753a6bf0895b26e933a3f8f54602a3f63da04d1064db112"
+    },
+    "tests/test_realm_calibration.py": {
+      "bytes": 3363,
+      "sha256": "594a71e5c4228bb388427bb685201bc812e53fdc7427f06ca12cbbf6dcf67715"
+    },
+    "tests/test_realm_candidate_updates.py": {
+      "bytes": 3977,
+      "sha256": "d7d9090d3d6b05f779099aafe563ebbea374c16865158447d1a7e9e393d4b438"
+    },
+    "tests/test_realm_caves.py": {
+      "bytes": 5441,
+      "sha256": "914bed588a4ff8e26f45ee08fbffd9dd3e83596ed18c5b3539bcd1c5f58c779b"
+    },
+    "tests/test_realm_cli_reports.py": {
+      "bytes": 4142,
+      "sha256": "fc7ea4672f74a461c07e1c38e973953bdb3726a8bfc29efb3591e281611bd5e9"
+    },
+    "tests/test_realm_discovery_recovery.py": {
+      "bytes": 12472,
+      "sha256": "9bdae4f9958cee889fc1f26c22991c90a38891708e17ab29ebf573a16a7cae1b"
+    },
+    "tests/test_realm_memory_policy.py": {
+      "bytes": 5696,
+      "sha256": "4e5528a5228c80a9e26032ccd2937638f0adbedc9f6a2b462272f8417294b212"
+    },
+    "tests/test_realm_raster_reuse.py": {
+      "bytes": 7815,
+      "sha256": "30d761d5088d9d21baba8a052cfbf7760cbaf6db6070bca3e0751bc195ba9d09"
+    },
+    "tests/test_realm_report_recovery.py": {
+      "bytes": 13068,
+      "sha256": "d2e29bfa61fba716b0b64cbc19676f3f9f7100eebe114166fbfd54796de4da43"
+    },
+    "tests/test_realm_rescore_cli.py": {
+      "bytes": 2853,
+      "sha256": "41c62363c92d330774c9fe62935120be8f5717708f8531f3f8f10fc54024b5f9"
+    },
+    "tests/test_realm_scores.py": {
+      "bytes": 9203,
+      "sha256": "e6f032b73c6aab4e1ae9bc56971549f29726d47b71a2c93347f839898a00e0b4"
+    },
+    "tests/test_realm_store.py": {
+      "bytes": 6944,
+      "sha256": "90114921e574b4e7376c0c5f6d45352479909a638700ddbb0da2515c6e6b92ec"
+    },
+    "tests/test_realm_surface_biomes.py": {
+      "bytes": 3600,
+      "sha256": "8836610bf187352001c0998f72115c1d2c865accc64e6cab06393d5ce0f47822"
+    },
+    "tests/test_realm_surface_points.py": {
+      "bytes": 8706,
+      "sha256": "27b6cd3660872f59e36559bd5ceb8d364c1d72a76f4802bcf211545ac757b953"
+    },
+    "tests/test_realm_surface_verification.py": {
+      "bytes": 6859,
+      "sha256": "b212c84a3984d1df7e670b5874ddbcd30697cc9e28d79163a47efe6e679eb412"
+    },
+    "tests/test_realm_terrain.py": {
+      "bytes": 19663,
+      "sha256": "b1c18daa3970e00c05f5b6dd4e750799077d1a1e972ff3de843ac3f29b26bf85"
+    },
+    "tests/test_realm_terrain_identity.py": {
+      "bytes": 7178,
+      "sha256": "02f90005b98f5fd9cebc85e1c6f6256e7b2f51a838d311f01f32ce6d2630a7e4"
+    },
+    "tests/test_realm_terrain_work.py": {
+      "bytes": 18275,
+      "sha256": "dc82dfb0e9ecd9c177a20d1be8f57dcf322d7e8b2deafa765a747ffa2a486401"
+    },
+    "tests/test_realm_terrain_work_cli.py": {
+      "bytes": 1357,
+      "sha256": "fe54c3907ef19597314a0b733b32cf8dc73646539f884c8f33d64a71d05dbf3a"
+    },
+    "tests/test_realm_terrain_work_store.py": {
+      "bytes": 14228,
+      "sha256": "45f4fbc3272c7fe7a23e6cb2e999a7ca18bdaac4bd973c2c810cd327792ee66a"
+    },
+    "tests/test_realm_v2_continuity.py": {
+      "bytes": 5744,
+      "sha256": "590b0fa341fb71a5ecca9208beed5e5e1add7d1d41918b64329b4a1356e794a6"
+    },
+    "tests/test_realm_verification.py": {
+      "bytes": 18895,
+      "sha256": "1f95db92f453e9ce0d36eab6012c180b0a54cb299387ebbf83af56118f0dd908"
+    },
+    "tests/test_realm_verification_plan.py": {
+      "bytes": 7027,
+      "sha256": "ed98d1c9f986a3aaa6a3362363fc9aeaf3342e9eeec689f53b0d01bbcf63a534"
+    },
+    "tests/test_realm_verification_selection.py": {
+      "bytes": 3911,
+      "sha256": "a723dfcb2ba5aa452dd57a45885fbef7bbe4a509227573eba6ddc959b1246231"
+    },
+    "tests/test_realm_workers.py": {
+      "bytes": 7387,
+      "sha256": "44797e9dc6ad940b2605ffd0e71d478b87a796c8520019eaeb3751a7fc30c124"
+    }
+  }
+}

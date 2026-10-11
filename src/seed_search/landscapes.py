@@ -18,7 +18,7 @@ from .terrain import raster,sample_points,preliminary_component,coast_component,
 from .structures import scan_envelope,scan_type,possible_required_centers,at_center,square,nether_center,inside,required_types
 from .scoring import landscape_scores,structure_scores,weighted_score
 
-KINDS=('enclosed_island','ocean_island','mountain_basin')
+KINDS=('structures_only','enclosed_island','ocean_island','mountain_basin')
 
 
 def validate_landscapes(settings):
@@ -149,9 +149,16 @@ def basin_necessary_bound(backend,center,cfg):
     Ring hits ignore connectivity and use the smallest possible threshold (113).
     """
     s=cfg['landscapes'];step=cfg['search']['refinement_spacing_blocks']
-    half=math.ceil((256+s['flat_radius_blocks']+2*step)/(2*step))*2*step
-    if half>=1504:return {'impossible':False,'points':0,'reason':'local_bound_not_smaller'}
-    terrain=raster(backend,square(center,half*2),step)
+    # Slice the exact reference lattice, including its phase at spacing 64.
+    full=square(center,cfg['deployment']['overworld_side_blocks'])
+    reach=256+s['flat_radius_blocks']+2*step
+    bounds=[full[0]+math.floor((center[0]-reach-full[0])/step)*step,
+            full[1]+math.floor((center[1]-reach-full[1])/step)*step,
+            full[0]+math.ceil((center[0]+reach-full[0])/step)*step,
+            full[1]+math.ceil((center[1]+reach-full[1])/step)*step]
+    if bounds[0]<=full[0] or bounds[1]<=full[1] or bounds[2]>=full[2] or bounds[3]>=full[3]:
+        return {'impossible':False,'points':0,'reason':'local_bound_not_smaller_or_clipped'}
+    terrain=raster(backend,bounds,step)
     context=raster_intermediates(terrain);x,z=context['x'],context['z']
     allowed=np.hypot(x-center[0],z-center[1])<=256
     sites=build_centers(terrain,allowed,cfg['search']['center_axis_bounds_blocks'],8,context)
@@ -167,7 +174,7 @@ def basin_necessary_bound(backend,center,cfg):
             'reason':'dry_or_gentle_upper_bound','coverage_points':0}
     if result['impossible'] or not cfg.get('optimization',{}).get('lazy_coverage_bounds',False):return result
     # Bound overhead on survivors; unfinished rays remain possible, never misses.
-    budget=5000;needed=math.ceil(180*s['minimum_ring_fraction']);origin=(center[0]-1504,center[1]-1504)
+    budget=5000;needed=math.ceil(180*s['minimum_ring_fraction']);origin=(center[0]-cfg['deployment']['overworld_side_blocks']//2,center[1]-cfg['deployment']['overworld_side_blocks']//2)
     distance=np.arange(s['flat_radius_blocks'],s['ring_radius_blocks']+1,step/2)
     for candidate in possible:
         hits=misses=0
@@ -276,26 +283,48 @@ def round_robin(groups,limit):
 
 def analyze_landscapes(job):
     index,seed,cfg=job[:3];cache_root=job[3] if len(job)>3 else None
-    start=time.perf_counter();times={k:0.0 for k in ('discovery','structures','proxy','preliminary','coast','landscape','scoring')}
+    start=time.perf_counter();cpu_start=time.process_time();times={k:0.0 for k in ('discovery','structures','proxy','preliminary','coast','landscape','scoring')}
     counts={};near=[];candidates=[];settings=cfg['landscapes'];grid=discovery_grid(cfg)
+    times.update(biome_inventory=0.,structures_only=0.)
+    decisions=[]
+    diversity_enabled='biome_diversity' in cfg
     bounds=(grid[0],grid[1],grid[0]+(grid[2]-1)*grid[4],grid[1]+(grid[3]-1)*grid[4])
     opt=cfg.get('optimization',{});fast=opt.get('stronghold_prefilter')=='defer_unpredicted'
-    backend=CachedBackend(seed,opt['cache_mb_per_worker'],opt.get('raw_mt_cache_entries',0)) if opt.get('exact_per_seed_cache') else Backend(seed,opt.get('raw_mt_cache_entries',0))
+    backend=CachedBackend(seed,opt['cache_mb_per_worker'],opt.get('raw_mt_cache_entries',0),opt.get('quart_land_reuse',False)) if opt.get('exact_per_seed_cache') else Backend(seed,opt.get('raw_mt_cache_entries',0))
+    times['setup']=time.perf_counter()-start
     counts.update(discovery_points=0,discovery_components=0,preliminary_attempts=0,preliminary_density_points=0,
                   refinement_attempts=0,coast_density_points=0,landscape_density_points=0,deferred_components=0,
                   early_structure_deferred=0,early_basin_attempts=0,early_basin_rejections=0,early_basin_points=0,
                   nominated_by_type={k:0 for k in settings['enabled']})
     def finish(b):
+        if diversity_enabled and cfg['biome_diversity']['scope']=='all_evaluated' and not candidates:
+            from .biomes import inventory,grid_points
+            lo,hi=cfg['search']['center_axis_bounds_blocks'];anchor=min(math.floor(hi/8)*8,max(math.ceil(lo/8)*8,0))
+            box=square((anchor,anchor),cfg['deployment']['overworld_side_blocks']);points=grid_points(box,64)
+            t=time.perf_counter();ids=b.biome_points(np.column_stack((points[:,0],np.full(len(points),63),points[:,1])))
+            counts['failed_seed_biome_diagnostic']=inventory(ids,points,64,box,cfg['biome_diversity'],'diagnostic_fixed_y',63)
+            counts['biome_query_points']=counts.get('biome_query_points',0)+len(points);times['biome_inventory']+=time.perf_counter()-t
         counts['scored_centers']=len(candidates)
+        for c in candidates:
+            c['search_category']=c['landscape_type']
+            c['terrain_status']='not_required' if c['landscape_type']=='structures_only' else 'predicted_branch_checks_passed'
+            c['output_classification']='predicted_candidate' if c['nether_status'] in ('predicted_required_structures','predicted_both_required') else 'unresolved_review'
+            decisions.append({'branch':c['landscape_type'],'center':c['center'],'outcome':c['output_classification'],'reason':'final_exact_border_checks','index':index})
+        for n,v in enumerate(near):
+            decisions.append({'branch':v.get('landscape_type','all'),'nomination_id':n,'center':v.get('center'),'reason':v['reason'],'outcome':'deferred' if 'deferred' in v['reason'] or 'budget' in v['reason'] else 'unresolved' if v.get('isolation')=='unknown' else 'failed'})
+        counts['terminal_decisions']={outcome:sum(d['outcome']==outcome for d in decisions) for outcome in ('predicted_candidate','unresolved_review','failed','unresolved','deferred')}
         counts['scored_by_type']={k:sum(c['landscape_type']==k for c in candidates) for k in settings['enabled']}
         counts['predicted_required_centers']=sum(c['nether_status'] in ('predicted_required_structures','predicted_both_required') for c in candidates)
         counts['predicted_both_nether_centers']=sum(all(c['structures'][t]['viable'] for t in ('fortress','bastion')) for c in candidates)
         counts['disputed_required_centers']=sum(c['nether_status']=='disputed_required_review' for c in candidates)
         counts['all_three_core_centers']=sum(all(c['structures'][t]['viable'] for t in ('trial_chamber','stronghold','mineshaft')) for c in candidates)
         rss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/(1024**2 if platform.system()=='Darwin' else 1024)
+        work=getattr(b,'native_work',{})
+        for name,row in work.items():times['native_inclusive_'+name]=row['seconds']
         return {'index':index,'seed':str(seed),'candidates':candidates,'near_misses':near,'counts':counts,'stage_seconds':times,
-                'total_seconds':time.perf_counter()-start,'worker_pid':os.getpid(),'worker_peak_rss_mb':rss,
-                'filter_policy':opt.get('stronghold_prefilter','review_all'),
+                'total_seconds':time.perf_counter()-start,'worker_cpu_seconds':time.process_time()-cpu_start,'worker_pid':os.getpid(),'worker_peak_rss_mb':rss,
+                'decisions':decisions,'filter_policy':opt.get('stronghold_prefilter','review_all'),
+                'native_work':{k:{name:v for name,v in row.items() if name!='seconds'} for k,row in work.items()},
                 'cache':b.cache_statistics() if isinstance(b,CachedBackend) else None}
     with backend as b:
         initial={}
@@ -317,16 +346,50 @@ def analyze_landscapes(job):
         times['discovery']=time.perf_counter()-t
         counts.update(discovery_points=coarse['biomes'].size,discovery_components=len(cs))
         t=time.perf_counter();scans=scan_envelope(b,cfg,initial);times['structures']+=time.perf_counter()-t
+        if 'structures_only' in settings['enabled']:
+            t=time.perf_counter()
+            from .structures import structure_centers
+            proposed=[]
+            for center in structure_centers(scans,cfg):
+                rows,status=at_center(scans,center,cfg)
+                if status!='predicted_required_structures':continue
+                ss,factors,interval=structure_scores(rows,cfg)
+                structure_cfg={**cfg,'score_weights':{k:cfg['score_weights'][k] for k in ('overworld_structures','nether_proximity')}}
+                base=weighted_score(ss,structure_cfg,interval)
+                proposed.append((base['interval'][0],center,rows,status,factors,base))
+            limit=cfg['search'].get('maximum_structure_centers_per_seed',2)
+            counts['structures_only_center_proposals']=len(proposed)
+            counts['structures_only_deferred_centers']=max(0,len(proposed)-limit)
+            if len(proposed)>limit:decisions.append({'branch':'structures_only','stage':'center_selection','outcome':'deferred','reason':'structures_only_output_budget','count':len(proposed)-limit})
+            for _,center,rows,status,factors,base in sorted(proposed,key=lambda v:(-v[0],v[1]))[:limit]:
+                candidate={'seed':str(seed),'index':index,'center':list(center),'nether_center':list(nether_center(center)),
+                           'landscape_type':'structures_only','island':None,'metrics':{'terrain':None,'landscape_type':'structures_only'},
+                           'bounds':{'overworld':list(square(center,cfg['deployment']['overworld_side_blocks'])),'nether':list(square(nether_center(center),cfg['deployment']['nether_side_blocks']))},
+                           'structures':rows,'structure_score_factors':factors,'score':base,'nether_status':status,
+                           'required_structure_types':list(required_types(cfg)),'selection_status':'unreviewed_local_prediction','chunkbase_checked':False,'actual_minecraft':None,
+                           'remaining_review':['Required Fortress and Stronghold markers inside exact squares','Actual structure access and footprints'],
+                           'approximation_limits':LIMITS,'spawn_proposal':{'x':center[0],'z':center[1],'y':None,'safety':'requires inspection'}}
+                if diversity_enabled:
+                    from .biomes import candidate_diversity,add_bonus
+                    tb=time.perf_counter();surface=raster(b,candidate['bounds']['overworld'],cfg['biome_diversity']['structures_surface_spacing'])
+                    counts['biome_surface_height_points']=counts.get('biome_surface_height_points',0)+surface['points']+surface['sea_level_stride1_points']
+                    div=candidate_diversity(b,surface,center,cfg,coarse,grid)
+                    candidate['biome_diversity']=div;candidate['score']=add_bonus(base,div,30)
+                    counts['biome_query_points']=counts.get('biome_query_points',0)+div['additional_biome_query_points']
+                    times['biome_inventory']+=time.perf_counter()-tb
+                candidates.append(candidate)
+            times['structures_only']+=time.perf_counter()-t
+        if not any(k!='structures_only' for k in settings['enabled']):return finish(b)
         def fortress_possible(c):
-            a=c['bounds'];nb=(math.floor((a[0]-64)/8)-496,math.floor((a[1]-64)/8)-496,
-                             math.ceil((a[2]+64)/8)+496,math.ceil((a[3]+64)/8)+496)
+            a=c['bounds'];nb=(math.floor((a[0]-64)/8)-cfg['deployment']['nether_side_blocks']//2,math.floor((a[1]-64)/8)-cfg['deployment']['nether_side_blocks']//2,
+                             math.ceil((a[2]+64)/8)+cfg['deployment']['nether_side_blocks']//2,math.ceil((a[3]+64)/8)+cfg['deployment']['nether_side_blocks']//2)
             return any(inside(p,nb) for p in scans['fortress']['raw'])
         def priority(c):
-            a=c['bounds'];ob=(a[0]-1568,a[1]-1568,a[2]+1568,a[3]+1568)
+            a=c['bounds'];ob=(a[0]-(cfg['deployment']['overworld_side_blocks']//2+64),a[1]-(cfg['deployment']['overworld_side_blocks']//2+64),a[2]+(cfg['deployment']['overworld_side_blocks']//2+64),a[3]+(cfg['deployment']['overworld_side_blocks']//2+64))
             return (not fortress_possible(c),not any(inside(p,ob) for p in scans['stronghold']['raw']))
         group_started=time.perf_counter()
         closed=[c for c in cs if not c['touches_raster_boundary']]
-        groups={k:[] for k in settings['enabled']}
+        groups={k:[] for k in settings['enabled'] if k!='structures_only'}
         basin_sites=coarse_basin_sites(coarse,grid,settings,cfg['search']['center_axis_bounds_blocks'],coarse_labels) if any(k in groups for k in ('ocean_island','mountain_basin')) else []
         ring_by_component={}
         for site in basin_sites:
@@ -359,12 +422,11 @@ def analyze_landscapes(job):
                                      'isolation':'unknown','stronghold_completeness':'unknown',
                                      'review':'Nomination envelope heuristic; retain for review_all recovery, not proof of absence.'})
                 groups[kind]=retained
-        # Rank the finite nominations using the screenshot's cheap hint. The
-        # hint is not a filter, including when Bedrock cave biomes disagree.
+        # Cave inventory is manual-only, including historical profile execution.
         t=time.perf_counter();limit=cfg['search']['maximum_preliminary_components_per_seed']
         nominations=round_robin(groups,limit);prepared={k:[] for k in groups}
         for kind,c in nominations:
-            hint=deep_dark_hint(b,c['center'],settings) if kind=='mountain_basin' else None
+            hint=None
             prepared[kind].append((c,hint))
         times['proxy']+=time.perf_counter()-t
         counts['preliminary_attempts']=len(nominations);counts['preliminary_density_points']=0
@@ -382,8 +444,6 @@ def analyze_landscapes(job):
                 if err:near.append({'landscape_type':kind,**err})
                 else:
                     pc['coarse_ring_fraction']=c.get('coarse_ring_fraction',0)
-                    if kind=='ocean_island':
-                        t=time.perf_counter();hint=deep_dark_hint(b,build_center,settings);times['proxy']+=time.perf_counter()-t
                     viable[kind].append((pc,build_center,hint))
         # Hint breaks geometric priority ties; it never outranks required starts.
         for kind,values in viable.items():
@@ -407,7 +467,12 @@ def analyze_landscapes(job):
                     near.append({'landscape_type':kind,'center':proposed_center,'reason':'basin_necessary_bound_failed','bound':bound})
                     continue
             if kind!='mountain_basin':
-                key=tuple(c['center'])
+                if opt.get('island_bound_policy')=='shadow':
+                    from .terrain import island_necessary_bound
+                    shadow=island_necessary_bound(c,cfg,bounds,scans)
+                    decisions.append({'branch':kind,'center':proposed_center,'stage':'pre_coast_bound','outcome':'unresolved',
+                                      'reason':shadow['reason'],'would_defer':shadow['predicted_required_window_impossible'],'bound':shadow})
+                key=(tuple(c['center']),tuple(c['bounds']),tuple(bounds),cfg['search']['shoreline_spacing_blocks'],cfg['search']['maximum_refinement_patch_side_blocks'])
                 if key in coasts:coast,err=coasts[key]
                 else:
                     coast,err=coast_component(b,c,cfg,bounds);coasts[key]=(coast,err)
@@ -425,7 +490,7 @@ def analyze_landscapes(job):
                 near.append({'landscape_type':kind,'center':center,'reason':'deferred_exact_center_no_joint_required_prediction',
                              'stronghold_completeness':'unknown','isolation':'unknown'})
                 continue
-            t=time.perf_counter();terrain=raster(b,square(center,3008),cfg['search']['refinement_spacing_blocks'])
+            t=time.perf_counter();terrain=raster(b,square(center,cfg['deployment']['overworld_side_blocks']),cfg['search']['refinement_spacing_blocks'])
             times['landscape']+=time.perf_counter()-t;counts['landscape_density_points']+=terrain['points']+terrain['sea_level_stride1_points']
             t=time.perf_counter();context=raster_intermediates(terrain) if opt.get('reuse_raster_intermediates',False) else None
             flat,build_mask,connected=flat_metrics(terrain,center,settings,context)
@@ -448,7 +513,7 @@ def analyze_landscapes(job):
                 if alternatives:
                     site,_,_=min(alternatives,key=lambda v:(-v[2]['ring_dry_connected_fraction'],v[1]['inner_height_p90_minus_p10'],v[0]['center']))
                     times['scoring']+=time.perf_counter()-t;center=site['center']
-                    t=time.perf_counter();terrain=raster(b,square(center,3008),cfg['search']['refinement_spacing_blocks'])
+                    t=time.perf_counter();terrain=raster(b,square(center,cfg['deployment']['overworld_side_blocks']),cfg['search']['refinement_spacing_blocks'])
                     times['landscape']+=time.perf_counter()-t;counts['landscape_density_points']+=terrain['points']+terrain['sea_level_stride1_points']
                     t=time.perf_counter();context=raster_intermediates(terrain) if opt.get('reuse_raster_intermediates',False) else None
                     flat,build_mask,connected=flat_metrics(terrain,center,settings,context)
@@ -510,12 +575,18 @@ def analyze_landscapes(job):
             elif kind=='mountain_basin':remaining+=['Dry connected flat floor without an inner island or moat','Mountain ring appearance']
             else:remaining+=['Inner island separation','Water and surrounding mountains','External woodland abundance']
             candidate={'seed':str(seed),'index':index,'center':center,'nether_center':list(nether_center(center)),
-                       'landscape_type':kind,'bounds':{'overworld':list(square(center,3008)),'nether':list(square(nether_center(center),992))},
+                       'landscape_type':kind,'bounds':{'overworld':list(square(center,cfg['deployment']['overworld_side_blocks'])),'nether':list(square(nether_center(center),cfg['deployment']['nether_side_blocks']))},
                        'island':c,'metrics':metrics,'structures':structures,'structure_score_factors':factors,'score':score,
                        'nether_status':status,'required_structure_types':list(required_types(cfg)),
                        'selection_status':'unreviewed_local_prediction','chunkbase_checked':False,'actual_minecraft':None,
                        'remaining_review':remaining,'approximation_limits':LIMITS+['Deep Dark and ocean biome coverage are hints, not exact terrain proofs.'],
                        'spawn_proposal':{'x':center[0],'z':center[1],'y':None,'safety':'requires inspection'}}
+            if diversity_enabled:
+                from .biomes import candidate_diversity,add_bonus
+                tb=time.perf_counter();div=candidate_diversity(b,terrain,center,cfg,coarse,grid)
+                candidate['biome_diversity']=div;candidate['score']=add_bonus(score,div)
+                counts['biome_query_points']=counts.get('biome_query_points',0)+div['additional_biome_query_points']
+                times['biome_inventory']+=time.perf_counter()-tb
             if cache_root and opt.get('persist_report_terrain'):
                 from .report_cache import save_terrain
                 save_terrain(cache_root,seed,candidate['bounds']['overworld'],terrain,cfg)

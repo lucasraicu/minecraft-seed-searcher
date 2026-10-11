@@ -21,6 +21,7 @@ typedef struct MTRngState
     uint64_t ws;
     int a;
     int b;
+    int initialized;
 } MTRngState;
 
 void mt_get_state(MTRngState *out);
@@ -30,10 +31,12 @@ void mt_set_state(const MTRngState *in);
 extern __declspec(thread) uint64_t mt_ws;
 extern __declspec(thread) int mt_a;
 extern __declspec(thread) int mt_b;
+extern __declspec(thread) int mt_initialized;
 #else
 extern __thread uint64_t mt_ws;
 extern __thread int mt_a;
 extern __thread int mt_b;
+extern __thread int mt_initialized;
 #endif
 
 static inline void setSeed(uint32_t value)
@@ -92,12 +95,13 @@ static inline int32_t setTerrainSeed(int chunkX, int chunkZ)
 
 static inline uint32_t setPopulationSeed(uint64_t worldSeed, int chunkX, int chunkZ)
 {
-    if (mt_ws != worldSeed)
+    if (!mt_initialized || mt_ws != worldSeed)
     {
         setSeed(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
+        mt_initialized = 1;
     }
     uint32_t seed = (chunkX * (mt_a | 1u) + chunkZ * (mt_b | 1u)) ^ worldSeed;
     setSeed(seed);
@@ -106,12 +110,13 @@ static inline uint32_t setPopulationSeed(uint64_t worldSeed, int chunkX, int chu
 
 static inline uint32_t setDecorationSeed(uint64_t worldSeed, int chunkX, int chunkZ, int salt)
 {
-    if (mt_ws != worldSeed)
+    if (!mt_initialized || mt_ws != worldSeed)
     {
         setSeed(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
+        mt_initialized = 1;
     }
     uint32_t seed = (chunkX * (mt_a | 1u) + chunkZ * (mt_b | 1u)) ^ worldSeed;
     seed = ((seed >> 2) + (seed << 6) + salt - 1640531527u) ^ seed;
@@ -121,12 +126,13 @@ static inline uint32_t setDecorationSeed(uint64_t worldSeed, int chunkX, int chu
 
 static inline uint32_t setCarverSeed(uint64_t worldSeed, int chunkX, int chunkZ)
 {
-    if (mt_ws != worldSeed)
+    if (!mt_initialized || mt_ws != worldSeed)
     {
         setSeed(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
+        mt_initialized = 1;
     }
     uint32_t seed = (chunkX * mt_a) ^ (chunkZ * mt_b) ^ worldSeed;
     setSeed(seed);

@@ -1,0 +1,2358 @@
+{
+  "seeds": [
+    "0",
+    "-1",
+    "12345",
+    "4294979641",
+    "-5213918032843888364",
+    "-5278393320434088484",
+    "-3353203050545663124",
+    "1346066267577507604"
+  ],
+  "repetitions": 3,
+  "overworld_bounds": [
+    -6152,
+    -6152,
+    6152,
+    6152
+  ],
+  "nether_bounds": [
+    -1089,
+    -1089,
+    1089,
+    1089
+  ],
+  "raw_layout_cache": false,
+  "structure_summary": {
+    "trial_chamber": {
+      "median_ms": 4.647,
+      "min_ms": 4.492,
+      "max_ms": 6.367
+    },
+    "stronghold": {
+      "median_ms": 0.343,
+      "min_ms": 0.254,
+      "max_ms": 0.545
+    },
+    "mineshaft": {
+      "median_ms": 361.798,
+      "min_ms": 357.699,
+      "max_ms": 378.958
+    },
+    "ancient_city": {
+      "median_ms": 10.282,
+      "min_ms": 10.069,
+      "max_ms": 11.123
+    },
+    "village": {
+      "median_ms": 7.804,
+      "min_ms": 6.404,
+      "max_ms": 8.83
+    },
+    "ruined_portal": {
+      "median_ms": 0.907,
+      "min_ms": 0.785,
+      "max_ms": 1.233
+    },
+    "shipwreck": {
+      "median_ms": 78.143,
+      "min_ms": 63.115,
+      "max_ms": 87.006
+    },
+    "monument": {
+      "median_ms": 43.834,
+      "min_ms": 29.671,
+      "max_ms": 60.21
+    },
+    "outpost": {
+      "median_ms": 0.961,
+      "min_ms": 0.838,
+      "max_ms": 1.169
+    },
+    "fortress": {
+      "median_ms": 0.179,
+      "min_ms": 0.091,
+      "max_ms": 0.388
+    },
+    "bastion": {
+      "median_ms": 0.095,
+      "min_ms": 0.084,
+      "max_ms": 0.117
+    }
+  },
+  "biome_summary": {
+    "fixed_y_biomes": {
+      "median_ms": 7.18,
+      "points": 1369
+    },
+    "surface_heights_and_biomes": {
+      "median_ms": 137.267,
+      "points": 1369
+    },
+    "coarse_biome_climate_grid": {
+      "median_ms": 293.754,
+      "points": 38025
+    }
+  },
+  "structure_rows": [
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "trial_chamber",
+      "seconds": 0.0063672109972685575,
+      "raw_count": 509,
+      "viable_count": 498
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "stronghold",
+      "seconds": 0.00041744497139006853,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "mineshaft",
+      "seconds": 0.3689490699907765,
+      "raw_count": 2486,
+      "viable_count": 2486
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "ancient_city",
+      "seconds": 0.010181962978094816,
+      "raw_count": 1025,
+      "viable_count": 21
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "village",
+      "seconds": 0.008133722934871912,
+      "raw_count": 507,
+      "viable_count": 152
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "ruined_portal",
+      "seconds": 0.0008241760078817606,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "shipwreck",
+      "seconds": 0.06348024099133909,
+      "raw_count": 1026,
+      "viable_count": 197
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "monument",
+      "seconds": 0.03572836495004594,
+      "raw_count": 576,
+      "viable_count": 40
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "outpost",
+      "seconds": 0.0008814750472083688,
+      "raw_count": 97,
+      "viable_count": 32
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "fortress",
+      "seconds": 0.00017983897123485804,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 0,
+      "seed": "0",
+      "structure": "bastion",
+      "seconds": 0.0001086510019376874,
+      "raw_count": 16,
+      "viable_count": 12
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "stronghold",
+      "seconds": 0.0004704849561676383,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "mineshaft",
+      "seconds": 0.357698607025668,
+      "raw_count": 2297,
+      "viable_count": 2297
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "ancient_city",
+      "seconds": 0.01056386495474726,
+      "raw_count": 1025,
+      "viable_count": 28
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "village",
+      "seconds": 0.008088132948614657,
+      "raw_count": 507,
+      "viable_count": 141
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "ruined_portal",
+      "seconds": 0.0008786669932305813,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "shipwreck",
+      "seconds": 0.07302253204397857,
+      "raw_count": 1031,
+      "viable_count": 201
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "monument",
+      "seconds": 0.047344814985990524,
+      "raw_count": 577,
+      "viable_count": 55
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "outpost",
+      "seconds": 0.0009312429465353489,
+      "raw_count": 98,
+      "viable_count": 31
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "fortress",
+      "seconds": 0.0001591540640220046,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "bastion",
+      "seconds": 8.931104093790054e-05,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 0,
+      "seed": "-1",
+      "structure": "trial_chamber",
+      "seconds": 0.004740566946566105,
+      "raw_count": 509,
+      "viable_count": 489
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "mineshaft",
+      "seconds": 0.3580359510378912,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "ancient_city",
+      "seconds": 0.010273311985656619,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "village",
+      "seconds": 0.00779990095179528,
+      "raw_count": 503,
+      "viable_count": 133
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "ruined_portal",
+      "seconds": 0.000815237988717854,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "shipwreck",
+      "seconds": 0.07856134104076773,
+      "raw_count": 1028,
+      "viable_count": 226
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "monument",
+      "seconds": 0.04991167702246457,
+      "raw_count": 576,
+      "viable_count": 60
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "outpost",
+      "seconds": 0.0009119240567088127,
+      "raw_count": 98,
+      "viable_count": 27
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "fortress",
+      "seconds": 0.00010159099474549294,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "bastion",
+      "seconds": 9.682797826826572e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "trial_chamber",
+      "seconds": 0.004518963978625834,
+      "raw_count": 503,
+      "viable_count": 487
+    },
+    {
+      "repeat": 0,
+      "seed": "12345",
+      "structure": "stronghold",
+      "seconds": 0.0003500280436128378,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "ancient_city",
+      "seconds": 0.010257577057927847,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "village",
+      "seconds": 0.007777189952321351,
+      "raw_count": 503,
+      "viable_count": 136
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "ruined_portal",
+      "seconds": 0.0008298699976876378,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "shipwreck",
+      "seconds": 0.06893230299465358,
+      "raw_count": 1028,
+      "viable_count": 207
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "monument",
+      "seconds": 0.029801740078255534,
+      "raw_count": 576,
+      "viable_count": 33
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "outpost",
+      "seconds": 0.0008381549268960953,
+      "raw_count": 98,
+      "viable_count": 25
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "fortress",
+      "seconds": 0.00013273092918097973,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "bastion",
+      "seconds": 9.007507469505072e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "trial_chamber",
+      "seconds": 0.004634786979295313,
+      "raw_count": 504,
+      "viable_count": 483
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "stronghold",
+      "seconds": 0.0002541730646044016,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 0,
+      "seed": "4294979641",
+      "structure": "mineshaft",
+      "seconds": 0.3652411800576374,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "village",
+      "seconds": 0.006403896026313305,
+      "raw_count": 497,
+      "viable_count": 83
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "ruined_portal",
+      "seconds": 0.0009013100061565638,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "shipwreck",
+      "seconds": 0.0837242710404098,
+      "raw_count": 1026,
+      "viable_count": 241
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "monument",
+      "seconds": 0.05138957407325506,
+      "raw_count": 576,
+      "viable_count": 61
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "outpost",
+      "seconds": 0.0009118979796767235,
+      "raw_count": 95,
+      "viable_count": 23
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "fortress",
+      "seconds": 0.00013615901116281748,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "bastion",
+      "seconds": 8.417898789048195e-05,
+      "raw_count": 10,
+      "viable_count": 9
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "trial_chamber",
+      "seconds": 0.0046235190238803625,
+      "raw_count": 513,
+      "viable_count": 508
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "stronghold",
+      "seconds": 0.0002762119984254241,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "mineshaft",
+      "seconds": 0.36164274998009205,
+      "raw_count": 2362,
+      "viable_count": 2362
+    },
+    {
+      "repeat": 0,
+      "seed": "-5213918032843888364",
+      "structure": "ancient_city",
+      "seconds": 0.010351989069022238,
+      "raw_count": 1025,
+      "viable_count": 14
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "ruined_portal",
+      "seconds": 0.0011890650494024158,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "shipwreck",
+      "seconds": 0.07916313398163766,
+      "raw_count": 1029,
+      "viable_count": 237
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "monument",
+      "seconds": 0.03612080798484385,
+      "raw_count": 576,
+      "viable_count": 41
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "outpost",
+      "seconds": 0.0010361119639128447,
+      "raw_count": 97,
+      "viable_count": 30
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "fortress",
+      "seconds": 0.00017853605095297098,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "bastion",
+      "seconds": 9.129999671131372e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "trial_chamber",
+      "seconds": 0.00450151099357754,
+      "raw_count": 503,
+      "viable_count": 492
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "stronghold",
+      "seconds": 0.0002735560992732644,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "mineshaft",
+      "seconds": 0.3579956149915233,
+      "raw_count": 2316,
+      "viable_count": 2316
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "ancient_city",
+      "seconds": 0.010168800014071167,
+      "raw_count": 1024,
+      "viable_count": 12
+    },
+    {
+      "repeat": 0,
+      "seed": "-5278393320434088484",
+      "structure": "village",
+      "seconds": 0.00769244902767241,
+      "raw_count": 501,
+      "viable_count": 133
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "shipwreck",
+      "seconds": 0.08591921499464661,
+      "raw_count": 1025,
+      "viable_count": 218
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "monument",
+      "seconds": 0.05987271305639297,
+      "raw_count": 576,
+      "viable_count": 73
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "outpost",
+      "seconds": 0.000931400922127068,
+      "raw_count": 99,
+      "viable_count": 30
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "fortress",
+      "seconds": 0.00010909698903560638,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "bastion",
+      "seconds": 0.000105437939055264,
+      "raw_count": 17,
+      "viable_count": 11
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "trial_chamber",
+      "seconds": 0.0045485630398616195,
+      "raw_count": 506,
+      "viable_count": 491
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "stronghold",
+      "seconds": 0.00028979196213185787,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "mineshaft",
+      "seconds": 0.363085679942742,
+      "raw_count": 2309,
+      "viable_count": 2309
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "ancient_city",
+      "seconds": 0.010413556941784918,
+      "raw_count": 1025,
+      "viable_count": 22
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "village",
+      "seconds": 0.007691490929573774,
+      "raw_count": 504,
+      "viable_count": 124
+    },
+    {
+      "repeat": 0,
+      "seed": "-3353203050545663124",
+      "structure": "ruined_portal",
+      "seconds": 0.0008526869351044297,
+      "raw_count": 376,
+      "viable_count": 376
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "monument",
+      "seconds": 0.04000846098642796,
+      "raw_count": 576,
+      "viable_count": 47
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "outpost",
+      "seconds": 0.0009610650595277548,
+      "raw_count": 99,
+      "viable_count": 29
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "fortress",
+      "seconds": 0.00017976597882807255,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "bastion",
+      "seconds": 9.712600149214268e-05,
+      "raw_count": 13,
+      "viable_count": 12
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "trial_chamber",
+      "seconds": 0.004493613028898835,
+      "raw_count": 505,
+      "viable_count": 486
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "stronghold",
+      "seconds": 0.0003428580239415169,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "mineshaft",
+      "seconds": 0.3670463130110875,
+      "raw_count": 2198,
+      "viable_count": 2198
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "ancient_city",
+      "seconds": 0.010290518985129893,
+      "raw_count": 1025,
+      "viable_count": 31
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "village",
+      "seconds": 0.007678177091293037,
+      "raw_count": 503,
+      "viable_count": 127
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "ruined_portal",
+      "seconds": 0.0009401360293850303,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 0,
+      "seed": "1346066267577507604",
+      "structure": "shipwreck",
+      "seconds": 0.07674143998883665,
+      "raw_count": 1030,
+      "viable_count": 197
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "stronghold",
+      "seconds": 0.0005380699876695871,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "mineshaft",
+      "seconds": 0.35802788694854826,
+      "raw_count": 2486,
+      "viable_count": 2486
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "ancient_city",
+      "seconds": 0.010068966075778008,
+      "raw_count": 1025,
+      "viable_count": 21
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "village",
+      "seconds": 0.008119947044178843,
+      "raw_count": 507,
+      "viable_count": 152
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "ruined_portal",
+      "seconds": 0.0008436479838564992,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "shipwreck",
+      "seconds": 0.06311525800265372,
+      "raw_count": 1026,
+      "viable_count": 197
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "monument",
+      "seconds": 0.035179926082491875,
+      "raw_count": 576,
+      "viable_count": 40
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "outpost",
+      "seconds": 0.0008571280632168055,
+      "raw_count": 97,
+      "viable_count": 32
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "fortress",
+      "seconds": 9.14490083232522e-05,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "bastion",
+      "seconds": 0.00010245910380035639,
+      "raw_count": 16,
+      "viable_count": 12
+    },
+    {
+      "repeat": 1,
+      "seed": "0",
+      "structure": "trial_chamber",
+      "seconds": 0.00450777099467814,
+      "raw_count": 509,
+      "viable_count": 498
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "mineshaft",
+      "seconds": 0.36175574408844113,
+      "raw_count": 2297,
+      "viable_count": 2297
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "ancient_city",
+      "seconds": 0.011123433010652661,
+      "raw_count": 1025,
+      "viable_count": 28
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "village",
+      "seconds": 0.008592430967837572,
+      "raw_count": 507,
+      "viable_count": 141
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "ruined_portal",
+      "seconds": 0.0009683619718998671,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "shipwreck",
+      "seconds": 0.07536172005347908,
+      "raw_count": 1031,
+      "viable_count": 201
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "monument",
+      "seconds": 0.048236649949103594,
+      "raw_count": 577,
+      "viable_count": 55
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "outpost",
+      "seconds": 0.0011240040184929967,
+      "raw_count": 98,
+      "viable_count": 31
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "fortress",
+      "seconds": 0.00022256700322031975,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "bastion",
+      "seconds": 8.604198228567839e-05,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "trial_chamber",
+      "seconds": 0.005236480035819113,
+      "raw_count": 509,
+      "viable_count": 489
+    },
+    {
+      "repeat": 1,
+      "seed": "-1",
+      "structure": "stronghold",
+      "seconds": 0.0005451419856399298,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "ancient_city",
+      "seconds": 0.010556604014709592,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "village",
+      "seconds": 0.008481628959998488,
+      "raw_count": 503,
+      "viable_count": 133
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "ruined_portal",
+      "seconds": 0.0009967379737645388,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "shipwreck",
+      "seconds": 0.08097785408608615,
+      "raw_count": 1028,
+      "viable_count": 226
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "monument",
+      "seconds": 0.05082020501140505,
+      "raw_count": 576,
+      "viable_count": 60
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "outpost",
+      "seconds": 0.0011026659049093723,
+      "raw_count": 98,
+      "viable_count": 27
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "fortress",
+      "seconds": 0.00020106497686356306,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "bastion",
+      "seconds": 9.343493729829788e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "trial_chamber",
+      "seconds": 0.004957761964760721,
+      "raw_count": 503,
+      "viable_count": 487
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "stronghold",
+      "seconds": 0.00043996796011924744,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 1,
+      "seed": "12345",
+      "structure": "mineshaft",
+      "seconds": 0.3690066169947386,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "village",
+      "seconds": 0.00883035408332944,
+      "raw_count": 503,
+      "viable_count": 136
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "ruined_portal",
+      "seconds": 0.0009943520417436957,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "shipwreck",
+      "seconds": 0.07087075698655099,
+      "raw_count": 1028,
+      "viable_count": 207
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "monument",
+      "seconds": 0.030650791013613343,
+      "raw_count": 576,
+      "viable_count": 33
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "outpost",
+      "seconds": 0.0010502770310267806,
+      "raw_count": 98,
+      "viable_count": 25
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "fortress",
+      "seconds": 0.000382852042093873,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "bastion",
+      "seconds": 9.406195022165775e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "trial_chamber",
+      "seconds": 0.004698617034591734,
+      "raw_count": 504,
+      "viable_count": 483
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "stronghold",
+      "seconds": 0.0003043350297957659,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "mineshaft",
+      "seconds": 0.36098051501903683,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 1,
+      "seed": "4294979641",
+      "structure": "ancient_city",
+      "seconds": 0.010866894037462771,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "ruined_portal",
+      "seconds": 0.000987970968708396,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "shipwreck",
+      "seconds": 0.0829561740392819,
+      "raw_count": 1026,
+      "viable_count": 241
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "monument",
+      "seconds": 0.05157688306644559,
+      "raw_count": 576,
+      "viable_count": 61
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "outpost",
+      "seconds": 0.0009571169503033161,
+      "raw_count": 95,
+      "viable_count": 23
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "fortress",
+      "seconds": 0.00014221295714378357,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "bastion",
+      "seconds": 9.070197120308876e-05,
+      "raw_count": 10,
+      "viable_count": 9
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "trial_chamber",
+      "seconds": 0.004629538976587355,
+      "raw_count": 513,
+      "viable_count": 508
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "stronghold",
+      "seconds": 0.00031015207059681416,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "mineshaft",
+      "seconds": 0.362978135002777,
+      "raw_count": 2362,
+      "viable_count": 2362
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "ancient_city",
+      "seconds": 0.010535740992054343,
+      "raw_count": 1025,
+      "viable_count": 14
+    },
+    {
+      "repeat": 1,
+      "seed": "-5213918032843888364",
+      "structure": "village",
+      "seconds": 0.006485079997219145,
+      "raw_count": 497,
+      "viable_count": 83
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "shipwreck",
+      "seconds": 0.08024862804450095,
+      "raw_count": 1029,
+      "viable_count": 237
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "monument",
+      "seconds": 0.038350619026459754,
+      "raw_count": 576,
+      "viable_count": 41
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "outpost",
+      "seconds": 0.0011694809654727578,
+      "raw_count": 97,
+      "viable_count": 30
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "fortress",
+      "seconds": 0.00038770807441323996,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "bastion",
+      "seconds": 0.00010298704728484154,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "trial_chamber",
+      "seconds": 0.004926752997562289,
+      "raw_count": 503,
+      "viable_count": 492
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "stronghold",
+      "seconds": 0.0003537100274115801,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "mineshaft",
+      "seconds": 0.3686764769954607,
+      "raw_count": 2316,
+      "viable_count": 2316
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "ancient_city",
+      "seconds": 0.010159027064219117,
+      "raw_count": 1024,
+      "viable_count": 12
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "village",
+      "seconds": 0.007804004941135645,
+      "raw_count": 501,
+      "viable_count": 133
+    },
+    {
+      "repeat": 1,
+      "seed": "-5278393320434088484",
+      "structure": "ruined_portal",
+      "seconds": 0.0009782119886949658,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "monument",
+      "seconds": 0.06020990095566958,
+      "raw_count": 576,
+      "viable_count": 73
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "outpost",
+      "seconds": 0.0010658169630914927,
+      "raw_count": 99,
+      "viable_count": 30
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "fortress",
+      "seconds": 0.000319437007419765,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "bastion",
+      "seconds": 0.00011144706513732672,
+      "raw_count": 17,
+      "viable_count": 11
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "trial_chamber",
+      "seconds": 0.004695146926678717,
+      "raw_count": 506,
+      "viable_count": 491
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "stronghold",
+      "seconds": 0.00034281599801033735,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "mineshaft",
+      "seconds": 0.35998223593924195,
+      "raw_count": 2309,
+      "viable_count": 2309
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "ancient_city",
+      "seconds": 0.010181990102864802,
+      "raw_count": 1025,
+      "viable_count": 22
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "village",
+      "seconds": 0.007547221961431205,
+      "raw_count": 504,
+      "viable_count": 124
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "ruined_portal",
+      "seconds": 0.0009596640011295676,
+      "raw_count": 376,
+      "viable_count": 376
+    },
+    {
+      "repeat": 1,
+      "seed": "-3353203050545663124",
+      "structure": "shipwreck",
+      "seconds": 0.08603488397784531,
+      "raw_count": 1025,
+      "viable_count": 218
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "outpost",
+      "seconds": 0.0009617729810997844,
+      "raw_count": 99,
+      "viable_count": 29
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "fortress",
+      "seconds": 0.00025447597727179527,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "bastion",
+      "seconds": 9.6932053565979e-05,
+      "raw_count": 13,
+      "viable_count": 12
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "trial_chamber",
+      "seconds": 0.004538497072644532,
+      "raw_count": 505,
+      "viable_count": 486
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "stronghold",
+      "seconds": 0.00032682204619050026,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "mineshaft",
+      "seconds": 0.36148037191014737,
+      "raw_count": 2198,
+      "viable_count": 2198
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "ancient_city",
+      "seconds": 0.010112553020007908,
+      "raw_count": 1025,
+      "viable_count": 31
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "village",
+      "seconds": 0.0077608589781448245,
+      "raw_count": 503,
+      "viable_count": 127
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "ruined_portal",
+      "seconds": 0.0009008300257846713,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "shipwreck",
+      "seconds": 0.07603727199602872,
+      "raw_count": 1030,
+      "viable_count": 197
+    },
+    {
+      "repeat": 1,
+      "seed": "1346066267577507604",
+      "structure": "monument",
+      "seconds": 0.040679109981283545,
+      "raw_count": 576,
+      "viable_count": 47
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "mineshaft",
+      "seconds": 0.35873321490362287,
+      "raw_count": 2486,
+      "viable_count": 2486
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "ancient_city",
+      "seconds": 0.01013350102584809,
+      "raw_count": 1025,
+      "viable_count": 21
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "village",
+      "seconds": 0.008286652038805187,
+      "raw_count": 507,
+      "viable_count": 152
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "ruined_portal",
+      "seconds": 0.0009127529338002205,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "shipwreck",
+      "seconds": 0.06407443503849208,
+      "raw_count": 1026,
+      "viable_count": 197
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "monument",
+      "seconds": 0.036787076969631016,
+      "raw_count": 576,
+      "viable_count": 40
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "outpost",
+      "seconds": 0.0010830460814759135,
+      "raw_count": 97,
+      "viable_count": 32
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "fortress",
+      "seconds": 0.00015161896590143442,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "bastion",
+      "seconds": 9.861099533736706e-05,
+      "raw_count": 16,
+      "viable_count": 12
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "trial_chamber",
+      "seconds": 0.004691711976192892,
+      "raw_count": 509,
+      "viable_count": 498
+    },
+    {
+      "repeat": 2,
+      "seed": "0",
+      "structure": "stronghold",
+      "seconds": 0.0004212189232930541,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "ancient_city",
+      "seconds": 0.010107169975526631,
+      "raw_count": 1025,
+      "viable_count": 28
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "village",
+      "seconds": 0.008104806067422032,
+      "raw_count": 507,
+      "viable_count": 141
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "ruined_portal",
+      "seconds": 0.0012327610747888684,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "shipwreck",
+      "seconds": 0.07313335000071675,
+      "raw_count": 1031,
+      "viable_count": 201
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "monument",
+      "seconds": 0.04639576596673578,
+      "raw_count": 577,
+      "viable_count": 55
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "outpost",
+      "seconds": 0.0010416279546916485,
+      "raw_count": 98,
+      "viable_count": 31
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "fortress",
+      "seconds": 0.0003561750054359436,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "bastion",
+      "seconds": 8.97400313988328e-05,
+      "raw_count": 10,
+      "viable_count": 10
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "trial_chamber",
+      "seconds": 0.0046734020579606295,
+      "raw_count": 509,
+      "viable_count": 489
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "stronghold",
+      "seconds": 0.00047985499259084463,
+      "raw_count": 5,
+      "viable_count": 5
+    },
+    {
+      "repeat": 2,
+      "seed": "-1",
+      "structure": "mineshaft",
+      "seconds": 0.3789582489989698,
+      "raw_count": 2297,
+      "viable_count": 2297
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "village",
+      "seconds": 0.007803268963471055,
+      "raw_count": 503,
+      "viable_count": 133
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "ruined_portal",
+      "seconds": 0.0008532039355486631,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "shipwreck",
+      "seconds": 0.0787442079745233,
+      "raw_count": 1028,
+      "viable_count": 226
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "monument",
+      "seconds": 0.04996700305491686,
+      "raw_count": 576,
+      "viable_count": 60
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "outpost",
+      "seconds": 0.0010260340059176087,
+      "raw_count": 98,
+      "viable_count": 27
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "fortress",
+      "seconds": 0.00014040502719581127,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "bastion",
+      "seconds": 0.00010742899030447006,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "trial_chamber",
+      "seconds": 0.004511693958193064,
+      "raw_count": 503,
+      "viable_count": 487
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "stronghold",
+      "seconds": 0.00036304001696407795,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "mineshaft",
+      "seconds": 0.36184090899769217,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 2,
+      "seed": "12345",
+      "structure": "ancient_city",
+      "seconds": 0.01011352997738868,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "ruined_portal",
+      "seconds": 0.0008955089142546058,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "shipwreck",
+      "seconds": 0.06774474296253175,
+      "raw_count": 1028,
+      "viable_count": 207
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "monument",
+      "seconds": 0.02967103198170662,
+      "raw_count": 576,
+      "viable_count": 33
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "outpost",
+      "seconds": 0.0010360470041632652,
+      "raw_count": 98,
+      "viable_count": 25
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "fortress",
+      "seconds": 0.0003578589530661702,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "bastion",
+      "seconds": 9.18699661269784e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "trial_chamber",
+      "seconds": 0.004950523027218878,
+      "raw_count": 504,
+      "viable_count": 483
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "stronghold",
+      "seconds": 0.0004415889270603657,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "mineshaft",
+      "seconds": 0.3596009350148961,
+      "raw_count": 2350,
+      "viable_count": 2350
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "ancient_city",
+      "seconds": 0.010604789946228266,
+      "raw_count": 1025,
+      "viable_count": 27
+    },
+    {
+      "repeat": 2,
+      "seed": "4294979641",
+      "structure": "village",
+      "seconds": 0.007991270977072418,
+      "raw_count": 503,
+      "viable_count": 136
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "shipwreck",
+      "seconds": 0.08424910309258848,
+      "raw_count": 1026,
+      "viable_count": 241
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "monument",
+      "seconds": 0.05091836804058403,
+      "raw_count": 576,
+      "viable_count": 61
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "outpost",
+      "seconds": 0.0009351070038974285,
+      "raw_count": 95,
+      "viable_count": 23
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "fortress",
+      "seconds": 0.0003476659767329693,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "bastion",
+      "seconds": 0.00011668005026876926,
+      "raw_count": 10,
+      "viable_count": 9
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "trial_chamber",
+      "seconds": 0.004703075042925775,
+      "raw_count": 513,
+      "viable_count": 508
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "stronghold",
+      "seconds": 0.0003093709237873554,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "mineshaft",
+      "seconds": 0.3623183290474117,
+      "raw_count": 2362,
+      "viable_count": 2362
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "ancient_city",
+      "seconds": 0.010786859900690615,
+      "raw_count": 1025,
+      "viable_count": 14
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "village",
+      "seconds": 0.00657568802125752,
+      "raw_count": 497,
+      "viable_count": 83
+    },
+    {
+      "repeat": 2,
+      "seed": "-5213918032843888364",
+      "structure": "ruined_portal",
+      "seconds": 0.0009785869624465704,
+      "raw_count": 372,
+      "viable_count": 372
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "monument",
+      "seconds": 0.03651954000815749,
+      "raw_count": 576,
+      "viable_count": 41
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "outpost",
+      "seconds": 0.000983575009740889,
+      "raw_count": 97,
+      "viable_count": 30
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "fortress",
+      "seconds": 0.00019554200116544962,
+      "raw_count": 7,
+      "viable_count": 7
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "bastion",
+      "seconds": 9.05629713088274e-05,
+      "raw_count": 11,
+      "viable_count": 8
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "trial_chamber",
+      "seconds": 0.004568421049043536,
+      "raw_count": 503,
+      "viable_count": 492
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "stronghold",
+      "seconds": 0.00032993301283568144,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "mineshaft",
+      "seconds": 0.36327455402351916,
+      "raw_count": 2316,
+      "viable_count": 2316
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "ancient_city",
+      "seconds": 0.010387287940829992,
+      "raw_count": 1024,
+      "viable_count": 12
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "village",
+      "seconds": 0.007889202912338078,
+      "raw_count": 501,
+      "viable_count": 133
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "ruined_portal",
+      "seconds": 0.0008377060294151306,
+      "raw_count": 374,
+      "viable_count": 374
+    },
+    {
+      "repeat": 2,
+      "seed": "-5278393320434088484",
+      "structure": "shipwreck",
+      "seconds": 0.07772494293749332,
+      "raw_count": 1029,
+      "viable_count": 237
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "outpost",
+      "seconds": 0.0009571290574967861,
+      "raw_count": 99,
+      "viable_count": 30
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "fortress",
+      "seconds": 0.00010437401942908764,
+      "raw_count": 4,
+      "viable_count": 4
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "bastion",
+      "seconds": 0.00010560406371951103,
+      "raw_count": 17,
+      "viable_count": 11
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "trial_chamber",
+      "seconds": 0.004658994963392615,
+      "raw_count": 506,
+      "viable_count": 491
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "stronghold",
+      "seconds": 0.0002846859861165285,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "mineshaft",
+      "seconds": 0.364335076068528,
+      "raw_count": 2309,
+      "viable_count": 2309
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "ancient_city",
+      "seconds": 0.010204445919953287,
+      "raw_count": 1025,
+      "viable_count": 22
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "village",
+      "seconds": 0.007425018004141748,
+      "raw_count": 504,
+      "viable_count": 124
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "ruined_portal",
+      "seconds": 0.0007854070281609893,
+      "raw_count": 376,
+      "viable_count": 376
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "shipwreck",
+      "seconds": 0.08700611197855324,
+      "raw_count": 1025,
+      "viable_count": 218
+    },
+    {
+      "repeat": 2,
+      "seed": "-3353203050545663124",
+      "structure": "monument",
+      "seconds": 0.0593659890582785,
+      "raw_count": 576,
+      "viable_count": 73
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "fortress",
+      "seconds": 0.00012439896818250418,
+      "raw_count": 6,
+      "viable_count": 6
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "bastion",
+      "seconds": 9.113503620028496e-05,
+      "raw_count": 13,
+      "viable_count": 12
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "trial_chamber",
+      "seconds": 0.004491754109039903,
+      "raw_count": 505,
+      "viable_count": 486
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "stronghold",
+      "seconds": 0.00032588501926511526,
+      "raw_count": 9,
+      "viable_count": 9
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "mineshaft",
+      "seconds": 0.36076408193912357,
+      "raw_count": 2198,
+      "viable_count": 2198
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "ancient_city",
+      "seconds": 0.010439452016726136,
+      "raw_count": 1025,
+      "viable_count": 31
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "village",
+      "seconds": 0.007812766009010375,
+      "raw_count": 503,
+      "viable_count": 127
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "ruined_portal",
+      "seconds": 0.0009351399494335055,
+      "raw_count": 375,
+      "viable_count": 375
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "shipwreck",
+      "seconds": 0.08076835901010782,
+      "raw_count": 1030,
+      "viable_count": 197
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "monument",
+      "seconds": 0.04127267294097692,
+      "raw_count": 576,
+      "viable_count": 47
+    },
+    {
+      "repeat": 2,
+      "seed": "1346066267577507604",
+      "structure": "outpost",
+      "seconds": 0.0009564249776303768,
+      "raw_count": 99,
+      "viable_count": 29
+    }
+  ],
+  "biome_rows": [
+    {
+      "seed": "0",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.294307561009191
+    },
+    {
+      "seed": "0",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.008382886066101491
+    },
+    {
+      "seed": "0",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.14036382804624736
+    },
+    {
+      "seed": "-1",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.2938909810036421
+    },
+    {
+      "seed": "-1",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.006899607949890196
+    },
+    {
+      "seed": "-1",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13725134904962033
+    },
+    {
+      "seed": "12345",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.29110464302357286
+    },
+    {
+      "seed": "12345",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.008334474987350404
+    },
+    {
+      "seed": "12345",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.12619521003216505
+    },
+    {
+      "seed": "4294979641",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.2985031340504065
+    },
+    {
+      "seed": "4294979641",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.0071232469053938985
+    },
+    {
+      "seed": "4294979641",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13449390593450516
+    },
+    {
+      "seed": "-5213918032843888364",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.29194185498636216
+    },
+    {
+      "seed": "-5213918032843888364",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.007236299919895828
+    },
+    {
+      "seed": "-5213918032843888364",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13734380505047739
+    },
+    {
+      "seed": "-5278393320434088484",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.2904361260589212
+    },
+    {
+      "seed": "-5278393320434088484",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.0064542959444224834
+    },
+    {
+      "seed": "-5278393320434088484",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13832230307161808
+    },
+    {
+      "seed": "-3353203050545663124",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.2936171459732577
+    },
+    {
+      "seed": "-3353203050545663124",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.006670452072285116
+    },
+    {
+      "seed": "-3353203050545663124",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13728300295770168
+    },
+    {
+      "seed": "1346066267577507604",
+      "operation": "coarse_biome_climate_grid",
+      "points": 38025,
+      "seconds": 0.29768378497101367
+    },
+    {
+      "seed": "1346066267577507604",
+      "operation": "fixed_y_biomes",
+      "points": 1369,
+      "seconds": 0.007553533068858087
+    },
+    {
+      "seed": "1346066267577507604",
+      "operation": "surface_heights_and_biomes",
+      "points": 1369,
+      "seconds": 0.13213030097540468
+    }
+  ],
+  "limits": "Serial bounded microbenchmark; fresh generator context per seed/repeat, rotating type order; not end-to-end parallel throughput or measured filter selectivity. Surface sample uses stride-eight density without full adaptive raster correction."
+}

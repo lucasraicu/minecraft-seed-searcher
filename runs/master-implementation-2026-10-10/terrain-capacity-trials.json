@@ -1,0 +1,464 @@
+{
+  "rows": [
+    {
+      "variant": "openmp4",
+      "trial": 0,
+      "seconds": 0.626214609015733,
+      "cpu_seconds": 2.480934,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6232910259859636
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.005470794043503702
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.5388334060553461
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp18",
+      "trial": 0,
+      "seconds": 0.24126560892909765,
+      "cpu_seconds": 4.239601,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.23829204204957932
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.001757260994054377
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.149510394083336
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp36",
+      "trial": 0,
+      "seconds": 0.235291103948839,
+      "cpu_seconds": 7.538999,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.23181869508698583
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0017478270456194878
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.11758977605495602
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp36",
+      "trial": 1,
+      "seconds": 0.22707233193796128,
+      "cpu_seconds": 7.715444999999999,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.22281374200247228
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0013956850161775947
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.10968824196606874
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp18",
+      "trial": 1,
+      "seconds": 0.2840891119558364,
+      "cpu_seconds": 7.270565000000001,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.2801018999889493
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0020743149798363447
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.17034930305089802
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp4",
+      "trial": 1,
+      "seconds": 0.6481798329623416,
+      "cpu_seconds": 4.844739999999998,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6447243279544637
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.005322410957887769
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.5613447170471773
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp4",
+      "trial": 2,
+      "seconds": 0.6154593630926684,
+      "cpu_seconds": 2.458629000000002,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6127479179995134
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.004190322943031788
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.5341159969102591
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp18",
+      "trial": 2,
+      "seconds": 0.24512707500252873,
+      "cpu_seconds": 4.305949999999996,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.24239350494462997
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0014890740858390927
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.1532028829678893
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp36",
+      "trial": 2,
+      "seconds": 0.2240637820214033,
+      "cpu_seconds": 7.362694999999995,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.22074619203340262
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0012963810004293919
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.11134992900770158
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "openmp4": {
+      "median_seconds": 0.626214609015733,
+      "samples": [
+        0.626214609015733,
+        0.6481798329623416,
+        0.6154593630926684
+      ]
+    },
+    "openmp18": {
+      "median_seconds": 0.24512707500252873,
+      "samples": [
+        0.24126560892909765,
+        0.2840891119558364,
+        0.24512707500252873
+      ]
+    },
+    "openmp36": {
+      "median_seconds": 0.22707233193796128,
+      "samples": [
+        0.235291103948839,
+        0.22707233193796128,
+        0.2240637820214033
+      ]
+    }
+  },
+  "semantic_outputs_equal": true,
+  "scope": "One fixed saved anchor, both variants, first proposed center per variant, identical bounded resolutions/refinement count; imported historical baseline is timing input only"
+}

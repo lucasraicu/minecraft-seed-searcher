@@ -1,0 +1,23 @@
+{
+  "seeds": 20,
+  "evictions_total": 0,
+  "seeds_with_evictions": 0,
+  "max_cache_bytes": 61046784,
+  "operations": {
+    "height_stride_8": {
+      "requested_points": 8019781,
+      "computed_points": 4793022,
+      "reused_points": 3226759
+    },
+    "height_stride_1": {
+      "requested_points": 1879667,
+      "computed_points": 1220754,
+      "reused_points": 658913
+    },
+    "exact_land": {
+      "requested_points": 2823368,
+      "computed_points": 2783374,
+      "reused_points": 39994
+    }
+  }
+}

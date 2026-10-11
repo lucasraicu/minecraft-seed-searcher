@@ -1,0 +1,152 @@
+# Stronghold-anchored predictions; actual generation certification remains separate.
+# 30 workers selected from measured 10,000-seed scaling; reduce while co-running BDS if needed.
+schema_version: 5
+game:
+  edition: bedrock
+  target_version: '26.52'
+  backend_model: MC_26_50
+  backend_commit: 294c72ab0392dd818a91d293dbd5774d4874d64b
+  bds_version: 1.26.52.3
+deployment:
+  overworld_side_blocks: 1536
+  nether_side_blocks: 896
+discovery:
+  overworld_bounds:
+  - -2000
+  - -2000
+  - 2000
+  - 2000
+  nether_bounds:
+  - -2000
+  - -2000
+  - 2000
+  - 2000
+search:
+  mode: prediction
+  sequence: permutation
+  run_key: '0'
+  workers: 30
+  max_workers: 36
+  numeric_threads_per_worker: 1
+  native_threads_per_worker: 1
+  batch_size: 32
+  pilot_limit: 1000
+  inventory_mode: eligibility
+  memory_target_gib: 25
+  memory_ceiling_gib: 30
+  docker_reserve_gib: 8
+  structure_order:
+  - ancient_city
+  - village
+  - trial_chamber
+  - mineshaft
+structures:
+  nether_required:
+  - fortress
+  - bastion
+  required:
+  - stronghold
+  - village
+  - trial_chamber
+  - ancient_city
+  - mineshaft
+  optional_bonuses:
+    monument: 5
+    outpost: 5
+    shipwreck: 2
+    ruined_portal: 2
+    buried_treasure: 1
+    monster_room: 1
+biomes:
+  spacing: 64
+  sample_y: 63
+  lattice: world
+  gate_batch_size: 16
+  refinement_budget: 128
+  wooded_minimum_families: 2
+  family_bonuses:
+    desert: 3
+    swamp: 3
+    snowy_ice: 2
+    badlands: 2
+    mushroom: 3
+    plains_meadow: 1
+    mountains: 2
+    ocean: 2
+    rivers_shores: 1
+  variant_bonuses:
+    pale_garden: 3
+    mangrove_swamp: 3
+    bamboo_jungle: 2
+    dappled_forest: 2
+    warm_ocean: 3
+scoring:
+  geometry_weight: 0.8
+  biome_fit_weight: 0.1
+  baseline_weight: 0.1
+  baseline_quality_cap: 60
+terrain:
+  # Isolated terrain: 18 is within 8% of 36-thread latency with substantially less CPU time.
+  # Use a separately measured smaller profile when co-running discovery or BDS.
+  native_threads: 18
+  scheduler: rotation
+  variants:
+  - v1
+  - v2
+  resolutions:
+  - 128
+  - 64
+  - 32
+  - 16
+  - 8
+  - 4
+  center_spacing: 64
+  refine_center_spacing: 16
+  rays: 32
+  maximum_refinements_per_anchor: 8
+  v1:
+    diameter_min: 250
+    diameter_max: 750
+    water_rays: 24
+    water_width: 48
+    area: 12000
+    ideal_diameter_min: 300
+    ideal_diameter_max: 700
+    ideal_water_rays: 29
+    ideal_water_width: 100
+    ideal_area: 20000
+  v2:
+    ridge_rays: 20
+    relief: 35
+    distance_min: 300
+    distance_max: 850
+    ideal_ridge_rays: 26
+    ideal_relief: 55
+    ideal_distance_min: 350
+    ideal_distance_max: 750
+    ridge_support_width: 32
+    ridge_support_area: 4096
+    largest_gap_rays: 12
+    ridge_min_arc_rays: 4
+    ridge_min_arc_aspect: 2.0
+bds:
+  enabled: true
+  version: 1.26.52.3
+  docker_cli: /Applications/Docker.app/Contents/Resources/bin/docker
+  image: bedrock-verification-poc:1.26.52.3
+  image_id: sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8
+  cpus: 4
+  memory_gib: 6
+  verification_budget: 20
+  persist_snapshot: false
+  compare_reference: true
+  maximum_region_side: 256
+caves:
+  automatic: false
+  y_levels:
+  - 0
+  - -16
+  - -32
+  - -48
+  spacing: 64
+  maximum_samples: 10000

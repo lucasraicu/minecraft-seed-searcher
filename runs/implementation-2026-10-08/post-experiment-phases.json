@@ -1,0 +1,46 @@
+[
+  {
+    "mode": "parity",
+    "command": [
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+      "scripts/verify_approved_implementation.py",
+      "parity"
+    ],
+    "exit_code": 0,
+    "wall_seconds": 1148.8278410434723,
+    "log": "runs/implementation-2026-10-08/parity.log"
+  },
+  {
+    "mode": "workers",
+    "command": [
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+      "scripts/verify_approved_implementation.py",
+      "workers"
+    ],
+    "exit_code": 0,
+    "wall_seconds": 243.1647071838379,
+    "log": "runs/implementation-2026-10-08/workers.log"
+  },
+  {
+    "mode": "recovery",
+    "command": [
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+      "scripts/verify_approved_implementation.py",
+      "recovery"
+    ],
+    "exit_code": 0,
+    "wall_seconds": 137.43435311317444,
+    "log": "runs/implementation-2026-10-08/recovery.log"
+  },
+  {
+    "mode": "pilot",
+    "command": [
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+      "scripts/verify_approved_implementation.py",
+      "pilot"
+    ],
+    "exit_code": 0,
+    "wall_seconds": 649.4041237831116,
+    "log": "runs/implementation-2026-10-08/pilot.log"
+  }
+]

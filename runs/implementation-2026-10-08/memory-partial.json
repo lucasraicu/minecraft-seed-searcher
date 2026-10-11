@@ -1,0 +1,98 @@
+[
+  {
+    "path": "runs/implementation-2026-10-08/experiment-0-full_64_bit_reference",
+    "decoded_result_mb": 266.5823631286621,
+    "seed_count": 256,
+    "extrapolated_decoded_mb_at_2000": 2082.6747119426727,
+    "parent_rss_mb": 1070.453125,
+    "cache_example": {
+      "operations": {
+        "height_stride_8": {
+          "requested_points": 298530,
+          "computed_points": 209523,
+          "reused_points": 89007
+        },
+        "height_stride_1": {
+          "requested_points": 76765,
+          "computed_points": 56150,
+          "reused_points": 20615
+        },
+        "exact_land": {
+          "requested_points": 114298,
+          "computed_points": 7228,
+          "reused_points": 107070
+        }
+      },
+      "maximum_bytes": 67108864,
+      "peak_bytes": 67108864,
+      "evictions": 12803,
+      "raw_land_capability": "pinned_raw_density_quart_xz_v1",
+      "scope": "One seed/backend instance; raw land only shares quart cells; surface biomes and height strides remain separate."
+    },
+    "cache_evictions": 4127137
+  },
+  {
+    "path": "runs/implementation-2026-10-08/experiment-0-lower32_staged",
+    "decoded_result_mb": 268.5815887451172,
+    "seed_count": 256,
+    "extrapolated_decoded_mb_at_2000": 2098.293662071228,
+    "parent_rss_mb": 936.76953125,
+    "cache_example": {
+      "operations": {
+        "height_stride_8": {
+          "requested_points": 263261,
+          "computed_points": 242015,
+          "reused_points": 21246
+        },
+        "height_stride_1": {
+          "requested_points": 73248,
+          "computed_points": 67534,
+          "reused_points": 5714
+        },
+        "exact_land": {
+          "requested_points": 106484,
+          "computed_points": 6725,
+          "reused_points": 99759
+        }
+      },
+      "maximum_bytes": 67108864,
+      "peak_bytes": 67108864,
+      "evictions": 19032,
+      "raw_land_capability": "pinned_raw_density_quart_xz_v1",
+      "scope": "One seed/backend instance; raw land only shares quart cells; surface biomes and height strides remain separate."
+    },
+    "cache_evictions": 4602276
+  },
+  {
+    "path": "runs/implementation-2026-10-08/experiment-11400714819323198485-full_64_bit_reference",
+    "decoded_result_mb": 264.3299398422241,
+    "seed_count": 256,
+    "extrapolated_decoded_mb_at_2000": 2065.077655017376,
+    "parent_rss_mb": 1070.453125,
+    "cache_example": {
+      "operations": {
+        "height_stride_8": {
+          "requested_points": 159127,
+          "computed_points": 146322,
+          "reused_points": 12805
+        },
+        "height_stride_1": {
+          "requested_points": 52000,
+          "computed_points": 48660,
+          "reused_points": 3340
+        },
+        "exact_land": {
+          "requested_points": 28157,
+          "computed_points": 1820,
+          "reused_points": 26337
+        }
+      },
+      "maximum_bytes": 67108864,
+      "peak_bytes": 67108864,
+      "evictions": 11421,
+      "raw_land_capability": "pinned_raw_density_quart_xz_v1",
+      "scope": "One seed/backend instance; raw land only shares quart cells; surface biomes and height strides remain separate."
+    },
+    "cache_evictions": 4240600
+  }
+]

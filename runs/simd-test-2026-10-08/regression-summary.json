@@ -1,0 +1,44 @@
+[
+  {
+    "variant": "scalar",
+    "passed": true,
+    "summary": {
+      "structure_rows": 880,
+      "point_rows": 159,
+      "unique_type_correspondences": 874,
+      "known_structure_disagreements": 6,
+      "reused_starts": 0,
+      "biome_matches": 153,
+      "height_mae": 1.0,
+      "height_max_error": 5
+    }
+  },
+  {
+    "variant": "avx2",
+    "passed": true,
+    "summary": {
+      "structure_rows": 880,
+      "point_rows": 159,
+      "unique_type_correspondences": 874,
+      "known_structure_disagreements": 6,
+      "reused_starts": 0,
+      "biome_matches": 153,
+      "height_mae": 1.0,
+      "height_max_error": 5
+    }
+  },
+  {
+    "variant": "vector4",
+    "passed": true,
+    "summary": {
+      "structure_rows": 880,
+      "point_rows": 159,
+      "unique_type_correspondences": 874,
+      "known_structure_disagreements": 6,
+      "reused_starts": 0,
+      "biome_matches": 153,
+      "height_mae": 1.0,
+      "height_max_error": 5
+    }
+  }
+]

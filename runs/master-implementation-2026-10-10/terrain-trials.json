@@ -1,0 +1,664 @@
+{
+  "rows": [
+    {
+      "variant": "reference",
+      "trial": 0,
+      "seconds": 2.1738257210236043,
+      "cpu_seconds": 2.170869,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.171060062944889
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.013859700062312186
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 2.0868588257580996
+          }
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "trial": 0,
+      "seconds": 2.0503647630102932,
+      "cpu_seconds": 2.0480669999999996,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.047926630009897
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.01499353104736656
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 1.9634714369894937
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp4",
+      "trial": 0,
+      "seconds": 0.6075482349842787,
+      "cpu_seconds": 2.410742,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6049347800435498
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.00406001100782305
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.5271313720149919
+          }
+        }
+      ]
+    },
+    {
+      "variant": "priority4",
+      "trial": 0,
+      "seconds": 0.7713958129752427,
+      "cpu_seconds": 3.082723999999999,
+      "summary": {
+        "candidates": 7,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 7,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.7687198829371482
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.004055483965203166
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 1600,
+            "seconds": 0.03909184702206403
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 5625,
+            "seconds": 0.13687054510228336
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 21025,
+            "seconds": 0.5114673670614138
+          }
+        }
+      ]
+    },
+    {
+      "variant": "priority4",
+      "trial": 1,
+      "seconds": 0.7776250039460137,
+      "cpu_seconds": 3.1074460000000013,
+      "summary": {
+        "candidates": 7,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 7,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.7748930039815605
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.004133327980525792
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 1600,
+            "seconds": 0.038826948031783104
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 5625,
+            "seconds": 0.13779694691766053
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 21025,
+            "seconds": 0.5157870759721845
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp4",
+      "trial": 1,
+      "seconds": 0.6165200830437243,
+      "cpu_seconds": 2.4605429999999995,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6136789239244536
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.004052279982715845
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.5409849371062592
+          }
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "trial": 1,
+      "seconds": 2.057658727047965,
+      "cpu_seconds": 2.5352369999999986,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.0549374810652807
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.014522401033900678
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 1.976301013957709
+          }
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "trial": 1,
+      "seconds": 2.124153327080421,
+      "cpu_seconds": 2.120992000000001,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.1217141810338944
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.013443217030726373
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 2.043170006130822
+          }
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "trial": 2,
+      "seconds": 2.1749536999268457,
+      "cpu_seconds": 2.172477999999998,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.172391287982464
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.013585670967586339
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 2.089331879047677
+          }
+        }
+      ]
+    },
+    {
+      "variant": "optimized",
+      "trial": 2,
+      "seconds": 2.06776753696613,
+      "cpu_seconds": 2.065793000000003,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 2.0651835809694603
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.015286557958461344
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 1.9828976979479194
+          }
+        }
+      ]
+    },
+    {
+      "variant": "openmp4",
+      "trial": 2,
+      "seconds": 0.6089245580369607,
+      "cpu_seconds": 2.417586,
+      "summary": {
+        "candidates": 1,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 0,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.6063811799976975
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.0040719229727983475
+          },
+          "heights": {
+            "calls": 3,
+            "points": 21477,
+            "seconds": 0.532120552030392
+          }
+        }
+      ]
+    },
+    {
+      "variant": "priority4",
+      "trial": 2,
+      "seconds": 0.8062192359939218,
+      "cpu_seconds": 3.218260000000001,
+      "summary": {
+        "candidates": 7,
+        "results": 5,
+        "resumed": 0,
+        "resumed_tasks": 0,
+        "work_completed": 7,
+        "durable_raster_hits": 3,
+        "cache_hits": 0,
+        "cache_misses": 4,
+        "blocked_variants": 7,
+        "pool_revision": "pool-00000001",
+        "pool_uninitialized_by_variant": {
+          "v1": 0,
+          "v2": 0
+        },
+        "uninitialized_variant_tasks": 0,
+        "requested_uninitialized_variant_tasks": 0,
+        "pool_cursor": "-1001562501133105644:692:1924",
+        "work_status": {
+          "pending": 0,
+          "deferred": 1,
+          "leased": 0,
+          "complete": 7
+        },
+        "pending_work": 0,
+        "deferred_work": 1,
+        "elapsed_seconds": 0.8036669250577688
+      },
+      "native_work": [
+        {
+          "grid": {
+            "calls": 1,
+            "points": 1681,
+            "seconds": 0.004030384938232601
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 1600,
+            "seconds": 0.04112439998425543
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 5625,
+            "seconds": 0.14320058398880064
+          }
+        },
+        {
+          "heights": {
+            "calls": 1,
+            "points": 21025,
+            "seconds": 0.5285313420463353
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "reference": {
+      "median_seconds": 2.1738257210236043,
+      "samples": [
+        2.1738257210236043,
+        2.124153327080421,
+        2.1749536999268457
+      ]
+    },
+    "optimized": {
+      "median_seconds": 2.057658727047965,
+      "samples": [
+        2.0503647630102932,
+        2.057658727047965,
+        2.06776753696613
+      ]
+    },
+    "openmp4": {
+      "median_seconds": 0.6089245580369607,
+      "samples": [
+        0.6075482349842787,
+        0.6165200830437243,
+        0.6089245580369607
+      ]
+    },
+    "priority4": {
+      "median_seconds": 0.7776250039460137,
+      "samples": [
+        0.7713958129752427,
+        0.7776250039460137,
+        0.8062192359939218
+      ]
+    }
+  },
+  "semantic_outputs_equal": true,
+  "scope": "One fixed saved anchor, both variants, first proposed center per variant, identical bounded resolutions/refinement count; imported historical baseline is timing input only"
+}

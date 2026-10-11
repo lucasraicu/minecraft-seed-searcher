@@ -1,0 +1,273 @@
+{
+  "scope": "Ten fixed patches, three alternating-order trials; cold Backend instances.",
+  "rows": [
+    {
+      "seed": "-1",
+      "anchor": [
+        -65,
+        -33
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 0,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          1.2948230740148574,
+          1.2840782579733059,
+          1.2761712160427123
+        ],
+        "quart": [
+          0.09397205198183656,
+          0.09505952394101769,
+          0.09427769202739
+        ]
+      }
+    },
+    {
+      "seed": "-1",
+      "anchor": [
+        497,
+        -1025
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 0,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          1.2837894830154255,
+          1.284208863042295,
+          1.278425274998881
+        ],
+        "quart": [
+          0.09256731695495546,
+          0.09305640601087362,
+          0.09281256701797247
+        ]
+      }
+    },
+    {
+      "seed": "0",
+      "anchor": [
+        -65,
+        -33
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 2559,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.4885059680091217,
+          0.48848851094953716,
+          0.48612959997262806
+        ],
+        "quart": [
+          0.03714174602646381,
+          0.03756712202448398,
+          0.03714408806990832
+        ]
+      }
+    },
+    {
+      "seed": "0",
+      "anchor": [
+        497,
+        -1025
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 2071,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.6566578759811819,
+          0.6398137599462643,
+          0.6376161810476333
+        ],
+        "quart": [
+          0.04693087795749307,
+          0.046623330912552774,
+          0.04708998592104763
+        ]
+      }
+    },
+    {
+      "seed": "9",
+      "anchor": [
+        -65,
+        -33
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 4096,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.01611548801884055,
+          0.015708485967479646,
+          0.015956253046169877
+        ],
+        "quart": [
+          0.00398581603076309,
+          0.003935128916054964,
+          0.003922311007045209
+        ]
+      }
+    },
+    {
+      "seed": "9",
+      "anchor": [
+        497,
+        -1025
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 0,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          1.2710384679958224,
+          1.3010434799361974,
+          1.3122253809124231
+        ],
+        "quart": [
+          0.09496263205073774,
+          0.1003195591038093,
+          0.09280016901902854
+        ]
+      }
+    },
+    {
+      "seed": "12345",
+      "anchor": [
+        -65,
+        -33
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 0,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          1.2912386120297015,
+          1.2864023580914363,
+          1.3019008440896869
+        ],
+        "quart": [
+          0.09265878703445196,
+          0.09349439200013876,
+          0.09435463999398053
+        ]
+      }
+    },
+    {
+      "seed": "12345",
+      "anchor": [
+        497,
+        -1025
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 4096,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.016200823010876775,
+          0.016035014996305108,
+          0.016046640928834677
+        ],
+        "quart": [
+          0.004553689039312303,
+          0.004281874978914857,
+          0.0044239460257813334
+        ]
+      }
+    },
+    {
+      "seed": "4294979641",
+      "anchor": [
+        -65,
+        -33
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 1800,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.8076643859967589,
+          0.8104164990363643,
+          0.7483496910426766
+        ],
+        "quart": [
+          0.06871968298219144,
+          0.06618240498937666,
+          0.05759815499186516
+        ]
+      }
+    },
+    {
+      "seed": "4294979641",
+      "anchor": [
+        497,
+        -1025
+      ],
+      "points": 4096,
+      "unique_quart_cells": 289,
+      "land_points": 4096,
+      "equal": true,
+      "seconds": {
+        "reference": [
+          0.01649649895261973,
+          0.01612685597501695,
+          0.015873328899033368
+        ],
+        "quart": [
+          0.004144197097048163,
+          0.004221037961542606,
+          0.004037028062157333
+        ]
+      }
+    }
+  ],
+  "backend_identity": {
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "sha256": {
+      "native/bridge.c": "7096e03918506eec9c536794566a592681789961e6f75ce51b7141bea5fc8ff5",
+      "native/bridge.h": "ecc06ed0e803ca87caf3701e4f849532e654dd9af8906e1e13843e806881eb1f",
+      "vendor/backend.json": "d95c3155f8a98dc40b49a2d083fbfdb2ce35bc496b19554f267d445d6eb3d838",
+      "src/seed_search/__init__.py": "eaa142a1ddca6c98f92e2ec3ea37c7b8312196b345bdc85e5526799799047606",
+      "src/seed_search/backend.py": "743211d5dc807e425154bd787421cd802c988cc47c9bde94e2b1adc9ce580792",
+      "src/seed_search/cache.py": "c8be09927ef8fa77563bb8bae253232aa5692c7960f5c5faec3c705ced266513",
+      "src/seed_search/landscapes.py": "f9a92568fdbdf099f92e2b73b4e668050a13ac7823cbbc9086c7e0649fe87c62",
+      "src/seed_search/config.py": "fa327ef97e6de4c028122f14fe8fc1f78bcb0fe5c74c980ec874689d65eb20db",
+      "src/seed_search/geometry.py": "ab4c5cae47e588703a5ad2d756d1a5a2131bada11a7cdabef790a35688603794",
+      "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+      "src/seed_search/wood.py": "f0dcea3ada050362d7fb7b719d15904d2aafb64c3753004e9ad04fe25f3e1f49",
+      "src/seed_search/terrain.py": "165571d71482913c4f361dd0e209ef259385dea09952175772f9e6b91b0ac261",
+      "src/seed_search/structures.py": "15921e9a296787dc6926885bd3d246e0fd6abbbc3643b41655402d38672d4c2b",
+      "src/seed_search/scoring.py": "e18beff6e5e51c16c651a2f5a085f405d7bc1a7ac0f586351eb11e399797bafa",
+      "src/seed_search/storage.py": "c2253524fdb651922d09431429ef0999ce6ec772a0c5b3999f3bb5ae4ca6ff80",
+      "src/seed_search/search.py": "3a6f771c4d95c1bb032c2cd1e739326247d378d5168612d45511c33f4f1c7bfa",
+      "src/seed_search/review.py": "ac0795b98d48e7e1de4530c9f3553e7be7d0603851794e43fea84131a99ac078",
+      "src/seed_search/_native.abi3.so": "fc6400e327aeedcb3c8c4c7b276c9e1088520bd825abc542736be576393db0bc"
+    }
+  }
+}

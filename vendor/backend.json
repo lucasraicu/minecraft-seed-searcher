@@ -16,8 +16,8 @@
     "generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
     "layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
     "layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
-    "mt.c": "853e8b94e2fb024f2c9489d08144fa81e502d641bbb8f2f35c7b5d3b1a59358b",
-    "mt.h": "21e1acc1311d4f6109f26669e600646e214c008d14294f5a1a5a57c8d8ea3f5a",
+    "mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e",
+    "mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
     "noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
     "noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
     "quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
@@ -36,5 +36,21 @@
     "tests.c": "16d343f46ac0edfb929aa186329cf7a176584604c93ed2446107ca679214ee41",
     "util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
     "util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943"
-  }
+  },
+  "reviewed_patches": [
+    {
+      "id": "mt-initialization-v1",
+      "reason": "A valid UINT64_MAX seed must initialize coefficients on first use; preserve flag across RNG save/restore.",
+      "files": {
+        "mt.h": {
+          "upstream_sha256": "21e1acc1311d4f6109f26669e600646e214c008d14294f5a1a5a57c8d8ea3f5a",
+          "patched_sha256": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c"
+        },
+        "mt.c": {
+          "upstream_sha256": "853e8b94e2fb024f2c9489d08144fa81e502d641bbb8f2f35c7b5d3b1a59358b",
+          "patched_sha256": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+        }
+      }
+    }
+  ]
 }

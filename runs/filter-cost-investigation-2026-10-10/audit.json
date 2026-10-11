@@ -1,0 +1,84 @@
+{
+  "preserved_original_files": 46,
+  "changed_original_files": [],
+  "micro_parity": true,
+  "baseline_full_payload_parity": true,
+  "raw_counts_parity": true,
+  "eligibility_gate_decision_parity": true,
+  "raw_presence_and_rank_score_parity": true,
+  "exhaustive_geometry_oracle_cases": 360,
+  "overworld_region_phase_cases": 7424,
+  "per_anchor_raw_presence_guarantees": [
+    {
+      "ow": 1024,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 1,
+        "ancient_city": 4
+      }
+    },
+    {
+      "ow": 1280,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 1,
+        "ancient_city": 4
+      }
+    },
+    {
+      "ow": 1536,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 4,
+        "ancient_city": 9
+      }
+    },
+    {
+      "ow": 1792,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 4,
+        "ancient_city": 16
+      }
+    },
+    {
+      "ow": 2048,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 9,
+        "ancient_city": 16
+      }
+    },
+    {
+      "ow": 2304,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 9,
+        "ancient_city": 25
+      }
+    },
+    {
+      "ow": 2380,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 9,
+        "ancient_city": 25
+      }
+    },
+    {
+      "ow": 2688,
+      "guaranteed_raw_starts_in_every_anchor_square": {
+        "village": 16,
+        "ancient_city": 36
+      }
+    }
+  ],
+  "reduced_nether_only_joint_cases": 16384,
+  "native_libraries_match_recorded_builds": true,
+  "production_installation_changed": false,
+  "artifact_sha256": {
+    "build-v1.json": "1fdc48ebb3e21835768832d175658de422f0ca6f7dc50ddb68d2e8c225fa39db",
+    "build.json": "246e54afc16e803e74018fdd85ab4eb5a7e1255670464e8d18001276100d6ca2",
+    "micro.json": "f61f3d01533306d50096d0de0ad12be6a63a0ed692c53618b46fce042dd93eb4",
+    "baseline.json": "2567ffd2d71742ae509771ec39302937c50c687a013ee7f6882210a395a94460",
+    "raw.json": "4b880d87ca1303423e25e40238cee2983d5f3e0469dfea05331e0531009f0ca1",
+    "raw-witnesses.json": "7ed531693d29d61f89bfeda9af1fc177ff0c3687735ea08788323f799f0caaa1",
+    "raw-thresholds.json": "a67bd32da57806667625f7abced1629e74e913e1eca3d018635c2112b2bb8120",
+    "raw-presence-scale.json": "6bca8c657d0e12315cdf801afe57227bb6f1169522531cd7f96e3f25e1703e02",
+    "gate.json": "341fe0eece016c13980c678c68afdd46d1378acd6c5aa5c694aff656ce0665f1"
+  },
+  "actual_generation_certified": false
+}

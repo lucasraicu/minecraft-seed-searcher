@@ -95,16 +95,33 @@ def weighted_score(scores,cfg,structure_interval=None):
 
 def ranking_key(c):
     m=c['metrics'];s=c['score']
-    return (-(s['total'] if s['total'] is not None else s['interval'][0]),
-            m['largest_mountain_gap_degrees'],-(m['median_high_relative_height'] or 0),
-            m['median_mountain_distance_from_shore'] if m['median_mountain_distance_from_shore'] is not None else float('inf'),
+    return (c.get('landscape_type','enclosed_island'),s.get('biome_evidence_grade','surface_sampled'),
+            s.get('biome_surface_spacing') or 16,
+            -(s['total'] if s['total'] is not None else s['interval'][0]),
+            m.get('largest_mountain_gap_degrees') or 0,-(m.get('median_high_relative_height') or 0),
+            m.get('median_mountain_distance_from_shore') if m.get('median_mountain_distance_from_shore') is not None else float('inf'),
             int(c['seed']),*c['center'])
 
+
+def candidate_route(c):
+    if c.get('chunkbase_checked'):
+        if c.get('selection_status')=='chunkbase_supported_candidate':return 'ranked'
+        from .review import landscape_review_fields
+        r=c.get('chunkbase_review',{})
+        if any(r.get(k) is False for k in landscape_review_fields(c.get('landscape_type','enclosed_island'))):return 'near_misses'
+        return 'review'
+    if c['nether_status']=='missing_required_local_prediction':return 'near_misses'
+    return 'review' if c['score']['total'] is None or c['nether_status']=='disputed_required_review' else 'ranked'
+
+def candidate_eligible(c):
+    """Qualification is independent of optional score uncertainty."""
+    if c.get('chunkbase_checked'):return c.get('selection_status')=='chunkbase_supported_candidate'
+    return c['nether_status'] in ('predicted_required_structures','predicted_both_required')
 
 def distinct_rank(candidates,limit):
     # Never compare an interval as a known total. Each list has its own ranking.
     lists={ 'ranked':[],'review':[],'near_misses':[]}
     for c in sorted(candidates,key=ranking_key):
-        group='near_misses' if c['nether_status']=='missing_required_local_prediction' else 'review' if c['score']['total'] is None or c['nether_status']=='disputed_required_review' else 'ranked'
+        group=candidate_route(c)
         if len(lists[group])<limit and c['seed'] not in {v['seed'] for v in lists[group]}:lists[group].append(c)
     return lists

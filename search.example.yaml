@@ -3,7 +3,7 @@
 # Fixed requirements: Bedrock 26.52, confirmed border sizes, island separation,
 # nearby wood, required Fortress and Stronghold, and optional Bastion.
 # Numeric landscape preferences and score weights are tunable pilot defaults.
-schema_version: 3
+schema_version: 4
 
 game:
   edition: bedrock
@@ -21,8 +21,8 @@ deployment:
   border_addon: mygen_world_border
   border_addon_version: "4.0.0"
   # Single source of truth: derive half-width = side / 2 and menu chunks = side / 32.
-  overworld_side_blocks: 3008
-  nether_side_blocks: 992
+  overworld_side_blocks: 2304
+  nether_side_blocks: 928
 
 search:
   mode: full_64_bit_reference
@@ -43,6 +43,14 @@ search:
   maximum_preliminary_components_per_seed: 32
   maximum_refined_centers_per_seed: 8
   maximum_refinement_patch_side_blocks: 2048
+  maximum_structure_centers_per_seed: 2
+  staged:
+    raw_layout_count: 10000
+    retained_layouts: 64
+    exploration_layouts: 16
+    siblings_per_layout: 4
+    maximum_full64_evaluations: 256
+    selection_version: raw-cluster-v1
   pilot_seed_counts: [10, 100, 1000]
   # Only bounded diagnostics are implemented until validation is complete.
   large_search_enabled: false
@@ -137,7 +145,7 @@ output:
 
 # The original water-enclosed island search remains available alongside these.
 landscapes:
-  enabled: [enclosed_island, ocean_island, mountain_basin]
+  enabled: [structures_only, enclosed_island, ocean_island, mountain_basin]
   ocean_window_side_blocks: 1400
   minimum_ocean_fraction: 0.50
   flat_radius_blocks: 96
@@ -155,6 +163,8 @@ landscapes:
 
 optimization:
   exact_per_seed_cache: true
+  quart_land_reuse: true
+  island_bound_policy: shadow
   cache_mb_per_worker: 64
   persist_report_terrain: true
   reuse_unchanged_maps: true
@@ -165,3 +175,47 @@ optimization:
   combined_structure_scan: true
   lazy_coverage_bounds: true
   raw_mt_cache_entries: 128
+
+# Ranking preferences; never override structure or terrain eligibility.
+biome_diversity:
+  version: resource-families-v1
+  scope: structure_qualified
+  bonus_points: 5
+  extent_blocks2: 4096
+  support_cells: 4
+  structures_surface_spacing: 16
+  nether_spacing: 32
+  family_weights:
+    oak: 3
+    birch: 3
+    spruce: 3
+    dark_oak: 3
+    jungle: 3
+    mangrove: 3
+    badlands: 3
+    desert: 2
+    coral: 2
+    acacia: 2
+    cherry: 2
+    pale_oak: 2
+    plains: 1
+    wetland: 1
+    mushroom: 1
+    shore: 1
+    river: 1
+    snow: 1
+    mountain: 1
+    ocean: 1
+    cool_ocean: 1
+    frozen_ocean: 1
+    lush_caves: 2
+    dripstone_caves: 2
+    deep_dark: 1
+    nether_wastes: 1
+    soul_sand: 2
+    crimson: 3
+    warped: 3
+    basalt: 2
+    sulfur_caves: 2
+    dappled_forest: 2
+    ice_caves: 1

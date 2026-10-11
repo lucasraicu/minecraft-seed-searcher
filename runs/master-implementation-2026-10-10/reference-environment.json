@@ -1,0 +1,14 @@
+{
+  "python": "3.13.15",
+  "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)\nTarget: x86_64-apple-darwin24.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+  "dependencies": "-e git+https://github.com/lucasraicu/minecraft-seed-searcher.git@840d28cc6f210fa118a479512dac44254234eb14#egg=bedrock_island_preflight\ncffi==2.1.1\ncontourpy==1.4.0\ncycler==0.12.1\nfonttools==4.66.1\niniconfig==2.3.1\nkiwisolver==1.5.1\nmatplotlib==3.11.2\nnumpy==2.5.3\npackaging==26.3\npillow==12.3.0\npluggy==1.6.0\npycparser==3.0\nPygments==2.21.0\npyparsing==3.3.3\npytest==9.1.1\npython-dateutil==2.9.0.post0\nPyYAML==6.0.3\nscipy==1.18.1\nsetuptools==84.0.0\nsix==1.17.0\nwheel==0.48.0\n",
+  "historical_rates_include_python_process_parallelism": true,
+  "historical_worker_count": 30,
+  "benchmark_input_count": 1000000,
+  "benchmark_forecast_hours": [
+    1.355436710864747,
+    2.700411002554589
+  ],
+  "benchmark_forecast_scope": "historical baseline only; proposed native changes and exact final Nether checks excluded"
+}

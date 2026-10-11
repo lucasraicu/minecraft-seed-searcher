@@ -1,0 +1,221 @@
+# Configuration for the bounded preflight and planned later search.
+# Search remains gated by an evidence-backed readiness record.
+# Fixed requirements: Bedrock 26.52, confirmed border sizes, island separation,
+# nearby wood, required Fortress and Stronghold, and optional Bastion.
+# Numeric landscape preferences and score weights are tunable pilot defaults.
+schema_version: 4
+
+game:
+  edition: bedrock
+  target_version: "26.52"
+  backend_repository: https://github.com/FragrantResult186/cubiomes-bedrock
+  backend_commit: "294c72ab0392dd818a91d293dbd5774d4874d64b"
+  # Explicit 26.52 -> MC_26_50 mapping; bounded predictor evidence in run metadata.
+  backend_model: MC_26_50
+  require_validated_capabilities_before_large_search: true
+
+deployment:
+  host: mojang_realm
+  management_device: phone
+  achievements_required: false
+  border_addon: mygen_world_border
+  border_addon_version: "4.0.0"
+  # Single source of truth: derive half-width = side / 2 and menu chunks = side / 32.
+  overworld_side_blocks: 2304
+  nether_side_blocks: 928
+
+search:
+  mode: full_64_bit_reference
+  deterministic_mixer: splitmix64_finalizer
+  run_key: "0"
+  # Center envelope around coordinate origin; derive analysis halo from border half-width.
+  center_axis_bounds_blocks: [-5000, 5000]
+  workers: 4
+  numeric_threads_per_worker: 1
+  discovery_spacing_blocks: 64
+  refinement_spacing_blocks: 16
+  shoreline_spacing_blocks: 4
+  # Components touching the finite outer analysis boundary remain unresolved.
+  raster_boundary_policy: mark_unknown
+  lower_bit_optimization_enabled: false
+  report_top_distinct_seeds: 20
+  # Finite heuristic refinement budget; report deferred components explicitly.
+  maximum_preliminary_components_per_seed: 32
+  maximum_refined_centers_per_seed: 8
+  maximum_refinement_patch_side_blocks: 2048
+  maximum_structure_centers_per_seed: 2
+  staged:
+    raw_layout_count: 10000
+    retained_layouts: 64
+    exploration_layouts: 16
+    siblings_per_layout: 4
+    maximum_full64_evaluations: 256
+    selection_version: raw-cluster-v1
+  pilot_seed_counts: [10, 100, 1000]
+  # Only bounded diagnostics are implemented until validation is complete.
+  large_search_enabled: false
+  preflight_maximum_seeds: 10
+
+overworld:
+  # Reporting/map overlays only; distance_score_scale_blocks controls structure proximity.
+  report_core_side_blocks: 1200
+  report_primary_side_blocks: 2000
+  border_center_snap_blocks: 8
+  distance_score_scale_blocks: 1000
+  # Shared shoreline range for water, high terrain, and nearby external woodland.
+  surrounding_range_from_shore_blocks: 800
+
+island:
+  conservative_land_connectivity: 8
+  preferred_equivalent_diameter_blocks: [300, 700]
+  score_method: preferred_interval_ratio
+
+water:
+  angular_samples: 180
+  preferred_gap_blocks: [50, 200]
+  preferred_enclosure_fraction: 0.85
+  full_credit_enclosure_fraction: 0.90
+  score_method: enclosure_times_gap_fit
+
+mountains:
+  preferred_directional_fraction: 0.75
+  # Permissive high-terrain proxy; actual mountain appearance is inspected in game.
+  minimum_height_above_water_blocks: 50
+  snowy_summits_allowed: true
+  score_method: coverage_to_target
+
+wood:
+  # Percentages refer to estimated wooded surface land, not verified tree/log counts.
+  fraction_denominator: land_area
+  island:
+    abundance_required: false
+    preference: less_wooded_more_open
+    openness_score_method: one_minus_wooded_fraction
+  surrounding_land:
+    preferred_wooded_fraction: 0.30
+    full_credit_wooded_fraction: 0.60
+  score_method: surrounding_fraction_only
+
+structures:
+  required_overworld_types: [stronghold]
+  core_policy: strong_preferences_not_hard_requirements
+  category_budget_fractions:
+    trial_chamber: 0.25
+    stronghold: 0.25
+    mineshaft: 0.20
+    ancient_city: 0.15
+    secondary_combined: 0.15
+  secondary_types: [village, ruined_portal, shipwreck, monument, outpost]
+  per_type_score: nearest_viable_in_border
+  secondary_aggregation: mean_including_known_absences
+
+nether:
+  # Center is derived from the Overworld border center divided by eight.
+  fortress_required: true
+  bastion_required: false
+  optional_bastion_proximity_weight: 0.20
+  full_credit_distance_blocks: 300
+  score_method: mean_capped_inverse_distance
+
+score_weights:
+  island_size: 15
+  island_openness: 5
+  water: 15
+  mountains: 15
+  wood: 20
+  overworld_structures: 20
+  nether_proximity: 10
+
+verification:
+  initial_method: chunkbase_matching_version_terrain
+  initial_finalist_count: 5
+  final_required_checks:
+    - island_fully_separated
+    - surrounding_water_and_mountains
+    - settlement_buildability
+    - abundant_accessible_wood_on_surrounding_land
+    - fortress_access_inside_nether_border
+    - stronghold_inside_overworld_border
+  optional_actual_game_checks: [actual_portal_arrival, spawn_and_border_behavior, structure_footprints]
+
+output:
+  candidate_files: [candidate.json, overworld.png, nether.png, inspection.md]
+  summary_formats: [json, csv]
+  unknown_score_policy: interval_and_separate_review_list
+
+# The original water-enclosed island search remains available alongside these.
+landscapes:
+  enabled: [structures_only, enclosed_island, ocean_island, mountain_basin]
+  ocean_window_side_blocks: 1400
+  minimum_ocean_fraction: 0.50
+  flat_radius_blocks: 96
+  maximum_flat_relief_blocks: 16
+  maximum_flat_slope: 0.30
+  minimum_dry_fraction: 0.85
+  ring_radius_blocks: 800
+  minimum_ring_relative_height_blocks: 50
+  minimum_ring_fraction: 0.75
+  deep_dark_y: -32
+  deep_dark_inner_side_blocks: 64
+  deep_dark_outer_side_blocks: 200
+  deep_dark_spacing_blocks: 16
+  deep_dark_policy: rank_only
+
+optimization:
+  exact_per_seed_cache: true
+  quart_land_reuse: true
+  island_bound_policy: shadow
+  cache_mb_per_worker: 64
+  persist_report_terrain: true
+  reuse_unchanged_maps: true
+  # Fast heuristic: save absent predictions as deferred review, not proven absence.
+  stronghold_prefilter: defer_unpredicted
+  early_basin_bounds: true
+  reuse_raster_intermediates: true
+  combined_structure_scan: true
+  lazy_coverage_bounds: true
+  raw_mt_cache_entries: 128
+
+# Ranking preferences; never override structure or terrain eligibility.
+biome_diversity:
+  version: resource-families-v1
+  scope: structure_qualified
+  bonus_points: 5
+  extent_blocks2: 4096
+  support_cells: 4
+  structures_surface_spacing: 16
+  nether_spacing: 32
+  family_weights:
+    oak: 3
+    birch: 3
+    spruce: 3
+    dark_oak: 3
+    jungle: 3
+    mangrove: 3
+    badlands: 3
+    desert: 2
+    coral: 2
+    acacia: 2
+    cherry: 2
+    pale_oak: 2
+    plains: 1
+    wetland: 1
+    mushroom: 1
+    shore: 1
+    river: 1
+    snow: 1
+    mountain: 1
+    ocean: 1
+    cool_ocean: 1
+    frozen_ocean: 1
+    lush_caves: 2
+    dripstone_caves: 2
+    deep_dark: 1
+    nether_wastes: 1
+    soul_sand: 2
+    crimson: 3
+    warped: 3
+    basalt: 2
+    sulfur_caves: 2
+    dappled_forest: 2
+    ice_caves: 1

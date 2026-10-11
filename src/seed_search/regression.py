@@ -70,8 +70,16 @@ def regression(output, fixture='fixtures/bedrock-26.52/chunkbase-accuracy-audit.
     if len(rows)!=880 or len(points)!=159 or len(er)!=880 or len(ep)!=159:
         raise ValueError('Frozen audit must retain all 880 structure and 159 coordinate rows')
     known=[r for r in rows if r['status']!='unique']
+    expectation_path=Path('fixtures/bedrock-26.52/regression-expectations-v1.json')
+    expectation=json.loads(expectation_path.read_text())
+    known_keys=lambda records:{(r['seed'],r['type'],tuple(r['marker']),r['status']) for r in records}
+    if known_keys(known)!=known_keys(expectation['known_disagreements']):
+        regressions.append({'reason':'unreviewed_external_disagreement_set_change'})
+    if hashlib.sha256(f.read_bytes()).hexdigest()!=expectation['fixture_sha256'] or hashlib.sha256(e.read_bytes()).hexdigest()!=expectation['baseline_sha256']:
+        regressions.append({'reason':'unreviewed_fixture_or_baseline_identity_change'})
     errors=[abs(p['height_delta']) for p in points if p['height_delta'] is not None]
     result={'source_kind':'frozen_actual_website_UI_predictions_not_in_game','target':'Bedrock 26.50 - 26.52',
+            'expectations_version':expectation['version'],'expectations_sha256':hashlib.sha256(expectation_path.read_bytes()).hexdigest(),
             'fixture_sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'baseline_sha256':hashlib.sha256(e.read_bytes()).hexdigest(),
             'passed':not regressions and reused==0,'unexplained_regressions':regressions,
             'summary':{'structure_rows':len(rows),'point_rows':len(points),'unique_type_correspondences':sum(r['status']=='unique' for r in rows),

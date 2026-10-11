@@ -1,0 +1,68 @@
+         305745 function calls (305737 primitive calls) in 65.513 seconds
+
+   Ordered by: cumulative time
+   List reduced from 342 to 60 due to restriction <60>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.007    0.007   65.513   65.513 landscapes.py:277(analyze_landscapes)
+       65    0.150    0.002   64.114    0.986 cache.py:15(_sample)
+        4    0.006    0.001   42.362   10.591 terrain.py:32(coast_component)
+       28    0.004    0.000   36.275    1.296 terrain.py:19(raster)
+       56    0.006    0.000   36.267    0.648 terrain.py:11(sample_points)
+       56    0.008    0.000   36.260    0.648 cache.py:50(heights)
+     1352    0.006    0.000   36.013    0.027 cache.py:54(compute)
+     1352    0.022    0.000   35.987    0.027 backend.py:88(heights)
+     1352   35.936    0.027   35.936    0.027 {built-in method seed_search._native.ss_heights}
+        9    0.000    0.000   27.865    3.096 terrain.py:91(sample_land)
+        9    0.001    0.000   27.864    3.096 cache.py:60(land)
+       90    0.001    0.000   27.809    0.309 cache.py:62(<lambda>)
+       90    0.003    0.000   27.808    0.309 backend.py:108(land)
+       90   27.801    0.309   27.801    0.309 {built-in method seed_search._native.ss_land}
+        7    0.000    0.000   11.705    1.672 landscapes.py:239(ocean_preliminary)
+       13    0.000    0.000    2.273    0.175 terrain.py:99(preliminary_component)
+       11    0.000    0.000    0.602    0.055 structures.py:37(scan_type)
+       11    0.002    0.000    0.602    0.055 backend.py:140(structure_pair)
+        1    0.000    0.000    0.601    0.601 structures.py:44(scan_envelope)
+        2    0.001    0.000    0.464    0.232 landscapes.py:143(basin_necessary_bound)
+       11    0.008    0.001    0.432    0.039 backend.py:119(structures)
+       11    0.422    0.038    0.422    0.038 {built-in method seed_search._native.ss_scan}
+        1    0.000    0.000    0.328    0.328 backend.py:73(grid)
+        1    0.328    0.328    0.328    0.328 {built-in method seed_search._native.ss_grid}
+       11    0.166    0.015    0.166    0.015 {built-in method seed_search._native.ss_filter_starts}
+       35    0.061    0.002    0.106    0.003 geometry.py:38(components)
+        1    0.052    0.052    0.090    0.090 landscapes.py:200(coarse_basin_sites)
+     1577    0.005    0.000    0.086    0.000 _arraysetops_impl.py:145(unique)
+     1577    0.032    0.000    0.080    0.000 _arraysetops_impl.py:350(_unique1d)
+     3399    0.004    0.000    0.078    0.000 fromnumeric.py:48(_wrapfunc)
+        3    0.001    0.000    0.064    0.021 scoring.py:9(landscape_scores)
+        3    0.034    0.011    0.049    0.016 geometry.py:69(angular_metrics)
+       19    0.003    0.000    0.048    0.003 landscapes.py:62(deep_dark_hint)
+       22    0.001    0.000    0.044    0.002 _morphology.py:216(_binary_erosion)
+     3686    0.006    0.000    0.038    0.000 backend.py:67(biome)
+       22    0.036    0.002    0.036    0.002 {built-in method scipy.ndimage._nd_image.binary_erosion}
+     1572    0.033    0.000    0.033    0.000 {method 'argsort' of 'numpy.ndarray' objects}
+     1716    0.001    0.000    0.030    0.000 fromnumeric.py:2031(nonzero)
+    12152    0.029    0.000    0.029    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     1818    0.028    0.000    0.028    0.000 {method 'nonzero' of 'numpy.ndarray' objects}
+       11    0.000    0.000    0.026    0.002 _morphology.py:407(binary_dilation)
+     3686    0.023    0.000    0.023    0.000 {built-in method seed_search._native.ss_biome}
+       11    0.003    0.000    0.023    0.002 landscapes.py:81(raster_intermediates)
+     1572    0.002    0.000    0.022    0.000 fromnumeric.py:2876(cumsum)
+      954    0.020    0.000    0.022    0.000 numeric.py:323(full)
+       11    0.002    0.000    0.021    0.002 _morphology.py:305(binary_erosion)
+     6950    0.005    0.000    0.021    0.000 {method 'any' of 'numpy.ndarray' objects}
+     1389    0.015    0.000    0.019    0.000 _shape_base_impl.py:607(column_stack)
+        9    0.000    0.000    0.018    0.002 landscapes.py:135(build_centers)
+     1572    0.017    0.000    0.017    0.000 {method 'cumsum' of 'numpy.ndarray' objects}
+       65    0.000    0.000    0.017    0.000 fromnumeric.py:1115(argsort)
+       50    0.016    0.000    0.016    0.000 _measurements.py:43(label)
+     6970    0.003    0.000    0.016    0.000 _methods.py:55(_any)
+     3026    0.003    0.000    0.015    0.000 fromnumeric.py:2474(any)
+     1268    0.001    0.000    0.015    0.000 {method 'mean' of 'numpy.ndarray' objects}
+        2    0.011    0.006    0.015    0.007 landscapes.py:111(ring_metrics)
+     1278    0.005    0.000    0.014    0.000 _methods.py:115(_mean)
+     3132    0.007    0.000    0.012    0.000 fromnumeric.py:86(_wrapreduction_any_all)
+       22    0.000    0.000    0.011    0.000 _filters.py:1738(_min_or_max_filter)
+       44    0.009    0.000    0.009    0.000 {built-in method scipy.ndimage._nd_image.min_or_max_filter1d}
+
+

@@ -5,18 +5,20 @@ import sqlite3
 from pathlib import Path
 from .backend import model_metadata
 
-SCHEMA=1
+SCHEMA=2
 ROOT=Path(__file__).resolve().parents[2]
 
 def backend_identity():
     # Prediction/checkpoint identity excludes rendering and readiness assembly.
     # Those files are verified separately as hashed readiness artifacts; editing
     # a plot title must not invalidate every completed seed prediction.
-    modules=('__init__','backend','cache','landscapes','config','geometry','seeds','wood','terrain','structures','scoring','storage','search','review')
+    modules=('__init__','backend','cache','landscapes','config','geometry','seeds','wood','terrain','structures','scoring','storage','search','review','biomes','staged')
     paths=[ROOT/'native/bridge.c',ROOT/'native/bridge.h',ROOT/'vendor/backend.json',*[ROOT/f'src/seed_search/{name}.py' for name in modules]]
     from . import _native
     paths.append(Path(_native.__file__))
-    return {'model':model_metadata(),'sha256':{str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
+    import sys,platform
+    from importlib.metadata import version
+    return {'runtime':{'python':sys.version,'platform':platform.platform(),'packages':{n:version(n) for n in ('numpy','scipy','cffi','PyYAML')}},'model':model_metadata(),'sha256':{str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
 
 def semantic_hash(cfg):
     # Worker count/output depth do not change prediction semantics, but persisted
@@ -35,12 +37,18 @@ class Store:
         self.db.execute('PRAGMA synchronous=FULL')
         self.db.execute('CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)')
         self.db.execute('CREATE TABLE IF NOT EXISTS seeds (idx TEXT PRIMARY KEY,seed TEXT NOT NULL,result TEXT NOT NULL)')
+        if not resume:self.db.execute('CREATE TABLE IF NOT EXISTS state (key TEXT PRIMARY KEY,value TEXT NOT NULL)')
         if not resume:
             with self.db:self.db.execute('INSERT INTO meta VALUES (?,?)',('identity',json.dumps(identity,sort_keys=True)))
         self.identity=json.loads(self.db.execute("SELECT value FROM meta WHERE key='identity'").fetchone()[0])
         if resume and identity is not None and self.identity!=identity:
             self.close();raise ValueError('Incompatible resume: configuration, backend, seed sequence or evidence differs')
     def completed(self):return {int(v[0]) for v in self.db.execute('SELECT idx FROM seeds')}
+    def get_state(self,key):
+        row=self.db.execute('SELECT value FROM state WHERE key=?',(key,)).fetchone()
+        return json.loads(row[0]) if row else None
+    def set_state(self,key,value):
+        with self.db:self.db.execute('INSERT OR REPLACE INTO state VALUES (?,?)',(key,json.dumps(value,allow_nan=False)))
     def save(self,index,seed,result):
         if str(result['seed'])!=str(seed) or result['index']!=index:raise ValueError('Worker index/seed mismatch')
         with self.db:self.db.execute('INSERT INTO seeds VALUES (?,?,?)',(str(index),str(seed),json.dumps(result,allow_nan=False)))

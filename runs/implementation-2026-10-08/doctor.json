@@ -1,0 +1,84 @@
+{
+  "target_game_version": "26.52",
+  "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+  "backend": {
+    "model": "26.50",
+    "structure_rng": {
+      "trial_chamber": 1,
+      "stronghold": 0,
+      "mineshaft": 0,
+      "ancient_city": 0,
+      "village": 0,
+      "ruined_portal": 0,
+      "shipwreck": 0,
+      "monument": 0,
+      "outpost": 0,
+      "fortress": 0,
+      "bastion": 0
+    }
+  },
+  "config_sha256": "e63b40cdacde83241f612a7c2afeb3e4216792c36157b60317611c2903764444",
+  "review_policy": "chunkbase_matching_version_terrain",
+  "version_mapping": "Bedrock 26.52 -> MC_26_50 (bounded predictor comparisons, not full game emulation)",
+  "chunkbase_checked": false,
+  "actual_minecraft_evidence": "separate_optional_observations",
+  "terrain_accuracy": "raw_density_estimate; historical Chunkbase MAE 1, max 5 blocks on 135 columns",
+  "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+  "cpu_logical_count": 36,
+  "python": "3.13.15",
+  "large_search_enabled": false,
+  "native_backend": "built_and_callable",
+  "discovery_grid": [
+    -6208,
+    -6208,
+    195,
+    195,
+    64
+  ],
+  "available_commands": [
+    "doctor",
+    "benchmark",
+    "probe",
+    "compare",
+    "regression",
+    "rank",
+    "search",
+    "resume",
+    "review"
+  ],
+  "capabilities": {
+    "edition": "bedrock",
+    "target_version": "26.52",
+    "model": "MC_26_50",
+    "mapping_status": "bounded_matching_version_Chunkbase_comparison",
+    "dimensions": [
+      "overworld",
+      "nether"
+    ],
+    "structures": [
+      "trial_chamber",
+      "stronghold",
+      "mineshaft",
+      "ancient_city",
+      "village",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion"
+    ],
+    "terrain": "raw density estimate, no caves/aquifers/decoration/chunk interpolation",
+    "woodland": "surface biome proxy, no tree counts",
+    "unsupported": [
+      "end",
+      "actual structure footprints",
+      "portal arrival",
+      "spawn",
+      "trees"
+    ],
+    "lower_bit_optimization": "bounded_lower32_staged_eight_raw_families",
+    "quart_land_reuse": "pinned_raw_density_quart_xz_v1"
+  },
+  "large_search_gate": "requires_matching_identity_and_verified_readiness_record"
+}

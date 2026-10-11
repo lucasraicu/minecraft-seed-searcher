@@ -1,0 +1,156 @@
+"""New profile validation; legacy schema 3/4 contracts keep their own validation."""
+import copy
+import math
+from .. import BACKEND_COMMIT
+from .resources import disk_policy
+
+DEFAULT = {
+    'schema_version':5,
+    'game':{'edition':'bedrock','target_version':'26.52','backend_model':'MC_26_50',
+            'backend_commit':BACKEND_COMMIT,'bds_version':'1.26.52.3'},
+    'deployment':{'overworld_side_blocks':1536,'nether_side_blocks':896},
+    'discovery':{'overworld_bounds':[-2000,-2000,2000,2000],
+                 'nether_bounds':[-2000,-2000,2000,2000]},
+    'search':{'mode':'prediction','sequence':'permutation','run_key':'0','workers':30,'max_workers':36,
+              'numeric_threads_per_worker':1,'native_threads_per_worker':1,'batch_size':32,'pilot_limit':1000,'inventory_mode':'eligibility',
+              'memory_target_gib':25,'memory_ceiling_gib':30,'docker_reserve_gib':8,
+              'run_disk_limit_bytes':128 << 30,'free_disk_reserve_bytes':16 << 30,
+              'projected_bytes_per_seed':65536,
+              'structure_order':['ancient_city','village','trial_chamber','mineshaft']},
+    'structures':{'required':['stronghold','village','trial_chamber','ancient_city','mineshaft'],
+                  'nether_required':['fortress','bastion'],
+                  'optional_bonuses':{'monument':5,'outpost':5,'shipwreck':2,'ruined_portal':2,
+                                      'buried_treasure':1,'monster_room':1}},
+    'biomes':{'spacing':64,'sample_y':63,'lattice':'world','gate_batch_size':16,'refinement_budget':128,'wooded_minimum_families':2,
+              'family_bonuses':{'desert':3,'swamp':3,'snowy_ice':2,'badlands':2,'mushroom':3,
+                                'plains_meadow':1,'mountains':2,'ocean':2,'rivers_shores':1},
+              'variant_bonuses':{'pale_garden':3,'mangrove_swamp':3,'bamboo_jungle':2,
+                                 'dappled_forest':2,'warm_ocean':3}},
+    'scoring':{'geometry_weight':.8,'biome_fit_weight':.1,'baseline_weight':.1,'baseline_quality_cap':60},
+    'terrain':{'variants':['v1','v2'],'native_threads':1,'scheduler':'rotation','resolutions':[128,64,32,16,8,4],
+               'center_spacing':64,'refine_center_spacing':16,'rays':32,
+               'maximum_refinements_per_anchor':8},
+    'bds':{'enabled':True,'version':'1.26.52.3',
+           'docker_cli':'/Applications/Docker.app/Contents/Resources/bin/docker',
+           'image':'bedrock-verification-poc:1.26.52.3',
+           'image_id':'sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8',
+           'cpus':4,'memory_gib':6,'verification_budget':20,'persist_snapshot':False,
+           'compare_reference':True,'maximum_region_side':256},
+    'caves':{'automatic':False,'y_levels':[0,-16,-32,-48],'spacing':64,'maximum_samples':10000},
+}
+
+
+def default_config():
+    cfg=copy.deepcopy(DEFAULT)
+    from .terrain import V1, V2
+    cfg['terrain']['v1']=dict(V1)
+    cfg['terrain']['v2']=dict(V2)
+    return cfg
+
+
+def _integer(value, lo, hi, name):
+    if isinstance(value,bool) or not isinstance(value,int) or not lo<=value<=hi:
+        raise ValueError(f'{name} must be an integer in {lo}–{hi}')
+
+
+def memory_budget_gib(search, *, docker_reserve_default=8):
+    """Validate the combined scanner/Docker budget before checkpoint mutation."""
+    values=[search.get('memory_target_gib',25),search.get('memory_ceiling_gib',30),
+            search.get('docker_reserve_gib',docker_reserve_default)]
+    for name,value in zip(('memory_target_gib','memory_ceiling_gib','docker_reserve_gib'),values):
+        if isinstance(value,bool) or not isinstance(value,(int,float)) or (isinstance(value,float) and not math.isfinite(value)):
+            raise ValueError(f'{name} must be a finite number')
+    target,ceiling,reserve=values
+    if not 0<target<=ceiling<=30:
+        raise ValueError('Memory target must fit the agreed 30 GiB combined ceiling')
+    if not 0<=reserve<ceiling:
+        raise ValueError('Docker reserve must be nonnegative and below the combined memory ceiling')
+    return target,ceiling,reserve
+
+
+def validate_config(cfg):
+    if cfg.get('schema_version')!=5:
+        raise ValueError('Realm profile requires schema_version 5')
+    for name in DEFAULT:
+        if name not in cfg:raise ValueError(f'Missing Realm configuration section {name}')
+    for key,value in DEFAULT['game'].items():
+        if cfg['game'].get(key)!=value:raise ValueError(f'Unsupported or unpinned game setting {key}')
+    if cfg['deployment'] != DEFAULT['deployment']:
+        raise ValueError('This Realm contract uses 1536 Overworld and 896 Nether blocks')
+    if cfg['discovery'] != DEFAULT['discovery']:
+        raise ValueError('Discovery must use exactly half-open [-2000,2000) in each dimension')
+    s=cfg['search']
+    if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest'):
+        raise ValueError('Realm scan mode must explicitly label predictions and supported seed sequence')
+    if s.get('sequence')=='manifest':
+        from ..seeds import parse_seed
+        values=s.get('manifest_seeds')
+        if not isinstance(values,list) or not 1<=len(values)<=10000 or any(not isinstance(v,str) or str(parse_seed(v))!=v for v in values):
+            raise ValueError('Manifest requires 1–10000 canonical signed decimal seeds')
+        if len(set(values))!=len(values):raise ValueError('Manifest seeds must be distinct')
+    if s.get('inventory_mode','complete') not in ('complete','eligibility'):raise ValueError('Invalid inventory mode')
+    if cfg['biomes'].get('lattice','border') not in ('border','world'):raise ValueError('Invalid biome lattice')
+    _integer(cfg['biomes'].get('gate_batch_size',16),1,256,'biome gate batch size')
+    _integer(cfg['biomes'].get('refinement_budget',0),0,4096,'biome refinement budget')
+    key=s.get('run_key')
+    if not isinstance(key,str) or not key.isdigit() or not 0<=int(key)<2**64:
+        raise ValueError('run_key must be a decimal uint64 string')
+    if s['sequence']=='sequential' and int(key)!=0:raise ValueError('Sequential scans require run_key 0')
+    _integer(s.get('max_workers'),1,36,'max_workers');_integer(s.get('workers'),1,s['max_workers'],'workers')
+    _integer(s.get('batch_size'),1,4096,'batch_size');_integer(s.get('pilot_limit'),1,1000,'pilot_limit')
+    if s.get('numeric_threads_per_worker')!=1:raise ValueError('Use exactly one numeric thread per worker')
+    _integer(s.get('native_threads_per_worker',1),1,36,'native_threads_per_worker')
+    if s['workers']*s.get('native_threads_per_worker',1)>36:
+        raise ValueError('Process/native thread product must fit 36 logical CPUs')
+    if 'memory_target_gib' not in s or 'memory_ceiling_gib' not in s:
+        raise ValueError('Memory target and ceiling must be configured')
+    memory_budget_gib(s)
+    disk_policy(s)
+    if cfg.get('terrain',{}).get('scheduler','rotation') not in ('rotation','priority'):
+        raise ValueError('Terrain scheduler must be rotation or priority')
+    _integer(cfg.get('terrain',{}).get('native_threads',1),1,36,'terrain.native_threads')
+    order=s.get('structure_order',[])
+    if len(order)!=4 or set(order)!=set(DEFAULT['search']['structure_order']):
+        raise ValueError('All four mandatory non-anchor structures must be checked')
+    if cfg['structures'].get('required')!=DEFAULT['structures']['required']:
+        raise ValueError('Required structure eligibility cannot be relaxed')
+    if cfg['structures'].get('nether_required',DEFAULT['structures']['nether_required'])!=['fortress','bastion']:
+        raise ValueError('Both Fortress and Bastion are mandatory in the final Nether square')
+    for section,keys in (('structures',('optional_bonuses',)),('biomes',('family_bonuses','variant_bonuses'))):
+        for key in keys:
+            vals=cfg[section].get(key,{})
+            if set(vals)!=set(DEFAULT[section][key]) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 for v in vals.values()):
+                raise ValueError(f'Invalid configurable {key}')
+    if cfg['biomes'].get('wooded_minimum_families')!=2:raise ValueError('At least two wooded families remain mandatory')
+    if cfg['biomes'].get('spacing') not in (4,8,16,32,64,128):raise ValueError('Invalid biome spacing')
+    if cfg['biomes'].get('sample_y')!=63:raise ValueError('Fixed-Y predictor must retain declared Y=63 provenance')
+    t=cfg['terrain']
+    if t.get('variants')!=['v1','v2'] or t.get('rays')!=32:raise ValueError('Only independent V1/V2 with 32 rays are supported')
+    if t.get('resolutions')!=[128,64,32,16,8,4]:raise ValueError('Keep the declared adaptive terrain resolutions')
+    _integer(t.get('maximum_refinements_per_anchor'),0,10000,'maximum_refinements_per_anchor')
+    for key in ('center_spacing','refine_center_spacing'):_integer(t.get(key),1,256,key)
+    from .terrain import V1,V2
+    for name,defaults in (('v1',V1),('v2',V2)):
+        if name in t:
+            values=t[name]
+            required=set(defaults)-({'ridge_min_arc_rays','ridge_min_arc_aspect'} if name=='v2' else set())
+            if not isinstance(values,dict) or not required.issubset(values) or set(values)-set(defaults) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 for v in values.values()):
+                raise ValueError(f'Invalid configurable {name} geometry thresholds')
+            if name=='v2':
+                _integer(values.get('ridge_min_arc_rays',defaults['ridge_min_arc_rays']),1,t['rays'],'ridge_min_arc_rays')
+    weights=[cfg['scoring'].get(n) for n in ('geometry_weight','biome_fit_weight','baseline_weight')]
+    if any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 for v in weights) or abs(sum(weights)-1)>1e-9:
+        raise ValueError('Variant weights must be finite, nonnegative and sum to one')
+    if cfg['scoring']['baseline_quality_cap']<=0:raise ValueError('Baseline quality cap must be positive')
+    if cfg['caves'].get('automatic') is not False:raise ValueError('Cave inventory requires explicit manual invocation')
+    if cfg['caves'].get('y_levels')!=[0,-16,-32,-48]:raise ValueError('Keep the agreed initial cave Y levels')
+    _integer(cfg['caves'].get('maximum_samples'),1,1000000,'maximum_samples')
+    if cfg['caves'].get('spacing') not in (4,8,16,32,64,128):raise ValueError('Invalid manual cave spacing')
+    b=cfg['bds']
+    for key in ('version','image_id','image'):
+        if b.get(key)!=DEFAULT['bds'][key]:raise ValueError(f'BDS {key} must match the verified pin')
+    from .verification import validate_bds_pins
+    validate_bds_pins(cfg)
+    _integer(b.get('cpus'),4,4,'BDS CPUs');_integer(b.get('verification_budget'),0,10000,'verification_budget')
+    if b.get('memory_gib')!=6:raise ValueError('Tested BDS allocation requires exactly 6 GiB memory')
+    return cfg

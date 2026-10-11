@@ -110,17 +110,18 @@ def test_round_robin_budget_retains_each_enabled_landscape_type():
 def test_review_requires_stronghold_and_does_not_require_bastion_or_mountains_for_ocean():
     cfg,h=load_config();scans={t:{'raw':[],'viable':[]} for t in STRUCTURES};rows,_=at_center(scans,(0,0),cfg)
     candidate={'seed':'12853964','center':[0,0],'landscape_type':'ocean_island','structures':rows,'actual_minecraft':None}
+    half=cfg['deployment']['overworld_side_blocks']//2;nh=cfg['deployment']['nether_side_blocks']//2
     r={'source_kind':'fresh_chunkbase_browser_UI','source_url':'https://www.chunkbase.com/apps/seed-map',
        'version':'Bedrock 26.50 - 26.52','recorded_at':'test','browser_evidence':['synthetic-test-only'],
        'seed':'12853964','center':[0,0],'config_sha256':h,'landscape_type':'ocean_island',
        'terrain_enabled':True,'dimensions_checked':['overworld','nether'],
        'island_separated':True,'ocean_setting':True,'nearby_wood_abundant':True,'buildability':True,
-       'mountain_setting':False,'structures':{'stronghold':[[1504,1504]],'fortress':[[496,496]],'bastion':[]}}
+       'mountain_setting':False,'structures':{'stronghold':[[half,half]],'fortress':[[nh,nh]],'bastion':[]}}
     supported=apply_review(candidate,[r],cfg,h)
     assert supported['selection_status']=='chunkbase_supported_candidate' and supported['actual_minecraft'] is None
     assert supported['structures']['stronghold']['confirmed_required_eligible']
     assert not supported['structures']['bastion']['confirmed_required_eligible']
-    r['structures']['stronghold']=[[1505,1504]]
+    r['structures']['stronghold']=[[half+1,half]]
     assert apply_review(candidate,[r],cfg,h)['selection_status']=='chunkbase_checked_near_miss_or_unresolved'
     del r['structures']['stronghold']
     with pytest.raises(ValueError,match='stronghold'):validate_review(r,cfg)
@@ -195,7 +196,7 @@ def test_expanded_real_checkpoint_resume_matches_worker_variation(tmp_path):
     run_search(cfg,h,tmp_path/'split',count=2,workers=2,resume=True)
     def predictions(path):
         s=Store(path,resume=True);rows=s.results();s.close()
-        return [{k:v for k,v in row.items() if k not in ('worker_pid','worker_peak_rss_mb','stage_seconds','total_seconds')} for row in rows]
+        return [{k:v for k,v in row.items() if k not in ('worker_pid','worker_peak_rss_mb','stage_seconds','total_seconds','native_work','worker_cpu_seconds')} for row in rows]
     assert predictions(tmp_path/'full')==predictions(tmp_path/'split')
     assert any(r['candidates'] for r in predictions(tmp_path/'full'))
     changed=copy.deepcopy(cfg);changed['nether']['optional_bastion_proximity_weight']=.1

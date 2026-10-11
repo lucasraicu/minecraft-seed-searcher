@@ -1,0 +1,362 @@
+{
+  "rows": [
+    {
+      "variant": "optimized",
+      "seed": "-1",
+      "workload": "height1",
+      "seconds": [
+        0.40751976997125894,
+        0.4054021439515054,
+        0.4076249989448115
+      ],
+      "median_seconds": 0.40751976997125894
+    },
+    {
+      "variant": "optimized",
+      "seed": "-1",
+      "workload": "height8",
+      "seconds": [
+        0.4206477740081027,
+        0.41692812310066074,
+        0.41447304899338633
+      ],
+      "median_seconds": 0.41692812310066074
+    },
+    {
+      "variant": "optimized",
+      "seed": "-1",
+      "workload": "land_dense",
+      "seconds": [
+        0.02265164104755968,
+        0.0230422600870952,
+        0.022294975933618844
+      ],
+      "median_seconds": 0.02265164104755968
+    },
+    {
+      "variant": "optimized",
+      "seed": "-1",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.024776958976872265,
+        0.024773698998615146,
+        0.023284833994694054
+      ],
+      "median_seconds": 0.024773698998615146
+    },
+    {
+      "variant": "optimized",
+      "seed": "-1",
+      "workload": "land_unique",
+      "seconds": [
+        0.024505111970938742,
+        0.023289036005735397,
+        0.022441987064667046
+      ],
+      "median_seconds": 0.023289036005735397
+    },
+    {
+      "variant": "optimized",
+      "seed": "12345",
+      "workload": "height1",
+      "seconds": [
+        0.392489701975137,
+        0.39238866593223065,
+        0.3953326280461624
+      ],
+      "median_seconds": 0.392489701975137
+    },
+    {
+      "variant": "optimized",
+      "seed": "12345",
+      "workload": "height8",
+      "seconds": [
+        0.3990350980311632,
+        0.40131561493035406,
+        0.39997202903032303
+      ],
+      "median_seconds": 0.39997202903032303
+    },
+    {
+      "variant": "optimized",
+      "seed": "12345",
+      "workload": "land_dense",
+      "seconds": [
+        0.022525510983541608,
+        0.023004775983281434,
+        0.02249003096949309
+      ],
+      "median_seconds": 0.022525510983541608
+    },
+    {
+      "variant": "optimized",
+      "seed": "12345",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.023929391987621784,
+        0.02826846402604133,
+        0.02475470199715346
+      ],
+      "median_seconds": 0.02475470199715346
+    },
+    {
+      "variant": "optimized",
+      "seed": "12345",
+      "workload": "land_unique",
+      "seconds": [
+        0.023070032009854913,
+        0.02263139991555363,
+        0.023047767928801477
+      ],
+      "median_seconds": 0.023047767928801477
+    },
+    {
+      "variant": "optimized",
+      "seed": "4294979641",
+      "workload": "height1",
+      "seconds": [
+        0.3441525310045108,
+        0.34599971293937415,
+        0.3537564480211586
+      ],
+      "median_seconds": 0.34599971293937415
+    },
+    {
+      "variant": "optimized",
+      "seed": "4294979641",
+      "workload": "height8",
+      "seconds": [
+        0.35552475694566965,
+        0.35431550699286163,
+        0.3601317279972136
+      ],
+      "median_seconds": 0.35552475694566965
+    },
+    {
+      "variant": "optimized",
+      "seed": "4294979641",
+      "workload": "land_dense",
+      "seconds": [
+        0.0026458330685272813,
+        0.002410591929219663,
+        0.0024272820446640253
+      ],
+      "median_seconds": 0.0024272820446640253
+    },
+    {
+      "variant": "optimized",
+      "seed": "4294979641",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.0032968700397759676,
+        0.0030860549304634333,
+        0.0031899349996820092
+      ],
+      "median_seconds": 0.0031899349996820092
+    },
+    {
+      "variant": "optimized",
+      "seed": "4294979641",
+      "workload": "land_unique",
+      "seconds": [
+        0.0022323670564219356,
+        0.0023846030235290527,
+        0.0023746269289404154
+      ],
+      "median_seconds": 0.0023746269289404154
+    },
+    {
+      "variant": "reference",
+      "seed": "-1",
+      "workload": "height1",
+      "seconds": [
+        1.4132814049953595,
+        1.4210808790521696,
+        1.3925088769756258
+      ],
+      "median_seconds": 1.4132814049953595
+    },
+    {
+      "variant": "reference",
+      "seed": "-1",
+      "workload": "height8",
+      "seconds": [
+        0.4359118730062619,
+        0.4462602160638198,
+        0.4334638819564134
+      ],
+      "median_seconds": 0.4359118730062619
+    },
+    {
+      "variant": "reference",
+      "seed": "-1",
+      "workload": "land_dense",
+      "seconds": [
+        1.3059303150512278,
+        1.2732623789925128,
+        1.2760192250134423
+      ],
+      "median_seconds": 1.2760192250134423
+    },
+    {
+      "variant": "reference",
+      "seed": "-1",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.08182283397763968,
+        0.07945262908469886,
+        0.08120964304544032
+      ],
+      "median_seconds": 0.08120964304544032
+    },
+    {
+      "variant": "reference",
+      "seed": "-1",
+      "workload": "land_unique",
+      "seconds": [
+        0.07919165806379169,
+        0.08002222899813205,
+        0.0782849199604243
+      ],
+      "median_seconds": 0.07919165806379169
+    },
+    {
+      "variant": "reference",
+      "seed": "12345",
+      "workload": "height1",
+      "seconds": [
+        1.3456484539201483,
+        1.333578969934024,
+        1.3457831190899014
+      ],
+      "median_seconds": 1.3456484539201483
+    },
+    {
+      "variant": "reference",
+      "seed": "12345",
+      "workload": "height8",
+      "seconds": [
+        0.423148290021345,
+        0.41323174198623747,
+        0.40995689609553665
+      ],
+      "median_seconds": 0.41323174198623747
+    },
+    {
+      "variant": "reference",
+      "seed": "12345",
+      "workload": "land_dense",
+      "seconds": [
+        1.2804689049953595,
+        1.2787937599932775,
+        1.2594387750141323
+      ],
+      "median_seconds": 1.2787937599932775
+    },
+    {
+      "variant": "reference",
+      "seed": "12345",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.08287414303049445,
+        0.08113577007316053,
+        0.08178936305921525
+      ],
+      "median_seconds": 0.08178936305921525
+    },
+    {
+      "variant": "reference",
+      "seed": "12345",
+      "workload": "land_unique",
+      "seconds": [
+        0.07877563708461821,
+        0.07874865003395826,
+        0.08031945500988513
+      ],
+      "median_seconds": 0.07877563708461821
+    },
+    {
+      "variant": "reference",
+      "seed": "4294979641",
+      "workload": "height1",
+      "seconds": [
+        1.1707152570597827,
+        1.159368944936432,
+        1.1531408390728757
+      ],
+      "median_seconds": 1.159368944936432
+    },
+    {
+      "variant": "reference",
+      "seed": "4294979641",
+      "workload": "height8",
+      "seconds": [
+        0.3763836839934811,
+        0.3662389609962702,
+        0.36588542396202683
+      ],
+      "median_seconds": 0.3662389609962702
+    },
+    {
+      "variant": "reference",
+      "seed": "4294979641",
+      "workload": "land_dense",
+      "seconds": [
+        0.08095382305327803,
+        0.07641385705210268,
+        0.07591319596394897
+      ],
+      "median_seconds": 0.07641385705210268
+    },
+    {
+      "variant": "reference",
+      "seed": "4294979641",
+      "workload": "land_python_cache",
+      "seconds": [
+        0.0067155989818274975,
+        0.005937010981142521,
+        0.005900994990952313
+      ],
+      "median_seconds": 0.005937010981142521
+    },
+    {
+      "variant": "reference",
+      "seed": "4294979641",
+      "workload": "land_unique",
+      "seconds": [
+        0.0058083339827135205,
+        0.004855446983128786,
+        0.005112265003845096
+      ],
+      "median_seconds": 0.005112265003845096
+    }
+  ],
+  "summary": {
+    "land_dense": {
+      "reference": 2.6312268420588225,
+      "optimized": 0.04760443407576531,
+      "speedup": 55.27272602109012
+    },
+    "land_unique": {
+      "reference": 0.163079560152255,
+      "optimized": 0.04871143086347729,
+      "speedup": 3.3478704538430692
+    },
+    "land_python_cache": {
+      "reference": 0.16893601708579808,
+      "optimized": 0.052718335995450616,
+      "speedup": 3.2045020749588264
+    },
+    "height8": {
+      "reference": 1.2153825759887695,
+      "optimized": 1.1724249090766534,
+      "speedup": 1.0366400155605253
+    },
+    "height1": {
+      "reference": 3.9182988038519397,
+      "optimized": 1.14600918488577,
+      "speedup": 3.4190815008542024
+    }
+  },
+  "scope": "Three seeds, three alternating trials; no whole-search speedup implied"
+}

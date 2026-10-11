@@ -1,0 +1,38 @@
+{
+  "status": "recommendation_only; production configuration unchanged",
+  "initial_discovery": {
+    "overworld_side_blocks": 4000,
+    "nether_side_blocks": 4000,
+    "bounds_each": [
+      -2000,
+      -2000,
+      2000,
+      2000
+    ]
+  },
+  "full_terrain_target": {
+    "overworld_side_blocks": 2688,
+    "nether_side_blocks": 1280
+  },
+  "compact_alternative": {
+    "overworld_side_blocks": 2048,
+    "nether_side_blocks": 1280
+  },
+  "centering": {
+    "overworld": "Stronghold",
+    "nether": "exact Stronghold coordinates divided by 8"
+  },
+  "required_nether_structures": [
+    "fortress",
+    "bastion"
+  ],
+  "terrain_status": "No strict finest-resolution complete-within V1 or V2 matches found in the bounded pilot; optimal border size remains unresolved.",
+  "reason": "Retain the most structural opportunities and room for the full terrain target; Nether 1280 improved qualifying-layout throughput at every tested Overworld size.",
+  "compact_tradeoff": {
+    "baseline_throughput_increase_percent": 50.61734491623695,
+    "qualifying_layout_throughput_increase_percent": 8.179793101251388,
+    "retained_qualifying_layouts_percent": 71.82425978987584,
+    "overworld_area_reduction_percent": 41.95011337868482
+  },
+  "promotion_condition": "A selected candidate meets the complete-within finest terrain target with adequate refinement and actual Bedrock validation; this pilot does not clear sweep-readiness blockers."
+}

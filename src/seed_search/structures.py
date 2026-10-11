@@ -29,9 +29,9 @@ def nether_center(center):
     return (center[0]//8,center[1]//8)
 
 def envelope_bounds(cfg):
-    lo,hi=cfg['search']['center_axis_bounds_blocks']; h=1504
+    lo,hi=cfg['search']['center_axis_bounds_blocks']; h=cfg['deployment']['overworld_side_blocks']//2
     ob=(lo-h,lo-h,hi+h,hi+h)
-    nb=(math.floor(lo/8)-496,math.floor(lo/8)-496,math.ceil(hi/8)+496,math.ceil(hi/8)+496)
+    nb=(math.floor(lo/8)-cfg['deployment']['nether_side_blocks']//2,math.floor(lo/8)-cfg['deployment']['nether_side_blocks']//2,math.ceil(hi/8)+cfg['deployment']['nether_side_blocks']//2,math.ceil(hi/8)+cfg['deployment']['nether_side_blocks']//2)
     return ob,nb
 
 def scan_type(backend,cfg,name):
@@ -47,7 +47,7 @@ def scan_envelope(backend, cfg, initial=None):
         if name not in result:result[name]=scan_type(backend,cfg,name)
     return result
 
-def possible_required_centers(scans,cfg,center_box):
+def required_center_boxes(scans,cfg,center_box,placement='raw'):
     """Intersection of axis-aligned center windows, with exact eight-block snapping.
 
     False means no *predicted* joint placement, never proof of absent Stronghold.
@@ -55,9 +55,9 @@ def possible_required_centers(scans,cfg,center_box):
     """
     required=required_types(cfg);boxes=[center_box]
     for typ in required:
-        scale,half=(8,496) if typ in NETHER else (1,1504)
+        scale,half=(8,cfg['deployment']['nether_side_blocks']//2) if typ in NETHER else (1,cfg['deployment']['overworld_side_blocks']//2)
         windows=[((p[0]-half)*scale,(p[1]-half)*scale,(p[0]+half)*scale,(p[1]+half)*scale)
-                 for p in scans[typ]['raw']]
+                 for p in scans[typ][placement]]
         next_boxes=[]
         for a in boxes:
             for b in windows:
@@ -65,14 +65,30 @@ def possible_required_centers(scans,cfg,center_box):
                 if math.ceil(x0/8)*8<=x1 and math.ceil(z0/8)*8<=z1:
                     next_boxes.append((x0,z0,x1,z1))
         boxes=next_boxes
-        if not boxes:return False
-    return True
+        if not boxes:return []
+    return sorted(set(boxes))
+
+def possible_required_centers(scans,cfg,center_box):
+    return bool(required_center_boxes(scans,cfg,center_box))
+
+def structure_centers(scans,cfg):
+    """Deterministic bounded centers from joint viable windows; no terrain gate."""
+    lo,hi=cfg['search']['center_axis_bounds_blocks'];boxes=required_center_boxes(scans,cfg,(lo,lo,hi,hi),'viable')
+    centers=set()
+    for x0,z0,x1,z1 in boxes:
+        x0=math.ceil(x0/8)*8;z0=math.ceil(z0/8)*8;x1=math.floor(x1/8)*8;z1=math.floor(z1/8)*8
+        # Midpoints, corners and Stronghold-centered proposals remain feasible.
+        xs={x0,x1,((x0+x1)//16)*8};zs={z0,z1,((z0+z1)//16)*8}
+        for p in scans['stronghold']['viable']:
+            xs.add(min(x1,max(x0,round(p[0]/8)*8)));zs.add(min(z1,max(z0,round(p[1]/8)*8)))
+        centers.update((x,z) for x in xs for z in zs)
+    return sorted(centers)
 
 def at_center(scans,center,cfg):
     nc=nether_center(center); result={}
     for name in STRUCTURES:
         reference=nc if name in NETHER else center
-        bounds=square(reference,992 if name in NETHER else 3008)
+        bounds=square(reference,cfg['deployment']['nether_side_blocks' if name in NETHER else 'overworld_side_blocks'])
         raw=[p for p in scans[name]['raw'] if inside(p,bounds)]
         viable=[p for p in scans[name]['viable'] if inside(p,bounds)]
         rejected=[p for p in raw if p not in viable]

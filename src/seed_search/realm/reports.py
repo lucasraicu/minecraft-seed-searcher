@@ -1,0 +1,385 @@
+"""Streaming full candidate exports and independently ranked variant views."""
+import csv
+import json
+import copy
+from contextlib import contextmanager
+import fcntl
+import hashlib
+import os
+from pathlib import Path
+import shutil
+import sqlite3
+import time
+import uuid
+
+from .store import canonical
+
+
+def _ranked(store, variant='baseline', limit=20):
+    if variant=='baseline':
+        sql="SELECT result FROM candidates ORDER BY CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 ELSE 2 END, COALESCE(CAST(json_extract(result,'$.baseline_score') AS REAL), (CAST(json_extract(result,'$.baseline_score_uncertainty.prediction_score_interval[0]') AS REAL)+CAST(json_extract(result,'$.baseline_score_uncertainty.prediction_score_interval[1]') AS REAL))/2) DESC,id LIMIT ?"
+    elif variant in ('v1','v2'):
+        # Only a complete score with verified weighted components replaces prediction.
+        actual="json_extract(result,'$.result.actual_evaluation.score_verified_complete')=1"
+        sql=f"""SELECT result FROM variants WHERE variant=? ORDER BY
+            CASE WHEN {actual} OR json_extract(result,'$.result.score_verified_complete')=1 THEN 0
+                 WHEN json_extract(result,'$.result.evidence')='PREDICTED' THEN 1 ELSE 2 END,
+            CASE WHEN {actual} THEN CASE json_extract(result,'$.result.actual_evaluation.geometry_pass') WHEN 1 THEN 0 ELSE 1 END
+                 ELSE CASE json_extract(result,'$.result.geometry_pass') WHEN 1 THEN 0 ELSE 1 END END,
+            CASE WHEN {actual} THEN CAST(json_extract(result,'$.result.actual_evaluation.score') AS REAL)
+                 ELSE CAST(json_extract(result,'$.result.score') AS REAL) END DESC,candidate_id,center LIMIT ?"""
+        rows=[json.loads(r[0]) for r in store.db.execute(sql,(variant,limit))]
+        for row in rows:
+            result=row['result'];generated=result.get('actual_evaluation',{})
+            row['ranking_view']='verified' if generated.get('score_verified_complete') or result.get('score_verified_complete') else 'prediction' if result.get('score_generation_source')!='actual' else 'actual_partial'
+            row['ranking_result']=generated if generated.get('score_verified_complete') else result
+        return rows
+    else:raise ValueError('Results variant must be baseline, v1 or v2')
+    rows=[json.loads(r[0]) for r in store.db.execute(sql,(limit,))]
+    for row in rows:
+        row['ranking_view']='complete_predictor_score' if row.get('baseline_score_complete',True) else 'provisional_interval_midpoint; inventory pending'
+    return rows
+
+
+def _export_files(store, root, output):
+    counts={}
+    for variant in ('baseline','v1','v2'):
+        rows=store.iter_candidates() if variant=='baseline' else store.iter_variants(variant=variant)
+        # JSONL preserves all nested evidence; CSV contains independently useful summaries.
+        fields=['candidate_id','seed','stronghold','variant','center','qualification','data_status',
+                'score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
+                'surface_wooded_requirement','surface_wooded_families','surface_bonus_interval','raw_record']
+        with (root/f'{variant}.jsonl').open('w') as js,(root/f'{variant}.csv').open('w',newline='') as csvfile:
+            writer=csv.DictWriter(csvfile,fieldnames=fields);writer.writeheader();n=0
+            for row in rows:
+                record=row.get('result',row)
+                cid=row.get('candidate_id',row.get('id'))
+                if variant!='baseline':
+                    candidate=json.loads(store.db.execute('SELECT result FROM candidates WHERE id=?',(cid,)).fetchone()[0])
+                    row={**row,'baseline':candidate}
+                else:candidate=row
+                surface=candidate.get('surface_biome_verification',{})
+                surface_classification=surface.get('classification',{})
+                encoded=json.dumps(row,allow_nan=False,separators=(',',':'))
+                js.write(encoded+'\n')
+                writer.writerow({'candidate_id':cid,'seed':candidate['seed'],'stronghold':json.dumps(candidate['stronghold']),
+                                 'variant':variant,'center':json.dumps(record.get('center')),
+                                 'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
+                                 'score':record.get('score',record.get('baseline_score')),
+                                 'score_status':record.get('baseline_score_status',record.get('score_component_status')),
+                                 'inventory_status':candidate.get('inventory',{}).get('status','legacy'),
+                                 'predicted_score':record.get('predicted_score'),
+                                 'actual_partial_score':record.get('actual_partial_score'),'verified_score':record.get('verified_score'),'geometry_score':record.get('geometry_score'),
+                                 'border_fit':json.dumps(record.get('border_fit')),
+                                 'final_nether_status':candidate.get('final_nether_status'),
+                                 'surface_wooded_requirement':surface.get('wooded_requirement'),
+                                 'surface_wooded_families':json.dumps(surface_classification.get('wooded_families',[])),
+                                 'surface_bonus_interval':json.dumps(surface_classification.get('uncertainty',{}).get('actual_generation_score_interval')),
+                                 'raw_record':encoded})
+                n+=1
+        counts[variant]=n
+    summary={'status':store.status(),'exported_records':counts,'output':str(output.resolve())}
+    (root/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+    lines=['Realm candidate results','',f"Distinct full64 inputs committed: {summary['status']['completed_seeds']}",
+           'Predictions and unknown evidence remain separate from actual-generation verification.','']
+    for variant in ('baseline','v1','v2'):
+        lines.append(f'{variant}: {counts[variant]} saved records')
+        for row in _ranked(store,variant,10):
+            r=row.get('ranking_result',row.get('result',row))
+            lines.append(f"- {row.get('candidate_id',row.get('id'))}: {r.get('qualification')}; score {r.get('score',r.get('baseline_score'))}; border {r.get('border_fit','not evaluated')}")
+            if variant=='baseline' and row.get('surface_biome_verification'):
+                surface=row['surface_biome_verification']
+                lines.append(f"  Actual surface wooded requirement: {surface['wooded_requirement']}; families {', '.join(surface['classification']['wooded_families'])}; point samples cannot establish absence.")
+        lines.append('')
+    (root/'SUMMARY.md').write_text('\n'.join(lines)+'\n')
+    return summary
+
+
+
+def ensure_score_revision_complete(store):
+    """Reject mixed-score views while a bounded rescore revision remains incomplete."""
+    revision=store.get_state('rescore_revision')
+    if revision and revision.get('status')!='complete':
+        raise ValueError('Incomplete score revision; resume rescore with its saved policy before ranking, export or generation')
+
+
+@contextmanager
+def _read_snapshot(store):
+    snapshot=copy.copy(store)
+    snapshot.db=sqlite3.connect((store.run/'realm.sqlite').resolve().as_uri()+'?mode=ro',uri=True)
+    try:
+        snapshot.db.execute('BEGIN')
+        ensure_score_revision_complete(snapshot)
+        yield snapshot
+    finally:
+        snapshot.db.close()
+
+
+@contextmanager
+def _rescore_lock(store):
+    with (store.run/'.realm-scan.lock').open('a+') as lock:
+        try:
+            fcntl.flock(lock.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise ValueError('Another scanner or rescore owns this run') from exc
+        try:
+            yield
+        finally:
+            fcntl.flock(lock.fileno(),fcntl.LOCK_UN)
+
+
+def ranked(store, variant='baseline', limit=20):
+    with _read_snapshot(store) as snapshot:
+        return _ranked(snapshot,variant,limit)
+
+
+def _fsync_directory(path):
+    fd=os.open(path,os.O_RDONLY)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
+def _sync_file(path):
+    with path.open('rb') as handle:
+        os.fsync(handle.fileno())
+
+
+def _write_manifest(generation, metadata):
+    files={}
+    for path in sorted(generation.iterdir()):
+        if path.is_file() and path.name!='manifest.json':
+            digest=hashlib.sha256()
+            with path.open('rb') as handle:
+                for chunk in iter(lambda:handle.read(1<<20),b''):
+                    digest.update(chunk)
+            files[path.name]={'bytes':path.stat().st_size,'sha256':digest.hexdigest()}
+            _sync_file(path)
+    manifest={**metadata,'files':files}
+    (generation/'manifest.json').write_text(json.dumps(manifest,indent=2,allow_nan=False)+'\n')
+    _sync_file(generation/'manifest.json')
+    _fsync_directory(generation)
+    return manifest
+
+
+def _publish_pointer(root,generation):
+    temporary=root/f'.current-{uuid.uuid4().hex}'
+    try:
+        temporary.symlink_to(generation.relative_to(root),target_is_directory=True)
+        os.replace(temporary,root/'current')
+        _fsync_directory(root)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+EXPORT_FILES=('baseline.jsonl','baseline.csv','v1.jsonl','v1.csv','v2.jsonl','v2.csv','summary.json','SUMMARY.md','manifest.json')
+
+
+def _prepare_compatibility_paths(root):
+    """Migrate prior flat exports without changing their bytes before publication."""
+    current=root/'current'
+    old=[root/name for name in EXPORT_FILES if (root/name).is_file() and not (root/name).is_symlink()]
+    if old:
+        legacy=root/'.generations'/f'legacy-{uuid.uuid4().hex}'
+        legacy.mkdir()
+        # A partial earlier migration has links to current; copy that complete view too.
+        for name in EXPORT_FILES:
+            source=root/name
+            if source.is_file():
+                shutil.copyfile(source,legacy/name)
+        if not (legacy/'manifest.json').exists():
+            _write_manifest(legacy,{'generation':legacy.name,'kind':'legacy-export-migration'})
+        else:
+            for path in legacy.iterdir():
+                _sync_file(path)
+            _fsync_directory(legacy)
+        _publish_pointer(root,legacy)
+    for name in EXPORT_FILES:
+        destination=root/name
+        target=Path('current')/name
+        if destination.is_symlink() and os.readlink(destination)==str(target):
+            continue
+        temporary=root/f'.alias-{uuid.uuid4().hex}'
+        try:
+            temporary.symlink_to(target)
+            os.replace(temporary,destination)
+        finally:
+            temporary.unlink(missing_ok=True)
+    _fsync_directory(root)
+
+
+@contextmanager
+def _export_lock(root):
+    with (root/'.export.lock').open('a+') as lock:
+        try:
+            fcntl.flock(lock.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise ValueError('Another export owns this output directory') from exc
+        try:
+            yield
+        finally:
+            fcntl.flock(lock.fileno(),fcntl.LOCK_UN)
+
+
+def export(store, output=None):
+    """Publish one immutable complete export generation through an atomic pointer.
+
+    Stable root paths resolve through current; multi-file consumers must resolve
+    current once and read the pinned generation to avoid crossing a later switch.
+    """
+    root=Path(output or store.run/'results').resolve()
+    root.mkdir(parents=True,exist_ok=True)
+    with _export_lock(root):
+        return _export_generation(store,root)
+
+
+def _export_generation(store,root):
+    generations=root/'.generations';generations.mkdir(exist_ok=True)
+    generation=generations/f'export-{uuid.uuid4().hex}'
+    generation.mkdir()
+    try:
+        with _read_snapshot(store) as snapshot:
+            summary=_export_files(snapshot,generation,root)
+            summary['generation']=generation.name
+            summary['generation_path']=str(generation)
+            (generation/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')
+            if not all((generation/name).is_file() for name in EXPORT_FILES if name!='manifest.json'):
+                raise ValueError('Export generation is missing required files')
+            revision=snapshot.get_state('rescore_revision')
+            identity=snapshot.get_state('identity')
+            _write_manifest(generation,{'generation':generation.name,'kind':'complete-export','status':'complete',
+                'created_at':time.time(),'score_revision':revision,'source_identity_sha256':hashlib.sha256(canonical(identity).encode()).hexdigest(),
+                'exported_records':summary['exported_records'],'completed_seeds':summary['status']['completed_seeds']})
+        _fsync_directory(generations)
+        _prepare_compatibility_paths(root)
+        _publish_pointer(root,generation)
+        return summary
+    except BaseException:
+        # Complete-but-unpublished generations are safe to retain for inspection.
+        # Incomplete staging directories are never made current.
+        raise
+
+
+def _candidate_rescore(candidate,policy,revision_id):
+    from .biomes import classify
+    from .baseline import baseline_score_uncertainty
+    if candidate.get('biomes'):
+        evidence=candidate['biomes'].get('uncertainty',{})
+        detection=classify(candidate['biomes']['raw_names'],policy['biomes'],
+                           complete=evidence.get('exhaustive_verified') is True,
+                           verified=evidence.get('domain')=='actual_generated_surface')
+        candidate['biomes'].update({k:detection[k] for k in ('wooded_bonus','family_bonuses','variant_bonuses','surface_bonus','score','uncertainty')})
+        observed_score=detection['score']+sum(policy['structures']['optional_bonuses'].get(k,0) for k,v in candidate['optional_structures'].items() if v.get('predicted_viable'))
+        candidate['baseline_score_observed']=observed_score
+        candidate['baseline_score']=observed_score if candidate.get('baseline_score_complete',True) else None
+        for key,observation in candidate['optional_structures'].items():
+            observation['bonus']=policy['structures']['optional_bonuses'].get(key,0) if observation.get('predicted_viable') else 0
+    candidate['baseline_score_uncertainty']=baseline_score_uncertainty(candidate.get('biomes'),candidate.get('optional_structures',{}),policy,candidate.get('pending_reasons',[]))
+    surface=candidate.get('surface_biome_verification')
+    if surface and surface.get('classification'):
+        detected=surface['classification']
+        # Keep actual point evidence separate from the predictor baseline score.
+        surface['classification']=classify(detected['raw_names'],policy['biomes'],complete=False,
+                                            verified=detected.get('uncertainty',{}).get('domain')=='actual_generated_surface')
+        surface['wooded_requirement']=surface['classification']['qualification']
+        surface['score_revision']=revision_id
+    candidate['score_revision']=revision_id
+    return candidate
+
+
+def _variant_rescore(wrapper,candidate,policy,revision_id):
+    from .terrain import apply_score_policy,attach_actual_evaluation
+    result=wrapper['result']
+    result['baseline_quality']=min(100,max(0,100*(candidate.get('baseline_score') if candidate.get('baseline_score') is not None else candidate.get('baseline_score_observed',0))/policy['scoring']['baseline_quality_cap']))
+    apply_score_policy(result,policy['scoring'],component_status={'baseline_quality':candidate.get('qualification','PENDING') if candidate.get('baseline_score_complete',True) else 'PARTIAL'})
+    if result.get('actual_evaluation'):
+        actual=result['actual_evaluation']
+        actual['baseline_quality']=result['baseline_quality']
+        apply_score_policy(actual,policy['scoring'],source='actual',component_status={'baseline_quality':candidate.get('qualification','PENDING') if candidate.get('baseline_score_complete',True) else 'PARTIAL'})
+        attach_actual_evaluation(result,actual,policy['scoring'])
+    result['rescore_policy']=dict(policy['scoring'])
+    result['score_revision']=revision_id
+    return wrapper
+
+
+def _validate_rescore_policy(store,policy):
+    from .config import validate_config
+    validate_config(policy)
+    old=copy.deepcopy(store.identity['config']);new=copy.deepcopy(policy)
+    for cfg in (old,new):
+        cfg.pop('scoring',None)
+        for section,key in (('structures','optional_bonuses'),('biomes','family_bonuses'),('biomes','variant_bonuses')):
+            cfg[section].pop(key,None)
+    if old!=new:
+        raise ValueError('Rescore may change bonus weights and score weights; generation or eligibility settings require a separate run')
+
+
+def rescore(store, policy, *, batch_size=256, progress=None):
+    """Bounded generation-free rescore; restart the same policy to finish its revision."""
+    if isinstance(batch_size,bool) or not isinstance(batch_size,int) or not 1<=batch_size<=4096:
+        raise ValueError('Rescore batch_size must be between 1 and 4096')
+    if store.db.in_transaction:
+        raise ValueError('Finish the caller transaction before starting rescore')
+    _validate_rescore_policy(store,policy)
+    policy=copy.deepcopy(policy)
+    policy_hash=hashlib.sha256(canonical(policy).encode()).hexdigest()
+    with _rescore_lock(store):
+        revision=store.get_state('rescore_revision')
+        if revision and revision.get('status')!='complete':
+            if revision['policy_sha256']!=policy_hash:
+                raise ValueError('Another score revision is incomplete; resume its saved policy first')
+        else:
+            number=(revision or {}).get('number',0)+1
+            revision={'id':f'{number}-{policy_hash[:16]}','number':number,'status':'running','phase':'candidates',
+                      'candidate_cursor':'','variant_cursor':['','',''],'policy':policy,'policy_sha256':policy_hash,
+                      'rescored_candidates':0,'rescored_variants':0}
+            store.set_state('rescore_revision',revision)
+        while revision['phase']=='candidates':
+            rows=store.db.execute('SELECT id,result FROM candidates WHERE id>? ORDER BY id LIMIT ?',
+                                  (revision['candidate_cursor'],batch_size)).fetchall()
+            if not rows:
+                revision={**revision,'phase':'variants'}
+                store.set_state('rescore_revision',revision)
+                break
+            updated=[]
+            count=0
+            for cid,payload in rows:
+                candidate=json.loads(payload)
+                count+=int(bool(candidate.get('biomes')))
+                updated.append((canonical(_candidate_rescore(candidate,policy,revision['id'])),cid))
+            next_revision={**revision,'candidate_cursor':rows[-1][0],
+                           'rescored_candidates':revision['rescored_candidates']+count}
+            with store.db:
+                store.db.executemany('UPDATE candidates SET result=? WHERE id=?',updated)
+                store._set('rescore_revision',next_revision)
+            revision=next_revision
+            if progress:
+                progress(copy.deepcopy(revision))
+        while revision['phase']=='variants':
+            rows=store.db.execute('SELECT candidate_id,variant,center,result FROM variants WHERE (candidate_id,variant,center)>(?,?,?) ORDER BY candidate_id,variant,center LIMIT ?',
+                                  (*revision['variant_cursor'],batch_size)).fetchall()
+            if not rows:
+                break
+            updated=[]
+            for cid,variant,center,payload in rows:
+                candidate=store.get_candidate(cid)
+                wrapper=_variant_rescore(json.loads(payload),candidate,policy,revision['id'])
+                updated.append((canonical(wrapper),cid,variant,center))
+            next_revision={**revision,'variant_cursor':list(rows[-1][:3]),
+                           'rescored_variants':revision['rescored_variants']+len(rows)}
+            with store.db:
+                store.db.executemany('UPDATE variants SET result=? WHERE candidate_id=? AND variant=? AND center=?',updated)
+                store._set('rescore_revision',next_revision)
+            revision=next_revision
+            if progress:
+                progress(copy.deepcopy(revision))
+        from .terrain import terrain_scoring_identity
+        finished={**revision,'status':'complete','phase':'complete'}
+        with store.db:
+            store._set('score_policy',policy)
+            store._set('rescore_revision',finished)
+            if store.get_state('terrain_scoring_identity') is not None:
+                store._set('terrain_scoring_identity',terrain_scoring_identity(policy))
+        return {'rescored_candidates':finished['rescored_candidates'],'rescored_variants':finished['rescored_variants'],
+                'generation_queries':0,'score_revision':finished['id']}

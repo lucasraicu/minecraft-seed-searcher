@@ -1,0 +1,73 @@
+{
+  "scope": "Correctness follow-up, active unfinished goal; no new seed benchmark or BDS generation",
+  "files": [
+    {
+      "path": "src/seed_search/realm/terrain.py",
+      "sha256": "98f007c39745fb1ee1f3dfdafb0556dbd9c35d42b3ba9e28fbc524013b8dbe89"
+    },
+    {
+      "path": "src/seed_search/realm/raster.py",
+      "sha256": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc"
+    },
+    {
+      "path": "src/seed_search/realm/verification.py",
+      "sha256": "ee7c5f6d8bce49567d336336cdb6e404e1d5523726c16a4794caa35ad2b09a0f"
+    },
+    {
+      "path": "src/seed_search/realm/config.py",
+      "sha256": "770261ec136a3fdeb84f639292633a9710670a91dbe53509e598266e117179ae"
+    },
+    {
+      "path": "src/seed_search/realm/runner.py",
+      "sha256": "46892ced953d623e0b32ce7aa235fe07c8660df8319b7f3eb56ef56b86c476d5"
+    },
+    {
+      "path": "src/seed_search/realm/reports.py",
+      "sha256": "858b23280ad40ea8a1646f4244614c4f72259f5b7483e1fca08639a129e0fb28"
+    },
+    {
+      "path": "src/seed_search/realm/cli.py",
+      "sha256": "bd194ad62e735d460520fd3ebb6bb1b33b2cefe6dd841ee30dcf0bb1f5c285dc"
+    },
+    {
+      "path": "src/seed_search/realm/caves.py",
+      "sha256": "ffb23c47e4c10bafa56da5b8a6d5b6ede903b9bb67e2692de905a386ce7221f1"
+    },
+    {
+      "path": "tests/test_realm_terrain.py",
+      "sha256": "f029570a1d0372626239eb60347907051a3fb3f47f50ee74f418f7ac0f9f1bf3"
+    },
+    {
+      "path": "tests/test_realm_raster_reuse.py",
+      "sha256": "30d761d5088d9d21baba8a052cfbf7760cbaf6db6070bca3e0751bc195ba9d09"
+    },
+    {
+      "path": "tests/test_realm_verification.py",
+      "sha256": "f6149971086765877fb5bce1c4e81780f8f3109c4ed55be8c7bb1c29ec016b9f"
+    },
+    {
+      "path": "tests/test_realm_memory_policy.py",
+      "sha256": "4e5528a5228c80a9e26032ccd2937638f0adbedc9f6a2b462272f8417294b212"
+    },
+    {
+      "path": "tests/test_realm_scores.py",
+      "sha256": "425841a6e8270b5df6c9dba5493d2409cd48092f69d1f3baa4bb221c2b5e9240"
+    },
+    {
+      "path": "tests/test_realm_caves.py",
+      "sha256": "914bed588a4ff8e26f45ee08fbffd9dd3e83596ed18c5b3539bcd1c5f58c779b"
+    }
+  ],
+  "test_artifacts": [
+    "correctness-followup-tests.log",
+    "correctness-followup-full-tests.log"
+  ],
+  "completion_status": "incomplete: further backlog and actual-generation validation remain",
+  "final_regression": {
+    "exit_code": 0,
+    "passed": 290,
+    "seconds": 106.68,
+    "artifact": "correctness-followup-full-tests.log",
+    "scope": "Full available pytest suite, including synthetic Realm controls and existing native-library regressions; no large seed benchmark or BDS generation"
+  }
+}

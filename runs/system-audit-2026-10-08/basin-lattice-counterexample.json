@@ -1,0 +1,43 @@
+{
+  "configuration_accepted": true,
+  "refinement_spacing": 64,
+  "reference_flat": {
+    "dry_connected_fraction": 1.0,
+    "gentle_ground_fraction": 1.0,
+    "inner_height_p90_minus_p10": 0.0,
+    "inner_height_median": 72.0,
+    "flat_ground_preference_met": true,
+    "flat_ground_area_blocks2": 16384,
+    "flat_radius_blocks": 96,
+    "sea_level_safety_margin_blocks": 5,
+    "buildability_evidence": "sampled_density_relief_and_slope; actual ground requires review"
+  },
+  "reference_ring": {
+    "ring_fraction_bounds": [
+      1.0,
+      1
+    ],
+    "ring_dry_connected_fraction": 1.0,
+    "ring_unknown_rays": 0,
+    "ring_preference_met": true,
+    "dry_mountain_basin_preference_met": true,
+    "largest_ring_gap_degrees": 0.0,
+    "ring_height_threshold": 122.0,
+    "ring_median_high_relative_height": 97.0,
+    "ring_median_distance": 320.0
+  },
+  "early_bound": {
+    "impossible": true,
+    "points": 289,
+    "tested_centers": [
+      [
+        0,
+        0
+      ]
+    ],
+    "reason": "dry_or_gentle_upper_bound",
+    "coverage_points": 0
+  },
+  "reference_passes": true,
+  "scope": "Synthetic terrain: accepted nondefault spacing samples different local/full lattices."
+}

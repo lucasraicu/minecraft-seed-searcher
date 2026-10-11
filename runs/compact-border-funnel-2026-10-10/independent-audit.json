@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "distinct_signed_full64_inputs": 1000,
+  "baseline_trials_audited": 70,
+  "candidate_bound_and_filter_checks": 128450,
+  "contiguous_completed_ranges_audited": 2240,
+  "unaltered_eligibility_and_geometry_thresholds": true,
+  "deterministic_terrain_sample_selection": true,
+  "terrain_databases_audited": 42,
+  "eight_center_budget_verified": true,
+  "finest_resolution_center_observations": {
+    "1024": 59,
+    "1280": 42,
+    "1536": 40,
+    "1792": 47,
+    "2048": 53,
+    "2304": 60,
+    "2380": 40
+  },
+  "strict_pass_anchors_by_overworld": {
+    "1024": 0,
+    "1280": 0,
+    "1536": 0,
+    "1792": 0,
+    "2048": 0,
+    "2304": 0,
+    "2380": 0
+  },
+  "public_evaluator_replayed_seeds": 15,
+  "matched_seed_sequence": true,
+  "repeated_memberships": true,
+  "required_structure_memberships_nested": true,
+  "full_baseline_nesting_exceptions": [
+    {
+      "smaller_pair": "ow-2304-nether-1024",
+      "larger_pair": "ow-2380-nether-1024",
+      "candidate_id": "7980124511283784280:772:-1996",
+      "pending_reasons": [
+        "wooded_family_coverage"
+      ],
+      "interpretation": "Changed 64-block biome sample lattice; all required structure predictions still qualify."
+    }
+  ],
+  "biome_lattice_coordinate_replays": 1,
+  "exact_fractional_nether_bounds": true,
+  "stage_funnels_recomputed": true,
+  "production_source_files_unchanged": 191,
+  "actual_generation_verified": false,
+  "artifact_sha256": {
+    "report.json": "ee1eb7216eaf28c41ad81960d276fd656e40ec5b62385f0ec4d426e3bb8b7674",
+    "baseline.json": "ae72dd7fe1edd930bdc80c40f189ab59cb6fc73bfe9dd1e4720130bf0128694a",
+    "selection.json": "950795ee928b7bbe68faa6f13d23ed835732120113e24ff4374a5959274b19d1",
+    "terrain.json": "eb9ddc12f2a2a20f0f94e85144ae7b5ea908c30a710a9e795a2184d859544d93"
+  },
+  "script_sha256": "4565e121d956508589635ef23b92c260d674e537e2398a43e589040fc2b96e2e"
+}

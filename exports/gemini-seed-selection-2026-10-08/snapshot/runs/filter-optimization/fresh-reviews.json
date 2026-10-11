@@ -1,0 +1,203 @@
+[
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-07",
+    "config_sha256": "89414ed421ecc1fd363b1f5ba3c2b0ec1c3e5653918629732050f3cf9f8ef71c",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "ocean_island",
+    "island_separated": true,
+    "ocean_setting": true,
+    "nearby_wood_abundant": true,
+    "actual_minecraft": null,
+    "seed": "12853964",
+    "center": [
+      -416,
+      112
+    ],
+    "review_role": "user_reference_calibration",
+    "buildability": false,
+    "structures": {
+      "stronghold": [
+        [
+          228,
+          -828
+        ]
+      ],
+      "fortress": [
+        [
+          155,
+          11
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/landscape-expansion/chunkbase-reference-island.png",
+      "runs/landscape-expansion/chunkbase-reference-island.txt",
+      "runs/landscape-expansion/chunkbase-stronghold-1.txt",
+      "runs/landscape-expansion/chunkbase-fortress.txt",
+      "runs/landscape-expansion/chunkbase-spawn.txt"
+    ],
+    "notes": "Actual matching-version Terrain shows the isolated snowy mountain circle near predicted spawn0,0, forests and low coastal land. The chosen western forest core is sloped and the central dry caldera floor is too small for our192-block flat-floor preference. The whole island has a longer southern shoreline appendage than local density predicts. Retain as ocean-island reference and checked near miss for buildability, not an ideal flat basin; spawn/blocks/footprints remain predictions.",
+    "original_config_sha256": "80cf31c33db46a374e978fda3f64ffb59a973e5d410ceab758317b3876e3b59e",
+    "optimization_revalidation": "Landscape thresholds, squares and required policy are identical; retained common candidate records compare exactly. Original observations retain their recorded dates and scope."
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-08",
+    "config_sha256": "89414ed421ecc1fd363b1f5ba3c2b0ec1c3e5653918629732050f3cf9f8ef71c",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "ocean_island",
+    "island_separated": true,
+    "ocean_setting": true,
+    "nearby_wood_abundant": true,
+    "actual_minecraft": null,
+    "seed": "12853964",
+    "center": [
+      0,
+      960
+    ],
+    "review_role": "fresh_candidate_review",
+    "buildability": true,
+    "structures": {
+      "stronghold": [
+        [
+          -1292,
+          1396
+        ]
+      ],
+      "fortress": [
+        [
+          155,
+          11
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/landscape-expansion/chunkbase-southern-island.png",
+      "runs/landscape-expansion/chunkbase-southern-island.txt",
+      "runs/landscape-expansion/chunkbase-southern-stronghold.txt",
+      "runs/landscape-expansion/chunkbase-southern-fortress.txt",
+      "runs/filter-optimization/chunkbase-island.txt",
+      "runs/filter-optimization/chunkbase-island.png",
+      "runs/filter-optimization/chunkbase-stronghold.txt",
+      "runs/filter-optimization/chunkbase-fortress.txt"
+    ],
+    "notes": "Actual Terrain shows a separated low southern forest island with gently rolling build ground, abundant same-island/nearby wood and ocean setting. Trees need clearing; open/lightly wooded preference and mountain ring are not met. Height at0,960 is71 on the website. Stronghold and Fortress markers are inside their exact reported squares. Full shoreline details and narrow channels remain prediction-limited; game evidence is absent. Fresh optimization follow-up re-confirms both required markers in matching-version actual UI and the ocean-island control. Prior holdout classification is historical, not a newly blind sample.",
+    "original_config_sha256": "80cf31c33db46a374e978fda3f64ffb59a973e5d410ceab758317b3876e3b59e",
+    "optimization_revalidation": "Landscape thresholds, squares and required policy are identical; retained common candidate records compare exactly. Original observations retain their recorded dates and scope.",
+    "prior_recorded_at": "2026-10-07"
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-08",
+    "config_sha256": "89414ed421ecc1fd363b1f5ba3c2b0ec1c3e5653918629732050f3cf9f8ef71c",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "ocean_island",
+    "island_separated": true,
+    "ocean_setting": true,
+    "nearby_wood_abundant": true,
+    "actual_minecraft": null,
+    "seed": "4294979641",
+    "center": [
+      -2304,
+      -4480
+    ],
+    "review_role": "holdout_candidate_quality",
+    "buildability": true,
+    "structures": {
+      "stronghold": [
+        [
+          -1116,
+          -5324
+        ]
+      ],
+      "fortress": [
+        [
+          -469,
+          -853
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/landscape-expansion/chunkbase-upper-island.png",
+      "runs/landscape-expansion/chunkbase-upper-island.txt",
+      "runs/landscape-expansion/chunkbase-upper-stronghold.txt",
+      "runs/landscape-expansion/chunkbase-upper-fortress.txt",
+      "runs/landscape-expansion/chunkbase-upper-nether.png",
+      "runs/filter-optimization/chunkbase-upper-island.txt",
+      "runs/filter-optimization/chunkbase-upper-island.png",
+      "runs/filter-optimization/chunkbase-upper-stronghold.txt",
+      "runs/filter-optimization/chunkbase-upper-fortress.txt"
+    ],
+    "notes": "Fresh positional holdout at negative coordinates on an upper-bit seed. Terrain shows a compact separated forest island with broad usable gently rolling ground, small raised areas, beach and ocean around it; clearing/leveling is needed and it is not the strict dry flat mountain-basin branch. Nearby mainland forests are visible. Required markers are comfortably inside both squares; Fortress crossing offset is+3,+3 from native(-472,-856), the established coordinate convention. No actual-game/tree/footprint claims. Fresh optimization follow-up re-confirms both required markers in matching-version actual UI and the ocean-island control. Prior holdout classification is historical, not a newly blind sample.",
+    "original_config_sha256": "80cf31c33db46a374e978fda3f64ffb59a973e5d410ceab758317b3876e3b59e",
+    "optimization_revalidation": "Landscape thresholds, squares and required policy are identical; retained common candidate records compare exactly. Original observations retain their recorded dates and scope.",
+    "prior_recorded_at": "2026-10-07"
+  },
+  {
+    "source_kind": "fresh_chunkbase_browser_UI",
+    "source_url": "https://www.chunkbase.com/apps/seed-map",
+    "version": "Bedrock 26.50 - 26.52",
+    "recorded_at": "2026-10-07",
+    "config_sha256": "89414ed421ecc1fd363b1f5ba3c2b0ec1c3e5653918629732050f3cf9f8ef71c",
+    "terrain_enabled": true,
+    "dimensions_checked": [
+      "overworld",
+      "nether"
+    ],
+    "landscape_type": "ocean_island",
+    "island_separated": true,
+    "ocean_setting": true,
+    "nearby_wood_abundant": true,
+    "actual_minecraft": null,
+    "seed": "3471015484745077182",
+    "center": [
+      4432,
+      -2080
+    ],
+    "review_role": "holdout_candidate_quality",
+    "buildability": null,
+    "structures": {
+      "stronghold": [
+        [
+          4020,
+          -1436
+        ]
+      ],
+      "fortress": [
+        [
+          331,
+          -293
+        ]
+      ]
+    },
+    "browser_evidence": [
+      "runs/landscape-expansion/chunkbase-top-island.png",
+      "runs/landscape-expansion/chunkbase-top-island.txt",
+      "runs/landscape-expansion/chunkbase-top-stronghold.txt",
+      "runs/landscape-expansion/chunkbase-top-fortress.txt",
+      "runs/landscape-expansion/chunkbase-top-nether.png"
+    ],
+    "notes": "Top known-score candidate checked independently. Terrain supports a separated forest/birch island with ocean and nearby forested mainland. Required markers are inside the exact squares. Raised uneven ground and heavily wooded build site keep buildability unresolved; not promoted solely because its score is highest. No actual-game evidence.",
+    "original_config_sha256": "80cf31c33db46a374e978fda3f64ffb59a973e5d410ceab758317b3876e3b59e",
+    "optimization_revalidation": "Landscape thresholds, squares and required policy are identical; retained common candidate records compare exactly. Original observations retain their recorded dates and scope."
+  }
+]

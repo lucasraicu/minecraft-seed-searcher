@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from seed_search.storage import Store,backend_identity
 
-IGNORED={'worker_pid','worker_peak_rss_mb','stage_seconds','total_seconds'}
+IGNORED={'worker_pid','worker_peak_rss_mb','stage_seconds','total_seconds','native_work','worker_cpu_seconds'}
 def read(run):
     s=Store(run,resume=True)
     try:return s.identity,s.results()
@@ -43,12 +43,15 @@ if __name__=='__main__':
        'analysis_wall_seconds':sum(v['analysis_wall_seconds'] for v in inv),'report_wall_seconds':sum(v['report_wall_seconds'] for v in inv),
        'effective_seconds_per_seed':total/len(rows),'worker_seed_seconds_mean':float(np.mean([r['total_seconds'] for r in rows])),
        'worker_seed_seconds_percentiles':np.percentile([r['total_seconds'] for r in rows],[0,10,50,90,100]).tolist(),
-       'stage_seconds_summed':stage,'stage_percentages':{k:100*v/sum(stage.values()) for k,v in stage.items()},
+       'stage_seconds_summed':stage,'stage_percentages':{k:100*v/sum(r['total_seconds'] for r in rows) for k,v in stage.items()},
+       'timing_notes':'Percentages use measured summed worker elapsed time. Native-inclusive fields overlap outer stages; structures_only includes its biome inventory. Do not add overlapping percentages.',
        'scored_by_type':{k:sum(r['counts']['scored_by_type'].get(k,0) for r in rows) for k in identity['config']['landscapes']['enabled']},
        'nominated_by_type':{k:sum(r['counts']['nominated_by_type'].get(k,0) for r in rows) for k in identity['config']['landscapes']['enabled']},
        'rejection_reasons':{},'peak_parent_rss_mb':max(v['parent_peak_rss_mb'] for v in inv),'peak_worker_rss_mb':max(v['worker_peak_rss_mb'] for v in inv),
        'decoded_result_mb':deep_size(rows)/1024**2,'actual_worker_counts':[len(v['actual_worker_pids']) for v in inv],
-       'future_2000_naive_hours':total/len(rows)*2000/3600,'limits':'Two invocations include startup and partial plus final exports. First invocation has only five available jobs; second has fifteen jobs and eight workers. Twenty chosen seeds are not an unbiased yield estimate. No basin passed this bounded sample.'}
+       'future_2000_naive_hours':total/len(rows)*2000/3600,
+       'invocation_workloads':[{'completed':v['completed_this_invocation'],'workers_requested':v['workers_requested'],'actual_workers':len(v['actual_worker_pids'])} for v in inv],
+       'limits':'Measured invocations include startup and partial plus final exports. Requested/actual worker counts and completed jobs are recorded per invocation. Twenty chosen controls are not an unbiased yield estimate; category counts are predictions.'}
     for r in rows:
         for v in r['near_misses']:m['rejection_reasons'][v['reason']]=m['rejection_reasons'].get(v['reason'],0)+1
     (root/'pilot-measurements.json').write_text(json.dumps(m,indent=2)+'\n')

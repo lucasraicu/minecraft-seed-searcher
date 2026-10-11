@@ -1,0 +1,391 @@
+- banner:
+  - link "Chunk Base Logo":
+    - /url: /
+    - img "Chunk Base Logo"
+  - list:
+    - link "facebook":
+      - /url: https://www.facebook.com/chunkbase
+      - img "facebook"
+    - link "YouTube":
+      - /url: https://www.youtube.com/@Chunkbase
+      - img "YouTube"
+    - link "Twitter":
+      - /url: https://twitter.com/chunkbase
+      - img "Twitter"
+    - link "Ko-fi":
+      - /url: https://ko-fi.com/chunkbase
+      - img "Ko-fi"
+  - img "Banner"
+  - navigation:
+    - list:
+      - link "Home":
+        - /url: /
+      - link "Apps":
+        - /url: /apps/
+      - link "Mods":
+        - /url: /mods/
+      - link "Tuts":
+        - /url: /tutorials/
+- article:
+  - heading "Seed Map" [level=1]
+  - paragraph:
+    - text: "Last Update:"
+    - time: Oct 6, 2026 (MC 26.3)
+  - region "Notifications Alt+T"
+  - generic: "Seed:"
+  - combobox "Seed:": "12853964"
+  - button "Show recent seeds":
+  - button "Save seed":
+  - textbox: "12853964"
+  - button "Seeds..."
+  - button "Random"
+  - generic: "Version:"
+  - combobox "Version:":
+    - option "Java 26.3"
+    - option "Java 26.3 (LB)"
+    - option "Bedrock 26.50 - 26.52" [selected]
+    - option "Java 26.4 (Exp.)"
+    - option "Java 26.4 (LB, Exp.)"
+    - option "Bedrock 26.60 (Exp.)"
+    - option "Java 26.3"
+    - option "Java 26.2"
+    - option "Java 26.1"
+    - option "Java 1.21.9 - 1.21.11"
+    - option "Java 1.21.6 - 1.21.8"
+    - option "Java 1.21.5"
+    - option "Java 1.21.4"
+    - option "Java 1.21.2 - 1.21.3"
+    - option "Java 1.21 - 1.21.1"
+    - option "Java 1.20"
+    - option "Java 1.19.3 - 1.19.4"
+    - option "Java 1.19 - 1.19.2"
+    - option "Java 1.18"
+    - option "Java 1.17"
+    - option "Java 1.16"
+    - option "Java 1.15"
+    - option "Java 1.14"
+    - option "Java 1.13"
+    - option "Java 1.12"
+    - option "Java 1.11"
+    - option "Java 1.10"
+    - option "Java 1.9"
+    - option "Java 1.8"
+    - option "Java 1.7"
+    - option "Java 26.3 (LB)"
+    - option "Java 26.2 (LB)"
+    - option "Java 26.1 (LB)"
+    - option "Java 1.21.9 - 1.21.11 (LB)"
+    - option "Java 1.21.6 - 1.21.8 (LB)"
+    - option "Java 1.21.5 (LB)"
+    - option "Java 1.21.4 (LB)"
+    - option "Java 1.21.2 - 1.21.3 (LB)"
+    - option "Java 1.21 - 1.21.1 (LB)"
+    - option "Java 1.20 (LB)"
+    - option "Java 1.19.3 - 1.19.4 (LB)"
+    - option "Java 1.19 - 1.19.2 (LB)"
+    - option "Java 1.18 (LB)"
+    - option "Java 1.17 (LB)"
+    - option "Java 1.16 (LB)"
+    - option "Java 1.15 (LB)"
+    - option "Java 1.14 (LB)"
+    - option "Java 1.13 (LB)"
+    - option "Java 1.12 (LB)"
+    - option "Java 1.11 (LB)"
+    - option "Java 1.10 (LB)"
+    - option "Java 1.9 (LB)"
+    - option "Java 1.8 (LB)"
+    - option "Java 1.7 (LB)"
+    - option "Bedrock 26.50 - 26.52"
+    - option "Bedrock 26.30 - 26.45"
+    - option "Bedrock 26.0 - 26.23"
+    - option "Bedrock 1.21.120 - 1.21.132"
+    - option "Bedrock 1.21.111 - 1.21.114"
+    - option "Bedrock 1.21.90 - 1.21.101"
+    - option "Bedrock 1.21.60 - 1.21.84"
+    - option "Bedrock 1.21.50"
+    - option "Bedrock 1.21 - 1.21.40"
+    - option "Bedrock 1.20.60 - 1.20.81"
+    - option "Bedrock 1.20.0 - 1.20.51"
+    - option "Bedrock 1.19"
+    - option "Bedrock 1.18"
+    - option "Bedrock 1.17"
+    - option "Bedrock 1.16"
+    - option "Bedrock 1.14"
+  - generic: "Dimension:"
+  - combobox "Dimension:":
+    - option "Overworld" [selected]
+    - option "The Nether"
+    - option "The End"
+  - generic: Features
+  - region "scrollable content":
+    - checkbox "Biomes" [checked]:
+    - checkbox "Spawn Point" [checked]:
+    - checkbox "Slime Chunk":
+    - checkbox "Village":
+    - checkbox "Ancient City":
+    - checkbox "Dungeon":
+    - checkbox "Stronghold":
+    - checkbox "Woodland Mansion" [checked]:
+    - checkbox "Ocean Monument" [checked]:
+    - checkbox "Pillager Outpost" [checked]:
+    - checkbox "Mineshaft" [checked]:
+    - checkbox "Ruined Portal Overworld" [checked]:
+    - checkbox "Jungle Temple":
+    - checkbox "Desert Temple":
+    - checkbox "Witch Hut":
+    - checkbox "Buried Treasure" [checked]:
+    - checkbox "Shipwreck" [checked]:
+    - checkbox "Igloo":
+    - checkbox "Ocean Ruins":
+    - checkbox "Fossil":
+    - checkbox "Cheese Cave":
+    - checkbox "Ravine":
+    - checkbox "Underground Lava Pool":
+    - checkbox "Amethyst Geode":
+    - checkbox "Enchanted Golden Apple":
+    - checkbox "Ore Veins":
+    - checkbox "Desert Well":
+    - checkbox "Trail Ruins":
+    - checkbox "Trial Chamber" [checked]:
+    - checkbox "Abandoned Camp":
+  - button "▼"
+  - button "+"
+  - button "–"
+  - button "Reset rotation":
+  - text: Spawn Point
+  - button "Share Location":
+  - generic: "X: 0 Z: 0"
+  - button "Copy /tp command":
+  - generic: 181m away
+  - button "Completed":
+    - text: Completed
+  - status "Loading"
+  - button "Expand Map (t)":
+  - 'button "Search: Spawn Point"':
+  - button "Spawn Point"
+  - button "Stop search":
+  - button "Previous result" [disabled]:
+  - button "#1 1 found":
+    - generic: "#1"
+    - generic: /
+    - generic: 1 found
+  - button "Search for next result":
+  - button "Enable biome highlighting":
+  - button "Highlight Biomes":
+    - generic: Highlight Biomes
+  - generic: "Biome Height:"
+  - combobox "Biome Height:":
+    - option "Surface" [selected]
+    - option "Underground"
+    - option "Bottom (Y -51)"
+  - generic: "X:"
+  - textbox "X:": "-128"
+  - generic: "Z:"
+  - textbox "Z:": "-128"
+  - button "Go!"
+  - generic: "Features:"
+  - radiogroup:
+    - radio "Map icon":
+      - img "Map icon"
+    - radio "Show dots" [checked]:
+  - checkbox "Terrain" [checked]
+  - text: Terrain
+  - checkbox "Grid Lines"
+  - text: Grid Lines
+  - button "Grid line options":
+  - button "Share"
+  - button "Settings"
+  - application "Raptive Video Player":
+    - button "Close video player":
+    - generic: Playlist advancing in 5 seconds
+    - generic: Ad ends in 1
+    - button "Pause":
+    - button "Unmute":
+    - slider "Volume": "0"
+    - button "Enter fullscreen":
+    - generic "Advertisement"
+    - iframe [id="goog_1130373657"]:
+      - button:
+    - iframe [id="iv-creative-iframe"]
+    - generic: Video Unpaused
+- complementary:
+  - heading "How To Use" [level=2]
+  - heading "Seed Map Update & Opt-Out" [level=2]
+  - paragraph: The seed map has recently received a large update. If you’re having issues with it, you can go back to the old version by clicking here.
+  - paragraph: This option will soon be removed, so please report any issues and discrepancies in the comments below.
+  - heading "Troubleshooting" [level=2]
+  - paragraph: If none of the below helps, please report in the comments and include your seed, platform and version, and coordinates.
+  - heading "Common user errors" [level=3]
+  - paragraph: "If your in-game world doesn’t match the map here at all, it’s most likely due to one of the following:"
+  - list:
+    - listitem: you entered the wrong seed or coordinates (make sure there are no leading or trailing spaces)
+    - listitem: you selected the wrong edition or version (the one used to generate the region you look at)
+    - listitem: you used add-ons, mods or behavior/data packs that change world generation
+    - listitem: (for slime chunks) you didn’t wait long enough, since they have a very low spawn rate even in slime chunks
+  - heading "Mixed version worlds" [level=3]
+  - paragraph: If you started your world on an older version, you must switch between the versions in the app. Always select the version that was used to generate the chunks you’re looking at.
+  - heading "Coastlines" [level=3]
+  - paragraph: By default, the coastlines for versions 1.18 and above don’t match up perfectly. This is not a bug, but rather because the map shows the underlying biomes instead of the exact terrain. Near coasts, ocean and river biomes often have land, while land biomes can be underwater.
+  - paragraph: You can enable the “terrain” option below the map to automatically adjust the colors of such mismatches.
+  - heading "Known limitations" [level=3]
+  - paragraph: Locations that don’t exist in-game
+  - paragraph: "Many features are not 100% accurate, i.e., locations can be wrong or missing. These include:"
+  - list:
+    - listitem: Dungeons
+    - listitem: World Spawn Positions
+    - listitem: Amethyst Geodes (near caves, mineshafts, etc.)
+    - listitem: Nether Fossils and Dried Ghasts on Bedrock Edition
+  - paragraph: Various other structures such as villages and igloos can sometimes fail to generate in-game as well, but this should happen far less frequently than for the features mentioned above.
+  - paragraph: On Bedrock Edition, predictions get slightly less reliable millions of blocks away from 0, 0. Some structures may be missing or sit in a nearby spot instead, and this gets more likely toward the world border.
+  - paragraph: Inaccurate x/z coordinates
+  - paragraph: Some features like fossils, ruined portals and trail ruins currently may only point to the center of the chunk they’re generated in. Since those structures are small, often buried, and can be offset 10-20 blocks from the chunk center, you might have to do some searching/digging to find them.
+  - paragraph: Missing y coordinates
+  - paragraph: The y coordinate isn’t shown for every feature. For structures that always generate on the surface or seafloor, this shouldn’t be an issue. In other cases, like mineshafts, strongholds and nether fortresses, the structures can easily be found by searching at different heights at the given x/z coordinates.
+  - paragraph: Unfortunately, this leaves some structures like fossils on Bedrock and underground ruined portals in some versions. These will require some manual effort to find.
+  - heading "Technical Issues" [level=3]
+  - paragraph:
+    - text: If the app is stuck or broken and won’t recover on its own, you can download a diagnostics report and send it to
+    - img "email address"
+    - text: .
+    - text: You can also try resetting the app’s data.
+  - button "Download diagnostics"
+  - button "Reset app data"
+  - heading "Requirements" [level=2]
+  - heading "Seed" [level=3]
+  - paragraph:
+    - text: For technical reasons, you need to know the seed of your world to use Seed Map, unless, of course, you want to find a seed for a new world. If you’re playing
+    - emphasis: SSP
+    - text: ", the app is able to fetch the seed from your savegame. Alternatively, you can use the"
+    - emphasis: /seed
+    - text: command ingame. In
+    - emphasis: SMP
+    - text: ", you can use the same command if you have sufficient rights. Otherwise, however, you’re dependent on the server owner, who started the world and has access to the savegame and config files."
+  - heading "Browser" [level=3]
+  - paragraph: This app uses some relatively new web technologies. As a result, some features may be disabled for older browsers. I recommend using the latest version of a major browser such as Chrome, Firefox, Edge or Safari.
+  - heading "Usage" [level=2]
+  - heading "Setup" [level=3]
+  - paragraph: First, use the controls above the map to enter your world seed, Minecraft version and dimension (Overworld, The Nether or The End). You can also import the seed from a savegame via “Load from save…” in the seed field’s dropdown, or use the Random button to find new seeds. Invalid seeds like words will automatically be converted to a number in the same way Minecraft does it when creating a new world.
+  - paragraph: Use the expandable Features box to individually enable or disable all the supported structures and map features. Note that the available features depend on the currently selected version and dimension, and that most features will be hidden when zoomed out too far.
+  - paragraph: Below the map you can further customize the view settings, navigate to a specific coordinate and expand the map on the screen. You can also generate and share deep links and screenshots. Additionally, you can use the buttons at the bottom right inside the map to zoom in and out and to rotate.
+  - heading "Basic Map Controls" [level=3]
+  - text: Mouse
+  - list:
+    - listitem: "Drag: move the map"
+    - listitem: "Click on icon: show details"
+    - listitem: "Right-click: place a marker"
+    - listitem: "Mouse wheel: adjust zoom level"
+    - listitem: "Double click: zoom in and exit expanded view"
+    - listitem: "Shift + Double click: zoom out"
+    - listitem: "Shift + Drag: zoom to selection"
+    - listitem: "Shift + Alt + Drag: rotate"
+  - text: Keyboard
+  - list:
+    - listitem: "Arrow keys: move the map"
+    - listitem: "R key: randomize seed"
+    - listitem: "+ and ‐ keys: zoom in/out"
+    - listitem: "T key: toggle expanded view"
+  - list:
+    - listitem: "S or / key: open the search"
+    - listitem: "N and P keys: next/previous search result"
+  - list:
+    - listitem: "Escape key: exit expanded view and close popups"
+  - text: Click the map first to enable keyboard controls.
+  - text: Touchscreen
+  - list:
+    - listitem: "Drag: move the map"
+    - listitem: "Tap: show position details at the bottom"
+    - listitem: "Tap an icon: show details popup"
+    - listitem: "Tap and hold: place a marker"
+    - listitem: "Pinch: zoom in/out"
+    - listitem: "Double tap: zoom in and exit expanded view"
+    - listitem: "Two-finger twist: rotate"
+  - heading "Advanced Features" [level=3]
+  - paragraph: "Search: Use the search button at the top right of the map (or the S or / key) to find structures, biomes and other features around your current position. Matches are highlighted on the map, and the bar at the bottom lets you step through the results."
+  - paragraph: "You can also build custom search queries: the sliders button opens the advanced search, where you combine a target with conditions on the nearby biomes, features and terrain. The ready-made queries under Presets are good starting points to adjust. Some examples:"
+  - list:
+    - listitem: Double witch huts sharing one AFK spot for a witch farm
+    - listitem: "Double dungeons: two spawners close together for an XP farm"
+    - listitem: "Farm perimeters: an ocean monument surrounded only by deep ocean, or a pillager outpost on flat terrain for a raid farm"
+    - listitem: "Base locations: flat plains bordering a cherry grove and ocean"
+    - listitem: "The nearest rare biome patch: mushroom fields, pale garden, ice spikes, etc."
+    - listitem: Sulfur Caves biome on the surface
+  - paragraph: "Expanded Map View: Use the Expand button at the top right of the map or the T key on the keyboard to expand the map and stretch it across the browser window. You can exit this mode again via double tap/click, the T or Escape key, or via the button at the top right of the map."
+  - paragraph: "Saved Seeds: Click the arrow in the seed field to pick one of your recent seeds, or use the “Seeds…” button next to the Random button to see all your recent and saved seeds. To save the current seed and give it a name, click the bookmark icon in the seed field. Seeds with markers or completed locations are saved automatically. In a seed’s details you can rename or delete it and show its markers and completed locations on the map. Deleting a seed also deletes its markers and completed locations."
+  - paragraph: "Completed Locations: After selecting a structure, you can mark it as completed by using the checkbox in the popover window, which will make the icon semi-transparent. Tip: Hiding biomes makes it easier to find previously disabled locations again."
+  - paragraph: "Custom Markers: After creating a temporary marker using right-click or tap-and-hold, you can click the save icon next to the label in the popover window and assign a name and color to make it permanent. You can edit and delete it in the same way. Once you created a marker for the current world and dimension, you can show and hide them in the Features box."
+  - paragraph:
+    - text: Note that currently
+    - strong: all seed data including completed locations and custom markers is stored locally on your device
+    - text: "by your web browser. To prevent losing it when clearing your browser, or if you want to switch your browser, you can:"
+  - button "Save data..."
+  - button "Load data..."
+  - heading "Credits" [level=2]
+  - list:
+    - text: Thanks to
+    - link "amidst":
+      - /url: https://github.com/toolbox4minecraft/amidst
+    - text: contributors for providing
+    - link "biome colors":
+      - /url: https://github.com/toolbox4minecraft/amidst/wiki/Biome-Color-Table
+    - text: Thanks to
+    - link "Earthcomputer":
+      - /url: https://github.com/Earthcomputer
+    - text: for his work on
+    - link "bedrockified":
+      - /url: https://github.com/Earthcomputer/bedrockified
+    - text: ", which made it possible to support Bedrock Edition"
+    - text: Thanks to
+    - link "@protolambda":
+      - /url: https://twitter.com/protolambda
+    - text: and
+    - link "@jocopa3":
+      - /url: https://twitter.com/jocopa3
+    - text: for figuring out the slime chunk algorithm for pocket/bedrock edition, and
+    - link "depressed-pho":
+      - /url: https://github.com/depressed-pho
+    - text: for
+    - link "porting":
+      - /url: https://github.com/depressed-pho/slime-finder-pe
+    - text: it to JavaScript
+- iframe [id="google_ads_iframe_/18190176,21795452673/AdThrive_Content_1/5ebe970bf67e7555ae952e5e_0"]:
+  - button "Play video":
+  - button "Unmute video"
+  - button "Replay":
+  - button "Learn more"
+- complementary:
+  - heading "Comments" [level=1]
+- contentinfo:
+  - paragraph:
+    - text: © 2013-2026 chunkbase.com All Rights Reserved.
+    - text: Not an official Minecraft product. Not approved by or associated with Mojang.
+  - list:
+    - link "Site Map":
+      - /url: /sitemap
+    - text: "|"
+    - link "Contact":
+      - /url: /contact
+    - text: "|"
+    - link "Legal Notice":
+      - /url: /legal-notice
+    - text: "|"
+    - link "Privacy":
+      - /url: /privacy-policy
+    - text: "|"
+    - link "Terms":
+      - /url: /terms-of-use
+- iframe [id="google_ads_iframe_/18190176,21795452673/AdThrive_Footer_1/5ebe970bf67e7555ae952e5e_0"] [name="google_ads_iframe_/18190176,21795452673/AdThrive_Footer_1/5ebe970bf67e7555ae952e5e_0"]:
+  - iframe:
+    - iframe [id="1uyccwav"]:
+      - iframe [id="te-clr1-387fcb0a-da45-482a-9eca-2915c8665477-icon"]:
+      - insertion:
+        - iframe:
+          - link "Advertisement":
+            - /url: https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsuAj_UMkiKkjQzPqK-nnVQjrGZ8ni2ZJPizhgpo9HowHcp7BdTDZzk76HkfyotPQ12iUFa-V2Y-_T-_iRiQOpFsFRv7HIAnfAufNy3s7Plo9jDKwRFA7_xF2kQhvCrSvgBqXzGSli_3bvkJ2K_9Tz0gJ27hKnuixeIGv2u5MfXwf0Op6mrO-xkvkew6DeIvAf6HF22W4MIU4x0465DnbdlggHUdKMkdJXYgi-pq4xRiTSM3puBWMp37Jd8Xwps_nBh8gHOTu5ryvNPp9khQ1ioSfZXPxo-J2-nHR45E6IvRPuZ_Uh1IpXfX5l9lZgU9_7xU3TYtYrO4Afvir9DgfnV3TgO_d-lDnsdKsR6dSpzrORU1HxLaJ_K_jF4DjalR8mSoHhmERabk9KOhrYGhlRAFy8FPXJ7KRVXHAdOVoHUd1x76kk9ItPVT5krnAVsTytfNm4zwLQ&sai=AMfl-YQMFdpA6f5e7q2rJmR-vCQSktUQCuiYIcJpkICFJMww6Fs-_63rAQAFsddp22U5buBR-bldyU7x6T3lwliktks2FOJoKyOQEOwMANL3JQdkwiQy8MFp8zl77x3oeALoQYX68r3heuQdn21bbI-kYp2NGjLfEqH-L8Up9cUXJOqTQ5XZkdk2VhVvARYKR0nf94RvnZcchWcJetmjeR_5VGh3WdRMEcJ_Gt6CEHl3I0AYly3Nkd4ZAwJRL5fAIzRQ8xKSxVunYrhtgk0SmATXb_ojeAKMUmZE4n8U69DK3ailY3ekheUbEKjA8luRHQ23Hs0C8HQzi6aXAnH_uieJX52HQXbDkzM&sig=Cg0ArKJSzHFKP_dwLSG-&cry=1&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl=https://insight.adsrvr.org/track/clk%3Fimp%3D489149b9-2949-4d1b-a308-fd0b1aad31d2%26ag%3Dj77p5ih%26sfe%3D1cfe91fb%26sig%3Donty1-6QPdqT3nN6A_Wd8txSpFYEr-YJgHeYE3zYPlQ.%26crid%3D1uyccwav%26cf%3D11256766%26fq%3D0%26t%3D1%26td_s%3Dwww.chunkbase.com%26rcats%3D%26mste%3D%26mfld%3D4%26mssi%3D%26mfsi%3D%26sv%3Dtriplelift%26uhow%3D92%26agsa%3D%26wp%3D6.299%26rgz%3D94720%26dt%3DPC%26osf%3DOSX%26os%3DOSX1015%26br%3DChrome%26svpid%3D1884%26rlangs%3Den,os%26mlang%3Den%26did%3D%26rcxt%3DOther%26tmpc%3D21.30000000000001%26vrtd%3D%26osi%3D%26osv%3D%26daid%3D%26dnr%3D0%26vpb%3D%26crrelr%3D%26npt%3D3%26cc%3D3~KLUv_WPYfRZoEASdFQAjIXpQA-CBGkAGhQGuomYIAGmKqiWAIgwCAIISIA2UAFmgBIgCJUCQKAFGeDBjEYqqTlBVWRtUJbGAqQSVhV8NLTp3g7PECThEmKFsXMXVyxwQPytCJHEIEiVEUqUyXVJ4iUqnOO7MPWDhxYodL3pmBHZ0gFl9MeGiUTmh-NxQyj1kVyIVFtNZ247VilsbrLt3UBrJw8WcVBl1Cv2VtbyapZsx2u5uCl_QmJM_Av0td5e7aaGwrAw3f6c1Vt_WHpAG1twjLOarRJurlMHYHM8IrV5r-I-WffVZpLKWb6_MWcyna6XRV8y5tPKERawSxtMlcbglfK1lezlrv93_RasNpT5-vMlPpRE3xf54XemyTsrL3vGGHXHk7WgkTmssTinjwWK_ZjEXR5c0ox9rMnfMmXJr1GWx21vPjm0sVvjPwl6Hlel_EHd9wuSnLxVOZTYi9j_SPU_WDDJfsV9Np2Xpmc-vOqXcJnaHu_VoM1fGTxkPZuP-qPZZ03RnLERNDCqOfDp-MgwIpJP1eb9fOaZz3vZvHa9nXDagERQyRDjIKPoEcWOp0R4sHsj5goOOnj-IoGAZBDuW45gAKYGcWGV1Lc9zsTEVsgIUFV98GsgAUmRbMuvpfTenYHJiJwdk6ERFxLVDgIKbbcZNSzr8O0IDAzgVZDBJRya5dj5PX1taZS4AXrCqRmTdd0qj8cnAwmPXRUknhbSYbZvi7J21j16xoCQ1O3my42mv8DDC9tyN0X4rHz7zbGlgoYPxs309-7k04sBd2P0H6pcbjZ-tbFEVuIlBYICM8YfguDYgU6Uz61tiWBZED9u-3_YlEmvAmvl6hCgWwwVlz6Tozumw_S_pVYwXbnB7vkjBQP9kP6yUrNgpel93Cg2wLTQHgevVGdj3FhsnpxkaakKLqLIiwSMTy2EB%26dur%3D2~KLUv_WMNLtZUlABtAgDjgw0t38PEJQG5f1o8LvlXR2MS1XJT12iM5WvsXhlHdA5LFXshtYcDY8HRaWbMa-zNghc8AN8ivgYE_CReI10N2xm2wWuEsVF0y1BbBw..%26durs%3DGWl4Iy%26bdc%3D137%26uidd%3D0v1kaF5lwnfJ6BNDl1g9jna7JMujyokrePE4vFaGQCAiSjDN%26idl%3DXY3007d4YfuVHDpToel2BltJSfaDuLdT3fTuu616OIxuvLXxg%26mk%3DApple%26adpt%3Dtl_ltriplelift%26fpa%3D918%26pcm%3D3%26ict%3DUnknown%26said%3D2554318216491137331306-28%26auct%3D1%26us_privacy%3D1YNY%26tail%3D1%26r%3Dhttps://www.lilly.com/lillydirect/%253Futm_source%253D6134386%2526utm_medium%253Dprogdisplay%2526utm_content%253Dcmat-38354-5c%2526utm_campaign%253D34581974%2526utm_term%253D435351028%2526co%253Dna%2526au%253Dna%2526dclid%253D%2525edclid!%2526gad_source%253D7%2526gad_campaignid%253D23329805682
+            - img "Advertisement"
+- button "Close advertisement": ×
+- link "Terms of Content Use":
+  - /url: /
+- text: A Raptive Partner Site
+- iframe
+- iframe
+- iframe

@@ -1,5 +1,7 @@
 # Stronghold disagreement investigation — 2026-10-07
 
+> Historical investigation and border rules follow. The current 2688/1024 Realm contract requires both Fortress and Bastion and retains unknown discovery recall. The private extended tracer is [trace_master_strongholds.py](scripts/trace_master_strongholds.py); supported trusted actual positives enter through [realm/recovery.py](src/seed_search/realm/recovery.py). Neither changes the unresolved Stronghold arithmetic or certifies actual exhaustive recall. Current gates: [MASTER_SWEEP_READINESS.md](MASTER_SWEEP_READINESS.md).
+
 The production iterator is unchanged. The large sweep remains unstarted.
 
 ## What was established

@@ -22,8 +22,11 @@ def positive_int(v, name):
         raise ValueError(f'{name} must be a positive integer')
 
 def validate_config(cfg):
-    if not isinstance(cfg,dict) or cfg.get('schema_version') != 3:
-        raise ValueError('Expected configuration schema_version 3')
+    if cfg.get('schema_version') == 5:
+        from .realm.config import validate_config as validate_realm
+        return validate_realm(cfg)
+    if not isinstance(cfg,dict) or cfg.get('schema_version') not in (3,4):
+        raise ValueError('Expected configuration schema_version 3 (historical) or 4')
     g=cfg['game']; s=cfg['search']
     if (g['edition'],g['target_version'],g['backend_model']) != ('bedrock','26.52','MC_26_50'):
         raise ValueError('Supported target is Bedrock 26.52 mapped explicitly to MC_26_50')
@@ -33,8 +36,10 @@ def validate_config(cfg):
         raise ValueError('Capability readiness gate cannot be disabled')
     if s['large_search_enabled']:
         raise ValueError('large_search_enabled cannot bypass the evidence readiness gate; leave false')
-    if s['lower_bit_optimization_enabled'] or s['mode'] != 'full_64_bit_reference' or s['deterministic_mixer'] != 'splitmix64_finalizer':
-        raise ValueError('Only deterministic full-64-bit reference enumeration is supported')
+    if s['mode'] not in ('full_64_bit_reference','lower32_staged') or s['deterministic_mixer'] != 'splitmix64_finalizer':
+        raise ValueError('Unsupported deterministic enumeration mode')
+    if not isinstance(s['lower_bit_optimization_enabled'],bool) or s['lower_bit_optimization_enabled'] != (s['mode']=='lower32_staged'):
+        raise ValueError('lower_bit_optimization_enabled must agree with search mode')
     if s['raster_boundary_policy'] != 'mark_unknown':
         raise ValueError('Finite raster boundaries must remain unknown')
     if not isinstance(s['run_key'],str) or not s['run_key'].isdigit() or not 0<=int(s['run_key'])<2**64:
@@ -44,8 +49,11 @@ def validate_config(cfg):
         raise ValueError('Require all seven implemented score categories')
     if any(isinstance(w,bool) or not isinstance(w,(int,float)) or not math.isfinite(w) or w<0 for w in weights.values()) or sum(weights.values())!=100:
         raise ValueError('Score weights must total 100 and be finite/nonnegative')
-    if (cfg['deployment']['overworld_side_blocks'],cfg['deployment']['nether_side_blocks']) != (3008,992):
-        raise ValueError('Fixed playable squares are 3008 Overworld and 992 Nether blocks')
+    expected_geometry=(2304,928) if cfg['schema_version']==4 else (3008,992)
+    if (cfg['deployment']['overworld_side_blocks'],cfg['deployment']['nether_side_blocks']) != expected_geometry:
+        raise ValueError(f'Fixed playable squares for this schema are {expected_geometry}')
+    if cfg['schema_version']==4 and (cfg['structures'].get('required_overworld_types')!=['stronghold'] or cfg['nether']['bastion_required'] is not False):
+        raise ValueError('Schema 4 requires Stronghold/Fortress with optional Bastion')
     if cfg['overworld']['border_center_snap_blocks']!=8 or cfg['island']['conservative_land_connectivity']!=8:
         raise ValueError('Require eight-block centers and conservative eight-neighbor connectivity')
     required=cfg['structures'].get('required_overworld_types',[])
@@ -72,8 +80,14 @@ def validate_config(cfg):
     if set(secondary)!= {'village','ruined_portal','shipwreck','monument','outpost'} or len(secondary)!=5:
         raise ValueError('Require the five supported secondary structure types')
     low,high=s['center_axis_bounds_blocks']
-    if any(isinstance(v,bool) or not isinstance(v,int) for v in (low,high)) or low>=high or high-low+3008>14000:
+    if any(isinstance(v,bool) or not isinstance(v,int) for v in (low,high)) or low>=high or high-low+cfg['deployment']['overworld_side_blocks']>14000:
         raise ValueError('Analysis envelope must fit within 14,000 blocks per axis')
+    if math.ceil(low/8)*8>high:raise ValueError('Center interval contains no allowed eight-block center')
+    if cfg['schema_version']==4 and ('landscapes' not in cfg or 'biome_diversity' not in cfg):
+        raise ValueError('Schema 4 requires explicit landscape and biome policies')
+    if s.get('maximum_structure_centers_per_seed') is not None:
+        positive_int(s['maximum_structure_centers_per_seed'],'maximum_structure_centers_per_seed')
+        if s['maximum_structure_centers_per_seed']>8:raise ValueError('Structures-only output budget is capped at eight centers')
     for key in ('workers','numeric_threads_per_worker','report_top_distinct_seeds','preflight_maximum_seeds','maximum_preliminary_components_per_seed','maximum_refined_centers_per_seed','maximum_refinement_patch_side_blocks'):
         positive_int(s[key],key)
     if not 1<=s['workers']<=12 or s['numeric_threads_per_worker']!=1:
@@ -92,13 +106,13 @@ def validate_config(cfg):
         if not 0<cfg[section][key]<=1: raise ValueError(f'Invalid fraction {key}')
     for key in ('preferred_wooded_fraction','full_credit_wooded_fraction'):
         if not 0<cfg['wood']['surrounding_land'][key]<=1: raise ValueError(f'Invalid fraction {key}')
-    if cfg['search']['maximum_refinement_patch_side_blocks']>3008: raise ValueError('Refinement patch must fit the Overworld square')
+    if cfg['search']['maximum_refinement_patch_side_blocks']>cfg['deployment']['overworld_side_blocks']: raise ValueError('Refinement patch must fit the Overworld square')
     if set(cfg['output']['candidate_files'])-{'candidate.json','overworld.png','nether.png','inspection.md'}: raise ValueError('Unsupported candidate artifact')
     if set(cfg['output']['summary_formats'])-{'json','csv'}: raise ValueError('Unsupported summary format')
     if 'optimization' in cfg:
         opt=cfg['optimization']
         original={'exact_per_seed_cache','cache_mb_per_worker','persist_report_terrain','reuse_unchanged_maps'}
-        additions={'stronghold_prefilter','early_basin_bounds','reuse_raster_intermediates','combined_structure_scan','lazy_coverage_bounds','raw_mt_cache_entries'}
+        additions={'stronghold_prefilter','early_basin_bounds','reuse_raster_intermediates','combined_structure_scan','lazy_coverage_bounds','raw_mt_cache_entries','quart_land_reuse','island_bound_policy'}
         if not original<=set(opt) or set(opt)-original-additions:
             raise ValueError('Unsupported optimization settings')
         if any(not isinstance(opt[k],bool) for k in ('exact_per_seed_cache','persist_report_terrain','reuse_unchanged_maps')):
@@ -109,13 +123,23 @@ def validate_config(cfg):
             raise ValueError('Stronghold prefilter must review_all or defer_unpredicted')
         if opt.get('stronghold_prefilter')=='defer_unpredicted' and required!=['stronghold']:
             raise ValueError('Fast Stronghold filtering requires Stronghold as a required structure')
-        for key in ('early_basin_bounds','reuse_raster_intermediates','combined_structure_scan','lazy_coverage_bounds'):
+        for key in ('early_basin_bounds','reuse_raster_intermediates','combined_structure_scan','lazy_coverage_bounds','quart_land_reuse'):
             if key in opt and not isinstance(opt[key],bool):raise ValueError('Optimization flags must be booleans')
         entries=opt.get('raw_mt_cache_entries',0)
         if isinstance(entries,bool) or not isinstance(entries,int) or not 0<=entries<=256:raise ValueError('Raw layout cache must contain 0–256 entries')
+    if cfg.get('optimization',{}).get('island_bound_policy','shadow') not in ('off','shadow'):
+        raise ValueError('Unproved island bounds may only run off or in shadow mode')
+    if s['mode']=='lower32_staged':
+        from .staged import validate_staged
+        validate_staged(s.get('staged',{}))
+        if cfg['schema_version']!=4:raise ValueError('Staged mode requires schema 4')
+    if 'biome_diversity' in cfg:
+        from .biomes import validate_policy
+        validate_policy(cfg['biome_diversity'])
     if 'landscapes' in cfg:
         from .landscapes import validate_landscapes
         validate_landscapes(cfg['landscapes'])
+        if cfg['landscapes']['ocean_window_side_blocks']>cfg['deployment']['overworld_side_blocks']:raise ValueError('Ocean window must fit playable square')
     return cfg
 
 def load_config(path='search.example.yaml'):

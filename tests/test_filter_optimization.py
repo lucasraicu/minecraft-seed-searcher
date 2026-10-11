@@ -37,12 +37,13 @@ def test_raw_cache_reuses_only_verified_mt_layouts_and_full_seed_viability():
 def test_joint_required_center_intersection_and_exact_negative_border():
     cfg,_=load_config();scans={'stronghold':{'raw':[(-5000,0)]},'fortress':{'raw':[(800,0)]}}
     assert not possible_required_centers(scans,cfg,(-5000,-5000,5000,5000))
-    scans={'stronghold':{'raw':[(-1504,-1504)]},'fortress':{'raw':[(-496,-496)]}}
+    half=cfg['deployment']['overworld_side_blocks']//2;nh=cfg['deployment']['nether_side_blocks']//2
+    scans={'stronghold':{'raw':[(-half,-half)]},'fortress':{'raw':[(-nh,-nh)]}}
     assert possible_required_centers(scans,cfg,(0,0,0,0))
-    scans['stronghold']['raw']=[(-1505,-1504)]
+    scans['stronghold']['raw']=[(-half-1,-half)]
     assert not possible_required_centers(scans,cfg,(0,0,0,0))
     # Integer ranges can overlap while containing no allowed eight-block center.
-    scans['stronghold']['raw']=[(1505,1505)]
+    scans['stronghold']['raw']=[(half+1,half+1)]
     assert not possible_required_centers(scans,cfg,(1,1,7,7))
 
 
