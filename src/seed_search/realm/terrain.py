@@ -23,7 +23,19 @@ V1 = dict(diameter_min=250, diameter_max=750, water_rays=24, water_width=48,
 V2 = dict(ridge_rays=20, relief=35, distance_min=300, distance_max=850,
           ideal_ridge_rays=26, ideal_relief=55, ideal_distance_min=350,
           ideal_distance_max=750, ridge_support_width=32, ridge_support_area=4096,
-          largest_gap_rays=12, ridge_min_arc_rays=4, ridge_min_arc_aspect=2.)
+          largest_gap_rays=12, ridge_min_arc_rays=4, ridge_min_arc_aspect=2.,
+          enclosure_policy='continuous_arcs')
+
+# Explicit active search preferences. Low-level fallbacks above retain the
+# historical controls; saved configurations without the new policy stay strict.
+SEARCH_V1 = {**V1, 'diameter_min': 500, 'diameter_max': 1300,
+             'area': 250000, 'ideal_diameter_min': 800,
+             'ideal_diameter_max': 1100, 'ideal_area': 650000}
+SEARCH_V2 = {**V2, 'enclosure_policy': 'surrounding_mountains',
+             'ridge_rays': 16, 'relief': 24, 'distance_min': 150,
+             'distance_max': 700, 'ideal_ridge_rays': 24,
+             'ideal_relief': 50, 'ideal_distance_min': 250,
+             'ideal_distance_max': 600}
 
 
 def _score(value, ideal):
@@ -273,8 +285,11 @@ def _circular_component_runs(components):
 
 def evaluate_v2(raster: Raster, center, bounds=None, stronghold=(0, 0), *, thresholds=None,
                 rays=32, biome_fit=0., baseline_quality=0.):
-    """Relative, continuously supported ridges; no interior roughness exclusion."""
+    """Relative surrounding mountains, with optional strict continuous-arc policy."""
     p = {**V2, **(thresholds or {})}
+    strict_arcs = p['enclosure_policy'] == 'continuous_arcs'
+    if p['enclosure_policy'] not in ('continuous_arcs', 'surrounding_mountains'):
+        raise ValueError('Unknown V2 enclosure policy')
     bounds = bounds or raster.bounds
     xx, zz = raster.coordinates()
     radial = np.hypot(xx-center[0], zz-center[1])
@@ -298,9 +313,9 @@ def evaluate_v2(raster: Raster, center, bounds=None, stronghold=(0, 0), *, thres
         components.append(selected[0] if selected else 0)
         distances.append(selected[1] if selected else None)
         reliefs.append(selected[2] if selected else None)
-    # Compact independent hills cannot pool adjacent rays into an enclosing ridge.
-    # Each contributing run must be a substantial, tangentially extended arc.
-    # These sampled engineering thresholds still require actual-world calibration.
+    # All policies require spatially substantial raised terrain. The inclusive
+    # search allows separate mountains to surround an interior; arc aspect and
+    # run length remain diagnostics unless the saved strict policy requests them.
     raw_components = [ident if hit else 0 for ident, hit in zip(components, supports)]
     raw_hits = sum(supports)
     supports = [False]*rays
@@ -317,7 +332,7 @@ def evaluate_v2(raster: Raster, center, bounds=None, stronghold=(0, 0), *, thres
         radius, thickness = radial_stats[ident]
         arc_length = len(indices)*2*np.pi/rays*radius
         aspect = float(arc_length/thickness)
-        qualified = len(indices) >= p['ridge_min_arc_rays'] and aspect >= p['ridge_min_arc_aspect']
+        qualified = not strict_arcs or (len(indices) >= p['ridge_min_arc_rays'] and aspect >= p['ridge_min_arc_aspect'])
         arc_runs.append(dict(component=ident, ray_indices=indices, rays=len(indices),
                              degrees=len(indices)*360/rays, median_radius=radius,
                              radial_thickness=thickness, tangential_arc_length=float(arc_length),
@@ -352,7 +367,10 @@ def evaluate_v2(raster: Raster, center, bounds=None, stronghold=(0, 0), *, thres
     access = _score(max(0, rays-gap), rays)
     roughness = float(np.std(raster.height[interior])) if interior.any() else None
     metrics = dict(ridge_rays=hits, raw_ridge_rays=raw_hits, ridge_arc_runs=arc_runs,
-                   ridge_continuity_policy={'minimum_arc_rays': p['ridge_min_arc_rays'], 'minimum_arc_aspect': p['ridge_min_arc_aspect'],
+                   ridge_continuity_policy={'enclosure_policy': p['enclosure_policy'],
+                                            'arc_shape_required': strict_arcs,
+                                            'minimum_arc_rays': p['ridge_min_arc_rays'] if strict_arcs else None,
+                                            'minimum_arc_aspect': p['ridge_min_arc_aspect'] if strict_arcs else None,
                                             'radial_thickness': '10th-to-90th percentile in nomination annulus plus one sample width',
                                             'calibration': 'sampled engineering policy; actual-world calibration pending'},
                    rejected_support_components=sorted(set(raw_components)-{0}-supported_ids),

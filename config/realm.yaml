@@ -105,25 +105,28 @@ terrain:
   rays: 32
   maximum_refinements_per_anchor: 8
   v1:
-    diameter_min: 250
-    diameter_max: 750
+    # Area is one connected main island; separate islets never add to it.
+    diameter_min: 500
+    diameter_max: 1300
     water_rays: 24
     water_width: 48
-    area: 12000
-    ideal_diameter_min: 300
-    ideal_diameter_max: 700
+    area: 250000
+    ideal_diameter_min: 800
+    ideal_diameter_max: 1100
     ideal_water_rays: 29
     ideal_water_width: 100
-    ideal_area: 20000
+    ideal_area: 650000
   v2:
-    ridge_rays: 20
-    relief: 35
-    distance_min: 300
-    distance_max: 850
-    ideal_ridge_rays: 26
-    ideal_relief: 55
-    ideal_distance_min: 350
-    ideal_distance_max: 750
+    # Separate substantial mountains may surround an irregular inner area.
+    enclosure_policy: surrounding_mountains
+    ridge_rays: 16
+    relief: 24
+    distance_min: 150
+    distance_max: 700
+    ideal_ridge_rays: 24
+    ideal_relief: 50
+    ideal_distance_min: 250
+    ideal_distance_max: 600
     ridge_support_width: 32
     ridge_support_area: 4096
     largest_gap_rays: 12

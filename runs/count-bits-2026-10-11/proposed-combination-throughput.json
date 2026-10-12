@@ -1,0 +1,1765 @@
+{
+  "requirements": {
+    "recommended_core": {
+      "stronghold": 1,
+      "village": 3,
+      "trial_chamber": 3,
+      "ancient_city": 2,
+      "mineshaft": 5,
+      "fortress": 1,
+      "bastion": 1
+    },
+    "strict_expanded": {
+      "stronghold": 1,
+      "village": 3,
+      "trial_chamber": 3,
+      "ancient_city": 2,
+      "mineshaft": 5,
+      "fortress": 1,
+      "bastion": 1,
+      "monument": 1,
+      "mansion": 1,
+      "jungle_temple": 1,
+      "desert_pyramid": 1
+    }
+  },
+  "biome_requirements": {
+    "recommended_core": {
+      "forest": 3,
+      "taiga": 2
+    },
+    "strict_expanded": {
+      "forest": 3,
+      "taiga": 2,
+      "desert": 1,
+      "jungle": 1
+    }
+  },
+  "structures": {
+    "tuning": {
+      "recommended_core": {
+        "median_seconds": {
+          "full64_direct": 0.2634213489945978,
+          "fused_lower32": 0.2696762589039281,
+          "cached_lower32": 0.26162513194140047
+        },
+        "per_second": {
+          "full64_direct": 6620.571972075679,
+          "fused_lower32": 6467.013474186833,
+          "cached_lower32": 6666.026260774619
+        },
+        "per_hour": {
+          "full64_direct": 23834059.099472445,
+          "fused_lower32": 23281248.5070726,
+          "cached_lower32": 23997694.538788628
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.2806779930833727,
+            "cpu_seconds": 0.2806250000000001,
+            "work": [
+              43408,
+              19972,
+              0,
+              0,
+              3700,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.2915716279530898,
+            "cpu_seconds": 0.29156899999999997,
+            "work": [
+              50024,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.257103924988769,
+            "cpu_seconds": 0.257104,
+            "work": [
+              42116,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              1456,
+              3920
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.25281640398316085,
+            "cpu_seconds": 0.2528180000000002,
+            "work": [
+              43408,
+              19972,
+              0,
+              0,
+              3700,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.26630727492738515,
+            "cpu_seconds": 0.2661899999999999,
+            "work": [
+              42116,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              1456,
+              3920
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.2696762589039281,
+            "cpu_seconds": 0.269625,
+            "work": [
+              50024,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.2586784720188007,
+            "cpu_seconds": 0.25866200000000017,
+            "work": [
+              42116,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              1456,
+              3920
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.2654793889960274,
+            "cpu_seconds": 0.2653939999999997,
+            "work": [
+              43408,
+              19972,
+              0,
+              0,
+              3700,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.2696915960405022,
+            "cpu_seconds": 0.2696209999999999,
+            "work": [
+              50024,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 3,
+            "seconds": 0.26570804801303893,
+            "cpu_seconds": 0.26567700000000016,
+            "work": [
+              42116,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              1456,
+              3920
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 3,
+            "seconds": 0.2685232450021431,
+            "cpu_seconds": 0.2684460000000004,
+            "work": [
+              50024,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 3,
+            "seconds": 0.26305549300741404,
+            "cpu_seconds": 0.2630340000000002,
+            "work": [
+              43408,
+              19972,
+              0,
+              0,
+              3700,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 4,
+            "seconds": 0.26687296794261783,
+            "cpu_seconds": 0.26683700000000066,
+            "work": [
+              50024,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 4,
+            "seconds": 0.26162513194140047,
+            "cpu_seconds": 0.261622,
+            "work": [
+              42116,
+              19904,
+              0,
+              624,
+              3076,
+              4968,
+              1456,
+              3920
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 4,
+            "seconds": 0.2634213489945978,
+            "cpu_seconds": 0.2634219999999994,
+            "work": [
+              43408,
+              19972,
+              0,
+              0,
+              3700,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "layouts": 436,
+        "viable_positive": 32,
+        "raw_lower32_rejection_percent": 31.88073394495413,
+        "order": {
+          "direct": [
+            "fortress",
+            "bastion",
+            "ancient_city",
+            "village",
+            "trial_chamber",
+            "mineshaft",
+            "stronghold"
+          ],
+          "raw": [
+            "fortress",
+            "bastion",
+            "village",
+            "ancient_city",
+            "stronghold",
+            "trial_chamber",
+            "mineshaft"
+          ]
+        }
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full64_direct": 0.1040111449547112,
+          "fused_lower32": 0.11904449004214257,
+          "cached_lower32": 0.10982388292904943
+        },
+        "per_second": {
+          "full64_direct": 16767.43392027246,
+          "fused_lower32": 14649.985055021127,
+          "cached_lower32": 15879.970307794461
+        },
+        "per_hour": {
+          "full64_direct": 60362762.11298084,
+          "fused_lower32": 52739946.198076054,
+          "cached_lower32": 57167893.10806006
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.1040111449547112,
+            "cpu_seconds": 0.10398499999999977,
+            "work": [
+              34456,
+              12900,
+              0,
+              0,
+              4192,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.1199748310027644,
+            "cpu_seconds": 0.11997599999999942,
+            "work": [
+              60048,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.1082337909610942,
+            "cpu_seconds": 0.1082149999999995,
+            "work": [
+              47368,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              2716,
+              7192
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.10396716499235481,
+            "cpu_seconds": 0.1039690000000002,
+            "work": [
+              34456,
+              12900,
+              0,
+              0,
+              4192,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.10982388292904943,
+            "cpu_seconds": 0.10982499999999984,
+            "work": [
+              47368,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              2716,
+              7192
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.11904449004214257,
+            "cpu_seconds": 0.11904500000000073,
+            "work": [
+              60048,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.10812911100219935,
+            "cpu_seconds": 0.10812999999999917,
+            "work": [
+              47368,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              2716,
+              7192
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.10282765992451459,
+            "cpu_seconds": 0.1028279999999997,
+            "work": [
+              34456,
+              12900,
+              0,
+              0,
+              4192,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.12137479893863201,
+            "cpu_seconds": 0.121359,
+            "work": [
+              60048,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 3,
+            "seconds": 0.11533021205104887,
+            "cpu_seconds": 0.1153259999999996,
+            "work": [
+              47368,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              2716,
+              7192
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 3,
+            "seconds": 0.11718887998722494,
+            "cpu_seconds": 0.11719100000000005,
+            "work": [
+              60048,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 3,
+            "seconds": 0.1052797659067437,
+            "cpu_seconds": 0.1052799999999996,
+            "work": [
+              34456,
+              12900,
+              0,
+              0,
+              4192,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 4,
+            "seconds": 0.1183699449757114,
+            "cpu_seconds": 0.11838200000000043,
+            "work": [
+              60048,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 4,
+            "seconds": 0.11161531694233418,
+            "cpu_seconds": 0.11161700000000074,
+            "work": [
+              47368,
+              12340,
+              0,
+              1064,
+              3432,
+              3460,
+              2716,
+              7192
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 4,
+            "seconds": 0.10450468398630619,
+            "cpu_seconds": 0.10450600000000065,
+            "work": [
+              34456,
+              12900,
+              0,
+              0,
+              4192,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "layouts": 436,
+        "viable_positive": 0,
+        "raw_lower32_rejection_percent": 34.403669724770644,
+        "order": {
+          "direct": [
+            "fortress",
+            "bastion",
+            "jungle_temple",
+            "desert_pyramid",
+            "ancient_city",
+            "monument",
+            "village",
+            "trial_chamber",
+            "mineshaft",
+            "mansion",
+            "stronghold"
+          ],
+          "raw": [
+            "fortress",
+            "bastion",
+            "mansion",
+            "village",
+            "ancient_city",
+            "monument",
+            "jungle_temple",
+            "desert_pyramid",
+            "stronghold",
+            "trial_chamber",
+            "mineshaft"
+          ]
+        }
+      }
+    },
+    "holdout": {
+      "recommended_core": {
+        "median_seconds": {
+          "full64_direct": 0.292352861026302,
+          "fused_lower32": 0.2955516369547695,
+          "cached_lower32": 0.2898230329155922
+        },
+        "per_second": {
+          "full64_direct": 6293.764300922855,
+          "fused_lower32": 6225.64645203298,
+          "cached_lower32": 6348.701762899155
+        },
+        "per_hour": {
+          "full64_direct": 22657551.483322278,
+          "fused_lower32": 22412327.227318726,
+          "cached_lower32": 22855326.34643696
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.29421810794156045,
+            "cpu_seconds": 0.29416699999999985,
+            "work": [
+              49528,
+              23508,
+              0,
+              0,
+              4300,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.302139526931569,
+            "cpu_seconds": 0.3020619999999994,
+            "work": [
+              57328,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.29632367100566626,
+            "cpu_seconds": 0.29628600000000027,
+            "work": [
+              46776,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              1908,
+              4132
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.29570434999186546,
+            "cpu_seconds": 0.2956719999999997,
+            "work": [
+              49528,
+              23508,
+              0,
+              0,
+              4300,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.2887749579967931,
+            "cpu_seconds": 0.28874000000000066,
+            "work": [
+              46776,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              1908,
+              4132
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.2955516369547695,
+            "cpu_seconds": 0.2955289999999984,
+            "work": [
+              57328,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.29023665899876505,
+            "cpu_seconds": 0.2902179999999994,
+            "work": [
+              46776,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              1908,
+              4132
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.28263263206463307,
+            "cpu_seconds": 0.28261400000000236,
+            "work": [
+              49528,
+              23508,
+              0,
+              0,
+              4300,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.2804103629896417,
+            "cpu_seconds": 0.2803949999999986,
+            "work": [
+              57328,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 3,
+            "seconds": 0.28222409007139504,
+            "cpu_seconds": 0.28218900000000247,
+            "work": [
+              46776,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              1908,
+              4132
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 3,
+            "seconds": 0.296725632972084,
+            "cpu_seconds": 0.2966699999999989,
+            "work": [
+              57328,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 3,
+            "seconds": 0.29099614499136806,
+            "cpu_seconds": 0.2909380000000006,
+            "work": [
+              49528,
+              23508,
+              0,
+              0,
+              4300,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 4,
+            "seconds": 0.2919703220250085,
+            "cpu_seconds": 0.2919710000000002,
+            "work": [
+              57328,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 4,
+            "seconds": 0.2898230329155922,
+            "cpu_seconds": 0.28974299999999786,
+            "work": [
+              46776,
+              23400,
+              0,
+              584,
+              3716,
+              5688,
+              1908,
+              4132
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 4,
+            "seconds": 0.292352861026302,
+            "cpu_seconds": 0.29234399999999994,
+            "work": [
+              49528,
+              23508,
+              0,
+              0,
+              4300,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "layouts": 460,
+        "viable_positive": 26,
+        "raw_lower32_rejection_percent": 25.869565217391298,
+        "order": {
+          "direct": [
+            "fortress",
+            "bastion",
+            "ancient_city",
+            "village",
+            "trial_chamber",
+            "mineshaft",
+            "stronghold"
+          ],
+          "raw": [
+            "fortress",
+            "bastion",
+            "village",
+            "ancient_city",
+            "stronghold",
+            "trial_chamber",
+            "mineshaft"
+          ]
+        }
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full64_direct": 0.12269474205095321,
+          "fused_lower32": 0.14151521702297032,
+          "cached_lower32": 0.13102019694633782
+        },
+        "per_second": {
+          "full64_direct": 14996.567654348844,
+          "fused_lower32": 13002.135308892872,
+          "cached_lower32": 14043.636346796304
+        },
+        "per_hour": {
+          "full64_direct": 53987643.555655845,
+          "fused_lower32": 46807687.11201434,
+          "cached_lower32": 50557090.848466694
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.12269474205095321,
+            "cpu_seconds": 0.12269500000000022,
+            "work": [
+              39284,
+              15384,
+              0,
+              0,
+              4724,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.14203167299274355,
+            "cpu_seconds": 0.14198199999999872,
+            "work": [
+              69408,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.12763910798821598,
+            "cpu_seconds": 0.1276420000000016,
+            "work": [
+              52432,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              3576,
+              7780
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.12126765202265233,
+            "cpu_seconds": 0.12124100000000126,
+            "work": [
+              39284,
+              15384,
+              0,
+              0,
+              4724,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.13102019694633782,
+            "cpu_seconds": 0.13100899999999882,
+            "work": [
+              52432,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              3576,
+              7780
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.14211688190698624,
+            "cpu_seconds": 0.14211899999999744,
+            "work": [
+              69408,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.13131567707750946,
+            "cpu_seconds": 0.1313159999999982,
+            "work": [
+              52432,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              3576,
+              7780
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.12310846790205687,
+            "cpu_seconds": 0.12307500000000005,
+            "work": [
+              39284,
+              15384,
+              0,
+              0,
+              4724,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.14132122206501663,
+            "cpu_seconds": 0.14130300000000062,
+            "work": [
+              69408,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 3,
+            "seconds": 0.13103386806324124,
+            "cpu_seconds": 0.13103500000000068,
+            "work": [
+              52432,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              3576,
+              7780
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 3,
+            "seconds": 0.14151521702297032,
+            "cpu_seconds": 0.14150400000000118,
+            "work": [
+              69408,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 3,
+            "seconds": 0.12541215098463,
+            "cpu_seconds": 0.1249299999999991,
+            "work": [
+              39284,
+              15384,
+              0,
+              0,
+              4724,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 4,
+            "seconds": 0.14077652303967625,
+            "cpu_seconds": 0.1407779999999974,
+            "work": [
+              69408,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              0,
+              0
+            ]
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 4,
+            "seconds": 0.12806212704163045,
+            "cpu_seconds": 0.1280619999999999,
+            "work": [
+              52432,
+              14944,
+              0,
+              864,
+              4052,
+              4084,
+              3576,
+              7780
+            ]
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 4,
+            "seconds": 0.12204710894729942,
+            "cpu_seconds": 0.12204799999999949,
+            "work": [
+              39284,
+              15384,
+              0,
+              0,
+              4724,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "layouts": 460,
+        "viable_positive": 0,
+        "raw_lower32_rejection_percent": 27.391304347826086,
+        "order": {
+          "direct": [
+            "fortress",
+            "bastion",
+            "jungle_temple",
+            "desert_pyramid",
+            "ancient_city",
+            "monument",
+            "village",
+            "trial_chamber",
+            "mineshaft",
+            "mansion",
+            "stronghold"
+          ],
+          "raw": [
+            "fortress",
+            "bastion",
+            "mansion",
+            "village",
+            "ancient_city",
+            "monument",
+            "jungle_temple",
+            "desert_pyramid",
+            "stronghold",
+            "trial_chamber",
+            "mineshaft"
+          ]
+        }
+      }
+    }
+  },
+  "biomes": {
+    "tuning": {
+      "recommended_core": {
+        "median_seconds": {
+          "full_inventory": 0.3472508490085602,
+          "native_distinct_stop": 0.32398384192492813
+        },
+        "per_second": {
+          "full_inventory": 69.11430186138543,
+          "native_distinct_stop": 74.07776837698331
+        },
+        "per_hour": {
+          "full_inventory": 248811.48670098753,
+          "native_distinct_stop": 266679.9661571399
+        },
+        "trials": [
+          {
+            "arm": "full_inventory",
+            "trial": 0,
+            "seconds": 0.34625297295860946,
+            "cpu_seconds": 0.3461400000000001,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 0,
+            "seconds": 0.3237677470315248,
+            "cpu_seconds": 0.3237610000000002,
+            "queried_points": 44148
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 1,
+            "seconds": 0.32398384192492813,
+            "cpu_seconds": 0.32392299999999885,
+            "queried_points": 44148
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 1,
+            "seconds": 0.35406367504037917,
+            "cpu_seconds": 0.3534889999999997,
+            "queried_points": 55296
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 2,
+            "seconds": 0.3472508490085602,
+            "cpu_seconds": 0.3472249999999999,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 2,
+            "seconds": 0.33641315600834787,
+            "cpu_seconds": 0.3307500000000001,
+            "queried_points": 44148
+          }
+        ],
+        "layouts": 24,
+        "sample_positive": 5,
+        "points_per_layout": 2304
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full_inventory": 0.34788159595336765,
+          "native_distinct_stop": 0.3914906890131533
+        },
+        "per_second": {
+          "full_inventory": 68.9889901597931,
+          "native_distinct_stop": 61.304139979670495
+        },
+        "per_hour": {
+          "full_inventory": 248360.36457525517,
+          "native_distinct_stop": 220694.90392681377
+        },
+        "trials": [
+          {
+            "arm": "full_inventory",
+            "trial": 0,
+            "seconds": 0.3509227860486135,
+            "cpu_seconds": 0.3508110000000002,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 0,
+            "seconds": 0.3845827269833535,
+            "cpu_seconds": 0.3844879999999993,
+            "queried_points": 53038
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 1,
+            "seconds": 0.3914906890131533,
+            "cpu_seconds": 0.39127699999999876,
+            "queried_points": 53038
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 1,
+            "seconds": 0.34788159595336765,
+            "cpu_seconds": 0.3478709999999996,
+            "queried_points": 55296
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 2,
+            "seconds": 0.3470746900420636,
+            "cpu_seconds": 0.3469949999999997,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 2,
+            "seconds": 0.39775402401573956,
+            "cpu_seconds": 0.39771,
+            "queried_points": 53038
+          }
+        ],
+        "layouts": 24,
+        "sample_positive": 1,
+        "points_per_layout": 2304
+      }
+    },
+    "holdout": {
+      "recommended_core": {
+        "median_seconds": {
+          "full_inventory": 0.3509258469566703,
+          "native_distinct_stop": 0.2749291480286047
+        },
+        "per_second": {
+          "full_inventory": 68.39051670925608,
+          "native_distinct_stop": 87.2952183211325
+        },
+        "per_hour": {
+          "full_inventory": 246205.86015332188,
+          "native_distinct_stop": 314262.785956077
+        },
+        "trials": [
+          {
+            "arm": "full_inventory",
+            "trial": 0,
+            "seconds": 0.3453146319370717,
+            "cpu_seconds": 0.34530800000000283,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 0,
+            "seconds": 0.2749291480286047,
+            "cpu_seconds": 0.27493000000000123,
+            "queried_points": 37805
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 1,
+            "seconds": 0.2737185209989548,
+            "cpu_seconds": 0.273578999999998,
+            "queried_points": 37805
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 1,
+            "seconds": 0.3509258469566703,
+            "cpu_seconds": 0.35089900000000185,
+            "queried_points": 55296
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 2,
+            "seconds": 0.35423196910414845,
+            "cpu_seconds": 0.35417400000000043,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 2,
+            "seconds": 0.27694183599669486,
+            "cpu_seconds": 0.27691700000000097,
+            "queried_points": 37805
+          }
+        ],
+        "layouts": 24,
+        "sample_positive": 8,
+        "points_per_layout": 2304
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full_inventory": 0.3464250030228868,
+          "native_distinct_stop": 0.40437675605062395
+        },
+        "per_second": {
+          "full_inventory": 69.27906412810054,
+          "native_distinct_stop": 59.35059233967305
+        },
+        "per_hour": {
+          "full_inventory": 249404.63086116195,
+          "native_distinct_stop": 213662.132422823
+        },
+        "trials": [
+          {
+            "arm": "full_inventory",
+            "trial": 0,
+            "seconds": 0.33967777295038104,
+            "cpu_seconds": 0.3396790000000003,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 0,
+            "seconds": 0.38600518705789,
+            "cpu_seconds": 0.3858940000000004,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 1,
+            "seconds": 0.40437675605062395,
+            "cpu_seconds": 0.40433300000000116,
+            "queried_points": 55296
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 1,
+            "seconds": 0.3466842109337449,
+            "cpu_seconds": 0.3466850000000008,
+            "queried_points": 55296
+          },
+          {
+            "arm": "full_inventory",
+            "trial": 2,
+            "seconds": 0.3464250030228868,
+            "cpu_seconds": 0.34636199999999917,
+            "queried_points": 55296
+          },
+          {
+            "arm": "native_distinct_stop",
+            "trial": 2,
+            "seconds": 0.4078762159915641,
+            "cpu_seconds": 0.4078589999999984,
+            "queried_points": 55296
+          }
+        ],
+        "layouts": 24,
+        "sample_positive": 0,
+        "points_per_layout": 2304
+      }
+    }
+  },
+  "discovery_and_structures": {
+    "tuning": {
+      "recommended_core": {
+        "median_seconds": {
+          "full64_direct": 0.09947572404053062,
+          "fused_lower32": 0.09217203897424042,
+          "cached_lower32": 0.1065578400157392
+        },
+        "per_second": {
+          "full64_direct": 1286.7461004641432,
+          "fused_lower32": 1388.7074803213643,
+          "cached_lower32": 1201.2255501903348
+        },
+        "per_hour": {
+          "full64_direct": 4632285.961670916,
+          "fused_lower32": 4999346.929156912,
+          "cached_lower32": 4324411.980685205
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.09947572404053062,
+            "cpu_seconds": 0.09945499999999896
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.10499072191305459,
+            "cpu_seconds": 0.10497400000000034
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.16918445203918964,
+            "cpu_seconds": 0.1689790000000002
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.16734079306479543,
+            "cpu_seconds": 0.16731300000000005
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.1065578400157392,
+            "cpu_seconds": 0.1065339999999999
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.09217203897424042,
+            "cpu_seconds": 0.09210400000000085
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.09180087398272008,
+            "cpu_seconds": 0.09173400000000065
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.08113586402032524,
+            "cpu_seconds": 0.08113700000000001
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.09098474506754428,
+            "cpu_seconds": 0.09092399999999934
+          }
+        ],
+        "input_seeds": 128,
+        "without_discovered_anchor": 20,
+        "structure_positive": 8
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full64_direct": 0.08199006994254887,
+          "fused_lower32": 0.08123514195904136,
+          "cached_lower32": 0.07574934291187674
+        },
+        "per_second": {
+          "full64_direct": 1561.164664082988,
+          "fused_lower32": 1575.672755819611,
+          "cached_lower32": 1689.7836348086773
+        },
+        "per_hour": {
+          "full64_direct": 5620192.790698756,
+          "fused_lower32": 5672421.920950599,
+          "cached_lower32": 6083221.085311239
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.07728304609190673,
+            "cpu_seconds": 0.0772719999999989
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.07911429600790143,
+            "cpu_seconds": 0.07911499999999982
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.0770364700583741,
+            "cpu_seconds": 0.07698899999999931
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.08199006994254887,
+            "cpu_seconds": 0.08199199999999962
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.07574934291187674,
+            "cpu_seconds": 0.07574999999999932
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.08123514195904136,
+            "cpu_seconds": 0.08119100000000046
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.07540943997446448,
+            "cpu_seconds": 0.07541100000000078
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.08791967493016273,
+            "cpu_seconds": 0.0878779999999999
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.13716162904165685,
+            "cpu_seconds": 0.13711600000000068
+          }
+        ],
+        "input_seeds": 128,
+        "without_discovered_anchor": 20,
+        "structure_positive": 0
+      }
+    },
+    "holdout": {
+      "recommended_core": {
+        "median_seconds": {
+          "full64_direct": 0.09278270707000047,
+          "fused_lower32": 0.1047677620081231,
+          "cached_lower32": 0.09291592403315008
+        },
+        "per_second": {
+          "full64_direct": 1379.5674220135616,
+          "fused_lower32": 1221.7498736880111,
+          "cached_lower32": 1377.5894856766727
+        },
+        "per_hour": {
+          "full64_direct": 4966442.719248822,
+          "fused_lower32": 4398299.54527684,
+          "cached_lower32": 4959322.148436021
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.09278270707000047,
+            "cpu_seconds": 0.09278300000000073
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.0898336119716987,
+            "cpu_seconds": 0.08983500000000078
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.09287025406956673,
+            "cpu_seconds": 0.09287199999999984
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.09088974795304239,
+            "cpu_seconds": 0.09089099999999917
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.09291592403315008,
+            "cpu_seconds": 0.09282900000000183
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.1047677620081231,
+            "cpu_seconds": 0.10474499999999765
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.10582748195156455,
+            "cpu_seconds": 0.10582799999999892
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.10158191795926541,
+            "cpu_seconds": 0.10154700000000005
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.12109269702341408,
+            "cpu_seconds": 0.12108999999999881
+          }
+        ],
+        "input_seeds": 128,
+        "without_discovered_anchor": 13,
+        "structure_positive": 10
+      },
+      "strict_expanded": {
+        "median_seconds": {
+          "full64_direct": 0.0807578160893172,
+          "fused_lower32": 0.08145940792746842,
+          "cached_lower32": 0.08361543691717088
+        },
+        "per_second": {
+          "full64_direct": 1584.9859022739483,
+          "fused_lower32": 1571.3347697539293,
+          "cached_lower32": 1530.8178097161208
+        },
+        "per_hour": {
+          "full64_direct": 5705949.248186214,
+          "fused_lower32": 5656805.171114146,
+          "cached_lower32": 5510944.114978035
+        },
+        "trials": [
+          {
+            "arm": "full64_direct",
+            "trial": 0,
+            "seconds": 0.0807578160893172,
+            "cpu_seconds": 0.0807159999999989
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 0,
+            "seconds": 0.08145940792746842,
+            "cpu_seconds": 0.08144100000000165
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 0,
+            "seconds": 0.08331694593653083,
+            "cpu_seconds": 0.08330800000000238
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 1,
+            "seconds": 0.07733137195464224,
+            "cpu_seconds": 0.0773319999999984
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 1,
+            "seconds": 0.08361543691717088,
+            "cpu_seconds": 0.083596
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 1,
+            "seconds": 0.07702759408857673,
+            "cpu_seconds": 0.07702899999999957
+          },
+          {
+            "arm": "cached_lower32",
+            "trial": 2,
+            "seconds": 0.11793786205817014,
+            "cpu_seconds": 0.11787700000000001
+          },
+          {
+            "arm": "full64_direct",
+            "trial": 2,
+            "seconds": 0.1114864640403539,
+            "cpu_seconds": 0.11135099999999909
+          },
+          {
+            "arm": "fused_lower32",
+            "trial": 2,
+            "seconds": 0.136389724095352,
+            "cpu_seconds": 0.13632899999999992
+          }
+        ],
+        "input_seeds": 128,
+        "without_discovered_anchor": 13,
+        "structure_positive": 0
+      }
+    }
+  },
+  "comparisons": 118176,
+  "differences": 0,
+  "source_sha256": {
+    "runs/locked-stronghold-2026-10-11/tuning/centers.json": "6ced1ff29a9b5b86e98af5af043113d2dc6741c7ec1b44a6d7ca70b630491ee9",
+    "runs/count-bits-2026-10-11/tuning-structure-observations.json": "312047d544863d8fade361665f6c6ce1bd3d64a4f90dc8f8c63c9317a63c8fbb",
+    "runs/locked-stronghold-2026-10-11/holdout/centers.json": "43214b6bd90f3c726e1ec704dc4ebb80a3327b8de31440f3acb8c321c8695345",
+    "runs/count-bits-2026-10-11/holdout-structure-observations.json": "2462cca4d93c1fc59c4bdf11c381ee2298d3d53cfcd68f187bafa554da0c1c94"
+  },
+  "script_sha256": "48730d5a49f7b28eb41f3789b5e02db98041a06573b809ae2ec890dca5381846",
+  "scope": {
+    "geometry": "4000 discovery, 1536 Overworld, 896 Nether at exact Stronghold/8",
+    "workers": 1,
+    "structure_stage": "Precreated full64 contexts and first-selected Stronghold; count caps per type, five counterbalanced trials/four repetitions. Paid raw cache starts empty per repetition. All raw-positive cases still use full64 viability. Trial Chamber stays full64 in the lower32 arm. No terrain, biome inventory, discovery, context creation, IPC or persistence.",
+    "biome_stage": "24 correlated sibling layouts per cohort, 2304 world-aligned points at Y=63,-48,0,160; three counterbalanced trials. Both inventory and count-capped native use full64. Oracle is independent full64 batch inventory. Not conditioned on structure success.",
+    "discovery_and_structures": "128 inputs per cohort; three counterbalanced trials. Includes full64 anchor discovery, both diagnostic contexts and preparation. Excludes biomes, terrain, IPC, persistence and game verification. Missing anchors unresolved.",
+    "policy": "Strict expanded profile treats all core count preferences as hard requirements for timing only; production requirements are unchanged. Ordering heuristic learned on tuning using saved count timings (N5 Mineshaft uses N4 cost proxy), frozen for holdout. Hourly rates are serial pilot capacity projections, not sustained measured hours or qualifying-world yield."
+  }
+}

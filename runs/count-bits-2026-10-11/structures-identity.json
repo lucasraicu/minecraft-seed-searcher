@@ -1,0 +1,290 @@
+{
+  "script_sha256": "9fe18709e9c30716b648dbc8dfabda01d691e07b8e18a321b77bb35b98e6563c",
+  "native": {
+    "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/count-bits-2026-10-11/native/_count_pilot.cpython-313-darwin.so",
+    "extension_sha256": "b60afa2c06700cdbec4c698b1bd917cdbdad890defd5bfb6f4ec6fbe90f0176f",
+    "source_sha256": "2227a17caa5a8420df4e9f80fda88a8856ddece63b5f5199c1651f39e1b02e1b",
+    "inputs": {
+      "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+      "native/bridge.h": "d80112a1f85639cea05fdf12f988d76ceee1ace1739effe54d986d69cc22e7b8",
+      "native/filters.inc": "f747fb7cb88284de0a57d58286e87071c739ee1a3ba70a722ee5a06295199739",
+      "native/count_pilot.inc": "3ba3d8a1aa52b72c909eb9e3791e94aa334ce286e6933982c5df959fe61f871c",
+      "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+      "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+      "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+      "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+      "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+      "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+      "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+      "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+      "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+      "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+    },
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv"
+    ],
+    "production_extension_replaced": false
+  },
+  "reference_native_sha256": "a16c3d72f1ded917544481348ce80e23e290bb33290396f65d59b9e006e38a1e",
+  "geometry": "4000-square discovery; selected first Stronghold; 1536-square OW / 896-square Nether exact /8; End 1536-square same-coordinate diagnostic only",
+  "families": {
+    "ocean": [
+      0,
+      10,
+      24,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50
+    ],
+    "plains_meadow": [
+      1,
+      129,
+      177
+    ],
+    "desert": [
+      2
+    ],
+    "mountains": [
+      3,
+      131,
+      178,
+      180,
+      181,
+      182
+    ],
+    "forest": [
+      4,
+      27,
+      34,
+      132,
+      155,
+      188
+    ],
+    "taiga": [
+      5,
+      30,
+      32,
+      160
+    ],
+    "swamp": [
+      6,
+      184
+    ],
+    "rivers_shores": [
+      7,
+      11,
+      16,
+      25,
+      26
+    ],
+    "nether_wastes": [
+      8
+    ],
+    "the_end": [
+      9
+    ],
+    "snowy_ice": [
+      12,
+      140,
+      179
+    ],
+    "mushroom": [
+      14
+    ],
+    "jungle": [
+      21,
+      23,
+      168
+    ],
+    "dark_pale": [
+      29,
+      186
+    ],
+    "savanna": [
+      35,
+      36,
+      163
+    ],
+    "badlands": [
+      37,
+      38,
+      165
+    ],
+    "small_end_islands": [
+      40
+    ],
+    "end_midlands": [
+      41
+    ],
+    "end_highlands": [
+      42
+    ],
+    "end_barrens": [
+      43
+    ],
+    "soul_sand_valley": [
+      170
+    ],
+    "crimson_forest": [
+      171
+    ],
+    "warped_forest": [
+      172
+    ],
+    "basalt_deltas": [
+      173
+    ],
+    "dripstone_caves": [
+      174
+    ],
+    "lush_caves": [
+      175
+    ],
+    "deep_dark": [
+      183
+    ],
+    "cherry": [
+      185
+    ],
+    "sulfur_caves": [
+      187
+    ]
+  },
+  "structure_placement_bits": {
+    "trial_chamber": 48,
+    "stronghold": 64,
+    "mineshaft": 32,
+    "ancient_city": 32,
+    "village": 32,
+    "ruined_portal": 32,
+    "shipwreck": 32,
+    "monument": 32,
+    "outpost": 32,
+    "fortress": 32,
+    "bastion": 32,
+    "desert_pyramid": 32,
+    "jungle_temple": 32,
+    "swamp_hut": 32,
+    "igloo": 32,
+    "ocean_ruin": 32,
+    "mansion": 32,
+    "buried_treasure": 32,
+    "trail_ruins": 48,
+    "abandoned_camp": 48,
+    "ruined_portal_nether": 32,
+    "end_city": 32
+  },
+  "structure_biome_y": {
+    "trial_chamber": 0,
+    "stronghold": 63,
+    "mineshaft": 0,
+    "ancient_city": -48,
+    "village": 63,
+    "ruined_portal": 63,
+    "shipwreck": 63,
+    "monument": 63,
+    "outpost": 63,
+    "fortress": 33,
+    "bastion": 33,
+    "desert_pyramid": 63,
+    "jungle_temple": 63,
+    "swamp_hut": 63,
+    "igloo": 63,
+    "ocean_ruin": 63,
+    "mansion": 63,
+    "buried_treasure": 63,
+    "trail_ruins": 63,
+    "abandoned_camp": 63,
+    "ruined_portal_nether": 33,
+    "end_city": 63
+  },
+  "profiles": {
+    "current_four": [
+      "village",
+      "ancient_city",
+      "fortress",
+      "bastion"
+    ],
+    "all_16_mt": [
+      "village",
+      "ancient_city",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion",
+      "desert_pyramid",
+      "jungle_temple",
+      "swamp_hut",
+      "igloo",
+      "ocean_ruin",
+      "mansion",
+      "buried_treasure",
+      "ruined_portal_nether"
+    ],
+    "all_21_ow_nether": [
+      "trial_chamber",
+      "stronghold",
+      "mineshaft",
+      "ancient_city",
+      "village",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion",
+      "desert_pyramid",
+      "jungle_temple",
+      "swamp_hut",
+      "igloo",
+      "ocean_ruin",
+      "mansion",
+      "buried_treasure",
+      "trail_ruins",
+      "abandoned_camp",
+      "ruined_portal_nether"
+    ],
+    "all_22_with_end_control": [
+      "trial_chamber",
+      "stronghold",
+      "mineshaft",
+      "ancient_city",
+      "village",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion",
+      "desert_pyramid",
+      "jungle_temple",
+      "swamp_hut",
+      "igloo",
+      "ocean_ruin",
+      "mansion",
+      "buried_treasure",
+      "trail_ruins",
+      "abandoned_camp",
+      "ruined_portal_nether",
+      "end_city"
+    ]
+  },
+  "counts": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "scope": "Single process conditional count-N stage. Native context construction and Stronghold discovery are excluded; cache reset/construction and misses are included. Count1 Stronghold uses the preselected anchor; count2+ enumerates/deduplicates its bounded predicted anchors.",
+  "parent_sha256": {
+    "tuning": "6ced1ff29a9b5b86e98af5af043113d2dc6741c7ec1b44a6d7ca70b630491ee9",
+    "holdout": "43214b6bd90f3c726e1ec704dc4ebb80a3327b8de31440f3acb8c321c8695345"
+  }
+}

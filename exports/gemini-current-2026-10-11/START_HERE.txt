@@ -1,0 +1,45 @@
+Minecraft seed searcher — current project packet (11 October 2026)
+
+GitHub: https://github.com/lucasraicu/minecraft-seed-searcher
+Base commit: e3a5ca556e93f79df77b5cfc696d0226c8437c49
+This packet includes LOCAL UNCOMMITTED terrain-preference changes after that commit.
+
+Current authoritative settings:
+- Bedrock 26.52, pinned approximate MC_26_50 predictor; BDS 1.26.52.3.
+- Discovery: 4000 x 4000 in Overworld and initial Nether.
+- Final Overworld: 1536 x 1536 centered on each discovered Stronghold.
+- Final Nether: 896 x 896 at the exact fractional Stronghold/8 center.
+- Required: Stronghold, Village, Trial Chamber, Ancient City, Mineshaft;
+  initial Fortress; final Fortress AND Bastion; at least two wooded families.
+- Independent full64 search is the default. Lower32 is experimental.
+- Current main-island preference: at least 250,000 connected land blocks,
+  favor 650,000; disconnected islets do not add to the main island area.
+  Irregular shapes are allowed; equivalent diameter is an area summary.
+- Basin preference: substantial raised terrain around the interior, allowing
+  separate mountains, rough/water interiors and open passes. No strict arc shape
+  in the active surrounding_mountains policy.
+
+Evidence:
+- 680 tests passed after the terrain preference update.
+- Compact eligibility pilots: 603–612 inputs/sec INCLUDING persistence,
+  EXCLUDING deferred inventory, terrain and BDS. These precede the latest
+  terrain preference changes; no new sustained terrain/BDS rate is measured.
+- Equivalent frozen-lattice speedup: 1.53x. Local mineshaft witness speedup ~48x.
+- Prior massive benchmark: 173.37/s at OLDER 5000/2688/1024 geometry.
+- Lower32 necessary raw predicate rejected 3.895% in the larger compact pilot;
+  persisted presence ~1.44 million layouts/sec, not useful full-world yield.
+- New 2048-layout pilot: Monument/Outpost/Shipwreck/Ruined Portal added zero
+  envelope-presence exclusions; at one arbitrary center Outpost added 38.
+  This is not an actual Stronghold or all-family joint-center experiment.
+- Predictor parity is not actual-world accuracy. Full structure recall and
+  whole natural formation verification remain open; no production sweep launched.
+
+Read config/realm.yaml and TERRAIN_PREFERENCE_UPDATE.md for current preferences;
+COMPACT_SEARCH_IMPLEMENTATION_RESULTS.md for compact benchmark evidence.
+Older reports are historical and may describe superseded sizes/preferences.
+The archive carries the current source, tests and selected evidence. The text
+packet embeds the most relevant files. Generated binaries, databases, credentials,
+node_modules and duplicated exports are excluded. No world-generation runtime is bundled.
+
+Review the implementation and measured tradeoffs using these files, distinguishing
+presence witnesses, complete predictor inventories and actual generated evidence.

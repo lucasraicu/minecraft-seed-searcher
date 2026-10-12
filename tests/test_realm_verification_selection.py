@@ -12,10 +12,10 @@ def pool(tmp_path):
         candidate={'id':cid,'seed':'1','stronghold':[index,0],'qualification':qualification}
         store.db.execute('INSERT INTO candidates VALUES (?,?,?,?,?)',(cid,str(index),'1',qualification,canonical(candidate)))
         result={'evidence':'PREDICTED','geometry_pass':True,'geometry_score':80,'score':100-index,
-                'metrics':{'diameter':400},'border_fit':{'state':'within'}}
-        if index==2:result['metrics']['diameter']=250
+                'metrics':{'diameter':800},'border_fit':{'state':'within'}}
+        if index==2:result['metrics']['diameter']=500
         if index==3:result['border_fit']['state']='outside'
-        if index==11:result['score']=999;result['metrics']['diameter']=250;result['border_fit']['state']='outside'
+        if index==11:result['score']=999;result['metrics']['diameter']=500;result['border_fit']['state']='outside'
         store.upsert_variant(cid,'v1',[index,0],result)
     return store,cfg
 

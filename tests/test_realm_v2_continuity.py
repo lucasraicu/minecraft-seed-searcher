@@ -73,7 +73,7 @@ def test_old_v2_config_detector_merges_defaults_without_config_mutation(tmp_path
     from seed_search.realm.config import default_config
     from seed_search.realm.cli import load
     cfg=default_config()
-    for key in ('ridge_min_arc_rays','ridge_min_arc_aspect'):cfg['terrain']['v2'].pop(key)
+    for key in ('ridge_min_arc_rays','ridge_min_arc_aspect','enclosure_policy'):cfg['terrain']['v2'].pop(key)
     path=tmp_path/'old.yaml';path.write_text(yaml.safe_dump(cfg))
     loaded=load(path)
     assert loaded==cfg
@@ -106,7 +106,7 @@ def test_validation_leaves_legacy_config_bytes_and_baseline_resume_identity_unch
     from seed_search.realm.config import default_config,validate_config
     from seed_search.realm.store import RealmStore,canonical,semantic_identity
     cfg=default_config()
-    for key in ('ridge_min_arc_rays','ridge_min_arc_aspect'):cfg['terrain']['v2'].pop(key)
+    for key in ('ridge_min_arc_rays','ridge_min_arc_aspect','enclosure_policy'):cfg['terrain']['v2'].pop(key)
     before=canonical(cfg)
     identity={'config':copy.deepcopy(cfg),'count':1,'start_index':0}
     prior_semantic=semantic_identity(identity)

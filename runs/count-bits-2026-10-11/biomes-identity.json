@@ -1,0 +1,1352 @@
+{
+  "script_sha256": "61233144490d29c4299a4097ed326c0250fda18e073ff672962db897109fb047",
+  "catalog": [
+    {
+      "id": 0,
+      "name": "ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 1,
+      "name": "plains",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 2,
+      "name": "desert",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 3,
+      "name": "windswept_hills",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 4,
+      "name": "forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 5,
+      "name": "taiga",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 6,
+      "name": "swamp",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 7,
+      "name": "river",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 8,
+      "name": "nether_wastes",
+      "version_active": true,
+      "generates": true,
+      "dimension": -1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 9,
+      "name": "the_end",
+      "version_active": true,
+      "generates": true,
+      "dimension": 1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 10,
+      "name": "frozen_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 11,
+      "name": "frozen_river",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 12,
+      "name": "snowy_plains",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 14,
+      "name": "mushroom_fields",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 16,
+      "name": "beach",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 21,
+      "name": "jungle",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 23,
+      "name": "sparse_jungle",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 24,
+      "name": "deep_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 25,
+      "name": "stony_shore",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 26,
+      "name": "snowy_beach",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 27,
+      "name": "birch_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 29,
+      "name": "dark_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 30,
+      "name": "snowy_taiga",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 32,
+      "name": "old_growth_pine_taiga",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 34,
+      "name": "windswept_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 35,
+      "name": "savanna",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 36,
+      "name": "savanna_plateau",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 37,
+      "name": "badlands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 38,
+      "name": "wooded_badlands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 40,
+      "name": "small_end_islands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 41,
+      "name": "end_midlands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 42,
+      "name": "end_highlands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 43,
+      "name": "end_barrens",
+      "version_active": true,
+      "generates": true,
+      "dimension": 1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 44,
+      "name": "warm_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 45,
+      "name": "lukewarm_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 46,
+      "name": "cold_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 48,
+      "name": "deep_lukewarm_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 49,
+      "name": "deep_cold_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 50,
+      "name": "deep_frozen_ocean",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 129,
+      "name": "sunflower_plains",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 131,
+      "name": "windswept_gravelly_hills",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 132,
+      "name": "flower_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 140,
+      "name": "ice_spikes",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 155,
+      "name": "old_growth_birch_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 160,
+      "name": "old_growth_spruce_taiga",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 163,
+      "name": "windswept_savanna",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 165,
+      "name": "eroded_badlands",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 168,
+      "name": "bamboo_jungle",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 170,
+      "name": "soul_sand_valley",
+      "version_active": true,
+      "generates": true,
+      "dimension": -1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 171,
+      "name": "crimson_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": -1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 172,
+      "name": "warped_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": -1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 173,
+      "name": "basalt_deltas",
+      "version_active": true,
+      "generates": true,
+      "dimension": -1,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 174,
+      "name": "dripstone_caves",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 175,
+      "name": "lush_caves",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 177,
+      "name": "meadow",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 178,
+      "name": "grove",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 179,
+      "name": "snowy_slopes",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 180,
+      "name": "jagged_peaks",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 181,
+      "name": "frozen_peaks",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 182,
+      "name": "stony_peaks",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 183,
+      "name": "deep_dark",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 184,
+      "name": "mangrove_swamp",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 185,
+      "name": "cherry_grove",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 186,
+      "name": "pale_garden",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 187,
+      "name": "sulfur_caves",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    },
+    {
+      "id": 188,
+      "name": "dappled_forest",
+      "version_active": true,
+      "generates": true,
+      "dimension": 0,
+      "provenance": "pinned predictor ID; not an actual Bedrock string mapping"
+    }
+  ],
+  "items": [
+    {
+      "kind": "biome",
+      "name": "ocean",
+      "ids": [
+        0
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "plains",
+      "ids": [
+        1
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "desert",
+      "ids": [
+        2
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "windswept_hills",
+      "ids": [
+        3
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "forest",
+      "ids": [
+        4
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "taiga",
+      "ids": [
+        5
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "swamp",
+      "ids": [
+        6
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "river",
+      "ids": [
+        7
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "nether_wastes",
+      "ids": [
+        8
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "biome",
+      "name": "the_end",
+      "ids": [
+        9
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "biome",
+      "name": "frozen_ocean",
+      "ids": [
+        10
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "frozen_river",
+      "ids": [
+        11
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "snowy_plains",
+      "ids": [
+        12
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "mushroom_fields",
+      "ids": [
+        14
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "beach",
+      "ids": [
+        16
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "jungle",
+      "ids": [
+        21
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "sparse_jungle",
+      "ids": [
+        23
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "deep_ocean",
+      "ids": [
+        24
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "stony_shore",
+      "ids": [
+        25
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "snowy_beach",
+      "ids": [
+        26
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "birch_forest",
+      "ids": [
+        27
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "dark_forest",
+      "ids": [
+        29
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "snowy_taiga",
+      "ids": [
+        30
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "old_growth_pine_taiga",
+      "ids": [
+        32
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "windswept_forest",
+      "ids": [
+        34
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "savanna",
+      "ids": [
+        35
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "savanna_plateau",
+      "ids": [
+        36
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "badlands",
+      "ids": [
+        37
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "wooded_badlands",
+      "ids": [
+        38
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "small_end_islands",
+      "ids": [
+        40
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "biome",
+      "name": "end_midlands",
+      "ids": [
+        41
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "biome",
+      "name": "end_highlands",
+      "ids": [
+        42
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "biome",
+      "name": "end_barrens",
+      "ids": [
+        43
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "biome",
+      "name": "warm_ocean",
+      "ids": [
+        44
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "lukewarm_ocean",
+      "ids": [
+        45
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "cold_ocean",
+      "ids": [
+        46
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "deep_lukewarm_ocean",
+      "ids": [
+        48
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "deep_cold_ocean",
+      "ids": [
+        49
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "deep_frozen_ocean",
+      "ids": [
+        50
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "sunflower_plains",
+      "ids": [
+        129
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "windswept_gravelly_hills",
+      "ids": [
+        131
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "flower_forest",
+      "ids": [
+        132
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "ice_spikes",
+      "ids": [
+        140
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "old_growth_birch_forest",
+      "ids": [
+        155
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "old_growth_spruce_taiga",
+      "ids": [
+        160
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "windswept_savanna",
+      "ids": [
+        163
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "eroded_badlands",
+      "ids": [
+        165
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "bamboo_jungle",
+      "ids": [
+        168
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "soul_sand_valley",
+      "ids": [
+        170
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "biome",
+      "name": "crimson_forest",
+      "ids": [
+        171
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "biome",
+      "name": "warped_forest",
+      "ids": [
+        172
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "biome",
+      "name": "basalt_deltas",
+      "ids": [
+        173
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "biome",
+      "name": "dripstone_caves",
+      "ids": [
+        174
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "lush_caves",
+      "ids": [
+        175
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "meadow",
+      "ids": [
+        177
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "grove",
+      "ids": [
+        178
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "snowy_slopes",
+      "ids": [
+        179
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "jagged_peaks",
+      "ids": [
+        180
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "frozen_peaks",
+      "ids": [
+        181
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "stony_peaks",
+      "ids": [
+        182
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "deep_dark",
+      "ids": [
+        183
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "mangrove_swamp",
+      "ids": [
+        184
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "cherry_grove",
+      "ids": [
+        185
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "pale_garden",
+      "ids": [
+        186
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "sulfur_caves",
+      "ids": [
+        187
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "biome",
+      "name": "dappled_forest",
+      "ids": [
+        188
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "ocean",
+      "ids": [
+        0,
+        10,
+        24,
+        44,
+        45,
+        46,
+        48,
+        49,
+        50
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "plains_meadow",
+      "ids": [
+        1,
+        129,
+        177
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "desert",
+      "ids": [
+        2
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "mountains",
+      "ids": [
+        3,
+        131,
+        178,
+        180,
+        181,
+        182
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "forest",
+      "ids": [
+        4,
+        27,
+        34,
+        132,
+        155,
+        188
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "taiga",
+      "ids": [
+        5,
+        30,
+        32,
+        160
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "swamp",
+      "ids": [
+        6,
+        184
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "rivers_shores",
+      "ids": [
+        7,
+        11,
+        16,
+        25,
+        26
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "nether_wastes",
+      "ids": [
+        8
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "family",
+      "name": "the_end",
+      "ids": [
+        9
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "family",
+      "name": "snowy_ice",
+      "ids": [
+        12,
+        140,
+        179
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "mushroom",
+      "ids": [
+        14
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "jungle",
+      "ids": [
+        21,
+        23,
+        168
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "dark_pale",
+      "ids": [
+        29,
+        186
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "savanna",
+      "ids": [
+        35,
+        36,
+        163
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "badlands",
+      "ids": [
+        37,
+        38,
+        165
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "small_end_islands",
+      "ids": [
+        40
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "family",
+      "name": "end_midlands",
+      "ids": [
+        41
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "family",
+      "name": "end_highlands",
+      "ids": [
+        42
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "family",
+      "name": "end_barrens",
+      "ids": [
+        43
+      ],
+      "dimension": 1
+    },
+    {
+      "kind": "family",
+      "name": "soul_sand_valley",
+      "ids": [
+        170
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "family",
+      "name": "crimson_forest",
+      "ids": [
+        171
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "family",
+      "name": "warped_forest",
+      "ids": [
+        172
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "family",
+      "name": "basalt_deltas",
+      "ids": [
+        173
+      ],
+      "dimension": -1
+    },
+    {
+      "kind": "family",
+      "name": "dripstone_caves",
+      "ids": [
+        174
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "lush_caves",
+      "ids": [
+        175
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "deep_dark",
+      "ids": [
+        183
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "cherry",
+      "ids": [
+        185
+      ],
+      "dimension": 0
+    },
+    {
+      "kind": "family",
+      "name": "sulfur_caves",
+      "ids": [
+        187
+      ],
+      "dimension": 0
+    }
+  ],
+  "counts": [
+    1
+  ],
+  "spacing": 64,
+  "y_levels": {
+    "0": [
+      63,
+      -48,
+      0,
+      160
+    ],
+    "-1": [
+      33
+    ],
+    "1": [
+      63
+    ]
+  },
+  "scope": "48 frozen full64 layouts (24 tuning/24 holdout by default). Full64 defined sample lattice is the reference. Support counts are distinct XYZ samples; patches are 4-connected horizontal sampled components, max across layers; not actual-world exhaustive negatives or certified distinct biome areas.",
+  "masked_contexts": "unsafe32/unsafe48 intentionally replace seed bits only as accuracy-negative controls, not candidate filters."
+}

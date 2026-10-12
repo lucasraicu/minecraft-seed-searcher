@@ -1,0 +1,494 @@
+{
+  "scope": "synthetic preference controls; no natural-world calibration claim",
+  "active_profile": {
+    "variants": [
+      "v1",
+      "v2"
+    ],
+    "native_threads": 1,
+    "scheduler": "rotation",
+    "resolutions": [
+      128,
+      64,
+      32,
+      16,
+      8,
+      4
+    ],
+    "center_spacing": 64,
+    "refine_center_spacing": 16,
+    "rays": 32,
+    "maximum_refinements_per_anchor": 8,
+    "v1": {
+      "diameter_min": 500,
+      "diameter_max": 1300,
+      "water_rays": 24,
+      "water_width": 48,
+      "area": 250000,
+      "ideal_diameter_min": 800,
+      "ideal_diameter_max": 1100,
+      "ideal_water_rays": 29,
+      "ideal_water_width": 100,
+      "ideal_area": 650000
+    },
+    "v2": {
+      "ridge_rays": 16,
+      "relief": 24,
+      "distance_min": 150,
+      "distance_max": 700,
+      "ideal_ridge_rays": 24,
+      "ideal_relief": 50,
+      "ideal_distance_min": 250,
+      "ideal_distance_max": 600,
+      "ridge_support_width": 32,
+      "ridge_support_area": 4096,
+      "largest_gap_rays": 12,
+      "ridge_min_arc_rays": 4,
+      "ridge_min_arc_aspect": 2.0,
+      "enclosure_policy": "surrounding_mountains"
+    }
+  },
+  "source_sha256": {
+    "src/seed_search/realm/terrain.py": "ed94f5a93ccffe37a3f8eb0c58d48167030e5d94e2d5f3608fd2c37e95649682",
+    "src/seed_search/realm/config.py": "d879fe5dbb698bf348f8b27db4b51b07c5a9c22c600504615487b2789663471b",
+    "config/realm.yaml": "1dcb4ef48f9983b90f97e7a2ed31fca5712d81cabc05095ffd9c6c16ab4a117c",
+    "tests/test_realm_inclusive_terrain.py": "a23442d25eb8aec650fb94143532cf297d006215a62d98deb6288c7871a090e5"
+  },
+  "controls": [
+    {
+      "variant": "v1",
+      "control": "small",
+      "results": {
+        "historical": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 100.0,
+          "reasons": [],
+          "metrics": {
+            "island_area": 80448.0,
+            "equivalent_diameter": 320.04620743707363,
+            "hull_span": 331.20386471175124
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 77.85735869713744,
+          "reasons": [
+            "island diameter",
+            "island area"
+          ],
+          "metrics": {
+            "island_area": 80448.0,
+            "equivalent_diameter": 320.04620743707363,
+            "hull_span": 331.20386471175124
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v1",
+      "control": "archipelago",
+      "results": {
+        "historical": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 100.0,
+          "reasons": [],
+          "metrics": {
+            "island_area": 80448.0,
+            "equivalent_diameter": 320.04620743707363,
+            "hull_span": 331.20386471175124
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 77.85735869713744,
+          "reasons": [
+            "island diameter",
+            "island area"
+          ],
+          "metrics": {
+            "island_area": 80448.0,
+            "equivalent_diameter": 320.04620743707363,
+            "hull_span": 331.20386471175124
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v1",
+      "control": "large",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 96.48673747225202,
+          "reasons": [
+            "island diameter"
+          ],
+          "metrics": {
+            "island_area": 502080.0,
+            "equivalent_diameter": 799.5424382861929,
+            "hull_span": 811.2015779077356
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 96.57788225632765,
+          "reasons": [],
+          "metrics": {
+            "island_area": 502080.0,
+            "equivalent_diameter": 799.5424382861929,
+            "hull_span": 811.2015779077356
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v1",
+      "control": "irregular",
+      "results": {
+        "historical": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 100.0,
+          "reasons": [],
+          "metrics": {
+            "island_area": 339904.0,
+            "equivalent_diameter": 657.8595702835528,
+            "hull_span": 1208.026489775783
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 90.17880540435507,
+          "reasons": [],
+          "metrics": {
+            "island_area": 339904.0,
+            "equivalent_diameter": 657.8595702835528,
+            "hull_span": 1208.026489775783
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v1",
+      "control": "peninsula",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PENDING",
+          "geometry_score": 95.60908361879783,
+          "reasons": [
+            "land component reaches analysis boundary",
+            "island diameter"
+          ],
+          "metrics": {
+            "island_area": 516736.0,
+            "equivalent_diameter": 811.1280474673953,
+            "hull_span": 1168.2465493208188
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PENDING",
+          "geometry_score": 96.45592692307693,
+          "reasons": [
+            "land component reaches analysis boundary"
+          ],
+          "metrics": {
+            "island_area": 516736.0,
+            "equivalent_diameter": 811.1280474673953,
+            "hull_span": 1168.2465493208188
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "separate",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge arc continuity/support",
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 96.984375,
+          "reasons": [],
+          "metrics": {
+            "ridge_rays": 24,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 11.25,
+            "interior_roughness": 0.0
+          },
+          "border_state": "within"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "rough",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge arc continuity/support",
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 17.485299952500437
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 96.984375,
+          "reasons": [],
+          "metrics": {
+            "ridge_rays": 24,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 11.25,
+            "interior_roughness": 17.614891199340345
+          },
+          "border_state": "within"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "open_pass",
+      "results": {
+        "historical": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 88.7368881118881,
+          "reasons": [],
+          "metrics": {
+            "ridge_rays": 24,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 90.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "within"
+        },
+        "active": {
+          "geometry_pass": true,
+          "qualification": "PREDICTED",
+          "geometry_score": 94.25,
+          "reasons": [],
+          "metrics": {
+            "ridge_rays": 24,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 90.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "within"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "flat",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "gentle",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.352947532785834
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.17724157079291986
+          },
+          "border_state": "unknown"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "one_side",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 61.783763111888106,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap"
+          ],
+          "metrics": {
+            "ridge_rays": 11,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 236.25,
+            "interior_roughness": 0.0
+          },
+          "border_state": "within"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 65.47395833333333,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap"
+          ],
+          "metrics": {
+            "ridge_rays": 11,
+            "relative_relief": 45.0,
+            "largest_gap_degrees": 236.25,
+            "interior_roughness": 0.0
+          },
+          "border_state": "within"
+        }
+      }
+    },
+    {
+      "variant": "v2",
+      "control": "spikes",
+      "results": {
+        "historical": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "unknown"
+        },
+        "active": {
+          "geometry_pass": false,
+          "qualification": "PREDICTED_NEAR_MATCH",
+          "geometry_score": 0.0,
+          "reasons": [
+            "ridge angular enclosure",
+            "largest angular gap",
+            "interior-relative relief",
+            "ridge distance"
+          ],
+          "metrics": {
+            "ridge_rays": 0,
+            "relative_relief": 0.0,
+            "largest_gap_degrees": 360.0,
+            "interior_roughness": 0.0
+          },
+          "border_state": "unknown"
+        }
+      }
+    }
+  ]
+}

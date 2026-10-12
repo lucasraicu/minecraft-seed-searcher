@@ -1,0 +1,47 @@
+{
+  "geometry": {
+    "discovery_side": 4000,
+    "overworld_side": 1536,
+    "nether_side": 896
+  },
+  "layouts": 896,
+  "fixed_core_requirement": {
+    "village": 3,
+    "trial_chamber": 3,
+    "ancient_city": 2,
+    "mineshaft": 5,
+    "fortress": 1,
+    "bastion": 1
+  },
+  "proposed_additions": {
+    "monument": 1,
+    "mansion": 1,
+    "jungle_temple": 1,
+    "desert_pyramid": 1
+  },
+  "proposed_biome_family_goals": {
+    "forest": 3,
+    "taiga": 2,
+    "desert": 1,
+    "jungle": 1
+  },
+  "structure_only_results": {
+    "core_structures_and_nether": 58,
+    "core_plus_all_four": 0,
+    "all_four_without_core": 0,
+    "core_plus_monument_and_two_temples": 0,
+    "standalone_monument": 251,
+    "core_plus_monument": 8,
+    "standalone_mansion": 5,
+    "core_plus_mansion": 1,
+    "standalone_jungle_temple": 110,
+    "core_plus_jungle_temple": 4,
+    "standalone_desert_pyramid": 121,
+    "core_plus_desert_pyramid": 4
+  },
+  "source_sha256": {
+    "runs/count-bits-2026-10-11/tuning-structure-observations.json": "312047d544863d8fade361665f6c6ce1bd3d64a4f90dc8f8c63c9317a63c8fbb",
+    "runs/count-bits-2026-10-11/holdout-structure-observations.json": "2462cca4d93c1fc59c4bdf11c381ee2298d3d53cfcd68f187bafa554da0c1c94"
+  },
+  "scope": "Existing correlated lower-word sibling pilot with frozen first Stronghold per seed, native predicted viable starts. No new seed search, no current extended biome combination query, no terrain qualification or actual-game verification. Zero observed matches is not proof of impossibility. Historical million did not inventory Mansion, Jungle Temple or Desert Pyramid."
+}

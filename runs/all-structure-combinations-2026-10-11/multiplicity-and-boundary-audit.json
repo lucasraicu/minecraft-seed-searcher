@@ -1,0 +1,79 @@
+{
+  "native_sha256": "a16c3d72f1ded917544481348ce80e23e290bb33290396f65d59b9e006e38a1e",
+  "revised_script_sha256": "27e53b8ddabd2267da35d15e4ae9af2ef1d0957e3ce00ead4770eb3e3189d769",
+  "timed_script_sha256": "6117b1ed9c02f0340d3c008a9d367aa23184162b23e4bf3fdf47976069246749",
+  "scope": "Saved raw-count reanalysis of 16 audited region-MT families; shared four feature types require 4*k distinct slots. Not an N-witness speed benchmark or full64/actual-world qualification.",
+  "tuning": {
+    "source_sha256": "6ced1ff29a9b5b86e98af5af043113d2dc6741c7ec1b44a6d7ca70b630491ee9",
+    "multiplicity": [
+      {
+        "required_copies_each": 1,
+        "layouts": 436,
+        "per_family_raw_survivors": 276,
+        "raw_capacity_survivors": 276,
+        "rejected_percent": 36.69724770642202
+      },
+      {
+        "required_copies_each": 2,
+        "layouts": 436,
+        "per_family_raw_survivors": 14,
+        "raw_capacity_survivors": 14,
+        "rejected_percent": 96.78899082568807
+      },
+      {
+        "required_copies_each": 3,
+        "layouts": 436,
+        "per_family_raw_survivors": 0,
+        "raw_capacity_survivors": 0,
+        "rejected_percent": 100.0
+      },
+      {
+        "required_copies_each": 4,
+        "layouts": 436,
+        "per_family_raw_survivors": 0,
+        "raw_capacity_survivors": 0,
+        "rejected_percent": 100.0
+      }
+    ]
+  },
+  "holdout": {
+    "source_sha256": "43214b6bd90f3c726e1ec704dc4ebb80a3327b8de31440f3acb8c321c8695345",
+    "multiplicity": [
+      {
+        "required_copies_each": 1,
+        "layouts": 460,
+        "per_family_raw_survivors": 329,
+        "raw_capacity_survivors": 329,
+        "rejected_percent": 28.47826086956522
+      },
+      {
+        "required_copies_each": 2,
+        "layouts": 460,
+        "per_family_raw_survivors": 21,
+        "raw_capacity_survivors": 20,
+        "rejected_percent": 95.65217391304348
+      },
+      {
+        "required_copies_each": 3,
+        "layouts": 460,
+        "per_family_raw_survivors": 0,
+        "raw_capacity_survivors": 0,
+        "rejected_percent": 100.0
+      },
+      {
+        "required_copies_each": 4,
+        "layouts": 460,
+        "per_family_raw_survivors": 0,
+        "raw_capacity_survivors": 0,
+        "rejected_percent": 100.0
+      }
+    ]
+  },
+  "boundary_correction": {
+    "detail": "Outpost raw starts use +0 block offset; Mansion uses +8. The diagnostic full-offset-rectangle shortcut now distinguishes them.",
+    "presence_comparisons": 2688,
+    "differences": 0,
+    "focused_tests_passed": 19,
+    "timing_note": "Historical timing results retain their measured source snapshot. No timing rerun is claimed by this correction; frozen-layout gate decisions are unchanged."
+  }
+}

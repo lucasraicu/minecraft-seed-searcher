@@ -1,0 +1,560 @@
+{
+  "structures": [
+    {
+      "id": "trial_chamber",
+      "label": "Trial Chamber",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "stronghold",
+      "label": "Stronghold",
+      "dimension": 0,
+      "ceiling": 4
+    },
+    {
+      "id": "mineshaft",
+      "label": "Mineshaft",
+      "dimension": 0,
+      "ceiling": 9216
+    },
+    {
+      "id": "ancient_city",
+      "label": "Ancient City",
+      "dimension": 0,
+      "ceiling": 25
+    },
+    {
+      "id": "village",
+      "label": "Village",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "ruined_portal",
+      "label": "Ruined Portal",
+      "dimension": 0,
+      "ceiling": 9
+    },
+    {
+      "id": "shipwreck",
+      "label": "Shipwreck",
+      "dimension": 0,
+      "ceiling": 25
+    },
+    {
+      "id": "monument",
+      "label": "Ocean Monument",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "outpost",
+      "label": "Pillager Outpost",
+      "dimension": 0,
+      "ceiling": 4
+    },
+    {
+      "id": "fortress",
+      "label": "Nether Fortress",
+      "dimension": -1,
+      "ceiling": 9
+    },
+    {
+      "id": "bastion",
+      "label": "Bastion Remnant",
+      "dimension": -1,
+      "ceiling": 9
+    },
+    {
+      "id": "desert_pyramid",
+      "label": "Desert Pyramid / Sand Temple",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "jungle_temple",
+      "label": "Jungle Temple",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "swamp_hut",
+      "label": "Swamp Hut",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "igloo",
+      "label": "Igloo",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "ocean_ruin",
+      "label": "Ocean Ruin",
+      "dimension": 0,
+      "ceiling": 36
+    },
+    {
+      "id": "mansion",
+      "label": "Woodland Mansion",
+      "dimension": 0,
+      "ceiling": 4
+    },
+    {
+      "id": "buried_treasure",
+      "label": "Buried Treasure",
+      "dimension": 0,
+      "ceiling": 625
+    },
+    {
+      "id": "trail_ruins",
+      "label": "Trail Ruins",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "abandoned_camp",
+      "label": "Abandoned Camp",
+      "dimension": 0,
+      "ceiling": 16
+    },
+    {
+      "id": "ruined_portal_nether",
+      "label": "Nether Ruined Portal",
+      "dimension": -1,
+      "ceiling": 9
+    },
+    {
+      "id": "end_city",
+      "label": "End City",
+      "dimension": 1,
+      "ceiling": null
+    }
+  ],
+  "families": [
+    {
+      "id": "ocean",
+      "label": "Ocean",
+      "ids": [
+        0,
+        10,
+        24,
+        44,
+        45,
+        46,
+        48,
+        49,
+        50
+      ],
+      "variants": [
+        "ocean",
+        "frozen_ocean",
+        "deep_ocean",
+        "warm_ocean",
+        "lukewarm_ocean",
+        "cold_ocean",
+        "deep_lukewarm_ocean",
+        "deep_cold_ocean",
+        "deep_frozen_ocean"
+      ],
+      "capacity": 9,
+      "dimension": 0
+    },
+    {
+      "id": "plains_meadow",
+      "label": "Plains / Meadow",
+      "ids": [
+        1,
+        129,
+        177
+      ],
+      "variants": [
+        "plains",
+        "sunflower_plains",
+        "meadow"
+      ],
+      "capacity": 3,
+      "dimension": 0
+    },
+    {
+      "id": "desert",
+      "label": "Desert",
+      "ids": [
+        2
+      ],
+      "variants": [
+        "desert"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "mountains",
+      "label": "Mountains",
+      "ids": [
+        3,
+        131,
+        178,
+        180,
+        181,
+        182
+      ],
+      "variants": [
+        "windswept_hills",
+        "windswept_gravelly_hills",
+        "grove",
+        "jagged_peaks",
+        "frozen_peaks",
+        "stony_peaks"
+      ],
+      "capacity": 6,
+      "dimension": 0
+    },
+    {
+      "id": "forest",
+      "label": "Forest",
+      "ids": [
+        4,
+        27,
+        34,
+        132,
+        155,
+        188
+      ],
+      "variants": [
+        "forest",
+        "birch_forest",
+        "windswept_forest",
+        "flower_forest",
+        "old_growth_birch_forest",
+        "dappled_forest"
+      ],
+      "capacity": 6,
+      "dimension": 0
+    },
+    {
+      "id": "taiga",
+      "label": "Taiga",
+      "ids": [
+        5,
+        30,
+        32,
+        160
+      ],
+      "variants": [
+        "taiga",
+        "snowy_taiga",
+        "old_growth_pine_taiga",
+        "old_growth_spruce_taiga"
+      ],
+      "capacity": 4,
+      "dimension": 0
+    },
+    {
+      "id": "swamp",
+      "label": "Swamp",
+      "ids": [
+        6,
+        184
+      ],
+      "variants": [
+        "swamp",
+        "mangrove_swamp"
+      ],
+      "capacity": 2,
+      "dimension": 0
+    },
+    {
+      "id": "rivers_shores",
+      "label": "Rivers / Shores",
+      "ids": [
+        7,
+        11,
+        16,
+        25,
+        26
+      ],
+      "variants": [
+        "river",
+        "frozen_river",
+        "beach",
+        "stony_shore",
+        "snowy_beach"
+      ],
+      "capacity": 5,
+      "dimension": 0
+    },
+    {
+      "id": "nether_wastes",
+      "label": "Nether Wastes",
+      "ids": [
+        8
+      ],
+      "variants": [
+        "nether_wastes"
+      ],
+      "capacity": 1,
+      "dimension": -1
+    },
+    {
+      "id": "the_end",
+      "label": "The End",
+      "ids": [
+        9
+      ],
+      "variants": [
+        "the_end"
+      ],
+      "capacity": 1,
+      "dimension": 1
+    },
+    {
+      "id": "snowy_ice",
+      "label": "Snow / Ice",
+      "ids": [
+        12,
+        140,
+        179
+      ],
+      "variants": [
+        "snowy_plains",
+        "ice_spikes",
+        "snowy_slopes"
+      ],
+      "capacity": 3,
+      "dimension": 0
+    },
+    {
+      "id": "mushroom",
+      "label": "Mushroom Fields",
+      "ids": [
+        14
+      ],
+      "variants": [
+        "mushroom_fields"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "jungle",
+      "label": "Jungle",
+      "ids": [
+        21,
+        23,
+        168
+      ],
+      "variants": [
+        "jungle",
+        "sparse_jungle",
+        "bamboo_jungle"
+      ],
+      "capacity": 3,
+      "dimension": 0
+    },
+    {
+      "id": "dark_pale",
+      "label": "Dark Forest / Pale Garden",
+      "ids": [
+        29,
+        186
+      ],
+      "variants": [
+        "dark_forest",
+        "pale_garden"
+      ],
+      "capacity": 2,
+      "dimension": 0
+    },
+    {
+      "id": "savanna",
+      "label": "Savanna",
+      "ids": [
+        35,
+        36,
+        163
+      ],
+      "variants": [
+        "savanna",
+        "savanna_plateau",
+        "windswept_savanna"
+      ],
+      "capacity": 3,
+      "dimension": 0
+    },
+    {
+      "id": "badlands",
+      "label": "Badlands",
+      "ids": [
+        37,
+        38,
+        165
+      ],
+      "variants": [
+        "badlands",
+        "wooded_badlands",
+        "eroded_badlands"
+      ],
+      "capacity": 3,
+      "dimension": 0
+    },
+    {
+      "id": "small_end_islands",
+      "label": "Small End Islands",
+      "ids": [
+        40
+      ],
+      "variants": [
+        "small_end_islands"
+      ],
+      "capacity": 1,
+      "dimension": 1
+    },
+    {
+      "id": "end_midlands",
+      "label": "End Midlands",
+      "ids": [
+        41
+      ],
+      "variants": [
+        "end_midlands"
+      ],
+      "capacity": 1,
+      "dimension": 1
+    },
+    {
+      "id": "end_highlands",
+      "label": "End Highlands",
+      "ids": [
+        42
+      ],
+      "variants": [
+        "end_highlands"
+      ],
+      "capacity": 1,
+      "dimension": 1
+    },
+    {
+      "id": "end_barrens",
+      "label": "End Barrens",
+      "ids": [
+        43
+      ],
+      "variants": [
+        "end_barrens"
+      ],
+      "capacity": 1,
+      "dimension": 1
+    },
+    {
+      "id": "soul_sand_valley",
+      "label": "Soul Sand Valley",
+      "ids": [
+        170
+      ],
+      "variants": [
+        "soul_sand_valley"
+      ],
+      "capacity": 1,
+      "dimension": -1
+    },
+    {
+      "id": "crimson_forest",
+      "label": "Crimson Forest",
+      "ids": [
+        171
+      ],
+      "variants": [
+        "crimson_forest"
+      ],
+      "capacity": 1,
+      "dimension": -1
+    },
+    {
+      "id": "warped_forest",
+      "label": "Warped Forest",
+      "ids": [
+        172
+      ],
+      "variants": [
+        "warped_forest"
+      ],
+      "capacity": 1,
+      "dimension": -1
+    },
+    {
+      "id": "basalt_deltas",
+      "label": "Basalt Deltas",
+      "ids": [
+        173
+      ],
+      "variants": [
+        "basalt_deltas"
+      ],
+      "capacity": 1,
+      "dimension": -1
+    },
+    {
+      "id": "dripstone_caves",
+      "label": "Dripstone Caves",
+      "ids": [
+        174
+      ],
+      "variants": [
+        "dripstone_caves"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "lush_caves",
+      "label": "Lush Caves",
+      "ids": [
+        175
+      ],
+      "variants": [
+        "lush_caves"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "deep_dark",
+      "label": "Deep Dark",
+      "ids": [
+        183
+      ],
+      "variants": [
+        "deep_dark"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "cherry",
+      "label": "Cherry Grove",
+      "ids": [
+        185
+      ],
+      "variants": [
+        "cherry_grove"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    },
+    {
+      "id": "sulfur_caves",
+      "label": "Sulfur Caves",
+      "ids": [
+        187
+      ],
+      "variants": [
+        "sulfur_caves"
+      ],
+      "capacity": 1,
+      "dimension": 0
+    }
+  ]
+}

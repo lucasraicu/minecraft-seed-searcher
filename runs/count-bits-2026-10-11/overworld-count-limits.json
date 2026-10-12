@@ -1,0 +1,371 @@
+{
+  "overworld_side_blocks": 1536,
+  "area_square_blocks": 2359296,
+  "structures": [
+    {
+      "structure": "trial_chamber",
+      "region_chunks": 34,
+      "offset_range_chunks": 22,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 11,
+      "largest_viable_observed": 11,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "stronghold",
+      "region_chunks": 200,
+      "offset_range_chunks": null,
+      "geometric_or_model_ceiling": 4,
+      "largest_raw_observed": 3,
+      "largest_viable_observed": 3,
+      "basis": "Current predictor enumeration ceiling: <=1 static-regional start (adjacent support separated by >=1600 blocks) plus <=3 village-associated iterator starts. Not a certified actual-game maximum."
+    },
+    {
+      "structure": "mineshaft",
+      "region_chunks": 1,
+      "offset_range_chunks": 1,
+      "geometric_or_model_ceiling": 9216,
+      "largest_raw_observed": 55,
+      "largest_viable_observed": 55,
+      "basis": "One fixed-offset start per chunk; 96 start-coordinate positions per axis. RNG rarity makes the slot bound very loose."
+    },
+    {
+      "structure": "ancient_city",
+      "region_chunks": 24,
+      "offset_range_chunks": 16,
+      "geometric_or_model_ceiling": 25,
+      "largest_raw_observed": 21,
+      "largest_viable_observed": 7,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "village",
+      "region_chunks": 34,
+      "offset_range_chunks": 26,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 11,
+      "largest_viable_observed": 9,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "ruined_portal",
+      "region_chunks": 40,
+      "offset_range_chunks": 25,
+      "geometric_or_model_ceiling": 9,
+      "largest_raw_observed": 9,
+      "largest_viable_observed": 9,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "shipwreck",
+      "region_chunks": 24,
+      "offset_range_chunks": 20,
+      "geometric_or_model_ceiling": 25,
+      "largest_raw_observed": 21,
+      "largest_viable_observed": 15,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "monument",
+      "region_chunks": 32,
+      "offset_range_chunks": 27,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 12,
+      "largest_viable_observed": 6,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "outpost",
+      "region_chunks": 80,
+      "offset_range_chunks": 56,
+      "geometric_or_model_ceiling": 4,
+      "largest_raw_observed": 4,
+      "largest_viable_observed": 4,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "desert_pyramid",
+      "region_chunks": 32,
+      "offset_range_chunks": 24,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 12,
+      "largest_viable_observed": 8,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "jungle_temple",
+      "region_chunks": 32,
+      "offset_range_chunks": 24,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 12,
+      "largest_viable_observed": 4,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "swamp_hut",
+      "region_chunks": 32,
+      "offset_range_chunks": 24,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 12,
+      "largest_viable_observed": 3,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "igloo",
+      "region_chunks": 32,
+      "offset_range_chunks": 24,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 12,
+      "largest_viable_observed": 8,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "ocean_ruin",
+      "region_chunks": 20,
+      "offset_range_chunks": 12,
+      "geometric_or_model_ceiling": 36,
+      "largest_raw_observed": 27,
+      "largest_viable_observed": 24,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "mansion",
+      "region_chunks": 80,
+      "offset_range_chunks": 60,
+      "geometric_or_model_ceiling": 4,
+      "largest_raw_observed": 3,
+      "largest_viable_observed": 1,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "buried_treasure",
+      "region_chunks": 4,
+      "offset_range_chunks": 2,
+      "geometric_or_model_ceiling": 625,
+      "largest_raw_observed": 586,
+      "largest_viable_observed": 59,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "trail_ruins",
+      "region_chunks": 34,
+      "offset_range_chunks": 26,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 11,
+      "largest_viable_observed": 8,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    },
+    {
+      "structure": "abandoned_camp",
+      "region_chunks": 37,
+      "offset_range_chunks": 29,
+      "geometric_or_model_ceiling": 16,
+      "largest_raw_observed": 10,
+      "largest_viable_observed": 9,
+      "basis": "Placement support: at most one candidate per region; slot ceiling, not a proved attainable viable count."
+    }
+  ],
+  "biome_families": [
+    {
+      "family": "ocean",
+      "active_ID_ceiling": 9,
+      "largest_distinct_variants_sampled": 8,
+      "variants": [
+        "ocean",
+        "frozen_ocean",
+        "deep_ocean",
+        "warm_ocean",
+        "lukewarm_ocean",
+        "cold_ocean",
+        "deep_lukewarm_ocean",
+        "deep_cold_ocean",
+        "deep_frozen_ocean"
+      ]
+    },
+    {
+      "family": "plains_meadow",
+      "active_ID_ceiling": 3,
+      "largest_distinct_variants_sampled": 3,
+      "variants": [
+        "plains",
+        "sunflower_plains",
+        "meadow"
+      ]
+    },
+    {
+      "family": "desert",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "desert"
+      ]
+    },
+    {
+      "family": "mountains",
+      "active_ID_ceiling": 6,
+      "largest_distinct_variants_sampled": 4,
+      "variants": [
+        "windswept_hills",
+        "windswept_gravelly_hills",
+        "grove",
+        "jagged_peaks",
+        "frozen_peaks",
+        "stony_peaks"
+      ]
+    },
+    {
+      "family": "forest",
+      "active_ID_ceiling": 6,
+      "largest_distinct_variants_sampled": 5,
+      "variants": [
+        "forest",
+        "birch_forest",
+        "windswept_forest",
+        "flower_forest",
+        "old_growth_birch_forest",
+        "dappled_forest"
+      ]
+    },
+    {
+      "family": "taiga",
+      "active_ID_ceiling": 4,
+      "largest_distinct_variants_sampled": 4,
+      "variants": [
+        "taiga",
+        "snowy_taiga",
+        "old_growth_pine_taiga",
+        "old_growth_spruce_taiga"
+      ]
+    },
+    {
+      "family": "swamp",
+      "active_ID_ceiling": 2,
+      "largest_distinct_variants_sampled": 2,
+      "variants": [
+        "swamp",
+        "mangrove_swamp"
+      ]
+    },
+    {
+      "family": "rivers_shores",
+      "active_ID_ceiling": 5,
+      "largest_distinct_variants_sampled": 5,
+      "variants": [
+        "river",
+        "frozen_river",
+        "beach",
+        "stony_shore",
+        "snowy_beach"
+      ]
+    },
+    {
+      "family": "snowy_ice",
+      "active_ID_ceiling": 3,
+      "largest_distinct_variants_sampled": 2,
+      "variants": [
+        "snowy_plains",
+        "ice_spikes",
+        "snowy_slopes"
+      ]
+    },
+    {
+      "family": "mushroom",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "mushroom_fields"
+      ]
+    },
+    {
+      "family": "jungle",
+      "active_ID_ceiling": 3,
+      "largest_distinct_variants_sampled": 3,
+      "variants": [
+        "jungle",
+        "sparse_jungle",
+        "bamboo_jungle"
+      ]
+    },
+    {
+      "family": "dark_pale",
+      "active_ID_ceiling": 2,
+      "largest_distinct_variants_sampled": 2,
+      "variants": [
+        "dark_forest",
+        "pale_garden"
+      ]
+    },
+    {
+      "family": "savanna",
+      "active_ID_ceiling": 3,
+      "largest_distinct_variants_sampled": 3,
+      "variants": [
+        "savanna",
+        "savanna_plateau",
+        "windswept_savanna"
+      ]
+    },
+    {
+      "family": "badlands",
+      "active_ID_ceiling": 3,
+      "largest_distinct_variants_sampled": 3,
+      "variants": [
+        "badlands",
+        "wooded_badlands",
+        "eroded_badlands"
+      ]
+    },
+    {
+      "family": "dripstone_caves",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "dripstone_caves"
+      ]
+    },
+    {
+      "family": "lush_caves",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "lush_caves"
+      ]
+    },
+    {
+      "family": "deep_dark",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "deep_dark"
+      ]
+    },
+    {
+      "family": "cherry",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "cherry_grove"
+      ]
+    },
+    {
+      "family": "sulfur_caves",
+      "active_ID_ceiling": 1,
+      "largest_distinct_variants_sampled": 1,
+      "variants": [
+        "sulfur_caves"
+      ]
+    }
+  ],
+  "distinct_overworld_biome_ID_catalog_ceiling": 56,
+  "largest_total_distinct_overworld_IDs_sampled": 34,
+  "structure_layouts": 896,
+  "biome_layouts": 48,
+  "shared_feature_viable_total_ceiling": 16,
+  "limits": "Geometry and pinned-predictor catalog bounds only; no proof of simultaneous attainability or actual-game maximum. Structure counts refer to starts inside the border, not whole structures contained. Biome observations use four Y layers on the 64-block lattice and are not exhaustive. No seed search or requirements changed.",
+  "source_sha256": {
+    "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+    "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+    "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+    "native/filters.inc": "f747fb7cb88284de0a57d58286e87071c739ee1a3ba70a722ee5a06295199739"
+  }
+}

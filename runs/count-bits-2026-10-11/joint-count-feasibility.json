@@ -1,0 +1,98 @@
+{
+  "source_sha256": {
+    "runs/locked-stronghold-2026-10-11/tuning/centers.json": "6ced1ff29a9b5b86e98af5af043113d2dc6741c7ec1b44a6d7ca70b630491ee9",
+    "runs/count-bits-2026-10-11/tuning-structure-observations.json": "312047d544863d8fade361665f6c6ce1bd3d64a4f90dc8f8c63c9317a63c8fbb",
+    "runs/locked-stronghold-2026-10-11/holdout/centers.json": "43214b6bd90f3c726e1ec704dc4ebb80a3327b8de31440f3acb8c321c8695345",
+    "runs/count-bits-2026-10-11/holdout-structure-observations.json": "2462cca4d93c1fc59c4bdf11c381ee2298d3d53cfcd68f187bafa554da0c1c94",
+    "runs/count-bits-2026-10-11/biome-variant-observations.json": "844c6b17703b237ac6eadc07572dde7db1756a4964e97a4e02bc1d738cccead9"
+  },
+  "presets": {
+    "core": {
+      "structures": 258,
+      "biomes": 23,
+      "both": 13,
+      "requirement": {
+        "structures": {
+          "stronghold": 1,
+          "village": 1,
+          "trial_chamber": 1,
+          "ancient_city": 1,
+          "mineshaft": 1
+        },
+        "biomes": {
+          "forest": 2,
+          "taiga": 1
+        }
+      }
+    },
+    "more": {
+      "structures": 85,
+      "biomes": 13,
+      "both": 3,
+      "requirement": {
+        "structures": {
+          "stronghold": 1,
+          "village": 3,
+          "trial_chamber": 3,
+          "ancient_city": 2,
+          "mineshaft": 5
+        },
+        "biomes": {
+          "forest": 3,
+          "taiga": 2
+        }
+      }
+    },
+    "max": {
+      "structures": 0,
+      "biomes": 0,
+      "both": 0,
+      "requirement": {
+        "structures": {
+          "trial_chamber": 11,
+          "stronghold": 3,
+          "mineshaft": 55,
+          "ancient_city": 7,
+          "village": 9,
+          "ruined_portal": 9,
+          "shipwreck": 15,
+          "monument": 6,
+          "outpost": 4,
+          "desert_pyramid": 8,
+          "jungle_temple": 4,
+          "swamp_hut": 3,
+          "igloo": 8,
+          "ocean_ruin": 24,
+          "mansion": 1,
+          "buried_treasure": 59,
+          "trail_ruins": 8,
+          "abandoned_camp": 9
+        },
+        "biomes": {
+          "ocean": 8,
+          "plains_meadow": 3,
+          "desert": 1,
+          "mountains": 4,
+          "forest": 5,
+          "taiga": 4,
+          "swamp": 2,
+          "rivers_shores": 5,
+          "snowy_ice": 2,
+          "mushroom": 1,
+          "jungle": 3,
+          "dark_pale": 2,
+          "savanna": 3,
+          "badlands": 3,
+          "dripstone_caves": 1,
+          "lush_caves": 1,
+          "deep_dark": 1,
+          "cherry": 1,
+          "sulfur_caves": 1
+        }
+      }
+    }
+  },
+  "shared_observed_maximum_demand": 23,
+  "shared_slot_ceiling": 16,
+  "scope": "Overworld counts only. Frozen first-selected Stronghold; predicted viable starts and four-Y sampled biome diversity. Not terrain-qualified, actual-game certified or an independent-seed probability estimate."
+}

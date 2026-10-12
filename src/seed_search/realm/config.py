@@ -42,9 +42,9 @@ DEFAULT = {
 
 def default_config():
     cfg=copy.deepcopy(DEFAULT)
-    from .terrain import V1, V2
-    cfg['terrain']['v1']=dict(V1)
-    cfg['terrain']['v2']=dict(V2)
+    from .terrain import SEARCH_V1, SEARCH_V2
+    cfg['terrain']['v1']=dict(SEARCH_V1)
+    cfg['terrain']['v2']=dict(SEARCH_V2)
     return cfg
 
 
@@ -133,11 +133,13 @@ def validate_config(cfg):
     for name,defaults in (('v1',V1),('v2',V2)):
         if name in t:
             values=t[name]
-            required=set(defaults)-({'ridge_min_arc_rays','ridge_min_arc_aspect'} if name=='v2' else set())
-            if not isinstance(values,dict) or not required.issubset(values) or set(values)-set(defaults) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 for v in values.values()):
+            required=set(defaults)-({'ridge_min_arc_rays','ridge_min_arc_aspect','enclosure_policy'} if name=='v2' else set())
+            if not isinstance(values,dict) or not required.issubset(values) or set(values)-set(defaults) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 for k,v in values.items() if k!='enclosure_policy'):
                 raise ValueError(f'Invalid configurable {name} geometry thresholds')
             if name=='v2':
                 _integer(values.get('ridge_min_arc_rays',defaults['ridge_min_arc_rays']),1,t['rays'],'ridge_min_arc_rays')
+                if values.get('enclosure_policy','continuous_arcs') not in ('continuous_arcs','surrounding_mountains'):
+                    raise ValueError('Invalid configurable v2 enclosure_policy')
     weights=[cfg['scoring'].get(n) for n in ('geometry_weight','biome_fit_weight','baseline_weight')]
     if any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 for v in weights) or abs(sum(weights)-1)>1e-9:
         raise ValueError('Variant weights must be finite, nonnegative and sum to one')

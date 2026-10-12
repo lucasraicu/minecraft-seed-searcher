@@ -1,0 +1,158 @@
+<div id="seed-choice-picker">
+  <h2>Choose your seed requirements</h2>
+  <div class="text-small">Discovery 4000 × 4000 · Overworld 1536 × 1536 · Nether 896 × 896</div>
+  <div class="text-small">Draft from our discussion · checked choices are required minimums</div>
+  <hr>
+  <h3>Structures — 22 choices</h3>
+  <div class="text-small">Count separate viable starts inside the border. A structure may extend beyond it.</div>
+  <div id="seed-structures"></div>
+  <hr>
+  <h3>Biomes — 66 choices</h3>
+  <div class="text-small">Specific biome: present at least once. Family count: different biome types, not repeated patches. Specific choices also contribute toward their family count.</div>
+  <div id="seed-biomes"></div>
+  <hr>
+  <div id="seed-summary" aria-live="polite"></div>
+  <div id="seed-errors" class="text-destructive" role="alert"></div>
+  <div id="seed-notes" class="text-small"></div>
+  <div class="viz-row">
+    <button type="button" class="btn btn-primary" id="seed-send">Send choices to chat</button>
+    <button type="button" class="btn" id="seed-copy">Copy choices</button>
+  </div>
+  <div id="seed-action-status" class="text-small" aria-live="polite"></div>
+  <details>
+    <summary class="cursor-interaction">Choices to copy and paste</summary>
+    <label class="form-label" for="seed-selection-text">Your selected requirements</label>
+    <textarea id="seed-selection-text" class="form-control" rows="12" readonly></textarea>
+  </details>
+  <div class="text-small">Catalog: current pinned predictor. Biome checks use sampled presence; they do not certify exhaustive biome coverage in the actual game.</div>
+</div>
+<style>
+#seed-choice-picker .choice-row { display: grid; grid-template-columns: minmax(0,1fr) 100px; gap: 12px; align-items: center; margin: 8px 0; }
+#seed-choice-picker .choice-section { margin: 16px 0; }
+#seed-choice-picker .family-detail { margin: 12px 0; }
+#seed-choice-picker .family-choices { margin: 12px 0 12px 16px; }
+#seed-choice-picker .family-choices > label { margin-bottom: 8px; }
+#seed-choice-picker .row-count { min-width: 0; }
+#seed-choice-picker .choice-row > * { min-width: 0; }
+#seed-choice-picker summary { padding: 8px 0; }
+#seed-choice-picker #seed-notes, #seed-choice-picker #seed-errors, #seed-choice-picker #seed-summary { margin: 12px 0; }
+</style>
+<script>
+(() => {
+  const root = document.getElementById('seed-choice-picker');
+  const catalog = {"structures":[{"id":"trial_chamber","label":"Trial Chamber","dimension":0,"ceiling":16},{"id":"stronghold","label":"Stronghold","dimension":0,"ceiling":4},{"id":"mineshaft","label":"Mineshaft","dimension":0,"ceiling":9216},{"id":"ancient_city","label":"Ancient City","dimension":0,"ceiling":25},{"id":"village","label":"Village","dimension":0,"ceiling":16},{"id":"ruined_portal","label":"Ruined Portal","dimension":0,"ceiling":9},{"id":"shipwreck","label":"Shipwreck","dimension":0,"ceiling":25},{"id":"monument","label":"Ocean Monument","dimension":0,"ceiling":16},{"id":"outpost","label":"Pillager Outpost","dimension":0,"ceiling":4},{"id":"fortress","label":"Nether Fortress","dimension":-1,"ceiling":9},{"id":"bastion","label":"Bastion Remnant","dimension":-1,"ceiling":9},{"id":"desert_pyramid","label":"Desert Pyramid / Sand Temple","dimension":0,"ceiling":16},{"id":"jungle_temple","label":"Jungle Temple","dimension":0,"ceiling":16},{"id":"swamp_hut","label":"Swamp Hut","dimension":0,"ceiling":16},{"id":"igloo","label":"Igloo","dimension":0,"ceiling":16},{"id":"ocean_ruin","label":"Ocean Ruin","dimension":0,"ceiling":36},{"id":"mansion","label":"Woodland Mansion","dimension":0,"ceiling":4},{"id":"buried_treasure","label":"Buried Treasure","dimension":0,"ceiling":625},{"id":"trail_ruins","label":"Trail Ruins","dimension":0,"ceiling":16},{"id":"abandoned_camp","label":"Abandoned Camp","dimension":0,"ceiling":16},{"id":"ruined_portal_nether","label":"Nether Ruined Portal","dimension":-1,"ceiling":9},{"id":"end_city","label":"End City","dimension":1,"ceiling":null}],"families":[{"id":"ocean","label":"Ocean","ids":[0,10,24,44,45,46,48,49,50],"variants":["ocean","frozen_ocean","deep_ocean","warm_ocean","lukewarm_ocean","cold_ocean","deep_lukewarm_ocean","deep_cold_ocean","deep_frozen_ocean"],"capacity":9,"dimension":0},{"id":"plains_meadow","label":"Plains / Meadow","ids":[1,129,177],"variants":["plains","sunflower_plains","meadow"],"capacity":3,"dimension":0},{"id":"desert","label":"Desert","ids":[2],"variants":["desert"],"capacity":1,"dimension":0},{"id":"mountains","label":"Mountains","ids":[3,131,178,180,181,182],"variants":["windswept_hills","windswept_gravelly_hills","grove","jagged_peaks","frozen_peaks","stony_peaks"],"capacity":6,"dimension":0},{"id":"forest","label":"Forest","ids":[4,27,34,132,155,188],"variants":["forest","birch_forest","windswept_forest","flower_forest","old_growth_birch_forest","dappled_forest"],"capacity":6,"dimension":0},{"id":"taiga","label":"Taiga","ids":[5,30,32,160],"variants":["taiga","snowy_taiga","old_growth_pine_taiga","old_growth_spruce_taiga"],"capacity":4,"dimension":0},{"id":"swamp","label":"Swamp","ids":[6,184],"variants":["swamp","mangrove_swamp"],"capacity":2,"dimension":0},{"id":"rivers_shores","label":"Rivers / Shores","ids":[7,11,16,25,26],"variants":["river","frozen_river","beach","stony_shore","snowy_beach"],"capacity":5,"dimension":0},{"id":"nether_wastes","label":"Nether Wastes","ids":[8],"variants":["nether_wastes"],"capacity":1,"dimension":-1},{"id":"the_end","label":"The End","ids":[9],"variants":["the_end"],"capacity":1,"dimension":1},{"id":"snowy_ice","label":"Snow / Ice","ids":[12,140,179],"variants":["snowy_plains","ice_spikes","snowy_slopes"],"capacity":3,"dimension":0},{"id":"mushroom","label":"Mushroom Fields","ids":[14],"variants":["mushroom_fields"],"capacity":1,"dimension":0},{"id":"jungle","label":"Jungle","ids":[21,23,168],"variants":["jungle","sparse_jungle","bamboo_jungle"],"capacity":3,"dimension":0},{"id":"dark_pale","label":"Dark Forest / Pale Garden","ids":[29,186],"variants":["dark_forest","pale_garden"],"capacity":2,"dimension":0},{"id":"savanna","label":"Savanna","ids":[35,36,163],"variants":["savanna","savanna_plateau","windswept_savanna"],"capacity":3,"dimension":0},{"id":"badlands","label":"Badlands","ids":[37,38,165],"variants":["badlands","wooded_badlands","eroded_badlands"],"capacity":3,"dimension":0},{"id":"small_end_islands","label":"Small End Islands","ids":[40],"variants":["small_end_islands"],"capacity":1,"dimension":1},{"id":"end_midlands","label":"End Midlands","ids":[41],"variants":["end_midlands"],"capacity":1,"dimension":1},{"id":"end_highlands","label":"End Highlands","ids":[42],"variants":["end_highlands"],"capacity":1,"dimension":1},{"id":"end_barrens","label":"End Barrens","ids":[43],"variants":["end_barrens"],"capacity":1,"dimension":1},{"id":"soul_sand_valley","label":"Soul Sand Valley","ids":[170],"variants":["soul_sand_valley"],"capacity":1,"dimension":-1},{"id":"crimson_forest","label":"Crimson Forest","ids":[171],"variants":["crimson_forest"],"capacity":1,"dimension":-1},{"id":"warped_forest","label":"Warped Forest","ids":[172],"variants":["warped_forest"],"capacity":1,"dimension":-1},{"id":"basalt_deltas","label":"Basalt Deltas","ids":[173],"variants":["basalt_deltas"],"capacity":1,"dimension":-1},{"id":"dripstone_caves","label":"Dripstone Caves","ids":[174],"variants":["dripstone_caves"],"capacity":1,"dimension":0},{"id":"lush_caves","label":"Lush Caves","ids":[175],"variants":["lush_caves"],"capacity":1,"dimension":0},{"id":"deep_dark","label":"Deep Dark","ids":[183],"variants":["deep_dark"],"capacity":1,"dimension":0},{"id":"cherry","label":"Cherry Grove","ids":[185],"variants":["cherry_grove"],"capacity":1,"dimension":0},{"id":"sulfur_caves","label":"Sulfur Caves","ids":[187],"variants":["sulfur_caves"],"capacity":1,"dimension":0}]};
+  const version = 'seed-requirements-v1';
+  const defaults = {structures:{stronghold:1,village:3,trial_chamber:3,ancient_city:2,mineshaft:5,fortress:1,bastion:1,monument:1,mansion:1,jungle_temple:1,desert_pyramid:1},families:{forest:3,taiga:2,jungle:1},biomes:[2]};
+  const checks = new Map(), counts = new Map();
+  const el = (tag, cls, text) => { const n=document.createElement(tag); if(cls)n.className=cls; if(text!==undefined)n.textContent=text; return n; };
+  const pretty = name => name.split('_').map(s=>s[0].toUpperCase()+s.slice(1)).join(' ');
+  function checkbox(key,name,parent) {
+    const label=el('label','form-check'), input=el('input','form-check-input');
+    input.type='checkbox'; input.id='seed-choice-'+key; input.dataset.key=key;
+    label.append(input,el('span','form-check-label',name)); parent.append(label); checks.set(key,input); return input;
+  }
+  function counted(key,name,parent,max,required=false) {
+    const row=el('div','choice-row'), left=el('div');
+    const check=checkbox(key,name,left);
+    if(required){check.disabled=true;left.append(el('div','text-small','Required center anchor'));}
+    const right=el('div','row-count'), label=el('label','form-label','Minimum'), input=el('input','form-control tabular-nums');
+    input.type='number'; input.min='1'; input.step='1'; input.value='1'; input.id='seed-count-'+key;
+    if(max)input.max=String(max);
+    label.htmlFor=input.id; input.setAttribute('aria-label',name+' minimum count');
+    right.append(label,input); row.append(left,right); parent.append(row); counts.set(key,input);
+    if(max)input.dataset.ceiling=String(max);
+  }
+  for (const dim of [0,-1,1]) {
+    const section=el('section','choice-section');
+    section.append(el('h3','',dim===0?'Overworld — 18':dim===-1?'Nether — 3':'End — 1 · area not yet defined'));
+    for(const item of catalog.structures.filter(s=>s.dimension===dim))counted('s-'+item.id,item.label,section,item.ceiling,item.id==='stronghold');
+    root.querySelector('#seed-structures').append(section);
+  }
+  for (const dim of [0,-1,1]) {
+    const section=el('section','choice-section');
+    section.append(el('h3','',dim===0?'Overworld — 56':dim===-1?'Nether — 5':'End — 5 · area not yet defined'));
+    for (const family of catalog.families.filter(f=>f.dimension===dim)) {
+      if(family.ids.length===1){checkbox('b-'+family.ids[0],pretty(family.variants[0]),section);continue;}
+      const details=el('details','family-detail'), summary=el('summary','cursor-interaction',family.label+' · '+family.ids.length+' biome types');
+      details.append(summary);
+      const controls=el('div'); counted('f-'+family.id,'Require different '+family.label.toLowerCase()+' types',controls,family.ids.length); details.append(controls);
+      const list=el('div','family-choices'); list.append(el('div','text-small','Require specific types:'));
+      family.ids.forEach((id,i)=>checkbox('b-'+id,pretty(family.variants[i]),list)); details.append(list); section.append(details);
+      if(defaults.families[family.id])details.open=true;
+    }
+    root.querySelector('#seed-biomes').append(section);
+  }
+  function take() {
+    const structures={},families={},biomes=[];
+    checks.forEach((check,key)=>{
+      if(!check.checked)return;
+      const name=key.slice(2);
+      if(key.startsWith('s-'))structures[name]=Number(counts.get(key).value);
+      else if(key.startsWith('f-'))families[name]=Number(counts.get(key).value);
+      else biomes.push(Number(name));
+    });
+    return {version,structures,families,biomes};
+  }
+  function restore(value) {
+    if(!value||value.version!==version)value={version,...defaults};
+    checks.forEach((check,key)=>{
+      const name=key.slice(2), n=key.startsWith('s-')?value.structures?.[name]:key.startsWith('f-')?value.families?.[name]:undefined;
+      check.checked=key==='s-stronghold'||(key.startsWith('b-')?(value.biomes||[]).includes(Number(name)):n!==undefined);
+      if(counts.has(key))counts.get(key).value=Number.isSafeInteger(n)&&n>0?n:(key==='s-stronghold'?1:defaults.structures[name]||defaults.families[name]||1);
+    });
+    update(false);
+  }
+  function validate() {
+    const errors=[];
+    counts.forEach((input,key)=>{
+      input.disabled=!checks.get(key).checked;
+      if(input.disabled)return;
+      const n=Number(input.value), max=Number(input.max)||Infinity;
+      if(!Number.isSafeInteger(n)||n<1||n>max)errors.push(input.getAttribute('aria-label')+': choose a whole number from 1'+(isFinite(max)?' to '+max:'.'));
+    });
+    const s=take().structures;
+    if(['desert_pyramid','jungle_temple','swamp_hut','igloo'].reduce((n,k)=>n+(s[k]||0),0)>16)errors.push('Desert pyramids, jungle temples, swamp huts and igloos share at most 16 viable starts combined in this Overworld border.');
+    return errors;
+  }
+  function requestText(value) {
+    const names=new Map(catalog.structures.map(s=>[s.id,s.label]));
+    const biomeNames=new Map(catalog.families.flatMap(f=>f.ids.map((id,i)=>[id,pretty(f.variants[i])])));
+    const lines=['These are my selected seed-search requirements. Review feasibility and use this combination for the next search plan.','Discovery: 4000 × 4000. Overworld: 1536 × 1536 centered on the chosen stronghold. Nether: 896 × 896 centered on that stronghold divided by 8.','All checked choices are simultaneous required minimums. Structure counts mean separate viable start coordinates inside their dimension border; entire structures need not fit.','Structures:'];
+    for(const [name,count] of Object.entries(value.structures))lines.push('- '+names.get(name)+' ('+name+'): at least '+count);
+    lines.push('Biome families (distinct biome IDs, not patches):');
+    const familyNames=new Map(catalog.families.map(f=>[f.id,f.label]));
+    for(const [name,count] of Object.entries(value.families))lines.push('- '+familyNames.get(name)+' ('+name+'): at least '+count+' different types');
+    if(!Object.keys(value.families).length)lines.push('- None');
+    lines.push('Specific required biomes (presence at least once; these count toward their family totals):');
+    for(const id of value.biomes)lines.push('- '+biomeNames.get(id)+' (ID '+id+')');
+    if(!value.biomes.length)lines.push('- None');
+    const endIds=catalog.families.filter(f=>f.dimension===1).flatMap(f=>f.ids);
+    if(value.structures.end_city||value.biomes.some(id=>endIds.includes(id)))lines.push('End choices are provisional: define an End search area before applying them.');
+    lines.push('Use the current pinned predictor and retain actual-game verification; sampled biome presence is not exhaustive coverage. Do not start a large benchmark just from this selection message.');
+    return lines.join('\n');
+  }
+  function update(persist) {
+    const value=take(), errors=validate();
+    root.querySelector('#seed-summary').textContent=Object.keys(value.structures).length+' structure types · '+Object.keys(value.families).length+' family goals · '+value.biomes.length+' specific biomes selected';
+    root.querySelector('#seed-errors').textContent=errors.join(' ');
+    const endIds=catalog.families.filter(f=>f.dimension===1).flatMap(f=>f.ids);
+    root.querySelector('#seed-notes').textContent=value.structures.end_city||value.biomes.some(id=>endIds.includes(id))?'End requirements need a search area before they can be applied.':'';
+    root.querySelector('#seed-selection-text').value=errors.length?'Correct the highlighted counts before sending.\n'+errors.join('\n'):requestText(value);
+    root.querySelector('#seed-copy').disabled=errors.length>0;
+    const sendButton=root.querySelector('#seed-send');if(sendButton)sendButton.disabled=errors.length>0;
+    root.querySelector('#seed-action-status').textContent='';
+    if(persist&&!errors.length&&window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{...value,geometry:{discovery:4000,overworld:1536,nether:896,end:null}},privateContent:null}).catch(()=>{});
+  }
+  root.addEventListener('input',event=>{if(event.target.matches('input'))update(true);});
+  root.querySelector('#seed-copy').addEventListener('click',async()=>{
+    if(validate().length)return;
+    const field=root.querySelector('#seed-selection-text'), status=root.querySelector('#seed-action-status');
+    field.closest('details').open=true;field.select();status.textContent='Select and copy the text below, then paste it into this chat.';
+    try{await navigator.clipboard.writeText(field.value);status.textContent='Copied. Paste your choices into this chat.';}
+    catch{field.closest('details').open=true;field.select();status.textContent='Select and copy the text below, then paste it into this chat.';}
+  });
+  root.querySelector('#seed-send').remove();
+  window.addEventListener('openai:set_globals',event=>{const saved=event.detail?.globals?.widgetState;if(saved)restore(saved.modelContent||saved);});
+  const saved=window.openai?.widgetState; restore(saved?.modelContent||saved);
+})();
+</script>

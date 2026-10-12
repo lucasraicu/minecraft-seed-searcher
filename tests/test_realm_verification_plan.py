@@ -118,7 +118,7 @@ def test_cli_retry_flag_and_full_planned_bounds_reach_adapter(tmp_path,monkeypat
     result=main(['verify-terrain','--run',str(tmp_path),'--variant','v1','--retry-failed'])
     assert result['selected']==1 and calls[0][0]=='1:0:0'
     assert calls[0][1]['retry_failed'] is True
-    assert calls[0][1]['bounds']==[-882,-882,883,883]
+    assert calls[0][1]['bounds']==[-1432,-1432,1433,1433]
 
 
 def test_cli_can_review_cached_failures_with_exhausted_budget(tmp_path,monkeypatch,capsys):

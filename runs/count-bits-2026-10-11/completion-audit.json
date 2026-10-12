@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "identity": "native/identity.json",
+      "binary_and_source_hashes_match": true
+    },
+    {
+      "identity": "native-biomes/identity.json",
+      "binary_and_source_hashes_match": true
+    }
+  ],
+  "production_native_unchanged": true,
+  "structures_covered": 22,
+  "active_biome_ids_covered": 66,
+  "biome_families_covered": 29,
+  "passing_comparison_events": {
+    "structures_including_dependency_and_family_checks": 341954,
+    "sampled_biome_presence": 4560,
+    "distinct_biome_variant_checks": 9024,
+    "lower48_sibling_raw_layouts": 342,
+    "discovery_included_decisions": 15360
+  },
+  "total_passing_comparison_events": 371240,
+  "differences_from_defined_full64_predictor_reference": 0,
+  "actual_game_accuracy_certified": false,
+  "masked_point_negative_control_comparisons": 295296,
+  "artifact_sha256": {
+    "structures-report.json": "3aca74644c897cac2d11e2477de44d619600322732f7ee0a8292e24e12b2c05e",
+    "biomes-report.json": "ddd40c4e1d9305b37c3dea10422e31e7e01b7273b336e7814b68cbf3ad9a43cd",
+    "biome-variants-report.json": "599fed8448d8563b8f56df7edec198c30db4674ab06f562aa69e46d9a15b478d",
+    "lower48-siblings-report.json": "cb0f13a3430cbf43bd11d178100f073fb6d6ef123dc10f8458dc465d7adc2376",
+    "discovery-included-report.json": "8e323a7715007b84a4db89771283d66bb11f500ab5a7903c5640ee4eefef43f6"
+  }
+}

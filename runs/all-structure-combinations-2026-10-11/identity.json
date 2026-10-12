@@ -1,0 +1,86 @@
+{
+  "script_sha256": "610ea5785c50902c711395bfa4d1208099f96110e226be75e77ca532a353e4a2",
+  "native_sha256": "a16c3d72f1ded917544481348ce80e23e290bb33290396f65d59b9e006e38a1e",
+  "parent_sha256": {
+    "tuning": "6ced1ff29a9b5b86e98af5af043113d2dc6741c7ec1b44a6d7ca70b630491ee9",
+    "holdout": "43214b6bd90f3c726e1ec704dc4ebb80a3327b8de31440f3acb8c321c8695345"
+  },
+  "center_policy": "first discovered sorted Stronghold; frozen before any filter",
+  "geometry": "4000-square discovery; 1536-square OW; 896-square Nether at exact /8 center",
+  "end_control": "End dimension, same X/Z center and 1536-square window; diagnostic only",
+  "profiles": {
+    "current_four": [
+      "village",
+      "ancient_city",
+      "fortress",
+      "bastion"
+    ],
+    "plus_mansion_outpost": [
+      "village",
+      "ancient_city",
+      "fortress",
+      "bastion",
+      "mansion",
+      "outpost"
+    ],
+    "all_16_mt_families": [
+      "village",
+      "ancient_city",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion",
+      "desert_pyramid",
+      "jungle_temple",
+      "swamp_hut",
+      "igloo",
+      "ocean_ruin",
+      "mansion",
+      "buried_treasure",
+      "ruined_portal_nether"
+    ],
+    "all_21_overworld_nether": [
+      "trial_chamber",
+      "mineshaft",
+      "ancient_city",
+      "village",
+      "ruined_portal",
+      "shipwreck",
+      "monument",
+      "outpost",
+      "fortress",
+      "bastion",
+      "desert_pyramid",
+      "jungle_temple",
+      "swamp_hut",
+      "igloo",
+      "ocean_ruin",
+      "mansion",
+      "buried_treasure",
+      "trail_ruins",
+      "abandoned_camp",
+      "ruined_portal_nether"
+    ]
+  },
+  "raw_mt": [
+    "village",
+    "ancient_city",
+    "ruined_portal",
+    "shipwreck",
+    "monument",
+    "outpost",
+    "fortress",
+    "bastion",
+    "desert_pyramid",
+    "jungle_temple",
+    "swamp_hut",
+    "igloo",
+    "ocean_ruin",
+    "mansion",
+    "buried_treasure",
+    "ruined_portal_nether"
+  ],
+  "scope": "Single-process conditional structure-existence stage. Excludes discovery, handle creation, biome inventory, terrain, persistence and game generation."
+}

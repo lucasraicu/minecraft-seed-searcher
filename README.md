@@ -10,6 +10,8 @@ The new universal baseline discovers Strongholds in `[-2000,2000)` on both axes 
 
 V1 finds islands with connected surrounding water; V2 finds mountain basins and accepts jagged or steep interiors. Both independently consume the same saved provisionally qualified baseline pool. The former combined variant is retired. Formation-fit status stays separate; promising outside/uncertain footprints remain recorded. Final Nether bounds are 896×896 around exact Stronghold/8, requiring Fortress and Bastion. Exact generated structure enumeration and complete natural-ground validation remain unsupported/unverified; no fully verified Realm candidate is claimed.
 
+The active terrain preferences now require **250,000 square blocks of one connected main island**, favor about **650,000**, and permit area-equivalent diameters up to **1300 blocks**. Disconnected islets do not add to the main island's area; irregular outlines are allowed and border fit uses the sampled footprint. V2 uses an inclusive **surrounding mountains** policy: substantial elevated terrain on at least **16 of 32 directions**, at least **24 blocks** above the sampled interior, at **150–700 blocks**, with no empty angular gap above **135°**. Separate mountains, open passes, rough interiors and water interiors are allowed; strict connected-arc shape is an optional historical policy. These are nomination preferences, with actual geometry verification separate. See [terrain preference update](TERRAIN_PREFERENCE_UPDATE.md). Existing results retain their old policy and need a fresh matching computation identity for further work.
+
 ```sh
 .venv/bin/python -m seed_search compatibility --output runs/compatibility.json
 .venv/bin/python -m seed_search baseline --count 1000 --output runs/my-realm

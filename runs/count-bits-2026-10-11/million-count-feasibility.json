@@ -1,0 +1,1373 @@
+{
+  "source_database": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/million/workers-30/realm.sqlite",
+  "source_database_bytes": 37096873984,
+  "benchmark_report_sha256": "3a0e5101f5e397748c133e00e647f48d76e95c6ad1f6a1aa355f1fcc253fd6a5",
+  "historical_geometry": {
+    "discovery_side": 5000,
+    "overworld_side": 2688,
+    "nether_side": 1024
+  },
+  "cropped_geometry": {
+    "discovery_side": 4000,
+    "overworld_side": 1536,
+    "nether_side": 896
+  },
+  "input_seeds": 1000000,
+  "candidates_scanned": 2629026,
+  "original_qualification_counts": {
+    "PENDING": 1426716,
+    "PREDICTED": 1202310
+  },
+  "retained_anchors_in_current_discovery": 1846578,
+  "distinct_seeds_with_retained_anchors": 865137,
+  "retained_anchors_with_old_biome_summary": 851199,
+  "profile_results": {
+    "core_one_each": {
+      "requirement": {
+        "village": 1,
+        "trial_chamber": 1,
+        "ancient_city": 1,
+        "mineshaft": 1
+      },
+      "anchors": {
+        "overworld": 405411,
+        "overworld_and_nether": 332034,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 15180,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 1754
+      },
+      "examples": {
+        "overworld": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_and_nether": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": {
+          "index": 254,
+          "seed": "8063934850937192195",
+          "stronghold": [
+            1092,
+            1284
+          ],
+          "counts": {
+            "village": 2,
+            "trial_chamber": 8,
+            "ancient_city": 1,
+            "mineshaft": 29,
+            "fortress": 1,
+            "bastion": 1,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 1,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "forest": 2,
+            "mountains": 3,
+            "snowy_ice": 1,
+            "cherry": 1,
+            "rivers_shores": 1,
+            "dark_pale": 1,
+            "taiga": 1
+          }
+        },
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": {
+          "index": 736,
+          "seed": "-1787935298587753226",
+          "stronghold": [
+            -940,
+            116
+          ],
+          "counts": {
+            "village": 2,
+            "trial_chamber": 9,
+            "ancient_city": 3,
+            "mineshaft": 14,
+            "fortress": 2,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 7
+          },
+          "first_witness_biome_family_counts": {
+            "forest": 3,
+            "taiga": 2,
+            "lush_caves": 1,
+            "mountains": 2,
+            "dark_pale": 2,
+            "sulfur_caves": 1,
+            "jungle": 2
+          }
+        }
+      },
+      "distinct_seeds": {
+        "overworld": 314011,
+        "overworld_and_nether": 263458,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 14838,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 1742
+      }
+    },
+    "two_core": {
+      "requirement": {
+        "village": 2,
+        "trial_chamber": 2,
+        "ancient_city": 2,
+        "mineshaft": 3
+      },
+      "anchors": {
+        "overworld": 170706,
+        "overworld_and_nether": 140035,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 6461,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 734
+      },
+      "examples": {
+        "overworld": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_and_nether": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": {
+          "index": 736,
+          "seed": "-1787935298587753226",
+          "stronghold": [
+            -940,
+            116
+          ],
+          "counts": {
+            "village": 2,
+            "trial_chamber": 9,
+            "ancient_city": 3,
+            "mineshaft": 14,
+            "fortress": 2,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 7
+          },
+          "first_witness_biome_family_counts": {
+            "forest": 3,
+            "taiga": 2,
+            "lush_caves": 1,
+            "mountains": 2,
+            "dark_pale": 2,
+            "sulfur_caves": 1,
+            "jungle": 2
+          }
+        },
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": {
+          "index": 736,
+          "seed": "-1787935298587753226",
+          "stronghold": [
+            -940,
+            116
+          ],
+          "counts": {
+            "village": 2,
+            "trial_chamber": 9,
+            "ancient_city": 3,
+            "mineshaft": 14,
+            "fortress": 2,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 7
+          },
+          "first_witness_biome_family_counts": {
+            "forest": 3,
+            "taiga": 2,
+            "lush_caves": 1,
+            "mountains": 2,
+            "dark_pale": 2,
+            "sulfur_caves": 1,
+            "jungle": 2
+          }
+        }
+      },
+      "distinct_seeds": {
+        "overworld": 146657,
+        "overworld_and_nether": 121809,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 6359,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 730
+      }
+    },
+    "more_core": {
+      "requirement": {
+        "village": 3,
+        "trial_chamber": 3,
+        "ancient_city": 2,
+        "mineshaft": 5
+      },
+      "anchors": {
+        "overworld": 128989,
+        "overworld_and_nether": 105929,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 4956,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 570
+      },
+      "examples": {
+        "overworld": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_and_nether": {
+          "index": 332,
+          "seed": "-3004140012188081628",
+          "stronghold": [
+            1252,
+            -1964
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 3,
+            "ruined_portal": 4
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 1,
+            "ocean": 1
+          }
+        },
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": {
+          "index": 750,
+          "seed": "-6371798950235742922",
+          "stronghold": [
+            724,
+            -332
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 8,
+            "ancient_city": 2,
+            "mineshaft": 29,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 7
+          },
+          "first_witness_biome_family_counts": {
+            "plains_meadow": 3,
+            "forest": 3,
+            "dripstone_caves": 1,
+            "cherry": 1,
+            "taiga": 1,
+            "savanna": 1
+          }
+        },
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": {
+          "index": 4586,
+          "seed": "-8246845270002098890",
+          "stronghold": [
+            -284,
+            -1356
+          ],
+          "counts": {
+            "village": 6,
+            "trial_chamber": 7,
+            "ancient_city": 2,
+            "mineshaft": 37,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 1,
+            "shipwreck": 0,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "rivers_shores": 2,
+            "snowy_ice": 3,
+            "forest": 4,
+            "taiga": 3,
+            "mountains": 2,
+            "dark_pale": 2
+          }
+        }
+      },
+      "distinct_seeds": {
+        "overworld": 113052,
+        "overworld_and_nether": 93808,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 4887,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 566
+      }
+    },
+    "more_core_three_cities": {
+      "requirement": {
+        "village": 3,
+        "trial_chamber": 3,
+        "ancient_city": 3,
+        "mineshaft": 5
+      },
+      "anchors": {
+        "overworld": 63416,
+        "overworld_and_nether": 52035,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 2455,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 285
+      },
+      "examples": {
+        "overworld": {
+          "index": 507,
+          "seed": "9091698951951456704",
+          "stronghold": [
+            -1996,
+            1940
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 7,
+            "ancient_city": 4,
+            "mineshaft": 44,
+            "fortress": 2,
+            "bastion": 0,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "plains_meadow": 2,
+            "snowy_ice": 1,
+            "mountains": 1,
+            "cherry": 1,
+            "savanna": 1
+          }
+        },
+        "overworld_and_nether": {
+          "index": 270,
+          "seed": "3777942062627175311",
+          "stronghold": [
+            196,
+            -796
+          ],
+          "counts": {
+            "village": 3,
+            "trial_chamber": 8,
+            "ancient_city": 4,
+            "mineshaft": 19,
+            "fortress": 1,
+            "bastion": 3,
+            "monument": 1,
+            "outpost": 1,
+            "shipwreck": 1,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "snowy_ice": 1,
+            "mountains": 1
+          }
+        },
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": {
+          "index": 359,
+          "seed": "-4785516425725800157",
+          "stronghold": [
+            1364,
+            -444
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 7,
+            "ancient_city": 5,
+            "mineshaft": 20,
+            "fortress": 1,
+            "bastion": 1,
+            "monument": 0,
+            "outpost": 1,
+            "shipwreck": 0,
+            "ruined_portal": 5
+          },
+          "first_witness_biome_family_counts": {
+            "plains_meadow": 1,
+            "forest": 2,
+            "mountains": 1,
+            "cherry": 1,
+            "taiga": 1,
+            "savanna": 1
+          }
+        },
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": {
+          "index": 11767,
+          "seed": "-7948672809262905131",
+          "stronghold": [
+            724,
+            1988
+          ],
+          "counts": {
+            "village": 3,
+            "trial_chamber": 6,
+            "ancient_city": 4,
+            "mineshaft": 28,
+            "fortress": 1,
+            "bastion": 1,
+            "monument": 1,
+            "outpost": 0,
+            "shipwreck": 6,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "forest": 3,
+            "taiga": 3,
+            "plains_meadow": 1,
+            "mountains": 3
+          }
+        }
+      },
+      "distinct_seeds": {
+        "overworld": 57815,
+        "overworld_and_nether": 47702,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 2426,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 283
+      }
+    },
+    "four_each_core": {
+      "requirement": {
+        "village": 4,
+        "trial_chamber": 4,
+        "ancient_city": 4,
+        "mineshaft": 4
+      },
+      "anchors": {
+        "overworld": 18246,
+        "overworld_and_nether": 15025,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 687,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 62
+      },
+      "examples": {
+        "overworld": {
+          "index": 507,
+          "seed": "9091698951951456704",
+          "stronghold": [
+            -1996,
+            1940
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 7,
+            "ancient_city": 4,
+            "mineshaft": 44,
+            "fortress": 2,
+            "bastion": 0,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 6
+          },
+          "first_witness_biome_family_counts": {
+            "plains_meadow": 2,
+            "snowy_ice": 1,
+            "mountains": 1,
+            "cherry": 1,
+            "savanna": 1
+          }
+        },
+        "overworld_and_nether": {
+          "index": 100,
+          "seed": "2824278126137619252",
+          "stronghold": [
+            -876,
+            -1980
+          ],
+          "counts": {
+            "village": 6,
+            "trial_chamber": 6,
+            "ancient_city": 5,
+            "mineshaft": 28,
+            "fortress": 2,
+            "bastion": 1,
+            "monument": 0,
+            "outpost": 1,
+            "shipwreck": 0,
+            "ruined_portal": 5
+          },
+          "first_witness_biome_family_counts": {
+            "lush_caves": 1,
+            "mountains": 2,
+            "taiga": 1
+          }
+        },
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": {
+          "index": 359,
+          "seed": "-4785516425725800157",
+          "stronghold": [
+            1364,
+            -444
+          ],
+          "counts": {
+            "village": 4,
+            "trial_chamber": 7,
+            "ancient_city": 5,
+            "mineshaft": 20,
+            "fortress": 1,
+            "bastion": 1,
+            "monument": 0,
+            "outpost": 1,
+            "shipwreck": 0,
+            "ruined_portal": 5
+          },
+          "first_witness_biome_family_counts": {
+            "plains_meadow": 1,
+            "forest": 2,
+            "mountains": 1,
+            "cherry": 1,
+            "taiga": 1,
+            "savanna": 1
+          }
+        },
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": {
+          "index": 15667,
+          "seed": "4315954779596631268",
+          "stronghold": [
+            -1804,
+            1988
+          ],
+          "counts": {
+            "village": 5,
+            "trial_chamber": 5,
+            "ancient_city": 4,
+            "mineshaft": 48,
+            "fortress": 1,
+            "bastion": 2,
+            "monument": 0,
+            "outpost": 0,
+            "shipwreck": 0,
+            "ruined_portal": 5
+          },
+          "first_witness_biome_family_counts": {
+            "ocean": 1,
+            "plains_meadow": 1,
+            "forest": 3,
+            "taiga": 2,
+            "mountains": 2,
+            "snowy_ice": 1
+          }
+        }
+      },
+      "distinct_seeds": {
+        "overworld": 17297,
+        "overworld_and_nether": 14285,
+        "overworld_nether_forest2_taiga1_first_witness_lower_bound": 682,
+        "overworld_nether_forest3_taiga2_first_witness_lower_bound": 62
+      }
+    },
+    "eight_each_core": {
+      "requirement": {
+        "village": 8,
+        "trial_chamber": 8,
+        "ancient_city": 8,
+        "mineshaft": 8
+      },
+      "anchors": {},
+      "examples": {},
+      "distinct_seeds": {}
+    },
+    "previous_individual_core_maxima": {
+      "requirement": {
+        "village": 9,
+        "trial_chamber": 11,
+        "ancient_city": 7,
+        "mineshaft": 55
+      },
+      "anchors": {},
+      "examples": {},
+      "distinct_seeds": {}
+    }
+  },
+  "retained_positive_maxima": {
+    "village": {
+      "count": 10,
+      "example": {
+        "index": 36210,
+        "seed": "-1618363647766229637",
+        "stronghold": [
+          -1468,
+          900
+        ],
+        "counts": {
+          "village": 10,
+          "trial_chamber": 9,
+          "ancient_city": 0,
+          "mineshaft": 50,
+          "fortress": 0,
+          "bastion": 0,
+          "monument": 0,
+          "outpost": 3,
+          "shipwreck": 0,
+          "ruined_portal": 5
+        }
+      }
+    },
+    "trial_chamber": {
+      "count": 14,
+      "example": {
+        "index": 165269,
+        "seed": "-1100640056012108111",
+        "stronghold": [
+          -1708,
+          -1148
+        ],
+        "counts": {
+          "village": 3,
+          "trial_chamber": 14,
+          "ancient_city": 1,
+          "mineshaft": 38,
+          "fortress": 2,
+          "bastion": 3,
+          "monument": 0,
+          "outpost": 1,
+          "shipwreck": 2,
+          "ruined_portal": 8
+        }
+      }
+    },
+    "ancient_city": {
+      "count": 14,
+      "example": {
+        "index": 620844,
+        "seed": "-1499396919552886818",
+        "stronghold": [
+          -1516,
+          -972
+        ],
+        "counts": {
+          "village": 4,
+          "trial_chamber": 3,
+          "ancient_city": 14,
+          "mineshaft": 33,
+          "fortress": 0,
+          "bastion": 3,
+          "monument": 0,
+          "outpost": 0,
+          "shipwreck": 0,
+          "ruined_portal": 5
+        }
+      }
+    },
+    "mineshaft": {
+      "count": 68,
+      "example": {
+        "index": 390338,
+        "seed": "837966781688634707",
+        "stronghold": [
+          1364,
+          -1980
+        ],
+        "counts": {
+          "village": 2,
+          "trial_chamber": 8,
+          "ancient_city": 3,
+          "mineshaft": 68,
+          "fortress": 1,
+          "bastion": 3,
+          "monument": 0,
+          "outpost": 2,
+          "shipwreck": 0,
+          "ruined_portal": 8
+        }
+      }
+    },
+    "fortress": {
+      "count": 7,
+      "example": {
+        "index": 201761,
+        "seed": "1373100615429081896",
+        "stronghold": [
+          -1804,
+          1236
+        ],
+        "counts": {
+          "village": 2,
+          "trial_chamber": 8,
+          "ancient_city": 0,
+          "mineshaft": 39,
+          "fortress": 7,
+          "bastion": 0,
+          "monument": 0,
+          "outpost": 1,
+          "shipwreck": 0,
+          "ruined_portal": 7
+        }
+      }
+    },
+    "bastion": {
+      "count": 8,
+      "example": {
+        "index": 125081,
+        "seed": "-2852701481357597650",
+        "stronghold": [
+          1268,
+          -1612
+        ],
+        "counts": {
+          "village": 0,
+          "trial_chamber": 0,
+          "ancient_city": 0,
+          "mineshaft": 0,
+          "fortress": 0,
+          "bastion": 8,
+          "monument": 0,
+          "outpost": 0,
+          "shipwreck": 0,
+          "ruined_portal": 0
+        }
+      }
+    },
+    "monument": {
+      "count": 9,
+      "example": {
+        "index": 319424,
+        "seed": "836719616355803649",
+        "stronghold": [
+          1524,
+          1972
+        ],
+        "counts": {
+          "village": 0,
+          "trial_chamber": 7,
+          "ancient_city": 0,
+          "mineshaft": 36,
+          "fortress": 1,
+          "bastion": 2,
+          "monument": 9,
+          "outpost": 0,
+          "shipwreck": 7,
+          "ruined_portal": 6
+        }
+      }
+    },
+    "outpost": {
+      "count": 4,
+      "example": {
+        "index": 13694,
+        "seed": "8648718363399461168",
+        "stronghold": [
+          884,
+          1300
+        ],
+        "counts": {
+          "village": 4,
+          "trial_chamber": 6,
+          "ancient_city": 3,
+          "mineshaft": 34,
+          "fortress": 2,
+          "bastion": 1,
+          "monument": 0,
+          "outpost": 4,
+          "shipwreck": 1,
+          "ruined_portal": 5
+        }
+      }
+    },
+    "shipwreck": {
+      "count": 17,
+      "example": {
+        "index": 878928,
+        "seed": "4257782967066140495",
+        "stronghold": [
+          -1532,
+          -1036
+        ],
+        "counts": {
+          "village": 0,
+          "trial_chamber": 8,
+          "ancient_city": 0,
+          "mineshaft": 32,
+          "fortress": 1,
+          "bastion": 0,
+          "monument": 0,
+          "outpost": 0,
+          "shipwreck": 17,
+          "ruined_portal": 7
+        }
+      }
+    },
+    "ruined_portal": {
+      "count": 9,
+      "example": {
+        "index": 257,
+        "seed": "253978793194525224",
+        "stronghold": [
+          292,
+          804
+        ],
+        "counts": {
+          "village": 2,
+          "trial_chamber": 6,
+          "ancient_city": 2,
+          "mineshaft": 20,
+          "fortress": 0,
+          "bastion": 1,
+          "monument": 0,
+          "outpost": 1,
+          "shipwreck": 1,
+          "ruined_portal": 9
+        }
+      }
+    }
+  },
+  "first_biome_witness_family_maxima_lower_bounds": {
+    "swamp": {
+      "count": 2,
+      "example": {
+        "index": 335,
+        "seed": "8796127750805322224",
+        "stronghold": [
+          -1468,
+          1716
+        ]
+      }
+    },
+    "jungle": {
+      "count": 3,
+      "example": {
+        "index": 40,
+        "seed": "-5237731412505554139",
+        "stronghold": [
+          -1532,
+          324
+        ]
+      }
+    },
+    "taiga": {
+      "count": 4,
+      "example": {
+        "index": 348,
+        "seed": "4347839360465327333",
+        "stronghold": [
+          1908,
+          1700
+        ]
+      }
+    },
+    "ocean": {
+      "count": 8,
+      "example": {
+        "index": 424829,
+        "seed": "5510178928949476426",
+        "stronghold": [
+          1268,
+          -316
+        ]
+      }
+    },
+    "snowy_ice": {
+      "count": 3,
+      "example": {
+        "index": 111,
+        "seed": "6349343671384948599",
+        "stronghold": [
+          1796,
+          1220
+        ]
+      }
+    },
+    "sulfur_caves": {
+      "count": 1,
+      "example": {
+        "index": 482,
+        "seed": "-5370830126930757471",
+        "stronghold": [
+          -732,
+          708
+        ]
+      }
+    },
+    "deep_dark": {
+      "count": 1,
+      "example": {
+        "index": 257,
+        "seed": "253978793194525224",
+        "stronghold": [
+          292,
+          804
+        ]
+      }
+    },
+    "dripstone_caves": {
+      "count": 1,
+      "example": {
+        "index": 321,
+        "seed": "2836776243797482023",
+        "stronghold": [
+          708,
+          196
+        ]
+      }
+    },
+    "badlands": {
+      "count": 3,
+      "example": {
+        "index": 322,
+        "seed": "-638617019109279933",
+        "stronghold": [
+          -332,
+          1284
+        ]
+      }
+    },
+    "forest": {
+      "count": 6,
+      "example": {
+        "index": 231443,
+        "seed": "5820736716934786990",
+        "stronghold": [
+          -1084,
+          1812
+        ]
+      }
+    },
+    "dark_pale": {
+      "count": 2,
+      "example": {
+        "index": 341,
+        "seed": "2806980078757366610",
+        "stronghold": [
+          1860,
+          -380
+        ]
+      }
+    },
+    "mushroom": {
+      "count": 1,
+      "example": {
+        "index": 33,
+        "seed": "-5434684836301739833",
+        "stronghold": [
+          -1324,
+          964
+        ]
+      }
+    },
+    "savanna": {
+      "count": 3,
+      "example": {
+        "index": 630,
+        "seed": "5275108398331000945",
+        "stronghold": [
+          -908,
+          -1036
+        ]
+      }
+    },
+    "desert": {
+      "count": 1,
+      "example": {
+        "index": 482,
+        "seed": "-5370830126930757471",
+        "stronghold": [
+          -1660,
+          1444
+        ]
+      }
+    },
+    "cherry": {
+      "count": 1,
+      "example": {
+        "index": 333,
+        "seed": "4533123055998099184",
+        "stronghold": [
+          1716,
+          228
+        ]
+      }
+    },
+    "mountains": {
+      "count": 6,
+      "example": {
+        "index": 379865,
+        "seed": "-7552071751527596438",
+        "stronghold": [
+          740,
+          324
+        ]
+      }
+    },
+    "lush_caves": {
+      "count": 1,
+      "example": {
+        "index": 332,
+        "seed": "-3004140012188081628",
+        "stronghold": [
+          1252,
+          -1964
+        ]
+      }
+    },
+    "plains_meadow": {
+      "count": 3,
+      "example": {
+        "index": 340,
+        "seed": "-2280101953477123810",
+        "stronghold": [
+          740,
+          164
+        ]
+      }
+    },
+    "rivers_shores": {
+      "count": 5,
+      "example": {
+        "index": 89416,
+        "seed": "7353662736234923510",
+        "stronghold": [
+          964,
+          -1756
+        ]
+      }
+    }
+  },
+  "retained_count_histograms": {
+    "village": {
+      "0": 1032571,
+      "1": 104254,
+      "2": 172034,
+      "3": 192273,
+      "4": 158796,
+      "5": 102852,
+      "6": 53387,
+      "7": 22203,
+      "8": 7005,
+      "9": 1193,
+      "10": 10
+    },
+    "trial_chamber": {
+      "0": 995390,
+      "1": 103,
+      "2": 620,
+      "3": 2714,
+      "4": 9888,
+      "5": 31153,
+      "6": 82928,
+      "7": 171342,
+      "8": 262019,
+      "9": 278996,
+      "10": 9830,
+      "11": 1465,
+      "12": 122,
+      "13": 7,
+      "14": 1
+    },
+    "ancient_city": {
+      "0": 1426353,
+      "1": 220113,
+      "2": 101181,
+      "3": 50343,
+      "4": 25115,
+      "5": 12598,
+      "6": 6026,
+      "7": 2743,
+      "8": 1316,
+      "9": 485,
+      "10": 216,
+      "11": 61,
+      "12": 23,
+      "13": 4,
+      "14": 1
+    },
+    "mineshaft": {
+      "0": 995379,
+      "6": 2,
+      "7": 5,
+      "8": 14,
+      "9": 40,
+      "10": 94,
+      "11": 174,
+      "12": 360,
+      "13": 621,
+      "14": 1121,
+      "15": 1768,
+      "16": 2732,
+      "17": 3967,
+      "18": 5581,
+      "19": 7524,
+      "20": 9721,
+      "21": 12269,
+      "22": 15275,
+      "23": 18427,
+      "24": 21428,
+      "25": 25198,
+      "26": 28706,
+      "27": 32086,
+      "28": 35961,
+      "29": 39324,
+      "30": 42380,
+      "31": 44658,
+      "32": 46524,
+      "33": 46958,
+      "34": 47220,
+      "35": 46042,
+      "36": 44480,
+      "37": 41788,
+      "38": 38398,
+      "39": 34499,
+      "40": 29814,
+      "41": 25999,
+      "42": 22071,
+      "43": 18182,
+      "44": 14759,
+      "45": 11664,
+      "46": 9031,
+      "47": 6756,
+      "48": 5061,
+      "49": 3829,
+      "50": 2774,
+      "51": 1974,
+      "52": 1286,
+      "53": 970,
+      "54": 641,
+      "55": 392,
+      "56": 254,
+      "57": 158,
+      "58": 98,
+      "59": 59,
+      "60": 31,
+      "61": 25,
+      "62": 14,
+      "63": 5,
+      "64": 4,
+      "65": 1,
+      "66": 1,
+      "68": 1
+    },
+    "fortress": {
+      "0": 498671,
+      "1": 750112,
+      "2": 443915,
+      "3": 131027,
+      "4": 20951,
+      "5": 1798,
+      "6": 101,
+      "7": 3
+    },
+    "bastion": {
+      "0": 170681,
+      "1": 529216,
+      "2": 633761,
+      "3": 376586,
+      "4": 116063,
+      "5": 18472,
+      "6": 1701,
+      "7": 94,
+      "8": 4
+    },
+    "monument": {
+      "0": 1663056,
+      "1": 122885,
+      "2": 39434,
+      "3": 13593,
+      "4": 4765,
+      "5": 1893,
+      "6": 685,
+      "7": 227,
+      "8": 32,
+      "9": 8
+    },
+    "outpost": {
+      "0": 1432575,
+      "1": 356279,
+      "2": 54127,
+      "3": 3448,
+      "4": 149
+    },
+    "shipwreck": {
+      "0": 1268435,
+      "1": 178355,
+      "2": 131451,
+      "3": 94358,
+      "4": 64700,
+      "5": 43098,
+      "6": 27142,
+      "7": 16624,
+      "8": 10163,
+      "9": 5847,
+      "10": 3252,
+      "11": 1710,
+      "12": 838,
+      "13": 376,
+      "14": 160,
+      "15": 45,
+      "16": 22,
+      "17": 2
+    },
+    "ruined_portal": {
+      "0": 997358,
+      "2": 86,
+      "3": 1747,
+      "4": 129972,
+      "5": 248501,
+      "6": 257192,
+      "7": 145860,
+      "8": 55332,
+      "9": 10530
+    }
+  },
+  "elapsed_seconds": 647.412421719986,
+  "limitations": [
+    "Positive evidence replay only; skipped checks and unvalidated negative predictions do not establish absence or complete current-border rejection rates.",
+    "All retained Stronghold anchors inside current discovery are considered, not the separate pilot first-anchor policy.",
+    "One stored Stronghold is the chosen anchor, not a complete count of Strongholds in the cropped border.",
+    "Individual maxima are largest retained positive counts, not attainable mathematical ceilings or simultaneous maxima.",
+    "Only ten structure categories have useful retained inventories; buried treasure and monster room were unsupported and other structure categories were unqueried.",
+    "Old biome summaries store only first witnesses at Y=63; witnesses inside the new border establish positive sampled ID presence, witnesses outside do not establish absence inside.",
+    "Biome family counts use distinct numeric active IDs, not sample-point counts; new four-Y world-aligned sampling is not reconstructed.",
+    "No terrain evaluation or actual-game verification was performed by this reanalysis.",
+    "This does not benchmark current generation throughput or lower32/lower48 acceleration."
+  ],
+  "historical_backend": {
+    "model": {
+      "model": "26.50",
+      "structure_rng": {
+        "trial_chamber": 1,
+        "stronghold": 0,
+        "mineshaft": 0,
+        "ancient_city": 0,
+        "village": 0,
+        "ruined_portal": 0,
+        "shipwreck": 0,
+        "monument": 0,
+        "outpost": 0,
+        "fortress": 0,
+        "bastion": 0
+      }
+    },
+    "native_runtime": {
+      "openmp": true,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "policy": "outer-columns-static-min256-v1"
+    },
+    "sha256": {
+      "src/seed_search/_native.abi3.so": "0456fb3f233d7e63bd97a820422f90aef4ec619f78585102ad5f69ef4f7f8e7a",
+      "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+      "native/bridge.c": "b643c1a1379dd95d13b0727e1503448eb66b891c39da7cc654afc91f8eaee4f9",
+      "native/bridge.h": "9c52e4571fe3ae96bcdefa5713799a74a925ae2d0241f3c3c8fc278e6ae8be27",
+      "src/seed_search/backend.py": "caf90785d2052b667eda494ddc6514883aa61f61ea4ea42a852cc16bc0656bc7",
+      "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+      "src/seed_search/realm/baseline.py": "bf44bc6665d6a659c8953776e922659b3a14a38fb1dd31fb75a911d3a199f6f3",
+      "src/seed_search/realm/bounds.py": "63389661c77bb81a14e9071a0a32f4f1a92bd04480a417baf57f34d106b57c0a",
+      "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+      "src/seed_search/realm/config.py": "18f5580131c88d6d748973073586a595fc78ce0dd2f835f43f5a580082fbc54d",
+      "src/seed_search/realm/runner.py": "92f706dd2a7d4a53d12237b82e82be58000214fc28025c668e4c7fee3e632c41",
+      "src/seed_search/realm/store.py": "073451df393da27c823ad131111d2053f11cc57e2b39dd8e2330e388fd9566ae",
+      "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+    }
+  },
+  "histogram_zero_meaning": "No retained positive start in the crop; this includes unqueried observations and is not confirmed absence."
+}
