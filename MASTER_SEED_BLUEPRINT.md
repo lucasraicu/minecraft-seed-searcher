@@ -1,5 +1,8 @@
 # Master Seed Blueprint: Bedrock 8–11 Player Realm
 
+**Active predictor model:** pinned `MC_26_50`; game target 26.52. Predicted features require actual-game verification.
+**Active screening policy:** `origin-fixed-2048-v1` with one evaluation center at the world origin (0,0). The game’s actual spawn is not assumed to be (0,0). Earlier Stronghold-centered revisions remain historical controls.
+
 **Target Game Version:** Minecraft Bedrock Edition 1.21+  
 **Target Community:** 11 Players (intimate community, shared central hub, dedicated districts, zero resource depletion)
 
@@ -9,9 +12,9 @@
 
 | Dimension / Region | Exact Dimensions | Center Coordinate | Chunk Size | Distance to Edge | Notes & Role |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Discovery Envelope** | **4000 × 4000** | Spawn `(0, 0)` | $250 \times 250$ chunks | Radius 2,000 | Captures entire Ring-1 Stronghold radius (640–1152). 100% guarantees 3 Strongholds to pick from. |
-| **Playable Overworld** | **2048 × 2048** | **Stronghold Center** | $128 \times 128$ chunks | Radius 1,024 | Exact grid multiple ($4 \times 512$). ~1 min 40 sec sprint to edge; intimate scale for 11 players with room for all biomes. |
-| **Playable Nether** | **1024 × 1024** | `(SH.X / 8, SH.Z / 8)` | $64 \times 64$ chunks | Radius 512 | Intersects 6–9 Nether structure grid regions ($480 \times 480$). Triples yield of Fortresses & Bastions. |
+| **Stronghold query** | **2048 × 2048** | World origin `(0, 0)` | $128 \times 128$ chunks | Radius 1,024 to sides | The pinned predictor queries regional and village-associated starts; one distinct predicted Stronghold is mandatory. |
+| **Playable Overworld** | **2048 × 2048** | **World origin (0,0)** | $128 \times 128$ chunks | Radius 1,024 | Exact grid multiple ($4 \times 512$). ~1 min 40 sec sprint to edge; intimate scale for 11 players with room for all biomes. |
+| **Playable Nether** | **1024 × 1024** | **World origin (0,0)** | $64 \times 64$ chunks | Radius 512 | Intersects 6–9 Nether structure grid regions ($480 \times 480$). Triples yield of Fortresses & Bastions. |
 
 ---
 
@@ -19,9 +22,11 @@
 
 * **Primary Landmass:** Continuous mainland occupying **70% to 80%** of the 2048 × 2048 border (~3.0 to 3.3 million blocks² of solid land).
 * **River Bridging Policy:** 8-way connectivity (`np.ones((3, 3))`) or freshwater enclosure is applied so natural rivers and inland lakes do **not** sever the continental landmass into sub-70% pieces.
-* **Guaranteed Ocean Edge:** At least **one border edge** consists of open `deep_ocean` / `ocean` (250–350 block wide coastal strip) hosting Ocean Monuments and Shipwrecks.
+* **Guaranteed Ocean Edge (Marine Prerequisite):** At least **one border edge** consists of open `deep_ocean` / `ocean` (250–350 block wide coastal strip) hosting Ocean Monuments and Shipwrecks.
+  > [!IMPORTANT]
+  > **Baseline Decoupling & Marine Gating:** Ocean Monuments and Shipwrecks are **deliberately deferred from Stage 1 Baseline screening** and do not disqualify seeds from the Baseline candidate pool. They are strictly evaluated in **Stage 3** as part of Coastal Continent Terrain verification. Seeds that meet Stage 1 & 2 criteria are persisted as valid Baseline Survivors regardless of marine presence. If a seed lacks an ocean edge or marine structures, it retains its Baseline Survivor status while the downstream marine qualification is recorded accordingly.
 * **Guaranteed Inland River / Lake:** At least **1 major navigable river corridor** ($\ge 600\text{m}$ continuous channel at $Y \le 63$) or scenic inland lake nestled inside the mainland interior.
-* **"River Highway" Jackpot Feature (+20 pts):** Direct river connectivity originating near the central Stronghold/Plains hub and flowing unobstructed out into the coastal ocean (enabling seamless boat travel from base to sea).
+* **"River Highway" Jackpot Feature (+35 pts):** Direct river connectivity originating near the origin hub and flowing unobstructed out into the coastal ocean (enabling seamless boat travel from base to sea).
 * **Coastal Features:** Natural beaches, harbors, sailing access, and sheer sea cliffs (`stony_shore`) dropping into the ocean.
 * **No Enclosed Mountain Ring:** Natural rolling topography without restrictive crater/caldera walls.
 
@@ -29,7 +34,7 @@
 
 ## 3. Required Biome Palette & Luxury Biomes (Inside 2048 × 2048)
 
-All **9 surface resource families + underground mega-cave clusters** are guaranteed:
+The predictor screens for **9 surface resource families and underground biome witnesses**. Generation, cave size and access remain unverified:
 
 1. 🌾 **Plains Family:** Plains, Sunflower Plains, or Meadow (central base building / farming).
 2. 🏜️ **Desert:** Sand, glass, cactus, hosting Desert Pyramids.
@@ -53,30 +58,68 @@ Seeds rolling these additional aesthetic biomes receive top leaderboard placemen
 
 ---
 
-## 4. Structures: Guaranteed Floors & Smart Ranking Matrix
+## 4. Structures: Guaranteed Floors, Tolerance Matrix & Miss Budget Policy
 
-Every qualifying seed **MUST pass the Guaranteed Baseline Floor**. 
+Every qualifying seed **MUST pass the Guaranteed Baseline Hard Floors under Budget $B = 2$**.
 
 > [!IMPORTANT]
-> **Stage 1 Optimization Rule:** Ocean Monuments and Shipwrecks are **deliberately deferred from Stage 1 screening**. They are queried in **Stage 3** only after confirming the ocean biome and coastal water footprint, preventing false rejections and wasted computation.
+> **Baseline Decoupling & Marine Gating Rule:** Ocean Monuments and Shipwrecks are **deliberately deferred from Stage 1 Baseline screening**. They are queried in **Stage 3** only after confirming the Coastal Continent ocean edge footprint. Seeds that pass Stage 1 and Stage 2 are saved as valid **Baseline Survivors** regardless of marine structures. If a seed lacks an ocean edge or marine structures in Stage 3, it retains its Baseline Survivor status rather than being eliminated.
 
-| Structure | Dimension | Guaranteed Baseline Floor | Target "Jackpot" Count | Stage Queried | Smart Ranking Bonus Points |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| 🏰 **Stronghold** | Overworld | **$\ge 1$ (Centered)** | **1** | Stage 1 | Core Anchor (Mandatory world center) |
-| 🏛️ **Woodland Mansion** | Overworld | **$\ge 1$** | **1 to 2** | Stage 1 | Mandatory Anchor in Dark Forest; **+50 pts** jackpot bonus for rare 2nd |
-| 🏘️ **Villages** | Overworld | **$\ge 6$** | **7 to 10** | Stage 1 | **+5 pts** per village above 6 |
-| ⚔️ **Trial Chambers** | Overworld | **$\ge 5$** | **8 to 12+** | Stage 1 | **+10 pts** for 6th and beyond |
-| 🌌 **Ancient Cities** | Overworld | **$\ge 2$** | **3 to 4** | Stage 1 | **+15 pts** for 3rd and 4th |
-| 🏺 **Desert Pyramids** | Overworld | **$\ge 1$** | **2 to 3** | Stage 1 | **+20 pts** for 2nd; **+10 pts** for 3rd |
-| 🌿 **Jungle Temples** | Overworld | **$\ge 1$** | **2** | Stage 1 | **+20 pts** for 2nd |
-| 🌀 **Ruined Portals** | Overworld | **$\ge 6$** | **8 to 10+** | Stage 1 | **+5 pts** per portal above 6 |
-| ⛏️ **Mineshafts** | Overworld | **$\ge 15$** | **25 to 40+** | Stage 1 | **+1 pt** per extra mineshaft above 15 |
-| 🔥 **Nether Fortresses**| Nether | **$\ge 2$** | **3 to 4** | Stage 1 | **+15 pts** for 3rd and 4th |
-| 🐷 **Bastion Remnants** | Nether | **$\ge 3$** | **3 to 4** | Stage 1 | **+15 pts** for 4th and beyond |
-| 🗿 **Ocean Monument** | Overworld | **$\ge 1$** *(in coastal water)*| **2** | **Stage 3 (Post-Terrain)**| **+25 pts** if 100% in coastal sea; **+25 pts** for 2nd |
-| ⛵ **Shipwrecks** | Overworld | **$\ge 5$** *(coastal/beach)* | **6 to 8+** | **Stage 3 (Post-Terrain)**| **+5 pts** per shipwreck above 5 |
-| 🛶 **Inland River / Lake** | Overworld | **$\ge 1$ Corridor** ($\ge 600\text{m}$) | **2 to 3** | **Stage 3 (Terrain)** | Mandatory Inland Waterway; **+20 pts** for "River Highway" Hub-to-Sea link |
-| 🏴‍☠️ **Pillager Outpost**| Overworld | **$\ge 2$** | **2 to 3** | Stage 1 | Mandatory Raid Bases; **+15 pts** for 3rd and beyond |
+### The Miss Budget Rule ($B = 2$)
+1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure is instantly disqualified in Stage 1 C screening (zero compute wasted).
+2. **Deficit Tolerance:** If a structure meets its Hard Floor but falls below its **Ideal Target**, it consumes **1 Miss** from the seed's budget.
+3. **Budget Limit:** A seed may have at most **2 structures in deficit** across the entire world ($\text{Total Misses} \le 2$). Any seed with $\ge 3$ deficits is disqualified.
+
+### Structure Specification & Tolerance Matrix
+
+| Structure | Group / Category | Dimension | Ideal Target | Tolerance | Hard Floor (Absolute Min) | Stage Queried | Condition & Realm Role |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| 🏰 **Stronghold** | **Strictly Required** | Overworld | **1** | **$0$** | **$\ge 1$** | Stage 1 | **Non-negotiable.** End portal access. +50 pts for 2nd start. |
+| 🌿 **Jungle Temple** | **Strictly Required** | Overworld | **1** | **$0$** | **$\ge 1$** | Stage 1 | **Mandatory.** Redstone & jungle loot. +10 pts for 2nd. |
+| 🏺 **Desert Pyramid** | **Strictly Required** | Overworld | **1** | **$0$** | **$\ge 1$** | Stage 1 | **Mandatory.** Suspicious sand & desert loot. +10 pts for 2nd. |
+| 🏴‍☠️ **Pillager Outpost** | **Strictly Required** | Overworld | **1** | **$0$** | **$\ge 1$** | Stage 1 | **Mandatory.** Infinite stacking raid farm. +10 pts for 2nd. |
+| 🏛️ **Woodland Mansion** | Flexible (Budget = 2) | Overworld | **1** | **$-1$** | **$\ge 0$** | Stage 1 | Allowed to be 0 (counts as 1 miss). **+50 pts if 1**; +100 pts for 2nd. |
+| 🌌 **Ancient City** | Flexible (Budget = 2) | Overworld | **2** | **$-1$** | **$\ge 1$** | Stage 1 | **Guaranteed $\ge 1$**. 1 city counts as 1 miss. +25 pts for 3rd/4th. |
+| 🔥 **Nether Fortress** | Flexible (Budget = 2) | Nether | **2** | **$-1$** | **$\ge 1$** | Stage 1 | **Guaranteed $\ge 1$**. 1 fortress counts as 1 miss. +20 pts for 3rd/4th. |
+| 🐷 **Bastion Remnant** | Flexible (Budget = 2) | Nether | **3** | **$-1$** | **$\ge 2$** | Stage 1 | **Guaranteed $\ge 2$**. 2 bastions counts as 1 miss. +20 pts for 4th+. |
+| ⚔️ **Trial Chambers** | Flexible (Budget = 2) | Overworld | **10** | **$-2$** | **$\ge 8$** | Stage 1 | **Guaranteed $\ge 8$**. 8–9 chambers counts as 1 miss. +10 pts for 11th+. |
+| 🏘️ **Villages** | Flexible (Budget = 2) | Overworld | **7** | **$-2$** | **$\ge 5$** | Stage 1 | **Guaranteed $\ge 5$**. 5–6 villages counts as 1 miss. +5 pts for 8th+. |
+| 🌀 **Ruined Portals** | Flexible (Budget = 2) | Overworld | **7** | **$-2$** | **$\ge 5$** | Stage 1 | **Guaranteed $\ge 5$**. 5–6 portals counts as 1 miss. +5 pts for 8th+. |
+| ⛏️ **Mineshafts** | Flexible (Budget = 2) | Overworld | **20** | **$-3$** | **$\ge 17$** | Stage 1 | **Guaranteed $\ge 17$**. 17–19 shafts counts as 1 miss. +1 pt above 20. |
+| 🗿 **Ocean Monument** | **Marine Dependent** | Overworld | **1** | **$0$** | **$\ge 1$** | **Stage 3** | **Stage 3 Only.** Evaluated **ONLY** if coastal ocean confirmed; +25 pts for 2nd. |
+| ⛵ **Shipwrecks** | **Marine Dependent** | Overworld | **5** | **$-2$** | **$\ge 3$** | **Stage 3** | **Stage 3 Only.** Evaluated **ONLY** if coastal ocean confirmed; +5 pts above 5. |
+| 🛶 **Inland River / Lake** | Terrain Dependent | Overworld | **$\ge 1$ Corridor** ($\ge 600\text{m}$) | **0** | **$\ge 1$** | **Stage 3** | Mandatory Inland Waterway; +35 pts for "River Highway" link. |
+
+### Ocean Gating Rules (Marine Structures)
+
+| Structure | Coastal Ocean Verified in Stage 3? | Behavior & Candidate Status |
+| :--- | :---: | :--- |
+| 🗿 **Ocean Monument** | **NO** | Marine stage marked `PENDING` / `NEAR_MATCH`. **Seed retains Baseline Survivor status.** |
+| 🗿 **Ocean Monument** | **YES** | Evaluates $\ge 1$ monument inside coastal sea envelope (+25 for 2nd). |
+| ⛵ **Shipwrecks** | **NO** | Marine stage marked `PENDING` / `NEAR_MATCH`. **Seed retains Baseline Survivor status.** |
+| ⛵ **Shipwrecks** | **YES** | Evaluates 3 to 5 shipwrecks along confirmed coast and beaches (+5 above 5). |
+
+> [!TIP]
+> **Baseline Inland Exemption:** When running in **Baseline Only** mode and no ocean biome is selected, **Shipwrecks and Ocean Monuments are completely exempted** from search floors and do not consume tolerance budget or penalize candidate feasibility.
+
+### Active origin policy ranking (predictor evidence only)
+
+| Tier | Feature | Bonus |
+|---|---|---:|
+| 1 | Second Woodland Mansion; second distinct Stronghold in the fixed square | +50 each |
+| 1 | First Woodland Mansion (Jackpot presence over baseline 0) | +50 |
+| 1 | River corridor model connects the origin hub (within 250 blocks) to coastal ocean | +35 |
+| 1 | Mega Ravine Fissure intersecting origin hub (within ≤200m) | +35 |
+| 2 | Third and fourth Ancient Cities | +25 each |
+| 2 | Third and fourth Nether Fortresses; fourth and later Bastions | +20 each |
+| 2 | Second Ocean Monument (in coastal water) | +25 |
+| 3 | Sampled Cherry Grove, Badlands family, Mushroom Fields at Y=63 | +15 each |
+| 3 | Every Village above seven | +5 each |
+| 3 | Every Ruined Portal above seven; extra Trial Chambers above ten | +5 each / +10 each |
+| 4 | Second Pillager Outpost | +10 |
+| 4 | Second Desert Pyramid; second Jungle Temple | +10 each |
+
+All biome bonuses use the complete configured four-Y lattice for retained origin candidates. The river and marine bonuses remain deferred to terrain/marine processing. These are score points, not proof of usable loot, navigability, portal rooms or actual spawn position. Strongholds cannot miss; flexible structures can miss up to the $B = 2$ budget.
 
 ### Excluded Structures (Zero Wasted Compute)
 * **No End Cities** (End dimension unconstrained).
@@ -87,65 +130,67 @@ Every qualifying seed **MUST pass the Guaranteed Baseline Floor**.
 ## 5. Execution Pipeline & Search Workflow
 
 ```
-                        [ Seed Stream (~19,800 seeds/sec in C) ]
+                        [ Bounded input-seed stream ]
                                        │
                                        ▼
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │ STAGE 1: Ultra-Fast Core Structure Screening (Native C)                │
-  │ • Locate Ring-1 Stronghold in 4000×4000 discovery square               │
-  │ • Recenter 2048×2048 Overworld box on Stronghold                       │
-  │ • Check Overworld: ≥6 Villages, ≥5 Trial Chambers, ≥2 Ancient Cities   │
-  │ • Check Overworld: ≥1 Mansion (+50 for 2), ≥1 Pyramid, ≥1 Jungle Temple│
-  │ • Check Overworld: ≥2 Pillager Outposts, ≥6 Portals, ≥15 Mineshafts    │
-  │ • Check 1024×1024 Nether: ≥2 Fortresses + ≥3 Bastions                  │
-  │ • [Ocean Monuments & Shipwrecks DEFERRED to Stage 3]                   │
-  └────────────────────────────────────────────────────────────────────────┘
-                                       │ (Rejects 99.85% of duds in microseconds)
-                                       ▼
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │ STAGE 2: 4-Y Biome Diversity Lattice Check (Rare-First Optimized)      │
-  │ • Fast Coarse Filter (32-point check): Verify rare biomes (Dark Forest,│
-  │   Snowy/Ice, Desert, Jungle) in <0.4ms; short-circuit fails immediately│
-  │ • Full Lattice (Y=63, -48, 0, 160): Plains, Forest, Taiga, Swamp,      │
-  │   Jagged Peaks/Cliffs, and Deep Mega-Cave Clusters (Lush/Dripstone)    │
-  └────────────────────────────────────────────────────────────────────────┘
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │ STAGE 1: Fast Native C Structure Screening (Budget B = 2 Gate)         │
+   │ • Fixed origin square [-1024, -1024, 1024, 1024) at (0, 0)             │
+   │ • Mandatory: Stronghold ≥ 1, Pyramid ≥ 1, Temple ≥ 1, Outpost ≥ 1.     │
+   │   (If any are 0 → instant reject)                                      │
+   │ • Hard Floors: Cities ≥ 1, Fortresses ≥ 1, Bastions ≥ 2,               │
+   │   Chambers ≥ 8, Villages ≥ 5, Portals ≥ 5, Mineshafts ≥ 17.            │
+   │   (If any drop below Hard Floor → instant reject)                      │
+   │ • Deficit Budget: Tally deficits against Ideal Targets.                │
+   │   (If Deficits > 2 → reject)                                           │
+   │ • [Ocean Monuments & Shipwrecks DEFERRED to Stage 3]                   │
+   └────────────────────────────────────────────────────────────────────────┘
                                        │
                                        ▼
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │ STAGE 3: Terrain, Coastline, River & Marine Structure Verification     │
-  │ • Multi-Resolution Cascade: 128m coarse check (1-2ms) verifies 70–80%  │
-  │   landmass & edge ocean; fine 32m/4m confirms beaches/cliffs           │
-  │ • 8-Way Mainland Bridging: Rivers/lakes do not sever continent         │
-  │ • Inland Waterway: Confirm ≥1 navigable river corridor (≥600m)         │
-  │ • Query Ocean Monuments (≥1 inside confirmed coastal sea; +25 for 2nd) │
-  │ • Query Shipwrecks (≥5 along confirmed coast & beaches)                │
-  └────────────────────────────────────────────────────────────────────────┘
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │ STAGE 2: 4-Y Biome Diversity Lattice Check                             │
+   │ • Lattice planes at Y = 63, -48, 0, 160                                │
+   │ • Verifies Plains, Forest, Taiga, Swamp, Snowy, Peaks/Cliffs,          │
+   │   and Cave clusters (Lush, Dripstone, Deep Dark)                       │
+   │ • Seeds passing Stages 1 & 2 are saved as BASELINE SURVIVORS.          │
+   └────────────────────────────────────────────────────────────────────────┘
                                        │
                                        ▼
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │ STAGE 4: Smart Ranking & Database Export                               │
-  │ • Tally bonus points: River Highway (+20), Cherry Grove (+15), Mesa (+15)│
-  │ • Tally bonus points: 2nd Mansion (+50), 2nd Monument (+25), extra SH │
-  │ • Tally bonus points: 3rd/4th Fortresses (+15), 4th+ Bastions (+15)    │
-  │ • Export top-ranked candidates with coordinates to SQLite database     │
-  │ • Display on interactive Web Dashboard                                │
-  └────────────────────────────────────────────────────────────────────────┘
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │ STAGE 3: Terrain, Coastline, River & Marine Structure Verification     │
+   │ • Multi-Resolution Cascade: 128m coarse check verifies 70–80% mainland │
+   │ • 8-Way Mainland Bridging: Rivers/lakes do not sever continent         │
+   │ • Inland Waterway: Confirm ≥ 1 navigable river corridor (≥ 600m)       │
+   │ • COASTAL OCEAN BIOME GATE:                                            │
+   │   ├── If coastal ocean absent → Marine stage PENDING; baseline kept.   │
+   │   └── If coastal ocean confirmed → Query Monument (≥ 1) & Wrecks (≥ 3).│
+   └────────────────────────────────────────────────────────────────────────┘
                                        │
                                        ▼
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │ STAGE 5: Headless BDS Docker Verification (Top 20 Finalists Only)      │
-  │ • Bounded budget: Runs ONLY on top 10–20 candidates from Leaderboard   │
-  │ • Fast headless container / LevelDB inspection (<8s per seed)          │
-  │ • Validates exact NBT loot tables, spawners, and portal room geometry  │
-  └────────────────────────────────────────────────────────────────────────┘
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │ STAGE 4: Smart Ranking & Database Export                               │
+   │ • Tally bonus points: River Highway (+35), Mansion (+50), SH #2 (+50)  │
+   │ • Tally bonus points: 3rd/4th Fortresses (+20), 4th+ Bastions (+20)    │
+   │ • Tally bonus points: Extra Chambers (>10), Villages (>7), Luxury Biomes│
+   │ • Export top-ranked candidates with coordinates to SQLite database     │
+   │ • Display on interactive Web Dashboard                                 │
+   └────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │ STAGE 5: Headless BDS Docker Verification (Top 20 Finalists Only)      │
+   │ • Bounded budget: Runs ONLY on top 10–20 candidates from Leaderboard   │
+   │ • Fast headless container / LevelDB inspection (<8s per seed)          │
+   │ • Validates exact NBT loot tables, spawners, and portal room geometry  │
+   └────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 6. Time & Machine Expectations
-* **Throughput:** ~19,800 seeds/second raw C filter; ~3,000+ seeds/second persisted throughput on this machine.
-* **Stage 2 Speedup:** Rare-first 32-sample early-exit reduces biome evaluation from ~24 ms to <0.8 ms per candidate.
-* **Stage 3 Speedup:** 128m coarse height-map culls invalid terrain in 1–2 ms before fine resolution.
-* **Stage 5 Isolation:** BDS Docker verification never touches search screening; bounded to top 20 finalists (~2.5 minutes total).
-* **Storage Mode:** Compact candidate persistence (winners-only rich records, zero disk bloat).
-* **Expected Runtime:** **~20 to 35 minutes** of continuous scanning to produce a ranked leaderboard of world-class candidate seeds.
+* **Throughput:** Measure the active origin policy separately. Historical raw C and persisted rates used different geometry and cannot predict this policy's world yield.
+* **Stage 2:** A sparse sample can establish a positive biome witness, but absence at 32 points cannot safely reject a seed. The configured lattice and required four-Y roles remain authoritative.
+* **Stage 3:** The coastal terrain cascade is measured separately from baseline screening. Coarse rejection must preserve exact final-decision parity.
+* **Stage 5:** BDS verification does not run during seed screening and uses a bounded, explicitly selected budget. Full-world verification time remains unmeasured.
+* **Storage mode:** Compact mode saves predicted survivors and selected near misses, plus durable range checkpoints. Full-evidence mode remains available.
+* **Expected runtime:** No complete-world discovery time is established; survivor probability and actual Bedrock validity remain unverified.

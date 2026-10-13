@@ -1,8 +1,28 @@
 export type Dimension = 'overworld' | 'nether';
+export type MapLabelMode = 'smart' | 'all' | 'minimal';
+export type MapElevationFilter = 'all' | 'surface' | 'underground';
 
 export interface StructureMarker {
   id: string;
-  type: 'stronghold' | 'fortress' | 'bastion' | 'ancient_city' | 'village' | 'mansion' | 'trial_chamber' | 'monument' | 'outpost' | 'ruined_portal';
+  type:
+    | 'stronghold'
+    | 'fortress'
+    | 'bastion'
+    | 'ancient_city'
+    | 'village'
+    | 'mansion'
+    | 'trial_chamber'
+    | 'monument'
+    | 'outpost'
+    | 'ruined_portal'
+    | 'shipwreck'
+    | 'pyramid'
+    | 'desert_pyramid'
+    | 'jungle_temple'
+    | 'mineshaft'
+    | 'lush_caves'
+    | 'dripstone_caves'
+    | 'deep_dark';
   name: string;
   x: number;
   z: number;
@@ -11,14 +31,52 @@ export interface StructureMarker {
   icon: string;
   color: string;
   viable: boolean;
+  distanceToHub?: number;
   notes?: string;
 }
 
 export interface BiomeRegion {
   name: string;
-  category: 'ocean' | 'mountain' | 'mushroom' | 'forest' | 'plains' | 'jungle' | 'badlands' | 'nether_wastes' | 'crimson_forest' | 'warped_forest' | 'soul_sand_valley' | 'basalt_deltas';
+  category:
+    | 'ocean'
+    | 'mountain'
+    | 'mushroom'
+    | 'forest'
+    | 'plains'
+    | 'jungle'
+    | 'badlands'
+    | 'nether_wastes'
+    | 'crimson_forest'
+    | 'warped_forest'
+    | 'soul_sand_valley'
+    | 'basalt_deltas';
   color: string;
   polygon: [number, number][]; // Relative block coords
+}
+
+export interface RavineMarker {
+  id: string;
+  x: number;
+  z: number;
+  y: number;
+  yaw: number; // heading in radians
+  pitch?: number;
+  length: number; // 84 to 112 blocks
+  thick: number; // width factor
+  giant: boolean; // mega-ravine flag
+  underwater: boolean;
+}
+
+export interface CaveClusterMarker {
+  id: string;
+  type: 'lush_caves' | 'dripstone_caves' | 'deep_dark';
+  name: string;
+  x: number;
+  z: number;
+  y: number;
+  icon: string;
+  color: string;
+  notes?: string;
 }
 
 export interface SeedCandidate {
@@ -26,15 +84,24 @@ export interface SeedCandidate {
   seed: string;
   score: number;
   strongholdAnchor: [number, number];
-  terrainType: 'V1 Island' | 'V2 Mountain Basin' | 'Coastal Ridge';
+  spawnPoint?: [number, number];
+  spawnDistance?: number;
+  chunkbaseUrl?: string;
+  terrainType: 'Coastal Continent' | 'Coastal Continent (River Highway)' | 'Baseline (Structures Only)' | string;
+  terrainPassed?: boolean;
   terrainMetrics: {
     diameter: number;
     waterEnclosure: number;
-    ridgeRelief?: number;
     flatAreaBlocks: number;
-    elevationRange: [number, number];
+    ridgeRelief?: number;
+    elevationRange?: [number, number];
+    mainlandFraction?: number;
+    oceanEdge?: string;
+    riverCorridor?: string;
   };
   structures: StructureMarker[];
+  ravines?: RavineMarker[];
+  caveClusters?: CaveClusterMarker[];
   biomes: string[];
   bdsVerified: boolean;
   bdsAccuracy: {
@@ -43,12 +110,14 @@ export interface SeedCandidate {
     settledColumns: number;
   };
   discoveredAt: string;
+  provenance?: 'reference' | 'live';
 }
 
 export interface TelemetryState {
-  status: 'idle' | 'running' | 'paused' | 'bds_verifying';
+  status: 'idle' | 'running' | 'paused' | 'completed' | 'bds_verifying' | 'error';
   seedsPerSec: number;
   totalScanned: number;
+  targetCount: number;
   candidatesFound: number;
   elapsedSeconds: number;
   currentStage: string;
@@ -56,20 +125,25 @@ export interface TelemetryState {
   activeThreads: number;
   sweepProgress: number; // 0 to 100
   history: number[]; // Last 20 data points for sparkline
+  runId?: string;
 }
 
 export interface SearchConfig {
-  presetName: string;
   requiredStructures: string[];
+  structureFloorCounts: Record<string, number>;
   mandatoryFortressAndBastion: boolean;
   requireNetherOverlap: boolean;
   selectedBiomes: string[];
-  terrainSpec: 'v1_island' | 'v2_mountain' | 'any';
+  terrainMode: 'coastal_continent' | 'all_baseline';
+  mainlandTargetPct: number; // 70 to 80%
+  oceanEdgeWidthM: number; // 320m
+  riverHighwayLengthM: number; // >= 400m
+  enforceSpawnGate: boolean;
+  maxSpawnDistance: number;
   playableRadiusOverworld: number;
   playableRadiusNether: number;
-  workers: number;
+  sweepSeedCount: number;
+  maxMisses: number; // 0 = exact match, 1 = allow 1 miss, 2 = allow 2 misses
   openmpThreads: number;
-  quartReuse: boolean;
-  yNoiseReuse: boolean;
-  bdsValidation: boolean;
+  batchSize: number;
 }

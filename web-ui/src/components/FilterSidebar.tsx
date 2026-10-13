@@ -1,63 +1,130 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { SearchConfig } from '../types';
-import { PRESETS } from '../mockData';
+import { DEFAULT_STRUCTURE_FLOORS } from '../mockData';
+import { computeTotalFeasibility } from '../utils/probability';
 
 interface FilterSidebarProps {
   config: SearchConfig;
   onChangeConfig: (newConfig: SearchConfig) => void;
   logs: string[];
+  onClearLogs?: () => void;
 }
 
 export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   config,
   onChangeConfig,
   logs,
+  onClearLogs,
 }) => {
   const [activeTab, setActiveTab] = useState<'targets' | 'engine' | 'logs'>('targets');
+  const feasibility = useMemo(() => computeTotalFeasibility(config), [config]);
 
   const ALL_STRUCTURES = [
-    { id: 'stronghold', name: 'Stronghold', icon: '🏰' },
-    { id: 'ancient_city', name: 'Ancient City', icon: '🏙️' },
-    { id: 'village', name: 'Village', icon: '🏡' },
-    { id: 'trial_chamber', name: 'Trial Chamber', icon: '⚔️' },
-    { id: 'mansion', name: 'Mansion', icon: '🏚️' },
-    { id: 'monument', name: 'Monument', icon: '🏛️' },
-    { id: 'outpost', name: 'Outpost', icon: '🏹' },
+    { id: 'stronghold', name: 'Stronghold', icon: '🏰', min: 1, max: 3 },
+    { id: 'mansion', name: 'Woodland Mansion', icon: '🏛️', min: 1, max: 3 },
+    { id: 'village', name: 'Villages', icon: '🏡', min: 1, max: 15 },
+    { id: 'trial_chamber', name: 'Trial Chambers', icon: '⚔️', min: 1, max: 15 },
+    { id: 'ancient_city', name: 'Ancient Cities', icon: '🏙️', min: 1, max: 8 },
+    { id: 'outpost', name: 'Pillager Outposts', icon: '🏹', min: 1, max: 8 },
+    { id: 'fortress', name: 'Nether Fortresses', icon: '🏯', min: 1, max: 8 },
+    { id: 'bastion', name: 'Bastion Remnants', icon: '🐖', min: 1, max: 8 },
+    { id: 'pyramid', name: 'Desert Pyramids', icon: '🏺', min: 1, max: 6 },
+    { id: 'jungle_temple', name: 'Jungle Temples', icon: '🌿', min: 1, max: 6 },
+    { id: 'monument', name: 'Ocean Monuments', icon: '🏛️', min: 1, max: 6 },
+    { id: 'shipwreck', name: 'Shipwrecks', icon: '⛵', min: 1, max: 15 },
+    { id: 'ruined_portal', name: 'Ruined Portals', icon: '🚪', min: 1, max: 15 },
+    { id: 'mineshaft', name: 'Mineshafts', icon: '⛏️', min: 1, max: 40 },
+  ];
+
+  const CAVE_CLUSTERS = [
+    { id: 'lush_caves', name: 'Lush Caves', icon: '🌿', min: 0, max: 10 },
+    { id: 'deep_dark', name: 'Deep Dark', icon: '🌌', min: 0, max: 10 },
+    { id: 'dripstone_caves', name: 'Dripstone Caves', icon: '🪨', min: 0, max: 10 },
   ];
 
   const ALL_BIOMES = [
-    { id: 'mushroom_fields', name: 'Mushroom Fields', icon: '🍄' },
+    { id: 'plains', name: 'Plains / Meadow', icon: '🌾' },
+    { id: 'forest', name: 'Forest / Dark Forest', icon: '🌲' },
     { id: 'jungle', name: 'Jungle', icon: '🌴' },
-    { id: 'badlands', name: 'Badlands', icon: '🏜️' },
-    { id: 'pale_garden', name: 'Pale Garden', icon: '🪵' },
-    { id: 'dappled_forest', name: 'Dappled Forest', icon: '🌲' },
+    { id: 'desert', name: 'Desert / Badlands', icon: '🏜️' },
+    { id: 'taiga', name: 'Taiga / Old Growth', icon: '🌲' },
+    { id: 'snowy_ice', name: 'Snowy Plains / Spikes', icon: '❄️' },
+    { id: 'swamp', name: 'Swamp / Mangrove', icon: '🐊' },
     { id: 'cherry_grove', name: 'Cherry Grove', icon: '🌸' },
-    { id: 'snowy_peaks', name: 'Snowy Peaks', icon: '❄️' },
+    { id: 'mountains', name: 'Jagged / Stony Peaks', icon: '🏔️' },
+    { id: 'mushroom_fields', name: 'Mushroom Fields', icon: '🍄' },
+    { id: 'pale_garden', name: 'Pale Garden', icon: '🪵' },
+    { id: 'deep_dark', name: 'Deep Dark', icon: '🌌' },
+    { id: 'caves', name: 'Lush Caves', icon: '🌿' },
+    { id: 'dripstone_caves', name: 'Dripstone Caves', icon: '🪨' },
+    { id: 'ocean', name: 'Ocean / Deep Sea', icon: '🌊' },
   ];
 
+  const hasOceanBiome = config.selectedBiomes.some(
+    (b) => b === 'ocean' || b.includes('ocean')
+  );
+  const isBaselineInland = config.terrainMode === 'all_baseline' && !hasOceanBiome;
+
+  const handleCountChange = (id: string, delta: number) => {
+    if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) return;
+    const isCave = ['lush_caves', 'dripstone_caves', 'deep_dark'].includes(id);
+    const minVal = isCave ? 0 : 1;
+    const current = config.structureFloorCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? (isCave ? 0 : 1);
+    const nextVal = Math.max(minVal, current + delta);
+    const nextFloorCounts = { ...config.structureFloorCounts, [id]: nextVal };
+
+    // If currently not selected, add it
+    const nextRequired = config.requiredStructures.includes(id)
+      ? config.requiredStructures
+      : [...config.requiredStructures, id];
+
+    onChangeConfig({
+      ...config,
+      structureFloorCounts: nextFloorCounts,
+      requiredStructures: nextRequired,
+    });
+  };
+
   const toggleStructure = (id: string) => {
-    const next = config.requiredStructures.includes(id)
+    if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) return;
+    const isSelected = config.requiredStructures.includes(id);
+    const nextRequired = isSelected
       ? config.requiredStructures.filter((s) => s !== id)
       : [...config.requiredStructures, id];
-    onChangeConfig({ ...config, requiredStructures: next });
+
+    onChangeConfig({ ...config, requiredStructures: nextRequired });
   };
 
   const toggleBiome = (id: string) => {
-    const next = config.selectedBiomes.includes(id)
-      ? config.selectedBiomes.filter((b) => b !== id)
-      : [...config.selectedBiomes, id];
-    onChangeConfig({ ...config, selectedBiomes: next });
+    const isAdding = !config.selectedBiomes.includes(id);
+    const nextBiomes = isAdding
+      ? [...config.selectedBiomes, id]
+      : config.selectedBiomes.filter((b) => b !== id);
+
+    let nextStructures = config.requiredStructures;
+    if (config.terrainMode === 'all_baseline') {
+      const hasOcean = nextBiomes.some((b) => b === 'ocean' || b.includes('ocean'));
+      if (!hasOcean) {
+        nextStructures = nextStructures.filter((s) => s !== 'monument' && s !== 'shipwreck');
+      } else {
+        nextStructures = Array.from(new Set([...nextStructures, 'monument', 'shipwreck']));
+      }
+    }
+
+    onChangeConfig({ ...config, selectedBiomes: nextBiomes, requiredStructures: nextStructures });
   };
 
-  const handleSelectPreset = (presetName: string) => {
-    const preset = PRESETS.find((p) => p.name === presetName);
-    if (preset) {
-      onChangeConfig({
-        ...config,
-        presetName: preset.name,
-        ...preset.config,
-      });
-    }
+  const handleResetDefaults = () => {
+    onChangeConfig({
+      ...config,
+      requiredStructures: Object.keys(DEFAULT_STRUCTURE_FLOORS),
+      structureFloorCounts: { ...DEFAULT_STRUCTURE_FLOORS },
+      mainlandTargetPct: 75,
+      oceanEdgeWidthM: 320,
+      riverHighwayLengthM: 400,
+      enforceSpawnGate: true,
+      maxSpawnDistance: 100,
+    });
   };
 
   return (
@@ -72,7 +139,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Targets
+          Blueprint Targets
         </button>
         <button
           onClick={() => setActiveTab('engine')}
@@ -82,7 +149,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Hardware
+          Xeon Hardware
         </button>
         <button
           onClick={() => setActiveTab('logs')}
@@ -99,54 +166,233 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       {/* Tab 1: Search Targets */}
       {activeTab === 'targets' && (
         <div className="flex-1 overflow-y-auto p-4 space-y-5">
-          {/* Presets */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-              Configuration Preset
-            </label>
-            <select
-              value={config.presetName}
-              onChange={(e) => handleSelectPreset(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-xs text-white outline-none focus:border-emerald-500"
+          {/* Master Blueprint Banner & Reset */}
+          <div className="p-3 bg-slate-950/80 border border-emerald-500/30 rounded-lg flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="text-xs font-bold text-white">Master Blueprint 1.21</span>
+              </div>
+              <p className="text-[10px] text-slate-400 mt-0.5">
+                11-Player Coastal Continent &amp; River Highway
+              </p>
+            </div>
+            <button
+              onClick={handleResetDefaults}
+              className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[10px] font-semibold border border-slate-700 transition-colors"
+              title="Reset all structure counts and gates to Blueprint defaults"
             >
-              {PRESETS.map((p) => (
-                <option key={p.name} value={p.name}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
+              Reset
+            </button>
           </div>
 
-          {/* Required Overworld Structures */}
+          {/* Box 4: Total Search Odds Hero Card (End-to-End Pipeline) */}
+          <div className="p-3 bg-gradient-to-b from-slate-900 to-slate-950 border border-emerald-500/40 rounded-xl space-y-2.5 shadow-xl relative overflow-hidden">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm">🎯</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-white">
+                  Total Pipeline Odds
+                </span>
+              </div>
+              <span
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
+                  feasibility.feasibilityRating === 'Astronomical'
+                    ? 'bg-red-500/20 text-red-400 border-red-500/40'
+                    : feasibility.feasibilityRating === 'Extreme'
+                    ? 'bg-orange-500/20 text-orange-400 border-orange-500/40'
+                    : feasibility.feasibilityRating === 'Rare'
+                    ? 'bg-amber-500/20 text-amber-400 border-amber-500/40'
+                    : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
+                }`}
+              >
+                {feasibility.feasibilityRating}
+              </span>
+            </div>
+
+            {/* Main Joint Probability Banner */}
+            <div className="bg-slate-950/90 rounded-lg p-2.5 border border-slate-800 shadow-inner">
+              <div className="flex justify-between items-center text-[10px] text-slate-400 mb-0.5">
+                <span>Grand Joint Probability:</span>
+                <span className="font-mono text-emerald-400 font-bold">{feasibility.formattedTime} search</span>
+              </div>
+              <div className={`font-mono text-base font-extrabold ${feasibility.color} tracking-tight`}>
+                {feasibility.formattedOdds}
+              </div>
+            </div>
+
+            {/* 3-Stage Multiplier Breakdown */}
+            <div className="grid grid-cols-3 gap-1.5 text-[10px] font-mono">
+              <div className="p-1.5 bg-slate-900/90 rounded border border-slate-800 text-center">
+                <span className="text-slate-500 block text-[9px]">🏰 Struct</span>
+                <span className="text-white font-bold">
+                  {(feasibility.structures.probability * 100).toFixed(feasibility.structures.probability < 0.01 ? 3 : 1)}%
+                </span>
+              </div>
+              <div className="p-1.5 bg-slate-900/90 rounded border border-slate-800 text-center">
+                <span className="text-slate-500 block text-[9px]">🌿 Biomes</span>
+                <span className="text-cyan-400 font-bold">
+                  {(feasibility.biomes.probability * 100).toFixed(1)}%
+                </span>
+              </div>
+              <div className="p-1.5 bg-slate-900/90 rounded border border-slate-800 text-center">
+                <span className="text-slate-500 block text-[9px]">🌊 Terrain</span>
+                <span className="text-blue-400 font-bold">
+                  {(feasibility.terrain.probability * 100).toFixed(1)}%
+                </span>
+              </div>
+            </div>
+
+            {/* 1-Click Sync Button */}
+            <button
+              onClick={() => {
+                const targetVol = Math.min(100000000, Math.max(1000, feasibility.expectedSeedsNeeded));
+                onChangeConfig({ ...config, sweepSeedCount: targetVol });
+              }}
+              className="w-full py-1.5 px-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+              title="Set Sweep Seed Volume in Engine tab to match expected 1/P"
+            >
+              <span>⚡</span>
+              <span>Sync Sweep Volume ({feasibility.expectedSeedsNeeded.toLocaleString()} seeds)</span>
+            </button>
+          </div>
+
+          {/* Box 1: Structure Odds Box (Stage 1 Screening) */}
+          <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs">🏰</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                  Stage 1: Structure Odds
+                </span>
+              </div>
+              <span className="font-mono text-[10px] font-bold text-emerald-400">
+                {feasibility.structures.formattedOdds}
+              </span>
+            </div>
+
+            {feasibility.structures.bottleneck && (
+              <div className="flex items-center justify-between text-[10px] px-2 py-1 bg-slate-900/80 rounded border border-slate-800 text-slate-400">
+                <span className="truncate">
+                  Rarest: <strong className="text-slate-200">{feasibility.structures.bottleneck.name} ({feasibility.structures.bottleneck.count > 0 ? `≥${feasibility.structures.bottleneck.count}` : 'Any'})</strong>
+                </span>
+                <span className="font-mono text-amber-400 font-bold ml-1">
+                  {(feasibility.structures.bottleneck.prob * 100).toFixed(feasibility.structures.bottleneck.prob < 0.05 ? 2 : 1)}%
+                </span>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between text-[9px] text-slate-500">
+              <span>Tolerance: {config.maxMisses} miss allowed</span>
+              <span className="font-mono text-cyan-400 font-semibold">
+                {feasibility.structures.toleranceBoost > 1 ? `${feasibility.structures.toleranceBoost.toFixed(1)}× boost` : 'strict'}
+              </span>
+            </div>
+          </div>
+
+          {/* Structure Counts with Steppers */}
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-              Required Structures
-            </label>
-            <div className="grid grid-cols-2 gap-1.5">
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Structure Floors ({ALL_STRUCTURES.length})
+              </label>
+              <span className="text-[10px] text-emerald-400 font-mono font-bold">
+                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length} active
+              </span>
+            </div>
+
+            <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
               {ALL_STRUCTURES.map((s) => {
-                const isSelected = config.requiredStructures.includes(s.id);
+                const isMarine = s.id === 'monument' || s.id === 'shipwreck';
+                const isExempt = isBaselineInland && isMarine;
+                const isSelected = !isExempt && config.requiredStructures.includes(s.id);
+                const count = config.structureFloorCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 1;
+                const indP = feasibility.structures.individualProbs[s.id];
+
+                if (isExempt) {
+                  return (
+                    <div
+                      key={s.id}
+                      className="flex items-center justify-between px-2.5 py-1.5 rounded-lg border bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60"
+                      title="Exempt: Inland Baseline mode does not require ocean structures when no ocean biome is selected"
+                    >
+                      <div className="flex items-center gap-1.5 truncate">
+                        <span className="text-sm">{s.icon}</span>
+                        <span className="text-xs font-semibold truncate line-through opacity-70">{s.name}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 font-bold">
+                          Exempt (No Ocean)
+                        </span>
+                        <span className="text-[10px] text-slate-500 font-mono italic pr-1">
+                          N/A
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
-                  <button
+                  <div
                     key={s.id}
-                    onClick={() => toggleStructure(s.id)}
-                    className={`py-1.5 px-2 rounded text-xs font-medium flex items-center gap-1.5 transition-all text-left border ${
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg border transition-all ${
                       isSelected
-                        ? 'bg-emerald-600/30 border-emerald-500/50 text-emerald-300'
-                        : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:border-slate-600'
+                        ? 'bg-slate-800/80 border-slate-700 text-slate-200 shadow-sm'
+                        : 'bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60'
                     }`}
                   >
-                    <span>{s.icon}</span>
-                    <span className="truncate">{s.name}</span>
-                  </button>
+                    {/* Toggle check & Structure Label */}
+                    <button
+                      onClick={() => toggleStructure(s.id)}
+                      className="flex items-center justify-between gap-1 text-left truncate flex-1 hover:text-white transition-colors"
+                    >
+                      <div className="flex items-center gap-1.5 truncate">
+                        <span className="text-sm">{s.icon}</span>
+                        <span className="text-xs font-semibold truncate">{s.name}</span>
+                      </div>
+                      {isSelected && indP !== undefined && (
+                        <span
+                          className={`text-[9px] font-mono px-1 rounded mr-1 ${
+                            indP < 0.2
+                              ? 'text-amber-400 bg-amber-500/10 font-bold'
+                              : 'text-slate-400'
+                          }`}
+                          title={`Empirical pass rate: ${(indP * 100).toFixed(1)}%`}
+                        >
+                          {(indP * 100).toFixed(0)}%
+                        </span>
+                      )}
+                    </button>
+
+                    {/* Stepper Count Controls */}
+                    <div className="flex items-center gap-1.5 ml-2">
+                      <button
+                        onClick={() => handleCountChange(s.id, -1)}
+                        disabled={count <= 1}
+                        className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
+                      >
+                        -
+                      </button>
+                      <span className="font-mono text-xs font-bold text-emerald-400 w-5 text-center">
+                        {count}
+                      </span>
+                      <button
+                        onClick={() => handleCountChange(s.id, 1)}
+                        className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold flex items-center justify-center transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
           {/* Nether Requirements */}
-          <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-2.5">
+          <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-300">🔥 Nether Pair Policy</span>
+              <span className="text-xs font-bold text-slate-300">🔥 Nether Fort &amp; Bastion Pairing</span>
               <span className="text-[10px] text-red-400 font-mono">1024 × 1024</span>
             </div>
 
@@ -175,19 +421,150 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </label>
           </div>
 
+          {/* Dedicated Underground Cave Clusters Card */}
+          <div className="p-3 bg-slate-950/80 border border-emerald-500/30 rounded-xl space-y-2 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm">💎</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-200">
+                  Underground Cave Clusters ({CAVE_CLUSTERS.length})
+                </span>
+              </div>
+              <span className="text-[10px] text-emerald-400 font-mono font-bold">
+                {CAVE_CLUSTERS.filter((c) => config.requiredStructures.includes(c.id)).length} active
+              </span>
+            </div>
+
+            <p className="text-[10px] text-slate-400 leading-tight">
+              Subterranean biomes (Y ≤ 0). Active (green) with unconstrained count (Any) by default; step + to require minimum cluster count.
+            </p>
+
+            <div className="space-y-1.5 pt-1">
+              {CAVE_CLUSTERS.map((c) => {
+                const isSelected = config.requiredStructures.includes(c.id);
+                const count = config.structureFloorCounts[c.id] ?? DEFAULT_STRUCTURE_FLOORS[c.id] ?? 0;
+                const indP = feasibility.structures.individualProbs[c.id];
+
+                return (
+                  <div
+                    key={c.id}
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg border transition-all ${
+                      isSelected
+                        ? 'bg-emerald-950/25 border-emerald-500/50 text-slate-100 shadow-sm'
+                        : 'bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60'
+                    }`}
+                  >
+                    {/* Toggle check & Cave Label */}
+                    <button
+                      type="button"
+                      onClick={() => toggleStructure(c.id)}
+                      className="flex items-center justify-between gap-1 text-left truncate flex-1 hover:text-white transition-colors"
+                    >
+                      <div className="flex items-center gap-1.5 truncate">
+                        <span className="text-sm">{c.icon}</span>
+                        <span className="text-xs font-semibold truncate">{c.name}</span>
+                      </div>
+                      {isSelected && indP !== undefined && (
+                        <span
+                          className={`text-[9px] font-mono px-1.5 py-0.5 rounded mr-1 font-bold ${
+                            indP < 0.3
+                              ? 'text-red-400 bg-red-500/10 border border-red-500/30'
+                              : indP < 0.7
+                              ? 'text-amber-400 bg-amber-500/10 border border-amber-500/30'
+                              : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30'
+                          }`}
+                          title={`Empirical pass rate: ${(indP * 100).toFixed(1)}%`}
+                        >
+                          {(indP * 100).toFixed(0)}%
+                        </span>
+                      )}
+                    </button>
+
+                    {/* Stepper Count Controls */}
+                    <div className="flex items-center gap-1.5 ml-2">
+                      <button
+                        type="button"
+                        onClick={() => handleCountChange(c.id, -1)}
+                        disabled={count <= 0 || !isSelected}
+                        className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center border border-slate-700 transition-all"
+                        title="Decrease cluster requirement"
+                      >
+                        -
+                      </button>
+                      <span
+                        className={`font-mono text-xs font-bold w-7 text-center ${
+                          count === 0 ? 'text-emerald-400/90 italic text-[11px]' : 'text-emerald-300'
+                        }`}
+                        title={count === 0 ? 'Any (presence in 2048x2048)' : `≥${count} clusters`}
+                      >
+                        {count === 0 ? 'Any' : count}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleCountChange(c.id, 1)}
+                        disabled={!isSelected}
+                        className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 text-white text-xs font-bold flex items-center justify-center border border-slate-700 transition-all"
+                        title="Increase cluster requirement"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Box 2: Biome Diversity Odds Box (Stage 2 Lattice) */}
+          <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs">🌿</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                  Stage 2: Biome Palette Odds
+                </span>
+              </div>
+              <span className="font-mono text-[10px] font-bold text-cyan-400">
+                {feasibility.biomes.formattedOdds}
+              </span>
+            </div>
+
+            {feasibility.biomes.bottleneck && (
+              <div className="flex items-center justify-between text-[10px] px-2 py-1 bg-slate-900/80 rounded border border-slate-800 text-slate-400">
+                <span className="truncate">
+                  Rarest Active: <strong className="text-slate-200">{feasibility.biomes.bottleneck.name}</strong>
+                </span>
+                <span className="font-mono text-amber-400 font-bold ml-1">
+                  {(feasibility.biomes.bottleneck.prob * 100).toFixed(1)}%
+                </span>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between text-[9px] text-slate-500">
+              <span>Selected: {feasibility.biomes.selectedCount} / {feasibility.biomes.totalCount}</span>
+              <span className="text-slate-400">4-Y Lattice (Y: 63, -48, 0, 160)</span>
+            </div>
+          </div>
+
           {/* Biome Families */}
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-              Required Biomes
-            </label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Required Biome Families ({ALL_BIOMES.length})
+              </label>
+              <span className="text-[10px] text-emerald-400 font-mono">
+                {config.selectedBiomes.length} / {ALL_BIOMES.length}
+              </span>
+            </div>
             <div className="flex flex-wrap gap-1.5">
               {ALL_BIOMES.map((b) => {
                 const isSelected = config.selectedBiomes.includes(b.id);
+                const prob = feasibility.biomes.individualProbs[b.id];
                 return (
                   <button
                     key={b.id}
                     onClick={() => toggleBiome(b.id)}
-                    className={`py-1 px-2 rounded-full text-xs font-medium flex items-center gap-1 transition-all border ${
+                    className={`py-1 px-2 rounded-full text-[11px] font-medium flex items-center gap-1 transition-all border ${
                       isSelected
                         ? 'bg-emerald-600/30 border-emerald-500/50 text-emerald-300'
                         : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:border-slate-600'
@@ -195,129 +572,380 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   >
                     <span>{b.icon}</span>
                     <span>{b.name}</span>
+                    {prob !== undefined && (
+                      <span className="text-[9px] font-mono opacity-60 ml-0.5">
+                        {(prob * 100).toFixed(0)}%
+                      </span>
+                    )}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Terrain Spec */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-              3D Terrain Specification
-            </label>
-            <div className="space-y-1.5">
-              {[
-                { id: 'v1_island', name: '🌊 V1 Ocean Island', desc: 'Flat center Y63, 48-ray water moat' },
-                { id: 'v2_mountain', name: '⛰️ V2 Mountain Basin', desc: 'Continuous ring wall >Y150, flat valley' },
-                { id: 'any', name: '✨ Any Terrain', desc: 'Fastest; ignores 3D density height' },
-              ].map((t) => (
-                <div
-                  key={t.id}
-                  onClick={() => onChangeConfig({ ...config, terrainSpec: t.id as any })}
-                  className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
-                    config.terrainSpec === t.id
-                      ? 'bg-slate-800 border-emerald-500/70 text-white'
-                      : 'bg-slate-800/40 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <div className="text-xs font-bold text-white">{t.name}</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">{t.desc}</div>
-                </div>
-              ))}
+          {/* Terrain Screening Mode Segmented Control */}
+          <div className="p-3 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm">🧭</span>
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Terrain Mode</span>
+              </div>
+              <span
+                className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                  config.terrainMode === 'all_baseline'
+                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                    : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                }`}
+              >
+                {config.terrainMode === 'all_baseline' ? 'BASELINE (STRUCTURES)' : 'COASTAL CONTINENT'}
+              </span>
             </div>
+
+            <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-900 rounded-lg border border-slate-800">
+              <button
+                type="button"
+                onClick={() => {
+                  const hasOcean = config.selectedBiomes.some((b) => b === 'ocean' || b.includes('ocean'));
+                  const nextReq = hasOcean
+                    ? config.requiredStructures
+                    : config.requiredStructures.filter((s) => s !== 'monument' && s !== 'shipwreck');
+                  onChangeConfig({ ...config, terrainMode: 'all_baseline', requiredStructures: nextReq });
+                }}
+                className={`py-2 px-2 rounded text-[11px] font-semibold flex flex-col items-center gap-0.5 transition-all ${
+                  config.terrainMode === 'all_baseline'
+                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30 font-bold'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                }`}
+              >
+                <span className="flex items-center gap-1 font-bold">🏰 Baseline Only</span>
+                <span className="text-[9px] opacity-80 font-normal">Inland structures (marine exempt)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const nextReq = Array.from(new Set([...config.requiredStructures, 'monument', 'shipwreck']));
+                  onChangeConfig({ ...config, terrainMode: 'coastal_continent', requiredStructures: nextReq });
+                }}
+                className={`py-2 px-2 rounded text-[11px] font-semibold flex flex-col items-center gap-0.5 transition-all ${
+                  config.terrainMode === 'coastal_continent'
+                    ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30 font-bold'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                }`}
+              >
+                <span className="flex items-center gap-1 font-bold">🌊 Coastal Continent</span>
+                <span className="text-[9px] opacity-80 font-normal">70–80% Mainland + Sea</span>
+              </button>
+            </div>
+
+            <p className="text-[10px] text-slate-400 leading-relaxed">
+              {config.terrainMode === 'all_baseline'
+                ? '★ Baseline Mode retains all seeds passing core structure & biome floors (marine structures auto-exempted if no ocean biome is selected).'
+                : '★ Coastal Continent Mode strictly verifies 70%–80% continuous mainland, 320m ocean edge corridor, coastal monuments/shipwrecks, and river highway.'}
+            </p>
+          </div>
+
+          {/* Box 3: 3D Terrain & Spawn Odds Box (Stage 3 Verification) */}
+          <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs">🌊</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                  Stage 3: Terrain &amp; Spawn Odds
+                </span>
+              </div>
+              <span className="font-mono text-[10px] font-bold text-blue-400">
+                {feasibility.terrain.formattedOdds}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-1 text-[9px] font-mono text-slate-400">
+              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
+                <span>Landmass {config.mainlandTargetPct}%:</span>
+                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-white font-semibold'}>
+                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : `${(feasibility.terrain.landmassProb * 100).toFixed(1)}%`}
+                </span>
+              </div>
+              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
+                <span>River Highway:</span>
+                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-cyan-400 font-semibold'}>
+                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : '42.5%'}
+                </span>
+              </div>
+              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
+                <span>Ocean Edge 320m:</span>
+                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-blue-400 font-semibold'}>
+                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : '64.0%'}
+                </span>
+              </div>
+              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
+                <span>Spawn ≤{config.maxSpawnDistance}m:</span>
+                <span className="text-emerald-400 font-semibold">{(feasibility.terrain.spawnGateProb * 100).toFixed(1)}%</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3D Terrain Spec: Dedicated Coastal Continent */}
+          <div
+            className={`p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-3 transition-opacity ${
+              config.terrainMode === 'all_baseline' ? 'opacity-60' : 'opacity-100'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm">🌊</span>
+                <span className="text-xs font-bold text-white">Coastal Continent Specification</span>
+              </div>
+              <span
+                className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                  config.terrainMode === 'all_baseline'
+                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                    : 'bg-emerald-500/20 text-emerald-400'
+                }`}
+              >
+                {config.terrainMode === 'all_baseline' ? 'BYPASSED' : 'ACTIVE'}
+              </span>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs text-slate-300 mb-1">
+                <span>Target Mainland Landmass:</span>
+                <span className="font-mono text-emerald-400 font-bold">{config.mainlandTargetPct}%</span>
+              </div>
+              <input
+                type="range"
+                min="65"
+                max="85"
+                disabled={config.terrainMode === 'all_baseline'}
+                value={config.mainlandTargetPct}
+                onChange={(e) =>
+                  onChangeConfig({ ...config, mainlandTargetPct: Number(e.target.value) })
+                }
+                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 disabled:opacity-40"
+              />
+              <span className="text-[10px] text-slate-500">Master blueprint target: 70% – 80%</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-[10px] text-slate-300 pt-1 border-t border-slate-800/80">
+              <div className="p-1.5 bg-slate-900 rounded border border-slate-800">
+                <span className="text-slate-500 block">River Highway:</span>
+                <span className="font-mono text-cyan-400 font-semibold">
+                  {config.terrainMode === 'all_baseline' ? 'Optional' : '≥400m Navigable'}
+                </span>
+              </div>
+              <div className="p-1.5 bg-slate-900 rounded border border-slate-800">
+                <span className="text-slate-500 block">Ocean Edge Corridor:</span>
+                <span className="font-mono text-blue-400 font-semibold">
+                  {config.terrainMode === 'all_baseline' ? 'Optional' : '320m Deep Sea'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Downstream Stage 3 Spawn Gate */}
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 text-xs text-slate-300 font-bold cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={config.enforceSpawnGate}
+                  onChange={(e) =>
+                    onChangeConfig({ ...config, enforceSpawnGate: e.target.checked })
+                  }
+                  className="rounded accent-emerald-500"
+                />
+                <span>Stage 3 Spawn Symmetry Gate</span>
+              </label>
+              <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                ≤{config.maxSpawnDistance}m
+              </span>
+            </div>
+            {config.enforceSpawnGate && (
+              <div>
+                <input
+                  type="range"
+                  min="25"
+                  max="200"
+                  step="25"
+                  value={config.maxSpawnDistance}
+                  onChange={(e) =>
+                    onChangeConfig({ ...config, maxSpawnDistance: Number(e.target.value) })
+                  }
+                  className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                />
+              </div>
+            )}
+            <p className="text-[10px] text-slate-400 leading-tight">
+              68.3% pass rate. Naturally screens out ocean-centered spawns (which account for 76.3% of spawns &gt;100m) with zero Stage 1 compute cost.
+            </p>
           </div>
         </div>
       )}
 
-      {/* Tab 2: Hardware & Acceleration Engine */}
+      {/* Tab 2: Hardware & Engine Tuning */}
       {activeTab === 'engine' && (
         <div className="flex-1 overflow-y-auto p-4 space-y-5">
+          {/* Host CPU Banner */}
+          <div className="p-3 bg-slate-950 border border-emerald-500/30 rounded-lg space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                <span>⚡</span> Intel(R) Xeon(R) W-2191B
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">18C / 36T</span>
+            </div>
+            <p className="text-[10px] text-slate-400">
+              Skylake-X microarchitecture with AVX2, FMA, BMI2 native vectorization. Pinned kernel benchmarked at{' '}
+              <span className="text-emerald-400 font-bold font-mono">44,972 seeds/s</span>.
+            </p>
+          </div>
+
+          {/* Sweep Seed Volume - Interactive Fill-In Input */}
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                Sweep Seed Volume
+              </label>
+              <span className="text-[10px] text-emerald-400 font-mono font-bold">
+                {config.sweepSeedCount.toLocaleString()} seeds
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min="1"
+                max="100000000"
+                step="5000"
+                value={config.sweepSeedCount || ''}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10);
+                  onChangeConfig({ ...config, sweepSeedCount: isNaN(val) ? 0 : val });
+                }}
+                className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono font-bold text-emerald-400 outline-none focus:border-emerald-500 shadow-inner"
+                placeholder="Enter seed count, e.g. 100000"
+              />
+              <span className="text-xs font-mono text-slate-400">seeds</span>
+            </div>
+
+            {/* Quick 1-click convenience chips */}
+            <div className="flex flex-wrap items-center gap-1 pt-1">
+              {[10000, 25000, 50000, 100000, 250000, 500000, 1000000].map((v) => (
+                <button
+                  key={v}
+                  onClick={() => onChangeConfig({ ...config, sweepSeedCount: v })}
+                  className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors border ${
+                    config.sweepSeedCount === v
+                      ? 'bg-emerald-600/30 border-emerald-500/60 text-emerald-300 font-bold'
+                      : 'bg-slate-800/40 border-slate-800 text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  {v >= 1000000 ? `${v / 1000000}M` : `${v / 1000}k`}
+                </button>
+              ))}
+              <button
+                onClick={() =>
+                  onChangeConfig({
+                    ...config,
+                    sweepSeedCount: Math.min(100000000, Math.max(1000, feasibility.expectedSeedsNeeded)),
+                  })
+                }
+                className="px-2 py-0.5 rounded text-[10px] font-mono transition-colors border bg-cyan-600/20 border-cyan-500/40 text-cyan-300 hover:bg-cyan-600/30"
+                title="Sync to mathematically expected seed volume"
+              >
+                1/P ({feasibility.expectedSeedsNeeded >= 1000000 ? `${(feasibility.expectedSeedsNeeded / 1000000).toFixed(1)}M` : `${Math.round(feasibility.expectedSeedsNeeded / 1000)}k`})
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-400">
+              Based on current blueprint: expected <strong className="text-emerald-400">{feasibility.expectedSeedsNeeded.toLocaleString()} seeds</strong> ({feasibility.formattedTime} on Xeon).
+            </p>
+          </div>
+
+          {/* Near-Miss Retention Policy */}
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-300">Screening Tolerance</span>
+              <span className="text-[10px] font-mono text-cyan-400 font-bold">
+                Max Misses: {config.maxMisses}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+              {[
+                { val: 0, label: 'Strict (0)', desc: 'All 13 floors' },
+                { val: 1, label: 'Standard (1)', desc: '1 miss allowed' },
+                { val: 2, label: 'Broad (2)', desc: '2 misses allowed' },
+              ].map((m) => (
+                <button
+                  key={m.val}
+                  onClick={() => onChangeConfig({ ...config, maxMisses: m.val })}
+                  className={`py-1.5 px-1 rounded text-center border transition-all ${
+                    config.maxMisses === m.val
+                      ? 'bg-emerald-600/30 border-emerald-500/60 text-emerald-300 font-bold'
+                      : 'bg-slate-800/40 border-slate-800 text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <div className="text-[11px] font-semibold">{m.label}</div>
+                  <div className="text-[9px] text-slate-500">{m.desc}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Concurrency Sliders */}
           <div className="space-y-4">
             <div>
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-slate-300 font-medium">Python Worker Processes:</span>
-                <span className="font-mono text-emerald-400 font-bold">{config.workers} Workers</span>
-              </div>
-              <input
-                type="range"
-                min="1"
-                max="32"
-                value={config.workers}
-                onChange={(e) => onChangeConfig({ ...config, workers: Number(e.target.value) })}
-                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-              />
-              <span className="text-[10px] text-slate-500">Recommended for 18-Core Xeon: 14–16</span>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-xs mb-1">
-                <span className="text-slate-300 font-medium">OpenMP C Threads per Worker:</span>
+                <span className="text-slate-300 font-medium">OpenMP Native Threads:</span>
                 <span className="font-mono text-emerald-400 font-bold">{config.openmpThreads} Threads</span>
               </div>
               <input
                 type="range"
                 min="1"
-                max="4"
+                max="36"
                 value={config.openmpThreads}
                 onChange={(e) => onChangeConfig({ ...config, openmpThreads: Number(e.target.value) })}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
               />
+              <span className="text-[10px] text-slate-500">Host has 36 logical threads; 32 is optimal.</span>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-slate-300 font-medium">Native Batch Chunk Size:</span>
+                <span className="font-mono text-emerald-400 font-bold">{config.batchSize.toLocaleString()}</span>
+              </div>
+              <input
+                type="range"
+                min="4096"
+                max="32768"
+                step="4096"
+                value={config.batchSize}
+                onChange={(e) => onChangeConfig({ ...config, batchSize: Number(e.target.value) })}
+                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              />
+              <span className="text-[10px] text-slate-500">Chunk size for SIMD batches (16,384 recommended).</span>
             </div>
           </div>
 
           <hr className="border-slate-800" />
 
-          {/* Native C Optimizations */}
-          <div className="space-y-3">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Native C Accelerations
+          {/* Built-in Engine Architecture Info */}
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-1.5 text-[11px] text-slate-300">
+            <span className="font-bold text-white block uppercase tracking-wider text-[10px]">
+              Active Engine Capabilities
             </span>
-
-            <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer">
-                <span className="font-semibold">4×4 Quart Land Reuse</span>
-                <input
-                  type="checkbox"
-                  checked={config.quartReuse}
-                  onChange={(e) => onChangeConfig({ ...config, quartReuse: e.target.checked })}
-                  className="rounded accent-emerald-500"
-                />
-              </label>
-              <p className="text-[10px] text-slate-400">
-                Reduces computed land columns by 92.5%; saves ~30% total candidate time.
-              </p>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="text-emerald-400">✓</span>
+              <span>C11 OpenMP parallel batching (origin-fixed-2048-v1)</span>
             </div>
-
-            <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer">
-                <span className="font-semibold">8-Block Y-Noise Cell Caching</span>
-                <input
-                  type="checkbox"
-                  checked={config.yNoiseReuse}
-                  onChange={(e) => onChangeConfig({ ...config, yNoiseReuse: e.target.checked })}
-                  className="rounded accent-emerald-500"
-                />
-              </label>
-              <p className="text-[10px] text-slate-400">
-                Caches 33 aligned Perlin noise cells across 257 Y-levels in `bridge.c`.
-              </p>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="text-emerald-400">✓</span>
+              <span>4×4 quart land reuse (92.5% reduction in columns)</span>
             </div>
-
-            <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer">
-                <span className="font-semibold">Docker BDS 1.26.52.3 Verifier</span>
-                <input
-                  type="checkbox"
-                  checked={config.bdsValidation}
-                  onChange={(e) => onChangeConfig({ ...config, bdsValidation: e.target.checked })}
-                  className="rounded accent-emerald-500"
-                />
-              </label>
-              <p className="text-[10px] text-slate-400">
-                Spins up real Bedrock server container to verify exact palettes on finalists.
-              </p>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="text-emerald-400">✓</span>
+              <span>8-block Y-noise cell caching across 257 Y-levels</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="text-emerald-400">✓</span>
+              <span>Docker BDS 1.26.52.3 verification on finalists</span>
             </div>
           </div>
         </div>
@@ -325,23 +953,40 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
       {/* Tab 3: Live Terminal Logs */}
       {activeTab === 'logs' && (
-        <div className="flex-1 bg-slate-950 p-3 font-mono text-[11px] overflow-y-auto space-y-1 text-slate-300 select-text">
-          {logs.map((log, index) => (
-            <div key={index} className="leading-tight">
-              <span className="text-slate-500">[{new Date().toLocaleTimeString()}]</span>{' '}
-              <span
-                className={
-                  log.includes('passed') || log.includes('Certified')
-                    ? 'text-emerald-400'
-                    : log.includes('BDS')
-                    ? 'text-blue-400'
-                    : 'text-slate-300'
-                }
+        <div className="flex-1 bg-slate-950 p-3 font-mono text-[11px] overflow-y-auto space-y-1 text-slate-300 select-text flex flex-col justify-between">
+          <div className="space-y-1">
+            {logs.map((log, index) => (
+              <div key={index} className="leading-tight">
+                <span className="text-slate-500">[{new Date().toLocaleTimeString()}]</span>{' '}
+                <span
+                  className={
+                    log.includes('complete') || log.includes('Certified') || log.includes('passed')
+                      ? 'text-emerald-400 font-semibold'
+                      : log.includes('Spawning') || log.includes('Started')
+                      ? 'text-cyan-400 font-semibold'
+                      : log.includes('BDS')
+                      ? 'text-blue-400'
+                      : log.includes('error') || log.includes('Error')
+                      ? 'text-red-400'
+                      : 'text-slate-300'
+                  }
+                >
+                  {log}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {onClearLogs && (
+            <div className="pt-2 border-t border-slate-800 flex justify-end">
+              <button
+                onClick={onClearLogs}
+                className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-[10px]"
               >
-                {log}
-              </span>
+                Clear Console
+              </button>
             </div>
-          ))}
+          )}
         </div>
       )}
     </aside>

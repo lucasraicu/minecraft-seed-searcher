@@ -71,10 +71,12 @@ def import_positive(store,index,evidence,*,candidate_id=None,backend_factory=Bac
         target=store.get_candidate(candidate_id) if candidate_id else None
         if candidate_id and (target is None or target['index']!=index or target['seed']!=seed):
             raise ValueError('Recovery candidate does not belong to this completed input')
-        if target is None and kind!='stronghold':raise ValueError('Required-structure recovery needs a candidate ID')
+        from .config import origin_policy
+        origin=origin_policy(cfg)
+        if target is None and (kind!='stronghold' or origin):raise ValueError('Origin recovery needs an existing candidate ID')
         bounds=cfg['discovery']['overworld_bounds'] if target is None else target['bounds']['final_nether' if kind in ('fortress','bastion') else 'overworld']
         points=_validate(evidence,cfg,seed,bounds,kind)
-        if target and kind=='stronghold' and tuple(target['stronghold']) not in points:
+        if target and kind=='stronghold' and not origin and tuple(target['stronghold']) not in points:
             raise ValueError('Stronghold evidence must establish the candidate center')
         saved=store.get_observation(proof_id)
         if saved:
@@ -94,7 +96,7 @@ def import_positive(store,index,evidence,*,candidate_id=None,backend_factory=Bac
             cid=f'{seed}:{center[0]}:{center[1]}'
             previous=store.get_candidate(cid)
             actual=copy.deepcopy((previous or {}).get('actual_required_structure_evidence',{}))
-            accepted=[list(p) for p in points if kind!='stronghold' or p==center]
+            accepted=[list(p) for p in points if kind!='stronghold' or origin or p==center]
             actual.setdefault(kind,[]).append({'observation_id':proof_id,'coordinates':accepted})
             known={name:sorted({tuple(p) for entry in entries for p in entry['coordinates']}) for name,entries in actual.items()}
             class RecoveredBackend:
@@ -103,7 +105,7 @@ def import_positive(store,index,evidence,*,candidate_id=None,backend_factory=Bac
                 def __exit__(self,*args):return self.inner.__exit__(*args)
                 def __getattr__(self,name):return getattr(self.inner,name)
                 def structure_pair(self,name,query):
-                    if name=='stronghold':return [list(center)],[list(center)]
+                    if name=='stronghold' and not origin:return [list(center)],[list(center)]
                     raw,viable=self.inner.structure_pair(name,query)
                     extra=[p for p in known.get(name,[]) if query[0]<=p[0]<=query[2] and query[1]<=p[1]<=query[3]]
                     return sorted({tuple(p) for p in raw}|set(extra)),sorted({tuple(p) for p in viable}|set(extra))

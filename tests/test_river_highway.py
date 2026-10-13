@@ -7,7 +7,7 @@ import yaml
 
 from scripts.build_blueprint_batch import ROOT,build
 from seed_search.backend import biome_catalog
-from seed_search.realm.config import outpost_blueprint_config,river_blueprint_config,locked_blueprint_config,validate_config
+from seed_search.realm.config import two_group_blueprint_config,origin_blueprint_config,outpost_blueprint_config,river_blueprint_config,locked_blueprint_config,validate_config
 from seed_search.realm.coastal import evaluate_coastal,_ocean_mask,_freshwater_masks,_corridor_components
 from seed_search.realm.blueprint import evaluate_seed,smart_score
 from seed_search.realm.native_batch import Prototype,NAMES,semantic_record
@@ -37,9 +37,9 @@ def test_river_revision_active_floors_and_old_revision_are_distinct():
     from seed_search.realm.cli import load
     cfg=river_blueprint_config();validate_config(cfg);old=locked_blueprint_config();validate_config(old)
     explicit=yaml.safe_load((ROOT/'config/realm.yaml').read_text());validate_config(explicit)
-    assert load(None)['screening_revision']==outpost_blueprint_config()['screening_revision']
-    assert explicit['structures']==outpost_blueprint_config()['structures']
-    assert explicit['terrain']['v1']==cfg['terrain']['v1']
+    assert load(None)['screening_revision']==origin_blueprint_config()['screening_revision']
+    assert explicit['structures']==two_group_blueprint_config()['structures']
+    assert explicit['terrain']['v1']==origin_blueprint_config()['terrain']['v1']
     assert cfg['structures']['nether_minimum_counts']=={'fortress':2,'bastion':3}
     assert cfg['structures']['minimum_counts']['shipwreck']==5
     assert old['structures']['nether_minimum_counts']['bastion']==2

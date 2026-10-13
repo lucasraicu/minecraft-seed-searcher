@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 import yaml
 
-from seed_search.realm.config import river_blueprint_config, locked_blueprint_config, blueprint_config, default_config, validate_config
+from seed_search.realm.config import origin_blueprint_config, river_blueprint_config, locked_blueprint_config, blueprint_config, default_config, validate_config
 from seed_search.realm.raster import Raster
 from seed_search.realm.terrain import evaluate_v1, evaluate_v2, V1, V2
 
@@ -57,7 +57,7 @@ def mountains(kind, resolution=8):
 
 
 def test_default_and_explicit_active_profiles_have_same_terrain_preferences():
-    cfg = river_blueprint_config()
+    cfg = origin_blueprint_config()
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
     assert cfg['terrain']['v1'] == explicit['terrain']['v1']
     for profile in (cfg, explicit):

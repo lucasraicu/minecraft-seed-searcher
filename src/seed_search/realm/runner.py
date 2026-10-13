@@ -122,8 +122,7 @@ def process_tree_resources(root_pid=None):
             raise ValueError('Requested process is absent from resource snapshot')
         return {"available": True, "rss_bytes": sum(row["rss_bytes"] for row in processes), "cpu_percent": sum(row["cpu_percent"] for row in processes), "processes": processes, "shared_memory_caveat": "RSS sum can double-count shared pages", "sampled_at": time.time()}
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
-        # SELF peak RSS cannot stand in for this tree's live RSS. Preserve the
-        # dispatch stop on monitoring failure rather than bypass its ceiling.
+        # SELF high-water RSS cannot enforce a live process-tree budget.
         return {"available": False, "error": str(exc), "sampled_at": time.time()}
 
 

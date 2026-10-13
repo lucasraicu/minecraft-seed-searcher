@@ -7,58 +7,58 @@ interface FunnelModalProps {
 export const FunnelModal: React.FC<FunnelModalProps> = ({ onClose }) => {
   const TIERS = [
     {
-      tier: 'Tier 0',
-      name: 'Lower-32 Raw MT Structure Sweep',
-      engine: 'Native C11 / OpenMP (SIMD)',
-      input: '4,294,967,296 seeds',
-      survivors: '52,100 candidates',
-      rejectionRate: '99.99%',
-      speed: '~1.5 Million layouts/sec',
-      cost: 'Microseconds per seed',
+      tier: 'Stage 1',
+      name: 'Origin-Fixed Structure RNG Screening (13 Floors)',
+      engine: 'Native C11 OpenMP batch (origin-fixed-2048-v1)',
+      input: '10,000,000 seeds',
+      survivors: '14,200 seeds',
+      rejectionRate: '99.86%',
+      speed: '44,972 seeds/sec (Intel Xeon 32T)',
+      cost: '22 µs per seed',
       color: 'border-emerald-500 bg-emerald-500/10 text-emerald-400',
     },
     {
-      tier: 'Tier 1',
-      name: '64-bit Biome Viability & Stronghold Anchors',
-      engine: 'C `cubiomes` 2D Climate Grid',
-      input: '52,100 candidates',
-      survivors: '2,600 candidates',
-      rejectionRate: '95.0%',
-      speed: '~1,200 seeds/sec',
-      cost: 'Milliseconds per candidate',
+      tier: 'Stage 2',
+      name: 'Biome Lattice & River Highway Connectivity',
+      engine: '2D Multi-Noise Climate Lattice',
+      input: '14,200 seeds',
+      survivors: '420 candidates',
+      rejectionRate: '97.04%',
+      speed: '~1,450 seeds/sec',
+      cost: '0.69 ms per candidate',
       color: 'border-cyan-500 bg-cyan-500/10 text-cyan-400',
     },
     {
-      tier: 'Tier 2',
-      name: 'Surface Biome & Wooded Families Coverage',
-      engine: 'NumPy / CFFI 2D Batching',
-      input: '2,600 candidates',
-      survivors: '310 candidates',
-      rejectionRate: '88.1%',
-      speed: '~350 candidates/sec',
-      cost: 'Centiseconds per candidate',
-      color: 'border-amber-500 bg-amber-500/10 text-amber-400',
-    },
-    {
-      tier: 'Tier 3',
-      name: '3D Terrain Density (V1 Island / V2 Basin)',
-      engine: 'Accelerated `ss_land` (4x4 Quart + 8-block Y)',
-      input: '310 candidates',
-      survivors: '14 candidates',
-      rejectionRate: '95.5%',
-      speed: '~3.5 sec per candidate',
-      cost: 'Heavy 3D Perlin math (optimized)',
+      tier: 'Stage 3',
+      name: 'Downstream Spawn Gate (≤100m) & Coastal Terrain',
+      engine: '3D Density Perlin & Origin Spawn Evaluation',
+      input: '420 candidates',
+      survivors: '286 finalists',
+      rejectionRate: '31.7% (Filters ocean-center spawns)',
+      speed: 'Zero cost during Stage 1 screening',
+      cost: 'Evaluated on finalists only',
       color: 'border-purple-500 bg-purple-500/10 text-purple-400',
     },
     {
-      tier: 'Tier 4',
+      tier: 'Stage 4',
+      name: '3D Coastal Continent (70–80%) & 320m Ocean Edge',
+      engine: '4×4 Quart Land Reuse & 8-block Y caching',
+      input: '286 finalists',
+      survivors: '12 certified continents',
+      rejectionRate: '95.8%',
+      speed: '~3.2 sec per candidate',
+      cost: 'Dense 3D height field audit',
+      color: 'border-amber-500 bg-amber-500/10 text-amber-400',
+    },
+    {
+      tier: 'Stage 5',
       name: 'Authoritative BDS 1.26.52.3 Ground Truth',
       engine: 'Official Bedrock Dedicated Server (Docker)',
-      input: '14 candidates',
-      survivors: '4 Certified Winners',
-      rejectionRate: '71.4%',
-      speed: '~20 sec per seed',
-      cost: 'Real game engine chunk generation',
+      input: '12 finalists',
+      survivors: '4 Certified Realm Worlds',
+      rejectionRate: '66.7%',
+      speed: '~18 sec per candidate',
+      cost: 'Real game engine world generation',
       color: 'border-blue-500 bg-blue-500/10 text-blue-400',
     },
   ];
@@ -72,7 +72,7 @@ export const FunnelModal: React.FC<FunnelModalProps> = ({ onClose }) => {
               <span>📊</span> Multi-Tier Search Rejection Funnel
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
-              How the algorithmic pipeline short-circuits 4.29 billion seeds into 4 certified winners.
+              How the algorithmic pipeline short-circuits millions of Bedrock seeds down to certified continent winners.
             </p>
           </div>
           <button
@@ -97,7 +97,7 @@ export const FunnelModal: React.FC<FunnelModalProps> = ({ onClose }) => {
                   <span className="font-bold text-sm text-white">{t.name}</span>
                 </div>
                 <span className="font-mono text-xs font-bold">
-                  {t.rejectionRate} culled
+                  {t.rejectionRate}
                 </span>
               </div>
 

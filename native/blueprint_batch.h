@@ -7,6 +7,9 @@ typedef struct NBObservation {
 } NBObservation;
 typedef struct NBAnchor {
     int x, z, count_missing, biome_evaluated, biome_n, score;
+    int stronghold_count;
+    int stronghold_evaluated;
+    unsigned int bonus_biomes;
     unsigned int biome_mask;
     NBObservation observations[13];
     int *biome_xyz, *biome_ids;
@@ -28,6 +31,7 @@ typedef struct NBPolicy {
     int locked, overworld_half, nether_half, nether_goal;
     int river, bastion_goal;
     int outpost_goal, structure_order[9];
+    int origin, bonus_biome_members[256];
     int fixture_surface[10], fixture_caves[3];
 } NBPolicy;
 /* Zero-initialized fixed-width decision receipts are hashed without building

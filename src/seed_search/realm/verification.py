@@ -380,8 +380,10 @@ class VerificationAdapter:
         if isinstance(bounds, dict):
             bounds = bounds['overworld']
         from .coastal import coastal_mode
-        if coastal_mode(self.cfg) and tuple(bounds) != (sx-768, sz-768, sx+768, sz+768):
-            raise ValueError('Coastal candidate verification requires the exact Stronghold1536 square')
+        side=self.cfg.get('deployment',{}).get('overworld_side_blocks',1536)
+        half=side//2
+        if coastal_mode(self.cfg) and tuple(bounds) != (sx-half, sz-half, sx+half, sz+half):
+            raise ValueError('Coastal candidate verification requires the configured center square')
         return self.verify(candidate['seed'], bounds, candidate_id=candidate.get('id'), **kwargs)
 
     def verify_final_nether(self, seed, stronghold, *, evidence=None):

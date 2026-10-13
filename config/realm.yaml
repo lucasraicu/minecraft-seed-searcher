@@ -10,15 +10,15 @@ deployment:
   nether_side_blocks: 1024
 discovery:
   overworld_bounds:
-  - -2000
-  - -2000
-  - 2000
-  - 2000
+  - -1024
+  - -1024
+  - 1024
+  - 1024
   nether_bounds:
-  - -2000
-  - -2000
-  - 2000
-  - 2000
+  - -512
+  - -512
+  - 512
+  - 512
 search:
   mode: prediction
   sequence: permutation
@@ -38,14 +38,15 @@ search:
   projected_bytes_per_seed: 65536
   structure_order:
   - ruined_portal
+  - trial_chamber
   - outpost
   - desert_pyramid
   - jungle_temple
   - mansion
   - ancient_city
   - village
-  - trial_chamber
   - mineshaft
+  max_misses: 2
 structures:
   required:
   - stronghold
@@ -63,16 +64,16 @@ structures:
   minimum_counts:
     stronghold: 1
     mansion: 1
-    village: 6
-    trial_chamber: 5
+    village: 7
+    trial_chamber: 10
     ancient_city: 2
     desert_pyramid: 1
     jungle_temple: 1
     monument: 1
-    ruined_portal: 6
-    shipwreck: 5
-    mineshaft: 15
-    outpost: 2
+    ruined_portal: 7
+    shipwreck: 3
+    mineshaft: 20
+    outpost: 1
   nether_required:
   - fortress
   - bastion
@@ -83,6 +84,19 @@ structures:
   deferred_until_coastal_terrain:
   - monument
   - shipwreck
+  hard_floors:
+    stronghold: 1
+    jungle_temple: 1
+    desert_pyramid: 1
+    outpost: 1
+    mansion: 0
+    trial_chamber: 8
+    village: 5
+    ruined_portal: 5
+    mineshaft: 17
+    ancient_city: 1
+    fortress: 1
+    bastion: 2
 biomes:
   spacing: 64
   sample_y: 63
@@ -145,7 +159,7 @@ terrain:
       bridge_inland_freshwater: true
       river_corridor_min_length_blocks: 600
       river_highway_hub_radius_blocks: 250
-      river_highway_bonus_points: 20
+      river_highway_bonus_points: 35
     square_side_blocks: 2048
 bds:
   enabled: true
@@ -169,4 +183,4 @@ caves:
   spacing: 64
   maximum_samples: 10000
 contract: master_seed_blueprint_v1
-screening_revision: locked-2048-1024-outpost-v3
+screening_revision: origin-fixed-2048-two-group-v2

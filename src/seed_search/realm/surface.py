@@ -4,7 +4,7 @@ from ..seeds import parse_seed
 
 
 def verify_surface_families(candidate, cfg, adapter, points, *, retry_failed=False):
-    """Check positive family presence inside the unchanged Stronghold Realm."""
+    """Check positive family presence inside the configured candidate square."""
     sx, sz = candidate['stronghold']
     half = cfg['deployment']['overworld_side_blocks']//2
     points = list(points)
@@ -16,7 +16,7 @@ def verify_surface_families(candidate, cfg, adapter, points, *, retry_failed=Fal
             raise ValueError('Surface points must be integer [x,z] pairs')
         x, z = point
         if not (sx-half <= x < sx+half and sz-half <= z < sz+half):
-            raise ValueError('Surface points must lie within the Stronghold-centered Realm')
+            raise ValueError('Surface points must lie within the candidate Realm bounds')
     result = adapter.verify_surface_points(candidate['seed'], points,
                                           candidate_id=candidate['id'], retry_failed=retry_failed)
     requested = {tuple(point) for point in points}

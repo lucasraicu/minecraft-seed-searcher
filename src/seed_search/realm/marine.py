@@ -65,7 +65,9 @@ def evaluate_marine_stage(candidate, cfg, raster, precheck, *, backend_factory=B
                            coastal_filter_scope='complete start inventory; sampled coastal model, actual generation unverified')
         if name=='shipwreck':observation['coastal_witnesses']=witnesses
     missing=['count_'+name for name in ('monument','shipwreck') if required[name]['floor_status']!='PREDICTED']
-    ranking=smart_score(required,candidate['required_nether_structures'],optional,locked=True,river=river_policy(cfg),metrics=terrain['metrics'])
+    from .config import origin_policy
+    ranking=smart_score(required,candidate['required_nether_structures'],optional,locked=True,river=river_policy(cfg),
+                        origin=origin_policy(cfg),biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),metrics=terrain['metrics'])
     patch={'id':candidate['id'],'required_structures':required,'optional_structures':optional,'ranking':ranking,
            'baseline_score_observed':ranking['score'],
            **({'terrain_score_metrics':{k:terrain['metrics'][k] for k in ('river_highway_connected','river_evidence','river_navigability_verified')}} if river_policy(cfg) else {}),

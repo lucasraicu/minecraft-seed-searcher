@@ -52,7 +52,7 @@ def _export_files(store, root, output):
     for variant in ('baseline','v1','v2'):
         rows=store.iter_candidates(include_score=True) if variant=='baseline' else store.iter_variants(variant=variant)
         # JSONL preserves all nested evidence; CSV contains independently useful summaries.
-        fields=['candidate_id','seed','stronghold','variant','center','qualification','data_status',
+        fields=['candidate_id','seed','stronghold','evaluation_center','predicted_strongholds','variant','center','qualification','data_status',
                 'smart_score',
                 'retention_classification','unmet_requirements','pending_reasons','score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
                 'surface_wooded_requirement','surface_wooded_families','surface_bonus_interval','raw_record']
@@ -70,7 +70,11 @@ def _export_files(store, root, output):
                 smart_score=row.get('smart_score') if variant=='baseline' else None
                 encoded=json.dumps(row,allow_nan=False,separators=(',',':'))
                 js.write(encoded+'\n')
-                writer.writerow({'candidate_id':cid,'seed':candidate['seed'],'stronghold':json.dumps(candidate['stronghold']),
+                starts=candidate.get('predicted_strongholds')
+                writer.writerow({'candidate_id':cid,'seed':candidate['seed'],
+                                 'stronghold':json.dumps(starts[0] if starts else candidate['stronghold']),
+                                 'evaluation_center':json.dumps(candidate.get('evaluation_center')),
+                                 'predicted_strongholds':json.dumps(starts),
                                  'variant':variant,'center':json.dumps(record.get('center')),
                                  'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
                                  'smart_score':smart_score,
@@ -276,8 +280,9 @@ def _export_generation(store,root):
 def _candidate_rescore(candidate,policy,revision_id):
     if candidate.get('contract')=='master_seed_blueprint_v1':
         from .blueprint import smart_score,score_uncertainty
-        from .config import river_policy
-        ranking=smart_score(candidate['required_structures'],candidate['required_nether_structures'],candidate['optional_structures'],locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),metrics=candidate.get('terrain_score_metrics'))
+        from .config import river_policy,origin_policy
+        ranking=smart_score(candidate['required_structures'],candidate['required_nether_structures'],candidate['optional_structures'],locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),origin=origin_policy(candidate),
+                            biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),metrics=candidate.get('terrain_score_metrics'))
         candidate.update(ranking=ranking,baseline_score_observed=ranking['score'],
                          baseline_score=ranking['score'] if candidate['baseline_score_complete'] else None,
                          baseline_score_uncertainty=score_uncertainty(ranking['score'],candidate['pending_reasons'],candidate['baseline_score_complete']),

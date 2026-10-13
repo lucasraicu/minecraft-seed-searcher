@@ -11,7 +11,7 @@ import time
 from ..backend import biome_catalog, biome_name
 from .biomes import canonical
 from .blueprint import smart_score, score_uncertainty
-from .config import BLUEPRINT_CONTRACT, locked_policy
+from .config import BLUEPRINT_CONTRACT, locked_policy, origin_policy
 
 NAMES = ('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
          'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -103,7 +103,9 @@ def build_record(native,index,seed,cfg):
     fortress={'type':'fortress','bounds':list(cfg['discovery']['nether_bounds']),
               'raw':[],'predicted_viable':[],'coordinates':[],'data_status':'NOT_REQUESTED',
               'verification':'UNVERIFIED','confirmed_absent':False,'complete':False}
-    counts={'stronghold_anchors':native.nanchors};anchors=[];cache={};cache_hits=0
+    origin=origin_policy(cfg)
+    counts={'stronghold_anchors':native.discovery.n if origin else native.nanchors};anchors=[];cache={};cache_hits=0
+    if origin:counts['evaluation_centers']=native.nanchors
     locked=locked_policy(cfg);h=cfg['deployment']['overworld_side_blocks']//2;nh=cfg['deployment']['nether_side_blocks']//2
     def increment(name,n=1):counts[name]=counts.get(name,0)+n
     for j in range(native.nanchors):
@@ -111,8 +113,13 @@ def build_record(native,index,seed,cfg):
         bounds=[x-h,z-h,x+h,z+h]
         nb=[x/8-nh,z/8-nh,x/8+nh,z/8+nh]
         nb=[int(v) if int(v)==v else v for v in nb]
-        required={'stronghold':{**strongholds,'bounds':bounds,'coordinates':[anchor],'raw':[anchor],
-                  'predicted_viable':[anchor],'minimum_count':1,'predicted_count':1,'floor_status':'PREDICTED'}}
+        required={'stronghold':{**strongholds,'bounds':bounds,
+                  'coordinates':strongholds['predicted_viable'] if origin else [anchor],
+                  'raw':strongholds['raw'] if origin else [anchor],
+                  'predicted_viable':strongholds['predicted_viable'] if origin else [anchor],
+                  'minimum_count':1,'predicted_count':native.discovery.n if origin else 1,
+                  **({'count_is_complete':True} if origin else {}),
+                  'floor_status':'PREDICTED' if (not origin or native.discovery.n) else 'PENDING'}}
         pending=[];nether={};optional={};biomes=None
         increment('structure_stage_entered')
         for name in cfg['search']['structure_order']:
@@ -126,7 +133,11 @@ def build_record(native,index,seed,cfg):
             for k,name in enumerate(('fortress','bastion'),10):
                 nether[name]=observation(c.observations[k],name,nb,cfg['structures']['nether_minimum_counts'][name])
                 if c.count_missing & (1<<k):pending.append('count_'+name)
-        if locked:pending=[p for name in ('fortress','bastion',*cfg['search']['structure_order']) for p in pending if p=='count_'+name]
+        if origin and native.discovery.n==0:pending.append('count_stronghold')
+        if locked:
+            order=['fortress','bastion',*cfg['search']['structure_order']]
+            if origin:order.insert(4,'stronghold')
+            pending=[p for name in order for p in pending if p=='count_'+name]
         if not pending:increment('structure_stage_passed')
         if c.biome_evaluated:
             increment('biome_stage_entered')
@@ -137,10 +148,12 @@ def build_record(native,index,seed,cfg):
         complete=not pending
         if complete and not locked:optional['outpost']=observation(c.observations[12],'outpost',bounds)
         from .config import river_policy
-        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg));score=ranking['score']
+        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,
+                            biome_names=(s['biome'] for s in biomes['sampling']['samples'] if s['coordinate'][1]==63) if biomes else ());score=ranking['score']
         if score!=c.score:raise RuntimeError('Native/direct score parity failure')
         anchors.append({'id':f'{seed}:{x}:{z}','index':index,'seed':seed,'stronghold':anchor,
             'contract':BLUEPRINT_CONTRACT,'game_version':cfg['game']['target_version'],
+            **({'evaluation_center':[0,0],'center_kind':'world_origin','predicted_strongholds':strongholds['predicted_viable']} if origin else {}),
             'bds_version':cfg['game']['bds_version'],'backend_model':cfg['game']['backend_model'],
             'backend_commit':cfg['game']['backend_commit'],
             'bounds':{'overworld':bounds,'initial_overworld':discovery_bounds,
@@ -162,12 +175,12 @@ def build_record(native,index,seed,cfg):
                      marine_stage={'status':'DEFERRED','required_counts':{n:cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')},'trigger':'complete coastal ocean/water/land footprint'},full_blueprint_certification=False)
     counts.update(baseline_predicted=sum(a['qualification']=='PREDICTED' for a in anchors),
                   baseline_pending=sum(a['qualification']=='PENDING' for a in anchors),confirmed_rejections=0,
-                  unresolved_discovery=int(not anchors),unresolved_stronghold_coverage=1)
+                  unresolved_discovery=int(not strongholds['predicted_viable'] if origin else not anchors),unresolved_stronghold_coverage=1)
     return {'index':index,'seed':seed,'contract':BLUEPRINT_CONTRACT,'anchors':anchors,'counts':counts,
             'stage_seconds':{},'native_work':{},'worker_cpu_seconds':time.process_time()-cpu,
             'total_seconds':time.perf_counter()-wall,'worker_pid':os.getpid(),
             'worker_peak_rss_bytes':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if platform.system()=='Darwin' else 1024),
-            'biome_cache_hits':cache_hits,'discovery_status':'PREDICTED' if anchors else 'PENDING',
+            'biome_cache_hits':cache_hits,'discovery_status':'PREDICTED' if (strongholds['predicted_viable'] if origin else anchors) else 'PENDING',
             'discovery':{'stronghold':strongholds,'fortress':fortress,'seed':seed,'settings':dict(cfg['discovery']),
                          'coverage':{'status':'UNRESOLVED','stronghold_recall':'UNVALIDATED','authoritative_absence':False,'complete':False}},
             'effective_seed_bits':{'viability':64,'raw_MT_placement':32}}

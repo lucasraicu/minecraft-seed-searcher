@@ -282,5 +282,5 @@ def test_actual_adapter_defers_full_coast_honestly_and_rejects_shrunken_box():
     assert result['status']=='PARTIAL'
     assert result['requested_tiles'] > 16
     assert adapter.used==0
-    with pytest.raises(ValueError,match='exact Stronghold1536'):
+    with pytest.raises(ValueError,match='configured center square'):
         adapter.verify_candidate(candidate,bounds=(-100,-100,100,100),spacing=16)

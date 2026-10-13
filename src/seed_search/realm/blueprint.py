@@ -112,7 +112,7 @@ def count_observation(backend,name,bounds,minimum,*,capped=True,combined=True):
     return observation
 
 
-def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,locked=False,river=False,metrics=None):
+def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,locked=False,river=False,metrics=None,origin=False,biome_names=()):
     """Blueprint bonuses from predictor counts; footprint bonus needs actual bounds."""
     counts={k:len(v.get('predicted_viable',[])) for k,v in {**structures,**nether,**optional}.items()}
     bonuses={}
@@ -129,6 +129,22 @@ def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,lo
         bonuses['river_highway']=20*int((metrics or {}).get('river_highway_connected') is True)
     bonuses['coastal_monument_footprint']=25*int(coastal_footprint_verified)
     bonuses['outpost']=10*counts.get('outpost',0)
+    if origin:
+        # The origin policy's advertised jackpots are scored from observed
+        # predictor evidence; deferred marine/terrain bonuses arrive later.
+        bonuses.update(stronghold=50*int(counts.get('stronghold',0)>=2),
+                       ancient_city=25*max(0,min(counts.get('ancient_city',0),4)-2),
+                       fortress=20*max(0,min(counts.get('fortress',0),4)-2),
+                       bastion=20*max(0,counts.get('bastion',0)-3),
+                       desert_pyramid=10*int(counts.get('desert_pyramid',0)>=2),
+                       jungle_temple=10*int(counts.get('jungle_temple',0)>=2),
+                       outpost=10*max(0,counts.get('outpost',0)-2),
+                       river_highway=35*int((metrics or {}).get('river_highway_connected') is True),
+                       mega_ravine_hub=35*int((metrics or {}).get('mega_ravine_hub') is True))
+        observed=set(biome_names)
+        bonuses.update(cherry_grove=15*int('cherry_grove' in observed),
+                       badlands=15*int(bool(observed & {'badlands','wooded_badlands','eroded_badlands'})),
+                       mushroom_fields=15*int('mushroom_fields' in observed))
     return {'score':sum(bonuses.values()),'bonuses':bonuses,'counts':counts,
             'source':'predictor start counts; actual generation unverified',
             'coastal_footprint_bonus_status':'VERIFIED' if coastal_footprint_verified else 'PENDING actual footprint containment'}
@@ -237,7 +253,9 @@ def evaluate_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_c
 
 
 def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_circuit=True):
-    from .config import river_policy
+    from .config import river_policy, origin_policy, two_group_policy
+    if two_group_policy(cfg):
+        raise ValueError("Two-group screening requires Phase 2 Python hard-floor enforcement")
     from .baseline import structure_observation
     seed=parse_seed(seed);start=time.perf_counter();cpu=time.process_time();times={};counts={};anchors=[]
     def timed(name,fn):
@@ -246,6 +264,7 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
         finally:times[name]=times.get(name,0)+time.perf_counter()-before
     # Complete/reference mode uses full scans and evaluates all constraints.
     capped=short_circuit and cfg['search'].get('inventory_mode')=='eligibility'
+    origin=origin_policy(cfg)
     with backend_factory(seed) as backend:
         sampler=BiomeSampler(backend)
         discovery_bounds=cfg['discovery']['overworld_bounds']
@@ -255,10 +274,16 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                   'raw':[],'predicted_viable':[],'coordinates':[],'data_status':'NOT_REQUESTED',
                   'verification':'UNVERIFIED','confirmed_absent':False,'complete':False}
         counts['stronghold_anchors']=len(strongholds['predicted_viable'])
-        for anchor in strongholds['predicted_viable']:
+        if origin:counts['evaluation_centers']=1
+        for anchor in ([(0,0)] if origin else strongholds['predicted_viable']):
+            if origin:anchor=[0,0]
             bounds=square(anchor,2048);nb=nether_square(anchor,1024)
-            required={'stronghold':{**strongholds,'bounds':json_bounds(bounds),'coordinates':[anchor],
-                'raw':[anchor],'predicted_viable':[anchor],'minimum_count':1,'predicted_count':1,'floor_status':'PREDICTED'}}
+            actual=strongholds['predicted_viable'] if origin else [anchor]
+            required={'stronghold':{**strongholds,'bounds':json_bounds(bounds),'coordinates':actual,
+                'raw':strongholds['raw'] if origin else [anchor],
+                'predicted_viable':actual,'minimum_count':1,'predicted_count':len(actual),
+                **({'count_is_complete':True} if origin else {}),
+                'floor_status':'PREDICTED' if actual else 'PENDING'}}
             pending=[];nether={};optional={};biomes=None
             if True:
                 counts['nether_stage_entered']=counts.get('nether_stage_entered',0)+1
@@ -270,7 +295,8 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                     nether[name]=observation
                     if len(observation['predicted_viable'])<minimum:pending.append('count_'+name)
             counts['structure_stage_entered']=counts.get('structure_stage_entered',0)+1
-            for name in cfg['search']['structure_order']:
+            for position,name in enumerate(cfg['search']['structure_order']):
+                if origin and position==2 and not actual:pending.append('count_stronghold')
                 if pending and short_circuit:
                     required[name]={'type':name,'bounds':json_bounds(bounds),'raw':[],
                         'coordinates':[],'predicted_viable':[],'minimum_count':cfg['structures']['minimum_counts'][name],
@@ -287,7 +313,7 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
             if not pending or not short_circuit:
                 counts['biome_stage_entered']=counts.get('biome_stage_entered',0)+1
                 before=sampler.queried
-                biomes=timed('biome_palette_4y',lambda:biome_palette(sampler,bounds,cfg['biomes'],complete=not short_circuit))
+                biomes=timed('biome_palette_4y',lambda:biome_palette(sampler,bounds,cfg['biomes'],complete=origin or not short_circuit))
                 counts['biome_samples']=counts.get('biome_samples',0)+sampler.queried-before
                 if biomes['missing_families']:pending.extend('biome_'+f for f in biomes['missing_families'])
                 else:counts['biome_stage_passed']=counts.get('biome_stage_passed',0)+1
@@ -299,9 +325,11 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                     if not required[name].get('count_is_complete',False):
                         required[name]=timed('ranking_inventory',lambda n=name:count_observation(backend,n,bounds,cfg['structures']['minimum_counts'][n],capped=False,combined=combined))
                 pass # Optional and marine inventories belong to Stage 3.
-            ranking=smart_score(required,nether,optional,locked=True,river=river_policy(cfg))
+            ranking=smart_score(required,nether,optional,locked=True,river=river_policy(cfg),origin=origin,
+                                biome_names=(s['biome'] for s in biomes['sampling']['samples'] if s['coordinate'][1]==63) if biomes else ())
             score=ranking['score'];status='PENDING' if pending else 'PREDICTED'
             anchors.append({'id':f'{seed}:{anchor[0]}:{anchor[1]}','index':index,'seed':str(seed),'stronghold':anchor,
+                **({'evaluation_center':[0,0],'center_kind':'world_origin','predicted_strongholds':actual} if origin else {}),
                 'contract':BLUEPRINT_CONTRACT,'screening_revision':cfg['screening_revision'],
                 'deferred_requirements':['count_monument','count_shipwreck']+([] if 'outpost' in cfg['structures']['minimum_counts'] else ['optional_outpost']),
                 'marine_stage':{'status':'DEFERRED','required_counts':{n:cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')},'trigger':'complete coastal ocean/water/land footprint'},
@@ -324,12 +352,12 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
         work=getattr(backend,'native_work',{})
     counts.update(baseline_predicted=sum(a['qualification']=='PREDICTED' for a in anchors),
                   baseline_pending=sum(a['qualification']=='PENDING' for a in anchors),confirmed_rejections=0,
-                  unresolved_discovery=int(not anchors),unresolved_stronghold_coverage=1)
+                  unresolved_discovery=int(not strongholds['predicted_viable'] if origin else not anchors),unresolved_stronghold_coverage=1)
     return {'index':index,'seed':str(seed),'contract':BLUEPRINT_CONTRACT,'anchors':anchors,
             'counts':counts,'stage_seconds':times,'native_work':work,
             'worker_cpu_seconds':time.process_time()-cpu,'total_seconds':time.perf_counter()-start,
             'worker_pid':os.getpid(),'worker_peak_rss_bytes':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if platform.system()=='Darwin' else 1024),
-            'biome_cache_hits':sampler.hits,'discovery_status':'PREDICTED' if anchors else 'PENDING',
+            'biome_cache_hits':sampler.hits,'discovery_status':'PREDICTED' if (strongholds['predicted_viable'] if origin else anchors) else 'PENDING',
             'discovery':{'stronghold':strongholds,'fortress':fortress,'seed':str(seed),'settings':dict(cfg['discovery']),
                          'coverage':{'status':'UNRESOLVED','stronghold_recall':'UNVALIDATED','authoritative_absence':False,'complete':False}},
             'effective_seed_bits':{'viability':64,'raw_MT_placement':32}}

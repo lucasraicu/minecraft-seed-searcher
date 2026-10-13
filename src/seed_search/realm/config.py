@@ -196,6 +196,10 @@ def validate_config(cfg):
 LOCKED_REVISION='locked-2048-1024-v1'
 RIVER_REVISION='locked-2048-1024-river-v2'
 OUTPOST_REVISION='locked-2048-1024-outpost-v3'
+ORIGIN_REVISION='origin-fixed-2048-v1'
+TWO_GROUP_REVISION='origin-fixed-2048-two-group-v2'
+ORIGIN_ORDER=['ruined_portal','trial_chamber','outpost','desert_pyramid','jungle_temple',
+              'mansion','ancient_city','village','mineshaft']
 OUTPOST_ORDER=['ruined_portal','outpost','desert_pyramid','jungle_temple','mansion',
                'ancient_city','village','trial_chamber','mineshaft']
 LOCKED_ORDER=['ruined_portal','trial_chamber','mansion','desert_pyramid',
@@ -217,15 +221,19 @@ def locked_blueprint_config():
 
 
 def locked_policy(cfg):
-    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION)
+    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION)
 
 
 def river_policy(cfg):
-    return cfg.get('screening_revision') in (RIVER_REVISION,OUTPOST_REVISION)
+    return cfg.get('screening_revision') in (RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION)
 
 
 def outpost_policy(cfg):
-    return cfg.get('screening_revision')==OUTPOST_REVISION
+    return cfg.get('screening_revision') in (OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION)
+
+
+def origin_policy(cfg):
+    return cfg.get('screening_revision') in (ORIGIN_REVISION,TWO_GROUP_REVISION)
 
 
 def baseline_requirements(cfg):
@@ -256,14 +264,45 @@ def outpost_blueprint_config():
     return cfg
 
 
+def origin_blueprint_config():
+    """Origin is an evaluation center; Strongholds remain real predicted starts."""
+    cfg=outpost_blueprint_config()
+    cfg['screening_revision']=ORIGIN_REVISION
+    cfg['discovery']['overworld_bounds']=[-1024,-1024,1024,1024]
+    cfg['discovery']['nether_bounds']=[-512,-512,512,512]
+    cfg['search']['structure_order']=list(ORIGIN_ORDER)
+    cfg['terrain']['v1']['coastal_continent']['river_highway_bonus_points']=35
+    return cfg
+
+
+def two_group_blueprint_config():
+    """Versioned B=2 target categories; hard floors never consume the budget."""
+    cfg=origin_blueprint_config()
+    cfg['screening_revision']=TWO_GROUP_REVISION
+    cfg['search']['max_misses']=2
+    cfg['structures']['minimum_counts'].update(
+        trial_chamber=10,village=7,ruined_portal=7,mineshaft=20,outpost=1,shipwreck=3)
+    cfg['structures']['hard_floors']={
+        'stronghold':1,'jungle_temple':1,'desert_pyramid':1,'outpost':1,
+        'mansion':0,'trial_chamber':8,'village':5,'ruined_portal':5,
+        'mineshaft':17,'ancient_city':1,'fortress':1,'bastion':2}
+    return cfg
+
+
+def two_group_policy(cfg):
+    return cfg.get('screening_revision')==TWO_GROUP_REVISION
+
+
 def validate_blueprint_config(cfg):
     """Validate common pins through legacy validation, then the explicit contract."""
-    expected=outpost_blueprint_config() if outpost_policy(cfg) else river_blueprint_config() if river_policy(cfg) else locked_blueprint_config() if locked_policy(cfg) else blueprint_config()
-    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION):raise ValueError('Unknown blueprint screening revision')
+    expected=two_group_blueprint_config() if two_group_policy(cfg) else origin_blueprint_config() if origin_policy(cfg) else outpost_blueprint_config() if outpost_policy(cfg) else river_blueprint_config() if river_policy(cfg) else locked_blueprint_config() if locked_policy(cfg) else blueprint_config()
+    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION):raise ValueError('Unknown blueprint screening revision')
     if cfg['deployment']!=expected['deployment']:raise ValueError('Blueprint geometry differs from its revision')
+    if cfg['discovery']!=expected['discovery']:raise ValueError('Blueprint discovery bounds differ from its revision')
     legacy=copy.deepcopy(cfg)
     legacy.pop('contract',None)
     legacy['deployment']=copy.deepcopy(DEFAULT['deployment'])
+    legacy['discovery']=copy.deepcopy(DEFAULT['discovery'])
     legacy['search']['structure_order']=list(DEFAULT['search']['structure_order'])
     legacy['structures']=copy.deepcopy(DEFAULT['structures'])
     legacy['biomes']['family_bonuses']=copy.deepcopy(DEFAULT['biomes']['family_bonuses'])
@@ -272,6 +311,8 @@ def validate_blueprint_config(cfg):
     from .terrain import SEARCH_V1,SEARCH_V2
     legacy['terrain']['v1']=dict(SEARCH_V1);legacy['terrain']['v2']=dict(SEARCH_V2)
     validate_config(legacy)
+    if two_group_policy(cfg):
+        _integer(cfg['search'].get('max_misses'),0,8,'max_misses')
     if cfg['structures']!=expected['structures']:
         raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')
     order=cfg['search']['structure_order']

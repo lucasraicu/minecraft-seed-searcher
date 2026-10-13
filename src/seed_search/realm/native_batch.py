@@ -18,7 +18,7 @@ from seed_search.backend import biome_catalog, structure_type
 from seed_search.realm.blueprint import PALETTE, evaluate_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -37,6 +37,9 @@ def semantic_record(value):
 class Prototype:
     def __init__(self,directory,cfg):
         validate_config(cfg)
+        from .config import two_group_policy
+        if two_group_policy(cfg):
+            raise ValueError("Two-group screening requires Phase 2 native hard-floor enforcement")
         if cfg.get('contract')!=BLUEPRINT_CONTRACT:raise ValueError('Prototype requires the exact blueprint contract')
         if not outpost_policy(cfg) and tuple(cfg['search']['structure_order'])!=(tuple(LOCKED_ORDER) if locked_policy(cfg) else NAMES[:10]):raise ValueError('Prototype requires its audited structure order')
         if cfg['search']['inventory_mode']!='eligibility':raise ValueError('Native baseline requires eligibility inventory mode; use the Python route for other profiles')
@@ -68,6 +71,9 @@ class Prototype:
         self.policy.locked=int(locked_policy(cfg))
         self.policy.river=int(river_policy(cfg))
         self.policy.outpost_goal=2 if outpost_policy(cfg) else 0
+        if origin_policy(cfg) and not hasattr(self.policy,'origin'):
+            raise ValueError('Origin policy needs the rebuilt native ABI')
+        if hasattr(self.policy,'origin'):self.policy.origin=int(origin_policy(cfg))
         if outpost_policy(cfg):self.policy.structure_order=[NAMES.index(n) for n in cfg['search']['structure_order']]
         self.policy.bastion_goal=cfg['structures']['nether_minimum_counts']['bastion']
         self.policy.overworld_half=cfg['deployment']['overworld_side_blocks']//2
@@ -82,6 +88,11 @@ class Prototype:
         self.families=cfg['biomes']['required_families']
         for row in catalog:
             self.policy.biome_members[row['id']]=sum(1<<i for i,f in enumerate(self.families) if canonical(row['name']) in PALETTE[f])
+            name=canonical(row['name'])
+            if hasattr(self.policy,'bonus_biome_members'):
+                self.policy.bonus_biome_members[row['id']]=(int(name=='cherry_grove')|
+                    int(name in ('badlands','wooded_badlands','eroded_badlands'))<<1|
+                    int(name=='mushroom_fields')<<2)
         self.policy.dark_id=ids['dark_forest'];self.policy.pale_id=ids['pale_garden']
         self.policy.fixture_surface=[ids[n] for n in ('plains','desert','forest','taiga','jungle',
                                                      'swamp','snowy_plains','dark_forest','jagged_peaks','stony_shore')]
@@ -102,7 +113,7 @@ class Prototype:
         if isinstance(max_misses,bool) or not isinstance(max_misses,int) or not 0<=max_misses<=25:raise ValueError('max_misses must be 0–25')
         if retention=='full' and max_misses:raise ValueError('max_misses requires survivor retention')
         if retention=='survivors' and complete:raise ValueError('Compact retention and complete oracle sweep are separate paths')
-        if fixture_masks is not None and (fixtures is None or len(fixture_masks)!=len(seeds) or any(isinstance(v,bool) or not isinstance(v,int) or not 0<=v<1<<28 for v in fixture_masks)):
+        if fixture_masks is not None and (fixtures is None or len(fixture_masks)!=len(seeds) or any(isinstance(v,bool) or not isinstance(v,int) or not 0<=v<1<<29 for v in fixture_masks)):
             raise ValueError('Invalid synthetic missing masks')
         # Independent call-local policy and buffers; shared adapters never mutate
         # a policy while CFFI releases the GIL for another call.
@@ -112,7 +123,7 @@ class Prototype:
         if fixtures is not None:
             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
             for x,z,missing in fixtures:
-                if any(isinstance(v,bool) or not isinstance(v,int) for v in (x,z,missing)) or not -1000000<=x<=1000000 or not -1000000<=z<=1000000 or not -1<=missing<=27:
+                if any(isinstance(v,bool) or not isinstance(v,int) for v in (x,z,missing)) or not -1000000<=x<=1000000 or not -1000000<=z<=1000000 or not -1<=missing<=28:
                     raise ValueError('Invalid synthetic fixture')
             fixture_values=self.ffi.new('NBFixture[]',[(*f, fixture_masks[i] if fixture_masks else 0) for i,f in enumerate(fixtures)])
         start=time.perf_counter()
@@ -174,9 +185,11 @@ class Batch:
             if len(record['anchors'])!=native.nanchors:raise RuntimeError('Native/reconstructed anchor count mismatch')
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
-                expected=not c.count_missing and c.biome_mask==8191
+                expected=(not origin_policy(cfg) or c.stronghold_count>=1) and not c.count_missing and c.biome_mask==8191
                 order=[10,11,*[NAMES.index(n) for n in cfg['search']['structure_order']]] if locked_policy(cfg) else range(12)
                 pending=['count_'+NAMES[k] for k in order if c.count_missing&(1<<k)]
+                if origin_policy(cfg) and c.stronghold_evaluated and c.stronghold_count<1:
+                    pending.insert(sum(bool(c.count_missing&(1<<k)) for k in order[:4]),'count_stronghold')
                 if c.biome_evaluated:pending+=['biome_'+f for k,f in enumerate(self.prototype.families) if not c.biome_mask&(1<<k)]
                 if (a['qualification']=='PREDICTED')!=expected or a['pending_reasons']!=pending or a['baseline_score_observed']!=c.score:
                     raise RuntimeError('Native decision/count/biome/ranking parity failure')
@@ -208,7 +221,8 @@ class Batch:
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
                 misses=int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
-                if not c.biome_evaluated or misses>self.max_misses or misses!=len(a['pending_reasons']):
+                if (not c.biome_evaluated or misses>self.max_misses or misses!=len(a['pending_reasons']) or
+                    (origin_policy(self.prototype.cfg) and c.stronghold_count<1)):
                     raise RuntimeError('Native retention decision parity failure')
                 a['retention']={'classification':'NEAR_MISS' if misses else 'PREDICTED_SURVIVOR',
                     'unmet_requirements':misses,'allowed_unmet_requirements':self.max_misses,
@@ -356,7 +370,8 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         batch,seed_seconds=native_future.result()
         with batch:
             before=time.perf_counter()
-            records=batch.retained_records(first) if retention=='survivors' else (fast_records(batch,first,store) if encoded else batch.records(first))
+            records=batch.retained_records(first) if retention=='survivors' else (
+                fast_records(batch,first,store) if encoded and not origin_policy(cfg) else batch.records(first))
             record_seconds=time.perf_counter()-before
             if retention=='full':_validate_batch_seeds(first,end,records,cfg['search'])
             else:

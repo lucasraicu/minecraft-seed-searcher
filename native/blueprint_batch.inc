@@ -209,13 +209,14 @@ static int nb_palette(NBWorker *w,const int *b,NBAnchor *a) {
     for(int f=0;f<13;f++)a->first_witness[f]=-1;
     int batch=w->p->batch_size*4;
     for(int offset=0;offset<n*4;offset+=batch) {
-        if(a->biome_mask==8191&&!w->p->complete)break;
+        if(a->biome_mask==8191&&!w->p->complete&&!w->p->origin)break;
         int end=offset+batch;if(end>n*4)end=n*4;
         for(int i=offset;i<end;i++) {
             int index=(int)(((int64_t)(i/4)*stride)%n),layer=i%4;
             int x=x0+(index%nx)*step,z=z0+(index/nx)*step,y=w->p->y[layer];
             int id=nb_point(w,x,y,z),k=a->biome_n++;
             a->biome_xyz[3*k]=x;a->biome_xyz[3*k+1]=y;a->biome_xyz[3*k+2]=z;a->biome_ids[k]=id;
+            if(w->p->origin&&y==63&&id>=0&&id<256)a->bonus_biomes|=(unsigned int)w->p->bonus_biome_members[id];
             unsigned int mask=(id>=0&&id<256)?w->p->biome_members[id]:0;
             mask&=(y==-48||y==0)?7168:1023;
             for(int f=0;f<13;f++)if((mask&(1u<<f))&&!(a->biome_mask&(1u<<f)))a->first_witness[f]=k;
@@ -227,6 +228,19 @@ static int nb_palette(NBWorker *w,const int *b,NBAnchor *a) {
 static int nb_score(NBWorker *w,NBAnchor *a) {
     if(w->p->locked) {
         int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
+        if(w->p->origin) {
+            int score=(n[5]>6?(n[5]-6)*5:0)+(n[7]>6?(n[7]-6)*5:0)+
+                (n[8]>5?(n[8]-5)*5:0)+(n[9]>15?n[9]-15:0)+
+                (n[6]>5?(n[6]-5)*10:0)+
+                (n[4]>2?((n[4]<4?n[4]:4)-2)*25:0)+
+                (n[10]>2?((n[10]<4?n[10]:4)-2)*20:0)+
+                (n[11]>3?(n[11]-3)*20:0)+
+                (n[0]>=2?50:0)+(a->stronghold_count>=2?50:0)+
+                (n[2]>=2?10:0)+(n[1]>=2?10:0)+(n[3]>=2?25:0)+
+                (n[12]>2?(n[12]-2)*10:0);
+            for(int i=0;i<3;i++)if(a->bonus_biomes&(1u<<i))score+=15;
+            return score;
+        }
         int score=(n[5]>6?(n[5]-6)*5:0)+(n[7]>6?(n[7]-6)*5:0)+
                   (n[8]>w->p->goals[8]?(n[8]-w->p->goals[8])*5:0)+(n[9]>15?n[9]-15:0);
         score+=(n[6]>5?(n[6]-5)*10:0);
@@ -259,7 +273,7 @@ static void nb_clear_result(NBResult *r) {
 }
 static int nb_bits(unsigned int n) {int k=0;while(n){k+=(n&1u);n>>=1;}return k;}
 static int nb_keep(const NBWorker *w,const NBAnchor *a) {
-    return a->biome_evaluated && nb_bits((unsigned int)a->count_missing)+13-nb_bits(a->biome_mask)<=w->p->max_misses;
+    return (!w->p->origin||a->stronghold_count>=1) && a->biome_evaluated && nb_bits((unsigned int)a->count_missing)+13-nb_bits(a->biome_mask)<=w->p->max_misses;
 }
 static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
     double start=nb_time();r->seed=seed;
@@ -270,16 +284,30 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
     if(!w->ctx)return -3;
     w->ctx->seed=seed;applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
     applySeed(&w->ctx->nether,DIM_NETHER,seed);
-    double t=nb_time();int code=nb_capacity(w,w->p->discovery);if(code)return code;
+    double t=nb_time();int code=0;
+    if(!w->p->origin){code=nb_capacity(w,w->p->discovery);if(code)return code;}
     int n;
-    if(w->fixture){n=1;w->scratch[0]=w->fixture->x;w->scratch[1]=w->fixture->z;}
+    if(w->p->origin){n=1;code=nb_reserve(w,64);if(code)return code;w->scratch[0]=0;w->scratch[1]=0;}
+    else if(w->fixture){n=1;w->scratch[0]=w->fixture->x;w->scratch[1]=w->fixture->z;}
     else n=ss_scan(w->ctx,Stronghold,w->p->discovery[0],w->p->discovery[1],w->p->discovery[2],w->p->discovery[3],0,w->scratch,w->cap);
-    code=nb_copy(w,&r->discovery,w->scratch,n);if(code)return code;
-    r->stage_seconds[0]=nb_time()-t;r->nanchors=r->discovery.n;
+    if(n<0)return n;
+    if(!w->p->origin){code=nb_copy(w,&r->discovery,w->scratch,n);if(code)return code;}
+    r->stage_seconds[0]=nb_time()-t;r->nanchors=w->p->origin?1:r->discovery.n;
+    if(w->p->origin&&!w->p->retention) {
+        /* Full evidence retains discovery for every input, regardless of
+         * later early structure failure. Compact delays this exact query. */
+        t=nb_time();code=nb_capacity(w,w->p->discovery);if(code)return code;
+        n=w->fixture?(nb_missing(w,28)?0:2):ss_scan(w->ctx,Stronghold,w->p->discovery[0],w->p->discovery[1],w->p->discovery[2],w->p->discovery[3],0,w->scratch,w->cap);
+        if(n<0)return n;
+        if(w->fixture)for(int q=0;q<n;q++){w->scratch[2*q]=16+q*16;w->scratch[2*q+1]=0;}
+        code=nb_copy(w,&r->discovery,w->scratch,n);if(code)return code;
+        r->stage_seconds[0]+=nb_time()-t;
+    }
     NB_PROFILE_STAGE(w,0,r->stage_seconds[0],0,0);
     r->anchors=nb_alloc(w,(size_t)(r->nanchors?r->nanchors:1)*sizeof(NBAnchor),1);if(!r->anchors)return -3;
     for(int j=0;j<r->nanchors;j++) {
-        NBAnchor *a=r->anchors+j;a->x=r->discovery.xz[2*j];a->z=r->discovery.xz[2*j+1];
+        NBAnchor *a=r->anchors+j;a->x=w->p->origin?0:r->discovery.xz[2*j];a->z=w->p->origin?0:r->discovery.xz[2*j+1];
+        if(w->p->origin&&!w->p->retention){a->stronghold_evaluated=1;a->stronghold_count=r->discovery.n;}
         int h=w->p->overworld_half,nh=w->p->nether_half;
         int b[4]={a->x-h,a->z-h,a->x+h-1,a->z+h-1};
         if(w->p->locked) {
@@ -296,7 +324,22 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
             double elapsed=nb_time()-t;r->stage_seconds[slot==12?14:slot+1]+=elapsed;
             NB_PROFILE_STAGE(w,slot==12?29:slot+1,elapsed,a->x,a->z);if(code)return code;
             if(nb_observed_count(w,a->observations+slot,slot)<(slot==12?w->p->outpost_goal:w->p->goals[slot]))a->count_missing|=1<<slot;
+            if(w->p->origin&&k==1&&!a->stronghold_evaluated) {
+                /* Mandatory Stronghold is queried only after cheap floors. Its
+                 * full supported inventory is retained for the second-start bonus. */
+                t=nb_time();code=nb_capacity(w,b);if(code)return code;
+                n=w->fixture?(nb_missing(w,28)?0:2):ss_scan(w->ctx,Stronghold,b[0],b[1],b[2],b[3],0,w->scratch,w->cap);
+                if(n<0)return n;
+                if(w->fixture)for(int q=0;q<n;q++){w->scratch[2*q]=16+q*16;w->scratch[2*q+1]=0;}
+                code=nb_copy(w,&r->discovery,w->scratch,n);if(code)return code;
+                a->stronghold_count=r->discovery.n;
+                a->stronghold_evaluated=1;
+                r->stage_seconds[0]+=nb_time()-t;
+                if(!a->stronghold_count&&!w->p->complete)break;
+            }
+            if(w->p->origin&&k==1&&a->stronghold_evaluated&&!a->stronghold_count&&!w->p->complete)break;
         }
+        if(w->p->origin&&a->stronghold_evaluated&&!a->stronghold_count&&!w->p->complete){a->score=nb_score(w,a);continue;}
         if(!w->p->locked && (!a->count_missing||w->p->complete||(w->p->retention && nb_bits((unsigned int)a->count_missing)<=w->p->max_misses))) {
             int x=-floordiv(-a->x,8),z=-floordiv(-a->z,8),nb[4]={x-nh,z-nh,x+nh-1,z+nh-1};
             t=nb_time();code=nb_nether(w,nb,a);double elapsed=nb_time()-t;r->stage_seconds[11]+=elapsed;
@@ -337,7 +380,8 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     const int types[13]={Mansion,Jungle_Pyramid,Desert_Pyramid,Monument,Ancient_City,Village,Trial_Chambers,Ruined_Portal,Shipwreck,Mineshaft,Fortress,Bastion,Outpost};
     const int old_goals[10]={1,1,1,1,1,5,2,3,2,5},new_goals[10]={1,1,1,1,2,6,5,6,4,15},y[4]={63,-48,0,160};
     for(int i=0;i<13;i++)if(p->types[i]!=types[i])return NULL;
-    if((p->locked!=0&&p->locked!=1)||(p->river!=0&&p->river!=1)||(p->river&&!p->locked))return NULL;
+    if((p->locked!=0&&p->locked!=1)||(p->river!=0&&p->river!=1)||(p->river&&!p->locked)||(p->origin!=0&&p->origin!=1)||(p->origin&&(!p->locked||!p->river||p->outpost_goal!=2)))return NULL;
+    if(p->origin&&(p->discovery[0]!=-1024||p->discovery[1]!=-1024||p->discovery[2]!=1023||p->discovery[3]!=1023))return NULL;
     if(p->bastion_goal!=(p->river?3:p->locked?2:1))return NULL;
     if(p->outpost_goal!=0&&p->outpost_goal!=2)return NULL;
     if(p->outpost_goal) {
@@ -354,7 +398,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     for(int i=0;i<10;i++)if(p->goals[i]!=(p->river&&i==8?5:p->locked?new_goals[i]:old_goals[i]))return NULL;
     for(int i=0;i<4;i++)if(p->y[i]!=y[i])return NULL;
     if(fixtures)for(int i=0;i<count;i++)if(fixtures[i].x<-1000000||fixtures[i].x>1000000||fixtures[i].z<-1000000||fixtures[i].z>1000000||
-        fixtures[i].missing<-1||fixtures[i].missing>27)return NULL;
+        fixtures[i].missing<-1||fixtures[i].missing>28)return NULL;
     uint64_t allocated_bytes=sizeof(NBBatch)+(uint64_t)count*(sizeof(NBResult)+(p->retention?sizeof(NBVerdict):0));
     if(p->max_buffer_bytes<allocated_bytes || p->max_buffer_bytes>((uint64_t)4<<30))return NULL;
     NBBatch *batch=calloc(1,sizeof(*batch));if(!batch)return NULL;
@@ -389,7 +433,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
                 NBResult *r=batch->results+i;r->input_offset=i;
                 r->error=nb_eval(&w,seeds[i],r);
                 if(p->retention && !r->error) {
-                    NBVerdict *v=batch->verdicts+i;v->seed=seeds[i];v->anchors=(uint32_t)r->nanchors;
+                    NBVerdict *v=batch->verdicts+i;v->seed=seeds[i];v->anchors=(uint32_t)(p->origin?r->discovery.n:r->nanchors);
                     int kept=0,original=r->nanchors;
                     for(int j=0;j<original;j++) {
                         if(nb_keep(&w,r->anchors+j)) {

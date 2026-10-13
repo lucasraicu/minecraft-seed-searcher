@@ -4,7 +4,7 @@ import pytest
 import yaml
 
 from seed_search.realm.bounds import contains, native_bounds, nether_square
-from seed_search.realm.config import default_config, validate_config
+from seed_search.realm.config import default_config, validate_config, outpost_blueprint_config
 from seed_search.realm.raw import FAMILIES, center_rectangle
 from seed_search.realm.verification import VerificationAdapter
 
@@ -12,10 +12,13 @@ from seed_search.realm.verification import VerificationAdapter
 def test_explicit_locked_and_historical_profiles_keep_their_geometry():
     cfg = default_config()
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
-    for profile in (cfg, explicit):
+    previous=outpost_blueprint_config()
+    for profile in (cfg, previous, explicit):
         validate_config(profile)
         assert profile['deployment'] == ({'overworld_side_blocks':1536,'nether_side_blocks':896} if profile is cfg else {'overworld_side_blocks':2048,'nether_side_blocks':1024})
-        assert set(map(tuple, profile['discovery'].values())) == {(-2000, -2000, 2000, 2000)}
+        assert set(map(tuple, profile['discovery'].values())) == (
+            {(-1024,-1024,1024,1024),(-512,-512,512,512)} if profile is explicit else
+            {(-2000,-2000,2000,2000)})
     assert FAMILIES == (
         ('village', (-2768, -2768, 2766, 2766)),
         ('ancient_city', (-2768, -2768, 2766, 2766)),
