@@ -19,6 +19,8 @@ interface FilterSidebarProps {
   onChangeConfig: (newConfig: SearchConfig) => void;
   logs: string[];
   onClearLogs?: () => void;
+  onResumeSweep: (runId: string) => void;
+  sweepRunning: boolean;
 }
 
 export const FilterSidebar: React.FC<FilterSidebarProps> = ({
@@ -26,7 +28,24 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onChangeConfig,
   logs,
   onClearLogs,
+  onResumeSweep,
+  sweepRunning,
 }) => {
+  const [showPlanning, setShowPlanning] = useState(false);
+  const [savedRuns, setSavedRuns] = useState<Array<{ runId: string; completedSeeds: number; targetCount: number; resumable: boolean }>>([]);
+  const [resumeRunId, setResumeRunId] = useState('');
+  const [runsError, setRunsError] = useState('');
+  const refreshRuns = async () => {
+    try {
+      const response = await fetch('/api/sweep/runs');
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Could not load saved runs');
+      const runs = data.runs.filter((run: { resumable: boolean }) => run.resumable);
+      setSavedRuns(runs);
+      setResumeRunId((current) => runs.some((run: { runId: string }) => run.runId === current) ? current : runs[0]?.runId || '');
+      setRunsError('');
+    } catch (error) { setRunsError(error instanceof Error ? error.message : String(error)); }
+  };
   const [activeTab, setActiveTab] = useState<'targets' | 'engine' | 'logs'>('targets');
   const feasibility = useMemo(() => computeTotalFeasibility(config), [config]);
 
@@ -198,9 +217,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           </div>
 
           <div className="p-2.5 rounded-lg border border-amber-500/30 bg-amber-950/20 text-[10px] leading-relaxed text-amber-100">
-            Live sweeps use the fixed v2 categories. Only the eight flexible structure count ideals, B, input count, threads, and batch size are sent. Category toggles, biome, terrain, spawn, and overlap controls below affect planning estimates only.
+            Live sweeps use the fixed v2 categories. The eight flexible structure ideals, B, count, starting index, threads and batch size apply to live sweeps. Required categories and biome rules remain fixed. Optional planning controls never change live qualification.
           </div>
 
+          <button onClick={() => setShowPlanning(!showPlanning)} className="text-xs text-cyan-300 border border-slate-700 rounded px-3 py-2">
+            {showPlanning ? 'Hide planning estimates — show live filters' : 'Show separate planning estimates'}
+          </button>
+          {showPlanning && <>
           {/* Box 4: Total Search Odds Hero Card (End-to-End Pipeline) */}
           <div className="p-3 bg-gradient-to-b from-slate-900 to-slate-950 border border-emerald-500/40 rounded-xl space-y-2.5 shadow-xl relative overflow-hidden">
             <div className="flex items-center justify-between">
@@ -261,7 +284,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {/* 1-Click Sync Button */}
             <button
               onClick={() => {
-                const targetVol = Math.min(100000, Math.max(1, feasibility.expectedSeedsNeeded));
+                const targetVol = Math.min(Number.MAX_SAFE_INTEGER, Math.max(1, feasibility.expectedSeedsNeeded));
                 onChangeConfig({ ...config, sweepSeedCount: targetVol });
               }}
               className="w-full py-1.5 px-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
@@ -305,22 +328,23 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
           </div>
 
+          </>}
           {/* Structure Counts with Steppers */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Structure Floors ({ALL_STRUCTURES.length})
+                Live structure ideals (fatal floors remain fixed)
               </label>
               <span className="text-[10px] text-emerald-400 font-mono font-bold">
-                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length} active
+                {showPlanning ? ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length : 12} {showPlanning ? 'planned' : 'fixed categories'}
               </span>
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
               {ALL_STRUCTURES.map((s) => {
                 const isMarine = s.id === 'monument' || s.id === 'shipwreck';
-                const isExempt = isBaselineInland && isMarine;
-                const isSelected = !isExempt && config.requiredStructures.includes(s.id);
+                const isExempt = !showPlanning ? isMarine : isBaselineInland && isMarine;
+                const isSelected = !isExempt && (!showPlanning || config.requiredStructures.includes(s.id));
                 const count = config.structureFloorCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 1;
                 const indP = feasibility.structures.individualProbs[s.id];
 
@@ -329,7 +353,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     <div
                       key={s.id}
                       className="flex items-center justify-between px-2.5 py-1.5 rounded-lg border bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60"
-                      title="Exempt: Inland Baseline mode does not require ocean structures when no ocean biome is selected"
+                      title={showPlanning ? "Planning exemption for inland mode" : "Marine checks are deferred to downstream verification"}
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="text-sm">{s.icon}</span>
@@ -337,7 +361,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="text-[9px] font-mono px-1.5 py-0.5 rounded text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 font-bold">
-                          Exempt (No Ocean)
+                          {showPlanning ? 'Exempt (No Ocean)' : 'Deferred verification'}
                         </span>
                         <span className="text-[10px] text-slate-500 font-mono italic pr-1">
                           N/A
@@ -358,6 +382,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   >
                     {/* Toggle check & Structure Label */}
                     <button
+                      disabled={!showPlanning}
                       onClick={() => toggleStructure(s.id)}
                       className="flex items-center justify-between gap-1 text-left truncate flex-1 hover:text-white transition-colors"
                     >
@@ -365,7 +390,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-sm">{s.icon}</span>
                         <span className="text-xs font-semibold truncate">{s.name}</span>
                       </div>
-                      {isSelected && indP !== undefined && (
+                      {showPlanning && isSelected && indP !== undefined && (
                         <span
                           className={`text-[9px] font-mono px-1 rounded mr-1 ${
                             indP < 0.2
@@ -383,8 +408,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     <div className="flex items-center gap-1.5 ml-2">
                       <button
                         onClick={() => handleCountChange(s.id, -1)}
-                        disabled={!(s.id in V2_FLEXIBLE_FLOORS) || count <= s.min}
-                        title={s.id in V2_FLEXIBLE_FLOORS ? `Cannot go below v2 fatal floor ${s.min}` : 'This target is fixed by v2'}
+                        disabled={!(s.id in V2_FLEXIBLE_FLOORS) || count <= (V2_FLEXIBLE_FLOORS[s.id] ?? s.min)}
+                        title={s.id in V2_FLEXIBLE_FLOORS ? `Cannot go below v2 fatal floor ${V2_FLEXIBLE_FLOORS[s.id]}` : 'This target is fixed by v2'}
                         className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         -
@@ -407,6 +432,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
           </div>
 
+          {showPlanning && <section aria-label="Planning estimates only" className="space-y-4">
+          <p className="text-xs text-amber-200">Planning only: these settings do not filter live seeds.</p>
           {/* Nether Requirements */}
           <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
@@ -482,7 +509,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-sm">{c.icon}</span>
                         <span className="text-xs font-semibold truncate">{c.name}</span>
                       </div>
-                      {isSelected && indP !== undefined && (
+                      {showPlanning && isSelected && indP !== undefined && (
                         <span
                           className={`text-[9px] font-mono px-1.5 py-0.5 rounded mr-1 font-bold ${
                             indP < 0.3
@@ -796,6 +823,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               Planning heuristic only. Spawn evidence is downstream and remains pending until the backend supplies it; this control is not part of the live v2 sweep request.
             </p>
           </div>
+          </section>}
         </div>
       )}
 
@@ -829,12 +857,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="number"
                 min="1"
-                max="100000"
+                max={Number.MAX_SAFE_INTEGER}
                 step="5000"
                 value={config.sweepSeedCount || ''}
                 onChange={(e) => {
                   const val = parseInt(e.target.value, 10);
-                  onChangeConfig({ ...config, sweepSeedCount: isNaN(val) ? 0 : Math.min(100000, Math.max(1, val)) });
+                  onChangeConfig({ ...config, sweepSeedCount: isNaN(val) ? 0 : Math.min(Number.MAX_SAFE_INTEGER, Math.max(1, val)) });
                 }}
                 className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono font-bold text-emerald-400 outline-none focus:border-emerald-500 shadow-inner"
                 placeholder="Enter seed count, e.g. 100000"
@@ -844,7 +872,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
             {/* Quick 1-click convenience chips */}
             <div className="flex flex-wrap items-center gap-1 pt-1">
-              {[10000, 25000, 50000, 100000].map((v) => (
+              {[100000, 1000000, 2000000].map((v) => (
                 <button
                   key={v}
                   onClick={() => onChangeConfig({ ...config, sweepSeedCount: v })}
@@ -861,7 +889,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 onClick={() =>
                   onChangeConfig({
                     ...config,
-                    sweepSeedCount: Math.min(100000, Math.max(1, feasibility.expectedSeedsNeeded)),
+                    sweepSeedCount: Math.min(Number.MAX_SAFE_INTEGER, Math.max(1, feasibility.expectedSeedsNeeded)),
                   })
                 }
                 className="px-2 py-0.5 rounded text-[10px] font-mono transition-colors border bg-cyan-600/20 border-cyan-500/40 text-cyan-300 hover:bg-cyan-600/30"
@@ -875,6 +903,26 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </p>
           </div>
 
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
+            <label htmlFor="start-index" className="text-xs font-semibold text-slate-300">Starting seed index</label>
+            <input id="start-index" type="text" inputMode="numeric" value={config.startIndex}
+              onChange={(event) => { if (/^\d*$/.test(event.target.value)) onChangeConfig({ ...config, startIndex: event.target.value }); }}
+              className="w-full bg-slate-800 rounded px-3 py-2 text-sm font-mono" />
+            <p className="text-[10px] text-slate-400">Exact full64 sequence index. Memory and disk budgets still apply to larger runs.</p>
+          </div>
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
+            <div className="flex justify-between"><span className="text-xs font-semibold">Resume saved sweep</span>
+              <button onClick={refreshRuns} className="text-xs text-cyan-300">Refresh runs</button></div>
+            <select aria-label="Saved sweep" value={resumeRunId} onChange={(event) => setResumeRunId(event.target.value)}
+              className="w-full bg-slate-800 rounded px-2 py-2 text-xs">
+              <option value="">Select a saved incomplete run</option>
+              {savedRuns.map((run) => <option key={run.runId} value={run.runId}>{run.runId} — {run.completedSeeds.toLocaleString()}/{run.targetCount.toLocaleString()}</option>)}
+            </select>
+            <button disabled={!resumeRunId || sweepRunning} onClick={() => onResumeSweep(resumeRunId)}
+              className="w-full bg-emerald-700 disabled:opacity-40 rounded py-2 text-xs">Resume with saved settings</button>
+            <p className="text-[10px] text-slate-400">Uses the saved range, policy and native build; current controls do not override the run.</p>
+            {runsError && <p role="alert" className="text-xs text-red-300">{runsError}</p>}
+          </div>
           {/* Near-Miss Retention Policy */}
           <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
@@ -915,12 +963,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="range"
                 min="1"
-                max="36"
+                max="34"
                 value={config.openmpThreads}
                 onChange={(e) => onChangeConfig({ ...config, openmpThreads: Number(e.target.value) })}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
               />
-              <span className="text-[10px] text-slate-500">Host limit: 36 logical threads. Compare settings with measured runs.</span>
+              <span className="text-[10px] text-slate-500">34 native threads reserve two host slots for preparation and writing.</span>
             </div>
 
             <div>

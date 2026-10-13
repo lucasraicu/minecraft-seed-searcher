@@ -14,6 +14,8 @@ import json
 import math
 import os
 import platform
+import re
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -47,6 +49,8 @@ class SweepManager:
         self.end_time: float = 0.0
         self.target_count: int = 100000
         self.scanned_count: int = 0
+        self.resume_baseline = 0
+        self.start_index = 0
         self.seeds_per_sec: float = 0.0
         self.status: str = "idle"  # idle | running | completed | stopped | error
         self.error_message: str | None = None
@@ -68,11 +72,15 @@ class SweepManager:
         batch_size: int = 16384,
         max_misses: int = 2,
         counts: dict | None = None,
+        start_index: int | str = 0,
     ) -> dict:
         try:
             if any(type(v) is not int for v in (count,threads,batch_size,max_misses)):
                 raise ValueError('Sweep controls must be integers')
-            if not 1<=count<=100000 or not 1<=threads<=36 or not 1<=batch_size<=16384 or not 0<=max_misses<=8:
+            if isinstance(start_index,str) and re.fullmatch(r'[0-9]{1,20}',start_index):start_index=int(start_index)
+            if type(start_index) is not int or not 0<=start_index<2**64 or start_index+count>2**64:
+                raise ValueError('Invalid full64 starting index or range')
+            if not 1<=count<=2**53-1 or not 1<=threads<=34 or not 1<=batch_size<=16384 or not 0<=max_misses<=8:
                 raise ValueError('Sweep controls outside supported bounded ranges')
             if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
                 raise ValueError('counts must map structure names to integer ideals')
@@ -87,7 +95,12 @@ class SweepManager:
             if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native v2 build is unavailable')
             from seed_search.realm.native_batch import Prototype
             Prototype(DEFAULT_NATIVE_BUILD,cfg)
-        except (ValueError,KeyError,TypeError,OSError,ImportError) as exc:
+            from seed_search.realm.resources import disk_policy
+            limits=disk_policy(cfg['search']);projected=count*limits['projected_bytes_per_seed']
+            free=shutil.disk_usage(RUNS_DIR if RUNS_DIR.exists() else PROJECT_ROOT).free
+            if projected>limits['run_disk_limit_bytes'] or free<limits['free_disk_reserve_bytes']+projected:
+                raise ValueError('Projected finite shard exceeds disk budget; use a smaller shard')
+        except (ValueError,KeyError,TypeError,OSError,ImportError,RuntimeError) as exc:
             return {'ok':False,'error':str(exc)}
         with self.lock:
             if self.process is not None and self.process.poll() is None:
@@ -109,6 +122,9 @@ class SweepManager:
             generation=self.generation
             self.target_count = count
             self.scanned_count = 0
+            self.resume_baseline = 0
+            self.start_index = start_index
+            self.history = [0] * 12
             self.seeds_per_sec = 0.0
             self.status = "running"
             self.error_message = None
@@ -129,6 +145,8 @@ class SweepManager:
                 "scan",
                 "--count",
                 str(count),
+                "--start-index",
+                str(start_index),
                 "--output",
                 str(self.run_dir),
                 "--executor",
@@ -180,6 +198,83 @@ class SweepManager:
             return {"ok": True, "runId": self.run_id, "status": "running", "effectiveConfig":cfg,
                     "command":cmd}
 
+    def _saved_run(self, run_id):
+        if not isinstance(run_id,str) or not re.fullmatch(r"web-sweep-[0-9]{8}-[0-9]{6}-[0-9a-f]{8}",run_id):
+            raise ValueError("Invalid saved run ID")
+        directory=RUNS_DIR/run_id
+        if directory.is_symlink() or directory.resolve().parent!=RUNS_DIR.resolve():
+            raise ValueError("Saved run must be a direct run directory")
+        db=directory/'realm.sqlite'
+        if not db.is_file() or db.is_symlink():raise ValueError("Saved checkpoint is unavailable")
+        with sqlite3.connect(f"file:{db}?mode=ro",uri=True) as conn:
+            values={key:json.loads(value) for key,value in conn.execute(
+                "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds','native_pipeline')")}
+        identity=values.get('identity')
+        if not isinstance(identity,dict) or identity.get('execution')!='native':
+            raise ValueError("Saved run is not a native sweep")
+        cfg=identity['config'];validate_config(cfg)
+        count=identity['count'];first=identity['start_index'];completed=values.get('completed_seeds',0)
+        if (type(count) is not int or not 1<=count<=2**53-1 or type(first) is not int
+                or not 0<=first<2**64 or first+count>2**64 or type(completed) is not int
+                or not 0<=completed<=count):raise ValueError("Invalid saved range")
+        from seed_search.realm.native_batch import Prototype
+        from seed_search.realm.cli import make_identity
+        from seed_search.realm.store import semantic_identity
+        build=identity.get('native_build')
+        if not build or Path(build).resolve()!=DEFAULT_NATIVE_BUILD.resolve():
+            raise ValueError("Saved sweep uses a different native build")
+        prototype=Prototype(DEFAULT_NATIVE_BUILD,cfg)
+        current=make_identity(cfg,count,first)
+        current.update(execution='native',native=prototype.identity,native_build=str(DEFAULT_NATIVE_BUILD.resolve()),
+                       evaluator='seed_search.realm.native_batch:run_native_scan',retention=identity.get('retention'))
+        if semantic_identity(current)!=semantic_identity(identity):
+            raise ValueError("Saved sweep configuration or computation identity changed")
+        return directory,identity,completed,values.get('native_pipeline') or {}
+
+    def list_runs(self):
+        runs=[]
+        if not RUNS_DIR.exists():return {'runs':runs}
+        entries=sorted((p for p in RUNS_DIR.glob('web-sweep-*') if p.is_dir()),key=lambda p:p.name,reverse=True)[:50]
+        for directory in entries:
+            try:
+                _,identity,completed,_=self._saved_run(directory.name)
+                runs.append({'runId':directory.name,'completedSeeds':completed,'targetCount':identity['count'],
+                             'startIndex':str(identity['start_index']),
+                             'resumable':completed<identity['count'] and not (self.status=='running' and directory==self.run_dir)})
+            except (ValueError,KeyError,TypeError,OSError,ImportError,sqlite3.Error):continue
+        return {'runs':runs}
+
+    def resume_sweep(self,run_id):
+        with self.lock:
+            if self.process is not None and self.process.poll() is None:
+                return {'ok':False,'error':'A sweep is already actively running','runId':self.run_id}
+            try:
+                directory,identity,completed,pipeline=self._saved_run(run_id)
+                if completed>=identity['count']:raise ValueError('Saved sweep is already complete')
+                from seed_search.realm.resources import disk_policy,disk_status
+                disk_status(directory,disk_policy(identity['config']['search']),remaining_seeds=identity['count']-completed)
+                threads=pipeline.get('threads',34)
+                if type(threads) is not int or not 1<=threads<=34:raise ValueError('Invalid saved thread count')
+                self.run_id=run_id;self.run_dir=directory;self.target_count=identity['count']
+                self.start_index=identity['start_index'];self.scanned_count=completed;self.resume_baseline=completed
+                self.effective_config=identity['config'];self.threads=threads;self.generation+=1
+                self.start_time=time.time();self.end_time=0.;self.seeds_per_sec=0.;self.history=[0]*12
+                self.status='running';self.error_message=None;self.candidates=[]
+                python=PROJECT_ROOT/'.venv'/'bin'/'python'
+                cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search','resume',
+                     '--run',str(directory),'--native-build',str(DEFAULT_NATIVE_BUILD),'--prediction-scale']
+                env=os.environ.copy();env['PYTHONPATH']=str(PROJECT_ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
+                self.process=subprocess.Popen(cmd,cwd=str(PROJECT_ROOT),env=env,stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE,text=True)
+                self.logs.insert(0,f'Resuming {run_id} from {completed:,} durable inputs')
+                self.monitor_thread=threading.Thread(target=self._monitor_process,
+                    args=(self.process,directory,self.generation),daemon=True)
+                self.monitor_thread.start()
+                return {'ok':True,'runId':run_id,'status':'running','effectiveConfig':self.effective_config,'command':cmd}
+            except (ValueError,KeyError,TypeError,OSError,ImportError,sqlite3.Error,RuntimeError) as exc:
+                if self.status=='running':self.status='error';self.error_message=str(exc)
+                return {'ok':False,'error':str(exc)}
+
     def _monitor_process(self,proc,run_dir,generation):
         """Reads stdout/stderr asynchronously and updates progress."""
         if not proc or not proc.stdout or not proc.stderr:
@@ -203,7 +298,7 @@ class SweepManager:
             # Sync from SQLite
             self._query_sqlite_progress()
             self._query_sqlite_candidates()
-            self.seeds_per_sec=round(self.scanned_count/elapsed) if self.scanned_count else 0
+            self.seeds_per_sec=round(max(0,self.scanned_count-self.resume_baseline)/elapsed)
             self._record_throughput(self.seeds_per_sec)
 
             if proc.returncode == 0:
@@ -215,6 +310,7 @@ class SweepManager:
             else:
                 self.status = "error" if self.status != "stopped" else "stopped"
                 err_text = "".join(stderr_chunks).strip()
+                if self.status=="error":self.error_message=err_text[-1000:] or f"Process exited with code {proc.returncode}"
                 self.logs.insert(
                     0,
                     f"Process exited with code {proc.returncode}. {err_text[:200]}",
@@ -313,7 +409,7 @@ class SweepManager:
                 elapsed = max(0, now - self.start_time)
                 self._query_sqlite_progress()
                 self._query_sqlite_candidates()
-                self.seeds_per_sec=round(self.scanned_count/max(0.001,elapsed)) if self.scanned_count else 0
+                self.seeds_per_sec=round(max(0,self.scanned_count-self.resume_baseline)/max(0.001,elapsed))
             elif self.end_time > 0:
                 elapsed = self.end_time - self.start_time
                 if self.scanned_count == 0 and self.run_dir:
@@ -333,16 +429,19 @@ class SweepManager:
 
             return {
                 "status": self.status,
+                "error": self.error_message,
                 "runId": self.run_id,
                 "totalScanned": self.scanned_count,
                 "targetCount": self.target_count,
+                "startIndex": str(self.start_index),
+                "resumedFrom": self.resume_baseline,
                 "seedsPerSec": self.seeds_per_sec,
                 "elapsedSeconds": round(elapsed, 1),
                 "candidatesFound": len(self.candidates),
                 "sweepProgress": min(100.0, progress_pct),
                 "memoryRssGib": rss_gib,
                 "activeThreads": self.threads if self.status == "running" else 0,
-                "throughputScope":"durable SQLite completed inputs / elapsed wall seconds",
+                "throughputScope":"new durable SQLite completed inputs / current invocation wall seconds",
                 "effectiveConfig":self.effective_config,
                 "history": list(self.history),
                 "logs": self.logs[:30],
@@ -683,6 +782,13 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(status).encode("utf-8"))
             return
 
+        elif path == "/api/sweep/runs":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(MANAGER.list_runs()).encode("utf-8"))
+            return
+
         elif path == "/api/candidates":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -720,7 +826,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         allowed_origins={f'http://{host}:{port}' for host in ('localhost','127.0.0.1') for port in (3000,5173)}
         if origin and origin not in allowed_origins:
             reject('Origin is not allowed',403);return
-        if path not in ('/api/sweep/start','/api/sweep/stop'):
+        if path not in ('/api/sweep/start','/api/sweep/stop','/api/sweep/resume'):
             reject('Unknown endpoint',404);return
         try:
             content_length=int(self.headers.get('Content-Length',''))
@@ -729,7 +835,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 if content_length<2 or content_length>16384:raise ValueError('JSON body must be 2–16384 bytes')
                 req_data=json.loads(self.rfile.read(content_length).decode('utf-8'))
             if not isinstance(req_data,dict):raise ValueError('JSON body must be an object')
-            allowed={'count','threads','batchSize','maxMisses','counts'} if path=='/api/sweep/start' else set()
+            allowed={'count','startIndex','threads','batchSize','maxMisses','counts'} if path=='/api/sweep/start' else {'runId'} if path=='/api/sweep/resume' else set()
             if set(req_data)-allowed:raise ValueError('Unsupported request field')
         except (ValueError,UnicodeError,json.JSONDecodeError) as exc:
             reject(str(exc));return
@@ -746,7 +852,16 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 batch_size=batch_size,
                 max_misses=max_misses,
                 counts=req_data.get('counts'),
+                start_index=req_data.get('startIndex',0),
             )
+            self.send_response(200 if result.get("ok") else 400)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(result).encode("utf-8"))
+            return
+
+        elif path == "/api/sweep/resume":
+            result=MANAGER.resume_sweep(req_data.get("runId"))
             self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")
             self.end_headers()

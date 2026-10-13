@@ -51,6 +51,7 @@ export const INITIAL_CONFIG: SearchConfig = {
   playableRadiusOverworld: 2048,
   playableRadiusNether: 1024,
   sweepSeedCount: 100000,
+  startIndex: '0',
   maxMisses: 2,
   openmpThreads: 34,
   batchSize: 16384,

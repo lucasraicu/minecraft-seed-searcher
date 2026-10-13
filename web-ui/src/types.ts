@@ -160,6 +160,7 @@ export interface SearchConfig {
   playableRadiusOverworld: number;
   playableRadiusNether: number;
   sweepSeedCount: number;
+  startIndex: string;
   maxMisses: number; // 0 = exact match, 1 = allow 1 miss, 2 = allow 2 misses
   openmpThreads: number;
   batchSize: number;

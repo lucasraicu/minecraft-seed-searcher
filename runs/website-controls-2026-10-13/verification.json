@@ -1,0 +1,28 @@
+{
+  "api_tests_passed": 10,
+  "frontend_build": "PASS",
+  "frontend_lint": "PASS",
+  "browser_start_smoke": {
+    "count": 3,
+    "start_index": "9007199254740993",
+    "completed": 3
+  },
+  "browser_resume_smoke": {
+    "run_id": "web-sweep-20261013-062900-acde0001",
+    "count": 20,
+    "completed_before": 3,
+    "completed_after": 20,
+    "ranges": [
+      [
+        14100000000,
+        14100000003
+      ],
+      [
+        14100000003,
+        14100000020
+      ]
+    ],
+    "sqlite_integrity": "ok"
+  },
+  "production_sweep_started": false
+}

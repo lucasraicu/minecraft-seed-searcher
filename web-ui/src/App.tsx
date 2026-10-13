@@ -164,6 +164,12 @@ function App() {
           showToast(`Error stopping sweep: ${err}`);
         });
     } else {
+      if (!Number.isSafeInteger(config.sweepSeedCount) || config.sweepSeedCount < 1 ||
+          !/^\d+$/.test(config.startIndex) ||
+          BigInt(config.startIndex) + BigInt(config.sweepSeedCount) > (1n << 64n)) {
+        showToast('Enter a positive whole seed count and a valid full64 starting index');
+        return;
+      }
       // Start real sweep
       setLogs((prev) => [
         `Starting corrected v2 native sweep: ${config.sweepSeedCount.toLocaleString()} inputs, B=${config.maxMisses}, ${config.openmpThreads} threads...`,
@@ -186,6 +192,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           count: config.sweepSeedCount,
+          startIndex: config.startIndex,
           threads: config.openmpThreads,
           batchSize: config.batchSize,
           maxMisses: config.maxMisses,
@@ -233,6 +240,25 @@ function App() {
         });
     }
   }, [telemetry.status, config, showToast]);
+
+  const handleResumeSweep = useCallback(async (runId: string) => {
+    try {
+      const response = await fetch('/api/sweep/resume', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ runId }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || 'Resume failed');
+      setDataMode('live');
+      setCandidates([]);
+      setSelectedCandidate(null);
+      setTelemetry((prev) => ({ ...prev, status: 'running' }));
+      setLogs((prev) => [`Resuming saved sweep ${runId}`, ...prev]);
+      showToast('Saved sweep resumed');
+    } catch (error) {
+      showToast(`Resume failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }, [showToast]);
 
   const handleExport = () => {
     const dataStr =
@@ -283,6 +309,8 @@ function App() {
           onChangeConfig={setConfig}
           logs={logs}
           onClearLogs={() => setLogs([])}
+          onResumeSweep={handleResumeSweep}
+          sweepRunning={telemetry.status === 'running'}
         />
 
         {/* Center: Interactive Pan/Zoom Map Canvas */}

@@ -105,3 +105,98 @@ def test_invalid_json_http_has_no_process_or_run(monkeypatch,tmp_path):
         connection.close()
     finally:
         httpd.shutdown();httpd.server_close();thread.join(timeout=5)
+
+
+def test_large_range_preserves_exact_start_and_rejects_invalid_bounds(monkeypatch,tmp_path):
+    monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
+    calls=[]
+    monkeypatch.setattr(server.subprocess,'Popen',lambda cmd,**kwargs:(calls.append(cmd),FakeProcess())[1])
+    manager=server.SweepManager()
+    result=manager.start_sweep(count=100001,start_index='18446744073709451615')
+    assert result['ok']
+    manager.monitor_thread.join(timeout=5)
+    assert calls[0][calls[0].index('--start-index')+1]=='18446744073709451615'
+    assert calls[0][calls[0].index('--count')+1]=='100001'
+    assert manager.get_status()['startIndex']=='18446744073709451615'
+    for controls in ({'start_index':'18446744073709551616'}, {'start_index':'-1'},
+                     {'start_index':True}, {'start_index':'1.0'}, {'count':2**53},
+                     {'start_index':str(2**64-1),'count':2}, {'threads':35}):
+        assert not manager.start_sweep(**controls)['ok']
+    assert len(calls)==1
+
+
+def make_saved_web_run(tmp_path):
+    import sqlite3
+    from seed_search.realm.cli import make_identity
+    from seed_search.realm.config import two_group_blueprint_config
+    from seed_search.realm.native_batch import Prototype
+    name='web-sweep-20261013-120000-12345678'
+    directory=tmp_path/name;directory.mkdir()
+    cfg=two_group_blueprint_config()
+    identity=make_identity(cfg,10,9007199254740993)
+    identity.update(execution='native',native=Prototype(server.DEFAULT_NATIVE_BUILD,cfg).identity,
+                    native_build=str(server.DEFAULT_NATIVE_BUILD.resolve()),
+                    evaluator='seed_search.realm.native_batch:run_native_scan',
+                    retention={'mode':'survivors','max_misses':2})
+    with sqlite3.connect(directory/'realm.sqlite') as conn:
+        conn.execute('CREATE TABLE meta(key TEXT PRIMARY KEY,value TEXT)')
+        conn.executemany('INSERT INTO meta VALUES (?,?)',[(k,json.dumps(v)) for k,v in
+            {'identity':identity,'completed_seeds':4,'native_pipeline':{'threads':34}}.items()])
+    return name,directory
+
+
+def test_resume_uses_saved_identity_and_new_durable_rate(monkeypatch,tmp_path):
+    monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
+    name,directory=make_saved_web_run(tmp_path)
+    calls=[]
+    monkeypatch.setattr(server.subprocess,'Popen',lambda cmd,**kwargs:(calls.append(cmd),FakeProcess())[1])
+    manager=server.SweepManager()
+    assert manager.list_runs()=={'runs':[{'runId':name,'completedSeeds':4,'targetCount':10,
+        'startIndex':'9007199254740993','resumable':True}]}
+    result=manager.resume_sweep(name)
+    assert result['ok']
+    manager.monitor_thread.join(timeout=5)
+    assert 'resume' in calls[0] and '--count' not in calls[0] and '--start-index' not in calls[0]
+    assert calls[0][calls[0].index('--run')+1]==str(directory)
+    assert manager.scanned_count==4 and manager.resume_baseline==4
+    assert manager.seeds_per_sec==0
+
+
+def test_resume_rejects_traversal_symlinks_and_identity_drift(monkeypatch,tmp_path):
+    import sqlite3
+    monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
+    name,directory=make_saved_web_run(tmp_path)
+    calls=[]
+    monkeypatch.setattr(server.subprocess,'Popen',lambda *args,**kwargs:calls.append(args))
+    manager=server.SweepManager()
+    for value in ('../'+name,str(directory),None,'../../etc/passwd'):
+        assert not manager.resume_sweep(value)['ok']
+    alias=tmp_path/'web-sweep-20261013-120001-12345678';alias.symlink_to(directory,target_is_directory=True)
+    assert not manager.resume_sweep(alias.name)['ok']
+    with sqlite3.connect(directory/'realm.sqlite') as conn:
+        identity=json.loads(conn.execute("SELECT value FROM meta WHERE key='identity'").fetchone()[0])
+        identity['native']['extension_sha256']='changed'
+        conn.execute("UPDATE meta SET value=? WHERE key='identity'",(json.dumps(identity),))
+    assert not manager.resume_sweep(name)['ok']
+    assert manager.list_runs()=={'runs':[]}
+    assert calls==[]
+
+
+def test_resume_refuses_running_process(monkeypatch,tmp_path):
+    monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
+    manager=server.SweepManager()
+    class ActiveProcess:
+        def poll(self):return None
+    manager.process=ActiveProcess();manager.run_id='active'
+    result=manager.resume_sweep('web-sweep-20261013-120000-12345678')
+    assert not result['ok'] and result['runId']=='active'
+
+
+def test_start_disk_gate_rejects_projected_oversize_without_spawning(monkeypatch,tmp_path):
+    monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
+    calls=[]
+    monkeypatch.setattr(server.subprocess,'Popen',lambda *args,**kwargs:calls.append(args))
+    manager=server.SweepManager()
+    result=manager.start_sweep(count=2**53-1)
+    assert not result['ok'] and 'disk budget' in result['error']
+    assert not calls and not list(tmp_path.iterdir())
