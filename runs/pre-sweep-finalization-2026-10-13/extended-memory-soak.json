@@ -1,0 +1,696 @@
+{
+  "event": {
+    "batches": 97,
+    "build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/final-portable",
+    "completed_batches": 97,
+    "extension_sha256": "b7e2420f1092cae903a5f02cc6646dabd039859182649d4686199befe8227b75",
+    "inputs": 49664,
+    "kind": "extended_memory_soak_with_bds_preflight",
+    "wall_seconds": 185.027814229019
+  },
+  "rss_after_free_range_bytes": [
+    64602112,
+    93310976
+  ],
+  "samples": [
+    {
+      "completed": 512,
+      "first_index": 3000000,
+      "native_seconds": 0.06513128499500453,
+      "retained": 1,
+      "rss_after_free_bytes": 64602112
+    },
+    {
+      "completed": 512,
+      "first_index": 3000512,
+      "native_seconds": 0.061694005969911814,
+      "retained": 1,
+      "rss_after_free_bytes": 69234688
+    },
+    {
+      "completed": 512,
+      "first_index": 3001024,
+      "native_seconds": 0.06000291800592095,
+      "retained": 1,
+      "rss_after_free_bytes": 70602752
+    },
+    {
+      "completed": 512,
+      "first_index": 3001536,
+      "native_seconds": 0.06158773903734982,
+      "retained": 1,
+      "rss_after_free_bytes": 71630848
+    },
+    {
+      "completed": 512,
+      "first_index": 3002048,
+      "native_seconds": 0.06320611306000501,
+      "retained": 2,
+      "rss_after_free_bytes": 73981952
+    },
+    {
+      "completed": 512,
+      "first_index": 3002560,
+      "native_seconds": 0.0624367370037362,
+      "retained": 1,
+      "rss_after_free_bytes": 74801152
+    },
+    {
+      "completed": 512,
+      "first_index": 3003072,
+      "native_seconds": 0.0629924189997837,
+      "retained": 1,
+      "rss_after_free_bytes": 75501568
+    },
+    {
+      "completed": 512,
+      "first_index": 3003584,
+      "native_seconds": 0.07259300001896918,
+      "retained": 1,
+      "rss_after_free_bytes": 76288000
+    },
+    {
+      "completed": 512,
+      "first_index": 3004096,
+      "native_seconds": 0.061790757928974926,
+      "retained": 1,
+      "rss_after_free_bytes": 76877824
+    },
+    {
+      "completed": 512,
+      "first_index": 3004608,
+      "native_seconds": 0.06533164996653795,
+      "retained": 1,
+      "rss_after_free_bytes": 77881344
+    },
+    {
+      "completed": 512,
+      "first_index": 3005120,
+      "native_seconds": 0.06481651403009892,
+      "retained": 1,
+      "rss_after_free_bytes": 78479360
+    },
+    {
+      "completed": 512,
+      "first_index": 3005632,
+      "native_seconds": 0.06005718500819057,
+      "retained": 1,
+      "rss_after_free_bytes": 78872576
+    },
+    {
+      "completed": 512,
+      "first_index": 3006144,
+      "native_seconds": 0.06142059003468603,
+      "retained": 1,
+      "rss_after_free_bytes": 79224832
+    },
+    {
+      "completed": 512,
+      "first_index": 3006656,
+      "native_seconds": 0.0628964320058003,
+      "retained": 1,
+      "rss_after_free_bytes": 80498688
+    },
+    {
+      "completed": 512,
+      "first_index": 3007168,
+      "native_seconds": 0.0634886430343613,
+      "retained": 1,
+      "rss_after_free_bytes": 81297408
+    },
+    {
+      "completed": 512,
+      "first_index": 3007680,
+      "native_seconds": 0.06096522288862616,
+      "retained": 1,
+      "rss_after_free_bytes": 81657856
+    },
+    {
+      "completed": 512,
+      "first_index": 3008192,
+      "native_seconds": 0.060380710987374187,
+      "retained": 1,
+      "rss_after_free_bytes": 82075648
+    },
+    {
+      "completed": 512,
+      "first_index": 3008704,
+      "native_seconds": 0.05977502011228353,
+      "retained": 1,
+      "rss_after_free_bytes": 82333696
+    },
+    {
+      "completed": 512,
+      "first_index": 3009216,
+      "native_seconds": 0.061406349996104836,
+      "retained": 1,
+      "rss_after_free_bytes": 82636800
+    },
+    {
+      "completed": 512,
+      "first_index": 3009728,
+      "native_seconds": 0.05961733893491328,
+      "retained": 1,
+      "rss_after_free_bytes": 83210240
+    },
+    {
+      "completed": 512,
+      "first_index": 3010240,
+      "native_seconds": 0.060755874030292034,
+      "retained": 1,
+      "rss_after_free_bytes": 83542016
+    },
+    {
+      "completed": 512,
+      "first_index": 3010752,
+      "native_seconds": 0.06006912305019796,
+      "retained": 1,
+      "rss_after_free_bytes": 84041728
+    },
+    {
+      "completed": 512,
+      "first_index": 3011264,
+      "native_seconds": 0.05994622700382024,
+      "retained": 1,
+      "rss_after_free_bytes": 84541440
+    },
+    {
+      "completed": 512,
+      "first_index": 3011776,
+      "native_seconds": 0.06068677897565067,
+      "retained": 1,
+      "rss_after_free_bytes": 84766720
+    },
+    {
+      "completed": 512,
+      "first_index": 3012288,
+      "native_seconds": 0.059900623047724366,
+      "retained": 1,
+      "rss_after_free_bytes": 85168128
+    },
+    {
+      "completed": 512,
+      "first_index": 3012800,
+      "native_seconds": 0.062827875954099,
+      "retained": 1,
+      "rss_after_free_bytes": 85237760
+    },
+    {
+      "completed": 512,
+      "first_index": 3013312,
+      "native_seconds": 0.0612384780542925,
+      "retained": 1,
+      "rss_after_free_bytes": 85389312
+    },
+    {
+      "completed": 512,
+      "first_index": 3013824,
+      "native_seconds": 0.061711390037089586,
+      "retained": 1,
+      "rss_after_free_bytes": 85618688
+    },
+    {
+      "completed": 512,
+      "first_index": 3014336,
+      "native_seconds": 0.060860130935907364,
+      "retained": 1,
+      "rss_after_free_bytes": 85827584
+    },
+    {
+      "completed": 512,
+      "first_index": 3014848,
+      "native_seconds": 0.059178792987950146,
+      "retained": 1,
+      "rss_after_free_bytes": 85889024
+    },
+    {
+      "completed": 512,
+      "first_index": 3015360,
+      "native_seconds": 0.06018077104818076,
+      "retained": 1,
+      "rss_after_free_bytes": 86155264
+    },
+    {
+      "completed": 512,
+      "first_index": 3015872,
+      "native_seconds": 0.059861402958631516,
+      "retained": 1,
+      "rss_after_free_bytes": 86294528
+    },
+    {
+      "completed": 512,
+      "first_index": 3016384,
+      "native_seconds": 0.06004802405368537,
+      "retained": 1,
+      "rss_after_free_bytes": 86364160
+    },
+    {
+      "completed": 512,
+      "first_index": 3016896,
+      "native_seconds": 0.06313790706917644,
+      "retained": 1,
+      "rss_after_free_bytes": 86515712
+    },
+    {
+      "completed": 512,
+      "first_index": 3017408,
+      "native_seconds": 0.06028512306511402,
+      "retained": 1,
+      "rss_after_free_bytes": 86888448
+    },
+    {
+      "completed": 512,
+      "first_index": 3017920,
+      "native_seconds": 0.0655002259882167,
+      "retained": 1,
+      "rss_after_free_bytes": 87035904
+    },
+    {
+      "completed": 512,
+      "first_index": 3018432,
+      "native_seconds": 0.060244078980758786,
+      "retained": 1,
+      "rss_after_free_bytes": 87240704
+    },
+    {
+      "completed": 512,
+      "first_index": 3018944,
+      "native_seconds": 0.05971833202056587,
+      "retained": 1,
+      "rss_after_free_bytes": 87363584
+    },
+    {
+      "completed": 512,
+      "first_index": 3019456,
+      "native_seconds": 0.06701832194812596,
+      "retained": 1,
+      "rss_after_free_bytes": 87932928
+    },
+    {
+      "completed": 512,
+      "first_index": 3019968,
+      "native_seconds": 0.060590474982745945,
+      "retained": 1,
+      "rss_after_free_bytes": 88190976
+    },
+    {
+      "completed": 512,
+      "first_index": 3020480,
+      "native_seconds": 0.06035636900924146,
+      "retained": 1,
+      "rss_after_free_bytes": 88248320
+    },
+    {
+      "completed": 512,
+      "first_index": 3020992,
+      "native_seconds": 0.06262460700236261,
+      "retained": 1,
+      "rss_after_free_bytes": 88461312
+    },
+    {
+      "completed": 512,
+      "first_index": 3021504,
+      "native_seconds": 0.05938163597602397,
+      "retained": 1,
+      "rss_after_free_bytes": 88580096
+    },
+    {
+      "completed": 512,
+      "first_index": 3022016,
+      "native_seconds": 0.061419648001901805,
+      "retained": 1,
+      "rss_after_free_bytes": 88694784
+    },
+    {
+      "completed": 512,
+      "first_index": 3022528,
+      "native_seconds": 0.06095874204766005,
+      "retained": 1,
+      "rss_after_free_bytes": 88776704
+    },
+    {
+      "completed": 512,
+      "first_index": 3023040,
+      "native_seconds": 0.059569657081738114,
+      "retained": 1,
+      "rss_after_free_bytes": 88887296
+    },
+    {
+      "completed": 512,
+      "first_index": 3023552,
+      "native_seconds": 0.06197614304255694,
+      "retained": 1,
+      "rss_after_free_bytes": 88911872
+    },
+    {
+      "completed": 512,
+      "first_index": 3024064,
+      "native_seconds": 0.06010638293810189,
+      "retained": 1,
+      "rss_after_free_bytes": 89006080
+    },
+    {
+      "completed": 512,
+      "first_index": 3024576,
+      "native_seconds": 0.060269245062954724,
+      "retained": 1,
+      "rss_after_free_bytes": 89018368
+    },
+    {
+      "completed": 512,
+      "first_index": 3025088,
+      "native_seconds": 0.060824795975349844,
+      "retained": 1,
+      "rss_after_free_bytes": 89026560
+    },
+    {
+      "completed": 512,
+      "first_index": 3025600,
+      "native_seconds": 0.061740359058603644,
+      "retained": 1,
+      "rss_after_free_bytes": 89272320
+    },
+    {
+      "completed": 512,
+      "first_index": 3026112,
+      "native_seconds": 0.06126258289441466,
+      "retained": 1,
+      "rss_after_free_bytes": 89292800
+    },
+    {
+      "completed": 512,
+      "first_index": 3026624,
+      "native_seconds": 0.05994866194669157,
+      "retained": 1,
+      "rss_after_free_bytes": 89493504
+    },
+    {
+      "completed": 512,
+      "first_index": 3027136,
+      "native_seconds": 0.059389183996245265,
+      "retained": 1,
+      "rss_after_free_bytes": 89735168
+    },
+    {
+      "completed": 512,
+      "first_index": 3027648,
+      "native_seconds": 0.062232058960944414,
+      "retained": 1,
+      "rss_after_free_bytes": 89825280
+    },
+    {
+      "completed": 512,
+      "first_index": 3028160,
+      "native_seconds": 0.060651102918200195,
+      "retained": 1,
+      "rss_after_free_bytes": 89874432
+    },
+    {
+      "completed": 512,
+      "first_index": 3028672,
+      "native_seconds": 0.060208181967027485,
+      "retained": 1,
+      "rss_after_free_bytes": 89956352
+    },
+    {
+      "completed": 512,
+      "first_index": 3029184,
+      "native_seconds": 0.060175435966812074,
+      "retained": 1,
+      "rss_after_free_bytes": 89956352
+    },
+    {
+      "completed": 512,
+      "first_index": 3029696,
+      "native_seconds": 0.06018244195729494,
+      "retained": 1,
+      "rss_after_free_bytes": 89968640
+    },
+    {
+      "completed": 512,
+      "first_index": 3030208,
+      "native_seconds": 0.06001955096144229,
+      "retained": 1,
+      "rss_after_free_bytes": 90148864
+    },
+    {
+      "completed": 512,
+      "first_index": 3030720,
+      "native_seconds": 0.05922257201746106,
+      "retained": 1,
+      "rss_after_free_bytes": 90169344
+    },
+    {
+      "completed": 512,
+      "first_index": 3031232,
+      "native_seconds": 0.062220384017564356,
+      "retained": 1,
+      "rss_after_free_bytes": 90243072
+    },
+    {
+      "completed": 512,
+      "first_index": 3031744,
+      "native_seconds": 0.0601987560512498,
+      "retained": 1,
+      "rss_after_free_bytes": 90386432
+    },
+    {
+      "completed": 512,
+      "first_index": 3032256,
+      "native_seconds": 0.06028327706735581,
+      "retained": 1,
+      "rss_after_free_bytes": 90472448
+    },
+    {
+      "completed": 512,
+      "first_index": 3032768,
+      "native_seconds": 0.06295508798211813,
+      "retained": 1,
+      "rss_after_free_bytes": 90734592
+    },
+    {
+      "completed": 512,
+      "first_index": 3033280,
+      "native_seconds": 0.060299244010820985,
+      "retained": 1,
+      "rss_after_free_bytes": 90902528
+    },
+    {
+      "completed": 512,
+      "first_index": 3033792,
+      "native_seconds": 0.06053047196473926,
+      "retained": 1,
+      "rss_after_free_bytes": 90951680
+    },
+    {
+      "completed": 512,
+      "first_index": 3034304,
+      "native_seconds": 0.059773185988888144,
+      "retained": 1,
+      "rss_after_free_bytes": 90951680
+    },
+    {
+      "completed": 512,
+      "first_index": 3034816,
+      "native_seconds": 0.060451549012213945,
+      "retained": 1,
+      "rss_after_free_bytes": 90951680
+    },
+    {
+      "completed": 512,
+      "first_index": 3035328,
+      "native_seconds": 0.05928742804098874,
+      "retained": 1,
+      "rss_after_free_bytes": 91123712
+    },
+    {
+      "completed": 512,
+      "first_index": 3035840,
+      "native_seconds": 0.06050383602268994,
+      "retained": 1,
+      "rss_after_free_bytes": 91140096
+    },
+    {
+      "completed": 512,
+      "first_index": 3036352,
+      "native_seconds": 0.06241251004394144,
+      "retained": 1,
+      "rss_after_free_bytes": 91303936
+    },
+    {
+      "completed": 512,
+      "first_index": 3036864,
+      "native_seconds": 0.059338151942938566,
+      "retained": 1,
+      "rss_after_free_bytes": 91365376
+    },
+    {
+      "completed": 512,
+      "first_index": 3037376,
+      "native_seconds": 0.05978345696348697,
+      "retained": 1,
+      "rss_after_free_bytes": 91504640
+    },
+    {
+      "completed": 512,
+      "first_index": 3037888,
+      "native_seconds": 0.06303378101438284,
+      "retained": 1,
+      "rss_after_free_bytes": 91545600
+    },
+    {
+      "completed": 512,
+      "first_index": 3038400,
+      "native_seconds": 0.06155365100130439,
+      "retained": 1,
+      "rss_after_free_bytes": 91742208
+    },
+    {
+      "completed": 512,
+      "first_index": 3038912,
+      "native_seconds": 0.061117080971598625,
+      "retained": 1,
+      "rss_after_free_bytes": 91746304
+    },
+    {
+      "completed": 512,
+      "first_index": 3039424,
+      "native_seconds": 0.05962112103588879,
+      "retained": 1,
+      "rss_after_free_bytes": 91750400
+    },
+    {
+      "completed": 512,
+      "first_index": 3039936,
+      "native_seconds": 0.0600083019817248,
+      "retained": 1,
+      "rss_after_free_bytes": 91938816
+    },
+    {
+      "completed": 512,
+      "first_index": 3040448,
+      "native_seconds": 0.060418084962293506,
+      "retained": 1,
+      "rss_after_free_bytes": 92008448
+    },
+    {
+      "completed": 512,
+      "first_index": 3040960,
+      "native_seconds": 0.060549032990820706,
+      "retained": 1,
+      "rss_after_free_bytes": 92229632
+    },
+    {
+      "completed": 512,
+      "first_index": 3041472,
+      "native_seconds": 0.06436030194163322,
+      "retained": 1,
+      "rss_after_free_bytes": 92295168
+    },
+    {
+      "completed": 512,
+      "first_index": 3041984,
+      "native_seconds": 0.061030385084450245,
+      "retained": 1,
+      "rss_after_free_bytes": 92307456
+    },
+    {
+      "completed": 512,
+      "first_index": 3042496,
+      "native_seconds": 0.06156282895244658,
+      "retained": 1,
+      "rss_after_free_bytes": 92430336
+    },
+    {
+      "completed": 512,
+      "first_index": 3043008,
+      "native_seconds": 0.062098087975755334,
+      "retained": 1,
+      "rss_after_free_bytes": 92442624
+    },
+    {
+      "completed": 512,
+      "first_index": 3043520,
+      "native_seconds": 0.05977413000073284,
+      "retained": 1,
+      "rss_after_free_bytes": 92573696
+    },
+    {
+      "completed": 512,
+      "first_index": 3044032,
+      "native_seconds": 0.06007902603596449,
+      "retained": 1,
+      "rss_after_free_bytes": 92631040
+    },
+    {
+      "completed": 512,
+      "first_index": 3044544,
+      "native_seconds": 0.05982569698244333,
+      "retained": 1,
+      "rss_after_free_bytes": 92659712
+    },
+    {
+      "completed": 512,
+      "first_index": 3045056,
+      "native_seconds": 0.0634068000363186,
+      "retained": 1,
+      "rss_after_free_bytes": 92688384
+    },
+    {
+      "completed": 512,
+      "first_index": 3045568,
+      "native_seconds": 0.060167597024701536,
+      "retained": 1,
+      "rss_after_free_bytes": 92872704
+    },
+    {
+      "completed": 512,
+      "first_index": 3046080,
+      "native_seconds": 0.06076496699824929,
+      "retained": 1,
+      "rss_after_free_bytes": 92966912
+    },
+    {
+      "completed": 512,
+      "first_index": 3046592,
+      "native_seconds": 0.06006757903378457,
+      "retained": 1,
+      "rss_after_free_bytes": 93171712
+    },
+    {
+      "completed": 512,
+      "first_index": 3047104,
+      "native_seconds": 0.05960001109633595,
+      "retained": 1,
+      "rss_after_free_bytes": 93237248
+    },
+    {
+      "completed": 512,
+      "first_index": 3047616,
+      "native_seconds": 0.060093372012488544,
+      "retained": 1,
+      "rss_after_free_bytes": 93237248
+    },
+    {
+      "completed": 512,
+      "first_index": 3048128,
+      "native_seconds": 0.06068744300864637,
+      "retained": 1,
+      "rss_after_free_bytes": 93274112
+    },
+    {
+      "completed": 512,
+      "first_index": 3048640,
+      "native_seconds": 0.06540986197069287,
+      "retained": 1,
+      "rss_after_free_bytes": 93278208
+    },
+    {
+      "completed": 512,
+      "first_index": 3049152,
+      "native_seconds": 0.06267361203208566,
+      "retained": 1,
+      "rss_after_free_bytes": 93310976
+    }
+  ]
+}

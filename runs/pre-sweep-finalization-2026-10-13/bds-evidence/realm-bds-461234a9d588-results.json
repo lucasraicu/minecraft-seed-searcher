@@ -1,0 +1,5203 @@
+{
+  "name": "realm-bds-461234a9d588",
+  "seed": "8521796464527647971",
+  "tiles": [
+    {
+      "request": {
+        "id": "tile_0_0",
+        "x0": -16,
+        "z0": -16,
+        "side": 32,
+        "spacing": 8,
+        "tileSize": 32,
+        "batchSize": 16,
+        "method": "native_top"
+      },
+      "load": {
+        "id": "tile_0_0",
+        "loadMs": 1206,
+        "chunks": 4,
+        "fullyLoaded": true,
+        "players": 0,
+        "wallSeconds": 1.587922139908187
+      },
+      "scan": {
+        "id": "tile_0_0_scan",
+        "method": "compare",
+        "samples": 16,
+        "missing": 0,
+        "mismatches": 0,
+        "waterColumns": 0,
+        "waterKnownColumns": 16,
+        "waterUnknownColumns": 0,
+        "blockCalls": 4199,
+        "batches": 1,
+        "scanMs": 263,
+        "players": 0,
+        "wallSeconds": 0.5132954949513078
+      },
+      "stability": [
+        {
+          "changed_columns": 0,
+          "scan": {
+            "id": "tile_0_0_stable_0",
+            "method": "native_top",
+            "samples": 16,
+            "missing": 0,
+            "mismatches": 0,
+            "waterColumns": 0,
+            "waterKnownColumns": 16,
+            "waterUnknownColumns": 0,
+            "blockCalls": 178,
+            "batches": 1,
+            "scanMs": 11,
+            "players": 0,
+            "wallSeconds": 0.19359636004082859
+          }
+        },
+        {
+          "changed_columns": 0,
+          "scan": {
+            "id": "tile_0_0_stable_1",
+            "method": "native_top",
+            "samples": 16,
+            "missing": 0,
+            "mismatches": 0,
+            "waterColumns": 0,
+            "waterKnownColumns": 16,
+            "waterUnknownColumns": 0,
+            "blockCalls": 178,
+            "batches": 1,
+            "scanMs": 11,
+            "players": 0,
+            "wallSeconds": 0.1941900219535455
+          }
+        }
+      ],
+      "stable": true,
+      "markers": {
+        "id": "tile_0_0",
+        "changed": 4,
+        "failed": 0,
+        "markerY": 319,
+        "restored": true,
+        "wallSeconds": 0.13831472990568727
+      },
+      "sky": {
+        "id": "tile_0_0",
+        "air": 4,
+        "nonAir": 0,
+        "wallSeconds": 0.14799762098118663
+      }
+    }
+  ],
+  "columns": [
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -16,
+      "z": -16,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 75,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 65,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 75,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 74,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 72,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:oak_leaves"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -16,
+        "z": -16,
+        "y": 66,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 66,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -16,
+          "y": 75,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 74,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 72,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 71,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 65,
+          "z": -16,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -8,
+      "z": -16,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 75,
+        "block": "minecraft:vine"
+      },
+      "ground": {
+        "y": 67,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 75,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 74,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 73,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 72,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 70,
+          "block": "minecraft:vine"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -8,
+        "z": -16,
+        "y": 68,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 68,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -8,
+          "y": 75,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 74,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 73,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 72,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 71,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 70,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 67,
+          "z": -16,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 0,
+      "z": -16,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 81,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 68,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 81,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 80,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 75,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 74,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 73,
+          "block": "minecraft:vine"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 0,
+        "z": -16,
+        "y": 69,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 69,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 0,
+          "y": 81,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 80,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 75,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 74,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 73,
+          "z": -16,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 4
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 68,
+          "z": -16,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 8,
+      "z": -16,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 77,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 69,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 77,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 76,
+          "block": "minecraft:oak_leaves"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 8,
+        "z": -16,
+        "y": 70,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 70,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 8,
+          "y": 77,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 69,
+          "z": -16,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -16,
+      "z": -8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 68,
+        "block": "minecraft:short_grass"
+      },
+      "ground": {
+        "y": 67,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 68,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -16,
+        "z": -8,
+        "y": 68,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 68,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -16,
+          "y": 68,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 67,
+          "z": -8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -8,
+      "z": -8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 77,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 68,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 77,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 76,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 75,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 74,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 73,
+          "block": "minecraft:oak_leaves"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -8,
+        "z": -8,
+        "y": 69,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 69,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -8,
+          "y": 77,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 76,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 75,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 74,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 73,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 68,
+          "z": -8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 0,
+      "z": -8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 91,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 70,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 91,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 90,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 89,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 85,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 0,
+        "z": -8,
+        "y": 71,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 71,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 0,
+          "y": 91,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 90,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 89,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 85,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 71,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 70,
+          "z": -8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 8,
+      "z": -8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 76,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 70,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 76,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 75,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 8,
+        "z": -8,
+        "y": 71,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 71,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 8,
+          "y": 76,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 75,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 71,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 70,
+          "z": -8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -16,
+      "z": 0,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 72,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 67,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 72,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 68,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -16,
+        "z": 0,
+        "y": 68,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 68,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -16,
+          "y": 72,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 71,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 68,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 67,
+          "z": 0,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -8,
+      "z": 0,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 89,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 69,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 89,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 88,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 70,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -8,
+        "z": 0,
+        "y": 70,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 70,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -8,
+          "y": 89,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 88,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 70,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 69,
+          "z": 0,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 0,
+      "z": 0,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 88,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 70,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 88,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 0,
+        "z": 0,
+        "y": 71,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 71,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 0,
+          "y": 88,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 71,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 70,
+          "z": 0,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 8,
+      "z": 0,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 73,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 71,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 73,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 72,
+          "block": "minecraft:oak_leaves"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 8,
+        "z": 0,
+        "y": 72,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 72,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 8,
+          "y": 73,
+          "z": 0,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 72,
+          "z": 0,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 71,
+          "z": 0,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -16,
+      "z": 8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 72,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 67,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 72,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 68,
+          "block": "minecraft:short_grass"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -16,
+        "z": 8,
+        "y": 68,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 68,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -16,
+          "y": 72,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 68,
+          "z": 8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -16,
+          "y": 67,
+          "z": 8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": -8,
+      "z": 8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 72,
+        "block": "minecraft:vine"
+      },
+      "ground": {
+        "y": 70,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 72,
+          "block": "minecraft:vine"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:vine"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": -8,
+        "z": 8,
+        "y": 71,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 71,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": -8,
+          "y": 72,
+          "z": 8,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 4
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 4
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": -8,
+          "y": 70,
+          "z": 8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 0,
+      "z": 8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 76,
+        "block": "minecraft:oak_leaves"
+      },
+      "ground": {
+        "y": 70,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 76,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 75,
+          "block": "minecraft:oak_leaves"
+        },
+        {
+          "y": 71,
+          "block": "minecraft:fern"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 0,
+        "z": 8,
+        "y": 71,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 71,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 0,
+          "y": 76,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 75,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:fern",
+          "states": {
+            "tall_grass_type": "fern"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 0,
+          "y": 70,
+          "z": 8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    },
+    {
+      "id": "tile_0_0_stable_1",
+      "x": 8,
+      "z": 8,
+      "policy": "actual-column-v2",
+      "top": {
+        "y": 99,
+        "block": "minecraft:jungle_leaves"
+      },
+      "ground": {
+        "y": 71,
+        "block": "minecraft:grass_block",
+        "classification": "terrain_material_candidate",
+        "provenance": "unverified"
+      },
+      "groundStatus": "observed_support_structure_provenance_unverified",
+      "substrateStatus": "observed_material_provenance_unverified",
+      "cover": [],
+      "discarded": [
+        {
+          "y": 99,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 79,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 78,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 77,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 76,
+          "block": "minecraft:jungle_leaves"
+        },
+        {
+          "y": 73,
+          "block": "minecraft:vine"
+        }
+      ],
+      "waterloggedCells": [],
+      "waterloggingErrors": [],
+      "waterTop": null,
+      "waterBottom": null,
+      "waterDepth": 0,
+      "waterKnown": true,
+      "waterStatus": "observed_open_water_cells",
+      "waterDepthStatus": "contiguous_observed_block_cells",
+      "waterSurface": {
+        "blockY": null,
+        "permutationStates": null,
+        "continuousHeight": null,
+        "status": "no_observed_open_water"
+      },
+      "waterPresenceStatus": "observed_to_support",
+      "waterPresent": false,
+      "surfaceBiome": {
+        "x": 8,
+        "z": 8,
+        "y": 72,
+        "name": "minecraft:jungle",
+        "status": "OBSERVED",
+        "source": "official BDS 1.26.52.3 Script API 2.10.0 Dimension.getBiome",
+        "queryPolicy": "one_cell_above_observed_exposed_support_or_water_including_snow_cover",
+        "canopyRule": "ignore_filtered_vegetation",
+        "error": null
+      },
+      "biome": "minecraft:jungle",
+      "biomeQueryY": 72,
+      "biomeError": null,
+      "probes": [
+        {
+          "x": 8,
+          "y": 99,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 79,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 78,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 77,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 73,
+          "z": 8,
+          "block": "minecraft:vine",
+          "states": {
+            "vine_direction_bits": 1
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        {
+          "x": 8,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:grass_block",
+          "states": {},
+          "statesError": null,
+          "waterlogged": false
+        }
+      ]
+    }
+  ],
+  "status": "PASS",
+  "disk_preflight": {
+    "host": {
+      "run_disk_limit_bytes": 137438953472,
+      "free_disk_reserve_bytes": 17179869184,
+      "projected_bytes_per_seed": 65536,
+      "run_bytes": 0,
+      "free_bytes": 614123909120,
+      "additional_bytes": 1073741824,
+      "projected_run_bytes": 0,
+      "bytes_per_seed_estimate": 65536,
+      "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded",
+      "sampled_at": 1791896547.729718
+    },
+    "docker_free_bytes": 918557863936,
+    "request_growth_reservation_bytes": 1073741824
+  },
+  "start_seconds": 2.9394115690374747,
+  "save_seconds": 0.3210041490383446,
+  "resources": {
+    "peakMemoryBytes": 305934336,
+    "cpuStat": [
+      "usage_usec 8294483",
+      "user_usec 7055986",
+      "system_usec 1238496",
+      "nice_usec 0",
+      "nr_periods 80",
+      "nr_throttled 0",
+      "throttled_usec 0",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  "cleanup": {
+    "actions": [
+      {
+        "action": "console_stop",
+        "ok": true
+      },
+      {
+        "action": "close_console_io",
+        "ok": true
+      }
+    ],
+    "graceful": true,
+    "stopped": true,
+    "removed": false,
+    "interrupted": false,
+    "state": {
+      "exists": true,
+      "running": false,
+      "stopped": true,
+      "exit_code": 0
+    },
+    "exit_code": 0,
+    "clean_shutdown": true,
+    "io_errors": []
+  },
+  "exit_code": 0,
+  "coverage": {
+    "seed": "8521796464527647971",
+    "regions": [
+      {
+        "id": "tile_0_0",
+        "expectedChunks": 4,
+        "presentChunks": 4,
+        "withSubchunks": 4,
+        "finalized": 4,
+        "missing": []
+      }
+    ],
+    "readerIncludingContainerSeconds": 1.7118209399050102
+  },
+  "saved_blocks": {
+    "probes": 71,
+    "matches": 26,
+    "unknownCount": 0,
+    "mismatches": [
+      {
+        "probe": {
+          "x": -16,
+          "y": 75,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 74,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 72,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 71,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 81,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 80,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 75,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 74,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 77,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 76,
+          "z": -16,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 68,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 77,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 76,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 75,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 74,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 73,
+          "z": -8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 91,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 90,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 89,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 85,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 71,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 76,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 75,
+          "z": -8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 71,
+          "z": -8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 72,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 71,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 68,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 89,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 88,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -8,
+          "y": 70,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 88,
+          "z": 0,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 71,
+          "z": 0,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 73,
+          "z": 0,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 72,
+          "z": 0,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 72,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": -16,
+          "y": 68,
+          "z": 8,
+          "block": "minecraft:short_grass",
+          "states": {
+            "tall_grass_type": "default"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:short_grass"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:short_grass",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 76,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 75,
+          "z": 8,
+          "block": "minecraft:oak_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "oak"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:oak_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 0,
+          "y": 71,
+          "z": 8,
+          "block": "minecraft:fern",
+          "states": {
+            "tall_grass_type": "fern"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:fern"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:fern",
+            "states": {},
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 99,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 79,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 78,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 77,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      },
+      {
+        "probe": {
+          "x": 8,
+          "y": 76,
+          "z": 8,
+          "block": "minecraft:jungle_leaves",
+          "states": {
+            "update_bit": false,
+            "persistent_bit": false,
+            "old_leaf_type": "jungle"
+          },
+          "statesError": null,
+          "waterlogged": false
+        },
+        "savedLayers": [
+          "minecraft:jungle_leaves"
+        ],
+        "savedEntries": [
+          {
+            "name": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            },
+            "statesError": null
+          }
+        ]
+      }
+    ],
+    "unknown": [],
+    "overlayWaterProbes": 0,
+    "overlayCheckedProbes": 71,
+    "overlayMatchedProbes": 71,
+    "stateCheckedProbes": 71,
+    "stateMatchedProbes": 26,
+    "stateUnknownProbes": 0,
+    "semantic_validation": {
+      "policy": "pinned_saved_palette_resolution_v1",
+      "source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve",
+      "identity": {
+        "edition": "Bedrock",
+        "bds_version": "1.26.52.3",
+        "script_api": "2.10.0",
+        "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+        "server_zip_sha256": "f6348d84fa714d04ca194f207e89453ca6bba0a1359396475271a52a150471c6",
+        "runtime_allocation": {
+          "cpus": 4,
+          "memory_gib": 6,
+          "published_ports": []
+        },
+        "world_settings": {
+          "server-name": "BDS Verification POC",
+          "gamemode": "creative",
+          "force-gamemode": "false",
+          "difficulty": "peaceful",
+          "allow-cheats": "true",
+          "max-players": "1",
+          "online-mode": "true",
+          "allow-list": "true",
+          "server-port": "19132",
+          "server-portv6": "19133",
+          "transport": "nethernet",
+          "enable-lan-visibility": "false",
+          "view-distance": "8",
+          "tick-distance": "4",
+          "player-idle-timeout": "30",
+          "max-threads": "4",
+          "level-name": "verification_poc",
+          "default-player-permission-level": "member",
+          "texturepack-required": "false",
+          "content-log-file-enabled": "true",
+          "content-log-console-output-enabled": "true",
+          "content-log-level": "info",
+          "compression-threshold": "1",
+          "compression-algorithm": "zlib",
+          "server-authoritative-movement-strict": "false",
+          "server-authoritative-dismount-strict": "false",
+          "server-authoritative-entity-interactions-strict": "false",
+          "player-position-acceptance-threshold": "0.5",
+          "player-movement-action-direction-threshold": "0.85",
+          "server-authoritative-block-breaking-pick-range-scalar": "1.5",
+          "chat-restriction": "None",
+          "disable-player-interaction": "false",
+          "client-side-chunk-generation-enabled": "true",
+          "block-network-ids-are-hashes": "true",
+          "disable-persona": "false",
+          "disable-custom-skins": "false",
+          "server-build-radius-ratio": "Disabled",
+          "allow-outbound-script-debugging": "false",
+          "allow-inbound-script-debugging": "false",
+          "script-debugger-auto-attach": "disabled"
+        },
+        "tools_sha256": {
+          "main.js": "bb262add4e9e70226a8618143b66c57ca2eebfbca7a110cd8dc90f59115d3770",
+          "column_policy.js": "2918f5b18d00e1b9eac1bffe5b25611a727cfe1f5832870315ffcd7d173eb1c0",
+          "fixture_policy.js": "c3e706b9eef2fa3b0f727e5f63b2315da7d0859224e23dbddea26f25c10c5cb0",
+          "manifest.json": "e61fce23c4216d00be9923efa94747cbdd9f68f645027c24de5302ac5179654e",
+          "poc-server.properties": "bba5387a7e5461d98dfedb40aadd9726b21861e6a1e5623804f8e45e0807a332",
+          "world_behavior_packs.json": "a349a61a1e812b2b5fd647a6e9194da6e1986081976c27df5ad4679374e4a0b8",
+          "entrypoint.sh": "aabcce467d0fda2ad75378cf9ffc7ed32d24718c3b949fa0c1a28b2524302c4d",
+          "probe_tools.py": "5c1896a4e7742f5c98e42e8714408a19e66fc9cd66ca6600f9473f263245e28f",
+          "poc_control.py": "aaad55225a9fba8151604c4791f897533df14ac8f7b53089edc4a1dd615a6927",
+          "snapshot_reader.py": "f953f2d90d939214b84b3f11e719e99a47e13e0d15dae49eef34573836900bc7",
+          "compare_saved_blocks.py": "46d12a075135516b9b77deaa469af8e370ce0501206c06088ad1863dcedaf1c0",
+          "verification.py": "066d8159c3682c70af69d01256da17af0cfddefe331ae7a112a8dfbaed3609b3",
+          "raster.py": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc"
+        },
+        "persist_snapshot": true,
+        "compare_reference": true
+      },
+      "container_name": "realm-bds-461234a9d588",
+      "same_container_restart": true,
+      "snapshot_copied_before_restart": true,
+      "snapshot_path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/pre-sweep-finalization-2026-10-13/bds-evidence/realm-bds-461234a9d588-snapshot",
+      "cases": [
+        {
+          "mismatch_index": 0,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 1,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 2,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 3,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 4,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 5,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 6,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 7,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 8,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 9,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 10,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 11,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 12,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 13,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 14,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 15,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 16,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 17,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 18,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 19,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 20,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 21,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 22,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 23,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 24,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 25,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 26,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 27,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 28,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 29,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 30,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 31,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 32,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 33,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 34,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 35,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 36,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:short_grass",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:short_grass",
+            "states": {
+              "tall_grass_type": "default"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:short_grass",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:short_grass",
+              "states": {
+                "tall_grass_type": "default"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 37,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 38,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:oak_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "oak"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:oak_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "oak"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 39,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:fern",
+            "states": {}
+          },
+          "expected_api": {
+            "block": "minecraft:fern",
+            "states": {
+              "tall_grass_type": "fern"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:fern",
+              "states": {}
+            },
+            "resolved": {
+              "block": "minecraft:fern",
+              "states": {
+                "tall_grass_type": "fern"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 40,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 41,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 42,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 43,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        },
+        {
+          "mismatch_index": 44,
+          "status": "RUNTIME_PROVEN",
+          "reason": null,
+          "saved_palette": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "persistent_bit": 0,
+              "update_bit": 0
+            }
+          },
+          "expected_api": {
+            "block": "minecraft:jungle_leaves",
+            "states": {
+              "update_bit": false,
+              "persistent_bit": false,
+              "old_leaf_type": "jungle"
+            }
+          },
+          "response": {
+            "requested": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "persistent_bit": 0,
+                "update_bit": 0
+              }
+            },
+            "resolved": {
+              "block": "minecraft:jungle_leaves",
+              "states": {
+                "update_bit": false,
+                "persistent_bit": false,
+                "old_leaf_type": "jungle"
+              }
+            },
+            "status": "RESOLVED",
+            "error": null
+          },
+          "response_source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve"
+        }
+      ],
+      "batches": [
+        {
+          "id": "semantic_palette_0",
+          "source": "official BDS 1.26.52.3 Script API 2.10.0 BlockPermutation.resolve",
+          "results": [
+            {
+              "requested": {
+                "block": "minecraft:oak_leaves",
+                "states": {
+                  "persistent_bit": 0,
+                  "update_bit": 0
+                }
+              },
+              "resolved": {
+                "block": "minecraft:oak_leaves",
+                "states": {
+                  "update_bit": false,
+                  "persistent_bit": false,
+                  "old_leaf_type": "oak"
+                }
+              },
+              "status": "RESOLVED",
+              "error": null
+            },
+            {
+              "requested": {
+                "block": "minecraft:short_grass",
+                "states": {}
+              },
+              "resolved": {
+                "block": "minecraft:short_grass",
+                "states": {
+                  "tall_grass_type": "default"
+                }
+              },
+              "status": "RESOLVED",
+              "error": null
+            },
+            {
+              "requested": {
+                "block": "minecraft:jungle_leaves",
+                "states": {
+                  "persistent_bit": 0,
+                  "update_bit": 0
+                }
+              },
+              "resolved": {
+                "block": "minecraft:jungle_leaves",
+                "states": {
+                  "update_bit": false,
+                  "persistent_bit": false,
+                  "old_leaf_type": "jungle"
+                }
+              },
+              "status": "RESOLVED",
+              "error": null
+            },
+            {
+              "requested": {
+                "block": "minecraft:fern",
+                "states": {}
+              },
+              "resolved": {
+                "block": "minecraft:fern",
+                "states": {
+                  "tall_grass_type": "fern"
+                }
+              },
+              "status": "RESOLVED",
+              "error": null
+            }
+          ],
+          "wallSeconds": 0.33596572291571647
+        }
+      ],
+      "status": "PROVEN_ALL_STATE_MISMATCHES",
+      "palette_limit": 64,
+      "start_seconds": 2.7530153560219333,
+      "restart_cleanup": {
+        "actions": [
+          {
+            "action": "console_stop",
+            "ok": true
+          },
+          {
+            "action": "close_console_io",
+            "ok": true
+          }
+        ],
+        "graceful": true,
+        "stopped": true,
+        "removed": false,
+        "interrupted": false,
+        "state": {
+          "exists": true,
+          "running": false,
+          "stopped": true,
+          "exit_code": 0
+        },
+        "exit_code": 0,
+        "clean_shutdown": true,
+        "io_errors": []
+      }
+    },
+    "unresolved_mismatches": [],
+    "unresolved_mismatch_count": 0,
+    "semantic_match_count": 45
+  },
+  "complete_snapshot": true,
+  "stable": true
+}

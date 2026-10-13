@@ -353,8 +353,10 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                                          _seed,_validate_batch_seeds,process_tree_resources)
     from seed_search.realm.resources import disk_policy,disk_status
     from seed_search.realm.config import memory_budget_gib
-    if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=100000:
-        raise ValueError('Bounded native pipeline count must be 0–100,000')
+    if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=MASK64+1:
+        raise ValueError('Invalid finite native pipeline count')
+    if count>100000 and not (production and allow_prediction_scale):
+        raise ValueError('Native ranges above 100,000 require explicit production prediction scale')
     if isinstance(batch_size,bool) or not isinstance(batch_size,int) or not 1<=batch_size<=16384:
         raise ValueError('Invalid native batch size')
     if isinstance(threads,bool) or not isinstance(threads,int) or not 1<=threads<=34:
@@ -376,7 +378,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     identity={**identity,'retention':{'mode':retention,'max_misses':max_misses}}
     if production:_scale_gate(cfg,run,count,allow_prediction_scale)
     limits=disk_policy(cfg['search']);_,ceiling,reserve=memory_budget_gib(cfg['search'])
-    wall=time.perf_counter();cpu=time.process_time();service=Counter();latencies=[];pending=deque()
+    wall=time.perf_counter();cpu=time.process_time();service=Counter();latencies=deque(maxlen=4096);pending=deque()
     peak=0;batches=committed=dispatched=0;failure=None;interrupted=False;max_pending=0;max_payload=0
     pool=None;preparer=None;native_futures=set();last_monitor=0.;last_progress=0.
     def compute(first,end):
@@ -481,7 +483,8 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     return {'count':count,'newly_committed':committed,'wall_seconds':seconds,
             'input_seeds_per_second':committed/seconds,'process_cpu_seconds':time.process_time()-cpu,
             **dict(service),'batches':batches,'threads':threads,'batch_size':batch_size,
-            'batch_latencies_seconds':latencies,'max_outstanding_batches':max_pending,
+            'batch_latencies_seconds':list(latencies),'batch_latency_sample_scope':'last 4096 completed batches',
+            'max_outstanding_batches':max_pending,
             'max_prepared_owned_estimate_bytes':max_payload,'peak_process_tree_rss_bytes':peak,
             'status':status,'interrupted':interrupted,'encoded':encoded,'retention':retention,'max_misses':max_misses,
             'scope':('complete baseline evidence and FULL SQLite' if retention=='full' else 'C-filtered survivor/near-miss evidence and FULL SQLite range checkpoints')+', startup/drain/close included; no terrain/BDS'}
@@ -496,7 +499,9 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
     if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
     if two_group_policy(cfg) and retention=='survivors' and max_misses!=cfg['search']['max_misses']:
         raise ValueError('V2 survivor budget must match the resolved config; set search.max_misses in the policy')
-    if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=100000 or isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64+1 or start_index+count>MASK64+1:raise ValueError('Invalid bounded full64 range')
+    if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=MASK64+1 or isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64+1 or start_index+count>MASK64+1:raise ValueError('Invalid bounded full64 range')
+    if count>100000 and not allow_prediction_scale:
+        raise ValueError('Native ranges above 100,000 require explicit prediction scale')
     search=cfg['search']
     if search.get('numeric_threads_per_worker',1)!=1:raise ValueError('Numerical threads must equal one')
     if search.get('sequence')=='manifest':
@@ -517,6 +522,7 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
     status=result['status'];status['interrupted']=result['interrupted']
     status['execution']={'kind':'native','threads':native_threads,'batch_size':native_batch_size,
                          'newly_committed':result['newly_committed'],'wall_seconds':result['wall_seconds'],
+                         'batch_latency_sample_scope':result['batch_latency_sample_scope'],
                          'batch_latency_p50_seconds':statistics.median(result['batch_latencies_seconds']) if result['batch_latencies_seconds'] else None,
                          'batch_latency_p95_seconds':sorted(result['batch_latencies_seconds'])[min(len(result['batch_latencies_seconds'])-1,int(.95*len(result['batch_latencies_seconds'])))] if result['batch_latencies_seconds'] else None,
                          'retention':retention,'max_misses':max_misses,

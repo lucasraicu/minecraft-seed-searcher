@@ -171,6 +171,37 @@ def test_pipeline_three_stages_and_exact_partial_resume(prototype,tmp_path,monke
         for r in rows:assert semantic_record(r)==semantic_record(evaluate_seed(r['index'],seed_from_index(r['index']),blueprint_config()))
 
 
+def test_native_large_finite_range_requires_scale_and_resumes_without_large_run(prototype,tmp_path,monkeypatch):
+    from seed_search.realm import native_batch
+    cfg=copy.deepcopy(prototype.cfg)
+    monkeypatch.setattr(native_batch,'Prototype',lambda directory,config:prototype)
+    kwargs={'native_threads':1,'native_batch_size':2,'stop_after':3}
+    with pytest.raises(ValueError,match='explicit prediction scale'):
+        native_batch.run_native_scan(cfg,tmp_path,100001,**kwargs)
+    with pytest.raises(ValueError,match='persisted compatibility'):
+        native_batch.run_native_scan(cfg,tmp_path,100001,allow_prediction_scale=True,**kwargs)
+    tmp_path.mkdir(exist_ok=True)
+    (tmp_path/'compatibility.json').write_text(json.dumps({
+        'target_version':'26.52','bds_version':'1.26.52.3',
+        'prediction_model':'MC_26_50','features':{}}))
+    first=native_batch.run_native_scan(cfg,tmp_path,100001,allow_prediction_scale=True,**kwargs)
+    assert first['completed_seeds']==3
+    second=native_batch.run_native_scan(cfg,tmp_path,100001,resume=True,allow_prediction_scale=True,**kwargs)
+    assert second['completed_seeds']==6 and second['execution']['newly_committed']==3
+    with RealmStore(tmp_path,resume=True) as store:
+        assert store.get_state('range')==[0,100001]
+        assert [row['index'] for row in store.iter_results()]==list(range(6))
+        assert store.db.execute('PRAGMA integrity_check').fetchone()[0]=='ok'
+        assert not store.db.execute("SELECT * FROM ranges WHERE status='in_progress'").fetchall()
+
+
+def test_internal_large_pipeline_does_not_bypass_production_gate(prototype,tmp_path):
+    with pytest.raises(ValueError,match='explicit production prediction scale'):
+        persist_pipeline(prototype,tmp_path,100001,allow_prediction_scale=True,stop_after=0)
+    with pytest.raises(ValueError,match='full64 range'):
+        persist_pipeline(prototype,tmp_path,2,start_index=2**64-1,stop_after=0)
+
+
 @pytest.mark.parametrize('failure',['prepare','native','cancel','bytes'])
 @pytest.mark.parametrize('prepare_on_writer',[False,True])
 def test_pipeline_failures_release_owned_buffers_and_recover(prototype,tmp_path,monkeypatch,failure,prepare_on_writer):

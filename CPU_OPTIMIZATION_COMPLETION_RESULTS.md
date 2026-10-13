@@ -1,5 +1,7 @@
 # CPU optimization completion — 2026-10-13
 
+**Additional pre-sweep review:** [PRE_SWEEP_FINALIZATION_RESULTS.md](PRE_SWEEP_FINALIZATION_RESULTS.md) records subsequent CPU hypotheses, production range support, crash/resume, longer memory observation and fresh actual-server preflight.
+
 The bounded CPU optimization work is complete. The selected predictor is portable C11/O3 with OpenMP chunk 16, **34 threads and batches of 16,384**, strict structures first and Stronghold checked after the fourth Overworld structure. It is ready for finite predictor sweeps under the corrected B=2 category policy. Actual Bedrock world, spawn, terrain and route verification remain pending; no large production sweep was launched. This certifies the measured workstream and stopping rule, not mathematical optimality across every possible CPU algorithm.
 
 ## Measured result

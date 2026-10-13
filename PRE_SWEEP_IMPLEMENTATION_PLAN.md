@@ -1,5 +1,7 @@
 # Final executable pre-sweep plan
 
+**Additional pre-sweep review:** [PRE_SWEEP_FINALIZATION_RESULTS.md](PRE_SWEEP_FINALIZATION_RESULTS.md) records subsequent CPU hypotheses, production range support, crash/resume, longer memory observation and fresh actual-server preflight.
+
 Phase 1 and Phase 2 completed W0–W5. The CPU continuation measured rejected-seed allocation, filter order, Stronghold placement, candidate-heavy palette, compiler re-screen including PGO, packing, queue/writer and encoding variants. The selected strict-first / after-four build passed five fresh counterbalanced held-out pairs and improves external CLI throughput 36.8% over the prior selected build. See [CPU_OPTIMIZATION_COMPLETION_RESULTS.md](CPU_OPTIMIZATION_COMPLETION_RESULTS.md) for current identities, verification and the finite command. The remaining plan text preserves the original audit and execution requirements. Readiness is bounded predictor sweep readiness; actual generated-world evidence and exhaustive optimality across untested algorithms are not certified.
 
 ## Contract and reproducibility
