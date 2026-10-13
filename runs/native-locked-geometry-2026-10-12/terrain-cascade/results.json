@@ -1,0 +1,1639 @@
+{
+  "scope": "Three unconditional retained natural near-miss controls, not complete survivors. Timed sampling+geometry; NPZ artifact writing is outside timing. No SQL/BDS certification.",
+  "native_threads": 18,
+  "schedules": {
+    "existing_six_levels": [
+      128,
+      64,
+      32,
+      16,
+      8,
+      4
+    ],
+    "three_levels": [
+      128,
+      32,
+      4
+    ],
+    "fine_only": [
+      4
+    ]
+  },
+  "observations": [
+    {
+      "arm": "existing_six_levels",
+      "trial": 0,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.9841734550427645,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.002187076024711132,
+          "geometry_seconds": 0.0025997509947046638,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.00966610899195075,
+          "geometry_seconds": 0.0015183419454842806,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.023897732025943696,
+          "geometry_seconds": 0.003310522995889187,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.09568828600458801,
+          "geometry_seconds": 0.004800418042577803,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.61663818359375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.3671090609859675,
+          "geometry_seconds": 0.013090877095237374,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.591217041015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.4199135269736871,
+          "geometry_seconds": 0.040224498021416366,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 0,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.9487563640577719,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.002364957006648183,
+          "geometry_seconds": 0.0011349739506840706,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.008151934016495943,
+          "geometry_seconds": 0.001409985008649528,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.5615234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.023744052974507213,
+          "geometry_seconds": 0.002577760023996234,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.09064095700159669,
+          "geometry_seconds": 0.004827643046155572,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.30596923828125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.35334227804560214,
+          "geometry_seconds": 0.01252814894542098,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2935791015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.4100904889637604,
+          "geometry_seconds": 0.0378019999479875,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 0,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.974954955978319,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0016839150339365005,
+          "geometry_seconds": 0.0012440780410543084,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.007992433966137469,
+          "geometry_seconds": 0.0014579739654436707,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.474609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02393721300177276,
+          "geometry_seconds": 0.0028444930212572217,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.09152973699383438,
+          "geometry_seconds": 0.005793037009425461,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.2581787109375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.35705711494665593,
+          "geometry_seconds": 0.011360332020558417,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2469024658203125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.43335680605378,
+          "geometry_seconds": 0.03656914993189275,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 0,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.9265787559561431,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0025196520145982504,
+          "geometry_seconds": 0.0012466689804568887,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.043614524067379534,
+          "geometry_seconds": 0.003910302999429405,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8381789139239118,
+          "geometry_seconds": 0.03698131698183715,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 0,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.927389713935554,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0010096000041812658,
+          "geometry_seconds": 0.001094898907467723,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.030087991966865957,
+          "geometry_seconds": 0.0024233049480244517,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.854892801027745,
+          "geometry_seconds": 0.03671836806461215,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 0,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.9801071590045467,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.001209517940878868,
+          "geometry_seconds": 0.0011411630548536777,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.03194058907683939,
+          "geometry_seconds": 0.0025313720107078552,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.9066952780121937,
+          "geometry_seconds": 0.035926693002693355,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 0,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.9326026280177757,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8946297200163826,
+          "geometry_seconds": 0.03785815299488604,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 0,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.8643871890380979,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.831311275018379,
+          "geometry_seconds": 0.03210561804007739,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 0,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.8679080529836938,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8335915660718456,
+          "geometry_seconds": 0.033728629001416266,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 1,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.806045112083666,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0011710410472005606,
+          "geometry_seconds": 0.001165578025393188,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.028959868010133505,
+          "geometry_seconds": 0.0024556529242545366,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.7387954680016264,
+          "geometry_seconds": 0.033379021915607154,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 1,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.8755786679685116,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0015386620070785284,
+          "geometry_seconds": 0.0011109289480373263,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.031212280970066786,
+          "geometry_seconds": 0.002367743058130145,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8047562530264258,
+          "geometry_seconds": 0.03328206797596067,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 1,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.884803846012801,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0010207949671894312,
+          "geometry_seconds": 0.0011311540147289634,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02996762201655656,
+          "geometry_seconds": 0.002337121986784041,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8168173199519515,
+          "geometry_seconds": 0.03340793598908931,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 1,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.821146656991914,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.7874544259393588,
+          "geometry_seconds": 0.03357835893984884,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 1,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.8653875569580123,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8326860369415954,
+          "geometry_seconds": 0.032587995985522866,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 1,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.8659736660774797,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8309611949371174,
+          "geometry_seconds": 0.03489675105083734,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 1,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.863291500019841,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.00138472905382514,
+          "geometry_seconds": 0.0011665530037134886,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.007185650989413261,
+          "geometry_seconds": 0.0014006260316818953,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.022933186031877995,
+          "geometry_seconds": 0.0024465289898216724,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.09022212098352611,
+          "geometry_seconds": 0.005615022033452988,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.61663818359375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.33842242404352874,
+          "geometry_seconds": 0.01117679092567414,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.591217041015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.3478437470039353,
+          "geometry_seconds": 0.033367566065862775,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 1,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.8971458669984713,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0012637979816645384,
+          "geometry_seconds": 0.0011054429924115539,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.0078985879663378,
+          "geometry_seconds": 0.0014586879406124353,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.5615234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02363045804668218,
+          "geometry_seconds": 0.0025342609733343124,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.08848260389640927,
+          "geometry_seconds": 0.005647370941005647,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.30596923828125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.3513370120199397,
+          "geometry_seconds": 0.012110065086744726,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2935791015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.3682589939562604,
+          "geometry_seconds": 0.033285822020843625,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 1,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.9045200020773336,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0010430369293317199,
+          "geometry_seconds": 0.00114155700430274,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.007696982938796282,
+          "geometry_seconds": 0.001407818985171616,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.474609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.022893381072208285,
+          "geometry_seconds": 0.0023154258960857987,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.08787496900185943,
+          "geometry_seconds": 0.0057513139909133315,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.2581787109375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.35161571693606675,
+          "geometry_seconds": 0.013017706107348204,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2469024658203125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.3761766660027206,
+          "geometry_seconds": 0.03345304192043841,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 2,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.8503845749655738,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8142385360551998,
+          "geometry_seconds": 0.03602347197011113,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 2,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.8939100400311872,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8558350760722533,
+          "geometry_seconds": 0.03677221795078367,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "fine_only",
+      "trial": 2,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.8953524789540097,
+      "stages": [
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8565647329669446,
+          "geometry_seconds": 0.03867067501414567,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 262144
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 2,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.8519575240788981,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0013434689026325941,
+          "geometry_seconds": 0.001188918948173523,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.007387481047771871,
+          "geometry_seconds": 0.0014603959862142801,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.023098375997506082,
+          "geometry_seconds": 0.0023631210206076503,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.08722824999131262,
+          "geometry_seconds": 0.0055311559699475765,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.61663818359375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.34537854394875467,
+          "geometry_seconds": 0.010625149006955326,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.591217041015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.3335748800309375,
+          "geometry_seconds": 0.032652204972691834,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 2,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.895695127081126,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0009820240084081888,
+          "geometry_seconds": 0.0011004440020769835,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.007895260001532733,
+          "geometry_seconds": 0.0014626409392803907,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.5615234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02209603996016085,
+          "geometry_seconds": 0.0022896290756762028,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.08752181101590395,
+          "geometry_seconds": 0.004401161102578044,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.30596923828125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.3525956419762224,
+          "geometry_seconds": 0.013093933928757906,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2935791015625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.3680312209762633,
+          "geometry_seconds": 0.032920476980507374,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "existing_six_levels",
+      "trial": 2,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.9010991510003805,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0010123950196430087,
+          "geometry_seconds": 0.0011228680377826095,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 64,
+          "stage": "height",
+          "samples": 1024,
+          "sample_seconds": 0.00794474605936557,
+          "geometry_seconds": 0.0016918930923566222,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 1024
+          },
+          "mainland_fraction": 0.474609375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.022622219054028392,
+          "geometry_seconds": 0.0022496719611808658,
+          "reuse": {
+            "exact_points_reused": 1024,
+            "points_queried": 3072
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 16,
+          "stage": "height",
+          "samples": 16384,
+          "sample_seconds": 0.08868543209973723,
+          "geometry_seconds": 0.005763540975749493,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 12288
+          },
+          "mainland_fraction": 0.2581787109375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 8,
+          "stage": "height",
+          "samples": 65536,
+          "sample_seconds": 0.3459425299661234,
+          "geometry_seconds": 0.010414261952973902,
+          "reuse": {
+            "exact_points_reused": 16384,
+            "points_queried": 49152
+          },
+          "mainland_fraction": 0.2469024658203125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.378093904000707,
+          "geometry_seconds": 0.03430825495161116,
+          "reuse": {
+            "exact_points_reused": 65536,
+            "points_queried": 196608
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 2,
+      "candidate_id": "-2037817960683680446:948:-1804",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_desert_pyramid"
+      ],
+      "wall_seconds": 1.8324809370096773,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.002816375927068293,
+          "geometry_seconds": 0.0011877400102093816,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.640625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02925025299191475,
+          "geometry_seconds": 0.0025482280179858208,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.61865234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.7591263089561835,
+          "geometry_seconds": 0.037428474985063076,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.6029090881347656,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "de0c95e13281ae51bdead1bb95348b968f112e2dc31da7602e47758eb5b15414",
+      "decision_sha256": "24f32bca0db68241030c183a4bcd4e2148cc596c42f75182f462186ba49496e1",
+      "final_mainland_fraction": 0.6029090881347656,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 2,
+      "candidate_id": "-2852461719720256421:1924:-284",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "biome_stony_shore"
+      ],
+      "wall_seconds": 1.845452168956399,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0028921300545334816,
+          "geometry_seconds": 0.0011331889545544982,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.765625,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.02882476698141545,
+          "geometry_seconds": 0.002362357103265822,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.564453125,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.7772820740938187,
+          "geometry_seconds": 0.03282790398225188,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.2853431701660156,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "ae4ad9c75c3da447a8ef27646da6a0347f2c8cebd4e47ca736a640a249e6a5ff",
+      "decision_sha256": "5b597ac89c47c07f74a7e676cdcb1e7e74f984cce814e5bcf30ae98f9dfd8e4b",
+      "final_mainland_fraction": 0.2853431701660156,
+      "final_coastal_model_pass": false
+    },
+    {
+      "arm": "three_levels",
+      "trial": 2,
+      "candidate_id": "-6372686407259344465:852:1204",
+      "baseline_pending_reasons": [
+        "count_mansion",
+        "count_village"
+      ],
+      "wall_seconds": 1.8892547879368067,
+      "stages": [
+        {
+          "resolution": 128,
+          "stage": "nomination",
+          "samples": 256,
+          "sample_seconds": 0.0033512800000607967,
+          "geometry_seconds": 0.0011440380476415157,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 256
+          },
+          "mainland_fraction": 0.60546875,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 32,
+          "stage": "height",
+          "samples": 4096,
+          "sample_seconds": 0.03143549500964582,
+          "geometry_seconds": 0.0023799620103091,
+          "reuse": {
+            "exact_points_reused": 0,
+            "points_queried": 4096
+          },
+          "mainland_fraction": 0.365234375,
+          "coastal_model_pass": false
+        },
+        {
+          "resolution": 4,
+          "stage": "height",
+          "samples": 262144,
+          "sample_seconds": 1.8178451509447768,
+          "geometry_seconds": 0.032975842943415046,
+          "reuse": {
+            "exact_points_reused": 4096,
+            "points_queried": 258048
+          },
+          "mainland_fraction": 0.24744796752929688,
+          "coastal_model_pass": false
+        }
+      ],
+      "raster_sha256": "e1b21cc63ad8d215f7a2c619a468151a228477717a15caf73d3030be64f75add",
+      "decision_sha256": "178d7131838259f01c13c8ce840d029e4f48565c2469be84932a97f58ea2b344",
+      "final_mainland_fraction": 0.24744796752929688,
+      "final_coastal_model_pass": false
+    }
+  ],
+  "median_cohort_seconds": {
+    "existing_six_levels": 5.664957369095646,
+    "three_levels": 5.567187893902883,
+    "fine_only": 5.639647093950771
+  },
+  "raster_differences": 0,
+  "full_final_decision_differences": 0,
+  "three_level_speedup": 1.0175617344081092,
+  "source_sha256": {
+    "scripts/investigate_terrain_cascade.py": "173a1e4a5c75ec01ee9b88881f77071969f89bd53965094b1b6345ce980ae23f",
+    "src/seed_search/realm/raster.py": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc",
+    "src/seed_search/realm/coastal.py": "5c4aa4d5903c52be17623a8841376f30bd1def3c7bde3a5069cf42c9c988d1dc"
+  }
+}

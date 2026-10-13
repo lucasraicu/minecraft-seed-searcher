@@ -1,0 +1,11 @@
+{
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)\nTarget: x86_64-apple-darwin24.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+  "hardware": "hw.memsize: 68719476736\nhw.physicalcpu: 18\nhw.logicalcpu: 36\nmachdep.cpu.brand_string: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz\n",
+  "durability": {
+    "journal_mode": "WAL",
+    "synchronous": "FULL",
+    "cache_size_kib": 131072,
+    "wal_autocheckpoint_pages": 16384,
+    "journal_size_limit": 134217728
+  }
+}

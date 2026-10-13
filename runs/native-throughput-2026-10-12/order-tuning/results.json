@@ -1,0 +1,560 @@
+[
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.817268379032612,
+    "input_seeds_per_second": 3549.5375855649863,
+    "process_cpu_seconds": 16.571641,
+    "queue_wait_seconds": 0.9400152809685096,
+    "seed_preparation_seconds": 0.010003005038015544,
+    "native_seconds": 0.6978105710586533,
+    "record_seconds": 0.8412339770002291,
+    "preparation_wall_seconds": 0.5845081899315119,
+    "writer_wall_seconds": 1.6109574228757992,
+    "prepare_seconds": 0.5830410479102284,
+    "encoding_seconds": 0.028678945964202285,
+    "hash_seconds": 0.4159027070272714,
+    "task_preparation_seconds": 0.038928847992792726,
+    "validation_row_seconds": 0.09953054692596197,
+    "sql_seconds": 0.9528436178807169,
+    "commit_seconds": 0.5452727711526677,
+    "shutdown_seconds": 0.0004003950161859393,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.892947938060388,
+      2.526059421012178,
+      2.6633897359715775
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107012990,
+    "peak_process_tree_rss_bytes": 315568128,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 0,
+    "arm": "original"
+  },
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.6785967390751466,
+    "input_seeds_per_second": 3733.298056449047,
+    "process_cpu_seconds": 15.904565999999999,
+    "queue_wait_seconds": 0.8638132739579305,
+    "seed_preparation_seconds": 0.009376458008773625,
+    "native_seconds": 0.6452396168606356,
+    "record_seconds": 0.7615120918489993,
+    "preparation_wall_seconds": 0.5577767648501322,
+    "writer_wall_seconds": 1.5516849048435688,
+    "prepare_seconds": 0.556342922965996,
+    "encoding_seconds": 0.028982709045521915,
+    "hash_seconds": 0.40771226992364973,
+    "task_preparation_seconds": 0.02000371110625565,
+    "validation_row_seconds": 0.09964423289056867,
+    "sql_seconds": 0.8752449869643897,
+    "commit_seconds": 0.5468975909752771,
+    "shutdown_seconds": 0.00041250709909945726,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.7633733559632674,
+      2.3966635490069166,
+      2.533145252033137
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107021370,
+    "peak_process_tree_rss_bytes": 347230208,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 0,
+    "arm": "sorted"
+  },
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.78483995096758,
+    "input_seeds_per_second": 3590.8706338852776,
+    "process_cpu_seconds": 16.7894,
+    "queue_wait_seconds": 0.9546724701067433,
+    "seed_preparation_seconds": 0.009988917037844658,
+    "native_seconds": 0.6976257610367611,
+    "record_seconds": 0.8473453100305051,
+    "preparation_wall_seconds": 0.5596819169586524,
+    "writer_wall_seconds": 1.5665002930909395,
+    "prepare_seconds": 0.5582592939026654,
+    "encoding_seconds": 0.02744928328320384,
+    "hash_seconds": 0.41248686623293906,
+    "task_preparation_seconds": 0.01870211900677532,
+    "validation_row_seconds": 0.09962102537974715,
+    "sql_seconds": 0.8993059968343005,
+    "commit_seconds": 0.5485594710335135,
+    "shutdown_seconds": 0.0003722870023921132,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.8573738529812545,
+      2.4955832419218495,
+      2.6340569050516933
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107021198,
+    "peak_process_tree_rss_bytes": 341753856,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 1,
+    "arm": "sorted"
+  },
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.6838647759286687,
+    "input_seeds_per_second": 3725.9701344453197,
+    "process_cpu_seconds": 16.082929999999998,
+    "queue_wait_seconds": 0.885005107964389,
+    "seed_preparation_seconds": 0.00938785495236516,
+    "native_seconds": 0.6494946290040389,
+    "record_seconds": 0.7427690769545734,
+    "preparation_wall_seconds": 0.5948421620996669,
+    "writer_wall_seconds": 1.5447439448907971,
+    "prepare_seconds": 0.5932052998105064,
+    "encoding_seconds": 0.028994383290410042,
+    "hash_seconds": 0.41532416897825897,
+    "task_preparation_seconds": 0.021337004960514605,
+    "validation_row_seconds": 0.1275497425813228,
+    "sql_seconds": 0.8905050861649215,
+    "commit_seconds": 0.5397717740852386,
+    "shutdown_seconds": 0.00038370699621737003,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.7800324859563261,
+      2.4146100429352373,
+      2.552924004965462
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107021232,
+    "peak_process_tree_rss_bytes": 371314688,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 1,
+    "arm": "original"
+  },
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.6943566750269383,
+    "input_seeds_per_second": 3711.461104124241,
+    "process_cpu_seconds": 16.132214000000005,
+    "queue_wait_seconds": 0.8705005890224129,
+    "seed_preparation_seconds": 0.009470955119468272,
+    "native_seconds": 0.6578775210073218,
+    "record_seconds": 0.7720136609859765,
+    "preparation_wall_seconds": 0.5748098138719797,
+    "writer_wall_seconds": 1.5721870220731944,
+    "prepare_seconds": 0.573028618004173,
+    "encoding_seconds": 0.0298456191085279,
+    "hash_seconds": 0.41697820799890906,
+    "task_preparation_seconds": 0.020521373953670263,
+    "validation_row_seconds": 0.10568341694306582,
+    "sql_seconds": 0.9193269991083071,
+    "commit_seconds": 0.5470865668030456,
+    "shutdown_seconds": 0.00033903203438967466,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.7903622610028833,
+      2.4374791589798406,
+      2.5679700870532542
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107021244,
+    "peak_process_tree_rss_bytes": 379674624,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 2,
+    "arm": "original"
+  },
+  {
+    "count": 10000,
+    "newly_committed": 10000,
+    "wall_seconds": 2.68281271494925,
+    "input_seeds_per_second": 3727.431268041074,
+    "process_cpu_seconds": 15.928024000000008,
+    "queue_wait_seconds": 0.8426752139348537,
+    "seed_preparation_seconds": 0.00969897408504039,
+    "native_seconds": 0.6456930720014498,
+    "record_seconds": 0.7363228049362078,
+    "preparation_wall_seconds": 0.5826199259608984,
+    "writer_wall_seconds": 1.5774233740521595,
+    "prepare_seconds": 0.5811793350148946,
+    "encoding_seconds": 0.027760502882301807,
+    "hash_seconds": 0.41346950409933925,
+    "task_preparation_seconds": 0.04283853911329061,
+    "validation_row_seconds": 0.09711078891996294,
+    "sql_seconds": 0.8742879871279001,
+    "commit_seconds": 0.5499484040774405,
+    "shutdown_seconds": 0.00035403005313128233,
+    "batches": 3,
+    "threads": 16,
+    "batch_size": 4096,
+    "batch_latencies_seconds": [
+      1.7554993190569803,
+      2.4007864539744332,
+      2.5437867229338735
+    ],
+    "max_outstanding_batches": 3,
+    "max_prepared_owned_estimate_bytes": 107021210,
+    "peak_process_tree_rss_bytes": 394006528,
+    "status": {
+      "schema": 1,
+      "retention": {
+        "max_misses": 0,
+        "mode": "full"
+      },
+      "saved_seed_rows": 10000,
+      "coverage_scope": "every processed input and discovered anchor retained",
+      "range": [
+        0,
+        10000
+      ],
+      "completed_seeds": 10000,
+      "total_seeds": 10000,
+      "remaining_seeds": 0,
+      "ranges": {
+        "complete": 3
+      },
+      "candidate_counts": {
+        "PENDING": 18593
+      },
+      "counts": {
+        "baseline_pending": 18593,
+        "baseline_predicted": 0,
+        "checked_desert_pyramid": 9,
+        "checked_jungle_temple": 70,
+        "checked_mansion": 18593,
+        "confirmed_rejections": 0,
+        "pending_desert_pyramid": 9,
+        "pending_jungle_temple": 61,
+        "pending_mansion": 18523,
+        "stronghold_anchors": 18593,
+        "structure_stage_entered": 18593,
+        "unresolved_discovery": 1297,
+        "unresolved_stronghold_coverage": 10000
+      },
+      "active_variants": [
+        "v1"
+      ],
+      "variant_tasks": {
+        "v1:pending": 18593
+      },
+      "inactive_variant_tasks": {},
+      "score_revision": null,
+      "discovery_tasks": {
+        "pending": 20000
+      },
+      "inventory_work": {},
+      "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+      "worker_statistics": null,
+      "memory": null,
+      "workspace_disk": null,
+      "workspace_disk_failure": null
+    },
+    "interrupted": false,
+    "encoded": true,
+    "retention": "full",
+    "max_misses": 0,
+    "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+    "trial": 2,
+    "arm": "sorted"
+  }
+]

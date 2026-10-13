@@ -1,0 +1,222 @@
+{
+  "measurement_policy": "Final post-integration single trial per three disjoint 10k cohorts for each worker profile, serially run; no simultaneous benchmarks. Exploratory short runs, not sustained million-input throughput. Earlier overlapping/scaffolding measurements retained but excluded from headline comparison. Repeated/shorter cohorts do not add distinct inputs.",
+  "workers": {
+    "18": {
+      "input_count": 30000,
+      "wall_seconds": 26.321650984929875,
+      "input_seeds_per_second": 1139.7461358778794,
+      "seconds_per_input": 0.0008773883661643291,
+      "cohort_rates": [
+        1148.4375337869988,
+        1126.0530611423283,
+        1145.0042468415588
+      ],
+      "storage_bytes": 430411776,
+      "bytes_per_seed": 14347.0592,
+      "peak_process_tree_rss_bytes": 953909248,
+      "cfg": "6dd841d268a38a95d84e53b58012c73da4516b3dfc1e5b1b6101f4480a36a19d"
+    },
+    "30": {
+      "input_count": 30000,
+      "wall_seconds": 24.228142002946697,
+      "input_seeds_per_second": 1238.2294934688475,
+      "seconds_per_input": 0.0008076047334315566,
+      "cohort_rates": [
+        1229.1430152658183,
+        1242.871544436462,
+        1242.7750563718735
+      ],
+      "storage_bytes": 430600192,
+      "bytes_per_seed": 14353.339733333334,
+      "peak_process_tree_rss_bytes": 1460080640,
+      "cfg": "6dd841d268a38a95d84e53b58012c73da4516b3dfc1e5b1b6101f4480a36a19d"
+    }
+  },
+  "worker_30_vs18_speedup": 1.0864081522111169,
+  "distinct_input_seeds": 30000,
+  "discovered_anchors": 55853,
+  "unresolved_discovery_inputs": 3946,
+  "qualified_seeds": 0,
+  "funnel": [
+    {
+      "stage": "mansion",
+      "entered": 55853,
+      "passed": 266,
+      "conditional_percent": 0.47625015666123577,
+      "worker_seconds": 22.630918260198087,
+      "seconds_per_entered": 0.0004051871566468782
+    },
+    {
+      "stage": "jungle_temple",
+      "entered": 266,
+      "passed": 38,
+      "conditional_percent": 14.285714285714286,
+      "worker_seconds": 0.0356915338197723,
+      "seconds_per_entered": 0.00013417869857057258
+    },
+    {
+      "stage": "desert_pyramid",
+      "entered": 38,
+      "passed": 1,
+      "conditional_percent": 2.6315789473684212,
+      "worker_seconds": 0.004869020660407841,
+      "seconds_per_entered": 0.0001281321226423116
+    },
+    {
+      "stage": "monument",
+      "entered": 1,
+      "passed": 0,
+      "conditional_percent": 0.0,
+      "worker_seconds": 0.00012030999641865492,
+      "seconds_per_entered": 0.00012030999641865492
+    },
+    {
+      "stage": "ancient_city",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "village",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "trial_chamber",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "ruined_portal",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "shipwreck",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "mineshaft",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "fortress",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "bastion",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    },
+    {
+      "stage": "biome_palette_4y",
+      "entered": 0,
+      "passed": 0,
+      "conditional_percent": null,
+      "worker_seconds": 0,
+      "seconds_per_entered": null
+    }
+  ],
+  "nominal_iid_zero_event_95_upper_bound_model_success": 9.985275683338816e-05,
+  "discovery_worker_seconds_per_seed": 0.00039620898959304515,
+  "diagnostics": {
+    "raw_capacity_seconds_per_selected_layout": 0.00022216635503961393,
+    "raw_capacity_layouts_per_second": 4501.131594933411,
+    "biome_seconds_per_selected_layout": {
+      "full_inventory": 0.03425080793628391,
+      "capped": 0.03386437939722479
+    },
+    "coastal_full_refinement_seconds_per_layout": 1.1922909010124083,
+    "coastal_full_refinement_layouts_per_second": 0.8387214891524136,
+    "coastal_reuse_speedup": 1.2804933589506795,
+    "coastal_reuse_saved_percent": 21.905100638751783,
+    "coastal_parity_checks": 108,
+    "native_count_parity_checks": 3456,
+    "per_type_count_speedups": {
+      "mansion": 1.001373373034915,
+      "village": 0.9888027607118299,
+      "trial_chamber": 3.5231944543187055,
+      "ancient_city": 1.214668619727812,
+      "desert_pyramid": 1.0113421690886546,
+      "jungle_temple": 1.1173199419704416,
+      "monument": 1.506026407529459,
+      "ruined_portal": 1.3579893856469032,
+      "shipwreck": 1.8323652640679193,
+      "mineshaft": 6.399647058882879,
+      "fortress": 1.1714207446668181,
+      "bastion": 1.5495898248391755
+    },
+    "serial_reference_speedup": 45.903743490834394,
+    "serial_reference_scope": "Single process, same blueprint constraints; includes full64 discovery, all discovered anchors, count checks, applicable biome gate and result construction. Reference inventories all requirements without short-circuit; no IPC/SQLite/terrain/BDS."
+  },
+  "scenarios_not_forecasts": [
+    {
+      "assumed_one_in": 1200000,
+      "mean_inputs_first": 1200000,
+      "inputs_95_first": 3594878,
+      "mean_hours_first": 0.2692015778105189,
+      "hours_95_first": 0.8064555187153079,
+      "mean_hours_five": 1.3460078890525944
+    },
+    {
+      "assumed_one_in": 1500000,
+      "mean_inputs_first": 1500000,
+      "inputs_95_first": 4493597,
+      "mean_hours_first": 0.3365019722631486,
+      "hours_95_first": 1.0080694823999738,
+      "mean_hours_five": 1.6825098613157432
+    },
+    {
+      "assumed_one_in": 1800000,
+      "mean_inputs_first": 1800000,
+      "inputs_95_first": 5392317,
+      "mean_hours_first": 0.4038023667157783,
+      "hours_95_first": 1.209683446084637,
+      "mean_hours_five": 2.0190118335788916
+    },
+    {
+      "assumed_one_in": 10000000,
+      "mean_inputs_first": 10000000,
+      "inputs_95_first": 29957322,
+      "mean_hours_first": 2.243346481754324,
+      "hours_95_first": 6.72046512013195,
+      "mean_hours_five": 11.21673240877162
+    },
+    {
+      "assumed_one_in": 100000000,
+      "mean_inputs_first": 100000000,
+      "inputs_95_first": 299573226,
+      "mean_hours_first": 22.43346481754324,
+      "hours_95_first": 67.204654225529,
+      "mean_hours_five": 112.1673240877162
+    }
+  ],
+  "million_input_baseline_projection_minutes": 13.460078890525944,
+  "input_volume_note": "No positive lower bound on full-blueprint success; hence no finite upper bound for required inputs or verified-world runtime. Scenario table excludes unmeasured conditional terrain, actual BDS generation, verification and long-run effects."
+}

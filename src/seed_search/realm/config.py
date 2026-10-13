@@ -48,6 +48,38 @@ def default_config():
     return cfg
 
 
+BLUEPRINT_CONTRACT='master_seed_blueprint_v1'
+BLUEPRINT_COUNTS={'stronghold':1,'mansion':1,'village':5,'trial_chamber':2,
+                  'ancient_city':1,'desert_pyramid':1,'jungle_temple':1,
+                  'monument':1,'ruined_portal':3,'shipwreck':2,'mineshaft':5}
+BLUEPRINT_ORDER=['mansion','jungle_temple','desert_pyramid','monument','ancient_city',
+                 'village','trial_chamber','ruined_portal','shipwreck','mineshaft']
+
+
+def blueprint_config():
+    """Historical audited blueprint policy; locked_blueprint_config is current."""
+    cfg=default_config()
+    cfg['contract']=BLUEPRINT_CONTRACT
+    cfg['search']['structure_order']=list(BLUEPRINT_ORDER)
+    cfg['structures']={'required':list(BLUEPRINT_COUNTS),
+                       'minimum_counts':dict(BLUEPRINT_COUNTS),
+                       'nether_required':['fortress','bastion'],
+                       'nether_minimum_counts':{'fortress':1,'bastion':1},
+                       'optional_bonuses':{'outpost':10}}
+    cfg['biomes'].update(sample_y_levels=[63,-48,0,160],
+                         required_families=['plains','desert','forest','taiga','jungle','swamp',
+                                            'snowy_ice','dark_forest','peaks','stony_shore',
+                                            'lush_caves','dripstone_caves','deep_dark'],
+                         family_bonuses={},variant_bonuses={})
+    cfg['terrain']['variants']=['v1']
+    cfg['terrain']['v1']={'mode':'coastal_continent','coastal_continent':{
+        'land_fraction_min':.75,'land_fraction_max':.85,'ocean_edge_min_width_blocks':250,
+        'ocean_edge_preferred_max_width_blocks':400,'ocean_edge_fraction_min':.5,
+        'monument_envelope_half_size_blocks':80}}
+    cfg['terrain'].pop('v2',None)
+    return cfg
+
+
 def _integer(value, lo, hi, name):
     if isinstance(value,bool) or not isinstance(value,int) or not lo<=value<=hi:
         raise ValueError(f'{name} must be an integer in {lo}–{hi}')
@@ -69,6 +101,9 @@ def memory_budget_gib(search, *, docker_reserve_default=8):
 
 
 def validate_config(cfg):
+    if cfg.get('contract')==BLUEPRINT_CONTRACT:
+        return validate_blueprint_config(cfg)
+    if cfg.get('contract') is not None:raise ValueError('Unknown Realm contract')
     if cfg.get('schema_version')!=5:
         raise ValueError('Realm profile requires schema_version 5')
     for name in DEFAULT:
@@ -155,4 +190,96 @@ def validate_config(cfg):
     validate_bds_pins(cfg)
     _integer(b.get('cpus'),4,4,'BDS CPUs');_integer(b.get('verification_budget'),0,10000,'verification_budget')
     if b.get('memory_gib')!=6:raise ValueError('Tested BDS allocation requires exactly 6 GiB memory')
+    return cfg
+
+
+LOCKED_REVISION='locked-2048-1024-v1'
+RIVER_REVISION='locked-2048-1024-river-v2'
+OUTPOST_REVISION='locked-2048-1024-outpost-v3'
+OUTPOST_ORDER=['ruined_portal','outpost','desert_pyramid','jungle_temple','mansion',
+               'ancient_city','village','trial_chamber','mineshaft']
+LOCKED_ORDER=['ruined_portal','trial_chamber','mansion','desert_pyramid',
+              'jungle_temple','ancient_city','village','mineshaft']
+
+
+def locked_blueprint_config():
+    """Current geometry; blueprint_config retains the historical audited policy."""
+    cfg=blueprint_config()
+    cfg['screening_revision']=LOCKED_REVISION
+    cfg['deployment']={'overworld_side_blocks':2048,'nether_side_blocks':1024}
+    cfg['search']['structure_order']=list(LOCKED_ORDER)
+    cfg['structures']['minimum_counts'].update(village=6,trial_chamber=5,ruined_portal=6,
+                                              mineshaft=15,ancient_city=2,shipwreck=4)
+    cfg['structures']['nether_minimum_counts']={'fortress':2,'bastion':2}
+    cfg['structures']['deferred_until_coastal_terrain']=['monument','shipwreck','outpost']
+    cfg['terrain']['v1']['square_side_blocks']=2048
+    return cfg
+
+
+def locked_policy(cfg):
+    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION)
+
+
+def river_policy(cfg):
+    return cfg.get('screening_revision') in (RIVER_REVISION,OUTPOST_REVISION)
+
+
+def outpost_policy(cfg):
+    return cfg.get('screening_revision')==OUTPOST_REVISION
+
+
+def baseline_requirements(cfg):
+    return 24 if outpost_policy(cfg) else 23 if locked_policy(cfg) else 25
+
+
+def river_blueprint_config():
+    """Historical river profile retained for reproducible controls and checkpoints."""
+    cfg=locked_blueprint_config()
+    cfg['screening_revision']=RIVER_REVISION
+    cfg['structures']['nether_minimum_counts']['bastion']=3
+    cfg['structures']['minimum_counts']['shipwreck']=5
+    cfg['terrain']['v1']['coastal_continent'].update(
+        land_connectivity=8,bridge_inland_freshwater=True,
+        river_corridor_min_length_blocks=600,
+        river_highway_hub_radius_blocks=250,river_highway_bonus_points=20)
+    return cfg
+
+
+def outpost_blueprint_config():
+    cfg=river_blueprint_config()
+    cfg['screening_revision']=OUTPOST_REVISION
+    cfg['search']['structure_order']=list(OUTPOST_ORDER)
+    cfg['structures']['required'].append('outpost')
+    cfg['structures']['minimum_counts']['outpost']=2
+    cfg['structures']['optional_bonuses']={}
+    cfg['structures']['deferred_until_coastal_terrain']=['monument','shipwreck']
+    return cfg
+
+
+def validate_blueprint_config(cfg):
+    """Validate common pins through legacy validation, then the explicit contract."""
+    expected=outpost_blueprint_config() if outpost_policy(cfg) else river_blueprint_config() if river_policy(cfg) else locked_blueprint_config() if locked_policy(cfg) else blueprint_config()
+    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION):raise ValueError('Unknown blueprint screening revision')
+    if cfg['deployment']!=expected['deployment']:raise ValueError('Blueprint geometry differs from its revision')
+    legacy=copy.deepcopy(cfg)
+    legacy.pop('contract',None)
+    legacy['deployment']=copy.deepcopy(DEFAULT['deployment'])
+    legacy['search']['structure_order']=list(DEFAULT['search']['structure_order'])
+    legacy['structures']=copy.deepcopy(DEFAULT['structures'])
+    legacy['biomes']['family_bonuses']=copy.deepcopy(DEFAULT['biomes']['family_bonuses'])
+    legacy['biomes']['variant_bonuses']=copy.deepcopy(DEFAULT['biomes']['variant_bonuses'])
+    legacy['terrain'].update(variants=['v1','v2'])
+    from .terrain import SEARCH_V1,SEARCH_V2
+    legacy['terrain']['v1']=dict(SEARCH_V1);legacy['terrain']['v2']=dict(SEARCH_V2)
+    validate_config(legacy)
+    if cfg['structures']!=expected['structures']:
+        raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')
+    order=cfg['search']['structure_order']
+    if len(order)!=len(expected['search']['structure_order']) or set(order)!=set(expected['search']['structure_order']):
+        raise ValueError('Blueprint must check every required non-anchor structure')
+    for key in ('spacing','sample_y','sample_y_levels','lattice','required_families','family_bonuses','variant_bonuses'):
+        if cfg['biomes'].get(key)!=expected['biomes'][key]:
+            raise ValueError(f'Blueprint biome policy differs: {key}')
+    if cfg['terrain'].get('variants')!=['v1'] or cfg['terrain'].get('v1')!=expected['terrain']['v1'] or 'v2' in cfg['terrain']:
+        raise ValueError('Blueprint requires only V1 Coastal Continent with its declared thresholds')
     return cfg

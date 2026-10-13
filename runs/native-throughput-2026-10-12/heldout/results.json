@@ -1,0 +1,3755 @@
+{
+  "scope": "Complete durable inputs; startup, queues, final drain and close included; diagnostic parity outside timer",
+  "count_per_cohort": 100000,
+  "distinct_inputs": 100000,
+  "keys": [
+    120263001000
+  ],
+  "trials": 3,
+  "arms": [
+    "python-original",
+    "python",
+    "native"
+  ],
+  "threads": 16,
+  "batch": 4096,
+  "disk_preflight": {
+    "projected_bytes": 58982400000,
+    "free_bytes": 668546531328,
+    "reserve_bytes": 17179869184
+  },
+  "semantic_exclusions": [
+    "stage_seconds",
+    "native_work",
+    "worker_cpu_seconds",
+    "total_seconds",
+    "worker_pid",
+    "worker_peak_rss_bytes",
+    "prototype"
+  ],
+  "cohorts": [
+    {
+      "key": 120263001000,
+      "cohort": 0,
+      "trials": [
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 95.6994695039466,
+              "max_outstanding_batches": 30,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 30,
+              "stage_seconds": {
+                "stronghold": 37.389269563602284,
+                "structure_ancient_city": 0.00044479803182184696,
+                "structure_desert_pyramid": 0.013461080729030073,
+                "structure_jungle_temple": 0.1031705845380202,
+                "structure_mansion": 68.23255714576226,
+                "structure_monument": 0.002882165019400418
+              },
+              "worker_cpu_seconds": 130.31369799999976,
+              "worker_seconds": 130.9446731323842,
+              "workers": {
+                "57270": {
+                  "batches": 106,
+                  "cpu_seconds": 4.725786000000001,
+                  "peak_rss_bytes": 60653568,
+                  "seeds": 3392,
+                  "wall_seconds": 4.758445528219454
+                },
+                "57271": {
+                  "batches": 105,
+                  "cpu_seconds": 4.5846930000000015,
+                  "peak_rss_bytes": 59207680,
+                  "seeds": 3360,
+                  "wall_seconds": 4.615262134349905
+                },
+                "57272": {
+                  "batches": 105,
+                  "cpu_seconds": 4.606630999999998,
+                  "peak_rss_bytes": 61173760,
+                  "seeds": 3360,
+                  "wall_seconds": 4.637132286792621
+                },
+                "57273": {
+                  "batches": 105,
+                  "cpu_seconds": 4.569344000000003,
+                  "peak_rss_bytes": 61820928,
+                  "seeds": 3360,
+                  "wall_seconds": 4.5987555963220075
+                },
+                "57274": {
+                  "batches": 105,
+                  "cpu_seconds": 4.559433000000003,
+                  "peak_rss_bytes": 59105280,
+                  "seeds": 3360,
+                  "wall_seconds": 4.586657180916518
+                },
+                "57275": {
+                  "batches": 106,
+                  "cpu_seconds": 4.550347999999998,
+                  "peak_rss_bytes": 59191296,
+                  "seeds": 3392,
+                  "wall_seconds": 4.582423541112803
+                },
+                "57276": {
+                  "batches": 106,
+                  "cpu_seconds": 4.557453999999999,
+                  "peak_rss_bytes": 59641856,
+                  "seeds": 3392,
+                  "wall_seconds": 4.5891497189877555
+                },
+                "57277": {
+                  "batches": 105,
+                  "cpu_seconds": 4.4884970000000015,
+                  "peak_rss_bytes": 60375040,
+                  "seeds": 3360,
+                  "wall_seconds": 4.517697375966236
+                },
+                "57278": {
+                  "batches": 104,
+                  "cpu_seconds": 4.500015999999997,
+                  "peak_rss_bytes": 61251584,
+                  "seeds": 3328,
+                  "wall_seconds": 4.532923459541053
+                },
+                "57279": {
+                  "batches": 104,
+                  "cpu_seconds": 4.5203310000000005,
+                  "peak_rss_bytes": 59236352,
+                  "seeds": 3328,
+                  "wall_seconds": 4.553024498047307
+                },
+                "57280": {
+                  "batches": 104,
+                  "cpu_seconds": 4.5174970000000005,
+                  "peak_rss_bytes": 59576320,
+                  "seeds": 3328,
+                  "wall_seconds": 4.544886798947118
+                },
+                "57282": {
+                  "batches": 104,
+                  "cpu_seconds": 4.537566999999998,
+                  "peak_rss_bytes": 60104704,
+                  "seeds": 3328,
+                  "wall_seconds": 4.567417008220218
+                },
+                "57283": {
+                  "batches": 104,
+                  "cpu_seconds": 4.125283999999998,
+                  "peak_rss_bytes": 58302464,
+                  "seeds": 3328,
+                  "wall_seconds": 4.135930223739706
+                },
+                "57284": {
+                  "batches": 104,
+                  "cpu_seconds": 4.147213000000001,
+                  "peak_rss_bytes": 55222272,
+                  "seeds": 3328,
+                  "wall_seconds": 4.157573658158071
+                },
+                "57285": {
+                  "batches": 104,
+                  "cpu_seconds": 4.150340999999997,
+                  "peak_rss_bytes": 57741312,
+                  "seeds": 3328,
+                  "wall_seconds": 4.160626635188237
+                },
+                "57286": {
+                  "batches": 104,
+                  "cpu_seconds": 4.185599,
+                  "peak_rss_bytes": 58601472,
+                  "seeds": 3328,
+                  "wall_seconds": 4.194507961627096
+                },
+                "57287": {
+                  "batches": 104,
+                  "cpu_seconds": 4.169355999999999,
+                  "peak_rss_bytes": 57905152,
+                  "seeds": 3328,
+                  "wall_seconds": 4.17956375295762
+                },
+                "57288": {
+                  "batches": 104,
+                  "cpu_seconds": 4.157946999999998,
+                  "peak_rss_bytes": 55902208,
+                  "seeds": 3328,
+                  "wall_seconds": 4.168144616181962
+                },
+                "57289": {
+                  "batches": 104,
+                  "cpu_seconds": 4.1685419999999995,
+                  "peak_rss_bytes": 58245120,
+                  "seeds": 3328,
+                  "wall_seconds": 4.178068356704898
+                },
+                "57290": {
+                  "batches": 104,
+                  "cpu_seconds": 4.133095999999998,
+                  "peak_rss_bytes": 55353344,
+                  "seeds": 3328,
+                  "wall_seconds": 4.143108472577296
+                },
+                "57291": {
+                  "batches": 104,
+                  "cpu_seconds": 4.115254000000004,
+                  "peak_rss_bytes": 57831424,
+                  "seeds": 3328,
+                  "wall_seconds": 4.1215238405857235
+                },
+                "57292": {
+                  "batches": 104,
+                  "cpu_seconds": 4.165618999999995,
+                  "peak_rss_bytes": 58548224,
+                  "seeds": 3328,
+                  "wall_seconds": 4.173533612163737
+                },
+                "57293": {
+                  "batches": 104,
+                  "cpu_seconds": 4.092003000000001,
+                  "peak_rss_bytes": 59305984,
+                  "seeds": 3328,
+                  "wall_seconds": 4.102882277686149
+                },
+                "57294": {
+                  "batches": 103,
+                  "cpu_seconds": 4.467183999999999,
+                  "peak_rss_bytes": 60956672,
+                  "seeds": 3296,
+                  "wall_seconds": 4.4945453917607665
+                },
+                "57295": {
+                  "batches": 103,
+                  "cpu_seconds": 4.460056,
+                  "peak_rss_bytes": 61009920,
+                  "seeds": 3296,
+                  "wall_seconds": 4.48957826057449
+                },
+                "57296": {
+                  "batches": 103,
+                  "cpu_seconds": 4.424558,
+                  "peak_rss_bytes": 60276736,
+                  "seeds": 3296,
+                  "wall_seconds": 4.450329949730076
+                },
+                "57297": {
+                  "batches": 103,
+                  "cpu_seconds": 4.160432,
+                  "peak_rss_bytes": 60039168,
+                  "seeds": 3296,
+                  "wall_seconds": 4.1825268000829965
+                },
+                "57298": {
+                  "batches": 103,
+                  "cpu_seconds": 4.411247000000003,
+                  "peak_rss_bytes": 60174336,
+                  "seeds": 3296,
+                  "wall_seconds": 4.439237115671858
+                },
+                "57300": {
+                  "batches": 104,
+                  "cpu_seconds": 4.154274000000001,
+                  "peak_rss_bytes": 60153856,
+                  "seeds": 3328,
+                  "wall_seconds": 4.1701120109064505
+                },
+                "57301": {
+                  "batches": 103,
+                  "cpu_seconds": 3.908096,
+                  "peak_rss_bytes": 56573952,
+                  "seeds": 3296,
+                  "wall_seconds": 3.9191050686640665
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8740253696,
+              "cpu_percent": 35.5,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 1923047424,
+              "processes": [
+                {
+                  "cpu_percent": 35.5,
+                  "pid": 57264,
+                  "rss_bytes": 132694016
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 57268,
+                  "rss_bytes": 13422592
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 58101,
+                  "rss_bytes": 2166784
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 58102,
+                  "rss_bytes": 2035712
+                }
+              ],
+              "rss_bytes": 150319104,
+              "sampled_at": 1791801719.481241,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 21458,
+              "free_bytes": 667169353728,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1454826628,
+              "run_bytes": 1382041092,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791801715.837513,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python-original",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 95.93650564306881,
+          "input_seeds_per_second": 1042.3560805106806,
+          "cpu_seconds": 268.951777,
+          "peak_process_tree_rss_bytes": 1924661248,
+          "peak_wal_bytes": 5318952,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "392e36508870081850c35398fc37d1eb8e21c8e4923bc33b016c3c12220ad35b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1426841600,
+          "bytes_per_input": 14268.416,
+          "trial": 0
+        },
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 95.61498577496968,
+              "max_outstanding_batches": 36,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 36,
+              "stage_seconds": {
+                "stronghold": 41.417367369285785,
+                "structure_ancient_city": 0.0006047600181773305,
+                "structure_desert_pyramid": 0.015318215824663639,
+                "structure_jungle_temple": 0.11409780848771334,
+                "structure_mansion": 78.90518826409243,
+                "structure_monument": 0.004300011089071631
+              },
+              "worker_cpu_seconds": 148.94485900000004,
+              "worker_seconds": 149.66762861423194,
+              "workers": {
+                "58132": {
+                  "batches": 95,
+                  "cpu_seconds": 4.422910000000001,
+                  "peak_rss_bytes": 61177856,
+                  "seeds": 3040,
+                  "wall_seconds": 4.4405830783071
+                },
+                "58133": {
+                  "batches": 96,
+                  "cpu_seconds": 4.571334000000007,
+                  "peak_rss_bytes": 60092416,
+                  "seeds": 3072,
+                  "wall_seconds": 4.596514488453977
+                },
+                "58134": {
+                  "batches": 93,
+                  "cpu_seconds": 4.506640000000002,
+                  "peak_rss_bytes": 63066112,
+                  "seeds": 2976,
+                  "wall_seconds": 4.528394826571457
+                },
+                "58135": {
+                  "batches": 94,
+                  "cpu_seconds": 4.382270999999998,
+                  "peak_rss_bytes": 63795200,
+                  "seeds": 3008,
+                  "wall_seconds": 4.404820766183548
+                },
+                "58136": {
+                  "batches": 93,
+                  "cpu_seconds": 4.369039000000001,
+                  "peak_rss_bytes": 64405504,
+                  "seeds": 2976,
+                  "wall_seconds": 4.392131519853137
+                },
+                "58137": {
+                  "batches": 94,
+                  "cpu_seconds": 4.5712680000000026,
+                  "peak_rss_bytes": 64978944,
+                  "seeds": 3008,
+                  "wall_seconds": 4.600170414894819
+                },
+                "58138": {
+                  "batches": 94,
+                  "cpu_seconds": 4.481755000000002,
+                  "peak_rss_bytes": 63672320,
+                  "seeds": 3008,
+                  "wall_seconds": 4.504100740537979
+                },
+                "58139": {
+                  "batches": 94,
+                  "cpu_seconds": 4.258313999999999,
+                  "peak_rss_bytes": 62210048,
+                  "seeds": 3008,
+                  "wall_seconds": 4.279040139517747
+                },
+                "58140": {
+                  "batches": 91,
+                  "cpu_seconds": 4.463639000000001,
+                  "peak_rss_bytes": 62840832,
+                  "seeds": 2912,
+                  "wall_seconds": 4.486207956564613
+                },
+                "58142": {
+                  "batches": 92,
+                  "cpu_seconds": 4.347837,
+                  "peak_rss_bytes": 62812160,
+                  "seeds": 2944,
+                  "wall_seconds": 4.370235673384741
+                },
+                "58143": {
+                  "batches": 92,
+                  "cpu_seconds": 4.419978000000004,
+                  "peak_rss_bytes": 61779968,
+                  "seeds": 2944,
+                  "wall_seconds": 4.444362228503451
+                },
+                "58144": {
+                  "batches": 90,
+                  "cpu_seconds": 4.586384000000003,
+                  "peak_rss_bytes": 63451136,
+                  "seeds": 2880,
+                  "wall_seconds": 4.609040837851353
+                },
+                "58145": {
+                  "batches": 91,
+                  "cpu_seconds": 4.496088,
+                  "peak_rss_bytes": 63442944,
+                  "seeds": 2912,
+                  "wall_seconds": 4.520750852418132
+                },
+                "58146": {
+                  "batches": 93,
+                  "cpu_seconds": 4.480784000000002,
+                  "peak_rss_bytes": 61648896,
+                  "seeds": 2976,
+                  "wall_seconds": 4.507997778709978
+                },
+                "58147": {
+                  "batches": 92,
+                  "cpu_seconds": 4.237346,
+                  "peak_rss_bytes": 62169088,
+                  "seeds": 2944,
+                  "wall_seconds": 4.25827710411977
+                },
+                "58148": {
+                  "batches": 90,
+                  "cpu_seconds": 4.1753149999999986,
+                  "peak_rss_bytes": 62169088,
+                  "seeds": 2880,
+                  "wall_seconds": 4.190641764434986
+                },
+                "58149": {
+                  "batches": 94,
+                  "cpu_seconds": 4.316856000000003,
+                  "peak_rss_bytes": 61964288,
+                  "seeds": 3008,
+                  "wall_seconds": 4.3317621543537825
+                },
+                "58150": {
+                  "batches": 94,
+                  "cpu_seconds": 4.389478000000002,
+                  "peak_rss_bytes": 66134016,
+                  "seeds": 3008,
+                  "wall_seconds": 4.407122327713296
+                },
+                "58151": {
+                  "batches": 91,
+                  "cpu_seconds": 4.426391999999995,
+                  "peak_rss_bytes": 63864832,
+                  "seeds": 2912,
+                  "wall_seconds": 4.446990949334577
+                },
+                "58152": {
+                  "batches": 93,
+                  "cpu_seconds": 4.385037999999998,
+                  "peak_rss_bytes": 62181376,
+                  "seeds": 2976,
+                  "wall_seconds": 4.407522552763112
+                },
+                "58153": {
+                  "batches": 90,
+                  "cpu_seconds": 4.443839999999999,
+                  "peak_rss_bytes": 65458176,
+                  "seeds": 2880,
+                  "wall_seconds": 4.462861314183101
+                },
+                "58155": {
+                  "batches": 91,
+                  "cpu_seconds": 4.252885000000001,
+                  "peak_rss_bytes": 64421888,
+                  "seeds": 2912,
+                  "wall_seconds": 4.266860465053469
+                },
+                "58157": {
+                  "batches": 92,
+                  "cpu_seconds": 4.381616999999998,
+                  "peak_rss_bytes": 61661184,
+                  "seeds": 2944,
+                  "wall_seconds": 4.406013856059872
+                },
+                "58162": {
+                  "batches": 90,
+                  "cpu_seconds": 4.340011000000002,
+                  "peak_rss_bytes": 63488000,
+                  "seeds": 2880,
+                  "wall_seconds": 4.356874784920365
+                },
+                "58163": {
+                  "batches": 91,
+                  "cpu_seconds": 4.525178000000001,
+                  "peak_rss_bytes": 62283776,
+                  "seeds": 2912,
+                  "wall_seconds": 4.548574794200249
+                },
+                "58164": {
+                  "batches": 91,
+                  "cpu_seconds": 4.406221999999997,
+                  "peak_rss_bytes": 64212992,
+                  "seeds": 2912,
+                  "wall_seconds": 4.426349083078094
+                },
+                "58165": {
+                  "batches": 90,
+                  "cpu_seconds": 4.245297000000001,
+                  "peak_rss_bytes": 63143936,
+                  "seeds": 2880,
+                  "wall_seconds": 4.268125246861018
+                },
+                "58168": {
+                  "batches": 92,
+                  "cpu_seconds": 4.268830000000001,
+                  "peak_rss_bytes": 62078976,
+                  "seeds": 2944,
+                  "wall_seconds": 4.288207954959944
+                },
+                "58169": {
+                  "batches": 91,
+                  "cpu_seconds": 4.236044000000001,
+                  "peak_rss_bytes": 63033344,
+                  "seeds": 2912,
+                  "wall_seconds": 4.256229637074284
+                },
+                "58170": {
+                  "batches": 91,
+                  "cpu_seconds": 4.244449999999999,
+                  "peak_rss_bytes": 60477440,
+                  "seeds": 2912,
+                  "wall_seconds": 4.2643190728267655
+                },
+                "58172": {
+                  "batches": 91,
+                  "cpu_seconds": 4.312912000000002,
+                  "peak_rss_bytes": 59248640,
+                  "seeds": 2912,
+                  "wall_seconds": 4.336677181418054
+                },
+                "58173": {
+                  "batches": 90,
+                  "cpu_seconds": 4.253482999999998,
+                  "peak_rss_bytes": 60456960,
+                  "seeds": 2880,
+                  "wall_seconds": 4.269670901703648
+                },
+                "58174": {
+                  "batches": 89,
+                  "cpu_seconds": 4.351938999999998,
+                  "peak_rss_bytes": 63631360,
+                  "seeds": 2848,
+                  "wall_seconds": 4.376371537335217
+                },
+                "58175": {
+                  "batches": 90,
+                  "cpu_seconds": 4.393485,
+                  "peak_rss_bytes": 62984192,
+                  "seeds": 2880,
+                  "wall_seconds": 4.41382463008631
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8923553792,
+              "cpu_percent": 49.7,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 2469060608,
+              "processes": [
+                {
+                  "cpu_percent": 49.7,
+                  "pid": 58126,
+                  "rss_bytes": 318169088
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 58130,
+                  "rss_bytes": 13422592
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 58933,
+                  "rss_bytes": 2027520
+                }
+              ],
+              "rss_bytes": 333619200,
+              "sampled_at": 1791801881.181837,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 22245,
+              "free_bytes": 665158242304,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1497500236,
+              "run_bytes": 1454077996,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791801878.901962,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 96.3936261079507,
+          "input_seeds_per_second": 1037.412991269885,
+          "cpu_seconds": 293.74499499999996,
+          "peak_process_tree_rss_bytes": 2470690816,
+          "peak_wal_bytes": 68696912,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1427271680,
+          "bytes_per_input": 14272.7168,
+          "trial": 0
+        },
+        {
+          "count": 100000,
+          "newly_committed": 100000,
+          "wall_seconds": 37.8140830489574,
+          "input_seeds_per_second": 2644.517384449897,
+          "process_cpu_seconds": 213.609269,
+          "queue_wait_seconds": 1.1409721908858046,
+          "seed_preparation_seconds": 0.09368758741766214,
+          "native_seconds": 8.308479743078351,
+          "record_seconds": 9.4680842240341,
+          "preparation_wall_seconds": 9.544589036959223,
+          "writer_wall_seconds": 32.67136769997887,
+          "prepare_seconds": 9.520155192818493,
+          "encoding_seconds": 0.6436406039865687,
+          "hash_seconds": 6.99582109414041,
+          "task_preparation_seconds": 0.4891649759374559,
+          "validation_row_seconds": 1.3915285187540576,
+          "sql_seconds": 20.011116236099042,
+          "commit_seconds": 12.42811442608945,
+          "shutdown_seconds": 0.00044329697266221046,
+          "batches": 25,
+          "threads": 16,
+          "batch_size": 4096,
+          "batch_latencies_seconds": [
+            2.43344131403137,
+            3.2452749910298735,
+            4.5410758529324085,
+            2.879208360100165,
+            3.404554476030171,
+            2.957590053905733,
+            3.4715504369232804,
+            3.0726334389764816,
+            3.80692579690367,
+            3.32453436893411,
+            4.130058421986178,
+            3.4529035630403087,
+            4.2078091480070725,
+            3.9916010960005224,
+            4.6072442040313035,
+            4.385895394952968,
+            4.431952604907565,
+            4.504342506057583,
+            4.71922091091983,
+            4.962911493028514,
+            5.221524545922875,
+            6.108688347041607,
+            7.309683548985049,
+            6.6677920679794624,
+            4.4477469340199605
+          ],
+          "max_outstanding_batches": 3,
+          "max_prepared_owned_estimate_bytes": 107958886,
+          "peak_process_tree_rss_bytes": 573956096,
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 25
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": null,
+            "memory": null,
+            "workspace_disk": null,
+            "workspace_disk_failure": null
+          },
+          "interrupted": false,
+          "encoded": true,
+          "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+          "arm": "native",
+          "key": 120263001000,
+          "cpu_seconds": 223.94245800000002,
+          "peak_wal_bytes": 131975992,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": {
+            "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/native-throughput-2026-10-12/native/_blueprint_batch.cpython-313-darwin.so",
+            "extension_sha256": "47a9406ed8e42c0f80f0ae76fb3aab30aa344b01461c714fd0ada7726df99ae4",
+            "inputs": {
+              "scripts/build_blueprint_batch.py": "292fe86da244a7e236eb3581be8af563fd51f12cbd4bf6c3c696e414d8ac7167",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/blueprint_batch.h": "4ea47940136129e7eabaf29581189ce1a87c2f5bc9f6cc00f3588119146f12dd",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "native/blueprint_batch.inc": "e387fbc06e61dabdffa8293ef1670232a243f17bc62df866f266573d43c92f3e",
+              "vendor/cubiomes-bedrock/noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+              "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+              "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+              "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+              "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+              "vendor/cubiomes-bedrock/biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+              "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+              "vendor/cubiomes-bedrock/mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
+              "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+              "vendor/cubiomes-bedrock/generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+              "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+              "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+              "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+              "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+              "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+              "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+              "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+              "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+              "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+              "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+              "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+              "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+              "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+              "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+              "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+              "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+              "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+              "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+              "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+              "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+              "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+            },
+            "flags": [
+              "-O3",
+              "-std=c11",
+              "-fwrapv",
+              "-Xpreprocessor",
+              "-fopenmp",
+              "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+            ],
+            "openmp": true,
+            "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+            "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+            "production_extension_replaced": false,
+            "scope": "private complete blueprint baseline prototype",
+            "record_adapter_sha256": "8fd3a31028ea8d9080e73e20d3a37e9678f909c7cd931f04e51b63230878b96f",
+            "record_sources_sha256": {
+              "native_records.py": "67c5a769b16725a18b42a7f85a54721a4fde49e1f47f8919246555b2ca127bb5",
+              "native_encoding.py": "98a7d8a489f55cdf65a92c75210263d75b8f110e1725bad4849b78bec07059f1"
+            },
+            "policy_sha256": "1d33bccf68c1dcb2b70efc191908bec8a972aeb962136eec0c6a879791c674e2",
+            "record_computation_identity": {
+              "model": {
+                "model": "26.50",
+                "structure_rng": {
+                  "trial_chamber": 1,
+                  "stronghold": 0,
+                  "mineshaft": 0,
+                  "ancient_city": 0,
+                  "village": 0,
+                  "ruined_portal": 0,
+                  "shipwreck": 0,
+                  "monument": 0,
+                  "outpost": 0,
+                  "fortress": 0,
+                  "bastion": 0,
+                  "desert_pyramid": 0,
+                  "jungle_temple": 0,
+                  "swamp_hut": 0,
+                  "igloo": 0,
+                  "ocean_ruin": 0,
+                  "mansion": 0,
+                  "buried_treasure": 0,
+                  "trail_ruins": 1,
+                  "abandoned_camp": 1,
+                  "ruined_portal_nether": 0,
+                  "end_city": 0
+                }
+              },
+              "native_runtime": {
+                "openmp": true,
+                "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+                "policy": "outer-columns-static-min256-v1"
+              },
+              "sha256": {
+                "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+                "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+                "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+                "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+                "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+                "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+                "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+                "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+                "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+                "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+                "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+                "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+                "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+                "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+                "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+                "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+                "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+                "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+                "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+                "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+              }
+            }
+          },
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1423724544,
+          "bytes_per_input": 14237.24544,
+          "batch_latency_p50_seconds": 4.2078091480070725,
+          "batch_latency_p95_seconds": 6.6677920679794624,
+          "trial": 0
+        },
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 99.49329946294893,
+              "max_outstanding_batches": 36,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 36,
+              "stage_seconds": {
+                "stronghold": 42.07939124654513,
+                "structure_ancient_city": 0.000463895034044981,
+                "structure_desert_pyramid": 0.015321939834393561,
+                "structure_jungle_temple": 0.11662474402692169,
+                "structure_mansion": 80.47738895367365,
+                "structure_monument": 0.003250936046242714
+              },
+              "worker_cpu_seconds": 151.5081039999998,
+              "worker_seconds": 152.70564915053546,
+              "workers": {
+                "59958": {
+                  "batches": 100,
+                  "cpu_seconds": 4.838053999999995,
+                  "peak_rss_bytes": 62500864,
+                  "seeds": 3200,
+                  "wall_seconds": 4.880353489890695
+                },
+                "59959": {
+                  "batches": 97,
+                  "cpu_seconds": 4.762286000000004,
+                  "peak_rss_bytes": 59875328,
+                  "seeds": 3104,
+                  "wall_seconds": 4.809864339884371
+                },
+                "59960": {
+                  "batches": 97,
+                  "cpu_seconds": 4.779070000000001,
+                  "peak_rss_bytes": 63205376,
+                  "seeds": 3104,
+                  "wall_seconds": 4.82423264964018
+                },
+                "59961": {
+                  "batches": 98,
+                  "cpu_seconds": 4.685633999999996,
+                  "peak_rss_bytes": 60465152,
+                  "seeds": 3136,
+                  "wall_seconds": 4.733032226678915
+                },
+                "59962": {
+                  "batches": 98,
+                  "cpu_seconds": 4.746032000000003,
+                  "peak_rss_bytes": 62988288,
+                  "seeds": 3136,
+                  "wall_seconds": 4.796715997741558
+                },
+                "59963": {
+                  "batches": 96,
+                  "cpu_seconds": 4.677096999999999,
+                  "peak_rss_bytes": 60596224,
+                  "seeds": 3072,
+                  "wall_seconds": 4.724934051162563
+                },
+                "59964": {
+                  "batches": 97,
+                  "cpu_seconds": 4.683569999999996,
+                  "peak_rss_bytes": 61833216,
+                  "seeds": 3104,
+                  "wall_seconds": 4.728398599894717
+                },
+                "59965": {
+                  "batches": 94,
+                  "cpu_seconds": 4.6101829999999975,
+                  "peak_rss_bytes": 65327104,
+                  "seeds": 3008,
+                  "wall_seconds": 4.654707177658565
+                },
+                "59966": {
+                  "batches": 97,
+                  "cpu_seconds": 4.742184999999998,
+                  "peak_rss_bytes": 63893504,
+                  "seeds": 3104,
+                  "wall_seconds": 4.788663710118271
+                },
+                "59967": {
+                  "batches": 96,
+                  "cpu_seconds": 4.6881379999999995,
+                  "peak_rss_bytes": 63918080,
+                  "seeds": 3072,
+                  "wall_seconds": 4.728950847871602
+                },
+                "59968": {
+                  "batches": 95,
+                  "cpu_seconds": 4.642218999999997,
+                  "peak_rss_bytes": 61886464,
+                  "seeds": 3040,
+                  "wall_seconds": 4.680130851455033
+                },
+                "59970": {
+                  "batches": 97,
+                  "cpu_seconds": 4.7732909999999995,
+                  "peak_rss_bytes": 64270336,
+                  "seeds": 3104,
+                  "wall_seconds": 4.808104727300815
+                },
+                "59971": {
+                  "batches": 95,
+                  "cpu_seconds": 4.654113999999997,
+                  "peak_rss_bytes": 63283200,
+                  "seeds": 3040,
+                  "wall_seconds": 4.689776852726936
+                },
+                "59972": {
+                  "batches": 96,
+                  "cpu_seconds": 4.656805000000005,
+                  "peak_rss_bytes": 67280896,
+                  "seeds": 3072,
+                  "wall_seconds": 4.691468921490014
+                },
+                "59973": {
+                  "batches": 95,
+                  "cpu_seconds": 4.607035,
+                  "peak_rss_bytes": 60973056,
+                  "seeds": 3040,
+                  "wall_seconds": 4.642225762014277
+                },
+                "59974": {
+                  "batches": 94,
+                  "cpu_seconds": 4.665051999999998,
+                  "peak_rss_bytes": 62115840,
+                  "seeds": 3008,
+                  "wall_seconds": 4.6997396514052525
+                },
+                "59975": {
+                  "batches": 96,
+                  "cpu_seconds": 4.569630000000001,
+                  "peak_rss_bytes": 66326528,
+                  "seeds": 3072,
+                  "wall_seconds": 4.600186681840569
+                },
+                "59976": {
+                  "batches": 92,
+                  "cpu_seconds": 4.583163999999998,
+                  "peak_rss_bytes": 62386176,
+                  "seeds": 2944,
+                  "wall_seconds": 4.618724730564281
+                },
+                "59977": {
+                  "batches": 96,
+                  "cpu_seconds": 4.690056000000003,
+                  "peak_rss_bytes": 61779968,
+                  "seeds": 3072,
+                  "wall_seconds": 4.719537144876085
+                },
+                "59979": {
+                  "batches": 96,
+                  "cpu_seconds": 4.566112,
+                  "peak_rss_bytes": 66514944,
+                  "seeds": 3072,
+                  "wall_seconds": 4.59920947952196
+                },
+                "59980": {
+                  "batches": 96,
+                  "cpu_seconds": 4.602473999999997,
+                  "peak_rss_bytes": 60403712,
+                  "seeds": 3072,
+                  "wall_seconds": 4.631110343965702
+                },
+                "59981": {
+                  "batches": 93,
+                  "cpu_seconds": 4.631135000000001,
+                  "peak_rss_bytes": 65478656,
+                  "seeds": 2976,
+                  "wall_seconds": 4.667176526389085
+                },
+                "59982": {
+                  "batches": 94,
+                  "cpu_seconds": 4.545342000000003,
+                  "peak_rss_bytes": 64438272,
+                  "seeds": 3008,
+                  "wall_seconds": 4.5752324112690985
+                },
+                "59983": {
+                  "batches": 95,
+                  "cpu_seconds": 4.620217999999999,
+                  "peak_rss_bytes": 64237568,
+                  "seeds": 3040,
+                  "wall_seconds": 4.656351407757029
+                },
+                "59984": {
+                  "batches": 94,
+                  "cpu_seconds": 4.552821999999998,
+                  "peak_rss_bytes": 63152128,
+                  "seeds": 3008,
+                  "wall_seconds": 4.584386139409617
+                },
+                "59985": {
+                  "batches": 96,
+                  "cpu_seconds": 4.569708999999997,
+                  "peak_rss_bytes": 62267392,
+                  "seeds": 3072,
+                  "wall_seconds": 4.603162699495442
+                },
+                "59986": {
+                  "batches": 96,
+                  "cpu_seconds": 4.423494999999996,
+                  "peak_rss_bytes": 60731392,
+                  "seeds": 3072,
+                  "wall_seconds": 4.450517186429352
+                },
+                "59987": {
+                  "batches": 95,
+                  "cpu_seconds": 4.665898000000001,
+                  "peak_rss_bytes": 62156800,
+                  "seeds": 3040,
+                  "wall_seconds": 4.699092271504924
+                },
+                "59989": {
+                  "batches": 93,
+                  "cpu_seconds": 4.555614,
+                  "peak_rss_bytes": 62197760,
+                  "seeds": 2976,
+                  "wall_seconds": 4.585234856815077
+                },
+                "59990": {
+                  "batches": 97,
+                  "cpu_seconds": 4.667457000000001,
+                  "peak_rss_bytes": 62742528,
+                  "seeds": 3104,
+                  "wall_seconds": 4.701296396669932
+                },
+                "59992": {
+                  "batches": 96,
+                  "cpu_seconds": 4.470802999999999,
+                  "peak_rss_bytes": 64503808,
+                  "seeds": 3072,
+                  "wall_seconds": 4.501104220398702
+                },
+                "59993": {
+                  "batches": 95,
+                  "cpu_seconds": 4.5586420000000025,
+                  "peak_rss_bytes": 61562880,
+                  "seeds": 3040,
+                  "wall_seconds": 4.592180630075745
+                },
+                "60205": {
+                  "batches": 63,
+                  "cpu_seconds": 3.0247680000000012,
+                  "peak_rss_bytes": 58118144,
+                  "seeds": 2016,
+                  "wall_seconds": 3.0398461666190997
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8930275328,
+              "cpu_percent": 40.6,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 2414735360,
+              "processes": [
+                {
+                  "cpu_percent": 39.4,
+                  "pid": 59951,
+                  "rss_bytes": 322072576
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 59956,
+                  "rss_bytes": 13750272
+                },
+                {
+                  "cpu_percent": 1.2,
+                  "pid": 60800,
+                  "rss_bytes": 2445312
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 60801,
+                  "rss_bytes": 2072576
+                }
+              ],
+              "rss_bytes": 340340736,
+              "sampled_at": 1791802167.2356648,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 22316,
+              "free_bytes": 660757446656,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1520112084,
+              "run_bytes": 1422992852,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791802161.2403479,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 100.6044186130166,
+          "input_seeds_per_second": 993.9921265750608,
+          "cpu_seconds": 301.844793,
+          "peak_process_tree_rss_bytes": 2415427584,
+          "peak_wal_bytes": 68593912,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1427156992,
+          "bytes_per_input": 14271.56992,
+          "trial": 1
+        },
+        {
+          "count": 100000,
+          "newly_committed": 100000,
+          "wall_seconds": 35.799130424973555,
+          "input_seeds_per_second": 2793.363939651444,
+          "process_cpu_seconds": 212.67189399999998,
+          "queue_wait_seconds": 1.209461318794638,
+          "seed_preparation_seconds": 0.09124475624412298,
+          "native_seconds": 8.214919227175415,
+          "record_seconds": 9.058010822162032,
+          "preparation_wall_seconds": 8.946333983098157,
+          "writer_wall_seconds": 30.83821366704069,
+          "prepare_seconds": 8.923510036082007,
+          "encoding_seconds": 0.5356338961282745,
+          "hash_seconds": 6.663066447013989,
+          "task_preparation_seconds": 0.4616531254723668,
+          "validation_row_seconds": 1.2631565674673766,
+          "sql_seconds": 18.982103149290197,
+          "commit_seconds": 11.576429739478044,
+          "shutdown_seconds": 0.0004034580197185278,
+          "batches": 25,
+          "threads": 16,
+          "batch_size": 4096,
+          "batch_latencies_seconds": [
+            2.5677952599944547,
+            3.424472084036097,
+            4.717450523050502,
+            3.047912494977936,
+            3.6005290989996865,
+            3.2325055699329823,
+            3.7268230009358376,
+            3.2341137010371312,
+            4.1486384849995375,
+            3.5417449550004676,
+            4.26555832894519,
+            3.978960889042355,
+            4.560090532992035,
+            4.308076376910321,
+            4.337640521000139,
+            4.492153667961247,
+            4.632457286003046,
+            4.73133494600188,
+            4.687841005972587,
+            4.726075787912123,
+            4.850660850992426,
+            4.93119829997886,
+            4.654285816010088,
+            4.012818754999898,
+            2.6673650100128725
+          ],
+          "max_outstanding_batches": 3,
+          "max_prepared_owned_estimate_bytes": 107959012,
+          "peak_process_tree_rss_bytes": 557404160,
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 25
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": null,
+            "memory": null,
+            "workspace_disk": null,
+            "workspace_disk_failure": null
+          },
+          "interrupted": false,
+          "encoded": true,
+          "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+          "arm": "native",
+          "key": 120263001000,
+          "cpu_seconds": 222.71139000000002,
+          "peak_wal_bytes": 131975992,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": {
+            "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/native-throughput-2026-10-12/native/_blueprint_batch.cpython-313-darwin.so",
+            "extension_sha256": "47a9406ed8e42c0f80f0ae76fb3aab30aa344b01461c714fd0ada7726df99ae4",
+            "inputs": {
+              "scripts/build_blueprint_batch.py": "292fe86da244a7e236eb3581be8af563fd51f12cbd4bf6c3c696e414d8ac7167",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/blueprint_batch.h": "4ea47940136129e7eabaf29581189ce1a87c2f5bc9f6cc00f3588119146f12dd",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "native/blueprint_batch.inc": "e387fbc06e61dabdffa8293ef1670232a243f17bc62df866f266573d43c92f3e",
+              "vendor/cubiomes-bedrock/noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+              "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+              "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+              "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+              "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+              "vendor/cubiomes-bedrock/biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+              "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+              "vendor/cubiomes-bedrock/mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
+              "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+              "vendor/cubiomes-bedrock/generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+              "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+              "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+              "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+              "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+              "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+              "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+              "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+              "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+              "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+              "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+              "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+              "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+              "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+              "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+              "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+              "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+              "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+              "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+              "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+              "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+              "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+            },
+            "flags": [
+              "-O3",
+              "-std=c11",
+              "-fwrapv",
+              "-Xpreprocessor",
+              "-fopenmp",
+              "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+            ],
+            "openmp": true,
+            "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+            "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+            "production_extension_replaced": false,
+            "scope": "private complete blueprint baseline prototype",
+            "record_adapter_sha256": "8fd3a31028ea8d9080e73e20d3a37e9678f909c7cd931f04e51b63230878b96f",
+            "record_sources_sha256": {
+              "native_records.py": "67c5a769b16725a18b42a7f85a54721a4fde49e1f47f8919246555b2ca127bb5",
+              "native_encoding.py": "98a7d8a489f55cdf65a92c75210263d75b8f110e1725bad4849b78bec07059f1"
+            },
+            "policy_sha256": "1d33bccf68c1dcb2b70efc191908bec8a972aeb962136eec0c6a879791c674e2",
+            "record_computation_identity": {
+              "model": {
+                "model": "26.50",
+                "structure_rng": {
+                  "trial_chamber": 1,
+                  "stronghold": 0,
+                  "mineshaft": 0,
+                  "ancient_city": 0,
+                  "village": 0,
+                  "ruined_portal": 0,
+                  "shipwreck": 0,
+                  "monument": 0,
+                  "outpost": 0,
+                  "fortress": 0,
+                  "bastion": 0,
+                  "desert_pyramid": 0,
+                  "jungle_temple": 0,
+                  "swamp_hut": 0,
+                  "igloo": 0,
+                  "ocean_ruin": 0,
+                  "mansion": 0,
+                  "buried_treasure": 0,
+                  "trail_ruins": 1,
+                  "abandoned_camp": 1,
+                  "ruined_portal_nether": 0,
+                  "end_city": 0
+                }
+              },
+              "native_runtime": {
+                "openmp": true,
+                "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+                "policy": "outer-columns-static-min256-v1"
+              },
+              "sha256": {
+                "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+                "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+                "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+                "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+                "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+                "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+                "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+                "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+                "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+                "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+                "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+                "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+                "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+                "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+                "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+                "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+                "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+                "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+                "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+                "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+              }
+            }
+          },
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1423724544,
+          "bytes_per_input": 14237.24544,
+          "batch_latency_p50_seconds": 4.26555832894519,
+          "batch_latency_p95_seconds": 4.850660850992426,
+          "trial": 1
+        },
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 99.77406659501139,
+              "max_outstanding_batches": 30,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 30,
+              "stage_seconds": {
+                "stronghold": 41.477246510679834,
+                "structure_ancient_city": 0.0003941500326618552,
+                "structure_desert_pyramid": 0.015240478911437094,
+                "structure_jungle_temple": 0.11358741659205407,
+                "structure_mansion": 78.3948803540552,
+                "structure_monument": 0.002899294951930642
+              },
+              "worker_cpu_seconds": 148.00162799999973,
+              "worker_seconds": 149.40198909956962,
+              "workers": {
+                "61266": {
+                  "batches": 106,
+                  "cpu_seconds": 5.477133000000002,
+                  "peak_rss_bytes": 61530112,
+                  "seeds": 3392,
+                  "wall_seconds": 5.556817472213879
+                },
+                "61268": {
+                  "batches": 106,
+                  "cpu_seconds": 5.407068,
+                  "peak_rss_bytes": 62971904,
+                  "seeds": 3392,
+                  "wall_seconds": 5.4704523460241035
+                },
+                "61273": {
+                  "batches": 105,
+                  "cpu_seconds": 5.247367000000003,
+                  "peak_rss_bytes": 63819776,
+                  "seeds": 3360,
+                  "wall_seconds": 5.328232667641714
+                },
+                "61275": {
+                  "batches": 106,
+                  "cpu_seconds": 5.267552000000004,
+                  "peak_rss_bytes": 65654784,
+                  "seeds": 3392,
+                  "wall_seconds": 5.350211611134
+                },
+                "61276": {
+                  "batches": 105,
+                  "cpu_seconds": 5.399836000000002,
+                  "peak_rss_bytes": 62472192,
+                  "seeds": 3360,
+                  "wall_seconds": 5.490089423023164
+                },
+                "61277": {
+                  "batches": 105,
+                  "cpu_seconds": 5.332387999999998,
+                  "peak_rss_bytes": 61128704,
+                  "seeds": 3360,
+                  "wall_seconds": 5.399232252384536
+                },
+                "61278": {
+                  "batches": 105,
+                  "cpu_seconds": 4.063522,
+                  "peak_rss_bytes": 55066624,
+                  "seeds": 3360,
+                  "wall_seconds": 4.105825144215487
+                },
+                "61280": {
+                  "batches": 104,
+                  "cpu_seconds": 5.235670000000001,
+                  "peak_rss_bytes": 63623168,
+                  "seeds": 3328,
+                  "wall_seconds": 5.314921985031106
+                },
+                "61281": {
+                  "batches": 105,
+                  "cpu_seconds": 5.386166999999999,
+                  "peak_rss_bytes": 62173184,
+                  "seeds": 3360,
+                  "wall_seconds": 5.455743358586915
+                },
+                "61284": {
+                  "batches": 104,
+                  "cpu_seconds": 5.217466000000004,
+                  "peak_rss_bytes": 65286144,
+                  "seeds": 3328,
+                  "wall_seconds": 5.262444441206753
+                },
+                "61285": {
+                  "batches": 104,
+                  "cpu_seconds": 5.256974000000002,
+                  "peak_rss_bytes": 64446464,
+                  "seeds": 3328,
+                  "wall_seconds": 5.3138011588016525
+                },
+                "61286": {
+                  "batches": 104,
+                  "cpu_seconds": 5.304077,
+                  "peak_rss_bytes": 65384448,
+                  "seeds": 3328,
+                  "wall_seconds": 5.366431621252559
+                },
+                "61287": {
+                  "batches": 104,
+                  "cpu_seconds": 5.132267,
+                  "peak_rss_bytes": 63561728,
+                  "seeds": 3328,
+                  "wall_seconds": 5.183044903445989
+                },
+                "61288": {
+                  "batches": 105,
+                  "cpu_seconds": 5.291224000000005,
+                  "peak_rss_bytes": 62955520,
+                  "seeds": 3360,
+                  "wall_seconds": 5.3457188428146765
+                },
+                "61289": {
+                  "batches": 104,
+                  "cpu_seconds": 5.234990999999998,
+                  "peak_rss_bytes": 62857216,
+                  "seeds": 3328,
+                  "wall_seconds": 5.285012795357034
+                },
+                "61290": {
+                  "batches": 104,
+                  "cpu_seconds": 5.298805000000004,
+                  "peak_rss_bytes": 64946176,
+                  "seeds": 3328,
+                  "wall_seconds": 5.355196464806795
+                },
+                "61291": {
+                  "batches": 104,
+                  "cpu_seconds": 3.978024999999996,
+                  "peak_rss_bytes": 55250944,
+                  "seeds": 3328,
+                  "wall_seconds": 3.9818618970457464
+                },
+                "61292": {
+                  "batches": 104,
+                  "cpu_seconds": 4.058147000000002,
+                  "peak_rss_bytes": 58863616,
+                  "seeds": 3328,
+                  "wall_seconds": 4.061288203112781
+                },
+                "61293": {
+                  "batches": 104,
+                  "cpu_seconds": 4.036332000000002,
+                  "peak_rss_bytes": 57663488,
+                  "seeds": 3328,
+                  "wall_seconds": 4.039593426510692
+                },
+                "61294": {
+                  "batches": 104,
+                  "cpu_seconds": 4.093497000000001,
+                  "peak_rss_bytes": 56233984,
+                  "seeds": 3328,
+                  "wall_seconds": 4.096602946752682
+                },
+                "61295": {
+                  "batches": 104,
+                  "cpu_seconds": 4.0547960000000005,
+                  "peak_rss_bytes": 57610240,
+                  "seeds": 3328,
+                  "wall_seconds": 4.057854927028529
+                },
+                "61296": {
+                  "batches": 104,
+                  "cpu_seconds": 4.008325000000003,
+                  "peak_rss_bytes": 58208256,
+                  "seeds": 3328,
+                  "wall_seconds": 4.0123550578719005
+                },
+                "61297": {
+                  "batches": 103,
+                  "cpu_seconds": 5.2132470000000035,
+                  "peak_rss_bytes": 61734912,
+                  "seeds": 3296,
+                  "wall_seconds": 5.2667147687170655
+                },
+                "61298": {
+                  "batches": 104,
+                  "cpu_seconds": 5.191141999999998,
+                  "peak_rss_bytes": 64000000,
+                  "seeds": 3328,
+                  "wall_seconds": 5.242492761579342
+                },
+                "61299": {
+                  "batches": 103,
+                  "cpu_seconds": 5.209827999999997,
+                  "peak_rss_bytes": 61005824,
+                  "seeds": 3296,
+                  "wall_seconds": 5.260818045353517
+                },
+                "61300": {
+                  "batches": 103,
+                  "cpu_seconds": 5.200584999999997,
+                  "peak_rss_bytes": 63201280,
+                  "seeds": 3296,
+                  "wall_seconds": 5.24968235718552
+                },
+                "61302": {
+                  "batches": 103,
+                  "cpu_seconds": 5.151589999999995,
+                  "peak_rss_bytes": 59441152,
+                  "seeds": 3296,
+                  "wall_seconds": 5.200732660363428
+                },
+                "61303": {
+                  "batches": 103,
+                  "cpu_seconds": 5.156190999999999,
+                  "peak_rss_bytes": 62918656,
+                  "seeds": 3296,
+                  "wall_seconds": 5.201911286218092
+                },
+                "61304": {
+                  "batches": 103,
+                  "cpu_seconds": 5.086971000000002,
+                  "peak_rss_bytes": 61247488,
+                  "seeds": 3296,
+                  "wall_seconds": 5.128665833268315
+                },
+                "61305": {
+                  "batches": 103,
+                  "cpu_seconds": 4.010444999999997,
+                  "peak_rss_bytes": 58175488,
+                  "seeds": 3296,
+                  "wall_seconds": 4.018238440621644
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8742076416,
+              "cpu_percent": 47.2,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 1995636736,
+              "processes": [
+                {
+                  "cpu_percent": 37.7,
+                  "pid": 61255,
+                  "rss_bytes": 133963776
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 61263,
+                  "rss_bytes": 13422592
+                },
+                {
+                  "cpu_percent": 9.5,
+                  "pid": 62149,
+                  "rss_bytes": 2707456
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 62150,
+                  "rss_bytes": 2048000
+                }
+              ],
+              "rss_bytes": 152141824,
+              "sampled_at": 1791802471.216479,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 21493,
+              "free_bytes": 652785061888,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1476698100,
+              "run_bytes": 1345332884,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791802464.480308,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python-original",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 100.00222675595433,
+          "input_seeds_per_second": 999.97773293629,
+          "cpu_seconds": 295.743627,
+          "peak_process_tree_rss_bytes": 1994313728,
+          "peak_wal_bytes": 5343672,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "392e36508870081850c35398fc37d1eb8e21c8e4923bc33b016c3c12220ad35b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1427054592,
+          "bytes_per_input": 14270.54592,
+          "trial": 1
+        },
+        {
+          "count": 100000,
+          "newly_committed": 100000,
+          "wall_seconds": 34.82955380191561,
+          "input_seeds_per_second": 2871.124923641716,
+          "process_cpu_seconds": 208.98181499999998,
+          "queue_wait_seconds": 1.1324758479604498,
+          "seed_preparation_seconds": 0.08948897977825254,
+          "native_seconds": 7.984259270131588,
+          "record_seconds": 8.945298039237969,
+          "preparation_wall_seconds": 9.175686522736214,
+          "writer_wall_seconds": 30.17764965025708,
+          "prepare_seconds": 9.152643908862956,
+          "encoding_seconds": 0.5222960708197206,
+          "hash_seconds": 6.708474379382096,
+          "task_preparation_seconds": 0.4761470768135041,
+          "validation_row_seconds": 1.445726381847635,
+          "sql_seconds": 18.26920310477726,
+          "commit_seconds": 11.632014079252258,
+          "shutdown_seconds": 0.0004962519742548466,
+          "batches": 25,
+          "threads": 16,
+          "batch_size": 4096,
+          "batch_latencies_seconds": [
+            2.5130278919823468,
+            3.5599186940817162,
+            4.803474058047868,
+            3.1214979190845042,
+            3.356059452984482,
+            3.053724423982203,
+            3.5892589130671695,
+            3.2042741019977257,
+            3.9407656940165907,
+            3.3303611630108207,
+            4.100274606025778,
+            3.346860887017101,
+            4.144782774033956,
+            3.9933593459427357,
+            4.613411258091219,
+            4.423744266037829,
+            4.453545302967541,
+            4.567667922005057,
+            4.604684692923911,
+            4.6895979379769415,
+            4.812589715002105,
+            4.9583798999665305,
+            4.629598921048455,
+            4.008993892930448,
+            2.638681160984561
+          ],
+          "max_outstanding_batches": 3,
+          "max_prepared_owned_estimate_bytes": 107959026,
+          "peak_process_tree_rss_bytes": 553345024,
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 25
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": null,
+            "memory": null,
+            "workspace_disk": null,
+            "workspace_disk_failure": null
+          },
+          "interrupted": false,
+          "encoded": true,
+          "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS",
+          "arm": "native",
+          "key": 120263001000,
+          "cpu_seconds": 218.60459,
+          "peak_wal_bytes": 131975992,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": {
+            "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/native-throughput-2026-10-12/native/_blueprint_batch.cpython-313-darwin.so",
+            "extension_sha256": "47a9406ed8e42c0f80f0ae76fb3aab30aa344b01461c714fd0ada7726df99ae4",
+            "inputs": {
+              "scripts/build_blueprint_batch.py": "292fe86da244a7e236eb3581be8af563fd51f12cbd4bf6c3c696e414d8ac7167",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/blueprint_batch.h": "4ea47940136129e7eabaf29581189ce1a87c2f5bc9f6cc00f3588119146f12dd",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "native/blueprint_batch.inc": "e387fbc06e61dabdffa8293ef1670232a243f17bc62df866f266573d43c92f3e",
+              "vendor/cubiomes-bedrock/noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+              "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+              "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+              "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+              "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+              "vendor/cubiomes-bedrock/biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+              "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+              "vendor/cubiomes-bedrock/mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
+              "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+              "vendor/cubiomes-bedrock/generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+              "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+              "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+              "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+              "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+              "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+              "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+              "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+              "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+              "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+              "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+              "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+              "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+              "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+              "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+              "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+              "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+              "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+              "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+              "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+              "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+              "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+            },
+            "flags": [
+              "-O3",
+              "-std=c11",
+              "-fwrapv",
+              "-Xpreprocessor",
+              "-fopenmp",
+              "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+            ],
+            "openmp": true,
+            "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+            "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+            "production_extension_replaced": false,
+            "scope": "private complete blueprint baseline prototype",
+            "record_adapter_sha256": "8fd3a31028ea8d9080e73e20d3a37e9678f909c7cd931f04e51b63230878b96f",
+            "record_sources_sha256": {
+              "native_records.py": "67c5a769b16725a18b42a7f85a54721a4fde49e1f47f8919246555b2ca127bb5",
+              "native_encoding.py": "98a7d8a489f55cdf65a92c75210263d75b8f110e1725bad4849b78bec07059f1"
+            },
+            "policy_sha256": "1d33bccf68c1dcb2b70efc191908bec8a972aeb962136eec0c6a879791c674e2",
+            "record_computation_identity": {
+              "model": {
+                "model": "26.50",
+                "structure_rng": {
+                  "trial_chamber": 1,
+                  "stronghold": 0,
+                  "mineshaft": 0,
+                  "ancient_city": 0,
+                  "village": 0,
+                  "ruined_portal": 0,
+                  "shipwreck": 0,
+                  "monument": 0,
+                  "outpost": 0,
+                  "fortress": 0,
+                  "bastion": 0,
+                  "desert_pyramid": 0,
+                  "jungle_temple": 0,
+                  "swamp_hut": 0,
+                  "igloo": 0,
+                  "ocean_ruin": 0,
+                  "mansion": 0,
+                  "buried_treasure": 0,
+                  "trail_ruins": 1,
+                  "abandoned_camp": 1,
+                  "ruined_portal_nether": 0,
+                  "end_city": 0
+                }
+              },
+              "native_runtime": {
+                "openmp": true,
+                "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+                "policy": "outer-columns-static-min256-v1"
+              },
+              "sha256": {
+                "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+                "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+                "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+                "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+                "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+                "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+                "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+                "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+                "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+                "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+                "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+                "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+                "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+                "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+                "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+                "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+                "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+                "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+                "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+                "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+              }
+            }
+          },
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1423724544,
+          "bytes_per_input": 14237.24544,
+          "batch_latency_p50_seconds": 4.008993892930448,
+          "batch_latency_p95_seconds": 4.812589715002105,
+          "trial": 2
+        },
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 96.32220602896996,
+              "max_outstanding_batches": 30,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 30,
+              "stage_seconds": {
+                "stronghold": 38.042896011378616,
+                "structure_ancient_city": 0.0004253690131008625,
+                "structure_desert_pyramid": 0.01381027139723301,
+                "structure_jungle_temple": 0.10514321748632938,
+                "structure_mansion": 69.7457877183333,
+                "structure_monument": 0.002805768162943423
+              },
+              "worker_cpu_seconds": 132.92320900000016,
+              "worker_seconds": 133.67084329470526,
+              "workers": {
+                "62571": {
+                  "batches": 106,
+                  "cpu_seconds": 4.863824999999997,
+                  "peak_rss_bytes": 58089472,
+                  "seeds": 3392,
+                  "wall_seconds": 4.909796739113517
+                },
+                "62572": {
+                  "batches": 105,
+                  "cpu_seconds": 4.633793999999996,
+                  "peak_rss_bytes": 62132224,
+                  "seeds": 3360,
+                  "wall_seconds": 4.672121535637416
+                },
+                "62573": {
+                  "batches": 105,
+                  "cpu_seconds": 4.749196000000002,
+                  "peak_rss_bytes": 59891712,
+                  "seeds": 3360,
+                  "wall_seconds": 4.787301118019968
+                },
+                "62574": {
+                  "batches": 105,
+                  "cpu_seconds": 4.724402000000002,
+                  "peak_rss_bytes": 60813312,
+                  "seeds": 3360,
+                  "wall_seconds": 4.7609821676742285
+                },
+                "62575": {
+                  "batches": 105,
+                  "cpu_seconds": 4.705759,
+                  "peak_rss_bytes": 60739584,
+                  "seeds": 3360,
+                  "wall_seconds": 4.7396716037765145
+                },
+                "62576": {
+                  "batches": 106,
+                  "cpu_seconds": 4.782450000000001,
+                  "peak_rss_bytes": 61480960,
+                  "seeds": 3392,
+                  "wall_seconds": 4.821939592715353
+                },
+                "62577": {
+                  "batches": 105,
+                  "cpu_seconds": 4.698011999999997,
+                  "peak_rss_bytes": 60608512,
+                  "seeds": 3360,
+                  "wall_seconds": 4.739257003064267
+                },
+                "62578": {
+                  "batches": 105,
+                  "cpu_seconds": 4.720739000000002,
+                  "peak_rss_bytes": 63594496,
+                  "seeds": 3360,
+                  "wall_seconds": 4.761305305873975
+                },
+                "62579": {
+                  "batches": 104,
+                  "cpu_seconds": 4.706023999999998,
+                  "peak_rss_bytes": 60428288,
+                  "seeds": 3328,
+                  "wall_seconds": 4.738528162823059
+                },
+                "62580": {
+                  "batches": 105,
+                  "cpu_seconds": 4.693368000000003,
+                  "peak_rss_bytes": 60747776,
+                  "seeds": 3360,
+                  "wall_seconds": 4.734999098582193
+                },
+                "62581": {
+                  "batches": 104,
+                  "cpu_seconds": 4.577853999999999,
+                  "peak_rss_bytes": 60080128,
+                  "seeds": 3328,
+                  "wall_seconds": 4.618099409970455
+                },
+                "62583": {
+                  "batches": 104,
+                  "cpu_seconds": 4.573077000000002,
+                  "peak_rss_bytes": 61112320,
+                  "seeds": 3328,
+                  "wall_seconds": 4.611289041233249
+                },
+                "62584": {
+                  "batches": 104,
+                  "cpu_seconds": 4.639841000000002,
+                  "peak_rss_bytes": 61718528,
+                  "seeds": 3328,
+                  "wall_seconds": 4.678447729675099
+                },
+                "62585": {
+                  "batches": 104,
+                  "cpu_seconds": 4.1199949999999985,
+                  "peak_rss_bytes": 58482688,
+                  "seeds": 3328,
+                  "wall_seconds": 4.125597069389187
+                },
+                "62586": {
+                  "batches": 104,
+                  "cpu_seconds": 4.14127,
+                  "peak_rss_bytes": 56020992,
+                  "seeds": 3328,
+                  "wall_seconds": 4.146665666019544
+                },
+                "62587": {
+                  "batches": 104,
+                  "cpu_seconds": 4.188427999999996,
+                  "peak_rss_bytes": 56852480,
+                  "seeds": 3328,
+                  "wall_seconds": 4.194158499361947
+                },
+                "62588": {
+                  "batches": 104,
+                  "cpu_seconds": 4.063549999999999,
+                  "peak_rss_bytes": 57528320,
+                  "seeds": 3328,
+                  "wall_seconds": 4.069270028616302
+                },
+                "62589": {
+                  "batches": 104,
+                  "cpu_seconds": 4.194208,
+                  "peak_rss_bytes": 59080704,
+                  "seeds": 3328,
+                  "wall_seconds": 4.198506650049239
+                },
+                "62590": {
+                  "batches": 104,
+                  "cpu_seconds": 4.064227999999999,
+                  "peak_rss_bytes": 57049088,
+                  "seeds": 3328,
+                  "wall_seconds": 4.068469398072921
+                },
+                "62591": {
+                  "batches": 104,
+                  "cpu_seconds": 4.0951509999999995,
+                  "peak_rss_bytes": 56532992,
+                  "seeds": 3328,
+                  "wall_seconds": 4.100811433279887
+                },
+                "62592": {
+                  "batches": 104,
+                  "cpu_seconds": 4.141472000000001,
+                  "peak_rss_bytes": 59338752,
+                  "seeds": 3328,
+                  "wall_seconds": 4.146709553315304
+                },
+                "62593": {
+                  "batches": 104,
+                  "cpu_seconds": 4.132246,
+                  "peak_rss_bytes": 57483264,
+                  "seeds": 3328,
+                  "wall_seconds": 4.137442620121874
+                },
+                "62595": {
+                  "batches": 104,
+                  "cpu_seconds": 4.068355000000001,
+                  "peak_rss_bytes": 54882304,
+                  "seeds": 3328,
+                  "wall_seconds": 4.072613111115061
+                },
+                "62597": {
+                  "batches": 103,
+                  "cpu_seconds": 4.503616999999998,
+                  "peak_rss_bytes": 61194240,
+                  "seeds": 3296,
+                  "wall_seconds": 4.540992227848619
+                },
+                "62601": {
+                  "batches": 103,
+                  "cpu_seconds": 4.634222000000002,
+                  "peak_rss_bytes": 61898752,
+                  "seeds": 3296,
+                  "wall_seconds": 4.670205452363007
+                },
+                "62603": {
+                  "batches": 103,
+                  "cpu_seconds": 4.602966000000001,
+                  "peak_rss_bytes": 61513728,
+                  "seeds": 3296,
+                  "wall_seconds": 4.635324160917662
+                },
+                "62604": {
+                  "batches": 103,
+                  "cpu_seconds": 4.596365000000002,
+                  "peak_rss_bytes": 60108800,
+                  "seeds": 3296,
+                  "wall_seconds": 4.625516140484251
+                },
+                "62605": {
+                  "batches": 104,
+                  "cpu_seconds": 4.550285000000001,
+                  "peak_rss_bytes": 62001152,
+                  "seeds": 3328,
+                  "wall_seconds": 4.585606776061468
+                },
+                "62606": {
+                  "batches": 103,
+                  "cpu_seconds": 3.8532840000000004,
+                  "peak_rss_bytes": 56750080,
+                  "seeds": 3296,
+                  "wall_seconds": 3.8687697597779334
+                },
+                "62609": {
+                  "batches": 103,
+                  "cpu_seconds": 3.905226,
+                  "peak_rss_bytes": 54829056,
+                  "seeds": 3296,
+                  "wall_seconds": 3.9104462397517636
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8743530496,
+              "cpu_percent": 55.9,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 1936474112,
+              "processes": [
+                {
+                  "cpu_percent": 34.8,
+                  "pid": 62564,
+                  "rss_bytes": 135159808
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 62569,
+                  "rss_bytes": 13778944
+                },
+                {
+                  "cpu_percent": 19.5,
+                  "pid": 63448,
+                  "rss_bytes": 2609152
+                },
+                {
+                  "cpu_percent": 1.6,
+                  "pid": 63449,
+                  "rss_bytes": 2048000
+                }
+              ],
+              "rss_bytes": 153595904,
+              "sampled_at": 1791802744.343488,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 21466,
+              "free_bytes": 649879285760,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1455117340,
+              "run_bytes": 1382991580,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791802740.563989,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python-original",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 96.52588391304016,
+          "input_seeds_per_second": 1035.9915490656335,
+          "cpu_seconds": 274.13272699999993,
+          "peak_process_tree_rss_bytes": 1935683584,
+          "peak_wal_bytes": 5356032,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "392e36508870081850c35398fc37d1eb8e21c8e4923bc33b016c3c12220ad35b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1427030016,
+          "bytes_per_input": 14270.30016,
+          "trial": 2
+        },
+        {
+          "status": {
+            "schema": 1,
+            "range": [
+              0,
+              100000
+            ],
+            "completed_seeds": 100000,
+            "total_seeds": 100000,
+            "remaining_seeds": 0,
+            "ranges": {
+              "complete": 3125
+            },
+            "candidate_counts": {
+              "PENDING": 184879
+            },
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            },
+            "active_variants": [
+              "v1"
+            ],
+            "variant_tasks": {
+              "v1:pending": 184879
+            },
+            "inactive_variant_tasks": {},
+            "score_revision": null,
+            "discovery_tasks": {
+              "pending": 200000
+            },
+            "inventory_work": {},
+            "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+            "worker_statistics": {
+              "batches": 3125,
+              "error": null,
+              "interrupted": false,
+              "invocation_completed_seeds": 100000,
+              "invocation_seconds": 99.50903303397354,
+              "max_outstanding_batches": 36,
+              "native_threads": 1,
+              "numerical_threads": 1,
+              "recovered_assignments": 0,
+              "requested_workers": 36,
+              "stage_seconds": {
+                "stronghold": 40.17400489188731,
+                "structure_ancient_city": 0.0005104250740259886,
+                "structure_desert_pyramid": 0.01433802698738873,
+                "structure_jungle_temple": 0.11112000432331115,
+                "structure_mansion": 75.07732680568006,
+                "structure_monument": 0.003697981941513717
+              },
+              "worker_cpu_seconds": 142.55812400000008,
+              "worker_seconds": 143.60470204160083,
+              "workers": {
+                "63487": {
+                  "batches": 102,
+                  "cpu_seconds": 4.728202000000002,
+                  "peak_rss_bytes": 59027456,
+                  "seeds": 3264,
+                  "wall_seconds": 4.777340160682797
+                },
+                "63488": {
+                  "batches": 105,
+                  "cpu_seconds": 4.807937999999995,
+                  "peak_rss_bytes": 61734912,
+                  "seeds": 3360,
+                  "wall_seconds": 4.857329252175987
+                },
+                "63489": {
+                  "batches": 105,
+                  "cpu_seconds": 4.711262000000002,
+                  "peak_rss_bytes": 61480960,
+                  "seeds": 3360,
+                  "wall_seconds": 4.766887910082005
+                },
+                "63490": {
+                  "batches": 104,
+                  "cpu_seconds": 4.740112999999993,
+                  "peak_rss_bytes": 60399616,
+                  "seeds": 3328,
+                  "wall_seconds": 4.794742970378138
+                },
+                "63491": {
+                  "batches": 104,
+                  "cpu_seconds": 4.755606999999998,
+                  "peak_rss_bytes": 61132800,
+                  "seeds": 3328,
+                  "wall_seconds": 4.8293104079784825
+                },
+                "63492": {
+                  "batches": 101,
+                  "cpu_seconds": 4.701835999999994,
+                  "peak_rss_bytes": 59932672,
+                  "seeds": 3232,
+                  "wall_seconds": 4.756447421154007
+                },
+                "63493": {
+                  "batches": 103,
+                  "cpu_seconds": 4.676879000000001,
+                  "peak_rss_bytes": 62926848,
+                  "seeds": 3296,
+                  "wall_seconds": 4.733515825937502
+                },
+                "63494": {
+                  "batches": 101,
+                  "cpu_seconds": 4.621186,
+                  "peak_rss_bytes": 61313024,
+                  "seeds": 3232,
+                  "wall_seconds": 4.678533302620053
+                },
+                "63495": {
+                  "batches": 101,
+                  "cpu_seconds": 4.698278999999998,
+                  "peak_rss_bytes": 62427136,
+                  "seeds": 3232,
+                  "wall_seconds": 4.744200752465986
+                },
+                "63496": {
+                  "batches": 101,
+                  "cpu_seconds": 4.596179999999999,
+                  "peak_rss_bytes": 60833792,
+                  "seeds": 3232,
+                  "wall_seconds": 4.6435450272401795
+                },
+                "63498": {
+                  "batches": 102,
+                  "cpu_seconds": 4.588347999999999,
+                  "peak_rss_bytes": 61161472,
+                  "seeds": 3264,
+                  "wall_seconds": 4.624362820992246
+                },
+                "63499": {
+                  "batches": 101,
+                  "cpu_seconds": 4.608321999999999,
+                  "peak_rss_bytes": 62373888,
+                  "seeds": 3232,
+                  "wall_seconds": 4.638424329808913
+                },
+                "63500": {
+                  "batches": 101,
+                  "cpu_seconds": 4.650151999999999,
+                  "peak_rss_bytes": 60948480,
+                  "seeds": 3232,
+                  "wall_seconds": 4.682908267714083
+                },
+                "63501": {
+                  "batches": 98,
+                  "cpu_seconds": 4.537513,
+                  "peak_rss_bytes": 61198336,
+                  "seeds": 3136,
+                  "wall_seconds": 4.564971757703461
+                },
+                "63502": {
+                  "batches": 102,
+                  "cpu_seconds": 4.572004999999999,
+                  "peak_rss_bytes": 60878848,
+                  "seeds": 3264,
+                  "wall_seconds": 4.591446327161975
+                },
+                "63503": {
+                  "batches": 102,
+                  "cpu_seconds": 4.667462000000001,
+                  "peak_rss_bytes": 62562304,
+                  "seeds": 3264,
+                  "wall_seconds": 4.690613408922218
+                },
+                "63504": {
+                  "batches": 100,
+                  "cpu_seconds": 4.536742999999999,
+                  "peak_rss_bytes": 62660608,
+                  "seeds": 3200,
+                  "wall_seconds": 4.557932782568969
+                },
+                "63505": {
+                  "batches": 98,
+                  "cpu_seconds": 4.579564999999999,
+                  "peak_rss_bytes": 61456384,
+                  "seeds": 3136,
+                  "wall_seconds": 4.6018967787967995
+                },
+                "63506": {
+                  "batches": 99,
+                  "cpu_seconds": 4.522465,
+                  "peak_rss_bytes": 63782912,
+                  "seeds": 3168,
+                  "wall_seconds": 4.543110428610817
+                },
+                "63507": {
+                  "batches": 100,
+                  "cpu_seconds": 4.603620000000001,
+                  "peak_rss_bytes": 60665856,
+                  "seeds": 3200,
+                  "wall_seconds": 4.624326286837459
+                },
+                "63508": {
+                  "batches": 99,
+                  "cpu_seconds": 4.584128000000002,
+                  "peak_rss_bytes": 60960768,
+                  "seeds": 3168,
+                  "wall_seconds": 4.607973656384274
+                },
+                "63509": {
+                  "batches": 99,
+                  "cpu_seconds": 4.510882999999999,
+                  "peak_rss_bytes": 62693376,
+                  "seeds": 3168,
+                  "wall_seconds": 4.5345794359454885
+                },
+                "63510": {
+                  "batches": 100,
+                  "cpu_seconds": 4.5627130000000005,
+                  "peak_rss_bytes": 62828544,
+                  "seeds": 3200,
+                  "wall_seconds": 4.585328913293779
+                },
+                "63511": {
+                  "batches": 99,
+                  "cpu_seconds": 4.479599999999999,
+                  "peak_rss_bytes": 61644800,
+                  "seeds": 3168,
+                  "wall_seconds": 4.503624222823419
+                },
+                "63512": {
+                  "batches": 99,
+                  "cpu_seconds": 4.496897999999996,
+                  "peak_rss_bytes": 61632512,
+                  "seeds": 3168,
+                  "wall_seconds": 4.517867646645755
+                },
+                "63513": {
+                  "batches": 102,
+                  "cpu_seconds": 4.584732999999998,
+                  "peak_rss_bytes": 60862464,
+                  "seeds": 3264,
+                  "wall_seconds": 4.608769211219624
+                },
+                "63514": {
+                  "batches": 101,
+                  "cpu_seconds": 4.583104999999998,
+                  "peak_rss_bytes": 62124032,
+                  "seeds": 3232,
+                  "wall_seconds": 4.607261763419956
+                },
+                "63515": {
+                  "batches": 100,
+                  "cpu_seconds": 4.502782999999997,
+                  "peak_rss_bytes": 60903424,
+                  "seeds": 3200,
+                  "wall_seconds": 4.524652491789311
+                },
+                "63517": {
+                  "batches": 100,
+                  "cpu_seconds": 4.500035999999999,
+                  "peak_rss_bytes": 61198336,
+                  "seeds": 3200,
+                  "wall_seconds": 4.518380859750323
+                },
+                "63524": {
+                  "batches": 97,
+                  "cpu_seconds": 4.369761999999997,
+                  "peak_rss_bytes": 61349888,
+                  "seeds": 3104,
+                  "wall_seconds": 4.391879826085642
+                },
+                "63525": {
+                  "batches": 99,
+                  "cpu_seconds": 4.479806,
+                  "peak_rss_bytes": 61382656,
+                  "seeds": 3168,
+                  "wall_seconds": 4.502537794411182
+                }
+              }
+            },
+            "memory": {
+              "above_target": false,
+              "available": true,
+              "ceiling_bytes": 32212254720,
+              "combined_budget_estimate_bytes": 8915091456,
+              "cpu_percent": 54.6,
+              "docker_reserved_bytes": 8589934592,
+              "peak_process_tree_rss_bytes": 2231664640,
+              "processes": [
+                {
+                  "cpu_percent": 51.5,
+                  "pid": 63468,
+                  "rss_bytes": 307163136
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 63485,
+                  "rss_bytes": 13561856
+                },
+                {
+                  "cpu_percent": 3.1,
+                  "pid": 64465,
+                  "rss_bytes": 2375680
+                },
+                {
+                  "cpu_percent": 0.0,
+                  "pid": 64466,
+                  "rss_bytes": 2056192
+                }
+              ],
+              "rss_bytes": 325156864,
+              "sampled_at": 1791802904.512342,
+              "shared_memory_caveat": "RSS sum can double-count shared pages",
+              "target_bytes": 26843545600,
+              "units": "bytes; GiB=2**30 bytes"
+            },
+            "workspace_disk": {
+              "additional_bytes": 0,
+              "bytes_per_seed_estimate": 22118,
+              "free_bytes": 648420945920,
+              "free_disk_reserve_bytes": 17179869184,
+              "projected_bytes_per_seed": 65536,
+              "projected_run_bytes": 1513238836,
+              "run_bytes": 1397163572,
+              "run_disk_limit_bytes": 137438953472,
+              "sampled_at": 1791802898.575912,
+              "scope": "run-owned files including database/WAL/exports/evidence; external Docker storage excluded"
+            },
+            "workspace_disk_failure": null,
+            "interrupted": false
+          },
+          "arm": "python",
+          "count": 100000,
+          "key": 120263001000,
+          "wall_seconds": 100.36007184791379,
+          "input_seeds_per_second": 996.4122001779807,
+          "cpu_seconds": 292.53168,
+          "peak_process_tree_rss_bytes": 2231828480,
+          "peak_wal_bytes": 68610392,
+          "source_identity": {
+            "model": {
+              "model": "26.50",
+              "structure_rng": {
+                "trial_chamber": 1,
+                "stronghold": 0,
+                "mineshaft": 0,
+                "ancient_city": 0,
+                "village": 0,
+                "ruined_portal": 0,
+                "shipwreck": 0,
+                "monument": 0,
+                "outpost": 0,
+                "fortress": 0,
+                "bastion": 0,
+                "desert_pyramid": 0,
+                "jungle_temple": 0,
+                "swamp_hut": 0,
+                "igloo": 0,
+                "ocean_ruin": 0,
+                "mansion": 0,
+                "buried_treasure": 0,
+                "trail_ruins": 1,
+                "abandoned_camp": 1,
+                "ruined_portal_nether": 0,
+                "end_city": 0
+              }
+            },
+            "native_runtime": {
+              "openmp": true,
+              "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+              "policy": "outer-columns-static-min256-v1"
+            },
+            "sha256": {
+              "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+              "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+              "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+              "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+              "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+              "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+              "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+              "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+              "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+              "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+              "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+              "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+              "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+              "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+              "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+              "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+              "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+              "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+              "src/seed_search/realm/store.py": "22b7a98dba4c45e0769d4e87cc4ddae87cc0701bb472914ec9c8284c89161c6b",
+              "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+            }
+          },
+          "native_identity": null,
+          "fingerprint": {
+            "records_sha256": "1994ba15b0fd49b61d0f10fafc5dec2374c104a54c02a9971bf972b158636156",
+            "task_sha256": {
+              "discovery_tasks": "679ccaf6c3b316505ca45884aa572c445687e58541f9b28722bcf852f70ad31e",
+              "inventory_work": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "variant_tasks": "b0af9d003f6ba5a0644c96876b733463b59133be0b7027fc50d120eb55c3bb98"
+            },
+            "table_rows": {
+              "seeds": 100000,
+              "candidates": 184879,
+              "discovery_tasks": 200000,
+              "inventory_work": 0,
+              "variant_tasks": 184879
+            },
+            "inputs": 100000,
+            "anchors": 184879,
+            "baseline_survivors": 0,
+            "counts": {
+              "baseline_pending": 184879,
+              "baseline_predicted": 0,
+              "checked_ancient_city": 2,
+              "checked_desert_pyramid": 124,
+              "checked_jungle_temple": 870,
+              "checked_mansion": 184879,
+              "checked_monument": 8,
+              "confirmed_rejections": 0,
+              "pending_ancient_city": 2,
+              "pending_desert_pyramid": 116,
+              "pending_jungle_temple": 746,
+              "pending_mansion": 184009,
+              "pending_monument": 6,
+              "stronghold_anchors": 184879,
+              "structure_stage_entered": 184879,
+              "unresolved_discovery": 13443,
+              "unresolved_stronghold_coverage": 100000
+            }
+          },
+          "durability": {
+            "journal_mode": "wal",
+            "synchronous": 2
+          },
+          "sqlite_bytes": 1427079168,
+          "bytes_per_input": 14270.79168,
+          "trial": 2
+        }
+      ]
+    }
+  ],
+  "aggregate_input_seeds_per_second": {
+    "python-original": 1035.9915490656335,
+    "python": 996.4122001779807,
+    "native": 2793.363939651444
+  },
+  "paired_cohort_speedups": [
+    2.8034220568079045
+  ],
+  "performance_gate": true
+}

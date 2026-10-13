@@ -1,0 +1,80 @@
+[
+  {
+    "arm": "direct",
+    "trial": 0,
+    "record_seconds": 0.3106602809857577,
+    "prepare_wall": 0.5166384389158338,
+    "prepare_seconds": 0.5161920100217685,
+    "encoding_seconds": 0.41053433157503605,
+    "hash_seconds": 0.06869873299729079,
+    "task_preparation_seconds": 0.0059737489791586995,
+    "validation_row_seconds": 0.030985196470282972,
+    "sql_seconds": 0.14384655002504587,
+    "commit_seconds": 0.12280551297590137
+  },
+  {
+    "arm": "replay",
+    "trial": 0,
+    "record_seconds": 0.4115984980016947,
+    "prepare_wall": 0.49951379699632525,
+    "prepare_seconds": 0.4992800219915807,
+    "encoding_seconds": 0.3923804931109771,
+    "hash_seconds": 0.06917837797664106,
+    "task_preparation_seconds": 0.007881967932917178,
+    "validation_row_seconds": 0.029839182971045375,
+    "sql_seconds": 0.14659954595845193,
+    "commit_seconds": 0.12376435997430235
+  },
+  {
+    "arm": "replay",
+    "trial": 1,
+    "record_seconds": 0.4315728630172089,
+    "prepare_wall": 0.5086441820021719,
+    "prepare_seconds": 0.508320271037519,
+    "encoding_seconds": 0.3939675099682063,
+    "hash_seconds": 0.07635324203874916,
+    "task_preparation_seconds": 0.007900950033217669,
+    "validation_row_seconds": 0.030098568997345865,
+    "sql_seconds": 0.15303388296160847,
+    "commit_seconds": 0.12616978806909174
+  },
+  {
+    "arm": "direct",
+    "trial": 1,
+    "record_seconds": 0.25615208805538714,
+    "prepare_wall": 0.5051451059989631,
+    "prepare_seconds": 0.5045715090818703,
+    "encoding_seconds": 0.3993735742988065,
+    "hash_seconds": 0.06852405809331685,
+    "task_preparation_seconds": 0.005950502003543079,
+    "validation_row_seconds": 0.030723374686203897,
+    "sql_seconds": 0.153163245995529,
+    "commit_seconds": 0.12138141901232302
+  },
+  {
+    "arm": "direct",
+    "trial": 2,
+    "record_seconds": 0.24040586897172034,
+    "prepare_wall": 0.4917885280447081,
+    "prepare_seconds": 0.49128541408572346,
+    "encoding_seconds": 0.3892758027650416,
+    "hash_seconds": 0.06590440589934587,
+    "task_preparation_seconds": 0.005901510012336075,
+    "validation_row_seconds": 0.03020369540899992,
+    "sql_seconds": 0.1439908390166238,
+    "commit_seconds": 0.12061517999973148
+  },
+  {
+    "arm": "replay",
+    "trial": 2,
+    "record_seconds": 0.39781296194996685,
+    "prepare_wall": 0.488971397979185,
+    "prepare_seconds": 0.48869189305696636,
+    "encoding_seconds": 0.38217631890438497,
+    "hash_seconds": 0.06892808701377362,
+    "task_preparation_seconds": 0.008078486076556146,
+    "validation_row_seconds": 0.029509001062251627,
+    "sql_seconds": 0.14764823601581156,
+    "commit_seconds": 0.12161917798221111
+  }
+]

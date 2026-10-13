@@ -1,0 +1,82 @@
+{
+  "tests_passed": 834,
+  "test_seconds": 178.42,
+  "asan_serial_inputs": 2496,
+  "asan_errors": 0,
+  "source_files_snapshotted": 237,
+  "compiled_inputs_match_final_sources": true,
+  "benchmark_computation_inputs_match_final_sources": true,
+  "original_generator_sha256": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+  "native_extension_sha256": "07c89d1495924ff6b581b5ac0f3ffc2dc03a792ecc2d185de62a5ea579fd9450",
+  "profile_extension_sha256": "eeb54cb86927afb4ebe5135a65ed5952ae5914ffd55c67613ce3d0422ba5dd54",
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "semantic_differences": 0,
+  "profile_semantic_differences": 0,
+  "sqlite_integrity_checks": 15,
+  "sqlite_full_synchronous_checks": 15,
+  "median_rates": {
+    "native_only": {
+      "historical_two_miss": 15089.91683526654,
+      "locked_one_miss": 12646.711820316452,
+      "locked_two_miss": 6672.502878901019
+    },
+    "compact_cli": {
+      "historical_two_miss": 11662.357690109286,
+      "locked_one_miss": 10192.808995266032,
+      "locked_two_miss": 5783.048126658926
+    },
+    "full_cli": {
+      "locked_native_full": 1281.969081698726,
+      "locked_python_full": 961.978414325756
+    }
+  },
+  "terrain_raster_differences": 0,
+  "terrain_decision_differences": 0,
+  "terrain_three_level_speedup": 1.0175617344081092,
+  "terrain_shortened_schedule_adopted": false,
+  "bds_median_seconds": {
+    "8": 10.98691644804785,
+    "5": 10.957825154007878
+  },
+  "bds_column_differences": 13,
+  "bds_diagnostic_status": "PARTIAL; raw controller PASS does not certify complete chunk/ground evidence",
+  "bds_production_tooling_unchanged": true,
+  "bds_settings_adopted": false,
+  "diagnostic_cleanup": [
+    {
+      "name": "realm-bds-8d1c55a16031",
+      "container_absent": true,
+      "volume_absent": true
+    },
+    {
+      "name": "realm-bds-eace04cfc02b",
+      "container_absent": true,
+      "volume_absent": true
+    },
+    {
+      "name": "realm-bds-a910fd2e7890",
+      "container_absent": true,
+      "volume_absent": true
+    },
+    {
+      "name": "realm-bds-1cdae80ac239",
+      "container_absent": true,
+      "volume_absent": true
+    },
+    {
+      "name": "realm-bds-a27e6c9879b9",
+      "container_absent": true,
+      "volume_absent": true
+    },
+    {
+      "name": "realm-bds-6a35b9c038ca",
+      "container_absent": true,
+      "volume_absent": true
+    }
+  ],
+  "locked_native_explicit_executor_adopted": true,
+  "approximate_rare_family_cutoff_adopted": false,
+  "full_evidence_5000_target_achieved": false,
+  "large_search_readiness_or_actual_playability_certified": false,
+  "free_disk_bytes": 632182079488
+}

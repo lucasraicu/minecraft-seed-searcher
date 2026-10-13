@@ -17,7 +17,17 @@ from .store import canonical
 
 def _ranked(store, variant='baseline', limit=20):
     if variant=='baseline':
-        sql="SELECT result FROM candidates ORDER BY CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 ELSE 2 END, COALESCE(CAST(json_extract(result,'$.baseline_score') AS REAL), (CAST(json_extract(result,'$.baseline_score_uncertainty.prediction_score_interval[0]') AS REAL)+CAST(json_extract(result,'$.baseline_score_uncertainty.prediction_score_interval[1]') AS REAL))/2) DESC,id LIMIT ?"
+        from .leaderboard import rows
+        result=[]
+        for encoded,score,tier,misses in rows(store.db,limit):
+            row=json.loads(encoded)
+            near=row.get('retention',{}).get('classification')=='NEAR_MISS'
+            row['smart_score']=score
+            row['unmet_requirements']=misses if near else None
+            row['leaderboard_rank']=len(result)+1
+            row['ranking_view']='observed_partial_predictor_score; near miss' if near else 'complete_predictor_score' if row.get('baseline_score_complete',True) else 'provisional_interval_midpoint; inventory pending'
+            result.append(row)
+        return result
     elif variant in ('v1','v2'):
         # Only a complete score with verified weighted components replaces prediction.
         actual="json_extract(result,'$.result.actual_evaluation.score_verified_complete')=1"
@@ -35,19 +45,16 @@ def _ranked(store, variant='baseline', limit=20):
             row['ranking_result']=generated if generated.get('score_verified_complete') else result
         return rows
     else:raise ValueError('Results variant must be baseline, v1 or v2')
-    rows=[json.loads(r[0]) for r in store.db.execute(sql,(limit,))]
-    for row in rows:
-        row['ranking_view']='complete_predictor_score' if row.get('baseline_score_complete',True) else 'provisional_interval_midpoint; inventory pending'
-    return rows
 
 
 def _export_files(store, root, output):
     counts={}
     for variant in ('baseline','v1','v2'):
-        rows=store.iter_candidates() if variant=='baseline' else store.iter_variants(variant=variant)
+        rows=store.iter_candidates(include_score=True) if variant=='baseline' else store.iter_variants(variant=variant)
         # JSONL preserves all nested evidence; CSV contains independently useful summaries.
         fields=['candidate_id','seed','stronghold','variant','center','qualification','data_status',
-                'score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
+                'smart_score',
+                'retention_classification','unmet_requirements','pending_reasons','score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
                 'surface_wooded_requirement','surface_wooded_families','surface_bonus_interval','raw_record']
         with (root/f'{variant}.jsonl').open('w') as js,(root/f'{variant}.csv').open('w',newline='') as csvfile:
             writer=csv.DictWriter(csvfile,fieldnames=fields);writer.writeheader();n=0
@@ -60,11 +67,16 @@ def _export_files(store, root, output):
                 else:candidate=row
                 surface=candidate.get('surface_biome_verification',{})
                 surface_classification=surface.get('classification',{})
+                smart_score=row.get('smart_score') if variant=='baseline' else None
                 encoded=json.dumps(row,allow_nan=False,separators=(',',':'))
                 js.write(encoded+'\n')
                 writer.writerow({'candidate_id':cid,'seed':candidate['seed'],'stronghold':json.dumps(candidate['stronghold']),
                                  'variant':variant,'center':json.dumps(record.get('center')),
                                  'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
+                                 'smart_score':smart_score,
+                                 'retention_classification':candidate.get('retention',{}).get('classification'),
+                                 'unmet_requirements':candidate.get('retention',{}).get('unmet_requirements'),
+                                 'pending_reasons':json.dumps(candidate.get('pending_reasons',[])),
                                  'score':record.get('score',record.get('baseline_score')),
                                  'score_status':record.get('baseline_score_status',record.get('score_component_status')),
                                  'inventory_status':candidate.get('inventory',{}).get('status','legacy'),
@@ -86,7 +98,7 @@ def _export_files(store, root, output):
         lines.append(f'{variant}: {counts[variant]} saved records')
         for row in _ranked(store,variant,10):
             r=row.get('ranking_result',row.get('result',row))
-            lines.append(f"- {row.get('candidate_id',row.get('id'))}: {r.get('qualification')}; score {r.get('score',r.get('baseline_score'))}; border {r.get('border_fit','not evaluated')}")
+            lines.append(f"- {row.get('candidate_id',row.get('id'))}: {r.get('qualification')}; score {row.get('smart_score',r.get('score',r.get('baseline_score')))}; border {r.get('border_fit','not evaluated')}")
             if variant=='baseline' and row.get('surface_biome_verification'):
                 surface=row['surface_biome_verification']
                 lines.append(f"  Actual surface wooded requirement: {surface['wooded_requirement']}; families {', '.join(surface['classification']['wooded_families'])}; point samples cannot establish absence.")
@@ -262,6 +274,15 @@ def _export_generation(store,root):
 
 
 def _candidate_rescore(candidate,policy,revision_id):
+    if candidate.get('contract')=='master_seed_blueprint_v1':
+        from .blueprint import smart_score,score_uncertainty
+        from .config import river_policy
+        ranking=smart_score(candidate['required_structures'],candidate['required_nether_structures'],candidate['optional_structures'],locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),metrics=candidate.get('terrain_score_metrics'))
+        candidate.update(ranking=ranking,baseline_score_observed=ranking['score'],
+                         baseline_score=ranking['score'] if candidate['baseline_score_complete'] else None,
+                         baseline_score_uncertainty=score_uncertainty(ranking['score'],candidate['pending_reasons'],candidate['baseline_score_complete']),
+                         score_revision=revision_id)
+        return candidate
     from .biomes import classify
     from .baseline import baseline_score_uncertainty
     if candidate.get('biomes'):

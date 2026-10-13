@@ -5,13 +5,15 @@ from .terrain import V1, V2
 
 
 def verification_region(result, variant, cfg, spacing):
-    """Include the measured formation and the evaluator's complete support halo.
+    """Use the exact coastal border or the historical formation support halo.
 
     A limited BDS tile budget may defer this request, but must never shrink it
     to a region that cannot support the requested geometry evaluation.
     """
     if variant not in ('v1', 'v2'):
         raise ValueError('Verification variant must be v1 or v2')
+    if variant not in cfg.get('terrain', {}).get('variants', ('v1', 'v2')):
+        raise ValueError('Requested terrain variant is inactive in this saved configuration')
     if isinstance(spacing, bool) or not isinstance(spacing, int) or spacing < 1:
         raise ValueError('Verification spacing must be a positive integer')
     footprint = result.get('border_fit', {}).get('footprint')
@@ -25,6 +27,13 @@ def verification_region(result, variant, cfg, spacing):
         any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in footprint) or
         footprint[0] >= footprint[2] or footprint[1] >= footprint[3]):
         raise ValueError('Invalid measured formation footprint')
+    from .coastal import coastal_mode
+    if variant == 'v1' and coastal_mode(cfg):
+        x, z = center
+        bounds = (x-768, z-768, x+768, z+768)
+        if tuple(footprint) != bounds:
+            raise ValueError('Coastal verification requires a fixed Stronghold1536 footprint')
+        return bounds
     policy = {**(V1 if variant == 'v1' else V2), **cfg.get('terrain', {}).get(variant, {})}
     extent = (policy['diameter_max'] + max(policy['ideal_water_width'], policy['water_width'])
               if variant == 'v1' else policy['distance_max'] + 8*policy['ridge_support_width'])

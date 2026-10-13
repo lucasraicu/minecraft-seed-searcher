@@ -1,0 +1,28 @@
+{
+  "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/blueprint-audit-2026-10-12/count-pilot-build-test/test_fresh_count_pilot_build_p0/fresh-native/_count_pilot.cpython-313-darwin.so",
+  "extension_sha256": "7293f23293f7914820fce3f023d33cd2e5a7b5d2b11a88e0fc591bc9ad45c752",
+  "source_sha256": "b861ee59e89153f3296ebbc56489d88980ceb61a78e5eea50061e378794a8bc6",
+  "inputs": {
+    "scripts/build_count_pilot.py": "27718d50b8ac31fcd88445647b9923fbdcc0c78ac908d81c461bc9275c601a0e",
+    "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+    "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+    "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+    "native/count_pilot.inc": "3ba3d8a1aa52b72c909eb9e3791e94aa334ce286e6933982c5df959fe61f871c",
+    "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+    "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+    "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+    "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+    "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+    "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+    "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+    "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+    "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+    "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+  },
+  "flags": [
+    "-O3",
+    "-std=c11",
+    "-fwrapv"
+  ],
+  "production_extension_replaced": false
+}

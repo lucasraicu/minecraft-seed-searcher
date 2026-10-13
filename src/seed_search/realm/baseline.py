@@ -63,6 +63,9 @@ def baseline_score_uncertainty(biomes, optional, cfg, pending):
 
 
 def evaluate_seed(index, seed, cfg, *, backend_factory=Backend, combined=True, short_circuit=True):
+    if cfg.get('contract')=='master_seed_blueprint_v1':
+        from .blueprint import evaluate_seed as evaluate_blueprint
+        return evaluate_blueprint(index,seed,cfg,backend_factory=backend_factory,combined=combined,short_circuit=short_circuit)
     seed=parse_seed(seed);start=time.perf_counter();cpu_start=time.process_time();times={};counts={};anchors=[]
     minimal=cfg['search'].get('inventory_mode','complete')=='eligibility'
     def timed(name, fn):

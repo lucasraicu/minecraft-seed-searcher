@@ -1,0 +1,84 @@
+{
+  "count": 4096,
+  "newly_committed": 4096,
+  "wall_seconds": 1.5403916910290718,
+  "input_seeds_per_second": 2659.0639405900924,
+  "process_cpu_seconds": 24.617872,
+  "queue_wait_seconds": 0.06783468392677605,
+  "seed_preparation_seconds": 0.004169732099398971,
+  "native_seconds": 0.28586175211239606,
+  "record_seconds": 0.3018038999289274,
+  "preparation_wall_seconds": 0.45083343610167503,
+  "writer_wall_seconds": 0.5499568020459265,
+  "prepare_seconds": 0.4499516449868679,
+  "encoding_seconds": 0.18870473571587354,
+  "hash_seconds": 0.17750040581449866,
+  "task_preparation_seconds": 0.01486296602524817,
+  "validation_row_seconds": 0.06888353743124753,
+  "sql_seconds": 0.28775842615868896,
+  "commit_seconds": 0.2603628089418635,
+  "shutdown_seconds": 0.0003128419630229473,
+  "batches": 4,
+  "threads": 30,
+  "batch_size": 1024,
+  "batch_latencies_seconds": [
+    0.4158568469574675,
+    0.8487598600331694,
+    0.713670767028816,
+    0.6041175349382684
+  ],
+  "max_outstanding_batches": 2,
+  "max_prepared_owned_estimate_bytes": 27228492,
+  "peak_process_tree_rss_bytes": 129843200,
+  "status": {
+    "schema": 1,
+    "range": [
+      0,
+      4096
+    ],
+    "completed_seeds": 4096,
+    "total_seeds": 4096,
+    "remaining_seeds": 0,
+    "ranges": {
+      "complete": 4
+    },
+    "candidate_counts": {
+      "PENDING": 7657
+    },
+    "counts": {
+      "baseline_pending": 7657,
+      "baseline_predicted": 0,
+      "checked_desert_pyramid": 6,
+      "checked_jungle_temple": 28,
+      "checked_mansion": 7657,
+      "confirmed_rejections": 0,
+      "pending_desert_pyramid": 6,
+      "pending_jungle_temple": 22,
+      "pending_mansion": 7629,
+      "stronghold_anchors": 7657,
+      "structure_stage_entered": 7657,
+      "unresolved_discovery": 518,
+      "unresolved_stronghold_coverage": 4096
+    },
+    "active_variants": [
+      "v1"
+    ],
+    "variant_tasks": {
+      "v1:pending": 7657
+    },
+    "inactive_variant_tasks": {},
+    "score_revision": null,
+    "discovery_tasks": {
+      "pending": 8192
+    },
+    "inventory_work": {},
+    "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+    "worker_statistics": null,
+    "memory": null,
+    "workspace_disk": null,
+    "workspace_disk_failure": null
+  },
+  "interrupted": false,
+  "encoded": true,
+  "scope": "complete baseline evidence and FULL SQLite, startup/drain/close included; no terrain/BDS"
+}

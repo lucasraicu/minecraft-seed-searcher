@@ -53,7 +53,7 @@ static int ss_mineshaft_query(SeedContext *ctx,int x0,int z0,int x1,int z1,int *
             if((float)(second[lane]*(1.0/4294967296.0))<0.004 &&
                third[lane]%80<(uint32_t)(abs(x)>abs(zz)?abs(x):abs(zz))) {
                 n=emit((Pos){x*16+8,zz*16+8},xz,n,cap);
-                if(n<0 || first)return n;
+                if(n<0 || (first && n>=first))return n;
             }
         }
     }
@@ -61,7 +61,7 @@ static int ss_mineshaft_query(SeedContext *ctx,int x0,int z0,int x1,int z1,int *
     for(int x=cx0;x<=cx1;x++)for(int z=cz0;z<=cz1;z++) {
         Pos p;
         if(getMineshafts(MC_26_50,ctx->seed,x,z,x,z,&p,1)) {
-            n=emit(p,xz,n,cap);if(n<0 || first)return n;
+            n=emit(p,xz,n,cap);if(n<0 || (first && n>=first))return n;
         }
     }
 #endif
@@ -90,6 +90,31 @@ int ss_structure_first(SeedContext *ctx,int type,int x0,int z0,int x1,int z1,int
             }
         }
     return 0;
+}
+/* Public count-floor query: retain at most goal distinct viable starts. No
+ * shared cache or low-bit viability reuse. Stronghold discovery remains full.
+ * A returned goal proves only a predictor floor, never a complete inventory. */
+int ss_structure_count(SeedContext *ctx,int type,int x0,int z0,int x1,int z1,int *xz,int goal) {
+    if(goal<1 || goal>64)return -1;
+    if(type==Mineshaft)return ss_mineshaft_query(ctx,x0,z0,x1,z1,xz,goal,goal);
+    StructureConfig cfg;
+    if(!ctx || !xz || x0>x1 || z0>z1 || type==Stronghold || !getStructureConfig(type,MC_26_50,&cfg) ||
+       x0<-(1<<30) || z0<-(1<<30) || x1>=(1<<30) || z1>=(1<<30) ||
+       (int64_t)x1-x0>14000 || (int64_t)z1-z0>14000)return -1;
+    Generator *g=ss_generator(ctx,cfg.dim);if(!g)return -1;
+    int size=cfg.regionSize*16,n=0;
+    for(int rx=floordiv(x0,size);rx<=floordiv(x1,size);rx++)
+        for(int rz=floordiv(z0,size);rz<=floordiv(z1,size);rz++) {
+            Pos p;
+            if(!getStructurePos(type,MC_26_50,ctx->seed,rx,rz,&p) || !inside(p,x0,z0,x1,z1))continue;
+            if(!isViableStructurePos(type,g,p.x,p.z,0))continue;
+            int duplicate=0;
+            for(int i=0;i<n;i++)if(xz[2*i]==p.x && xz[2*i+1]==p.z){duplicate=1;break;}
+            if(duplicate)continue;
+            xz[2*n]=p.x;xz[2*n+1]=p.z;
+            if(++n==goal)return n;
+        }
+    return n;
 }
 int ss_nether_pair(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xzt,int *viable,int cap) {
     StructureConfig cfg;

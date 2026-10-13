@@ -1,0 +1,44 @@
+{
+  "revision": "locked-2048-1024-river-v2",
+  "tests_passed": 851,
+  "tests_seconds": 186.19,
+  "asan_serial_inputs": 1248,
+  "asan_errors": 0,
+  "native_extension_sha256": "67ef684de99fb268a3ccfe6a41031d2c3d1cf5733486fa686966bf821d5637c3",
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "original_generator_sha256": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+  "compiled_and_benchmarked_sources_match_final": true,
+  "source_snapshot_files": 238,
+  "sqlite_integrity_full_checks": 13,
+  "baseline_full_semantic_task_differences": 0,
+  "river_geometry_full_semantic_differences": 0,
+  "graph_queue_random_grid_comparisons": 100,
+  "geometry_median_cohort_seconds": {
+    "locked": 0.10023324203211814,
+    "river": 0.24992252280935645,
+    "python_river": 0.6406692240852863
+  },
+  "compiled_river_geometry_speedup": 2.5634713385715764,
+  "median_rates": {
+    "native_only": {
+      "locked_one_miss": 12988.149399024036,
+      "river_one_miss": 15227.871056558304
+    },
+    "compact_cli": {
+      "locked_one_miss": 10494.510679141227,
+      "river_one_miss": 12086.86730106785
+    },
+    "full_cli": {
+      "river_native_full": 1218.9628026556284,
+      "river_python_full": 904.6712327028521
+    }
+  },
+  "same_policy_full_native_speedup": 1.3474097092860786,
+  "native_new_policy_explicit_executor_adopted": true,
+  "historical_policies_preserved": true,
+  "actual_river_navigability_certified": false,
+  "full_blueprint_or_large_search_certified": false,
+  "bds_worlds_launched": 0,
+  "full_evidence_5000_target_achieved": false,
+  "free_disk_bytes": 630934249472
+}

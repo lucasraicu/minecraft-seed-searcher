@@ -169,8 +169,12 @@ def _finish(variant, raster, center, bounds, stronghold, metrics, reasons, geome
 
 
 def evaluate_v1(raster: Raster, center, bounds=None, stronghold=(0, 0), *, thresholds=None,
-                rays=32, biome_fit=0., baseline_quality=0.):
+                rays=32, biome_fit=0., baseline_quality=0., monuments=(), require_monument=True):
     """Closed land component plus a common enclosing water body, including lakes."""
+    if (thresholds or {}).get('mode') == 'coastal_continent':
+        from .coastal import evaluate_coastal
+        return evaluate_coastal(raster, center, bounds, stronghold, thresholds=thresholds,
+                                monuments=monuments, biome_fit=biome_fit, baseline_quality=baseline_quality, require_monument=require_monument)
     p = {**V1, **(thresholds or {})}
     bounds = bounds or raster.bounds
     water = raster.water_mask()
@@ -465,7 +469,7 @@ def terrain_algorithm_identity(cfg, *, provider_factory=None, provider_identity=
     """
     root = Path(__file__).parent
     sources = {name: hashlib.sha256((root/name).read_bytes()).hexdigest()
-               for name in ('terrain.py', 'raster.py', 'biomes.py')}
+               for name in ('terrain.py', 'coastal.py', 'marine.py', 'blueprint.py', 'verification_plan.py', 'raster.py', 'biomes.py')}
     bds = {key: value for key, value in cfg.get('bds', {}).items()
            if key not in {'cpus', 'memory_gib', 'verification_budget'}}
     value = dict(policy='realm-terrain-v3', work_schema='center-stage-pool-v1', raster_encoding='npz-base64-v1', sampling_provider=terrain_provider_identity(provider_factory, provider_identity), sources=sources, terrain=cfg.get('terrain', {}),
@@ -522,7 +526,9 @@ def _run_terrain_legacy(store, cfg, variants=('v1', 'v2'), limit=None, resume=Tr
     cache = RasterCache(terrain.get('cache_entries', 32))
     summary = dict(candidates=0, results=0, resumed=0, resumed_tasks=0, cache_hits=0, cache_misses=0)
     started = time.monotonic()
-    policies = {variant: {**(V1 if variant == 'v1' else V2), **terrain.get(variant, cfg.get('variants', {}).get(variant, {}))} for variant in ('v1', 'v2')}
+    from .coastal import coastal_mode, monument_inputs
+    coastal = coastal_mode(cfg)
+    policies = {variant: {**(V1 if variant == 'v1' else V2), **terrain.get(variant, cfg.get('variants', {}).get(variant, {}))} for variant in terrain.get('variants',('v1','v2'))}
     extents = {variant: (policy['diameter_max']+max(policy['ideal_water_width'], policy['water_width']) if variant == 'v1' else policy['distance_max']+8*policy['ridge_support_width']) for variant, policy in policies.items()}
     if refinements == 0:
         return dict(summary, elapsed_seconds=0.)
@@ -543,14 +549,18 @@ def _run_terrain_legacy(store, cfg, variants=('v1', 'v2'), limit=None, resume=Tr
         try:
             # Cheap 2D nomination precedes any density height computation.
             halo = math.ceil(max(extents.values())+max(resolutions)+terrain.get('refine_center_spacing', 16))
-            nomination_bounds = (bounds[0]-halo, bounds[1]-halo, bounds[2]+halo, bounds[3]+halo)
+            nomination_bounds = bounds if coastal and active_variants == ['v1'] else (bounds[0]-halo, bounds[1]-halo, bounds[2]+halo, bounds[3]+halo)
             nomination = cache.sample(provider, seed, nomination_bounds, max(resolutions), stage='nomination', settings=settings)
             for variant in active_variants:
                 evaluate = evaluate_v1 if variant == 'v1' else evaluate_v2
                 thresholds = policies[variant]
                 options = dict(thresholds=thresholds, rays=terrain.get('rays', 32))
+                fixed = coastal and variant == 'v1'
+                if fixed:
+                    options['monuments'] = monument_inputs(candidate)
+                    if cfg.get('screening_revision'):options['require_monument']=candidate.get('marine_stage',{}).get('status')!='DEFERRED'
                 coarse = []
-                for center in propose_centers(nomination, bounds, variant, spacing):
+                for center in ([tuple(stronghold)] if fixed else propose_centers(nomination, bounds, variant, spacing)):
                     result = evaluate(nomination, center, bounds, stronghold, **options)
                     coarse.append((result['geometry_score'], center))
                 selected = [c for _, c in sorted(coarse, key=lambda row: (-row[0], row[1]))[:refinements]]
@@ -559,13 +569,15 @@ def _run_terrain_legacy(store, cfg, variants=('v1', 'v2'), limit=None, resume=Tr
                     local_spacing = terrain.get('refine_center_spacing', 16)
                     nearby = [(cx+dx, cz+dz) for dx in (-local_spacing, 0, local_spacing) for dz in (-local_spacing, 0, local_spacing)
                               if bounds[0] <= cx+dx < bounds[2] and bounds[1] <= cz+dz < bounds[3]]
+                    if fixed: nearby = [tuple(stronghold)]
                     center = coarse_center
                     for resolution in sorted(set(resolutions)-{max(resolutions)}, reverse=True):
                         radius = math.ceil(max(extents.values())+2*resolution+local_spacing)
-                        local = (cx-radius, cz-radius, cx+radius+1, cz+radius+1)
+                        local = bounds if fixed else (cx-radius, cz-radius, cx+radius+1, cz+radius+1)
                         sampled = cache.sample(provider, seed, local, resolution, stage='height', settings=settings)
-                        quality = candidate.get('baseline_score', {})
-                        quality = quality.get('normalized', quality.get('quality', 0)) if isinstance(quality, dict) else 100.*float(quality)/cfg.get('scoring', {}).get('baseline_quality_cap', 60)
+                        quality = candidate.get('baseline_score')
+                        if quality is None:quality=candidate.get('baseline_score_observed',0)
+                        quality = quality.get('normalized', quality.get('quality', 0)) if isinstance(quality, dict) else 100.*float(quality or 0)/cfg.get('scoring', {}).get('baseline_quality_cap', 60)
                         from .biomes import variant_fit
                         from ..backend import biome_name
                         observed = [biome_name(int(b)) for b in np.unique(sampled.biomes[sampled.known])] if sampled.biomes is not None else []
@@ -577,6 +589,11 @@ def _run_terrain_legacy(store, cfg, variants=('v1', 'v2'), limit=None, resume=Tr
                         if resolution <= 32 and result['geometry_score'] < terrain.get('fine_refinement_score', 40):
                             result['pending_work'].append('below fine-refinement scheduling threshold; baseline retained')
                             break
+                    if fixed and cfg.get('screening_revision') and resolution==min(resolutions):
+                        from .marine import evaluate_marine_stage
+                        result,marine_update=evaluate_marine_stage(candidate,cfg,sampled,result)
+                        if marine_update:
+                            store.upsert_candidate(marine_update);candidate={**candidate,**marine_update}
                     apply_score_policy(result, cfg.get('scoring', {}), source=sampled.metadata.get('source', 'prediction'), biome_fit=fit,
                                        component_status={'geometry': result['evidence'],
                                                          'biome_fit': 'PREDICTED' if sampled.biomes is not None else 'UNKNOWN',
@@ -709,7 +726,9 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
         spacing=terrain.get('center_spacing',64);local_spacing=terrain.get('refine_center_spacing',16)
         halo_cap=terrain.get('maximum_halo_expansions',2)
         if isinstance(halo_cap,bool) or not isinstance(halo_cap,int) or halo_cap<0:raise ValueError('maximum_halo_expansions must be a nonnegative integer')
-        policies={v:{**(V1 if v=='v1' else V2),**terrain.get(v,cfg.get('variants',{}).get(v,{}))} for v in ('v1','v2')}
+        from .coastal import coastal_mode, monument_inputs
+        coastal=coastal_mode(cfg)
+        policies={v:{**(V1 if v=='v1' else V2),**terrain.get(v,cfg.get('variants',{}).get(v,{}))} for v in terrain.get('variants',('v1','v2'))}
         extents={v:p['diameter_max']+max(p['ideal_water_width'],p['water_width']) if v=='v1' else p['distance_max']+8*p['ridge_support_width'] for v,p in policies.items()}
         cache=RasterCache(terrain.get('cache_entries',32))
         summary=dict(candidates=0,results=0,resumed=0,resumed_tasks=0,work_completed=0,
@@ -757,7 +776,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                         b=[mb[0]-halo,mb[1]-halo,mb[2]+halo,mb[3]+halo]
                         for v in variants:
                             if not next(store.iter_terrain_work(revision,candidate_id=member['id'],variant=v),None):
-                                store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],b,priority=100000.,variant_scope=v))
+                                store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
                 unit=store.claim_priority_terrain(revision,variants,worker,epoch,continue_manual=continue_deferred_halos,max_refinements=budget)
                 if unit is None:
                     if exhausted:return
@@ -770,7 +789,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                     b=[mb[0]-halo,mb[1]-halo,mb[2]+halo,mb[3]+halo]
                     for v in variants:
                         if not next(store.iter_terrain_work(revision,candidate_id=member['id'],variant=v),None):
-                            store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],b,priority=100000.,variant_scope=v))
+                            store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
                     continue
                 member=store.get_candidate(unit['candidate_id']);member['_scheduled_unit']=unit
                 yield member
@@ -792,7 +811,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
             for variant in variants:
                 # Insert once; completed nomination units retain the original proposal queue.
                 if not next(iter(store.iter_terrain_work(revision,candidate_id=cid,variant=variant)),None):
-                    store.ensure_terrain_work(revision,cid,variant,payload('nomination',stronghold,resolutions[0],nomination_bounds,priority=100000.,variant_scope=variant))
+                    store.ensure_terrain_work(revision,cid,variant,payload('nomination',stronghold,resolutions[0],bounds if coastal and variant=='v1' else nomination_bounds,priority=100000.,variant_scope=variant))
             active=[v for v in variants if next(pending(cid,v),None)]
             summary['resumed_tasks']+=sum(store.terrain_work_complete(revision,cid,v) for v in variants if v not in active)
             summary['blocked_variants']+=sum(not store.terrain_work_complete(revision,cid,v) for v in variants if v not in active)
@@ -818,6 +837,10 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                 for variant in active:
                     evaluate=evaluate_v1 if variant=='v1' else evaluate_v2
                     options=dict(thresholds=policies[variant],rays=terrain.get('rays',32))
+                    fixed=coastal and variant=='v1'
+                    if fixed:
+                        options['monuments']=monument_inputs(candidate)
+                        if cfg.get('screening_revision'):options['require_monument']=candidate.get('marine_stage',{}).get('status')!='DEFERRED'
                     initial=next((u for u in pending(cid,variant) if u['payload']['stage']=='nomination'),None)
                     if initial:
                         unit=claim(initial)
@@ -825,7 +848,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                         raster,observation=sample(unit)
                         proposals=[];successors=[]
                         retry_reason=_terrain_sampling_retry_reason(raster)
-                        centers=propose_centers(raster,bounds,variant,spacing) if retry_reason is None else [(x,z) for z in range(bounds[1],bounds[3],spacing) for x in range(bounds[0],bounds[2],spacing)]
+                        centers=([tuple(stronghold)] if fixed else propose_centers(raster,bounds,variant,spacing) if retry_reason is None else [(x,z) for z in range(bounds[1],bounds[3],spacing) for x in range(bounds[0],bounds[2],spacing)])
                         for center in centers:
                             coarse=evaluate(raster,center,bounds,stronghold,**options)
                             proposals.append(coarse)
@@ -833,6 +856,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                             x,z=center;local=[x-radius,z-radius,x+radius+1,z+radius+1]
                             nearby=[[x+dx,z+dz] for dx in (-local_spacing,0,local_spacing) for dz in (-local_spacing,0,local_spacing)
                                     if bounds[0]<=x+dx<bounds[2] and bounds[1]<=z+dz<bounds[3]]
+                            if fixed:local=list(bounds);nearby=[list(stronghold)]
                             successors.append(dict(candidate_id=cid,variant=variant,payload=payload('height',center,resolutions[1],local,
                                 center=list(center),nearby_centers=nearby,coarse_score=coarse['geometry_score'],priority=coarse['geometry_score'],variant_scope=variant)))
                         if retry_reason:
@@ -868,11 +892,21 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                             item=unit['payload'];raster,observation=sample(unit)
                             from .biomes import raster_variant_fit
                             fit,fit_status,fit_provenance=raster_variant_fit(raster,variant,target_version=cfg.get('game',{}).get('target_version','26.52'))
-                            quality=candidate.get('baseline_score',0)
-                            quality=quality.get('normalized',quality.get('quality',0)) if isinstance(quality,dict) else 100.*float(quality)/cfg.get('scoring',{}).get('baseline_quality_cap',60)
+                            quality=candidate.get('baseline_score')
+                            if quality is None:quality=candidate.get('baseline_score_observed',0)
+                            quality=quality.get('normalized',quality.get('quality',0)) if isinstance(quality,dict) else 100.*float(quality or 0)/cfg.get('scoring',{}).get('baseline_quality_cap',60)
                             results=[evaluate(raster,c,bounds,stronghold,biome_fit=fit,baseline_quality=min(100.,max(0.,float(quality or 0))),**options)
                                      for c in item.get('nearby_centers',[item.get('center',coarse_center)])]
                             result=max(results,key=lambda r:r['geometry_score']);center=result['center'];result['biome_fit_provenance']=fit_provenance
+                            marine_update=None
+                            if fixed and cfg.get('screening_revision') and item['resolution']==min(resolutions):
+                                from .marine import evaluate_marine_stage
+                                result,marine_update=evaluate_marine_stage(candidate,cfg,raster,result)
+                                if marine_update:
+                                    options['monuments']=marine_update['required_structures']['monument']['predicted_viable']
+                                    options['require_monument']=True
+                                    results=[result]
+
                             apply_score_policy(result,cfg.get('scoring',{}),source=raster.metadata.get('source','prediction'),biome_fit=fit,
                                                component_status={'geometry':result['evidence'],'biome_fit':fit_status,'baseline_quality':candidate.get('qualification','PENDING')})
                             result['sampling_schedule']={'nomination_resolution':resolutions[0],'last_height_resolution':item['resolution'],
@@ -895,13 +929,14 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                             if remaining and item['stage']=='height':
                                 resolution=remaining[0];radius=math.ceil(max(extents.values())+2*resolution+local_spacing)
                                 x,z=coarse_center;local=[x-radius,z-radius,x+radius+1,z+radius+1]
+                                if fixed:local=list(bounds)
                                 successor=payload('height',coarse_center,resolution,local,center=center,nearby_centers=[center],
                                                   priority=item.get('coarse_score',0),coarse_score=item.get('coarse_score',0),variant_scope=variant)
                                 if low:
                                     successor_status='deferred';successor['pending_reason']='below fine scheduling threshold; finer geometry remains unevaluated'
                                     result['pending_work'].append(successor['pending_reason'])
                                 else:continue_chain=True
-                            elif result['qualification']=='PENDING' or result['geometry_pass'] and not result['border_fit']['complete']:
+                            elif not fixed and (result['qualification']=='PENDING' or result['geometry_pass'] and not result['border_fit']['complete']):
                                 level=item['halo_level']+1;x,z=coarse_center
                                 radius=math.ceil(max(extents.values())+2*item['resolution']+local_spacing)*2**level
                                 local=[x-radius,z-radius,x+radius+1,z+radius+1]
@@ -914,7 +949,9 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                             successors=[] if successor is None else [dict(candidate_id=cid,variant=variant,payload=successor,status=successor_status)]
                             _preserve_actual_variant(store,cid,variant,result)
                             persist(store.complete_terrain_work,unit,result={'best':result,'evaluated_centers':results},successor_units=successors,
-                                variant_results=[dict(candidate_id=cid,variant=variant,center=center,result=result)],observation=observation)
+                                variant_results=[dict(candidate_id=cid,variant=variant,center=center,result=result)],observation=observation,
+                                **({'candidate_update':marine_update} if marine_update else {}))
+                            if marine_update:candidate={**candidate,**marine_update}
                             summary['work_completed']+=1;summary['results']+=1;did_work=True
                             store.set_state(cursor_key,cid)
                             if progress:progress(dict(summary,seed=seed,variant=variant,work_status=store.terrain_work_counts(revision),elapsed_seconds=time.monotonic()-started))
@@ -932,7 +969,8 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
             if summary.get('resource_blocked'):break
         saved_counts=store.terrain_work_counts(revision)
         counts={status:saved_counts.get(status,0) for status in ('pending','deferred','leased','complete')}
-        uninitialized=store.terrain_pool_uninitialized_counts(revision)
+        all_uninitialized=store.terrain_pool_uninitialized_counts(revision)
+        uninitialized={v:all_uninitialized.get(v,0) for v in terrain.get('variants',('v1','v2'))}
         summary.update(pool_uninitialized_by_variant=uninitialized,uninitialized_variant_tasks=sum(uninitialized.values()),
                        requested_uninitialized_variant_tasks=sum(uninitialized[v] for v in set(variants)),
                        pool_cursor=store.get_state(cursor_key),work_status=counts,pending_work=counts.get('pending',0),deferred_work=counts.get('deferred',0),cache_hits=cache.hits,
@@ -942,9 +980,12 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
         fcntl.flock(lock.fileno(),fcntl.LOCK_UN);lock.close()
 
 
-def run_terrain(store,cfg,variants=('v1','v2'),limit=None,resume=True,progress=None,*,provider_factory=None,provider_identity=None,
+def run_terrain(store,cfg,variants=None,limit=None,resume=True,progress=None,*,provider_factory=None,provider_identity=None,
                 pool_revision=None,new_pool_revision=False,continue_deferred_halos=False):
-    """Resume independent center/stage queues against one fixed baseline membership."""
+    """Resume active center/stage queues against one fixed baseline membership."""
+    active=tuple(cfg.get('terrain',{}).get('variants',('v1','v2')))
+    variants=active if variants is None else tuple(variants)
+    if any(v not in active for v in variants):raise ValueError('Requested terrain variant is inactive in this saved configuration')
     if any(v not in {'v1','v2'} for v in variants):raise ValueError('Realm variants are v1 and v2')
     if limit is not None and limit<0:raise ValueError('Limit must be nonnegative')
     if hasattr(store,'ensure_terrain_work'):

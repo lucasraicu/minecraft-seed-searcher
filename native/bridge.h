@@ -28,6 +28,7 @@ int ss_sweep_raw(uint64_t start, uint64_t count, const int *types, const int *bo
 int ss_biome_points(SeedContext *ctx, int dimension, const int *xyz, int n, int *biomes);
 int ss_mineshaft_first(SeedContext *ctx, int x0, int z0, int x1, int z1, int *xz);
 int ss_structure_first(SeedContext *ctx, int type, int x0, int z0, int x1, int z1, int *xz);
+int ss_structure_count(SeedContext *ctx, int type, int x0, int z0, int x1, int z1, int *xz, int goal);
 int ss_mineshaft_inventory(SeedContext *ctx, int x0, int z0, int x1, int z1, int *xz, int capacity);
 int ss_nether_pair(SeedContext *ctx, int x0, int z0, int x1, int z1, int *xzt, int *viable, int capacity);
 int ss_sweep_raw_mode(uint64_t start, uint64_t count, const int *types, const int *bounds,

@@ -9,12 +9,12 @@ from seed_search.realm.raw import FAMILIES, center_rectangle
 from seed_search.realm.verification import VerificationAdapter
 
 
-def test_explicit_and_default_profiles_share_compact_geometry():
+def test_explicit_locked_and_historical_profiles_keep_their_geometry():
     cfg = default_config()
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
     for profile in (cfg, explicit):
         validate_config(profile)
-        assert profile['deployment'] == {'overworld_side_blocks': 1536, 'nether_side_blocks': 896}
+        assert profile['deployment'] == ({'overworld_side_blocks':1536,'nether_side_blocks':896} if profile is cfg else {'overworld_side_blocks':2048,'nether_side_blocks':1024})
         assert set(map(tuple, profile['discovery'].values())) == {(-2000, -2000, 2000, 2000)}
     assert FAMILIES == (
         ('village', (-2768, -2768, 2766, 2766)),

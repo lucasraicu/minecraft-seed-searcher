@@ -1,0 +1,2441 @@
+{
+  "scope": "Persisted production blueprint baseline: full64 discovery, all discovered anchors, short-circuit count and applicable four-Y gates, process startup, IPC, SQLite checkpoints and resource monitoring. Coastal terrain/BDS are separate.",
+  "identity": {
+    "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+    "backend": {
+      "model": {
+        "model": "26.50",
+        "structure_rng": {
+          "trial_chamber": 1,
+          "stronghold": 0,
+          "mineshaft": 0,
+          "ancient_city": 0,
+          "village": 0,
+          "ruined_portal": 0,
+          "shipwreck": 0,
+          "monument": 0,
+          "outpost": 0,
+          "fortress": 0,
+          "bastion": 0,
+          "desert_pyramid": 0,
+          "jungle_temple": 0,
+          "swamp_hut": 0,
+          "igloo": 0,
+          "ocean_ruin": 0,
+          "mansion": 0,
+          "buried_treasure": 0,
+          "trail_ruins": 1,
+          "abandoned_camp": 1,
+          "ruined_portal_nether": 0,
+          "end_city": 0
+        }
+      },
+      "native_runtime": {
+        "openmp": true,
+        "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+        "policy": "outer-columns-static-min256-v1"
+      },
+      "sha256": {
+        "src/seed_search/_native.abi3.so": "512df6a76cc24c90cd0a78eddd45e60fd06d0f1e945cb3a9521ab42fe75e385d",
+        "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+        "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+        "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+        "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+        "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+        "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+        "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+        "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+        "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+        "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+        "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+        "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+        "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+        "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+        "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+        "src/seed_search/realm/store.py": "1c0a4e1b517e22635f42a8e1fe1ca1e1a90362e05968d11a25a8e944a882b05a",
+        "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859"
+      }
+    },
+    "head": "13492cda3cb6866133f8a80656ad31d17fe9147b",
+    "source_sha256": {
+      "src/seed_search/realm/store.py": "1c0a4e1b517e22635f42a8e1fe1ca1e1a90362e05968d11a25a8e944a882b05a",
+      "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+      "src/seed_search/realm/runner.py": "2bad65f9047e0edc603445743eba1ead405ab1200dedc7500acb17db220372ae",
+      "src/seed_search/realm/verification.py": "b1e6994e687a8378385b485ce5d1375b58b937024c6d8564b2f034daecb7a7c5",
+      "src/seed_search/realm/config.py": "9af79b3d1fc28932672cf4fb030c4ab74787d1ed5f7138b666851bc1e4156324",
+      "src/seed_search/realm/recovery.py": "74259c74a79449dd0bc21ebd6d701c4b56fa3f64f95c3bbc259efb68b5c60ebb",
+      "src/seed_search/realm/coastal.py": "46519167e5c769e0fcec3303fbb7f5ede8ae73bba33c2d1f833c01d9d4a98d49",
+      "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+      "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+      "src/seed_search/realm/blueprint.py": "23c56f0ce432a891048d6c06cbef0e9f1f12f3f02737d21389e8ce5b6659f798",
+      "src/seed_search/realm/terrain.py": "d3bd1cd4ec04c8fd3eb41d0f5e3a70de2d18f83fb07a873b46419f87168855fe",
+      "src/seed_search/realm/__init__.py": "d7d78917b635cfb0894a5c09b5207bd9b6e690a899a1a62f1329dfacda4e1f6b",
+      "src/seed_search/realm/verification_plan.py": "80aa65397df95ee68dde992a8a4e7575b6864ad1b5329e44c31deaa6312060d1",
+      "src/seed_search/realm/cli.py": "226fb6bd6793f20e77d8bfda9109289946a6ab272186f7fa7a38bc95524bd463",
+      "src/seed_search/realm/capabilities.py": "ae7ecf8a43e113316cd87af067bad0d638ba7ed169c1b8df262f45b4e3827d5e",
+      "src/seed_search/realm/siblings.py": "8d13e03c74181870fba9ee29fb392fc540da317525f33fbb7ad83335c01b0dde",
+      "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+      "src/seed_search/realm/reports.py": "850567c6149c3890be001b89c5af8defc23a0cf38debf81108e8f8e10ec354b9",
+      "src/seed_search/realm/resources.py": "4664063f76c2fedfc54be3175af1755eaf76b17c7167c72c0d3600b0e6d6f859",
+      "src/seed_search/realm/caves.py": "54d97b173509cae8666f7e8c96c97ca675d3621de1831b95d6692134bdcd6eb4",
+      "src/seed_search/realm/raster.py": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc",
+      "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+      "src/seed_search/realm/surface.py": "000b75e421fcf3f7a4e3aadae20945c63631563e4fe0df98fe5d91eaf9c35025",
+      "src/seed_search/realm/calibration.py": "5c668b602af40781c7b24d3f5d4c933f304b90d5a11673e01f18689e2e7f253b",
+      "src/seed_search/realm/inventory.py": "7685363e2a564affaa478e127bc226590716678a62add0a60fd84cd5c7feed13",
+      "native/build.py": "380d9194cba119a9666badef34717f52f067c6d74fc1dca69276493f55fde110",
+      "native/bridge.h": "bd878012fdb6314c8c274a237354c45987473e6a04d28ad1a4d1c57c4c457270",
+      "native/bridge.o": "3d6e490878ded5a74524d9e5e3ce5546e81206ad2f9481e20b6981b08c7113e4",
+      "native/count_pilot.inc": "3ba3d8a1aa52b72c909eb9e3791e94aa334ce286e6933982c5df959fe61f871c",
+      "native/biome_diversity_pilot.inc": "406f09c289f89105eeedbb5b8601b911c5db15dd468f4d5d9e2c0f971603285a",
+      "native/filters.inc": "ec20e671a2b77231a3527fa7787d3cbf44e30a76b6156257e48a66645d980d1d",
+      "native/bridge.c": "f5878ac520425c38b4d628cdec494d4955bd30fe8e08cecab5df72f489266c87",
+      "src/seed_search/backend.py": "da1da03c9bfcfbce7e2a3c3a493f72f172a0134683d95cf4a08ffaa507c544ce",
+      "config/realm.yaml": "6dd841d268a38a95d84e53b58012c73da4516b3dfc1e5b1b6101f4480a36a19d",
+      "scripts/benchmark_blueprint.py": "9eb7b8b0e99b4dfdc571ce7a48b10e8206480c439bfd4006949175f8bc07081b"
+    }
+  },
+  "workers": 30,
+  "native_threads_per_worker": 1,
+  "cohorts": [
+    {
+      "cohort": 0,
+      "run_key": "120260001000",
+      "input_count": 4096,
+      "trials": [
+        {
+          "input_seeds": 4096,
+          "anchors": 7657,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.5483454526402056,
+            "structure_mansion": 2.8789308853447437,
+            "structure_desert_pyramid": 0.0008094379445537925,
+            "structure_jungle_temple": 0.004045747104100883
+          },
+          "counts": {
+            "baseline_pending": 7657,
+            "baseline_predicted": 0,
+            "checked_mansion": 7657,
+            "confirmed_rejections": 0,
+            "pending_mansion": 7629,
+            "stronghold_anchors": 7657,
+            "structure_stage_entered": 7657,
+            "unresolved_discovery": 518,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_desert_pyramid": 6,
+            "checked_jungle_temple": 28,
+            "pending_desert_pyramid": 6,
+            "pending_jungle_temple": 22
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7657,
+              "passed_anchor_queries": 28,
+              "conditional_pass_percent": 0.3656784641504506,
+              "summed_worker_seconds": 2.8789308853447437,
+              "seconds_per_entered_query": 0.0003759867944814867,
+              "serial_equivalent_queries_per_second": 2659.6678784399146
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 28,
+              "passed_anchor_queries": 6,
+              "conditional_pass_percent": 21.428571428571427,
+              "summed_worker_seconds": 0.004045747104100883,
+              "seconds_per_entered_query": 0.00014449096800360297,
+              "serial_equivalent_queries_per_second": 6920.847813650639
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 6,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.0008094379445537925,
+              "seconds_per_entered_query": 0.00013490632409229875,
+              "serial_equivalent_queries_per_second": 7412.550943985627
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 0,
+          "wall_seconds": 3.4626818930264562,
+          "input_seeds_per_second": 1182.898148469541,
+          "storage_bytes": 59932672,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8718307328,
+            "cpu_percent": 48.5,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1316982784,
+            "processes": [
+              {
+                "cpu_percent": 48.5,
+                "pid": 46628,
+                "rss_bytes": 112824320
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46685,
+                "rss_bytes": 1986560
+              }
+            ],
+            "rss_bytes": 128372736,
+            "sampled_at": 1791794168.810891,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.3756726580904797,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.5483454526402056,
+              "structure_desert_pyramid": 0.0008094379445537925,
+              "structure_jungle_temple": 0.004045747104100883,
+              "structure_mansion": 2.8789308853447437
+            },
+            "worker_cpu_seconds": 5.572765000000001,
+            "worker_seconds": 5.582067200215533,
+            "workers": {
+              "46634": {
+                "batches": 6,
+                "cpu_seconds": 0.29223999999999994,
+                "peak_rss_bytes": 39559168,
+                "seeds": 192,
+                "wall_seconds": 0.2930148068116978
+              },
+              "46635": {
+                "batches": 5,
+                "cpu_seconds": 0.25318300000000005,
+                "peak_rss_bytes": 41172992,
+                "seeds": 160,
+                "wall_seconds": 0.25399006716907024
+              },
+              "46636": {
+                "batches": 6,
+                "cpu_seconds": 0.28568,
+                "peak_rss_bytes": 41951232,
+                "seeds": 192,
+                "wall_seconds": 0.28643424378242344
+              },
+              "46637": {
+                "batches": 6,
+                "cpu_seconds": 0.28520500000000004,
+                "peak_rss_bytes": 39899136,
+                "seeds": 192,
+                "wall_seconds": 0.28595947893336415
+              },
+              "46638": {
+                "batches": 6,
+                "cpu_seconds": 0.2788459999999999,
+                "peak_rss_bytes": 41177088,
+                "seeds": 192,
+                "wall_seconds": 0.2796513580251485
+              },
+              "46639": {
+                "batches": 5,
+                "cpu_seconds": 0.245407,
+                "peak_rss_bytes": 40939520,
+                "seeds": 160,
+                "wall_seconds": 0.24606818601023406
+              },
+              "46640": {
+                "batches": 5,
+                "cpu_seconds": 0.22414499999999998,
+                "peak_rss_bytes": 38817792,
+                "seeds": 160,
+                "wall_seconds": 0.22458143380936235
+              },
+              "46641": {
+                "batches": 5,
+                "cpu_seconds": 0.22418700000000003,
+                "peak_rss_bytes": 41099264,
+                "seeds": 160,
+                "wall_seconds": 0.2248978310963139
+              },
+              "46642": {
+                "batches": 5,
+                "cpu_seconds": 0.22545200000000004,
+                "peak_rss_bytes": 40017920,
+                "seeds": 160,
+                "wall_seconds": 0.22581756813451648
+              },
+              "46643": {
+                "batches": 5,
+                "cpu_seconds": 0.22439599999999998,
+                "peak_rss_bytes": 39317504,
+                "seeds": 160,
+                "wall_seconds": 0.2249695030041039
+              },
+              "46644": {
+                "batches": 4,
+                "cpu_seconds": 0.18381300000000006,
+                "peak_rss_bytes": 38846464,
+                "seeds": 128,
+                "wall_seconds": 0.18420995795167983
+              },
+              "46645": {
+                "batches": 4,
+                "cpu_seconds": 0.18992699999999996,
+                "peak_rss_bytes": 38789120,
+                "seeds": 128,
+                "wall_seconds": 0.19016179209575057
+              },
+              "46646": {
+                "batches": 4,
+                "cpu_seconds": 0.176728,
+                "peak_rss_bytes": 39886848,
+                "seeds": 128,
+                "wall_seconds": 0.17716179403942078
+              },
+              "46647": {
+                "batches": 4,
+                "cpu_seconds": 0.16887700000000005,
+                "peak_rss_bytes": 38838272,
+                "seeds": 128,
+                "wall_seconds": 0.16905470308847725
+              },
+              "46648": {
+                "batches": 4,
+                "cpu_seconds": 0.16586300000000004,
+                "peak_rss_bytes": 40382464,
+                "seeds": 128,
+                "wall_seconds": 0.1659531940240413
+              },
+              "46649": {
+                "batches": 4,
+                "cpu_seconds": 0.15343500000000004,
+                "peak_rss_bytes": 38391808,
+                "seeds": 128,
+                "wall_seconds": 0.1536505970871076
+              },
+              "46650": {
+                "batches": 4,
+                "cpu_seconds": 0.160512,
+                "peak_rss_bytes": 39137280,
+                "seeds": 128,
+                "wall_seconds": 0.16062813601456583
+              },
+              "46651": {
+                "batches": 4,
+                "cpu_seconds": 0.17236700000000005,
+                "peak_rss_bytes": 39763968,
+                "seeds": 128,
+                "wall_seconds": 0.17245957010891289
+              },
+              "46652": {
+                "batches": 4,
+                "cpu_seconds": 0.15464999999999995,
+                "peak_rss_bytes": 38825984,
+                "seeds": 128,
+                "wall_seconds": 0.15479068097192794
+              },
+              "46653": {
+                "batches": 4,
+                "cpu_seconds": 0.15968099999999996,
+                "peak_rss_bytes": 38653952,
+                "seeds": 128,
+                "wall_seconds": 0.15975917596369982
+              },
+              "46654": {
+                "batches": 4,
+                "cpu_seconds": 0.15930999999999995,
+                "peak_rss_bytes": 38387712,
+                "seeds": 128,
+                "wall_seconds": 0.15934346592985094
+              },
+              "46655": {
+                "batches": 4,
+                "cpu_seconds": 0.158605,
+                "peak_rss_bytes": 38297600,
+                "seeds": 128,
+                "wall_seconds": 0.15865497291088104
+              },
+              "46656": {
+                "batches": 4,
+                "cpu_seconds": 0.15385100000000002,
+                "peak_rss_bytes": 39165952,
+                "seeds": 128,
+                "wall_seconds": 0.1540009449236095
+              },
+              "46657": {
+                "batches": 4,
+                "cpu_seconds": 0.15421199999999996,
+                "peak_rss_bytes": 37056512,
+                "seeds": 128,
+                "wall_seconds": 0.15421542315743864
+              },
+              "46658": {
+                "batches": 3,
+                "cpu_seconds": 0.12404399999999999,
+                "peak_rss_bytes": 36642816,
+                "seeds": 96,
+                "wall_seconds": 0.12413196999114007
+              },
+              "46659": {
+                "batches": 3,
+                "cpu_seconds": 0.12917900000000004,
+                "peak_rss_bytes": 37318656,
+                "seeds": 96,
+                "wall_seconds": 0.12922967108897865
+              },
+              "46660": {
+                "batches": 3,
+                "cpu_seconds": 0.1177729999999999,
+                "peak_rss_bytes": 36470784,
+                "seeds": 96,
+                "wall_seconds": 0.11777336406521499
+              },
+              "46661": {
+                "batches": 3,
+                "cpu_seconds": 0.11822499999999991,
+                "peak_rss_bytes": 37466112,
+                "seeds": 96,
+                "wall_seconds": 0.11836774798575789
+              },
+              "46662": {
+                "batches": 3,
+                "cpu_seconds": 0.12007599999999996,
+                "peak_rss_bytes": 36950016,
+                "seeds": 96,
+                "wall_seconds": 0.12020894198212773
+              },
+              "46663": {
+                "batches": 3,
+                "cpu_seconds": 0.112896,
+                "peak_rss_bytes": 37060608,
+                "seeds": 96,
+                "wall_seconds": 0.11292662005871534
+              }
+            }
+          }
+        },
+        {
+          "input_seeds": 4096,
+          "anchors": 7657,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.7202534306561574,
+            "structure_mansion": 3.3481005909852684,
+            "structure_desert_pyramid": 0.0008380620274692774,
+            "structure_jungle_temple": 0.005045754020102322
+          },
+          "counts": {
+            "baseline_pending": 7657,
+            "baseline_predicted": 0,
+            "checked_mansion": 7657,
+            "confirmed_rejections": 0,
+            "pending_mansion": 7629,
+            "stronghold_anchors": 7657,
+            "structure_stage_entered": 7657,
+            "unresolved_discovery": 518,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_desert_pyramid": 6,
+            "checked_jungle_temple": 28,
+            "pending_desert_pyramid": 6,
+            "pending_jungle_temple": 22
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7657,
+              "passed_anchor_queries": 28,
+              "conditional_pass_percent": 0.3656784641504506,
+              "summed_worker_seconds": 3.3481005909852684,
+              "seconds_per_entered_query": 0.00043726010069025314,
+              "serial_equivalent_queries_per_second": 2286.968324851531
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 28,
+              "passed_anchor_queries": 6,
+              "conditional_pass_percent": 21.428571428571427,
+              "summed_worker_seconds": 0.005045754020102322,
+              "seconds_per_entered_query": 0.00018020550071794008,
+              "serial_equivalent_queries_per_second": 5549.220173723846
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 6,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.0008380620274692774,
+              "seconds_per_entered_query": 0.0001396770045782129,
+              "serial_equivalent_queries_per_second": 7159.3746087248355
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 1,
+          "wall_seconds": 3.5630699229659513,
+          "input_seeds_per_second": 1149.5704795460288,
+          "storage_bytes": 59932672,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8727187456,
+            "cpu_percent": 47.1,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1240895488,
+            "processes": [
+              {
+                "cpu_percent": 47.1,
+                "pid": 46628,
+                "rss_bytes": 121704448
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46728,
+                "rss_bytes": 1986560
+              }
+            ],
+            "rss_bytes": 137252864,
+            "sampled_at": 1791794173.087996,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.4877562230685726,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.7202534306561574,
+              "structure_desert_pyramid": 0.0008380620274692774,
+              "structure_jungle_temple": 0.005045754020102322,
+              "structure_mansion": 3.3481005909852684
+            },
+            "worker_cpu_seconds": 6.390072999999998,
+            "worker_seconds": 6.41307567502372,
+            "workers": {
+              "46687": {
+                "batches": 7,
+                "cpu_seconds": 0.3466539999999999,
+                "peak_rss_bytes": 41824256,
+                "seeds": 224,
+                "wall_seconds": 0.3478432670235634
+              },
+              "46688": {
+                "batches": 7,
+                "cpu_seconds": 0.35796400000000006,
+                "peak_rss_bytes": 42409984,
+                "seeds": 224,
+                "wall_seconds": 0.35886551393195987
+              },
+              "46689": {
+                "batches": 7,
+                "cpu_seconds": 0.37206700000000004,
+                "peak_rss_bytes": 43098112,
+                "seeds": 224,
+                "wall_seconds": 0.3731971209635958
+              },
+              "46690": {
+                "batches": 5,
+                "cpu_seconds": 0.297434,
+                "peak_rss_bytes": 42221568,
+                "seeds": 160,
+                "wall_seconds": 0.2987454639514908
+              },
+              "46691": {
+                "batches": 6,
+                "cpu_seconds": 0.29414900000000005,
+                "peak_rss_bytes": 40427520,
+                "seeds": 192,
+                "wall_seconds": 0.29509215289726853
+              },
+              "46692": {
+                "batches": 6,
+                "cpu_seconds": 0.290782,
+                "peak_rss_bytes": 41385984,
+                "seeds": 192,
+                "wall_seconds": 0.29158560710493475
+              },
+              "46693": {
+                "batches": 6,
+                "cpu_seconds": 0.28561499999999995,
+                "peak_rss_bytes": 40525824,
+                "seeds": 192,
+                "wall_seconds": 0.28611651703249663
+              },
+              "46694": {
+                "batches": 6,
+                "cpu_seconds": 0.291277,
+                "peak_rss_bytes": 41136128,
+                "seeds": 192,
+                "wall_seconds": 0.29175741714425385
+              },
+              "46695": {
+                "batches": 5,
+                "cpu_seconds": 0.24516799999999989,
+                "peak_rss_bytes": 41172992,
+                "seeds": 160,
+                "wall_seconds": 0.24595231201965362
+              },
+              "46696": {
+                "batches": 5,
+                "cpu_seconds": 0.24141300000000016,
+                "peak_rss_bytes": 40763392,
+                "seeds": 160,
+                "wall_seconds": 0.24271545512601733
+              },
+              "46697": {
+                "batches": 5,
+                "cpu_seconds": 0.23961299999999996,
+                "peak_rss_bytes": 40726528,
+                "seeds": 160,
+                "wall_seconds": 0.2403878099285066
+              },
+              "46698": {
+                "batches": 4,
+                "cpu_seconds": 0.23694199999999999,
+                "peak_rss_bytes": 39976960,
+                "seeds": 128,
+                "wall_seconds": 0.23750475491397083
+              },
+              "46699": {
+                "batches": 4,
+                "cpu_seconds": 0.22430199999999995,
+                "peak_rss_bytes": 40443904,
+                "seeds": 128,
+                "wall_seconds": 0.22518164804205298
+              },
+              "46700": {
+                "batches": 5,
+                "cpu_seconds": 0.23141299999999998,
+                "peak_rss_bytes": 40001536,
+                "seeds": 160,
+                "wall_seconds": 0.2321766569511965
+              },
+              "46702": {
+                "batches": 5,
+                "cpu_seconds": 0.23035899999999998,
+                "peak_rss_bytes": 40882176,
+                "seeds": 160,
+                "wall_seconds": 0.23074370808899403
+              },
+              "46703": {
+                "batches": 5,
+                "cpu_seconds": 0.23147099999999998,
+                "peak_rss_bytes": 41250816,
+                "seeds": 160,
+                "wall_seconds": 0.23220499197486788
+              },
+              "46704": {
+                "batches": 4,
+                "cpu_seconds": 0.20344600000000002,
+                "peak_rss_bytes": 40828928,
+                "seeds": 128,
+                "wall_seconds": 0.2041268351022154
+              },
+              "46705": {
+                "batches": 4,
+                "cpu_seconds": 0.200905,
+                "peak_rss_bytes": 40771584,
+                "seeds": 128,
+                "wall_seconds": 0.20153332210611552
+              },
+              "46706": {
+                "batches": 5,
+                "cpu_seconds": 0.227358,
+                "peak_rss_bytes": 39452672,
+                "seeds": 160,
+                "wall_seconds": 0.22754262364469469
+              },
+              "46707": {
+                "batches": 4,
+                "cpu_seconds": 0.20161199999999996,
+                "peak_rss_bytes": 40284160,
+                "seeds": 128,
+                "wall_seconds": 0.20258813200052828
+              },
+              "46708": {
+                "batches": 5,
+                "cpu_seconds": 0.2142170000000001,
+                "peak_rss_bytes": 38502400,
+                "seeds": 160,
+                "wall_seconds": 0.2145187899004668
+              },
+              "46709": {
+                "batches": 3,
+                "cpu_seconds": 0.15943500000000005,
+                "peak_rss_bytes": 39690240,
+                "seeds": 96,
+                "wall_seconds": 0.1610545200528577
+              },
+              "46710": {
+                "batches": 3,
+                "cpu_seconds": 0.15647999999999995,
+                "peak_rss_bytes": 38072320,
+                "seeds": 96,
+                "wall_seconds": 0.15708132297731936
+              },
+              "46711": {
+                "batches": 3,
+                "cpu_seconds": 0.14690799999999998,
+                "peak_rss_bytes": 38465536,
+                "seeds": 96,
+                "wall_seconds": 0.14757648203521967
+              },
+              "46712": {
+                "batches": 3,
+                "cpu_seconds": 0.15754399999999996,
+                "peak_rss_bytes": 37097472,
+                "seeds": 96,
+                "wall_seconds": 0.15797121613286436
+              },
+              "46713": {
+                "batches": 3,
+                "cpu_seconds": 0.15415299999999996,
+                "peak_rss_bytes": 38707200,
+                "seeds": 96,
+                "wall_seconds": 0.15574790886603296
+              },
+              "46714": {
+                "batches": 3,
+                "cpu_seconds": 0.151392,
+                "peak_rss_bytes": 38182912,
+                "seeds": 96,
+                "wall_seconds": 0.15326412511058152
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cohort": 1,
+      "run_key": "120261001000",
+      "input_count": 4096,
+      "trials": [
+        {
+          "input_seeds": 4096,
+          "anchors": 7596,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.5840148447314277,
+            "structure_mansion": 2.9962006931891665,
+            "structure_jungle_temple": 0.006378657766617835,
+            "structure_desert_pyramid": 0.001525930711068213
+          },
+          "counts": {
+            "baseline_pending": 7596,
+            "baseline_predicted": 0,
+            "checked_mansion": 7596,
+            "confirmed_rejections": 0,
+            "pending_mansion": 7547,
+            "stronghold_anchors": 7596,
+            "structure_stage_entered": 7596,
+            "unresolved_discovery": 543,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_jungle_temple": 49,
+            "pending_jungle_temple": 38,
+            "checked_desert_pyramid": 11,
+            "pending_desert_pyramid": 11
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7596,
+              "passed_anchor_queries": 49,
+              "conditional_pass_percent": 0.6450763559768299,
+              "summed_worker_seconds": 2.9962006931891665,
+              "seconds_per_entered_query": 0.00039444453570157536,
+              "serial_equivalent_queries_per_second": 2535.210681069161
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 49,
+              "passed_anchor_queries": 11,
+              "conditional_pass_percent": 22.448979591836736,
+              "summed_worker_seconds": 0.006378657766617835,
+              "seconds_per_entered_query": 0.0001301766891146497,
+              "serial_equivalent_queries_per_second": 7681.866905673691
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 11,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.001525930711068213,
+              "seconds_per_entered_query": 0.0001387209737334739,
+              "serial_equivalent_queries_per_second": 7208.715258309177
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 0,
+          "wall_seconds": 3.488066874910146,
+          "input_seeds_per_second": 1174.2894121276029,
+          "storage_bytes": 59658240,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8732266496,
+            "cpu_percent": 56.5,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1138278400,
+            "processes": [
+              {
+                "cpu_percent": 56.5,
+                "pid": 46628,
+                "rss_bytes": 126783488
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46767,
+                "rss_bytes": 1986560
+              }
+            ],
+            "rss_bytes": 142331904,
+            "sampled_at": 1791794177.2756631,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.4072687620064244,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.5840148447314277,
+              "structure_desert_pyramid": 0.001525930711068213,
+              "structure_jungle_temple": 0.006378657766617835,
+              "structure_mansion": 2.9962006931891665
+            },
+            "worker_cpu_seconds": 5.771503999999999,
+            "worker_seconds": 5.780531154829077,
+            "workers": {
+              "46730": {
+                "batches": 7,
+                "cpu_seconds": 0.348297,
+                "peak_rss_bytes": 41168896,
+                "seeds": 224,
+                "wall_seconds": 0.3490049671381712
+              },
+              "46731": {
+                "batches": 7,
+                "cpu_seconds": 0.331854,
+                "peak_rss_bytes": 40099840,
+                "seeds": 224,
+                "wall_seconds": 0.3328593857586384
+              },
+              "46732": {
+                "batches": 7,
+                "cpu_seconds": 0.322768,
+                "peak_rss_bytes": 41046016,
+                "seeds": 224,
+                "wall_seconds": 0.32325278082862496
+              },
+              "46733": {
+                "batches": 6,
+                "cpu_seconds": 0.30830100000000005,
+                "peak_rss_bytes": 39776256,
+                "seeds": 192,
+                "wall_seconds": 0.3089420818723738
+              },
+              "46734": {
+                "batches": 7,
+                "cpu_seconds": 0.3221499999999999,
+                "peak_rss_bytes": 39616512,
+                "seeds": 224,
+                "wall_seconds": 0.32263434468768537
+              },
+              "46735": {
+                "batches": 7,
+                "cpu_seconds": 0.3156819999999999,
+                "peak_rss_bytes": 40009728,
+                "seeds": 224,
+                "wall_seconds": 0.3161520721623674
+              },
+              "46736": {
+                "batches": 6,
+                "cpu_seconds": 0.2872649999999999,
+                "peak_rss_bytes": 40910848,
+                "seeds": 192,
+                "wall_seconds": 0.2877563697984442
+              },
+              "46737": {
+                "batches": 6,
+                "cpu_seconds": 0.29076699999999983,
+                "peak_rss_bytes": 40136704,
+                "seeds": 192,
+                "wall_seconds": 0.2912284331396222
+              },
+              "46738": {
+                "batches": 5,
+                "cpu_seconds": 0.23031500000000013,
+                "peak_rss_bytes": 40112128,
+                "seeds": 160,
+                "wall_seconds": 0.23063896305393428
+              },
+              "46739": {
+                "batches": 5,
+                "cpu_seconds": 0.223901,
+                "peak_rss_bytes": 40042496,
+                "seeds": 160,
+                "wall_seconds": 0.22419052408076823
+              },
+              "46740": {
+                "batches": 4,
+                "cpu_seconds": 0.2069470000000001,
+                "peak_rss_bytes": 40304640,
+                "seeds": 128,
+                "wall_seconds": 0.20738631091080606
+              },
+              "46741": {
+                "batches": 5,
+                "cpu_seconds": 0.20454600000000006,
+                "peak_rss_bytes": 39608320,
+                "seeds": 160,
+                "wall_seconds": 0.20479318511206657
+              },
+              "46742": {
+                "batches": 4,
+                "cpu_seconds": 0.20092600000000005,
+                "peak_rss_bytes": 38252544,
+                "seeds": 128,
+                "wall_seconds": 0.20156781107652932
+              },
+              "46743": {
+                "batches": 4,
+                "cpu_seconds": 0.19484500000000005,
+                "peak_rss_bytes": 39444480,
+                "seeds": 128,
+                "wall_seconds": 0.1951698240591213
+              },
+              "46744": {
+                "batches": 5,
+                "cpu_seconds": 0.21569600000000005,
+                "peak_rss_bytes": 40177664,
+                "seeds": 160,
+                "wall_seconds": 0.21590215188916773
+              },
+              "46745": {
+                "batches": 5,
+                "cpu_seconds": 0.21776400000000007,
+                "peak_rss_bytes": 39550976,
+                "seeds": 160,
+                "wall_seconds": 0.21823638502974063
+              },
+              "46746": {
+                "batches": 5,
+                "cpu_seconds": 0.186687,
+                "peak_rss_bytes": 38612992,
+                "seeds": 160,
+                "wall_seconds": 0.18670389393810183
+              },
+              "46747": {
+                "batches": 5,
+                "cpu_seconds": 0.195121,
+                "peak_rss_bytes": 38055936,
+                "seeds": 160,
+                "wall_seconds": 0.19524112401995808
+              },
+              "46748": {
+                "batches": 5,
+                "cpu_seconds": 0.210119,
+                "peak_rss_bytes": 38912000,
+                "seeds": 160,
+                "wall_seconds": 0.2102560281055048
+              },
+              "46749": {
+                "batches": 5,
+                "cpu_seconds": 0.1969990000000001,
+                "peak_rss_bytes": 38752256,
+                "seeds": 160,
+                "wall_seconds": 0.19705768371932209
+              },
+              "46750": {
+                "batches": 4,
+                "cpu_seconds": 0.16942900000000005,
+                "peak_rss_bytes": 38547456,
+                "seeds": 128,
+                "wall_seconds": 0.16950587881729007
+              },
+              "46751": {
+                "batches": 4,
+                "cpu_seconds": 0.16966700000000004,
+                "peak_rss_bytes": 38936576,
+                "seeds": 128,
+                "wall_seconds": 0.1701442829798907
+              },
+              "46752": {
+                "batches": 4,
+                "cpu_seconds": 0.162695,
+                "peak_rss_bytes": 38387712,
+                "seeds": 128,
+                "wall_seconds": 0.16296340094413608
+              },
+              "46753": {
+                "batches": 3,
+                "cpu_seconds": 0.13022200000000003,
+                "peak_rss_bytes": 37851136,
+                "seeds": 96,
+                "wall_seconds": 0.13036192185245454
+              },
+              "46754": {
+                "batches": 3,
+                "cpu_seconds": 0.12854099999999996,
+                "peak_rss_bytes": 33923072,
+                "seeds": 96,
+                "wall_seconds": 0.12858134985435754
+              }
+            }
+          }
+        },
+        {
+          "input_seeds": 4096,
+          "anchors": 7596,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.5992501446744427,
+            "structure_mansion": 3.0450843069702387,
+            "structure_jungle_temple": 0.006027233670465648,
+            "structure_desert_pyramid": 0.0013375240378081799
+          },
+          "counts": {
+            "baseline_pending": 7596,
+            "baseline_predicted": 0,
+            "checked_mansion": 7596,
+            "confirmed_rejections": 0,
+            "pending_mansion": 7547,
+            "stronghold_anchors": 7596,
+            "structure_stage_entered": 7596,
+            "unresolved_discovery": 543,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_jungle_temple": 49,
+            "pending_jungle_temple": 38,
+            "checked_desert_pyramid": 11,
+            "pending_desert_pyramid": 11
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7596,
+              "passed_anchor_queries": 49,
+              "conditional_pass_percent": 0.6450763559768299,
+              "summed_worker_seconds": 3.0450843069702387,
+              "seconds_per_entered_query": 0.0004008799772209372,
+              "serial_equivalent_queries_per_second": 2494.5122151832234
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 49,
+              "passed_anchor_queries": 11,
+              "conditional_pass_percent": 22.448979591836736,
+              "summed_worker_seconds": 0.006027233670465648,
+              "seconds_per_entered_query": 0.00012300476878501323,
+              "serial_equivalent_queries_per_second": 8129.766104823076
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 11,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.0013375240378081799,
+              "seconds_per_entered_query": 0.00012159309434619817,
+              "serial_equivalent_queries_per_second": 8224.151259386605
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 1,
+          "wall_seconds": 3.516815572977066,
+          "input_seeds_per_second": 1164.690019992331,
+          "storage_bytes": 59633664,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8736894976,
+            "cpu_percent": 51.0,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1118597120,
+            "processes": [
+              {
+                "cpu_percent": 51.0,
+                "pid": 46628,
+                "rss_bytes": 131399680
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46805,
+                "rss_bytes": 1998848
+              }
+            ],
+            "rss_bytes": 146960384,
+            "sampled_at": 1791794181.4949539,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.4334515009541065,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.5992501446744427,
+              "structure_desert_pyramid": 0.0013375240378081799,
+              "structure_jungle_temple": 0.006027233670465648,
+              "structure_mansion": 3.0450843069702387
+            },
+            "worker_cpu_seconds": 5.852938,
+            "worker_seconds": 5.8667272792663425,
+            "workers": {
+              "46769": {
+                "batches": 8,
+                "cpu_seconds": 0.35497999999999996,
+                "peak_rss_bytes": 41103360,
+                "seeds": 256,
+                "wall_seconds": 0.3561989839654416
+              },
+              "46770": {
+                "batches": 7,
+                "cpu_seconds": 0.34978800000000004,
+                "peak_rss_bytes": 41504768,
+                "seeds": 224,
+                "wall_seconds": 0.35059870791155845
+              },
+              "46771": {
+                "batches": 8,
+                "cpu_seconds": 0.356273,
+                "peak_rss_bytes": 41312256,
+                "seeds": 256,
+                "wall_seconds": 0.3569938180735335
+              },
+              "46772": {
+                "batches": 7,
+                "cpu_seconds": 0.34216499999999994,
+                "peak_rss_bytes": 42004480,
+                "seeds": 224,
+                "wall_seconds": 0.34305274626240134
+              },
+              "46773": {
+                "batches": 7,
+                "cpu_seconds": 0.32846200000000014,
+                "peak_rss_bytes": 39604224,
+                "seeds": 224,
+                "wall_seconds": 0.3294147008564323
+              },
+              "46774": {
+                "batches": 7,
+                "cpu_seconds": 0.3013119999999999,
+                "peak_rss_bytes": 40734720,
+                "seeds": 224,
+                "wall_seconds": 0.30190187017433345
+              },
+              "46775": {
+                "batches": 6,
+                "cpu_seconds": 0.29466400000000004,
+                "peak_rss_bytes": 40353792,
+                "seeds": 192,
+                "wall_seconds": 0.29574978188611567
+              },
+              "46776": {
+                "batches": 7,
+                "cpu_seconds": 0.3129120000000002,
+                "peak_rss_bytes": 41496576,
+                "seeds": 224,
+                "wall_seconds": 0.3134945268975571
+              },
+              "46777": {
+                "batches": 6,
+                "cpu_seconds": 0.27924799999999983,
+                "peak_rss_bytes": 40742912,
+                "seeds": 192,
+                "wall_seconds": 0.28038540901616216
+              },
+              "46778": {
+                "batches": 5,
+                "cpu_seconds": 0.23670999999999995,
+                "peak_rss_bytes": 40071168,
+                "seeds": 160,
+                "wall_seconds": 0.23782784887589514
+              },
+              "46779": {
+                "batches": 4,
+                "cpu_seconds": 0.2175919999999999,
+                "peak_rss_bytes": 41259008,
+                "seeds": 128,
+                "wall_seconds": 0.2181321169482544
+              },
+              "46780": {
+                "batches": 5,
+                "cpu_seconds": 0.22888299999999992,
+                "peak_rss_bytes": 37998592,
+                "seeds": 160,
+                "wall_seconds": 0.22928685904480517
+              },
+              "46781": {
+                "batches": 4,
+                "cpu_seconds": 0.19757599999999997,
+                "peak_rss_bytes": 39526400,
+                "seeds": 128,
+                "wall_seconds": 0.19781435804907233
+              },
+              "46782": {
+                "batches": 5,
+                "cpu_seconds": 0.22610400000000003,
+                "peak_rss_bytes": 40448000,
+                "seeds": 160,
+                "wall_seconds": 0.22656999109312892
+              },
+              "46783": {
+                "batches": 5,
+                "cpu_seconds": 0.22711199999999998,
+                "peak_rss_bytes": 40325120,
+                "seeds": 160,
+                "wall_seconds": 0.2276944270124659
+              },
+              "46784": {
+                "batches": 5,
+                "cpu_seconds": 0.21846700000000002,
+                "peak_rss_bytes": 40112128,
+                "seeds": 160,
+                "wall_seconds": 0.21908999991137534
+              },
+              "46785": {
+                "batches": 5,
+                "cpu_seconds": 0.20231099999999996,
+                "peak_rss_bytes": 39559168,
+                "seeds": 160,
+                "wall_seconds": 0.20258047920651734
+              },
+              "46786": {
+                "batches": 5,
+                "cpu_seconds": 0.21912900000000007,
+                "peak_rss_bytes": 40308736,
+                "seeds": 160,
+                "wall_seconds": 0.21934631001204252
+              },
+              "46787": {
+                "batches": 5,
+                "cpu_seconds": 0.22043699999999988,
+                "peak_rss_bytes": 39333888,
+                "seeds": 160,
+                "wall_seconds": 0.22064837999641895
+              },
+              "46788": {
+                "batches": 5,
+                "cpu_seconds": 0.20547400000000005,
+                "peak_rss_bytes": 40312832,
+                "seeds": 160,
+                "wall_seconds": 0.20579311705660075
+              },
+              "46789": {
+                "batches": 3,
+                "cpu_seconds": 0.13825700000000002,
+                "peak_rss_bytes": 38473728,
+                "seeds": 96,
+                "wall_seconds": 0.13846584991551936
+              },
+              "46790": {
+                "batches": 3,
+                "cpu_seconds": 0.133327,
+                "peak_rss_bytes": 38133760,
+                "seeds": 96,
+                "wall_seconds": 0.13345354213379323
+              },
+              "46791": {
+                "batches": 3,
+                "cpu_seconds": 0.13353299999999993,
+                "peak_rss_bytes": 36962304,
+                "seeds": 96,
+                "wall_seconds": 0.1338660349138081
+              },
+              "46792": {
+                "batches": 3,
+                "cpu_seconds": 0.128222,
+                "peak_rss_bytes": 36667392,
+                "seeds": 96,
+                "wall_seconds": 0.12836742005310953
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cohort": 2,
+      "run_key": "120262001000",
+      "input_count": 4096,
+      "trials": [
+        {
+          "input_seeds": 4096,
+          "anchors": 7667,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.590397588792257,
+            "structure_mansion": 3.0596219452563673,
+            "structure_jungle_temple": 0.0065577649511396885,
+            "structure_desert_pyramid": 0.0008550969650968909
+          },
+          "counts": {
+            "baseline_pending": 7667,
+            "baseline_predicted": 0,
+            "confirmed_rejections": 0,
+            "stronghold_anchors": 7667,
+            "unresolved_discovery": 550,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_mansion": 7667,
+            "pending_mansion": 7619,
+            "structure_stage_entered": 7667,
+            "checked_jungle_temple": 48,
+            "pending_jungle_temple": 42,
+            "checked_desert_pyramid": 6,
+            "pending_desert_pyramid": 6
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7667,
+              "passed_anchor_queries": 48,
+              "conditional_pass_percent": 0.6260597365331942,
+              "summed_worker_seconds": 3.0596219452563673,
+              "seconds_per_entered_query": 0.0003990637726954959,
+              "serial_equivalent_queries_per_second": 2505.8651484334214
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 48,
+              "passed_anchor_queries": 6,
+              "conditional_pass_percent": 12.5,
+              "summed_worker_seconds": 0.0065577649511396885,
+              "seconds_per_entered_query": 0.0001366201031487435,
+              "serial_equivalent_queries_per_second": 7319.567010656271
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 6,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.0008550969650968909,
+              "seconds_per_entered_query": 0.00014251616084948182,
+              "serial_equivalent_queries_per_second": 7016.748093966326
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 0,
+          "wall_seconds": 3.611626925994642,
+          "input_seeds_per_second": 1134.114924916272,
+          "storage_bytes": 60047360,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8743292928,
+            "cpu_percent": 43.4,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1125535744,
+            "processes": [
+              {
+                "cpu_percent": 43.4,
+                "pid": 46628,
+                "rss_bytes": 137809920
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46842,
+                "rss_bytes": 1986560
+              }
+            ],
+            "rss_bytes": 153358336,
+            "sampled_at": 1791794185.823355,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.518524341052398,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.590397588792257,
+              "structure_desert_pyramid": 0.0008550969650968909,
+              "structure_jungle_temple": 0.0065577649511396885,
+              "structure_mansion": 3.0596219452563673
+            },
+            "worker_cpu_seconds": 5.862442999999998,
+            "worker_seconds": 5.89209038275294,
+            "workers": {
+              "46807": {
+                "batches": 7,
+                "cpu_seconds": 0.34245,
+                "peak_rss_bytes": 41029632,
+                "seeds": 224,
+                "wall_seconds": 0.34382564993575215
+              },
+              "46808": {
+                "batches": 8,
+                "cpu_seconds": 0.3738379999999999,
+                "peak_rss_bytes": 41971712,
+                "seeds": 256,
+                "wall_seconds": 0.37552735581994057
+              },
+              "46809": {
+                "batches": 7,
+                "cpu_seconds": 0.337774,
+                "peak_rss_bytes": 41914368,
+                "seeds": 224,
+                "wall_seconds": 0.34137383510824293
+              },
+              "46810": {
+                "batches": 7,
+                "cpu_seconds": 0.3285020000000001,
+                "peak_rss_bytes": 40861696,
+                "seeds": 224,
+                "wall_seconds": 0.3312792379874736
+              },
+              "46811": {
+                "batches": 7,
+                "cpu_seconds": 0.33059799999999995,
+                "peak_rss_bytes": 41897984,
+                "seeds": 224,
+                "wall_seconds": 0.3314926619641483
+              },
+              "46812": {
+                "batches": 6,
+                "cpu_seconds": 0.279826,
+                "peak_rss_bytes": 40615936,
+                "seeds": 192,
+                "wall_seconds": 0.28029882232658565
+              },
+              "46813": {
+                "batches": 6,
+                "cpu_seconds": 0.27453800000000006,
+                "peak_rss_bytes": 40243200,
+                "seeds": 192,
+                "wall_seconds": 0.27748618519399315
+              },
+              "46814": {
+                "batches": 6,
+                "cpu_seconds": 0.26677700000000004,
+                "peak_rss_bytes": 40099840,
+                "seeds": 192,
+                "wall_seconds": 0.2671768340514973
+              },
+              "46815": {
+                "batches": 6,
+                "cpu_seconds": 0.291492,
+                "peak_rss_bytes": 40927232,
+                "seeds": 192,
+                "wall_seconds": 0.29211005195975304
+              },
+              "46816": {
+                "batches": 6,
+                "cpu_seconds": 0.2584789999999999,
+                "peak_rss_bytes": 39444480,
+                "seeds": 192,
+                "wall_seconds": 0.25905359780881554
+              },
+              "46817": {
+                "batches": 5,
+                "cpu_seconds": 0.247221,
+                "peak_rss_bytes": 39690240,
+                "seeds": 160,
+                "wall_seconds": 0.2506361079867929
+              },
+              "46818": {
+                "batches": 5,
+                "cpu_seconds": 0.24164699999999995,
+                "peak_rss_bytes": 39604224,
+                "seeds": 160,
+                "wall_seconds": 0.24439019814599305
+              },
+              "46819": {
+                "batches": 5,
+                "cpu_seconds": 0.24200700000000003,
+                "peak_rss_bytes": 40562688,
+                "seeds": 160,
+                "wall_seconds": 0.2446748960064724
+              },
+              "46820": {
+                "batches": 5,
+                "cpu_seconds": 0.22804799999999992,
+                "peak_rss_bytes": 41033728,
+                "seeds": 160,
+                "wall_seconds": 0.22834560403134674
+              },
+              "46821": {
+                "batches": 5,
+                "cpu_seconds": 0.21603499999999992,
+                "peak_rss_bytes": 40456192,
+                "seeds": 160,
+                "wall_seconds": 0.21687270514667034
+              },
+              "46822": {
+                "batches": 5,
+                "cpu_seconds": 0.20928000000000002,
+                "peak_rss_bytes": 39583744,
+                "seeds": 160,
+                "wall_seconds": 0.20995532092638314
+              },
+              "46823": {
+                "batches": 5,
+                "cpu_seconds": 0.2198440000000001,
+                "peak_rss_bytes": 39247872,
+                "seeds": 160,
+                "wall_seconds": 0.2204691618680954
+              },
+              "46824": {
+                "batches": 5,
+                "cpu_seconds": 0.2148159999999999,
+                "peak_rss_bytes": 40263680,
+                "seeds": 160,
+                "wall_seconds": 0.21546315110754222
+              },
+              "46825": {
+                "batches": 5,
+                "cpu_seconds": 0.20038899999999996,
+                "peak_rss_bytes": 39522304,
+                "seeds": 160,
+                "wall_seconds": 0.2006524602184072
+              },
+              "46826": {
+                "batches": 4,
+                "cpu_seconds": 0.16825399999999996,
+                "peak_rss_bytes": 36634624,
+                "seeds": 128,
+                "wall_seconds": 0.1688269580481574
+              },
+              "46827": {
+                "batches": 3,
+                "cpu_seconds": 0.14005900000000002,
+                "peak_rss_bytes": 39047168,
+                "seeds": 96,
+                "wall_seconds": 0.14030224015004933
+              },
+              "46828": {
+                "batches": 3,
+                "cpu_seconds": 0.14156000000000002,
+                "peak_rss_bytes": 39686144,
+                "seeds": 96,
+                "wall_seconds": 0.14208913093898445
+              },
+              "46829": {
+                "batches": 4,
+                "cpu_seconds": 0.16708699999999987,
+                "peak_rss_bytes": 38027264,
+                "seeds": 128,
+                "wall_seconds": 0.1673940169857815
+              },
+              "46830": {
+                "batches": 3,
+                "cpu_seconds": 0.14192200000000002,
+                "peak_rss_bytes": 37953536,
+                "seeds": 96,
+                "wall_seconds": 0.14239419903606176
+              }
+            }
+          }
+        },
+        {
+          "input_seeds": 4096,
+          "anchors": 7667,
+          "predicted_qualifying_anchors": 0,
+          "predicted_qualifying_seeds": 0,
+          "stages": {
+            "stronghold": 1.5583784910850227,
+            "structure_mansion": 2.9511753417318687,
+            "structure_jungle_temple": 0.006460011936724186,
+            "structure_desert_pyramid": 0.0007187599549070001
+          },
+          "counts": {
+            "baseline_pending": 7667,
+            "baseline_predicted": 0,
+            "confirmed_rejections": 0,
+            "stronghold_anchors": 7667,
+            "unresolved_discovery": 550,
+            "unresolved_stronghold_coverage": 4096,
+            "checked_mansion": 7667,
+            "pending_mansion": 7619,
+            "structure_stage_entered": 7667,
+            "checked_jungle_temple": 48,
+            "pending_jungle_temple": 42,
+            "checked_desert_pyramid": 6,
+            "pending_desert_pyramid": 6
+          },
+          "funnel": [
+            {
+              "stage": "mansion",
+              "entered_anchor_queries": 7667,
+              "passed_anchor_queries": 48,
+              "conditional_pass_percent": 0.6260597365331942,
+              "summed_worker_seconds": 2.9511753417318687,
+              "seconds_per_entered_query": 0.0003849191785224819,
+              "serial_equivalent_queries_per_second": 2597.947974009804
+            },
+            {
+              "stage": "jungle_temple",
+              "entered_anchor_queries": 48,
+              "passed_anchor_queries": 6,
+              "conditional_pass_percent": 12.5,
+              "summed_worker_seconds": 0.006460011936724186,
+              "seconds_per_entered_query": 0.00013458358201508722,
+              "serial_equivalent_queries_per_second": 7430.326827591029
+            },
+            {
+              "stage": "desert_pyramid",
+              "entered_anchor_queries": 6,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": 0.0,
+              "summed_worker_seconds": 0.0007187599549070001,
+              "seconds_per_entered_query": 0.00011979332581783335,
+              "serial_equivalent_queries_per_second": 8347.710468617213
+            },
+            {
+              "stage": "monument",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ancient_city",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "village",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "trial_chamber",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "ruined_portal",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "shipwreck",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "mineshaft",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "fortress",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "bastion",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            },
+            {
+              "stage": "biome_palette_4y",
+              "entered_anchor_queries": 0,
+              "passed_anchor_queries": 0,
+              "conditional_pass_percent": null,
+              "summed_worker_seconds": 0,
+              "seconds_per_entered_query": null,
+              "serial_equivalent_queries_per_second": null
+            }
+          ],
+          "qualified_ids": [],
+          "stage_cost_note": "Stage sums are inclusive worker elapsed costs, not aggregate CPU throughput. final_fortress/bastion wrappers exclude shared final_nether_pair generation cost. Unentered downstream stages have null conditional rates, never zero-percent probability.",
+          "zero_success_one_sided_95_upper_bound": 0.0007311125564753995,
+          "trial": 1,
+          "wall_seconds": 3.6489390949718654,
+          "input_seeds_per_second": 1122.5180506970291,
+          "storage_bytes": 60035072,
+          "memory": {
+            "above_target": false,
+            "available": true,
+            "ceiling_bytes": 32212254720,
+            "combined_budget_estimate_bytes": 8744468480,
+            "cpu_percent": 51.2,
+            "docker_reserved_bytes": 8589934592,
+            "peak_process_tree_rss_bytes": 1123663872,
+            "processes": [
+              {
+                "cpu_percent": 51.2,
+                "pid": 46628,
+                "rss_bytes": 138981376
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46632,
+                "rss_bytes": 13561856
+              },
+              {
+                "cpu_percent": 0.0,
+                "pid": 46887,
+                "rss_bytes": 1990656
+              }
+            ],
+            "rss_bytes": 154533888,
+            "sampled_at": 1791794190.2374048,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "target_bytes": 26843545600,
+            "units": "bytes; GiB=2**30 bytes"
+          },
+          "worker_statistics": {
+            "batches": 128,
+            "error": null,
+            "interrupted": false,
+            "invocation_completed_seeds": 4096,
+            "invocation_seconds": 3.5712936089839786,
+            "max_outstanding_batches": 30,
+            "native_threads": 1,
+            "numerical_threads": 1,
+            "recovered_assignments": 0,
+            "requested_workers": 30,
+            "stage_seconds": {
+              "stronghold": 1.5583784910850227,
+              "structure_desert_pyramid": 0.0007187599549070001,
+              "structure_jungle_temple": 0.006460011936724186,
+              "structure_mansion": 2.9511753417318687
+            },
+            "worker_cpu_seconds": 5.680776,
+            "worker_seconds": 5.694156490382738,
+            "workers": {
+              "46847": {
+                "batches": 7,
+                "cpu_seconds": 0.35208699999999993,
+                "peak_rss_bytes": 40853504,
+                "seeds": 224,
+                "wall_seconds": 0.3536070812260732
+              },
+              "46848": {
+                "batches": 7,
+                "cpu_seconds": 0.345964,
+                "peak_rss_bytes": 42201088,
+                "seeds": 224,
+                "wall_seconds": 0.3470251288963482
+              },
+              "46849": {
+                "batches": 8,
+                "cpu_seconds": 0.35325199999999995,
+                "peak_rss_bytes": 41844736,
+                "seeds": 256,
+                "wall_seconds": 0.3545427880017087
+              },
+              "46850": {
+                "batches": 7,
+                "cpu_seconds": 0.34543999999999997,
+                "peak_rss_bytes": 42692608,
+                "seeds": 224,
+                "wall_seconds": 0.3464243303751573
+              },
+              "46851": {
+                "batches": 6,
+                "cpu_seconds": 0.29764199999999996,
+                "peak_rss_bytes": 41000960,
+                "seeds": 192,
+                "wall_seconds": 0.2983468339079991
+              },
+              "46852": {
+                "batches": 7,
+                "cpu_seconds": 0.30718699999999993,
+                "peak_rss_bytes": 41168896,
+                "seeds": 224,
+                "wall_seconds": 0.3079265800770372
+              },
+              "46853": {
+                "batches": 6,
+                "cpu_seconds": 0.28099400000000013,
+                "peak_rss_bytes": 40595456,
+                "seeds": 192,
+                "wall_seconds": 0.28169729991350323
+              },
+              "46854": {
+                "batches": 6,
+                "cpu_seconds": 0.27610999999999997,
+                "peak_rss_bytes": 38686720,
+                "seeds": 192,
+                "wall_seconds": 0.2766491021029651
+              },
+              "46855": {
+                "batches": 6,
+                "cpu_seconds": 0.2700349999999999,
+                "peak_rss_bytes": 40476672,
+                "seeds": 192,
+                "wall_seconds": 0.2716065050335601
+              },
+              "46856": {
+                "batches": 5,
+                "cpu_seconds": 0.21706999999999999,
+                "peak_rss_bytes": 39374848,
+                "seeds": 160,
+                "wall_seconds": 0.21745467197615653
+              },
+              "46857": {
+                "batches": 5,
+                "cpu_seconds": 0.23255399999999998,
+                "peak_rss_bytes": 40529920,
+                "seeds": 160,
+                "wall_seconds": 0.2335319509729743
+              },
+              "46858": {
+                "batches": 5,
+                "cpu_seconds": 0.23301000000000005,
+                "peak_rss_bytes": 40304640,
+                "seeds": 160,
+                "wall_seconds": 0.2335216507781297
+              },
+              "46859": {
+                "batches": 5,
+                "cpu_seconds": 0.20562200000000003,
+                "peak_rss_bytes": 40730624,
+                "seeds": 160,
+                "wall_seconds": 0.2058357170317322
+              },
+              "46860": {
+                "batches": 5,
+                "cpu_seconds": 0.21600399999999997,
+                "peak_rss_bytes": 41107456,
+                "seeds": 160,
+                "wall_seconds": 0.21642374794464558
+              },
+              "46861": {
+                "batches": 5,
+                "cpu_seconds": 0.22649200000000008,
+                "peak_rss_bytes": 40062976,
+                "seeds": 160,
+                "wall_seconds": 0.22674034512601793
+              },
+              "46862": {
+                "batches": 5,
+                "cpu_seconds": 0.19709100000000002,
+                "peak_rss_bytes": 37453824,
+                "seeds": 160,
+                "wall_seconds": 0.19712410599458963
+              },
+              "46863": {
+                "batches": 5,
+                "cpu_seconds": 0.194911,
+                "peak_rss_bytes": 38985728,
+                "seeds": 160,
+                "wall_seconds": 0.195094448979944
+              },
+              "46864": {
+                "batches": 5,
+                "cpu_seconds": 0.199322,
+                "peak_rss_bytes": 38825984,
+                "seeds": 160,
+                "wall_seconds": 0.19946923188399523
+              },
+              "46865": {
+                "batches": 4,
+                "cpu_seconds": 0.15866800000000006,
+                "peak_rss_bytes": 38780928,
+                "seeds": 128,
+                "wall_seconds": 0.15903059602715075
+              },
+              "46866": {
+                "batches": 4,
+                "cpu_seconds": 0.15493099999999999,
+                "peak_rss_bytes": 37408768,
+                "seeds": 128,
+                "wall_seconds": 0.15496916591655463
+              },
+              "46867": {
+                "batches": 4,
+                "cpu_seconds": 0.15852099999999994,
+                "peak_rss_bytes": 37539840,
+                "seeds": 128,
+                "wall_seconds": 0.1585724641336128
+              },
+              "46868": {
+                "batches": 3,
+                "cpu_seconds": 0.13063899999999998,
+                "peak_rss_bytes": 38686720,
+                "seeds": 96,
+                "wall_seconds": 0.13105838804040104
+              },
+              "46869": {
+                "batches": 4,
+                "cpu_seconds": 0.16322800000000004,
+                "peak_rss_bytes": 38309888,
+                "seeds": 128,
+                "wall_seconds": 0.1634989210870117
+              },
+              "46870": {
+                "batches": 4,
+                "cpu_seconds": 0.16400199999999993,
+                "peak_rss_bytes": 37011456,
+                "seeds": 128,
+                "wall_seconds": 0.16400543495547026
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "note": "Three disjoint permutation-index intervals; independent full64 seed inputs, no high-bit sibling selection. Repeated trials do not add distinct seeds.",
+  "distinct_full64_inputs": 12288,
+  "total_evaluations": 24576,
+  "median_aggregate_input_seeds_per_second": 1154.2796869696353
+}

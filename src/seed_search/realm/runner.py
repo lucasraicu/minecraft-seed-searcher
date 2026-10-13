@@ -118,8 +118,12 @@ def process_tree_resources(root_pid=None):
                 break
             selected = extended
         processes = [{"pid": pid, "rss_bytes": rows[pid][1] * 1024, "cpu_percent": rows[pid][2]} for pid in sorted(selected) if pid in rows]
+        if root_pid not in rows:
+            raise ValueError('Requested process is absent from resource snapshot')
         return {"available": True, "rss_bytes": sum(row["rss_bytes"] for row in processes), "cpu_percent": sum(row["cpu_percent"] for row in processes), "processes": processes, "shared_memory_caveat": "RSS sum can double-count shared pages", "sampled_at": time.time()}
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        # SELF peak RSS cannot stand in for this tree's live RSS. Preserve the
+        # dispatch stop on monitoring failure rather than bypass its ceiling.
         return {"available": False, "error": str(exc), "sampled_at": time.time()}
 
 
@@ -144,7 +148,8 @@ def _scale_gate(cfg, output, count, allow_prediction_scale):
 
 def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, identity=None,
              evaluator="seed_search.realm.baseline:evaluate_seed", stop_after=None, progress=None,
-             allow_prediction_scale=False, progress_interval_seconds=10):
+             allow_prediction_scale=False, progress_interval_seconds=10, *, execution="python",
+             native_build=None, native_threads=16, native_batch_size=4096, retention="full", max_misses=0):
     """Run a finite interval; stop_after limits newly committed seeds in this invocation.
 
     A worker error stops dispatch, drains other submitted batches, and leaves the failed
@@ -153,6 +158,15 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
     Progress aggregates are built at most once per interval (first commit is immediate).
     Set progress_interval_seconds=0 for a callback on every committed batch.
     """
+    if execution not in ('python','native'):raise ValueError('Unknown baseline executor')
+    if execution=='native':
+        if workers is not None:raise ValueError('Use native_threads for the native executor, not workers')
+        if evaluator!='seed_search.realm.baseline:evaluate_seed':raise ValueError('Native execution requires the blueprint evaluator')
+        from .native_batch import run_native_scan
+        return run_native_scan(cfg,output,count,start_index,resume,identity,native_build=native_build,
+            native_threads=native_threads,native_batch_size=native_batch_size,stop_after=stop_after,
+            progress=progress,allow_prediction_scale=allow_prediction_scale,retention=retention,max_misses=max_misses)
+    if native_build is not None or retention!='full' or max_misses:raise ValueError('Native build or compact retention requires execution=native')
     index_key(start_index)
     if isinstance(count, bool) or not isinstance(count, int) or count < 0 or start_index + count > LIMIT:
         raise ValueError("Invalid finite full64 seed count")

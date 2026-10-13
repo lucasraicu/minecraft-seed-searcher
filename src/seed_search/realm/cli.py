@@ -10,7 +10,7 @@ import sys
 import time
 from pathlib import Path
 import yaml
-from .config import default_config, validate_config
+from .config import outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
 from .capabilities import report, identity as provider_identity
 from .store import RealmStore, canonical
 from .reports import ranked, export, rescore
@@ -46,7 +46,7 @@ def handles(argv=None):
 
 
 def load(path=None):
-    cfg=yaml.safe_load(Path(path).read_text()) if path else default_config()
+    cfg=yaml.safe_load(Path(path).read_text()) if path else outpost_blueprint_config()
     validate_config(cfg)
     return cfg
 
@@ -129,6 +129,8 @@ def select_verification(store, variant, cfg, *, top=1, borderline=0, unusual=0, 
     ids = set()
     new_selected = 0
     visits={'missing_footprint_visits':0,'cached_exclusion_visits':0}
+    if variant not in cfg['terrain'].get('variants', ('v1','v2')):
+        raise ValueError('Requested terrain variant is inactive in this saved configuration')
     thresholds = cfg['terrain'].get(variant,{})
     def identity(wrapper):
         return wrapper['candidate_id'],tuple(wrapper['center'])
@@ -158,6 +160,9 @@ def select_verification(store, variant, cfg, *, top=1, borderline=0, unusual=0, 
         r = wrapper['result']
         return ({'VERIFIED':0,'PREDICTED':1}.get(r.get('evidence'),2), not r.get('geometry_pass',False), -r.get('score',0), *tie(wrapper))
     pairs = [('diameter','diameter_min'),('diameter','diameter_max'),('island_area','area'),('water_rays','water_rays'),('median_water_width','water_width')] if variant=='v1' else [('ridge_rays','ridge_rays'),('relative_relief','relief'),('ridge_distance','distance_min'),('ridge_distance','distance_max'),('largest_gap_rays','largest_gap_rays')]
+    if variant=='v1' and thresholds.get('mode')=='coastal_continent':
+        thresholds=thresholds.get('coastal_continent',{})
+        pairs=[('mainland_fraction','land_fraction_min'),('mainland_fraction','land_fraction_max')]
     def margin(wrapper):
         metrics = wrapper['result'].get('metrics',{})
         values = [abs(metrics[m]-thresholds[t])/thresholds[t] for m,t in pairs
@@ -228,6 +233,14 @@ def main(argv=None):
         p.add_argument('--dry-run',action='store_true')
         p.add_argument('--prediction-scale',action='store_true',help='Explicitly run larger prediction-only ranges after compatibility report; never certifies generation')
     p=sub.add_parser('resume');p.add_argument('--run',required=True);p.add_argument('--workers',type=int);p.add_argument('--stop-after',type=int);p.add_argument('--prediction-scale',action='store_true')
+    for command in ('baseline','search','scan','resume'):
+        native=sub.choices[command]
+        native.add_argument('--executor',choices=['python','native'],default=None)
+        native.add_argument('--native-build',type=Path,help='Explicit audited native build directory; otherwise use packaged extension')
+        native.add_argument('--native-threads',type=int)
+        native.add_argument('--native-batch-size',type=int)
+        native.add_argument('--retention',choices=['full','survivors'],default=None,help='Compact survivors mode omits rejected per-input evidence')
+        native.add_argument('--max-misses',type=int,default=None,help='Save at most N unmet screening requirements; default 1 for locked policy, 2 for historical policy')
     p=sub.add_parser('inventory');p.add_argument('--run',required=True);p.add_argument('--limit',type=int)
     p.add_argument('--candidate');p.add_argument('--include-pending',action='store_true')
     p.add_argument('--all-starts',action='store_true',help='Explicit complete predictor start inventory for one candidate')
@@ -296,14 +309,25 @@ def main(argv=None):
             count=store.identity['count'] if resume else args.count
             first=store.identity['start_index'] if resume else args.start_index
             ident=make_identity(cfg,count,first)
+            execution=args.executor or ((store.identity or {}).get('execution','python') if store else 'python')
+            native_build=args.native_build or ((store.identity or {}).get('native_build') if store and execution=='native' else None)
+            native_threads=args.native_threads if args.native_threads is not None else ((store.get_state('native_pipeline') or {}).get('threads',16) if store else 16)
+            native_batch=args.native_batch_size if args.native_batch_size is not None else (store.get_state('batch_size') if store and execution=='native' else 4096)
+            saved_retention=(store.identity or {}).get('retention',{}) if store else {}
+            retention=args.retention or saved_retention.get('mode','full')
+            misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
+            if execution=='python' and (retention!='full' or misses):raise ValueError('Compact retention requires --executor native')
+            if execution=='python' and any(v is not None for v in (args.native_build,args.native_threads,args.native_batch_size)):
+                raise ValueError('Native options require --executor native')
+            execution_options={'execution':execution,'native_build':native_build,'native_threads':native_threads,'native_batch_size':native_batch,'retention':retention,'max_misses':misses} if execution=='native' else {}
             if store:store.close();store=None
             if getattr(args,'dry_run',False):
                 result={'planned_seeds':count,'start_index':first,'workers':args.workers or cfg['search']['workers'],
                         'output':str(run.resolve()),'executed_seeds':0,'qualification':'predictions only',
-                        'above_pilot_limit':count>cfg['search']['pilot_limit'],'requires_explicit_prediction_scale':count>cfg['search']['pilot_limit']}
+                        'executor':execution,'retention':retention,'max_misses':misses,'above_pilot_limit':count>cfg['search']['pilot_limit'],'requires_explicit_prediction_scale':count>cfg['search']['pilot_limit']}
             else:
                 result=run_scan(cfg,run,count,first,args.workers,resume,ident,stop_after=args.stop_after,
-                                progress=progress_printer(),allow_prediction_scale=args.prediction_scale)
+                                progress=progress_printer(),allow_prediction_scale=args.prediction_scale,**execution_options)
                 with RealmStore(run,resume=True) as saved:
                     if saved.get_state('score_policy'):rescore(saved,saved.get_state('score_policy'))
         elif args.command=='inventory':
@@ -341,7 +365,7 @@ def main(argv=None):
             policy=store.get_state('score_policy')
             if policy:
                 cfg=copy.deepcopy(cfg);cfg['scoring']=policy['scoring']
-            result=run_terrain(store,cfg,('v1','v2') if args.variant=='all' else (args.variant,),args.limit,progress=progress_printer(),
+            result=run_terrain(store,cfg,tuple(cfg['terrain'].get('variants',('v1','v2'))) if args.variant=='all' else (args.variant,),args.limit,progress=progress_printer(),
                                pool_revision=args.pool_revision,new_pool_revision=args.new_pool_revision,
                                continue_deferred_halos=args.continue_deferred_halos)
         elif args.command=='results':
@@ -421,7 +445,9 @@ def main(argv=None):
                     # Generated blocks do not certify the predictor's biome IDs.
                     from .biomes import raster_variant_fit
                     fit,biome_status,biome_provenance=raster_variant_fit(raster,args.variant,target_version=cfg['game']['target_version'])
-                    actual=evaluate(raster,wrapper['center'],candidate['bounds']['overworld'],candidate['stronghold'],thresholds=cfg['terrain'].get(args.variant),rays=cfg['terrain'].get('rays',32),biome_fit=fit,baseline_quality=min(100.,100.*(candidate.get('baseline_score') if candidate.get('baseline_score') is not None else candidate.get('baseline_score_observed',0))/cfg['scoring']['baseline_quality_cap']))
+                    from .coastal import coastal_mode, monument_inputs
+                    coastal_options={'monuments':monument_inputs(candidate)} if args.variant=='v1' and coastal_mode(cfg) else {}
+                    actual=evaluate(raster,wrapper['center'],candidate['bounds']['overworld'],candidate['stronghold'],thresholds=cfg['terrain'].get(args.variant),rays=cfg['terrain'].get('rays',32),biome_fit=fit,baseline_quality=min(100.,100.*(candidate.get('baseline_score') if candidate.get('baseline_score') is not None else candidate.get('baseline_score_observed',0))/cfg['scoring']['baseline_quality_cap']),**coastal_options)
                     actual['biome_fit_provenance']=biome_provenance
                     apply_score_policy(actual,cfg['scoring'],source='actual',biome_fit=fit,component_status={
                         'geometry':actual['evidence'],'biome_fit':biome_status,

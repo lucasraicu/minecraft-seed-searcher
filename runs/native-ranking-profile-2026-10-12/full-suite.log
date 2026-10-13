@@ -1,0 +1,31 @@
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 26%]
+........................................................................ [ 35%]
+........................................................................ [ 43%]
+........................................................................ [ 52%]
+........................................................................ [ 61%]
+........................................................................ [ 70%]
+........................................................................ [ 79%]
+......................................F................................. [ 87%]
+........................................................................ [ 96%]
+............................                                             [100%]
+=================================== FAILURES ===================================
+____________ test_pool_rotation_bounds_are_applied_before_decoding _____________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-264/test_pool_rotation_bounds_are_0')
+
+    def test_pool_rotation_bounds_are_applied_before_decoding(tmp_path):
+        store, revision = setup_store(tmp_path)
+        with store:
+            commit_seed(store, 1)
+            commit_seed(store, 2)
+            revision = store.ensure_terrain_pool({'provider': 'synthetic-v1'}, new_revision=True)
+            assert [r['id'] for r in store.iter_terrain_pool_candidates(revision, start_after='0:1:2', stop_at='1:1:2', batch_size=1)] == ['1:1:2']
+>           store.db.execute("UPDATE candidates SET result='malformed excluded payload' WHERE id='0:1:2'")
+E           sqlite3.OperationalError: malformed JSON
+
+tests/test_realm_terrain_work_store.py:250: OperationalError
+=========================== short test summary info ============================
+FAILED tests/test_realm_terrain_work_store.py::test_pool_rotation_bounds_are_applied_before_decoding
+1 failed, 819 passed in 166.11s (0:02:46)

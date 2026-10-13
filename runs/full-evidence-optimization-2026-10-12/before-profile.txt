@@ -1,0 +1,43 @@
+         872498 function calls (872492 primitive calls) in 1.498 seconds
+
+   Ordered by: cumulative time
+   List reduced from 241 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.706    0.706 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:240(prepare_range)
+        1    0.085    0.085    0.705    0.705 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:271(_prepare_range)
+        1    0.041    0.041    0.544    0.544 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_batch.py:161(records)
+     2000    0.222    0.000    0.490    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:99(build_record)
+     5658    0.004    0.000    0.474    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:25(canonical)
+     5658    0.010    0.000    0.470    0.000 /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py:185(dumps)
+     5658    0.008    0.000    0.459    0.000 /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py:185(encode)
+     5658    0.447    0.000    0.447    0.000 /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py:207(iterencode)
+     3656    0.002    0.000    0.397    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_encoding.py:67(candidate_encoding)
+        1    0.000    0.000    0.248    0.248 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:376(complete_prepared)
+        5    0.165    0.033    0.165    0.033 {method 'executemany' of 'sqlite3.Connection' objects}
+     3656    0.068    0.000    0.104    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/blueprint.py:115(smart_score)
+    40216    0.046    0.000    0.089    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:33(observation)
+        1    0.083    0.083    0.083    0.083 {method '__exit__' of 'sqlite3.Connection' objects}
+     5658    0.060    0.000    0.060    0.000 {method 'update' of '_hashlib.HASH' objects}
+    19887    0.039    0.000    0.039    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:21(points)
+   167645    0.034    0.000    0.034    0.000 {method 'get' of 'dict' objects}
+    65808    0.019    0.000    0.019    0.000 {method 'index' of 'tuple' objects}
+    99672    0.014    0.000    0.014    0.000 {built-in method builtins.len}
+    88446    0.012    0.000    0.012    0.000 {built-in method builtins.isinstance}
+     7312    0.005    0.000    0.012    0.000 {built-in method builtins.any}
+    48560    0.010    0.000    0.010    0.000 {method 'extend' of 'bytearray' objects}
+    15484    0.009    0.000    0.009    0.000 {method 'update' of 'dict' objects}
+    24280    0.008    0.000    0.008    0.000 {method 'encode' of 'str' objects}
+     3656    0.003    0.000    0.008    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:581(_inventory_rows)
+     4000    0.007    0.000    0.007    0.000 {built-in method time.process_time}
+     7656    0.005    0.000    0.007    0.000 {built-in method builtins.sum}
+     9320    0.007    0.000    0.007    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:25(full_observation)
+     2000    0.005    0.000    0.007    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/seeds.py:3(parse_seed)
+     3656    0.003    0.000    0.007    0.000 {built-in method builtins.all}
+     5660    0.005    0.000    0.007    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:50(index_key)
+     9125    0.004    0.000    0.006    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:108(increment)
+    10968    0.004    0.000    0.006    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/store.py:300(<genexpr>)
+    32906    0.006    0.000    0.006    0.000 {built-in method builtins.max}
+     9124    0.005    0.000    0.005    0.000 /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_records.py:150(<genexpr>)
+
+

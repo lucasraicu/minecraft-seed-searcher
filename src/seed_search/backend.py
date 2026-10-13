@@ -277,6 +277,23 @@ class Backend:
         if code<0:raise RuntimeError(f'Native structure witness error {code}')
         return (int(out[0]),int(out[1])) if code else None
 
+    @measure('structure_count_floor')
+    def structure_count(self, name, bounds, minimum):
+        """Return up to minimum distinct viable predictor witnesses, not a census."""
+        self._handle()
+        typ=structure_type(name)
+        if name=='stronghold':raise ValueError('Stronghold discovery must enumerate its anchors')
+        if isinstance(minimum,bool) or not isinstance(minimum,int) or not 1<=minimum<=64:
+            raise ValueError('Structure count floor must be an integer in 1–64')
+        x0,z0,x1,z1=map(_int,bounds)
+        if x0>x1 or z0>z1 or x1-x0>14000 or z1-z0>14000:
+            raise ValueError('Invalid or oversized structure bounds')
+        out=np.empty((minimum,2),dtype=np.int32)
+        with _LOCK:
+            n=lib.ss_structure_count(self._handle(),typ,x0,z0,x1,z1,_buffer(out,'int[]'),minimum)
+        if n<0:raise RuntimeError(f'Native structure count error {n}')
+        return sorted({(int(x),int(z)) for x,z in out[:n]})
+
     @measure('combined_structure_scan')
     def structure_pair(self,name,bounds):
         """One placement scan, then full-seed viability. Cache ONLY raw MT layouts."""

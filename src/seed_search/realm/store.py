@@ -6,6 +6,8 @@ import json
 import math
 import shutil
 import sqlite3
+import time
+from dataclasses import dataclass
 from pathlib import Path
 
 from ..seeds import parse_seed
@@ -13,6 +15,7 @@ from ..seeds import parse_seed
 LIMIT = 1 << 64
 SCHEMA = 1
 SCHEDULING_FIELDS = frozenset({"workers", "max_workers", "batch_size", "native_threads_per_worker"})
+_CANONICAL_ENCODER = json.JSONEncoder(sort_keys=True, separators=(",", ":"), allow_nan=False)
 
 
 class TerrainCapacityError(RuntimeError):
@@ -21,7 +24,9 @@ class TerrainCapacityError(RuntimeError):
 
 
 def canonical(value):
-    return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
+    # JSONEncoder keeps traversal/circular-reference state local to encode().
+    # Reuse its immutable options without changing bytes or retry identities.
+    return _CANONICAL_ENCODER.encode(value)
 
 
 def semantic_identity(identity):
@@ -51,7 +56,45 @@ def index_key(index):
     return f"{index:020d}"
 
 
+_PREPARATION_TOKEN = object()
+
+
+@dataclass(frozen=True, init=False)
+class PreparedRange:
+    """Immutable, owned durable rows produced only by validated preparation."""
+    start: int
+    end: int
+    seed_rows: tuple
+    candidate_rows: tuple
+    inventory_rows: tuple
+    discovery_rows: tuple
+    variant_rows: tuple
+    counts: tuple
+    digest: str
+    payload_bytes: int
+    policy: tuple
+    timings: tuple
+    receipt: str | None
+    _token: object
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError('Use RealmStore.prepare_range for validated rows')
+
+    def __reduce__(self):
+        # Spawned preparers return owned immutable rows, never a connection or
+        # native pointer. Restore the process-local validation provenance token.
+        return (_restore_prepared, (tuple(getattr(self, field) for field in self.__dataclass_fields__ if field != '_token'),))
+
+
+def _restore_prepared(fields):
+    prepared=object.__new__(PreparedRange)
+    for name,value in zip(PreparedRange.__dataclass_fields__, (*fields,_PREPARATION_TOKEN), strict=True):
+        object.__setattr__(prepared,name,value)
+    return prepared
+
+
 class RealmStore:
+    _canonical_candidate_reference = staticmethod(canonical)
     def __init__(self, run, identity=None, resume=False):
         self.run = Path(run)
         path = self.run / "realm.sqlite"
@@ -63,12 +106,20 @@ class RealmStore:
         self.db = sqlite3.connect(path, timeout=30)
         self.db.execute("PRAGMA journal_mode=WAL")
         self.db.execute("PRAGMA synchronous=FULL")
+        # Keep complete WAL/FULL durability. A larger bounded page cache avoids
+        # spilling dirty pages repeatedly during full-record batches; checkpoints
+        # amortize I/O across 64 MiB of WAL instead of the default 4 MiB.
+        self.db.execute("PRAGMA cache_size=-131072")
+        self.db.execute("PRAGMA wal_autocheckpoint=16384")
+        self.db.execute("PRAGMA journal_size_limit=134217728")
         self.db.executescript("""
             CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY, value TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS ranges(start TEXT PRIMARY KEY, end TEXT NOT NULL,
                 status TEXT NOT NULL, worker TEXT, attempts INTEGER NOT NULL DEFAULT 1,
                 digest TEXT);
             CREATE INDEX IF NOT EXISTS ranges_status ON ranges(status,start);
+            CREATE TABLE IF NOT EXISTS retention_receipts(start TEXT PRIMARY KEY, end TEXT NOT NULL,
+                receipt TEXT NOT NULL, digest TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS seeds(idx TEXT PRIMARY KEY, seed TEXT NOT NULL, result TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS candidates(id TEXT PRIMARY KEY, idx TEXT NOT NULL,
                 seed TEXT NOT NULL, qualification TEXT NOT NULL, result TEXT NOT NULL);
@@ -116,13 +167,23 @@ class RealmStore:
                 self._set("counts", {})
                 self._set("range_digest_version", 2)
         self.identity = self.get_state("identity")
+        saved_config = (self.identity or {}).get("config", (self.identity or {}).get("cfg", {}))
+        self.active_variants = tuple(saved_config.get("terrain", {}).get("variants", ("v1", "v2")))
         self._inventory_backend_digest = hashlib.sha256(canonical((self.identity or {}).get('backend')).encode()).hexdigest()
+        self._digest_version = self.get_state('range_digest_version')
+        self._preparation_policy = (self._digest_version, self._inventory_backend_digest, self.active_variants)
+        self.last_range_timings = {}
+        self.retention = (self.identity or {}).get('retention', {'mode':'full','max_misses':0})
+        if self.retention.get('mode') not in {'full','survivors'}:
+            self.close();raise ValueError('Unknown saved retention mode')
         if self.get_state("schema") != SCHEMA:
             self.close()
             raise ValueError("Unsupported Realm checkpoint schema")
         if resume and identity is not None and semantic_identity(identity) != semantic_identity(self.identity):
             self.close()
             raise ValueError("Incompatible resume: semantic configuration, code, sequence or evidence changed")
+        from .leaderboard import install
+        install(self.db)
 
     def _set(self, key, value):
         self.db.execute("INSERT INTO meta VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value", (key, canonical(value)))
@@ -179,16 +240,53 @@ class RealmStore:
             cursor = self.db.execute("UPDATE ranges SET status='retry',worker=NULL WHERE status='in_progress'")
         return cursor.rowcount
 
-    def complete_range(self, start, end, results, *, capacity_check=None):
-        start_key, end_key = index_key(start), index_key(end)
-        row = self.db.execute("SELECT end,status,digest FROM ranges WHERE start=?", (start_key,)).fetchone()
-        if row is None or row[0] != end_key:
-            raise ValueError("Unknown or mismatched range")
+    def prepare_range(self, start, end, results):
+        if self.retention['mode']!='full':raise ValueError('Compact checkpoints require retained preparation')
+        return self._prepare_range(start,end,results)
+
+    def prepare_retained_range(self,start,end,results,receipt):
+        """Sparse retained evidence; a complete range decision receipt is mandatory."""
+        if self.retention['mode']!='survivors' or self._digest_version!=2:
+            raise ValueError('Retained preparation requires a compact v2 checkpoint')
+        if not isinstance(receipt,dict) or receipt.get('version')!='native-retention-receipt-v1':raise ValueError('Invalid retention receipt')
+        for key in ('inputs','retained_inputs','retained_anchors','discovered_anchors'):
+            if isinstance(receipt.get(key),bool) or not isinstance(receipt.get(key),int) or receipt[key]<0:raise ValueError('Invalid receipt counts')
+        digest=receipt.get('input_decisions_sha256')
+        if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):raise ValueError('Invalid decision digest')
+        results=list(results)
+        from .config import baseline_requirements
+        requirements_total=baseline_requirements(self.identity.get('config',{}))
+        if receipt['inputs']!=end-start or receipt['retained_inputs']!=len(results) or receipt['retained_anchors']!=sum(len(r.get('anchors',[])) for r in results) or receipt['discovered_anchors']<receipt['retained_anchors']:
+            raise ValueError('Receipt coverage mismatch')
+        for result in results:
+            if not result.get('anchors'):raise ValueError('Compact rows require retained anchors')
+            for candidate in result['anchors']:
+                label=candidate.get('retention',{});pending=candidate.get('pending_reasons')
+                if (not isinstance(pending,list) or len(set(pending))!=len(pending) or
+                    len(pending)>self.retention['max_misses'] or label.get('unmet_requirements')!=len(pending) or
+                    label.get('allowed_unmet_requirements')!=self.retention['max_misses'] or
+                    label.get('requirements_total')!=requirements_total or label.get('classification')!=('NEAR_MISS' if pending else 'PREDICTED_SURVIVOR') or
+                    candidate.get('qualification')!=('PENDING' if pending else 'PREDICTED') or
+                    not candidate.get('biomes') or any(o.get('inventory_status')!='COMPLETE' for o in candidate.get('required_structures',{}).values())):
+                    raise ValueError('Invalid retained eligibility or evidence')
+        return self._prepare_range(start,end,results,receipt=receipt)
+
+    def _prepare_range(self, start, end, results, *, receipt=None):
+        """Validate and encode once, outside the writer's transaction.
+
+        This method uses cached immutable policy and no SQLite calls; preparation
+        may run off the connection thread. The dictionary API uses it too.
+        """
+        index_key(start); index_key(end)
+        if end < start: raise ValueError('Invalid finite range')
+        started = time.perf_counter()
+        from .native_encoding import candidate_encoding, summary_encoding
         results = list(results)
-        if len(results) != end - start:
+        if receipt is None and len(results) != end - start:
             raise ValueError("Incomplete worker batch")
         by_index = {}
         seed_rows, candidate_rows, batch_counts = [], [], {}
+        encoding_seconds = 0.; payload_bytes = 0
         candidate_objects = {}
         for result in results:
             idx = result.get("index")
@@ -210,17 +308,24 @@ class RealmStore:
                 qualification = candidate.get("qualification")
                 if qualification not in {"PREDICTED", "PENDING", "FAILED", "VERIFIED"}:
                     raise ValueError("Unknown candidate qualification")
-                payload = canonical(candidate)
+                stamp = time.perf_counter()
+                payload = candidate_encoding(candidate, canonical)
+                encoding_seconds += time.perf_counter()-stamp
                 if cid in anchors and anchors[cid] != payload:
                     raise ValueError("Conflicting duplicate candidate")
                 anchors[cid] = payload
                 candidate_objects[cid] = candidate
                 anchor_ids.append(cid)
-            summary = {key: value for key, value in result.items() if key != "anchors"}
-            if "anchor_ids" in summary:
-                raise ValueError("Worker result uses reserved anchor_ids field")
-            summary["anchor_ids"] = anchor_ids
-            seed_rows.append((index_key(idx), seed, canonical(summary)))
+            stamp = time.perf_counter()
+            encoded_summary = summary_encoding(result)
+            if encoded_summary is None:
+                summary = {key: value for key, value in result.items() if key != "anchors"}
+                if "anchor_ids" in summary:
+                    raise ValueError("Worker result uses reserved anchor_ids field")
+                summary["anchor_ids"] = anchor_ids
+                encoded_summary = canonical(summary)
+            encoding_seconds += time.perf_counter()-stamp
+            seed_rows.append((index_key(idx), seed, encoded_summary))
             for cid, payload in anchors.items():
                 candidate = candidate_objects[cid]
                 candidate_rows.append((cid, index_key(idx), seed, candidate["qualification"], payload))
@@ -228,41 +333,83 @@ class RealmStore:
                 if isinstance(value, bool) or not isinstance(value, (int, float)):
                     raise ValueError("Invalid worker counter")
                 batch_counts[key] = batch_counts.get(key, 0) + value
-        ordered = [by_index[i] for i in range(start, end)]
-        if self.get_state('range_digest_version') == 2:
+        ordered = [by_index[i] for i in sorted(by_index)]
+        hash_started = time.perf_counter()
+        if self._digest_version == 2:
             hasher = hashlib.sha256(b'realm-range-digest-v2')
             for collection in (sorted(seed_rows), sorted(candidate_rows)):
                 hasher.update(len(collection).to_bytes(8, 'big'))
                 for fields in collection:
+                    framed = bytearray()
                     for field in fields:
                         value = field.encode()
-                        hasher.update(len(value).to_bytes(8, 'big')); hasher.update(value)
+                        framed.extend(len(value).to_bytes(8, 'big')); framed.extend(value)
+                    payload_bytes += len(value)
+                    hasher.update(framed)
             digest = hasher.hexdigest()
         else:
             digest = hashlib.sha256(canonical(ordered).encode()).hexdigest()
-        if row[1] == "complete":
-            if row[2] != digest:
-                raise ValueError("Completed range retry differs from committed results")
+        encoded_receipt=None
+        if receipt is not None:
+            encoded_receipt=canonical({**receipt,'start':start,'end':end,'retention':self.retention})
+            digest=hashlib.sha256(canonical(['realm-retained-range-v1',digest,encoded_receipt]).encode()).hexdigest()
+            payload_bytes+=len(encoded_receipt.encode())
+            batch_counts.update(scanned_inputs=end-start,retained_inputs=len(results),
+                retained_anchors=receipt['retained_anchors'],discarded_inputs=end-start-len(results),
+                discovered_anchors=receipt['discovered_anchors'])
+        hash_seconds = time.perf_counter()-hash_started
+        task_started = time.perf_counter()
+        inventory_rows = []
+        for cid, idx, seed, qualification, payload in candidate_rows:
+            inventory_rows.extend(self._inventory_rows(candidate_objects[cid]))
+        discovery_rows = [(r[0], name) for r in seed_rows for name in ('stronghold','fortress')]
+        variant_rows = [(r[0], variant) for r in candidate_rows if r[3]!='FAILED' for variant in self.active_variants]
+        if self._digest_version != 2:
+            payload_bytes = sum(len(r[-1].encode()) for r in seed_rows+candidate_rows)
+        timings = {'prepare_seconds':time.perf_counter()-started,'encoding_seconds':encoding_seconds,
+                   'hash_seconds':hash_seconds,'task_preparation_seconds':time.perf_counter()-task_started}
+        timings['validation_row_seconds'] = timings['prepare_seconds']-encoding_seconds-hash_seconds-timings['task_preparation_seconds']
+        return _restore_prepared((start,end,tuple(seed_rows),tuple(candidate_rows),tuple(inventory_rows),
+                             tuple(discovery_rows),tuple(variant_rows),tuple(sorted(batch_counts.items())),
+                             digest,payload_bytes,self._preparation_policy,tuple(timings.items()),encoded_receipt))
+
+    def complete_range(self, start, end, results, *, capacity_check=None):
+        return self.complete_prepared(self.prepare_range(start,end,results),capacity_check=capacity_check)
+
+    def complete_prepared(self, prepared, *, capacity_check=None, lease=None):
+        """Atomically save a validated owned batch; connection stays writer-owned."""
+        if not isinstance(prepared,PreparedRange) or prepared._token is not _PREPARATION_TOKEN or prepared.policy != self._preparation_policy:
+            raise ValueError('Invalid or incompatible prepared range')
+        start_key,end_key=index_key(prepared.start),index_key(prepared.end)
+        row=self.db.execute('SELECT end,status,digest,worker,attempts FROM ranges WHERE start=?',(start_key,)).fetchone()
+        if row is None or row[0]!=end_key:raise ValueError('Unknown or mismatched range')
+        if row[1]=='complete':
+            if row[2]!=prepared.digest:raise ValueError('Completed range retry differs from committed results')
             return False
-        if capacity_check is not None:
-            # Serialize each durable row once; include index/metadata overhead
-            # and reserve for task/index/WAL storage, before any mutation.
-            capacity_check(3*(sum(len(r[-1].encode()) for r in seed_rows)+
-                              sum(len(r[-1].encode()) for r in candidate_rows)))
+        if lease is not None and (row[1]!='in_progress' or (row[3],row[4])!=tuple(lease)):
+            raise ValueError('Stale range lease')
+        if (prepared.receipt is not None)!=(self.retention['mode']=='survivors'):raise ValueError('Prepared retention mode differs from checkpoint')
+        if prepared.receipt is not None and json.loads(prepared.receipt)['retention']!=self.retention:
+            raise ValueError('Prepared near-miss allowance differs from checkpoint')
+        if capacity_check is not None:capacity_check(3*prepared.payload_bytes)
+        timings=dict(prepared.timings);sql_started=time.perf_counter()
         with self.db:
-            self.db.executemany("INSERT INTO seeds VALUES (?,?,?)", seed_rows)
-            self.db.executemany("INSERT INTO candidates VALUES (?,?,?,?,?)", candidate_rows)
-            for cid, idx, seed, qualification, payload in candidate_rows:
-                self._ensure_inventory_locked(candidate_objects[cid])
-            self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",
-                                [(row[0], name) for row in seed_rows for name in ('stronghold','fortress')])
-            self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')", [(row[0], variant) for row in candidate_rows if row[3] != "FAILED" for variant in ("v1", "v2")])
-            self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?", (digest, start_key))
-            self._set("completed_seeds", self.get_state("completed_seeds") + len(results))
-            counts = self.get_state("counts")
-            for key, value in batch_counts.items():
-                counts[key] = counts.get(key, 0) + value
-            self._set("counts", counts)
+            self.db.executemany('INSERT INTO seeds VALUES (?,?,?)',prepared.seed_rows)
+            self.db.executemany('INSERT INTO candidates VALUES (?,?,?,?,?)',prepared.candidate_rows)
+            self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",prepared.inventory_rows)
+            self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",prepared.discovery_rows)
+            self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')",prepared.variant_rows)
+            if prepared.receipt is not None:
+                self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
+            self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
+            self._set('completed_seeds',self.get_state('completed_seeds')+prepared.end-prepared.start)
+            counts=self.get_state('counts')
+            for key,value in prepared.counts:counts[key]=counts.get(key,0)+value
+            self._set('counts',counts)
+            timings['sql_seconds']=time.perf_counter()-sql_started
+            commit_started=time.perf_counter()
+        timings['commit_seconds']=time.perf_counter()-commit_started
+        self.last_range_timings=timings
         return True
 
     def status(self):
@@ -271,11 +418,17 @@ class RealmStore:
         ranges = dict(self.db.execute("SELECT status,count(*) FROM ranges GROUP BY status"))
         candidates = dict(self.db.execute("SELECT qualification,count(*) FROM candidates GROUP BY qualification"))
         revision = self.get_state("rescore_revision")
-        return {"schema": SCHEMA, "range": bounds, "completed_seeds": completed,
+        task_counts = list(self.db.execute("SELECT variant,status,count(*) FROM variant_tasks GROUP BY variant,status"))
+        return {"schema": SCHEMA, "retention":self.retention,
+                "saved_seed_rows":self.db.execute('SELECT count(*) FROM seeds').fetchone()[0],
+                "coverage_scope":('every processed input and discovered anchor retained' if self.retention['mode']=='full' else 'predictor-processing range checkpoints; discarded inputs/anchors have no individual evidence'),
+                "range": bounds, "completed_seeds": completed,
                 "total_seeds": bounds[1] - bounds[0] if bounds else 0,
                 "remaining_seeds": bounds[1] - bounds[0] - completed if bounds else 0,
                 "ranges": ranges, "candidate_counts": candidates, "counts": self.get_state("counts"),
-                "variant_tasks": {f"{variant}:{status}": count for variant, status, count in self.db.execute("SELECT variant,status,count(*) FROM variant_tasks GROUP BY variant,status")},
+                "active_variants": list(self.active_variants),
+                "variant_tasks": {f"{variant}:{status}": count for variant, status, count in task_counts if variant in self.active_variants},
+                "inactive_variant_tasks": {f"{variant}:{status}": count for variant, status, count in task_counts if variant not in self.active_variants},
                 "score_revision": {key: value for key, value in revision.items() if key != "policy"} if revision else None,
                 "discovery_tasks": dict(self.db.execute("SELECT status,count(*) FROM discovery_tasks GROUP BY status")),
                 "inventory_work": dict(self.db.execute("SELECT status,count(*) FROM inventory_work GROUP BY status")),
@@ -283,18 +436,22 @@ class RealmStore:
                 "worker_statistics": self.get_state("worker_statistics"), "memory": self.get_state("memory"),
                 "workspace_disk":self.get_state('workspace_disk'),"workspace_disk_failure":self.get_state('workspace_disk_failure')}
 
-    def iter_candidates(self, statuses=None, batch_size=256):
+    def iter_candidates(self, statuses=None, batch_size=256, *, include_score=False):
         if isinstance(batch_size, bool) or not isinstance(batch_size, int) or batch_size < 1:
             raise ValueError("Invalid page size")
         statuses = [statuses] if isinstance(statuses, str) else list(statuses or [])
         last = ""
         while True:
             condition = " AND qualification IN (" + ",".join("?" for _ in statuses) + ")" if statuses else ""
-            rows = self.db.execute("SELECT id,result FROM candidates WHERE id>?" + condition + " ORDER BY id LIMIT ?", (last, *statuses, batch_size)).fetchall()
+            table='candidate_leaderboard_view' if include_score else 'candidates'
+            fields='id,result,smart_score' if include_score else 'id,result'
+            rows = self.db.execute(f"SELECT {fields} FROM {table} WHERE id>?" + condition + " ORDER BY id LIMIT ?", (last, *statuses, batch_size)).fetchall()
             if not rows:
                 return
-            for cid, payload in rows:
-                yield json.loads(payload)
+            for row in rows:
+                candidate=json.loads(row[1])
+                if include_score:candidate['smart_score']=row[2]
+                yield candidate
             last = rows[-1][0]
 
     def iter_results(self, batch_size=256):
@@ -424,17 +581,20 @@ class RealmStore:
         self.db.execute("UPDATE discovery_tasks SET status='complete',worker=NULL,result=? WHERE idx=? AND structure=?", (payload, index_key(index), structure))
         return True
 
+    def _inventory_rows(self, candidate):
+        inventory=candidate.get('inventory',{})
+        kinds=inventory.get('tasks',[])
+        if any(kind not in ('structures','biomes') for kind in kinds):
+            raise ValueError('Unknown inventory task kind')
+        if not kinds:return []
+        identity={'version':inventory['version'],'sampling':inventory['sampling_policy'],
+                  'backend_sha256':self._inventory_backend_digest,'bounds':candidate['bounds']}
+        encoded=canonical(identity);cid=canonical(candidate['id'])
+        return [(hashlib.sha256(('['+cid+','+canonical(kind)+','+encoded+']').encode()).hexdigest(),
+                 candidate['id'],kind,encoded) for kind in kinds]
+
     def _ensure_inventory_locked(self, candidate):
-        inventory = candidate.get('inventory', {})
-        for kind in inventory.get('tasks', []):
-            if kind not in ('structures', 'biomes'):
-                raise ValueError('Unknown inventory task kind')
-            identity = {'version': inventory['version'], 'sampling': inventory['sampling_policy'],
-                        'backend_sha256': self._inventory_backend_digest, 'bounds': candidate['bounds']}
-            encoded = canonical(identity)
-            uid = hashlib.sha256(canonical([candidate['id'], kind, identity]).encode()).hexdigest()
-            self.db.execute("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",
-                            (uid, candidate['id'], kind, encoded))
+        self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",self._inventory_rows(candidate))
 
     def recover_inventory_work(self):
         with self.db:
@@ -527,7 +687,7 @@ class RealmStore:
             raise ValueError("Qualification changes require explicit authorization")
         self.db.execute("UPDATE candidates SET qualification=?,result=? WHERE id=?", (qualification, canonical(updated), cid))
         if qualification != "FAILED":
-            self.db.executemany("INSERT OR IGNORE INTO variant_tasks VALUES (?,?,'pending')", [(cid, variant) for variant in ("v1", "v2")])
+            self.db.executemany("INSERT OR IGNORE INTO variant_tasks VALUES (?,?,'pending')", [(cid, variant) for variant in self.active_variants])
         return updated
 
     def ensure_terrain_pool(self, identity, statuses=None, *, revision=None, new_revision=False, progress=None):
@@ -742,13 +902,14 @@ class RealmStore:
             self._set(key,saved)
         return None
 
-    def complete_terrain_work(self, unit_id, result=None, successor_units=(), variant_results=(), observation=None, state=None):
+    def complete_terrain_work(self, unit_id, result=None, successor_units=(), variant_results=(), observation=None, state=None, candidate_update=None):
         if self.db.in_transaction:
             raise ValueError("Finish caller transaction before committing terrain work")
         successor_units, variant_results = list(successor_units), list(variant_results)
         if len(successor_units) > 4096 or len(variant_results) > 4096:
             raise ValueError("Terrain completion batch exceeds bounded commit size")
         completed = {'result': result, 'successor_units': successor_units, 'variant_results': variant_results, 'observation': observation, 'state': state}
+        if candidate_update is not None:completed['candidate_update']=candidate_update
         digest = hashlib.sha256(canonical(completed).encode()).hexdigest()
         with self.db:
             self.db.execute("BEGIN IMMEDIATE")
@@ -784,6 +945,9 @@ class RealmStore:
                 wrapper = {key: variant_result[key] for key in ('candidate_id','variant','center','result')}
                 self.db.execute("INSERT INTO variants VALUES (?,?,?,?) ON CONFLICT(candidate_id,variant,center) DO UPDATE SET result=excluded.result",
                                 (unit['candidate_id'], unit['variant'], canonical(wrapper['center']), canonical(wrapper)))
+            if candidate_update is not None:
+                if candidate_update.get('id')!=unit['candidate_id']:raise ValueError('Marine update must preserve terrain candidate')
+                self._upsert_candidate_locked(candidate_update)
             self.db.execute("UPDATE terrain_work SET status='complete',worker=NULL,result=?,digest=? WHERE unit_id=?", (canonical({'result': result, 'state': state}), digest, unit_id))
             self.db.execute("UPDATE variant_tasks SET status='started' WHERE candidate_id=? AND variant=?", (unit['candidate_id'], unit['variant']))
         return True
@@ -926,7 +1090,7 @@ class RealmStore:
             raise ValueError("Unknown terrain pool revision")
         return {variant: pool['members'] - self.db.execute(
             "SELECT count(DISTINCT candidate_id) FROM terrain_work WHERE revision=? AND variant=?",
-            (revision, variant)).fetchone()[0] for variant in ('v1', 'v2')}
+            (revision, variant)).fetchone()[0] for variant in pool['identity'].get('terrain', {}).get('variants', self.active_variants)}
 
     def upsert_variant(self, candidate_id, variant, center, result):
         if variant not in {"v1", "v2"}:

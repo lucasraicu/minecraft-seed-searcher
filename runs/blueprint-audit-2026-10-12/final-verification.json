@@ -1,0 +1,40 @@
+{
+  "completed_at_utc": "2026-10-12T08:58:52.985509+00:00",
+  "started_at_utc": "2026-10-12T08:26:03+00:00",
+  "goals": {
+    "feasibility_audit": "complete; full conjunction not demonstrated, no supported verified-world ETA",
+    "engineering_audit_cleanup_optimization": "complete; active blueprint baseline and Coastal V1, historical profiles preserved"
+  },
+  "pytest": {
+    "passed": 773,
+    "failed": 0,
+    "seconds": 109.31,
+    "log": "final-pytest.log"
+  },
+  "verification": {
+    "final_backend_identity_matches_timed_baseline": true,
+    "coastal_code_matches_timed_ladder": true,
+    "active_variants": [
+      "v1"
+    ],
+    "explicit_terrain_threads": 18,
+    "portable_terrain_threads": 1,
+    "json_artifacts_parsed_before_receipt": 44,
+    "local_report_links_valid": true,
+    "git_diff_check": "pass",
+    "cli_compatibility_and_status": "pass"
+  },
+  "evidence": {
+    "distinct_input_seeds": 30000,
+    "native_count_comparisons": 3456,
+    "fresh_pilot_comparisons": 405,
+    "coastal_raster_decision_comparisons": 108,
+    "mismatches": 0
+  },
+  "reports": {
+    "BLUEPRINT_FEASIBILITY_ANALYSIS.md": "c97111a8df8262165899de2f5a68897cdef4c9e80697c83a7f554a30eac74f2c",
+    "ENGINE_AUDIT_RESULTS.md": "65bb52ef8b7c79079ba572fe0202d1bd47da33769c941751f8fbba9b85bdfb0c",
+    "BLUEPRINT_BENCHMARK_RESULTS.md": "84f76a491a408b659654cb6b6162b3f3f42615e04dd98acb1ca553510c45d926"
+  },
+  "scope": "Prediction model audit and bounded measurements, not a production-length search or actual Bedrock seed certification."
+}

@@ -1,11 +1,11 @@
-"""Active large-island and inclusive mountain-enclosure preference controls."""
+"""Historical island/mountain controls and the active coastal profile boundary."""
 from pathlib import Path
 
 import numpy as np
 import pytest
 import yaml
 
-from seed_search.realm.config import default_config, validate_config
+from seed_search.realm.config import river_blueprint_config, locked_blueprint_config, blueprint_config, default_config, validate_config
 from seed_search.realm.raster import Raster
 from seed_search.realm.terrain import evaluate_v1, evaluate_v2, V1, V2
 
@@ -57,14 +57,22 @@ def mountains(kind, resolution=8):
 
 
 def test_default_and_explicit_active_profiles_have_same_terrain_preferences():
-    cfg = default_config()
+    cfg = river_blueprint_config()
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
     assert cfg['terrain']['v1'] == explicit['terrain']['v1']
-    assert cfg['terrain']['v2'] == explicit['terrain']['v2']
     for profile in (cfg, explicit):
         validate_config(profile)
-        assert profile['terrain']['v1']['area'] == 250000
-        assert profile['terrain']['v2']['enclosure_policy'] == 'surrounding_mountains'
+        assert profile['terrain']['variants'] == ['v1']
+        assert profile['terrain']['v1']['mode'] == 'coastal_continent'
+        assert 'v2' not in profile['terrain']
+
+
+def test_historical_default_preserves_island_and_mountain_preferences():
+    cfg = default_config()
+    validate_config(cfg)
+    assert cfg['terrain']['variants'] == ['v1', 'v2']
+    assert cfg['terrain']['v1']['area'] == 250000
+    assert cfg['terrain']['v2']['enclosure_policy'] == 'surrounding_mountains'
 
 
 @pytest.mark.parametrize('kind', ['large', 'irregular'])

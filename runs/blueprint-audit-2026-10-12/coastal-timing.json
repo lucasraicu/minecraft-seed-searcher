@@ -1,0 +1,1345 @@
+{
+  "scope": "Unconditional natural-terrain diagnostic at retained selected centers; NOT structure/biome survivors. Same fixed1536 bounds and resolutions in both arms. Raster model/predicted monument envelope is not actual generation.",
+  "threads": 18,
+  "resolutions": [
+    128,
+    64,
+    32,
+    16
+  ],
+  "layouts": [
+    {
+      "low32": 1164986926,
+      "upper32": 1,
+      "seed": "5459954222",
+      "center": [
+        -972,
+        -860
+      ],
+      "first_center": true,
+      "bounds": {
+        "overworld": [
+          -1740,
+          -1628,
+          -205,
+          -93
+        ],
+        "nether": [
+          -569,
+          -555,
+          326,
+          340
+        ]
+      },
+      "profiles": {
+        "current_four": true,
+        "plus_mansion_outpost": true,
+        "expanded_mt_presence": true,
+        "expanded_mt_feature_capacity": true
+      },
+      "family_raw_counts": {
+        "village": 9,
+        "ancient_city": 14,
+        "ruined_portal": 6,
+        "shipwreck": 16,
+        "monument": 10,
+        "outpost": 1,
+        "desert_pyramid": 10,
+        "ocean_ruin": 22,
+        "mansion": 1,
+        "buried_treasure": 576,
+        "fortress": 2,
+        "bastion": 2,
+        "ruined_portal_nether": 4
+      }
+    },
+    {
+      "low32": 350695915,
+      "upper32": 4294967295,
+      "seed": "-3944271381",
+      "center": [
+        -1244,
+        1092
+      ],
+      "first_center": true,
+      "bounds": {
+        "overworld": [
+          -2012,
+          324,
+          -477,
+          1859
+        ],
+        "nether": [
+          -603,
+          -311,
+          292,
+          584
+        ]
+      },
+      "profiles": {
+        "current_four": true,
+        "plus_mansion_outpost": true,
+        "expanded_mt_presence": true,
+        "expanded_mt_feature_capacity": true
+      },
+      "family_raw_counts": {
+        "village": 6,
+        "ancient_city": 16,
+        "ruined_portal": 4,
+        "shipwreck": 18,
+        "monument": 9,
+        "outpost": 3,
+        "desert_pyramid": 11,
+        "ocean_ruin": 25,
+        "mansion": 3,
+        "buried_treasure": 576,
+        "fortress": 2,
+        "bastion": 2,
+        "ruined_portal_nether": 5
+      }
+    },
+    {
+      "low32": 4227917867,
+      "upper32": 305419896,
+      "seed": "1311768469095639083",
+      "center": [
+        1316,
+        -876
+      ],
+      "first_center": true,
+      "bounds": {
+        "overworld": [
+          548,
+          -1644,
+          2083,
+          -109
+        ],
+        "nether": [
+          -283,
+          -557,
+          612,
+          338
+        ]
+      },
+      "profiles": {
+        "current_four": true,
+        "plus_mansion_outpost": true,
+        "expanded_mt_presence": true,
+        "expanded_mt_feature_capacity": true
+      },
+      "family_raw_counts": {
+        "village": 9,
+        "ancient_city": 15,
+        "ruined_portal": 7,
+        "shipwreck": 16,
+        "monument": 9,
+        "outpost": 1,
+        "desert_pyramid": 10,
+        "ocean_ruin": 25,
+        "mansion": 1,
+        "buried_treasure": 574,
+        "fortress": 1,
+        "bastion": 2,
+        "ruined_portal_nether": 4
+      }
+    }
+  ],
+  "trials": [
+    {
+      "trial": 0,
+      "arm": "fresh_each_resolution",
+      "seconds": 0.3802095189457759,
+      "queried_points": 36720,
+      "reused_points": 0,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01651191699784249,
+          "evaluate_seconds": 0.0016171140596270561,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005484687979333103,
+          "evaluate_seconds": 0.0012413919903337955,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.01938333793077618,
+          "evaluate_seconds": 0.0020935690263286233,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07021199504379183,
+          "evaluate_seconds": 0.003640350070782006,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01826607098337263,
+          "evaluate_seconds": 0.00119689607527107,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.00514668901450932,
+          "evaluate_seconds": 0.001423184061422944,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.018294663983397186,
+          "evaluate_seconds": 0.002042496926151216,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07040647300891578,
+          "evaluate_seconds": 0.003967170952819288,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01827404904179275,
+          "evaluate_seconds": 0.0011673429980874062,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005516932928003371,
+          "evaluate_seconds": 0.0015109600499272346,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.020789947011508048,
+          "evaluate_seconds": 0.0035872519947588444,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07571842393372208,
+          "evaluate_seconds": 0.004094091011211276,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    },
+    {
+      "trial": 0,
+      "arm": "reuse_exact_points",
+      "seconds": 0.32275909394957125,
+      "queried_points": 27648,
+      "reused_points": 9072,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.018380985944531858,
+          "evaluate_seconds": 0.0012465730542317033,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.004521145019680262,
+          "evaluate_seconds": 0.001558612915687263,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.01532511506229639,
+          "evaluate_seconds": 0.002383910003118217,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.05368466000072658,
+          "evaluate_seconds": 0.0036504860036075115,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01824649900663644,
+          "evaluate_seconds": 0.0011407349957153201,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.0044627259485423565,
+          "evaluate_seconds": 0.001357847941108048,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.014884238014928997,
+          "evaluate_seconds": 0.0032332480186596513,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.060382683062925935,
+          "evaluate_seconds": 0.004429731983691454,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01827386999502778,
+          "evaluate_seconds": 0.0011674490524455905,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.0043428969802334905,
+          "evaluate_seconds": 0.0013520939974114299,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.0157730100909248,
+          "evaluate_seconds": 0.0023417259799316525,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.058249374967999756,
+          "evaluate_seconds": 0.004132964997552335,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "reuse_exact_points",
+      "seconds": 0.31077487708535045,
+      "queried_points": 27648,
+      "reused_points": 9072,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.017969520995393395,
+          "evaluate_seconds": 0.0009923899779096246,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.004303051973693073,
+          "evaluate_seconds": 0.0012086810311302543,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.014789336011745036,
+          "evaluate_seconds": 0.0018671590369194746,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.052419599960558116,
+          "evaluate_seconds": 0.0036093179369345307,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01844772102776915,
+          "evaluate_seconds": 0.0011563319712877274,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.0043247799621894956,
+          "evaluate_seconds": 0.001520065008662641,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.016558750066906214,
+          "evaluate_seconds": 0.0035369439283385873,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.05655469698831439,
+          "evaluate_seconds": 0.0038300059968605638,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01816339895594865,
+          "evaluate_seconds": 0.001061502960510552,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.0036307619884610176,
+          "evaluate_seconds": 0.0013024099171161652,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.013712460058741271,
+          "evaluate_seconds": 0.0019880359759554267,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.056091477046720684,
+          "evaluate_seconds": 0.003784197964705527,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "fresh_each_resolution",
+      "seconds": 0.38286484696436673,
+      "queried_points": 36720,
+      "reused_points": 0,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.017994827940128744,
+          "evaluate_seconds": 0.0009651039727032185,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.004829756100662053,
+          "evaluate_seconds": 0.0012245859252288938,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.017704145051538944,
+          "evaluate_seconds": 0.0019237019587308168,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07104566192720085,
+          "evaluate_seconds": 0.003391499980352819,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01815663801971823,
+          "evaluate_seconds": 0.0011407280107960105,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005358197959139943,
+          "evaluate_seconds": 0.0017729849787428975,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.02201621001586318,
+          "evaluate_seconds": 0.0036495389649644494,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07537572004366666,
+          "evaluate_seconds": 0.0040317700477316976,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.018143040011636913,
+          "evaluate_seconds": 0.0010491880821064115,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005100902984850109,
+          "evaluate_seconds": 0.0018001279095187783,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.01959815702866763,
+          "evaluate_seconds": 0.0028559539932757616,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07222784601617604,
+          "evaluate_seconds": 0.003608483006246388,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "arm": "fresh_each_resolution",
+      "seconds": 0.3858875760342926,
+      "queried_points": 36720,
+      "reused_points": 0,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01796866802033037,
+          "evaluate_seconds": 0.0009385530138388276,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005084467004053295,
+          "evaluate_seconds": 0.0012179720215499401,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.017785492935217917,
+          "evaluate_seconds": 0.001853782101534307,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07932813803199679,
+          "evaluate_seconds": 0.004250127007253468,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.021531939040869474,
+          "evaluate_seconds": 0.001215218915604055,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.005076333996839821,
+          "evaluate_seconds": 0.0013982149539515376,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.018632593099027872,
+          "evaluate_seconds": 0.0028869090601801872,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07228351989760995,
+          "evaluate_seconds": 0.003925352008081973,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.018160262028686702,
+          "evaluate_seconds": 0.0010715000098571181,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.00547224294859916,
+          "evaluate_seconds": 0.0013194759376347065,
+          "new_queries": 576,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.019162131007760763,
+          "evaluate_seconds": 0.0020616139518097043,
+          "new_queries": 2304,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.07075876498129219,
+          "evaluate_seconds": 0.0036408869782462716,
+          "new_queries": 9216,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "arm": "reuse_exact_points",
+      "seconds": 0.3156826280755922,
+      "queried_points": 27648,
+      "reused_points": 9072,
+      "stages": [
+        {
+          "layout": 0,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01796231500338763,
+          "evaluate_seconds": 0.0009540130849927664,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.125,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "321d647749c7920367608c7ca2d28f31083254e01d1d1a25698561eb33b02010"
+        },
+        {
+          "layout": 0,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.003918622969649732,
+          "evaluate_seconds": 0.0011728230165317655,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.234375,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "eda641c661a913c51a308f9d6bbf59508e8f7f3d82c9e1c00c14a97ad46c7630"
+        },
+        {
+          "layout": 0,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.013885256019420922,
+          "evaluate_seconds": 0.0019728849874809384,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2265625,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "2ce0cf0b1bb5a0949adfcbe9303003444e847e36311f9d4c14ab9a5f11c185b0"
+        },
+        {
+          "layout": 0,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.05280894902534783,
+          "evaluate_seconds": 0.004151453031226993,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.13292100694444445,
+          "ocean_edges": [],
+          "monument_coastal_model_pass": false,
+          "raster_and_decision_sha256": "983f1bbb6840853cdfd2cdb328a950dcef16762f38084dfff2e7103e2a24a95b"
+        },
+        {
+          "layout": 1,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.018266487983055413,
+          "evaluate_seconds": 0.001239890931174159,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2847222222222222,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "9bfb3dd009fe759a6a7e0d90bf6c26645e80cc47ba2d8b4849e41b7303fed8e8"
+        },
+        {
+          "layout": 1,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.004242341965436935,
+          "evaluate_seconds": 0.00139915500767529,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.17881944444444445,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "7c0f0029ce5f6014dbdb3e9cd8940095c0a36c869ad7a83c089fc3ba0c75952c"
+        },
+        {
+          "layout": 1,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.01519587601069361,
+          "evaluate_seconds": 0.0028610180597752333,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.15104166666666666,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "447a6788257648376701ee1fb768c58226c8ead7f4299385cef0fdede2bf1a6a"
+        },
+        {
+          "layout": 1,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.0590934130595997,
+          "evaluate_seconds": 0.004863122012466192,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.09309895833333333,
+          "ocean_edges": [
+            "south"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "67ba4d03b1d4f4635270dc33edd126c4e432b1a1e8ba7cd086cbc7cdb194b14a"
+        },
+        {
+          "layout": 2,
+          "spacing": 128,
+          "points": 144,
+          "sample_seconds": 0.01892936695367098,
+          "evaluate_seconds": 0.0012487400090321898,
+          "new_queries": 144,
+          "exact_points_reused": 0,
+          "geometry_pass": false,
+          "mainland_fraction": 0.1388888888888889,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "ed89c88925815212c511d1d7fbd4bbd990039126cacc2398159aa18e7c6838dc"
+        },
+        {
+          "layout": 2,
+          "spacing": 64,
+          "points": 576,
+          "sample_seconds": 0.003986672963947058,
+          "evaluate_seconds": 0.0013365000486373901,
+          "new_queries": 432,
+          "exact_points_reused": 144,
+          "geometry_pass": false,
+          "mainland_fraction": 0.3125,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "6f04d3f0bb6f4dff75c8045c08c7acc16444bdffd14cbc8049e9bbabe543b723"
+        },
+        {
+          "layout": 2,
+          "spacing": 32,
+          "points": 2304,
+          "sample_seconds": 0.013344035018235445,
+          "evaluate_seconds": 0.001970243058167398,
+          "new_queries": 1728,
+          "exact_points_reused": 576,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2916666666666667,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "31e88adff821a9a8b3919d0e90431d3e53c52909116c73652d8d14b0c4ba9dbd"
+        },
+        {
+          "layout": 2,
+          "spacing": 16,
+          "points": 9216,
+          "sample_seconds": 0.0585401130374521,
+          "evaluate_seconds": 0.0037225150736048818,
+          "new_queries": 6912,
+          "exact_points_reused": 2304,
+          "geometry_pass": false,
+          "mainland_fraction": 0.2864583333333333,
+          "ocean_edges": [
+            "east",
+            "north"
+          ],
+          "monument_coastal_model_pass": true,
+          "raster_and_decision_sha256": "f5e061a114b3d7ca94aa1d23c887d1f977ec01fa3d17744f857ad588b0f20c28"
+        }
+      ]
+    }
+  ],
+  "parity_checks": 72,
+  "differences": 0,
+  "median_seconds": {
+    "fresh_each_resolution": 0.38286484696436673,
+    "reuse_exact_points": 0.3156826280755922
+  },
+  "speedup": 1.2128156981532963,
+  "wall_time_saved_percent": 17.54724138855902,
+  "coastal_sources": {
+    "src/seed_search/realm/coastal.py": "451b7dbfd4724dbceb86b0d707a986221d7a14e2ecd9b84db9902164cf5cea51",
+    "src/seed_search/realm/raster.py": "801f40c685629401fd588d3f54a2b6e299a91ae9a1a8ab3e4edf8551320532cc",
+    "config/realm.yaml": "6dd841d268a38a95d84e53b58012c73da4516b3dfc1e5b1b6101f4480a36a19d",
+    "scripts/benchmark_blueprint_coast.py": "edb312069bd6fbcb27f915c67cadc0fecbfbf6d556decaad9fb2be71725acd4d"
+  }
+}

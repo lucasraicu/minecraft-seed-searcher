@@ -14,6 +14,29 @@ END_TYPES = {'end_city'}
 
 
 def detect_structures(candidate, cfg, backend, *, exhaustive=False):
+    if cfg.get('contract')=='master_seed_blueprint_v1':
+        from .blueprint import count_observation
+        required=dict(candidate['required_structures']);nether={};optional={};observations={};timings={}
+        for name,minimum in cfg['structures']['minimum_counts'].items():
+            if cfg.get('screening_revision') and name in ('monument','shipwreck'):
+                if candidate.get('marine_stage',{}).get('status')=='DEFERRED':continue
+                observations[name]=required.get(name,{})
+                continue
+            if name=='stronghold':
+                observations[name]=required[name]
+                continue
+            started=time.perf_counter()
+            required[name]=count_observation(backend,name,candidate['bounds']['overworld'],minimum,capped=False)
+            observations[name]=required[name];timings[name]=time.perf_counter()-started
+        for name in ('fortress','bastion'):
+            nether[name]=count_observation(backend,name,candidate['bounds']['final_nether'],cfg['structures']['nether_minimum_counts'][name],capped=False)
+            observations[name]=nether[name]
+        if not cfg.get('screening_revision'):
+            optional['outpost']=structure_observation(backend,'outpost',candidate['bounds']['overworld'])
+            observations['outpost']=optional['outpost']
+        else:optional=dict(candidate.get('optional_structures',{}))
+        return {'required_structures':required,'required_nether_structures':nether,
+                'optional_structures':optional,'structure_inventory':observations,'structure_inventory_seconds':timings}
     bounds = candidate['bounds']['overworld']
     final_nether = candidate['bounds']['final_nether']
     observations = {}
@@ -78,6 +101,9 @@ def execute_inventory(candidate, cfg, kind, backend, *, exhaustive=False):
         return detect_structures(candidate, cfg, backend, exhaustive=exhaustive)
     if kind != 'biomes':
         raise ValueError('Unknown inventory kind')
+    if cfg.get('contract')=='master_seed_blueprint_v1':
+        from .blueprint import biome_gate
+        return {'biomes':biome_gate(backend,candidate['bounds']['overworld'],cfg,complete=True)}
     sampler = BiomeSampler(backend)
     policy = candidate['inventory'].get('sampling_policy', cfg['biomes'])
     # Use the current score weights, retaining the frozen generation/sampling policy.
