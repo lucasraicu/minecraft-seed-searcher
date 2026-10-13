@@ -1,0 +1,51 @@
+{
+  "control": {
+    "checkpointed_input_rate": 72473.73945984423,
+    "extension_sha256": "b7e2420f1092cae903a5f02cc6646dabd039859182649d4686199befe8227b75",
+    "external_cli_rate": 37208.19027605086,
+    "wall_seconds": 1.3437901609577239
+  },
+  "control_config": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/config/realm.yaml",
+  "control_order": [
+    "outpost",
+    "desert_pyramid",
+    "jungle_temple",
+    "ruined_portal",
+    "trial_chamber",
+    "mansion",
+    "ancient_city",
+    "village",
+    "mineshaft"
+  ],
+  "control_stronghold_after": 4,
+  "count": 50000,
+  "label": "compiler-rescreen-lto",
+  "mode": "tuning",
+  "order": [
+    "control",
+    "selected"
+  ],
+  "pair_index": 0,
+  "schema": "pre-sweep-v2-paired-trial-v1",
+  "selected": {
+    "checkpointed_input_rate": 73175.6277303552,
+    "extension_sha256": "d4b7617fd015ee84f8c4ea1bbaed11a70ff14b129a686c7baa779ad8306ce5d3",
+    "external_cli_rate": 36800.80798841282,
+    "wall_seconds": 1.3586658210260794
+  },
+  "selected_config": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/config/realm.yaml",
+  "selected_order": [
+    "outpost",
+    "desert_pyramid",
+    "jungle_temple",
+    "ruined_portal",
+    "trial_chamber",
+    "mansion",
+    "ancient_city",
+    "village",
+    "mineshaft"
+  ],
+  "selected_stronghold_after": 4,
+  "speedup_control_over_selected": 0.9890512738024709,
+  "start_index": 3000000
+}

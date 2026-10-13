@@ -14,7 +14,7 @@ from ..backend import Backend, biome_name
 from ..seeds import parse_seed
 from .biomes import canonical, FAMILIES, WOOD
 from .bounds import square, native_bounds, nether_square, json_bounds, contains
-from .config import BLUEPRINT_CONTRACT
+from .config import BLUEPRINT_CONTRACT, stronghold_after
 from .sampling import BiomeSampler, grid_points, dispersed_indices
 
 PALETTE={
@@ -327,7 +327,9 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                     if two_group and observed<floors[name]:fatal.append('floor_'+name)
             counts['structure_stage_entered']=counts.get('structure_stage_entered',0)+1
             for position,name in enumerate(cfg['search']['structure_order']):
-                if origin and position==2 and not actual:
+                # The full/reference provider has already inventoried Strongholds,
+                # so report absence even when another predicate rejected earlier.
+                if origin and position==stronghold_after(cfg) and not actual:
                     pending.append('count_stronghold')
                     if two_group:fatal.append('floor_stronghold')
                 blocked=(fatal or len(deficits)>budget) if two_group else pending

@@ -1,0 +1,102 @@
+{
+  "arms": {
+    "cpu-cont-strict-sh3": {
+      "build_identity_sha256": "3384b462e17fdf27f3cef4e796bdd2edb9585d84b5b938b726699c51d9d680f8",
+      "builder_script_sha256": "62872d7ae796cda0a0465fd3d230082be5d6a1256e0adb9ae30368293ce7cc59",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "ba2f721388fc5f802476c6a4df8fe2845072679d871f9460062f122d31802441",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_decisions_equal": true,
+      "natural_native_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "5a9f8ae4d6cdacf2b25f654687e8e3bc5ed540a0645072338cf2c0782bd715f7",
+      "status": "PASS"
+    },
+    "cpu-cont-strict-sh4-palette": {
+      "build_identity_sha256": "a5c6cba3cbe0bd55efaaeec9b3a724d4afdaa02440d12d05f0dc73691323c9ad",
+      "builder_script_sha256": "62872d7ae796cda0a0465fd3d230082be5d6a1256e0adb9ae30368293ce7cc59",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "d0a43fc276fd7dd18f8b702f9fc3db78ee66d00f7dc216486af74d90d9a98ad9",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_decisions_equal": true,
+      "natural_native_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "5a9f8ae4d6cdacf2b25f654687e8e3bc5ed540a0645072338cf2c0782bd715f7",
+      "status": "PASS"
+    },
+    "cpu-cont-strict-sh5": {
+      "build_identity_sha256": "9ebd3a12ce13523acbc7e8f50f0e9e4289ff10e9cf2b77621013c16548bcdca2",
+      "builder_script_sha256": "62872d7ae796cda0a0465fd3d230082be5d6a1256e0adb9ae30368293ce7cc59",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "a3689c1367fd8dabac010067bcb96b654443c34a8a51f9a0fd20e584a4858e0e",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_decisions_equal": true,
+      "natural_native_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "5a9f8ae4d6cdacf2b25f654687e8e3bc5ed540a0645072338cf2c0782bd715f7",
+      "status": "PASS"
+    }
+  },
+  "config_sha256": "ce3fff4901041f7a348a35e8347873dd73507f6150b1b7b9799d687e2f3220a9",
+  "expected_fixture_qualification": [
+    "PREDICTED",
+    "PREDICTED",
+    "PREDICTED",
+    "PENDING"
+  ],
+  "fixture_missing_values": [
+    -1,
+    0,
+    6,
+    28
+  ],
+  "natural_seeds": [
+    "0",
+    "-1",
+    "-9223372036854775808",
+    "9223372036854775807",
+    "12345",
+    "4294979641"
+  ],
+  "policy_revision": "origin-fixed-2048-two-group-v2",
+  "status": "PASS"
+}

@@ -38,6 +38,21 @@ class MaskedBackend(FixtureBackend):
             values.append(IDS[name])
         return np.array(values,dtype=np.int32)
 
+
+def test_positive_fixture_uses_boolean_score_completion_in_direct_and_replay(prototype):
+    seed=2**63-1
+    fixture=(0,0,-1)
+    with prototype.sweep([seed],fixtures=[fixture],retention='survivors',max_misses=2) as batch:
+        direct=batch.retained_records()[0]
+    replay=evaluate_seed(0,seed,prototype.cfg,
+                         backend_factory=lambda _,f=fixture:FixtureBackend(f),short_circuit=False)
+    actual=direct['anchors'][0]['baseline_score_complete']
+    expected=replay['anchors'][0]['baseline_score_complete']
+    assert type(actual) is type(expected) is bool
+    assert json.dumps(actual)==json.dumps(expected)=='true'
+    for field in ('baseline_score','baseline_score_observed','ranking','qualification'):
+        assert direct['anchors'][0][field]==replay['anchors'][0][field]
+
 @pytest.mark.parametrize('limit',[0,1,2,3])
 def test_retention_matches_independent_full_decisions_and_inventory(prototype,limit,tmp_path):
     masks=[0,1,1|(1<<13),1|(1<<13)|(1<<14), (1<<10)|(1<<11), (1<<18)|(1<<21)]

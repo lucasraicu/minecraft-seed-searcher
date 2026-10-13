@@ -37,15 +37,16 @@ search:
   free_disk_reserve_bytes: 17179869184
   projected_bytes_per_seed: 65536
   structure_order:
-  - ruined_portal
-  - trial_chamber
   - outpost
   - desert_pyramid
   - jungle_temple
+  - ruined_portal
+  - trial_chamber
   - mansion
   - ancient_city
   - village
   - mineshaft
+  stronghold_after_structure_count: 4
   max_misses: 2
 structures:
   required:

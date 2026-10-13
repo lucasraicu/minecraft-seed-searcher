@@ -1,0 +1,22 @@
+{
+  "build_identity_sha256": "93d8ed580b468836f9d9c0ef01c761304d9019b0ddbde71a592170dc200539d1",
+  "builder_script_sha256": "7a3fc1ebe85333d3cf9349a67d6d18adcc44c9024d5f1b6ed4940e8579bd838e",
+  "event": {
+    "count": 4,
+    "extension_sha256": "d5222651b03ce5c229fb650b044357e681bc4b4541eedf31a4fa4e609fdbdabf",
+    "kind": "pgo_positive_fixture_training",
+    "profile_raw_files": [
+      "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/pgo-training/fixtures-23450.profraw"
+    ],
+    "qualification": [
+      "PREDICTED",
+      "PREDICTED",
+      "PREDICTED",
+      "PENDING"
+    ],
+    "record_sha256": "ca64b57dc969f02346a4cc2e4976b4fb3244c35705303ced390c0b2a1c0a72d8",
+    "wall_seconds": 0.8089352099923417
+  },
+  "schema": "pre-sweep-v2-pgo-fixture-training-v1",
+  "source_digest": "dac8b08da484a206905ee24cc66603e5c2c8f8f544acc74367c707be2a5f3026"
+}

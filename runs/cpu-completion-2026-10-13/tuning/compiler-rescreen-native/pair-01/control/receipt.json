@@ -1,0 +1,191 @@
+{
+  "batch_latencies_seconds": null,
+  "build_identity_sha256": "7ceb897b636d1c3ae7e148f30f605b8197d8993d67a56e4efc026addf5820061",
+  "builder_script_sha256": "7a3fc1ebe85333d3cf9349a67d6d18adcc44c9024d5f1b6ed4940e8579bd838e",
+  "checkpointed_completed_inputs": 50000,
+  "checkpointed_input_rate": 65442.77482203704,
+  "command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-m",
+    "seed_search",
+    "--config",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/config/realm.yaml",
+    "scan",
+    "--count",
+    "50000",
+    "--start-index",
+    "3000000",
+    "--output",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/tuning/compiler-rescreen-native/pair-01/control/run",
+    "--executor",
+    "native",
+    "--native-build",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/final-portable",
+    "--native-threads",
+    "34",
+    "--native-batch-size",
+    "16384",
+    "--retention",
+    "survivors",
+    "--max-misses",
+    "2",
+    "--prediction-scale"
+  ],
+  "event": {
+    "arm": "control",
+    "batch_size": 16384,
+    "config": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/config/realm.yaml",
+    "config_sha256": "c107181b09a3b864a53bf6ce339a01f0909df2f9f162377ce2d12dcfe277538c",
+    "count": 50000,
+    "exit_code": 0,
+    "extension_sha256": "b7e2420f1092cae903a5f02cc6646dabd039859182649d4686199befe8227b75",
+    "kind": "cli_trial",
+    "mode": "tuning",
+    "native_build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/final-portable",
+    "pair": 1,
+    "start_index": 3000000,
+    "threads": 34,
+    "wall_seconds": 1.4334499730030075
+  },
+  "external_cli_rate": 34880.88244562344,
+  "input_decisions_receipt_sha256": "de77e91ef0ad3e71876a241f5784f4e29532395bba013d26ffc91b62975efbd7",
+  "internal_wall_seconds": 0.7640262830536813,
+  "peak_process_tree_rss_bytes": 86827008,
+  "peak_wal_bytes": 782832,
+  "policy_config_sha256": "c107181b09a3b864a53bf6ce339a01f0909df2f9f162377ce2d12dcfe277538c",
+  "predicted_anchors": 1,
+  "record_semantics_sha256": "b6bac7a448dc1d61bf38f902ee7af9943ce57a9f98aff8b63f220d6251d53a9e",
+  "resource_sample_count": 2,
+  "resource_samples": [
+    {
+      "cpu_percent": 76.3,
+      "pids": [
+        23244
+      ],
+      "rss_bytes": 55623680,
+      "wal_bytes": 0
+    },
+    {
+      "cpu_percent": 2371.1,
+      "pids": [
+        23244
+      ],
+      "rss_bytes": 86827008,
+      "wal_bytes": 782832
+    }
+  ],
+  "retained_anchors": 1,
+  "retained_inputs": 1,
+  "retention_receipt_inputs": 50000,
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "schema": "pre-sweep-v2-cli-trial-v1",
+  "service_seconds": {
+    "commit_seconds": 0.004142379970289767,
+    "encoding_seconds": 0.010621406137943268,
+    "hash_seconds": 0.0017776750028133392,
+    "native_seconds": 0.5447185889352113,
+    "preparation_wall_seconds": 0.021578229032456875,
+    "prepare_seconds": 0.012504803133197129,
+    "queue_wait_seconds": 0.508386826957576,
+    "record_seconds": 0.05248021078296006,
+    "seed_preparation_seconds": 0.07736864394973963,
+    "shutdown_seconds": 0.0007025639060884714,
+    "sql_seconds": 0.00496057397685945,
+    "task_preparation_seconds": 2.080306876450777e-05,
+    "validation_row_seconds": 8.491892367601395e-05,
+    "writer_wall_seconds": 0.019206990022212267
+  },
+  "source_digest": "dac8b08da484a206905ee24cc66603e5c2c8f8f544acc74367c707be2a5f3026",
+  "sqlite_bytes": 454656,
+  "sqlite_bytes_per_input": 9.09312,
+  "sqlite_integrity": "ok",
+  "status": {
+    "active_variants": [
+      "v1"
+    ],
+    "candidate_counts": {
+      "PREDICTED": 1
+    },
+    "completed_seeds": 50000,
+    "counts": {
+      "baseline_pending": 0,
+      "baseline_predicted": 1,
+      "biome_samples": 4096,
+      "biome_stage_entered": 1,
+      "biome_stage_passed": 1,
+      "checked_ancient_city": 1,
+      "checked_desert_pyramid": 1,
+      "checked_jungle_temple": 1,
+      "checked_mansion": 1,
+      "checked_mineshaft": 1,
+      "checked_outpost": 1,
+      "checked_ruined_portal": 1,
+      "checked_trial_chamber": 1,
+      "checked_village": 1,
+      "confirmed_rejections": 0,
+      "discarded_inputs": 49999,
+      "discovered_anchors": 653,
+      "evaluation_centers": 1,
+      "nether_stage_entered": 1,
+      "pending_mansion": 1,
+      "retained_anchors": 1,
+      "retained_inputs": 1,
+      "scanned_inputs": 50000,
+      "stronghold_anchors": 1,
+      "structure_stage_entered": 1,
+      "structure_stage_passed": 1,
+      "unresolved_discovery": 0,
+      "unresolved_stronghold_coverage": 1
+    },
+    "coverage_scope": "predictor-processing range checkpoints; discarded inputs/anchors have no individual evidence",
+    "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+    "discovery_tasks": {
+      "pending": 2
+    },
+    "execution": {
+      "batch_latency_p50_seconds": 0.3686128400149755,
+      "batch_latency_p95_seconds": 0.6366982349427417,
+      "batch_size": 16384,
+      "checkpointed_scanned_inputs_per_second": 65442.77482203704,
+      "kind": "native",
+      "max_misses": 2,
+      "newly_committed": 50000,
+      "retention": "survivors",
+      "threads": 34,
+      "wall_seconds": 0.7640262830536813
+    },
+    "inactive_variant_tasks": {},
+    "interrupted": false,
+    "inventory_work": {},
+    "memory": null,
+    "range": [
+      3000000,
+      3050000
+    ],
+    "ranges": {
+      "complete": 4
+    },
+    "remaining_seeds": 0,
+    "retention": {
+      "max_misses": 2,
+      "mode": "survivors"
+    },
+    "saved_seed_rows": 1,
+    "schema": 1,
+    "score_revision": null,
+    "total_seeds": 50000,
+    "variant_tasks": {
+      "v1:pending": 1
+    },
+    "worker_statistics": null,
+    "workspace_disk": null,
+    "workspace_disk_failure": null
+  },
+  "table_rows": {
+    "candidates": 1,
+    "discovery_tasks": 2,
+    "inventory_work": 0,
+    "seeds": 1,
+    "variant_tasks": 1
+  }
+}

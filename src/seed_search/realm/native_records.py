@@ -11,7 +11,7 @@ import time
 from ..backend import biome_catalog, biome_name
 from .biomes import canonical
 from .blueprint import smart_score, score_uncertainty
-from .config import BLUEPRINT_CONTRACT, locked_policy, origin_policy, two_group_policy
+from .config import BLUEPRINT_CONTRACT, stronghold_after, locked_policy, origin_policy, two_group_policy
 
 NAMES = ('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
          'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -136,7 +136,7 @@ def build_record(native,index,seed,cfg):
         if origin and native.discovery.n==0:pending.append('count_stronghold')
         if locked:
             order=['fortress','bastion',*cfg['search']['structure_order']]
-            if origin:order.insert(4,'stronghold')
+            if origin:order.insert(2+stronghold_after(cfg),'stronghold')
             pending=[p for name in order for p in pending if p=='count_'+name]
         if ((not c.fatal_missing and int(c.count_missing).bit_count()<=cfg['search']['max_misses']) if two_group_policy(cfg) else not pending):
             increment('structure_stage_passed')
@@ -151,7 +151,7 @@ def build_record(native,index,seed,cfg):
         fatal_reasons=(['floor_'+NAMES[k] for k in range(13) if c.fatal_missing&(1<<k)]+
                        (['floor_stronghold'] if c.fatal_missing&(1<<13) else [])) if two_group else []
         biome_failures=['biome_'+f for f in biomes['missing_families']] if biomes else []
-        complete=(not fatal_reasons and len(deficit_categories)<=cfg['search']['max_misses'] and not biome_failures and c.biome_evaluated) if two_group else not pending
+        complete=bool(not fatal_reasons and len(deficit_categories)<=cfg['search']['max_misses'] and not biome_failures and c.biome_evaluated) if two_group else not pending
         if complete and not locked:optional['outpost']=observation(c.observations[12],'outpost',bounds)
         from .config import river_policy
         ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,two_group=two_group,

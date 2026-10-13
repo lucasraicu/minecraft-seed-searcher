@@ -1,0 +1,25 @@
+{
+  "control": {
+    "checkpointed_input_rate": 45356.13361325529,
+    "extension_sha256": "794b62a893f5fef7e9859bac8175354a9a452ed1a34e280a89e36e2dd677492f",
+    "external_cli_rate": 27941.91526213707,
+    "wall_seconds": 1.7894263700582087
+  },
+  "count": 50000,
+  "label": "stack-anchor",
+  "mode": "tuning",
+  "order": [
+    "control",
+    "selected"
+  ],
+  "pair_index": 0,
+  "schema": "pre-sweep-v2-paired-trial-v1",
+  "selected": {
+    "checkpointed_input_rate": 45398.99322637424,
+    "extension_sha256": "c5137067f3584ad1ed82b93bed02d5db2eb3e7ea7811315544e976d2eecf0208",
+    "external_cli_rate": 28015.210404676123,
+    "wall_seconds": 1.7847447610693052
+  },
+  "speedup_control_over_selected": 1.0026231252171312,
+  "start_index": 3000000
+}

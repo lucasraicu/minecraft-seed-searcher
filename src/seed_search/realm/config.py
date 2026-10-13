@@ -200,6 +200,14 @@ ORIGIN_REVISION='origin-fixed-2048-v1'
 TWO_GROUP_REVISION='origin-fixed-2048-two-group-v2'
 ORIGIN_ORDER=['ruined_portal','trial_chamber','outpost','desert_pyramid','jungle_temple',
               'mansion','ancient_city','village','mineshaft']
+TWO_GROUP_ORDER=['outpost','desert_pyramid','jungle_temple','ruined_portal',
+                 'trial_chamber','mansion','ancient_city','village','mineshaft']
+TWO_GROUP_STRONGHOLD_AFTER=4
+
+
+def stronghold_after(cfg):
+    """Preserve replay ordering for v2 runs created before the new filter order."""
+    return cfg['search'].get('stronghold_after_structure_count',2) if two_group_policy(cfg) else 2
 OUTPOST_ORDER=['ruined_portal','outpost','desert_pyramid','jungle_temple','mansion',
                'ancient_city','village','trial_chamber','mineshaft']
 LOCKED_ORDER=['ruined_portal','trial_chamber','mansion','desert_pyramid',
@@ -279,6 +287,8 @@ def two_group_blueprint_config():
     """Versioned B=2 target categories; hard floors never consume the budget."""
     cfg=origin_blueprint_config()
     cfg['screening_revision']=TWO_GROUP_REVISION
+    cfg['search']['structure_order']=list(TWO_GROUP_ORDER)
+    cfg['search']['stronghold_after_structure_count']=TWO_GROUP_STRONGHOLD_AFTER
     cfg['search']['max_misses']=2
     cfg['structures']['minimum_counts'].update(
         trial_chamber=10,village=7,ruined_portal=7,mineshaft=20,outpost=1,shipwreck=3)
@@ -313,6 +323,9 @@ def validate_blueprint_config(cfg):
     validate_config(legacy)
     if two_group_policy(cfg):
         _integer(cfg['search'].get('max_misses'),0,8,'max_misses')
+        expected_after=TWO_GROUP_STRONGHOLD_AFTER if cfg['search']['structure_order']==TWO_GROUP_ORDER else 2
+        if stronghold_after(cfg)!=expected_after:
+            raise ValueError('Stronghold placement differs from the resolved filter order')
     if two_group_policy(cfg):
         actual=cfg['structures'];baseline=expected['structures']
         if set(actual)!=set(baseline) or any(actual[k]!=baseline[k] for k in baseline if k not in ('minimum_counts','nether_minimum_counts')):

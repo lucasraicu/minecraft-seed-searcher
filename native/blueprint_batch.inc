@@ -14,6 +14,18 @@
 #if NB_WORK_CHUNK != 16 && NB_WORK_CHUNK != 64 && NB_WORK_CHUNK != 128
 #error NB_WORK_CHUNK must be 16, 64 or 128
 #endif
+#ifndef NB_EXPERIMENT_ORDER
+#define NB_EXPERIMENT_ORDER 0
+#endif
+#ifndef NB_STRONGHOLD_AFTER
+#define NB_STRONGHOLD_AFTER 4
+#endif
+#if NB_EXPERIMENT_ORDER < 0 || NB_EXPERIMENT_ORDER > 2
+#error NB_EXPERIMENT_ORDER must be 0, 1 or 2
+#endif
+#if NB_STRONGHOLD_AFTER < 1 || NB_STRONGHOLD_AFTER > 5
+#error NB_STRONGHOLD_AFTER must be between 1 and 5
+#endif
 
 #ifndef NB_PROFILE_BIND
 #define NB_PROFILE_BIND(w,p,i) ((void)0)
@@ -344,8 +356,15 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
                 a->fatal_missing|=1u<<13;
         }
         const int locked_order[8]={7,6,0,2,1,4,5,9};
+        /* Experimental orders rearrange only identical supported predicates.
+         * Complete retained inventories are filled in the original slot map. */
+        const int order_first_strict[9]={12,2,1,7,6,0,4,5,9};
+        const int order_chamber_first[9]={6,12,2,1,7,0,4,5,9};
         for(int k=0;k<(w->p->outpost_goal?9:w->p->locked?8:10);k++) {
-            int slot=w->p->outpost_goal?w->p->structure_order[k]:w->p->locked?locked_order[k]:k;
+            int slot=w->p->outpost_goal?
+                (w->p->two_group&&w->p->retention&&NB_EXPERIMENT_ORDER==1?order_first_strict[k]:
+                 w->p->two_group&&w->p->retention&&NB_EXPERIMENT_ORDER==2?order_chamber_first[k]:w->p->structure_order[k]):
+                 w->p->locked?locked_order[k]:k;
             if(!w->p->complete && !nb_budget_ok(w,a))break;
             t=nb_time();code=nb_floor(w,slot,b,a->observations+slot);
             double elapsed=nb_time()-t;r->stage_seconds[slot==12?14:slot+1]+=elapsed;
@@ -353,7 +372,7 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
             int observed=nb_observed_count(w,a->observations+slot,slot);
             if(observed<(slot==12?w->p->outpost_goal:w->p->goals[slot]))a->count_missing|=1<<slot;
             if(w->p->two_group && observed<w->p->floors[slot])a->fatal_missing|=1u<<slot;
-            if(w->p->origin&&k==1&&!a->stronghold_evaluated) {
+            if(w->p->origin&&k==(w->p->two_group?NB_STRONGHOLD_AFTER-1:1)&&!a->stronghold_evaluated) {
                 /* Mandatory Stronghold is queried only after cheap floors. Its
                  * full supported inventory is retained for the second-start bonus. */
                 t=nb_time();code=nb_capacity(w,b);if(code)return code;
@@ -369,11 +388,12 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
                 NB_PROFILE_STAGE(w,0,stronghold_elapsed,a->x,a->z);
                 if(!a->stronghold_count&&!w->p->complete)break;
             }
-            if(w->p->origin&&k==1&&a->stronghold_evaluated&&!a->stronghold_count) {
+            if(w->p->origin&&k==(w->p->two_group?NB_STRONGHOLD_AFTER-1:1)&&a->stronghold_evaluated&&!a->stronghold_count) {
                 if(w->p->two_group)a->fatal_missing|=1u<<13;
                 if(!w->p->complete)break;
             }
         }
+        if(w->p->two_group&&a->stronghold_evaluated&&!a->stronghold_count)a->fatal_missing|=1u<<13;
         if(w->p->origin&&a->stronghold_evaluated&&!a->stronghold_count&&!w->p->complete){a->score=nb_score(w,a);continue;}
         if(!w->p->locked && (w->p->complete||nb_budget_ok(w,a))) {
             int x=-floordiv(-a->x,8),z=-floordiv(-a->z,8),nb[4]={x-nh,z-nh,x+nh-1,z+nh-1};

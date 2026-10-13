@@ -7,7 +7,7 @@ import yaml
 
 from seed_search.realm.config import (
     ORIGIN_REVISION, TWO_GROUP_REVISION, origin_blueprint_config,
-    two_group_blueprint_config, origin_policy, validate_config,
+    two_group_blueprint_config, origin_policy, stronghold_after, validate_config,
 )
 
 
@@ -26,6 +26,46 @@ def test_historical_origin_identity_and_counts_are_preserved():
     assert cfg['screening_revision']==ORIGIN_REVISION
     assert cfg['structures']['minimum_counts']['trial_chamber']==5
     assert 'hard_floors' not in cfg['structures']
+
+
+def test_stronghold_placement_is_persisted_and_old_v2_runs_replay():
+    current=two_group_blueprint_config()
+    assert stronghold_after(current)==4
+    old=copy.deepcopy(current)
+    old['search']['structure_order']=['ruined_portal','trial_chamber','outpost',
+                                     'desert_pyramid','jungle_temple','mansion',
+                                     'ancient_city','village','mineshaft']
+    old['search'].pop('stronghold_after_structure_count')
+    validate_config(old)
+    assert stronghold_after(old)==2
+    current['search']['stronghold_after_structure_count']=2
+    with pytest.raises(ValueError,match='Stronghold placement'):
+        validate_config(current)
+
+
+def test_full_v2_direct_and_replay_keep_complete_evidence_with_late_stronghold(prototype):
+    from test_blueprint_batch_prototype import FixtureBackend, NAMES
+    from seed_search.realm.blueprint import evaluate_seed
+    cfg=prototype.cfg
+
+    class PolicyFixtureBackend(FixtureBackend):
+        def structure_pair(self,name,bounds):
+            if name=='stronghold':
+                return ([],[]) if self.missing==28 else ([(16,0),(32,0)],[(16,0),(32,0)])
+            slot=NAMES.index(name)
+            goal=(cfg['structures']['nether_minimum_counts'].get(name) or
+                  cfg['structures']['minimum_counts'].get(name,1))
+            n=goal-1 if self.missing==slot else goal+2
+            points=[(bounds[0]+800+i*16,bounds[1]+800) for i in range(n)]
+            return points,points
+
+    for missing in (-1,28):
+        with prototype.sweep([1],fixtures=[(0,0,missing)],complete=True) as batch:
+            direct=batch.records()[0]['anchors'][0]
+        replay=evaluate_seed(0,1,cfg,backend_factory=lambda _,m=missing:PolicyFixtureBackend((0,0,m)),short_circuit=False)['anchors'][0]
+        for field in ('qualification','fatal_reasons','deficit_categories','pending_reasons',
+                      'required_structures','required_nether_structures','ranking','baseline_score_complete'):
+            assert direct[field]==replay[field]
 
 
 @pytest.mark.parametrize('budget',[True,-1,9,2.5,None])

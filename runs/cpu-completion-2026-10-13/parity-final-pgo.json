@@ -1,0 +1,52 @@
+{
+  "arms": {
+    "final-pgo-use": {
+      "build_identity_sha256": "21c96f9ce0f860a8a1e4f13891931aa46d69e0f0604941895215ec14345bbc54",
+      "builder_script_sha256": "7a3fc1ebe85333d3cf9349a67d6d18adcc44c9024d5f1b6ed4940e8579bd838e",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "ca64b57dc969f02346a4cc2e4976b4fb3244c35705303ced390c0b2a1c0a72d8",
+      "config_sha256": "967b938afc897b6e32a15d6dba27660ae76457bf18735c4ff2d3a5d3f438932a",
+      "extension_sha256": "6538b589112c33702ea17f8207345538f40c641478cb526f4afa0ff20e8a9731",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_decisions_equal": true,
+      "natural_native_replay_exact": true,
+      "natural_record_sha256": "15c47725ab7e160a80e8dacd7440f026eeb6612dda41d5ade3c927bd99297205",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "dac8b08da484a206905ee24cc66603e5c2c8f8f544acc74367c707be2a5f3026",
+      "status": "PASS"
+    }
+  },
+  "expected_fixture_qualification": [
+    "PREDICTED",
+    "PREDICTED",
+    "PREDICTED",
+    "PENDING"
+  ],
+  "fixture_missing_values": [
+    -1,
+    0,
+    6,
+    28
+  ],
+  "natural_seeds": [
+    "0",
+    "-1",
+    "-9223372036854775808",
+    "9223372036854775807",
+    "12345",
+    "4294979641"
+  ],
+  "policy_revision": "origin-fixed-2048-two-group-v2",
+  "status": "PASS"
+}

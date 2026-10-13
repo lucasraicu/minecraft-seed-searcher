@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "batch": 0,
+      "variant": "list",
+      "inputs": 16384,
+      "seconds": 0.0020774919539690018,
+      "uint64_bytes_sha256": "74b63c17fafd1e7c766bd7eed1e42b197904fdb6625336b581548b3f03f4b973"
+    },
+    {
+      "batch": 0,
+      "variant": "array",
+      "inputs": 16384,
+      "seconds": 0.0025823699543252587,
+      "uint64_bytes_sha256": "74b63c17fafd1e7c766bd7eed1e42b197904fdb6625336b581548b3f03f4b973"
+    },
+    {
+      "batch": 1,
+      "variant": "array",
+      "inputs": 16384,
+      "seconds": 0.001886804006062448,
+      "uint64_bytes_sha256": "54abe82094605edd84d56245e2a2ff936d9fa37b17d8a2c812ea928b6d3c5db0"
+    },
+    {
+      "batch": 1,
+      "variant": "list",
+      "inputs": 16384,
+      "seconds": 0.0016007790109142661,
+      "uint64_bytes_sha256": "54abe82094605edd84d56245e2a2ff936d9fa37b17d8a2c812ea928b6d3c5db0"
+    },
+    {
+      "batch": 2,
+      "variant": "list",
+      "inputs": 16384,
+      "seconds": 0.0016087429830804467,
+      "uint64_bytes_sha256": "bcafe6dcb28cd44425cd89851b8f4172cc049c59debe36bb86028a979a3b2882"
+    },
+    {
+      "batch": 2,
+      "variant": "array",
+      "inputs": 16384,
+      "seconds": 0.0018927580676972866,
+      "uint64_bytes_sha256": "bcafe6dcb28cd44425cd89851b8f4172cc049c59debe36bb86028a979a3b2882"
+    }
+  ],
+  "wall_seconds": 0.040868801064789295,
+  "medians": {
+    "list": 0.0016087429830804467,
+    "array": 0.0018927580676972866
+  },
+  "all_uint64_bytes_equal": true
+}

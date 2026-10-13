@@ -32,7 +32,7 @@ from seed_search.realm.runner import process_tree_resources
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
-DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'pre-sweep-v2-2026-10-13' / 'control-native')))
+DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'cpu-completion-2026-10-13' / 'final-portable')))
 
 
 class SweepManager:

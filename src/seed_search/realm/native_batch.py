@@ -18,7 +18,7 @@ from seed_search.backend import biome_catalog, structure_type
 from seed_search.realm.blueprint import PALETTE, evaluate_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, stronghold_after, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -61,6 +61,8 @@ class Prototype:
                 raise ValueError('Native OpenMP runtime identity mismatch')
             spec=importlib.util.spec_from_file_location('_blueprint_batch',path)
             self.module=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.module)
+        if two_group_policy(cfg) and self.identity.get('stronghold_after',2)!=stronghold_after(cfg):
+            raise ValueError('Native Stronghold placement differs from the resolved policy')
         self.ffi,self.lib=self.module.ffi,self.module.lib;self.cfg=json.loads(json.dumps(cfg))
         self.policy=self.ffi.new('NBPolicy *')
         self.policy.max_buffer_bytes=256<<20
@@ -199,7 +201,7 @@ class Batch:
                 order=[10,11,*[NAMES.index(n) for n in cfg['search']['structure_order']]] if locked_policy(cfg) else range(12)
                 pending=['count_'+NAMES[k] for k in order if c.count_missing&(1<<k)]
                 if origin_policy(cfg) and c.stronghold_evaluated and c.stronghold_count<1:
-                    pending.insert(sum(bool(c.count_missing&(1<<k)) for k in order[:4]),'count_stronghold')
+                    pending.insert(sum(bool(c.count_missing&(1<<k)) for k in order[:2+stronghold_after(cfg)]),'count_stronghold')
                 if c.biome_evaluated:pending+=['biome_'+f for k,f in enumerate(self.prototype.families) if not c.biome_mask&(1<<k)]
                 if (a['qualification']=='PREDICTED')!=expected or a['pending_reasons']!=pending or a['baseline_score_observed']!=c.score:
                     raise RuntimeError('Native decision/count/biome/ranking parity failure')

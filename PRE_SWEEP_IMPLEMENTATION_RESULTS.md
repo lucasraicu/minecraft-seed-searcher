@@ -1,4 +1,6 @@
-# Bounded v2 pre-sweep implementation results
+# Bounded v2 pre-sweep implementation results (historical Phase 2)
+
+**Superseded CPU selection:** the subsequent [CPU completion report](CPU_OPTIMIZATION_COMPLETION_RESULTS.md) records the current build, processing order, held-out results and launch command. The measurements and command below describe the earlier frozen Phase 2 artifact; use the completion report with current config.
 
 The repository is ready for a **finite predictor sweep** under `origin-fixed-2048-two-group-v2`. Native, Python and replay decisions agree on natural and synthetic cases; a valid Stage 1/2 survivor persists even with two permitted flexible deficit categories. This does **not** certify an actual Bedrock world, initial-player spawn, terrain geometry, monument footprint or safe route. Those claims need separate generated-world evidence. The large production sweep was not started.
 

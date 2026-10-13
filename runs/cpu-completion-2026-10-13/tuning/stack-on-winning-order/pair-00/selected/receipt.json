@@ -1,0 +1,189 @@
+{
+  "batch_latencies_seconds": null,
+  "build_identity_sha256": "320adb727911c8d7b3a1c7574e32b1aa637e1337f391f1abbf035aea7a189eaa",
+  "builder_script_sha256": "74e8971f574ad01f9a47e9667ce879597d41278f58a2d20071a56804d3c2c56b",
+  "checkpointed_completed_inputs": 50000,
+  "checkpointed_input_rate": 70940.50129165748,
+  "command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-m",
+    "seed_search",
+    "--config",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/config/realm.yaml",
+    "scan",
+    "--count",
+    "50000",
+    "--start-index",
+    "3000000",
+    "--output",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/cpu-completion-2026-10-13/tuning/stack-on-winning-order/pair-00/selected/run",
+    "--executor",
+    "native",
+    "--native-build",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/pre-sweep-v2-2026-10-13/cpu-cont-strict-sh4-v3",
+    "--native-threads",
+    "34",
+    "--native-batch-size",
+    "16384",
+    "--retention",
+    "survivors",
+    "--max-misses",
+    "2",
+    "--prediction-scale"
+  ],
+  "event": {
+    "arm": "selected",
+    "batch_size": 16384,
+    "count": 50000,
+    "exit_code": 0,
+    "extension_sha256": "b84da5949f56ecd5db2696d220f92a3290b6a1f331a50fc666e76c17e285c8aa",
+    "kind": "cli_trial",
+    "mode": "tuning",
+    "native_build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/pre-sweep-v2-2026-10-13/cpu-cont-strict-sh4-v3",
+    "pair": 0,
+    "start_index": 3000000,
+    "threads": 34,
+    "wall_seconds": 1.3870141990482807
+  },
+  "external_cli_rate": 36048.657637613374,
+  "input_decisions_receipt_sha256": "de77e91ef0ad3e71876a241f5784f4e29532395bba013d26ffc91b62975efbd7",
+  "internal_wall_seconds": 0.7048159949481487,
+  "peak_process_tree_rss_bytes": 86478848,
+  "peak_wal_bytes": 782832,
+  "policy_config_sha256": "e6f180bb9f69b42458a1c8e769523eb9b951f79cdfacf4b2755959592992fa44",
+  "predicted_anchors": 1,
+  "record_semantics_sha256": "b6bac7a448dc1d61bf38f902ee7af9943ce57a9f98aff8b63f220d6251d53a9e",
+  "resource_sample_count": 2,
+  "resource_samples": [
+    {
+      "cpu_percent": 83.9,
+      "pids": [
+        22043
+      ],
+      "rss_bytes": 53116928,
+      "wal_bytes": 0
+    },
+    {
+      "cpu_percent": 2397.0,
+      "pids": [
+        22043
+      ],
+      "rss_bytes": 86478848,
+      "wal_bytes": 782832
+    }
+  ],
+  "retained_anchors": 1,
+  "retained_inputs": 1,
+  "retention_receipt_inputs": 50000,
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "schema": "pre-sweep-v2-cli-trial-v1",
+  "service_seconds": {
+    "commit_seconds": 0.003828048938885331,
+    "encoding_seconds": 0.011559742037206888,
+    "hash_seconds": 0.0018420378910377622,
+    "native_seconds": 0.5587364800740033,
+    "preparation_wall_seconds": 0.022675493033602834,
+    "prepare_seconds": 0.013514501159079373,
+    "queue_wait_seconds": 0.5284377880161628,
+    "record_seconds": 0.05314161686692387,
+    "seed_preparation_seconds": 0.07743260310962796,
+    "shutdown_seconds": 0.0005566569743677974,
+    "sql_seconds": 0.005254885065369308,
+    "task_preparation_seconds": 2.0815175957977772e-05,
+    "validation_row_seconds": 9.190605487674475e-05,
+    "writer_wall_seconds": 0.01639968086965382
+  },
+  "source_digest": "1e86d7233286af5dd2327f146f14b445c0b50201f4af98e2635b279a485a68a9",
+  "sqlite_bytes": 454656,
+  "sqlite_bytes_per_input": 9.09312,
+  "sqlite_integrity": "ok",
+  "status": {
+    "active_variants": [
+      "v1"
+    ],
+    "candidate_counts": {
+      "PREDICTED": 1
+    },
+    "completed_seeds": 50000,
+    "counts": {
+      "baseline_pending": 0,
+      "baseline_predicted": 1,
+      "biome_samples": 4096,
+      "biome_stage_entered": 1,
+      "biome_stage_passed": 1,
+      "checked_ancient_city": 1,
+      "checked_desert_pyramid": 1,
+      "checked_jungle_temple": 1,
+      "checked_mansion": 1,
+      "checked_mineshaft": 1,
+      "checked_outpost": 1,
+      "checked_ruined_portal": 1,
+      "checked_trial_chamber": 1,
+      "checked_village": 1,
+      "confirmed_rejections": 0,
+      "discarded_inputs": 49999,
+      "discovered_anchors": 653,
+      "evaluation_centers": 1,
+      "nether_stage_entered": 1,
+      "pending_mansion": 1,
+      "retained_anchors": 1,
+      "retained_inputs": 1,
+      "scanned_inputs": 50000,
+      "stronghold_anchors": 1,
+      "structure_stage_entered": 1,
+      "structure_stage_passed": 1,
+      "unresolved_discovery": 0,
+      "unresolved_stronghold_coverage": 1
+    },
+    "coverage_scope": "predictor-processing range checkpoints; discarded inputs/anchors have no individual evidence",
+    "discovery_coverage": "Unresolved tasks retain unvalidated recall; completed seeds count predictor processing, not authoritative discovery coverage",
+    "discovery_tasks": {
+      "pending": 2
+    },
+    "execution": {
+      "batch_latency_p50_seconds": 0.39733232796425,
+      "batch_latency_p95_seconds": 0.6537213929696009,
+      "batch_size": 16384,
+      "checkpointed_scanned_inputs_per_second": 70940.50129165748,
+      "kind": "native",
+      "max_misses": 2,
+      "newly_committed": 50000,
+      "retention": "survivors",
+      "threads": 34,
+      "wall_seconds": 0.7048159949481487
+    },
+    "inactive_variant_tasks": {},
+    "interrupted": false,
+    "inventory_work": {},
+    "memory": null,
+    "range": [
+      3000000,
+      3050000
+    ],
+    "ranges": {
+      "complete": 4
+    },
+    "remaining_seeds": 0,
+    "retention": {
+      "max_misses": 2,
+      "mode": "survivors"
+    },
+    "saved_seed_rows": 1,
+    "schema": 1,
+    "score_revision": null,
+    "total_seeds": 50000,
+    "variant_tasks": {
+      "v1:pending": 1
+    },
+    "worker_statistics": null,
+    "workspace_disk": null,
+    "workspace_disk_failure": null
+  },
+  "table_rows": {
+    "candidates": 1,
+    "discovery_tasks": 2,
+    "inventory_work": 0,
+    "seeds": 1,
+    "variant_tasks": 1
+  }
+}
