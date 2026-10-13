@@ -112,9 +112,35 @@ def count_observation(backend,name,bounds,minimum,*,capped=True,combined=True):
     return observation
 
 
-def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,locked=False,river=False,metrics=None,origin=False,biome_names=()):
+def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,locked=False,river=False,metrics=None,origin=False,biome_names=(),two_group=False):
     """Blueprint bonuses from predictor counts; footprint bonus needs actual bounds."""
     counts={k:len(v.get('predicted_viable',[])) for k,v in {**structures,**nether,**optional}.items()}
+    if two_group:
+        names=set(biome_names)
+        bonuses={
+            'mansion':50*min(counts.get('mansion',0),2),
+            'stronghold':50*int(counts.get('stronghold',0)>=2),
+            'mega_ravine_hub':35*int((metrics or {}).get('mega_ravine_hub') is True),
+            'river_highway':35*int((metrics or {}).get('river_highway_connected') is True),
+            'ancient_city':25*max(0,min(counts.get('ancient_city',0),4)-2),
+            'fortress':20*max(0,min(counts.get('fortress',0),4)-2),
+            'bastion':20*max(0,counts.get('bastion',0)-3),
+            'monument':25*int(coastal_footprint_verified and counts.get('monument',0)>=2),
+            'trial_chamber':10*max(0,counts.get('trial_chamber',0)-10),
+            'village':5*max(0,counts.get('village',0)-7),
+            'ruined_portal':5*max(0,counts.get('ruined_portal',0)-7),
+            'mineshaft':max(0,counts.get('mineshaft',0)-20),
+            'outpost':10*max(0,counts.get('outpost',0)-1),
+            'desert_pyramid':10*int(counts.get('desert_pyramid',0)>=2),
+            'jungle_temple':10*int(counts.get('jungle_temple',0)>=2),
+            'shipwreck':5*max(0,counts.get('shipwreck',0)-5),
+            'cherry_grove':15*int('cherry_grove' in names),
+            'badlands':15*int(bool(names & {'badlands','wooded_badlands','eroded_badlands'})),
+            'mushroom_fields':15*int('mushroom_fields' in names),
+        }
+        return {'score':sum(bonuses.values()),'bonuses':bonuses,'counts':counts,
+                'source':'v2 predictor starts and supported deferred feature evidence; actual generation unverified',
+                'coastal_footprint_bonus_status':'VERIFIED' if coastal_footprint_verified else 'PENDING actual footprint containment'}
     bonuses={}
     for name,floor,points in (('village',6 if locked else 5,5),('ruined_portal',6 if locked else 3,5),('shipwreck',5 if river else 4 if locked else 2,5),('mineshaft',15 if locked else 5,1)):
         bonuses[name]=max(0,counts.get(name,0)-floor)*points
@@ -254,8 +280,9 @@ def evaluate_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_c
 
 def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_circuit=True):
     from .config import river_policy, origin_policy, two_group_policy
-    if two_group_policy(cfg):
-        raise ValueError("Two-group screening requires Phase 2 Python hard-floor enforcement")
+    two_group=two_group_policy(cfg)
+    floors=cfg['structures'].get('hard_floors',{}) if two_group else {}
+    budget=cfg['search'].get('max_misses',0) if two_group else 0
     from .baseline import structure_observation
     seed=parse_seed(seed);start=time.perf_counter();cpu=time.process_time();times={};counts={};anchors=[]
     def timed(name,fn):
@@ -284,7 +311,7 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                 'predicted_viable':actual,'minimum_count':1,'predicted_count':len(actual),
                 **({'count_is_complete':True} if origin else {}),
                 'floor_status':'PREDICTED' if actual else 'PENDING'}}
-            pending=[];nether={};optional={};biomes=None
+            pending=[];fatal=[];deficits=[];nether={};optional={};biomes=None
             if True:
                 counts['nether_stage_entered']=counts.get('nether_stage_entered',0)+1
                 pairs=timed('final_nether_pair',lambda:backend.nether_structure_pairs(native_bounds(nb))) if combined and hasattr(backend,'nether_structure_pairs') else None
@@ -293,11 +320,18 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                     minimum=cfg['structures']['nether_minimum_counts'][name]
                     observation.update(minimum_count=minimum,predicted_count=len(observation['predicted_viable']))
                     nether[name]=observation
-                    if len(observation['predicted_viable'])<minimum:pending.append('count_'+name)
+                    observed=len(observation['predicted_viable'])
+                    if observed<minimum:
+                        pending.append('count_'+name)
+                        if two_group: deficits.append(name)
+                    if two_group and observed<floors[name]:fatal.append('floor_'+name)
             counts['structure_stage_entered']=counts.get('structure_stage_entered',0)+1
             for position,name in enumerate(cfg['search']['structure_order']):
-                if origin and position==2 and not actual:pending.append('count_stronghold')
-                if pending and short_circuit:
+                if origin and position==2 and not actual:
+                    pending.append('count_stronghold')
+                    if two_group:fatal.append('floor_stronghold')
+                blocked=(fatal or len(deficits)>budget) if two_group else pending
+                if blocked and short_circuit:
                     required[name]={'type':name,'bounds':json_bounds(bounds),'raw':[],
                         'coordinates':[],'predicted_viable':[],'minimum_count':cfg['structures']['minimum_counts'][name],
                         'data_status':'PARTIAL','verification':'DEFERRED','confirmed_absent':False,
@@ -307,10 +341,14 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                 observation=timed('structure_'+name,lambda n=name,g=goal:count_observation(backend,n,bounds,g,capped=capped,combined=combined))
                 required[name]=observation
                 counts['checked_'+name]=counts.get('checked_'+name,0)+1
-                if observation['floor_status']!='PREDICTED':
+                observed=observation['predicted_count']
+                if observed<goal:
                     pending.append('count_'+name);counts['pending_'+name]=counts.get('pending_'+name,0)+1
-            if not pending:counts['structure_stage_passed']=counts.get('structure_stage_passed',0)+1
-            if not pending or not short_circuit:
+                    if two_group and name not in ('outpost','desert_pyramid','jungle_temple'):deficits.append(name)
+                if two_group and observed<floors[name]:fatal.append('floor_'+name)
+            structure_pass=(not fatal and len(deficits)<=budget) if two_group else not pending
+            if structure_pass:counts['structure_stage_passed']=counts.get('structure_stage_passed',0)+1
+            if structure_pass or not short_circuit:
                 counts['biome_stage_entered']=counts.get('biome_stage_entered',0)+1
                 before=sampler.queried
                 biomes=timed('biome_palette_4y',lambda:biome_palette(sampler,bounds,cfg['biomes'],complete=origin or not short_circuit))
@@ -319,15 +357,16 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                 else:counts['biome_stage_passed']=counts.get('biome_stage_passed',0)+1
             # All jackpot counts are inventoried only for full baseline survivors.
             # No legacy presence inventory can overwrite this count contract.
-            inventory_complete=not pending
+            biome_failures=['biome_'+f for f in biomes['missing_families']] if biomes else []
+            inventory_complete=structure_pass and not biome_failures if two_group else not pending
             if inventory_complete:
                 for name in cfg['search']['structure_order']:
                     if not required[name].get('count_is_complete',False):
                         required[name]=timed('ranking_inventory',lambda n=name:count_observation(backend,n,bounds,cfg['structures']['minimum_counts'][n],capped=False,combined=combined))
                 pass # Optional and marine inventories belong to Stage 3.
-            ranking=smart_score(required,nether,optional,locked=True,river=river_policy(cfg),origin=origin,
+            ranking=smart_score(required,nether,optional,locked=True,river=river_policy(cfg),origin=origin,two_group=two_group,
                                 biome_names=(s['biome'] for s in biomes['sampling']['samples'] if s['coordinate'][1]==63) if biomes else ())
-            score=ranking['score'];status='PENDING' if pending else 'PREDICTED'
+            score=ranking['score'];status='PREDICTED' if inventory_complete else 'PENDING'
             anchors.append({'id':f'{seed}:{anchor[0]}:{anchor[1]}','index':index,'seed':str(seed),'stronghold':anchor,
                 **({'evaluation_center':[0,0],'center_kind':'world_origin','predicted_strongholds':actual} if origin else {}),
                 'contract':BLUEPRINT_CONTRACT,'screening_revision':cfg['screening_revision'],
@@ -343,12 +382,17 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
                 'final_nether_prediction':{'required':['fortress','bastion'],'status':'PREDICTED' if len(nether)==2 and all(len(v['predicted_viable'])>=cfg['structures']['nether_minimum_counts'][name] for name,v in nether.items()) else 'PENDING','bounds':json_bounds(nb),'actual_generation_verified':False},
                 'baseline_score':score if inventory_complete else None,'baseline_score_observed':score,
                 'baseline_score_complete':inventory_complete,'baseline_score_status':'PREDICTED count bonuses' if inventory_complete else 'PARTIAL; baseline unresolved',
-                'baseline_score_uncertainty':score_uncertainty(score,pending,inventory_complete),
+                'baseline_score_uncertainty':score_uncertainty(score,fatal+biome_failures if two_group else pending,inventory_complete),
                 'inventory':{'version':'blueprint-count-inventory-v1','status':'COMPLETE' if inventory_complete else 'UNRESOLVED',
                     'tasks':[],'completion_scope':'complete required predictor counts for survivors; actual generation unverified'},
                 'qualification':status,'data_status':'PREDICTED','pending_reasons':pending,
+                **({'deficit_categories':deficits,'fatal_reasons':fatal,'biome_failures':biome_failures,
+                    'deficit_budget':budget,'baseline_qualification':status} if two_group else {}),
                 'processing_status':'baseline_complete' if inventory_complete else 'baseline_pending',
                 'final_nether_status':'UNVERIFIED','terrain_status':{'v1':'not_evaluated'}})
+            if two_group:
+                from .spawn import classify_spawn
+                anchors[-1]['spawn_stage']=classify_spawn(anchors[-1],cfg)
         work=getattr(backend,'native_work',{})
     counts.update(baseline_predicted=sum(a['qualification']=='PREDICTED' for a in anchors),
                   baseline_pending=sum(a['qualification']=='PENDING' for a in anchors),confirmed_rejections=0,

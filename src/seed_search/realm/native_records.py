@@ -11,7 +11,7 @@ import time
 from ..backend import biome_catalog, biome_name
 from .biomes import canonical
 from .blueprint import smart_score, score_uncertainty
-from .config import BLUEPRINT_CONTRACT, locked_policy, origin_policy
+from .config import BLUEPRINT_CONTRACT, locked_policy, origin_policy, two_group_policy
 
 NAMES = ('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
          'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -138,17 +138,23 @@ def build_record(native,index,seed,cfg):
             order=['fortress','bastion',*cfg['search']['structure_order']]
             if origin:order.insert(4,'stronghold')
             pending=[p for name in order for p in pending if p=='count_'+name]
-        if not pending:increment('structure_stage_passed')
+        if ((not c.fatal_missing and int(c.count_missing).bit_count()<=cfg['search']['max_misses']) if two_group_policy(cfg) else not pending):
+            increment('structure_stage_passed')
         if c.biome_evaluated:
             increment('biome_stage_entered')
             biomes,queried,hits=palette(c,bounds,cfg['biomes'],cache)
             increment('biome_samples',queried);cache_hits+=hits
             if biomes['missing_families']:pending.extend('biome_'+f for f in biomes['missing_families'])
             else:increment('biome_stage_passed')
-        complete=not pending
+        two_group=two_group_policy(cfg)
+        deficit_categories=[NAMES[k] for k in (0,4,5,6,7,9,10,11) if c.count_missing&(1<<k)] if two_group else []
+        fatal_reasons=(['floor_'+NAMES[k] for k in range(13) if c.fatal_missing&(1<<k)]+
+                       (['floor_stronghold'] if c.fatal_missing&(1<<13) else [])) if two_group else []
+        biome_failures=['biome_'+f for f in biomes['missing_families']] if biomes else []
+        complete=(not fatal_reasons and len(deficit_categories)<=cfg['search']['max_misses'] and not biome_failures and c.biome_evaluated) if two_group else not pending
         if complete and not locked:optional['outpost']=observation(c.observations[12],'outpost',bounds)
         from .config import river_policy
-        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,
+        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,two_group=two_group,
                             biome_names=(s['biome'] for s in biomes['sampling']['samples'] if s['coordinate'][1]==63) if biomes else ());score=ranking['score']
         if score!=c.score:raise RuntimeError('Native/direct score parity failure')
         anchors.append({'id':f'{seed}:{x}:{z}','index':index,'seed':seed,'stronghold':anchor,
@@ -163,12 +169,17 @@ def build_record(native,index,seed,cfg):
             'final_nether_prediction':{'required':['fortress','bastion'],'status':'PREDICTED' if len(nether)==2 and all(len(v['predicted_viable'])>=cfg['structures']['nether_minimum_counts'][name] for name,v in nether.items()) else 'PENDING','bounds':nb,'actual_generation_verified':False},
             'baseline_score':score if complete else None,'baseline_score_observed':score,
             'baseline_score_complete':complete,'baseline_score_status':'PREDICTED count bonuses' if complete else 'PARTIAL; baseline unresolved',
-            'baseline_score_uncertainty':score_uncertainty(score,pending,complete),
+            'baseline_score_uncertainty':score_uncertainty(score,fatal_reasons+biome_failures if two_group else pending,complete),
             'inventory':{'version':'blueprint-count-inventory-v1','status':'COMPLETE' if complete else 'UNRESOLVED',
                 'tasks':[],'completion_scope':'complete required predictor counts for survivors; actual generation unverified'},
             'qualification':'PREDICTED' if complete else 'PENDING','data_status':'PREDICTED','pending_reasons':pending,
+            **({'deficit_categories':deficit_categories,'fatal_reasons':fatal_reasons,'biome_failures':biome_failures,
+                'deficit_budget':cfg['search']['max_misses'],'baseline_qualification':'PREDICTED' if complete else 'PENDING'} if two_group else {}),
             'processing_status':'baseline_complete' if complete else 'baseline_pending',
             'final_nether_status':'UNVERIFIED','terrain_status':{'v1':'not_evaluated'}})
+        if two_group:
+            from .spawn import classify_spawn
+            anchors[-1]['spawn_stage']=classify_spawn(anchors[-1],cfg)
     if locked:
         for a in anchors:
             a.update(screening_revision=cfg['screening_revision'],deferred_requirements=['count_monument','count_shipwreck']+([] if 'outpost' in cfg['structures']['minimum_counts'] else ['optional_outpost']),

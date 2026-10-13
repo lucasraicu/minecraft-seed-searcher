@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import type { SeedCandidate, TelemetryState, SearchConfig, Dimension } from './types';
 import { INITIAL_CONFIG, MOCK_CANDIDATES } from './mockData';
 import { MapCanvas } from './components/MapCanvas';
@@ -14,6 +14,7 @@ function App() {
   const [selectedCandidate, setSelectedCandidate] = useState<SeedCandidate | null>(MOCK_CANDIDATES[0]);
   const [inspectedCandidate, setInspectedCandidate] = useState<SeedCandidate | null>(null);
   const [isFunnelOpen, setIsFunnelOpen] = useState<boolean>(false);
+  const [dataMode, setDataMode] = useState<'demo' | 'live'>('demo');
 
   // Map display settings
   const [dimension, setDimension] = useState<Dimension>('overworld');
@@ -32,28 +33,25 @@ function App() {
     seedsPerSec: 0,
     totalScanned: 0,
     targetCount: INITIAL_CONFIG.sweepSeedCount,
-    candidatesFound: MOCK_CANDIDATES.length,
+    candidatesFound: 0,
     elapsedSeconds: 0,
-    currentStage: 'Stage 1: Origin-Fixed Structure RNG Screening',
-    memoryRssGib: 3.8,
-    activeThreads: 32,
+    currentStage: 'Waiting for a live sweep',
+    memoryRssGib: null,
+    activeThreads: null,
     sweepProgress: 0,
     history: [0, 0, 0, 0, 0, 0, 0, 0],
   });
 
   // Console Logs
   const [logs, setLogs] = useState<string[]>([
-    'Initialized C11 bridge kernel with OpenMP 32 threads on Intel Xeon W-2191B',
-    'Target policy: origin-fixed-2048-v1 (Overworld 2048x2048 / Nether 1024x1024)',
-    'Loaded 13 blueprint structure floors & 70–80% Coastal Continent terrain spec',
-    'Stage 3 downstream spawn symmetry gate active: spawn <= 100m from (0,0)',
-    'Ready. Click "Start Sweep" to execute real native seed search on your computer.',
+    'DEMO PREVIEW: sample records are illustrative and are not live scan results.',
+    'Live sweep evidence appears here after the backend accepts a run.',
   ]);
 
-  const showToast = (msg: string) => {
+  const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
-  };
+  }, []);
 
   // On mount, load any existing candidate database from backend
   useEffect(() => {
@@ -63,6 +61,7 @@ function App() {
         if (data && data.candidates && data.candidates.length > 0) {
           setCandidates(data.candidates);
           setSelectedCandidate(data.candidates[0]);
+          setDataMode('live');
         }
       })
       .catch(() => {});
@@ -72,11 +71,14 @@ function App() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === 'running') {
+          setDataMode('live');
+          setCandidates((current) => current.filter((candidate) => candidate.provenance === 'live'));
+          setSelectedCandidate((current) => current?.provenance === 'live' ? current : null);
           setTelemetry((prev) => ({
             ...prev,
             status: 'running',
             totalScanned: data.totalScanned || 0,
-            targetCount: data.targetCount || config.sweepSeedCount,
+            targetCount: data.targetCount ?? INITIAL_CONFIG.sweepSeedCount,
             seedsPerSec: data.seedsPerSec || 0,
             elapsedSeconds: data.elapsedSeconds || 0,
             sweepProgress: data.sweepProgress || 0,
@@ -112,21 +114,24 @@ function App() {
             status: data.status === 'running' ? 'running' : 'idle',
             seedsPerSec: data.seedsPerSec || 0,
             totalScanned: data.totalScanned || 0,
-            targetCount: data.targetCount || config.sweepSeedCount,
-            candidatesFound: data.candidatesFound || prev.candidatesFound,
+            targetCount: data.targetCount ?? config.sweepSeedCount,
+            candidatesFound: data.candidatesFound ?? 0,
             elapsedSeconds: data.elapsedSeconds || 0,
             sweepProgress: data.sweepProgress || 0,
-            memoryRssGib: data.memoryRssGib || prev.memoryRssGib,
-            activeThreads: data.activeThreads || (data.status === 'running' ? config.openmpThreads : 0),
+            memoryRssGib: data.memoryRssGib ?? null,
+            activeThreads: data.activeThreads ?? null,
             history: data.history && data.history.length > 0 ? data.history : prev.history,
             runId: data.runId,
           }));
 
-          if (data.candidates && data.candidates.length > 0) {
+          if (Array.isArray(data.candidates)) {
             setCandidates(data.candidates);
-            if (!selectedCandidate) {
-              setSelectedCandidate(data.candidates[0]);
-            }
+            setDataMode('live');
+            setSelectedCandidate((current) =>
+              data.candidates.find((candidate: SeedCandidate) => candidate.id === current?.id) ??
+              data.candidates[0] ??
+              null
+            );
           }
 
           if (data.logs && data.logs.length > 0) {
@@ -140,12 +145,16 @@ function App() {
     }, pollInterval);
 
     return () => clearInterval(timer);
-  }, [telemetry.status, config.sweepSeedCount, config.openmpThreads, selectedCandidate]);
+  }, [telemetry.status, config.sweepSeedCount, config.openmpThreads, showToast]);
 
-  const handleToggleSweep = () => {
+  const handleToggleSweep = useCallback(() => {
     if (telemetry.status === 'running') {
       // Abort active sweep
-      fetch('/api/sweep/stop', { method: 'POST' })
+      fetch('/api/sweep/stop', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      })
         .then(() => {
           setTelemetry((prev) => ({ ...prev, status: 'idle', seedsPerSec: 0 }));
           setLogs((prev) => ['Sweep aborted by user via Web UI', ...prev]);
@@ -157,7 +166,7 @@ function App() {
     } else {
       // Start real sweep
       setLogs((prev) => [
-        `Spawning native C11 sweep on computer: ${config.sweepSeedCount.toLocaleString()} seeds across ${config.openmpThreads} OpenMP threads...`,
+        `Starting corrected v2 native sweep: ${config.sweepSeedCount.toLocaleString()} inputs, B=${config.maxMisses}, ${config.openmpThreads} threads...`,
         ...prev,
       ]);
       setTelemetry((prev) => ({
@@ -168,6 +177,9 @@ function App() {
         elapsedSeconds: 0,
         sweepProgress: 0,
       }));
+      setDataMode('live');
+      setCandidates([]);
+      setSelectedCandidate(null);
 
       fetch('/api/sweep/start', {
         method: 'POST',
@@ -177,8 +189,33 @@ function App() {
           threads: config.openmpThreads,
           batchSize: config.batchSize,
           maxMisses: config.maxMisses,
-          structureFloors: config.structureFloorCounts,
-          requiredStructures: config.requiredStructures,
+          counts: Object.fromEntries(
+            Object.entries({
+              mansion: 1,
+              trial_chamber: 10,
+              village: 7,
+              ruined_portal: 7,
+              mineshaft: 20,
+              ancient_city: 2,
+              fortress: 2,
+              bastion: 3,
+            })
+              .filter(([key, defaultIdeal]) => {
+                const ideal = config.structureFloorCounts[key];
+                const floors: Record<string, number> = {
+                  mansion: 0,
+                  trial_chamber: 8,
+                  village: 5,
+                  ruined_portal: 5,
+                  mineshaft: 17,
+                  ancient_city: 1,
+                  fortress: 1,
+                  bastion: 2,
+                };
+                return typeof ideal === 'number' && Number.isInteger(ideal) && ideal >= floors[key] && ideal !== defaultIdeal;
+              })
+              .map(([key]) => [key, config.structureFloorCounts[key]])
+          ),
         }),
       })
         .then((res) => res.json())
@@ -195,7 +232,7 @@ function App() {
           setTelemetry((prev) => ({ ...prev, status: 'idle' }));
         });
     }
-  };
+  }, [telemetry.status, config, showToast]);
 
   const handleExport = () => {
     const dataStr =
@@ -225,13 +262,14 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [telemetry.status, dimension, config]);
+  }, [handleToggleSweep, dimension, showToast]);
 
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-950 text-slate-100 font-sans overflow-hidden select-none">
       {/* Top Telemetry & Controls HUD */}
       <TelemetryBar
         telemetry={telemetry}
+        dataMode={dataMode}
         onToggleSweep={handleToggleSweep}
         onOpenFunnel={() => setIsFunnelOpen(true)}
         onExport={handleExport}

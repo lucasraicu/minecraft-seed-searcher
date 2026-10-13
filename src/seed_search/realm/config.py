@@ -313,7 +313,22 @@ def validate_blueprint_config(cfg):
     validate_config(legacy)
     if two_group_policy(cfg):
         _integer(cfg['search'].get('max_misses'),0,8,'max_misses')
-    if cfg['structures']!=expected['structures']:
+    if two_group_policy(cfg):
+        actual=cfg['structures'];baseline=expected['structures']
+        if set(actual)!=set(baseline) or any(actual[k]!=baseline[k] for k in baseline if k not in ('minimum_counts','nether_minimum_counts')):
+            raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')
+        if set(actual['minimum_counts'])!=set(baseline['minimum_counts']) or set(actual['nether_minimum_counts'])!=set(baseline['nether_minimum_counts']):
+            raise ValueError('Blueprint structure goal keys differ from the policy')
+        strict={'jungle_temple','desert_pyramid','outpost'}
+        for name,goal in actual['minimum_counts'].items():
+            _integer(goal,0,100,f'minimum_counts.{name}')
+            floor=baseline['hard_floors'].get(name,baseline['minimum_counts'][name])
+            if goal<floor or (name in strict and goal!=1):
+                raise ValueError(f'Blueprint goal below fixed floor or strict target: {name}')
+        for name,goal in actual['nether_minimum_counts'].items():
+            _integer(goal,0,100,f'nether_minimum_counts.{name}')
+            if goal<baseline['hard_floors'][name]:raise ValueError(f'Blueprint goal below fixed floor: {name}')
+    elif cfg['structures']!=expected['structures']:
         raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')
     order=cfg['search']['structure_order']
     if len(order)!=len(expected['search']['structure_order']) or set(order)!=set(expected['search']['structure_order']):

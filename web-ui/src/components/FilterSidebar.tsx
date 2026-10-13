@@ -3,6 +3,17 @@ import type { SearchConfig } from '../types';
 import { DEFAULT_STRUCTURE_FLOORS } from '../mockData';
 import { computeTotalFeasibility } from '../utils/probability';
 
+const V2_FLEXIBLE_FLOORS: Record<string, number> = {
+  mansion: 0,
+  trial_chamber: 8,
+  village: 5,
+  ruined_portal: 5,
+  mineshaft: 17,
+  ancient_city: 1,
+  fortress: 1,
+  bastion: 2,
+};
+
 interface FilterSidebarProps {
   config: SearchConfig;
   onChangeConfig: (newConfig: SearchConfig) => void;
@@ -21,9 +32,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
   const ALL_STRUCTURES = [
     { id: 'stronghold', name: 'Stronghold', icon: '🏰', min: 1, max: 3 },
-    { id: 'mansion', name: 'Woodland Mansion', icon: '🏛️', min: 1, max: 3 },
-    { id: 'village', name: 'Villages', icon: '🏡', min: 1, max: 15 },
-    { id: 'trial_chamber', name: 'Trial Chambers', icon: '⚔️', min: 1, max: 15 },
+    { id: 'mansion', name: 'Woodland Mansion', icon: '🏛️', min: 0, max: 3 },
+    { id: 'village', name: 'Villages', icon: '🏡', min: 5, max: 15 },
+    { id: 'trial_chamber', name: 'Trial Chambers', icon: '⚔️', min: 8, max: 15 },
     { id: 'ancient_city', name: 'Ancient Cities', icon: '🏙️', min: 1, max: 8 },
     { id: 'outpost', name: 'Pillager Outposts', icon: '🏹', min: 1, max: 8 },
     { id: 'fortress', name: 'Nether Fortresses', icon: '🏯', min: 1, max: 8 },
@@ -32,8 +43,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     { id: 'jungle_temple', name: 'Jungle Temples', icon: '🌿', min: 1, max: 6 },
     { id: 'monument', name: 'Ocean Monuments', icon: '🏛️', min: 1, max: 6 },
     { id: 'shipwreck', name: 'Shipwrecks', icon: '⛵', min: 1, max: 15 },
-    { id: 'ruined_portal', name: 'Ruined Portals', icon: '🚪', min: 1, max: 15 },
-    { id: 'mineshaft', name: 'Mineshafts', icon: '⛏️', min: 1, max: 40 },
+    { id: 'ruined_portal', name: 'Ruined Portals', icon: '🚪', min: 5, max: 15 },
+    { id: 'mineshaft', name: 'Mineshafts', icon: '⛏️', min: 17, max: 40 },
   ];
 
   const CAVE_CLUSTERS = [
@@ -67,9 +78,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
   const handleCountChange = (id: string, delta: number) => {
     if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) return;
-    const isCave = ['lush_caves', 'dripstone_caves', 'deep_dark'].includes(id);
-    const minVal = isCave ? 0 : 1;
-    const current = config.structureFloorCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? (isCave ? 0 : 1);
+    const minVal = V2_FLEXIBLE_FLOORS[id];
+    if (minVal === undefined) return;
+    const current = config.structureFloorCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? minVal;
     const nextVal = Math.max(minVal, current + delta);
     const nextFloorCounts = { ...config.structureFloorCounts, [id]: nextVal };
 
@@ -171,10 +182,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span className="text-xs font-bold text-white">Master Blueprint 1.21</span>
+              <span className="text-xs font-bold text-white">Corrected v2 Policy</span>
               </div>
               <p className="text-[10px] text-slate-400 mt-0.5">
-                11-Player Coastal Continent &amp; River Highway
+                Fixed structure floors and required biome families
               </p>
             </div>
             <button
@@ -186,13 +197,17 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
           </div>
 
+          <div className="p-2.5 rounded-lg border border-amber-500/30 bg-amber-950/20 text-[10px] leading-relaxed text-amber-100">
+            Live sweeps use the fixed v2 categories. Only the eight flexible structure count ideals, B, input count, threads, and batch size are sent. Category toggles, biome, terrain, spawn, and overlap controls below affect planning estimates only.
+          </div>
+
           {/* Box 4: Total Search Odds Hero Card (End-to-End Pipeline) */}
           <div className="p-3 bg-gradient-to-b from-slate-900 to-slate-950 border border-emerald-500/40 rounded-xl space-y-2.5 shadow-xl relative overflow-hidden">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="text-sm">🎯</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-white">
-                  Total Pipeline Odds
+                  Planning Model (Heuristic)
                 </span>
               </div>
               <span
@@ -213,8 +228,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {/* Main Joint Probability Banner */}
             <div className="bg-slate-950/90 rounded-lg p-2.5 border border-slate-800 shadow-inner">
               <div className="flex justify-between items-center text-[10px] text-slate-400 mb-0.5">
-                <span>Grand Joint Probability:</span>
-                <span className="font-mono text-emerald-400 font-bold">{feasibility.formattedTime} search</span>
+                <span>Uncalibrated model odds:</span>
+                <span className="font-mono text-emerald-400 font-bold">~{feasibility.expectedSeedsNeeded.toLocaleString()} inputs at 1/P</span>
               </div>
               <div className={`font-mono text-base font-extrabold ${feasibility.color} tracking-tight`}>
                 {feasibility.formattedOdds}
@@ -246,11 +261,11 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {/* 1-Click Sync Button */}
             <button
               onClick={() => {
-                const targetVol = Math.min(100000000, Math.max(1000, feasibility.expectedSeedsNeeded));
+                const targetVol = Math.min(100000, Math.max(1, feasibility.expectedSeedsNeeded));
                 onChangeConfig({ ...config, sweepSeedCount: targetVol });
               }}
               className="w-full py-1.5 px-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
-              title="Set Sweep Seed Volume in Engine tab to match expected 1/P"
+              title="Set the input volume near the heuristic 1/P scale (capped at 100,000)"
             >
               <span>⚡</span>
               <span>Sync Sweep Volume ({feasibility.expectedSeedsNeeded.toLocaleString()} seeds)</span>
@@ -263,7 +278,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <div className="flex items-center gap-1.5">
                 <span className="text-xs">🏰</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                  Stage 1: Structure Odds
+                  Modeled Structure Marginals
                 </span>
               </div>
               <span className="font-mono text-[10px] font-bold text-emerald-400">
@@ -357,7 +372,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                               ? 'text-amber-400 bg-amber-500/10 font-bold'
                               : 'text-slate-400'
                           }`}
-                          title={`Empirical pass rate: ${(indP * 100).toFixed(1)}%`}
+                          title={`Uncalibrated modeled marginal: ${(indP * 100).toFixed(1)}%`}
                         >
                           {(indP * 100).toFixed(0)}%
                         </span>
@@ -368,7 +383,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     <div className="flex items-center gap-1.5 ml-2">
                       <button
                         onClick={() => handleCountChange(s.id, -1)}
-                        disabled={count <= 1}
+                        disabled={!(s.id in V2_FLEXIBLE_FLOORS) || count <= s.min}
+                        title={s.id in V2_FLEXIBLE_FLOORS ? `Cannot go below v2 fatal floor ${s.min}` : 'This target is fixed by v2'}
                         className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         -
@@ -378,6 +394,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       </span>
                       <button
                         onClick={() => handleCountChange(s.id, 1)}
+                        disabled={!(s.id in V2_FLEXIBLE_FLOORS)}
+                        title={s.id in V2_FLEXIBLE_FLOORS ? 'Adjust live ideal count' : 'This target is fixed by v2'}
                         className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         +
@@ -473,7 +491,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                               ? 'text-amber-400 bg-amber-500/10 border border-amber-500/30'
                               : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30'
                           }`}
-                          title={`Empirical pass rate: ${(indP * 100).toFixed(1)}%`}
+                          title={`Uncalibrated modeled marginal: ${(indP * 100).toFixed(1)}%`}
                         >
                           {(indP * 100).toFixed(0)}%
                         </span>
@@ -521,7 +539,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <div className="flex items-center gap-1.5">
                 <span className="text-xs">🌿</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                  Stage 2: Biome Palette Odds
+                  Modeled Biome Marginals (not sent live)
                 </span>
               </div>
               <span className="font-mono text-[10px] font-bold text-cyan-400">
@@ -550,7 +568,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Required Biome Families ({ALL_BIOMES.length})
+                Biome Planning Toggles ({ALL_BIOMES.length})
               </label>
               <span className="text-[10px] text-emerald-400 font-mono">
                 {config.selectedBiomes.length} / {ALL_BIOMES.length}
@@ -588,7 +606,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="text-sm">🧭</span>
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Terrain Mode</span>
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Terrain Planning Mode</span>
               </div>
               <span
                 className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
@@ -650,7 +668,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <div className="flex items-center gap-1.5">
                 <span className="text-xs">🌊</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                  Stage 3: Terrain &amp; Spawn Odds
+                  Modeled Terrain / Spawn Estimates
                 </span>
               </div>
               <span className="font-mono text-[10px] font-bold text-blue-400">
@@ -753,7 +771,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   }
                   className="rounded accent-emerald-500"
                 />
-                <span>Stage 3 Spawn Symmetry Gate</span>
+                  <span>Spawn model toggle (planning only)</span>
               </label>
               <span className="text-[10px] font-mono text-emerald-400 font-bold">
                 ≤{config.maxSpawnDistance}m
@@ -775,7 +793,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               </div>
             )}
             <p className="text-[10px] text-slate-400 leading-tight">
-              68.3% pass rate. Naturally screens out ocean-centered spawns (which account for 76.3% of spawns &gt;100m) with zero Stage 1 compute cost.
+              Planning heuristic only. Spawn evidence is downstream and remains pending until the backend supplies it; this control is not part of the live v2 sweep request.
             </p>
           </div>
         </div>
@@ -793,8 +811,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <span className="text-[10px] font-mono text-slate-400">18C / 36T</span>
             </div>
             <p className="text-[10px] text-slate-400">
-              Skylake-X microarchitecture with AVX2, FMA, BMI2 native vectorization. Pinned kernel benchmarked at{' '}
-              <span className="text-emerald-400 font-bold font-mono">44,972 seeds/s</span>.
+              Run controls for the corrected v2 native policy. Throughput is reported only from live run telemetry.
             </p>
           </div>
 
@@ -812,12 +829,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="number"
                 min="1"
-                max="100000000"
+                max="100000"
                 step="5000"
                 value={config.sweepSeedCount || ''}
                 onChange={(e) => {
                   const val = parseInt(e.target.value, 10);
-                  onChangeConfig({ ...config, sweepSeedCount: isNaN(val) ? 0 : val });
+                  onChangeConfig({ ...config, sweepSeedCount: isNaN(val) ? 0 : Math.min(100000, Math.max(1, val)) });
                 }}
                 className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono font-bold text-emerald-400 outline-none focus:border-emerald-500 shadow-inner"
                 placeholder="Enter seed count, e.g. 100000"
@@ -827,7 +844,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
             {/* Quick 1-click convenience chips */}
             <div className="flex flex-wrap items-center gap-1 pt-1">
-              {[10000, 25000, 50000, 100000, 250000, 500000, 1000000].map((v) => (
+              {[10000, 25000, 50000, 100000].map((v) => (
                 <button
                   key={v}
                   onClick={() => onChangeConfig({ ...config, sweepSeedCount: v })}
@@ -844,33 +861,33 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 onClick={() =>
                   onChangeConfig({
                     ...config,
-                    sweepSeedCount: Math.min(100000000, Math.max(1000, feasibility.expectedSeedsNeeded)),
+                    sweepSeedCount: Math.min(100000, Math.max(1, feasibility.expectedSeedsNeeded)),
                   })
                 }
                 className="px-2 py-0.5 rounded text-[10px] font-mono transition-colors border bg-cyan-600/20 border-cyan-500/40 text-cyan-300 hover:bg-cyan-600/30"
-                title="Sync to mathematically expected seed volume"
+                title="Set the input volume near the uncalibrated heuristic 1/P scale"
               >
                 1/P ({feasibility.expectedSeedsNeeded >= 1000000 ? `${(feasibility.expectedSeedsNeeded / 1000000).toFixed(1)}M` : `${Math.round(feasibility.expectedSeedsNeeded / 1000)}k`})
               </button>
             </div>
             <p className="text-[10px] text-slate-400">
-              Based on current blueprint: expected <strong className="text-emerald-400">{feasibility.expectedSeedsNeeded.toLocaleString()} seeds</strong> ({feasibility.formattedTime} on Xeon).
+              Uncalibrated planning heuristic: about <strong className="text-emerald-400">{feasibility.expectedSeedsNeeded.toLocaleString()} inputs at 1/P</strong>. It assumes independent stages and is not a calibrated joint pass rate or ETA.
             </p>
           </div>
 
           {/* Near-Miss Retention Policy */}
           <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-300">Screening Tolerance</span>
+              <span className="text-xs font-bold text-slate-300">Deficit Budget B</span>
               <span className="text-[10px] font-mono text-cyan-400 font-bold">
-                Max Misses: {config.maxMisses}
+                B = {config.maxMisses}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-1">
               {[
-                { val: 0, label: 'Strict (0)', desc: 'All 13 floors' },
-                { val: 1, label: 'Standard (1)', desc: '1 miss allowed' },
-                { val: 2, label: 'Broad (2)', desc: '2 misses allowed' },
+                { val: 0, label: 'B = 0', desc: 'No deficit categories' },
+                { val: 1, label: 'B = 1', desc: 'One category below ideal' },
+                { val: 2, label: 'B = 2', desc: 'Two categories below ideal' },
               ].map((m) => (
                 <button
                   key={m.val}
@@ -903,7 +920,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 onChange={(e) => onChangeConfig({ ...config, openmpThreads: Number(e.target.value) })}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
               />
-              <span className="text-[10px] text-slate-500">Host has 36 logical threads; 32 is optimal.</span>
+              <span className="text-[10px] text-slate-500">Host limit: 36 logical threads. Compare settings with measured runs.</span>
             </div>
 
             <div>
@@ -914,13 +931,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="range"
                 min="4096"
-                max="32768"
+                max="16384"
                 step="4096"
                 value={config.batchSize}
                 onChange={(e) => onChangeConfig({ ...config, batchSize: Number(e.target.value) })}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
               />
-              <span className="text-[10px] text-slate-500">Chunk size for SIMD batches (16,384 recommended).</span>
+              <span className="text-[10px] text-slate-500">Native batch size sent to the live sweep API.</span>
             </div>
           </div>
 
@@ -933,19 +950,19 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </span>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>C11 OpenMP parallel batching (origin-fixed-2048-v1)</span>
+              <span>Native OpenMP sweep with corrected v2 policy identity</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>4×4 quart land reuse (92.5% reduction in columns)</span>
+              <span>Fixed fatal floors and two-group deficit classification</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>8-block Y-noise cell caching across 257 Y-levels</span>
+              <span>Biome families remain required by the v2 policy</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>Docker BDS 1.26.52.3 verification on finalists</span>
+              <span>Downstream evidence stays pending unless supplied by backend</span>
             </div>
           </div>
         </div>
@@ -957,7 +974,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <div className="space-y-1">
             {logs.map((log, index) => (
               <div key={index} className="leading-tight">
-                <span className="text-slate-500">[{new Date().toLocaleTimeString()}]</span>{' '}
+                <span className="text-slate-500">[LOG {logs.length - index}]</span>{' '}
                 <span
                   className={
                     log.includes('complete') || log.includes('Certified') || log.includes('passed')

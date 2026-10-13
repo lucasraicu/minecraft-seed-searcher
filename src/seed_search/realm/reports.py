@@ -1,6 +1,7 @@
 """Streaming full candidate exports and independently ranked variant views."""
 import csv
 import json
+import math
 import copy
 from contextlib import contextmanager
 import fcntl
@@ -52,7 +53,9 @@ def _export_files(store, root, output):
     for variant in ('baseline','v1','v2'):
         rows=store.iter_candidates(include_score=True) if variant=='baseline' else store.iter_variants(variant=variant)
         # JSONL preserves all nested evidence; CSV contains independently useful summaries.
-        fields=['candidate_id','seed','stronghold','evaluation_center','predicted_strongholds','variant','center','qualification','data_status',
+        fields=['candidate_id','seed','stronghold','evaluation_center','predicted_strongholds','screening_revision',
+                'deficit_categories','fatal_reasons','marine_status','spawn_status','actual_generation_status',
+                'variant','center','qualification','data_status',
                 'smart_score',
                 'retention_classification','unmet_requirements','pending_reasons','score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
                 'surface_wooded_requirement','surface_wooded_families','surface_bonus_interval','raw_record']
@@ -72,9 +75,15 @@ def _export_files(store, root, output):
                 js.write(encoded+'\n')
                 starts=candidate.get('predicted_strongholds')
                 writer.writerow({'candidate_id':cid,'seed':candidate['seed'],
-                                 'stronghold':json.dumps(starts[0] if starts else candidate['stronghold']),
+                                 'stronghold':json.dumps(starts[0] if starts else None if candidate.get('evaluation_center') is not None else candidate['stronghold']),
                                  'evaluation_center':json.dumps(candidate.get('evaluation_center')),
                                  'predicted_strongholds':json.dumps(starts),
+                                 'screening_revision':candidate.get('screening_revision'),
+                                 'deficit_categories':json.dumps(candidate.get('deficit_categories',[])),
+                                 'fatal_reasons':json.dumps(candidate.get('fatal_reasons',[])),
+                                 'marine_status':candidate.get('marine_stage',{}).get('status','DEFERRED'),
+                                 'spawn_status':candidate.get('spawn_stage',{}).get('status','PENDING'),
+                                 'actual_generation_status':candidate.get('actual_generation_verification',{}).get('status','PENDING'),
                                  'variant':variant,'center':json.dumps(record.get('center')),
                                  'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
                                  'smart_score':smart_score,
@@ -94,7 +103,34 @@ def _export_files(store, root, output):
                                  'raw_record':encoded})
                 n+=1
         counts[variant]=n
+    structure_rows=0
+    with (root/'structure_starts.csv').open('w',newline='') as handle:
+        fields=['candidate_id','seed','screening_revision','structure','dimension','x','y','z','predicted_viable',
+                'horizontal_distance_blocks','distance_frame','hub_x','hub_z','hub_kind',
+                'evidence_status','actual_generation_status']
+        writer=csv.DictWriter(handle,fieldnames=fields);writer.writeheader()
+        for candidate in store.iter_candidates():
+            center=candidate.get('evaluation_center',candidate['stronghold'])
+            for group,dimension in (('required_structures','overworld'),('required_nether_structures','nether'),('optional_structures','overworld')):
+                for name,observation in candidate.get(group,{}).items():
+                    hub=[center[0]/8,center[1]/8] if dimension=='nether' else center
+                    viable={tuple(point[:2]) for point in observation.get('predicted_viable',[]) if isinstance(point,(list,tuple)) and len(point)>=2}
+                    raw={tuple(point[:2]) for point in observation.get('raw',[]) if isinstance(point,(list,tuple)) and len(point)>=2}
+                    for point in sorted(raw|viable):
+                        if not isinstance(point,(list,tuple)) or len(point)<2:continue
+                        x,z=point[:2]
+                        writer.writerow({'candidate_id':candidate['id'],'seed':candidate['seed'],
+                            'screening_revision':candidate.get('screening_revision'),'structure':name,
+                            'dimension':dimension,'x':x,'y':'','z':z,'predicted_viable':point in viable,
+                            'horizontal_distance_blocks':round(math.hypot(x-hub[0],z-hub[1]),3),
+                            'distance_frame':'nether block coordinates' if dimension=='nether' else 'overworld block coordinates',
+                            'hub_x':hub[0],'hub_z':hub[1],
+                            'hub_kind':'fixed_world_origin' if candidate.get('evaluation_center')==[0,0] else 'candidate_center',
+                            'evidence_status':observation.get('data_status','PREDICTED'),
+                            'actual_generation_status':candidate.get('actual_generation_verification',{}).get('status','PENDING')})
+                        structure_rows+=1
     summary={'status':store.status(),'exported_records':counts,'output':str(output.resolve())}
+    summary['structure_start_rows']=structure_rows
     (root/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     lines=['Realm candidate results','',f"Distinct full64 inputs committed: {summary['status']['completed_seeds']}",
            'Predictions and unknown evidence remain separate from actual-generation verification.','']
@@ -189,7 +225,7 @@ def _publish_pointer(root,generation):
         temporary.unlink(missing_ok=True)
 
 
-EXPORT_FILES=('baseline.jsonl','baseline.csv','v1.jsonl','v1.csv','v2.jsonl','v2.csv','summary.json','SUMMARY.md','manifest.json')
+EXPORT_FILES=('baseline.jsonl','baseline.csv','v1.jsonl','v1.csv','v2.jsonl','v2.csv','structure_starts.csv','summary.json','SUMMARY.md','manifest.json')
 
 
 def _prepare_compatibility_paths(root):
@@ -280,13 +316,36 @@ def _export_generation(store,root):
 def _candidate_rescore(candidate,policy,revision_id):
     if candidate.get('contract')=='master_seed_blueprint_v1':
         from .blueprint import smart_score,score_uncertainty
-        from .config import river_policy,origin_policy
-        ranking=smart_score(candidate['required_structures'],candidate['required_nether_structures'],candidate['optional_structures'],locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),origin=origin_policy(candidate),
-                            biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),metrics=candidate.get('terrain_score_metrics'))
-        candidate.update(ranking=ranking,baseline_score_observed=ranking['score'],
+        from .config import river_policy,origin_policy,two_group_policy
+        v2=two_group_policy(candidate)
+        names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63)
+        required=candidate['required_structures']
+        optional=candidate['optional_structures']
+        # Stage 3 may have appended marine inventories. Re-score the durable
+        # Stage 1/2 baseline independently, then publish the combined score.
+        baseline_required={k:v for k,v in required.items() if k not in ('monument','shipwreck')} if v2 else required
+        baseline_optional={k:v for k,v in optional.items() if k not in ('monument','shipwreck')} if v2 else optional
+        ranking=smart_score(baseline_required,candidate['required_nether_structures'],baseline_optional,
+                            locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),
+                            origin=origin_policy(candidate),two_group=v2,biome_names=names,
+                            metrics=None if v2 else candidate.get('terrain_score_metrics'))
+        candidate.update(baseline_score_observed=ranking['score'],
                          baseline_score=ranking['score'] if candidate['baseline_score_complete'] else None,
-                         baseline_score_uncertainty=score_uncertainty(ranking['score'],candidate['pending_reasons'],candidate['baseline_score_complete']),
-                         score_revision=revision_id)
+                         baseline_score_uncertainty=score_uncertainty(ranking['score'],
+                             candidate.get('fatal_reasons',[])+candidate.get('biome_failures',[]) if v2 else candidate['pending_reasons'],
+                             candidate['baseline_score_complete']),score_revision=revision_id)
+        if v2 and candidate.get('marine_stage',{}).get('status') in ('PREDICTED','VERIFIED'):
+            source=(candidate.get('terrain_status') or {}).get('source')
+            actual=isinstance(source,dict) and source.get('kind')=='actual_generation'
+            prior_ranking=candidate.get('ranking') or {}
+            combined=smart_score(required,candidate['required_nether_structures'],optional,
+                                 locked=True,river=river_policy(candidate),origin=True,two_group=True,
+                                 biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),
+                                 metrics=candidate.get('terrain_score_metrics') if actual else None,
+                                 coastal_footprint_verified=actual and prior_ranking.get('coastal_footprint_bonus_status')=='VERIFIED')
+            candidate.update(ranking=combined,combined_score=combined['score'])
+        else:
+            candidate['ranking']=ranking
         return candidate
     from .biomes import classify
     from .baseline import baseline_score_uncertainty

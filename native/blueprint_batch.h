@@ -14,6 +14,7 @@ typedef struct NBAnchor {
     NBObservation observations[13];
     int *biome_xyz, *biome_ids;
     int first_witness[13];
+    unsigned int fatal_missing;
 } NBAnchor;
 typedef struct NBResult {
     uint64_t seed;
@@ -33,6 +34,8 @@ typedef struct NBPolicy {
     int outpost_goal, structure_order[9];
     int origin, bonus_biome_members[256];
     int fixture_surface[10], fixture_caves[3];
+    int two_group, floors[13];
+    unsigned int flexible_mask;
 } NBPolicy;
 /* Zero-initialized fixed-width decision receipts are hashed without building
  * per-input Python records. They are not persisted as individual rows. */
@@ -43,7 +46,7 @@ typedef struct NBBatch {
     NBVerdict *verdicts;
     uint64_t discovered_anchors, retained_anchors;
 } NBBatch;
-typedef struct NBFixture { int x, z, missing; uint32_t extra_mask; } NBFixture;
+typedef struct NBFixture { int x, z, missing; uint32_t extra_mask; int deficit_depth; } NBFixture;
 NBBatch *nb_sweep(const uint64_t *seeds, int count, const NBPolicy *policy, int threads);
 /* Explicit synthetic-provider entry point; never called by the normal sweep. */
 NBBatch *nb_fixture_sweep(const uint64_t *seeds, const NBFixture *fixtures,

@@ -1,0 +1,62 @@
+{
+  "builder_script_sha256": "67ca87a3e8e95f43515bb032004f7b6ec7f189abd9569d98d19f1ee6b41da8d3",
+  "c_wall_seconds": 0.24235002498608083,
+  "conclusion": "The measured residual is material enough that an allocation-only speedup cannot be inferred. Keep the current buffers; defer a zero-allocation reject-path patch as unmeasured, not exhausted.",
+  "distinct_tuning_inputs": 510,
+  "extension_sha256": "c30d1f36229ec21b3b058a219b789b3e72ba4d2106c6f489e63fc2bdd823102f",
+  "inputs": 512,
+  "mansion_cache": {
+    "hit_rate": 0.0,
+    "hits": 0,
+    "queries": 30
+  },
+  "non_overlapping_top_level_stage_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "non_overlapping_top_level_stage_seconds": 0.20953400153666735,
+  "positive_natural_inputs": 2,
+  "profile": "w2-profile-1t.json",
+  "profile_build_identity_sha256": "c9bdeb0d197ecf46ad6876b169813951b15ee939e5b0c9dfabe14eac5da1287a",
+  "residual_fraction_of_c_wall": 0.13540755133529794,
+  "residual_interpretation": "Upper bound on allocation plus seed setup, loop/bookkeeping, fine-grain profiler/clock overhead and other work outside measured top-level stages. It is not an allocation-only estimate.",
+  "residual_seconds": 0.03281602344941348,
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "schema": "pre-sweep-v2-w2-allocation-disposition-v1",
+  "static_allocation_audit": {
+    "allocations_before_later_rejection": "Compact native processing allocates discovery-copy storage and a per-seed NBAnchor output buffer before later structure screening can reject the seed; therefore reject paths are not allocation-free.",
+    "instrumentation": "No production native source was modified for allocation counting; exact nb_alloc calls per input remain unmeasured.",
+    "lazy_buffers": "Structure point copies, mansion ids, nether raw/viable buffers, palette/biome buffers and final anchor storage allocate when their stages need them.",
+    "nb_alloc_call_sites": 8,
+    "reused_per_worker": "scratch and flags buffers are retained and grown through nb_reserve; generator/context is reused per worker during a native call; mansion cache is reset per input."
+  },
+  "threads": 1,
+  "top_level_stage_seconds": {
+    "ancient_city_floor": 0.0018350000027567148,
+    "biome_palette": 0.05698999995365739,
+    "desert_pyramid_floor": 0.008335999213159084,
+    "full_inventory_overall": 0.01381899998523295,
+    "jungle_temple_floor": 0.0018360000103712082,
+    "mansion_floor": 0.005539000267162919,
+    "mineshaft_floor": 0.008794999914243817,
+    "monument_floor": 0.0,
+    "nether_fortress_bastion_screen": 0.00850100046955049,
+    "ruined_portal_floor": 0.002368998248130083,
+    "shipwreck_floor": 0.0,
+    "stronghold_discovery_and_delayed_query": 0.07334999949671328,
+    "trial_chamber_floor": 0.027544003911316395,
+    "village_floor": 0.0006200000643730164
+  }
+}

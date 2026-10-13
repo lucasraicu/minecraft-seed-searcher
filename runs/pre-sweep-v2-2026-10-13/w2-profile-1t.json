@@ -1,0 +1,548 @@
+{
+  "biome_families": {
+    "dark_forest": {
+      "calls": 29,
+      "total_seconds": 0.00022600009106099606
+    },
+    "deep_dark": {
+      "calls": 275,
+      "total_seconds": 0.002303000772371888
+    },
+    "desert": {
+      "calls": 496,
+      "total_seconds": 0.0034889979287981987
+    },
+    "dripstone_caves": {
+      "calls": 667,
+      "total_seconds": 0.0035459997598081827
+    },
+    "forest": {
+      "calls": 889,
+      "total_seconds": 0.006080004619434476
+    },
+    "jungle": {
+      "calls": 584,
+      "total_seconds": 0.0038789992686361074
+    },
+    "lush_caves": {
+      "calls": 232,
+      "total_seconds": 0.001409999094903469
+    },
+    "peaks": {
+      "calls": 19,
+      "total_seconds": 0.00018400093540549278
+    },
+    "plains": {
+      "calls": 475,
+      "total_seconds": 0.003215999575331807
+    },
+    "snowy_ice": {
+      "calls": 21,
+      "total_seconds": 0.00018000067211687565
+    },
+    "stony_shore": {
+      "calls": 35,
+      "total_seconds": 0.00022400007583200932
+    },
+    "swamp": {
+      "calls": 127,
+      "total_seconds": 0.0008939995896071196
+    },
+    "taiga": {
+      "calls": 44,
+      "total_seconds": 0.0003059995360672474
+    }
+  },
+  "biome_y": {
+    "-48": {
+      "calls": 2048,
+      "total_seconds": 0.014801994897425175
+    },
+    "0": {
+      "calls": 2048,
+      "total_seconds": 0.01405599806457758
+    },
+    "160": {
+      "calls": 2048,
+      "total_seconds": 0.010760995326563716
+    },
+    "63": {
+      "calls": 2048,
+      "total_seconds": 0.015997010748833418
+    }
+  },
+  "build_identity_sha256": "c9bdeb0d197ecf46ad6876b169813951b15ee939e5b0c9dfabe14eac5da1287a",
+  "builder_script_sha256": "67ca87a3e8e95f43515bb032004f7b6ec7f189abd9569d98d19f1ee6b41da8d3",
+  "config_sha256": "e6f180bb9f69b42458a1c8e769523eb9b951f79cdfacf4b2755959592992fa44",
+  "event": {
+    "count": 512,
+    "kind": "w2_native_profile",
+    "positive_natural_inputs": 2,
+    "sampled_distinct_inputs": 510,
+    "source_digest": "06ef9bd73fa26b0c33d3ed245f895447c8bb61412e937663e260159fc4d20016",
+    "threads": 1,
+    "wall_seconds": 0.24235002498608083
+  },
+  "extension_sha256": "c30d1f36229ec21b3b058a219b789b3e72ba4d2106c6f489e63fc2bdd823102f",
+  "mansion_cache": {
+    "hit_rate": 0.0,
+    "hits": 0,
+    "queries": 30
+  },
+  "non_additive_notes": {
+    "biome_histograms": "Family, Y-level and biome-ID totals overlap and are not mutually additive.",
+    "inventory_substages": "Stages 14\u201326 are nested inside full_inventory_overall (stage 13); do not sum them into stage total.",
+    "profile_overhead": "Fine-grain C timing is diagnostic and is not used for throughput claims.",
+    "stronghold": "The diagnostic reports early plus delayed Stronghold query time together; active retention-mode control flow delays it until two cheap structure slots pass."
+  },
+  "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+  "schema": "pre-sweep-v2-w2-profile-v1",
+  "stages": {
+    "0": {
+      "calls": 817,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0006790000479668379,
+      "mean_seconds": 8.977968114652789e-05,
+      "name": "stronghold_discovery_and_delayed_query",
+      "total_seconds": 0.07334999949671328
+    },
+    "1": {
+      "calls": 9,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0007340000011026859,
+      "mean_seconds": 0.0006154444741292133,
+      "name": "mansion_floor",
+      "total_seconds": 0.005539000267162919
+    },
+    "10": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.004509999882429838,
+      "mean_seconds": 0.004397499957121909,
+      "name": "mineshaft_floor",
+      "total_seconds": 0.008794999914243817
+    },
+    "11": {
+      "calls": 512,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 4.4999876990914345e-05,
+      "mean_seconds": 1.66035165420908e-05,
+      "name": "nether_fortress_bastion_screen",
+      "total_seconds": 0.00850100046955049
+    },
+    "12": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.028706999961286783,
+      "mean_seconds": 0.028494999976828694,
+      "name": "biome_palette",
+      "total_seconds": 0.05698999995365739
+    },
+    "13": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.007038000039756298,
+      "mean_seconds": 0.006909499992616475,
+      "name": "full_inventory_overall",
+      "total_seconds": 0.01381899998523295
+    },
+    "14": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "inventory_mansion",
+      "total_seconds": 0.0
+    },
+    "15": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0001300000585615635,
+      "mean_seconds": 0.00012600002810359,
+      "name": "inventory_jungle_temple",
+      "total_seconds": 0.00025200005620718
+    },
+    "16": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.00013399985618889332,
+      "mean_seconds": 0.00012499990407377481,
+      "name": "inventory_desert_pyramid",
+      "total_seconds": 0.00024999980814754963
+    },
+    "17": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "inventory_monument",
+      "total_seconds": 0.0
+    },
+    "18": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.00029300013557076454,
+      "mean_seconds": 0.0002880000974982977,
+      "name": "inventory_ancient_city",
+      "total_seconds": 0.0005760001949965954
+    },
+    "19": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.00038599991239607334,
+      "mean_seconds": 0.0003489998634904623,
+      "name": "inventory_village",
+      "total_seconds": 0.0006979997269809246
+    },
+    "2": {
+      "calls": 21,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0001279998105019331,
+      "mean_seconds": 8.742857192243849e-05,
+      "name": "jungle_temple_floor",
+      "total_seconds": 0.0018360000103712082
+    },
+    "20": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.00014500017277896404,
+      "mean_seconds": 0.0001395001308992505,
+      "name": "inventory_trial_chamber",
+      "total_seconds": 0.000279000261798501
+    },
+    "21": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 1.2999866157770157e-05,
+      "mean_seconds": 1.1999858543276787e-05,
+      "name": "inventory_ruined_portal",
+      "total_seconds": 2.3999717086553574e-05
+    },
+    "22": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "inventory_shipwreck",
+      "total_seconds": 0.0
+    },
+    "23": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.005929999984800816,
+      "mean_seconds": 0.005849000066518784,
+      "name": "inventory_mineshaft",
+      "total_seconds": 0.011698000133037567
+    },
+    "24": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "inventory_fortress",
+      "total_seconds": 0.0
+    },
+    "25": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "inventory_bastion",
+      "total_seconds": 0.0
+    },
+    "26": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 2.2999942302703857e-05,
+      "mean_seconds": 1.850002445280552e-05,
+      "name": "inventory_outpost",
+      "total_seconds": 3.700004890561104e-05
+    },
+    "27": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "forced_profile_fortress",
+      "total_seconds": 0.0
+    },
+    "28": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "forced_profile_bastion",
+      "total_seconds": 0.0
+    },
+    "29": {
+      "calls": 129,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 3.7999823689460754e-05,
+      "mean_seconds": 1.5914730742111688e-05,
+      "name": "outpost_floor",
+      "total_seconds": 0.0020530002657324076
+    },
+    "3": {
+      "calls": 89,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0001430001575499773,
+      "mean_seconds": 9.366291250740544e-05,
+      "name": "desert_pyramid_floor",
+      "total_seconds": 0.008335999213159084
+    },
+    "4": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "monument_floor",
+      "total_seconds": 0.0
+    },
+    "5": {
+      "calls": 7,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0002929999027401209,
+      "mean_seconds": 0.00026214285753667355,
+      "name": "ancient_city_floor",
+      "total_seconds": 0.0018350000027567148
+    },
+    "6": {
+      "calls": 2,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0003120000474154949,
+      "mean_seconds": 0.0003100000321865082,
+      "name": "village_floor",
+      "total_seconds": 0.0006200000643730164
+    },
+    "7": {
+      "calls": 305,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 0.0001629998441785574,
+      "mean_seconds": 9.030820954529965e-05,
+      "name": "trial_chamber_floor",
+      "total_seconds": 0.027544003911316395
+    },
+    "8": {
+      "calls": 305,
+      "max_coordinate": [
+        0,
+        0,
+        0
+      ],
+      "max_seconds": 2.500019036233425e-05,
+      "mean_seconds": 7.767207370918306e-06,
+      "name": "ruined_portal_floor",
+      "total_seconds": 0.002368998248130083
+    },
+    "9": {
+      "calls": 0,
+      "max_coordinate": null,
+      "max_seconds": 0.0,
+      "mean_seconds": null,
+      "name": "shipwreck_floor",
+      "total_seconds": 0.0
+    }
+  },
+  "top_biome_ids": [
+    {
+      "calls": 1340,
+      "id": 4,
+      "name": "forest",
+      "total_seconds": 0.00941500160843134
+    },
+    {
+      "calls": 778,
+      "id": 2,
+      "name": "desert",
+      "total_seconds": 0.005710995988920331
+    },
+    {
+      "calls": 775,
+      "id": 21,
+      "name": "jungle",
+      "total_seconds": 0.005438999738544226
+    },
+    {
+      "calls": 730,
+      "id": 1,
+      "name": "plains",
+      "total_seconds": 0.005072998348623514
+    },
+    {
+      "calls": 741,
+      "id": 174,
+      "name": "dripstone_caves",
+      "total_seconds": 0.004044999135658145
+    },
+    {
+      "calls": 571,
+      "id": 35,
+      "name": "savanna",
+      "total_seconds": 0.00399300130084157
+    },
+    {
+      "calls": 429,
+      "id": 23,
+      "name": "sparse_jungle",
+      "total_seconds": 0.003126999596133828
+    },
+    {
+      "calls": 590,
+      "id": 7,
+      "name": "river",
+      "total_seconds": 0.0030949991196393967
+    },
+    {
+      "calls": 275,
+      "id": 183,
+      "name": "deep_dark",
+      "total_seconds": 0.002303000772371888
+    },
+    {
+      "calls": 222,
+      "id": 184,
+      "name": "mangrove_swamp",
+      "total_seconds": 0.0016500004567205906
+    },
+    {
+      "calls": 286,
+      "id": 45,
+      "name": "lukewarm_ocean",
+      "total_seconds": 0.0015660009812563658
+    },
+    {
+      "calls": 237,
+      "id": 175,
+      "name": "lush_caves",
+      "total_seconds": 0.0014439991209656
+    },
+    {
+      "calls": 158,
+      "id": 168,
+      "name": "bamboo_jungle",
+      "total_seconds": 0.0011089993640780449
+    },
+    {
+      "calls": 103,
+      "id": 27,
+      "name": "birch_forest",
+      "total_seconds": 0.0007320006843656301
+    },
+    {
+      "calls": 87,
+      "id": 155,
+      "name": "old_growth_birch_forest",
+      "total_seconds": 0.000666000647470355
+    },
+    {
+      "calls": 84,
+      "id": 36,
+      "name": "savanna_plateau",
+      "total_seconds": 0.0006360006518661976
+    },
+    {
+      "calls": 76,
+      "id": 177,
+      "name": "meadow",
+      "total_seconds": 0.0006109997630119324
+    },
+    {
+      "calls": 68,
+      "id": 5,
+      "name": "taiga",
+      "total_seconds": 0.000509999692440033
+    },
+    {
+      "calls": 68,
+      "id": 25,
+      "name": "stony_shore",
+      "total_seconds": 0.0004740001168102026
+    },
+    {
+      "calls": 62,
+      "id": 187,
+      "name": "sulfur_caves",
+      "total_seconds": 0.0004280006978660822
+    }
+  ]
+}

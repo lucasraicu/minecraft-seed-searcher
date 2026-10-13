@@ -255,18 +255,24 @@ class RealmStore:
         if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):raise ValueError('Invalid decision digest')
         results=list(results)
         from .config import baseline_requirements
-        requirements_total=baseline_requirements(self.identity.get('config',{}))
+        from .config import two_group_policy
+        policy=self.identity.get('config',{})
+        group=two_group_policy(policy)
+        requirements_total=baseline_requirements(policy)
         if receipt['inputs']!=end-start or receipt['retained_inputs']!=len(results) or receipt['retained_anchors']!=sum(len(r.get('anchors',[])) for r in results) or receipt['discovered_anchors']<receipt['retained_anchors']:
             raise ValueError('Receipt coverage mismatch')
         for result in results:
             if not result.get('anchors'):raise ValueError('Compact rows require retained anchors')
             for candidate in result['anchors']:
                 label=candidate.get('retention',{});pending=candidate.get('pending_reasons')
-                if (not isinstance(pending,list) or len(set(pending))!=len(pending) or
-                    len(pending)>self.retention['max_misses'] or label.get('unmet_requirements')!=len(pending) or
+                unmet=candidate.get('deficit_categories') if group else pending
+                if (not isinstance(pending,list) or not isinstance(unmet,list) or len(set(pending))!=len(pending) or
+                    len(set(unmet))!=len(unmet) or len(unmet)>self.retention['max_misses'] or
+                    (group and (candidate.get('fatal_reasons') or candidate.get('biome_failures') or candidate.get('baseline_qualification')!='PREDICTED')) or
+                    label.get('unmet_requirements')!=len(unmet) or
                     label.get('allowed_unmet_requirements')!=self.retention['max_misses'] or
-                    label.get('requirements_total')!=requirements_total or label.get('classification')!=('NEAR_MISS' if pending else 'PREDICTED_SURVIVOR') or
-                    candidate.get('qualification')!=('PENDING' if pending else 'PREDICTED') or
+                    label.get('requirements_total')!=requirements_total or label.get('classification')!=('PREDICTED_SURVIVOR' if group else 'NEAR_MISS' if pending else 'PREDICTED_SURVIVOR') or
+                    candidate.get('qualification')!=('PREDICTED' if group else 'PENDING' if pending else 'PREDICTED') or
                     not candidate.get('biomes') or any(o.get('inventory_status')!='COMPLETE' for o in candidate.get('required_structures',{}).values())):
                     raise ValueError('Invalid retained eligibility or evidence')
         return self._prepare_range(start,end,results,receipt=receipt)

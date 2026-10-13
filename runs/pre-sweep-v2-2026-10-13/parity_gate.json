@@ -1,0 +1,195 @@
+{
+  "arms": {
+    "control-chunk128": {
+      "build_identity_sha256": "7bfcd7931a0a63452bfb144d79ed8333b4a086cc6f12e9f95002c332f5be403b",
+      "builder_script_sha256": "67ca87a3e8e95f43515bb032004f7b6ec7f189abd9569d98d19f1ee6b41da8d3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "3e7ff49f3a66f63bb4deca7e5a9c0783759bd4f9ff9404ffb0a89defbf0f0e70",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "a1dd4c9446db9ba9d0e87ca58fe856cae177324d6c85fe6adfc8cf8084966e92",
+      "status": "PASS"
+    },
+    "control-chunk64": {
+      "build_identity_sha256": "a9d2e3ff726a9ff65efde31e9100008fed27b75c2d094c435337feed402ded58",
+      "builder_script_sha256": "67ca87a3e8e95f43515bb032004f7b6ec7f189abd9569d98d19f1ee6b41da8d3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "86d6148e183188a1bcfdad9a07714571355d2dcd1e7e935bdcfe711ba740af68",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "a1dd4c9446db9ba9d0e87ca58fe856cae177324d6c85fe6adfc8cf8084966e92",
+      "status": "PASS"
+    },
+    "control-cpu-native": {
+      "build_identity_sha256": "1ed65d8028c56dfdb76afaa83e71570bdae4475d463415ff3325656287db4b39",
+      "builder_script_sha256": "2cbaed11702766d9c934fcd3362f42a7652667ce1cb28642f8737feb8989d3a3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "cdf8c8434ecd8d08c3e3cd6cb03450867b6aa8d56cdb0c7b9da4e4bf1a888a0f",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "999cd4ca5628c1ce21f35c7e2191f4a032cfbbf1745ac9e88ca625b26b3ad8de",
+      "status": "PASS"
+    },
+    "control-cpu-native-lto": {
+      "build_identity_sha256": "444a17654243cfd89d55ae3fb6f37d232d50bf0c3216303252414d331ca53464",
+      "builder_script_sha256": "2cbaed11702766d9c934fcd3362f42a7652667ce1cb28642f8737feb8989d3a3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "5123ce30b350e031d98e69ac3094b11405cbbe4679a83d93e76b9a0d01aa7538",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "999cd4ca5628c1ce21f35c7e2191f4a032cfbbf1745ac9e88ca625b26b3ad8de",
+      "status": "PASS"
+    },
+    "control-lto": {
+      "build_identity_sha256": "52ef6c005cfcdb1bb5a7f47ccc19351a056e878086951eb54d2fadf0b257f6ca",
+      "builder_script_sha256": "2cbaed11702766d9c934fcd3362f42a7652667ce1cb28642f8737feb8989d3a3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "813b27dcad41580a537bf9f52e433db75b30e52ecb83a93edf84ecb0081da3f2",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "999cd4ca5628c1ce21f35c7e2191f4a032cfbbf1745ac9e88ca625b26b3ad8de",
+      "status": "PASS"
+    },
+    "control-native": {
+      "build_identity_sha256": "6de5d81d3b5660163b11c3255256a7b25d8db013a867afe0b23960e598121ca6",
+      "builder_script_sha256": "2cbaed11702766d9c934fcd3362f42a7652667ce1cb28642f8737feb8989d3a3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "794b62a893f5fef7e9859bac8175354a9a452ed1a34e280a89e36e2dd677492f",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "999cd4ca5628c1ce21f35c7e2191f4a032cfbbf1745ac9e88ca625b26b3ad8de",
+      "status": "PASS"
+    },
+    "control-pgo": {
+      "build_identity_sha256": "7f4bc0fab83c54c3c493da97ddd44b0212ff8d548363f90635c7f5a29934bd19",
+      "builder_script_sha256": "67ca87a3e8e95f43515bb032004f7b6ec7f189abd9569d98d19f1ee6b41da8d3",
+      "compact_retained_inputs": 3,
+      "compact_retained_qualifications": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "complete_fixture_record_sha256": "6d79c34f7219d40957f0a78d996567e4dedb3bfc9c6c0c437ab28b8defba8dbb",
+      "extension_sha256": "c9435f716453fcd74e798f44efd6e8784e7a714ca3de63eb6b18dcc8c6aea325",
+      "fixture_qualification": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PENDING"
+      ],
+      "natural_native_python_replay_exact": true,
+      "natural_record_sha256": "635211947b57b13cdb31b7ca49d0ad996a51fb1e81892109b6ae573d9d05d843",
+      "natural_records": 6,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "source_digest": "a1dd4c9446db9ba9d0e87ca58fe856cae177324d6c85fe6adfc8cf8084966e92",
+      "status": "PASS"
+    }
+  },
+  "config_sha256": "ce3fff4901041f7a348a35e8347873dd73507f6150b1b7b9799d687e2f3220a9",
+  "expected_fixture_qualification": [
+    "PREDICTED",
+    "PREDICTED",
+    "PREDICTED",
+    "PENDING"
+  ],
+  "fixture_missing_values": [
+    -1,
+    0,
+    6,
+    28
+  ],
+  "natural_seeds": [
+    "0",
+    "-1",
+    "-9223372036854775808",
+    "9223372036854775807",
+    "12345",
+    "4294979641"
+  ],
+  "policy_revision": "origin-fixed-2048-two-group-v2",
+  "status": "PASS"
+}

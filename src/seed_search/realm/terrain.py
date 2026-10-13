@@ -539,7 +539,7 @@ def _run_terrain_legacy(store, cfg, variants=('v1', 'v2'), limit=None, resume=Tr
         if limit is not None and summary['candidates'] >= limit: break
         stored_bounds = candidate['bounds']
         bounds = tuple(stored_bounds['overworld'] if isinstance(stored_bounds, dict) else stored_bounds)
-        seed, stronghold = candidate['seed'], candidate['stronghold']
+        seed, stronghold = candidate['seed'], candidate.get('evaluation_center',candidate['stronghold'])
         active_variants = [v for v in variants if not (resume and hasattr(store, 'get_variant_task_status') and store.get_variant_task_status(candidate['id'], v) == 'complete')]
         summary['resumed_tasks'] += len(variants)-len(active_variants)
         if not active_variants:
@@ -776,7 +776,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                         b=[mb[0]-halo,mb[1]-halo,mb[2]+halo,mb[3]+halo]
                         for v in variants:
                             if not next(store.iter_terrain_work(revision,candidate_id=member['id'],variant=v),None):
-                                store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
+                                store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member.get('evaluation_center',member['stronghold']),resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
                 unit=store.claim_priority_terrain(revision,variants,worker,epoch,continue_manual=continue_deferred_halos,max_refinements=budget)
                 if unit is None:
                     if exhausted:return
@@ -789,7 +789,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                     b=[mb[0]-halo,mb[1]-halo,mb[2]+halo,mb[3]+halo]
                     for v in variants:
                         if not next(store.iter_terrain_work(revision,candidate_id=member['id'],variant=v),None):
-                            store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member['stronghold'],resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
+                            store.ensure_terrain_work(revision,member['id'],v,payload('nomination',member.get('evaluation_center',member['stronghold']),resolutions[0],mb if coastal and v=='v1' else b,priority=100000.,variant_scope=v))
                     continue
                 member=store.get_candidate(unit['candidate_id']);member['_scheduled_unit']=unit
                 yield member
@@ -805,7 +805,7 @@ def _run_terrain_durable(store,cfg,variants,limit,resume,progress,provider_facto
                 run_inventory(store, cfg, candidate_id=candidate['id'], include_pending=True)
                 candidate = {**candidate, **store.get_candidate(candidate['id'])}
             bounds=candidate['bounds'];bounds=tuple(bounds['overworld'] if isinstance(bounds,dict) else bounds)
-            cid=candidate['id'];stronghold=candidate['stronghold'];seed=candidate['seed']
+            cid=candidate['id'];stronghold=candidate.get('evaluation_center',candidate['stronghold']);seed=candidate['seed']
             nomination_halo=math.ceil(max(extents.values())+resolutions[0]+local_spacing)
             nomination_bounds=[bounds[0]-nomination_halo,bounds[1]-nomination_halo,bounds[2]+nomination_halo,bounds[3]+nomination_halo]
             for variant in variants:

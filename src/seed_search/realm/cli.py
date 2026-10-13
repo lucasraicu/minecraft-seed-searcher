@@ -10,7 +10,7 @@ import sys
 import time
 from pathlib import Path
 import yaml
-from .config import origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
+from .config import two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
 from .capabilities import report, identity as provider_identity
 from .store import RealmStore, canonical
 from .reports import ranked, export, rescore
@@ -46,7 +46,7 @@ def handles(argv=None):
 
 
 def load(path=None):
-    cfg=yaml.safe_load(Path(path).read_text()) if path else origin_blueprint_config()
+    cfg=yaml.safe_load(Path(path).read_text()) if path else two_group_blueprint_config()
     validate_config(cfg)
     return cfg
 
@@ -240,7 +240,7 @@ def main(argv=None):
         native.add_argument('--native-threads',type=int)
         native.add_argument('--native-batch-size',type=int)
         native.add_argument('--retention',choices=['full','survivors'],default=None,help='Compact survivors mode omits rejected per-input evidence')
-        native.add_argument('--max-misses',type=int,default=None,help='Save at most N unmet screening requirements; default 1 for locked policy, 2 for historical policy')
+        native.add_argument('--max-misses',type=int,default=None,help='Compact retention budget; v2 counts flexible deficit categories and must match the resolved policy (default B=2)')
     p=sub.add_parser('inventory');p.add_argument('--run',required=True);p.add_argument('--limit',type=int)
     p.add_argument('--candidate');p.add_argument('--include-pending',action='store_true')
     p.add_argument('--all-starts',action='store_true',help='Explicit complete predictor start inventory for one candidate')
@@ -315,7 +315,7 @@ def main(argv=None):
             native_batch=args.native_batch_size if args.native_batch_size is not None else (store.get_state('batch_size') if store and execution=='native' else 4096)
             saved_retention=(store.identity or {}).get('retention',{}) if store else {}
             retention=args.retention or saved_retention.get('mode','full')
-            misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
+            misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(cfg['search']['max_misses'] if two_group_policy(cfg) else 1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
             if execution=='python' and (retention!='full' or misses):raise ValueError('Compact retention requires --executor native')
             if execution=='python' and any(v is not None for v in (args.native_build,args.native_threads,args.native_batch_size)):
                 raise ValueError('Native options require --executor native')
@@ -405,7 +405,7 @@ def main(argv=None):
             row=store.db.execute('SELECT result FROM candidates WHERE id=?',(args.candidate,)).fetchone()
             if not row:raise ValueError('Unknown candidate')
             candidate=json.loads(row[0]);evidence=json.loads(Path(args.evidence).read_text()) if args.evidence else None
-            result=VerificationAdapter(cfg,store).verify_final_nether(candidate['seed'],candidate['stronghold'],evidence=evidence)
+            result=VerificationAdapter(cfg,store).verify_final_nether(candidate['seed'],candidate.get('evaluation_center',candidate['stronghold']),evidence=evidence)
             candidate['final_nether']=result;candidate['final_nether_status']=result['status']
             candidate['realm_eligibility']='PENDING; Overworld generated structure/terrain evidence still required'
             with store.db:store.db.execute('UPDATE candidates SET result=? WHERE id=?',(canonical(candidate),candidate['id']))
@@ -447,7 +447,7 @@ def main(argv=None):
                     fit,biome_status,biome_provenance=raster_variant_fit(raster,args.variant,target_version=cfg['game']['target_version'])
                     from .coastal import coastal_mode, monument_inputs
                     coastal_options={'monuments':monument_inputs(candidate)} if args.variant=='v1' and coastal_mode(cfg) else {}
-                    actual=evaluate(raster,wrapper['center'],candidate['bounds']['overworld'],candidate['stronghold'],thresholds=cfg['terrain'].get(args.variant),rays=cfg['terrain'].get('rays',32),biome_fit=fit,baseline_quality=min(100.,100.*(candidate.get('baseline_score') if candidate.get('baseline_score') is not None else candidate.get('baseline_score_observed',0))/cfg['scoring']['baseline_quality_cap']),**coastal_options)
+                    actual=evaluate(raster,wrapper['center'],candidate['bounds']['overworld'],candidate.get('evaluation_center',candidate['stronghold']),thresholds=cfg['terrain'].get(args.variant),rays=cfg['terrain'].get('rays',32),biome_fit=fit,baseline_quality=min(100.,100.*(candidate.get('baseline_score') if candidate.get('baseline_score') is not None else candidate.get('baseline_score_observed',0))/cfg['scoring']['baseline_quality_cap']),**coastal_options)
                     actual['biome_fit_provenance']=biome_provenance
                     apply_score_policy(actual,cfg['scoring'],source='actual',biome_fit=fit,component_status={
                         'geometry':actual['evidence'],'biome_fit':biome_status,

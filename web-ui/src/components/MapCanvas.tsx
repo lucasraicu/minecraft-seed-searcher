@@ -96,6 +96,10 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   // Pan & Zoom state
   const [offset, setOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [zoom, setZoom] = useState<number>(0.35); // 1 pixel = 1/zoom blocks
+  const zoomRef = useRef<number>(zoom);
+  useEffect(() => {
+    zoomRef.current = zoom;
+  }, [zoom]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [cursorWorld, setCursorWorld] = useState<{ x: number; z: number }>({ x: 0, z: 0 });
@@ -115,13 +119,13 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   const ravinesList: RavineMarker[] = useMemo(() => {
     if (!candidate) return [];
     if (candidate.ravines && candidate.ravines.length > 0) return candidate.ravines;
-    return getFallbackRavines();
+    return candidate.provenance === 'reference' ? getFallbackRavines() : [];
   }, [candidate]);
 
   const cavesList: CaveClusterMarker[] = useMemo(() => {
     if (!candidate) return [];
     if (candidate.caveClusters && candidate.caveClusters.length > 0) return candidate.caveClusters;
-    return getFallbackCaves();
+    return candidate.provenance === 'reference' ? getFallbackCaves() : [];
   }, [candidate]);
 
   const mouseDownPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -162,7 +166,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   const quickJumpTargets = useMemo(() => {
     if (!candidate) return [];
     if (dimension === 'overworld') {
-      const targets: { label: string; icon: string; x: number; z: number; y?: number; feature: any }[] =
+      const targets: { label: string; icon: string; x: number; z: number; y?: number | null; feature: any }[] =
         [];
       const lush = cavesList.find((c) => c.type === 'lush_caves');
       if (lush)
@@ -176,7 +180,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         (s) => s.type === 'stronghold' && s.dimension === 'overworld'
       );
       if (sh)
-        targets.push({ label: 'Stronghold Hub', icon: '🏰', x: sh.x, z: sh.z, y: sh.y, feature: sh });
+        targets.push({ label: 'Stronghold marker', icon: '🏰', x: sh.x, z: sh.z, y: sh.y, feature: sh });
 
       const mansion = candidate.structures.find(
         (s) => s.type === 'mansion' && s.dimension === 'overworld'
@@ -192,7 +196,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
       return targets;
     } else {
-      const targets: { label: string; icon: string; x: number; z: number; y?: number; feature: any }[] =
+      const targets: { label: string; icon: string; x: number; z: number; y?: number | null; feature: any }[] =
         [];
       const fort = candidate.structures.find(
         (s) => s.type === 'fortress' && s.dimension === 'nether'
@@ -210,22 +214,18 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     }
   }, [candidate, dimension, cavesList, ravinesList]);
 
-  // Auto-center on candidate when candidate changes
+  // Use an evidence-backed anchor, the policy evaluation center, or world
+  // origin as a view position. The origin is not treated as a stronghold.
+  const candidateId = candidate?.id;
+  const anchorX = candidate?.strongholdAnchor?.[0] ?? candidate?.evaluationCenter?.[0] ?? 0;
+  const anchorZ = candidate?.strongholdAnchor?.[1] ?? candidate?.evaluationCenter?.[1] ?? 0;
   useEffect(() => {
-    if (candidate) {
-      if (dimension === 'overworld') {
-        setOffset({
-          x: -candidate.strongholdAnchor[0] * zoom,
-          y: -candidate.strongholdAnchor[1] * zoom,
-        });
-      } else {
-        setOffset({
-          x: -(candidate.strongholdAnchor[0] / 8) * zoom,
-          y: -(candidate.strongholdAnchor[1] / 8) * zoom,
-        });
-      }
-    }
-  }, [candidate?.id, dimension]);
+    const scale = dimension === 'overworld' ? 1 : 1 / 8;
+    const frame = requestAnimationFrame(() => {
+      setOffset({ x: -(anchorX * scale) * zoomRef.current, y: -(anchorZ * scale) * zoomRef.current });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [candidateId, anchorX, anchorZ, dimension]);
 
   // Convert screen coordinates to Minecraft world coordinates
   const screenToWorld = useCallback(
@@ -278,7 +278,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
     const originScreen = worldToScreen(0, 0, width, height);
 
-    // 2. Concentric Distance Rings (500m, 1000m)
+    // 2. Concentric distance rings from the world origin (blocks)
     if (showDistanceRings) {
       ctx.save();
       ctx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
@@ -297,13 +297,13 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
       ctx.fillStyle = 'rgba(148, 163, 184, 0.35)';
       ctx.font = 'bold 9px monospace';
-      ctx.fillText('500m Hub Radius', originScreen.x + 500 * zoom + 5, originScreen.y - 4);
-      ctx.fillText('1000m Hub Radius', originScreen.x + 1000 * zoom + 5, originScreen.y - 4);
+      ctx.fillText('500 blocks from origin', originScreen.x + 500 * zoom + 5, originScreen.y - 4);
+      ctx.fillText('1000 blocks from origin', originScreen.x + 1000 * zoom + 5, originScreen.y - 4);
       ctx.restore();
     }
 
     // 3. Biome Terrain Render: Coastal Continent (70–80%) & River Highway
-    if (showBiomes && candidate) {
+    if (showBiomes && candidate?.provenance === 'reference') {
       ctx.save();
 
       if (dimension === 'overworld') {
@@ -327,7 +327,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         ctx.fillStyle = landGrad;
         ctx.beginPath();
 
-        const isContinent = candidate.terrainPassed !== false;
+        const isContinent = candidate.terrainPassed === true;
 
         // Organic continent polygon (with 320m West Ocean corridor cutout for certified continent)
         const numPoints = 36;
@@ -408,6 +408,16 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         ctx.arc(originScreen.x - 200 * zoom, originScreen.y + 160 * zoom, 140 * zoom, 0, Math.PI * 2);
         ctx.fill();
       }
+      ctx.restore();
+    }
+
+    if (showBiomes && candidate && candidate.provenance !== 'reference') {
+      ctx.save();
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+      ctx.fillRect(16, 76, 280, 34);
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '11px system-ui';
+      ctx.fillText('Terrain / biome map: pending spatial evidence', 25, 97);
       ctx.restore();
     }
 
@@ -499,11 +509,10 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     ctx.restore();
 
     // 7. Spawn Point Marker & Vector
-    if (candidate && dimension === 'overworld') {
-      const sp = candidate.spawnPoint || [0, 0];
+    if (candidate?.spawnPoint && dimension === 'overworld') {
+      const sp = candidate.spawnPoint;
       const spawnScreen = worldToScreen(sp[0], sp[1], width, height);
-      const spawnDist =
-        candidate.spawnDistance ?? Math.round(Math.sqrt(sp[0] * sp[0] + sp[1] * sp[1]));
+      const spawnDist = candidate.spawnDistance;
 
       ctx.save();
       // Dashed connector line from (0,0) to Spawn Point
@@ -530,7 +539,11 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       ctx.shadowBlur = 0;
       ctx.fillStyle = '#fef08a';
       ctx.font = 'bold 11px system-ui';
-      ctx.fillText(`🧭 Spawn (${sp[0]}, ${sp[1]}) • ${spawnDist}m`, spawnScreen.x + 14, spawnScreen.y + 4);
+      ctx.fillText(
+        `🧭 Spawn (${sp[0]}, ${sp[1]})${spawnDist == null ? '' : ` • ${spawnDist} ${candidate.spawnDistanceUnits ?? 'blocks'}`}`,
+        spawnScreen.x + 14,
+        spawnScreen.y + 4
+      );
       ctx.restore();
     }
 
@@ -614,7 +627,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           if (elevationFilter !== 'surface') {
             if (isHovered) {
               // Full expanded pill on hover
-              const badgeText = `🌋 Mega Ravine Fissure (${ravine.length}m) • Bed Y=${ravine.y}`;
+              const badgeText = `🌋 Mega Ravine Fissure (${ravine.length} blocks) • Bed Y=${ravine.y ?? 'unknown'}`;
               ctx.font = 'bold 12px system-ui';
               const tw = ctx.measureText(badgeText).width;
               ctx.fillStyle = 'rgba(15, 23, 42, 0.96)';
@@ -628,7 +641,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               ctx.fillText(badgeText, mid.x + 13, mid.y + 3);
             } else {
               // Clear, punchy abbreviation badge
-              const badgeText = `🌋 MEGA ${ravine.length}m`;
+              const badgeText = `🌋 MEGA ${ravine.length} blocks`;
               ctx.font = 'bold 11px monospace';
               const tw = ctx.measureText(badgeText).width;
               ctx.fillStyle = 'rgba(67, 20, 7, 0.94)';
@@ -653,7 +666,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
           if (elevationFilter !== 'surface') {
             if (isHovered) {
-              const badgeText = `🌊 Ocean Trench (${ravine.length}m) • Y=${ravine.y}`;
+              const badgeText = `🌊 Ocean Trench (${ravine.length} blocks) • Y=${ravine.y ?? 'unknown'}`;
               ctx.font = 'bold 12px system-ui';
               const tw = ctx.measureText(badgeText).width;
               ctx.fillStyle = 'rgba(15, 23, 42, 0.96)';
@@ -689,7 +702,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           if (elevationFilter !== 'surface') {
             if (isHovered) {
               // Expanded full badge on hover
-              const badgeText = `🌋 Ravine (${ravine.length}m) • Bed Y=${ravine.y} • Heading ${Math.round((ravine.yaw * 180) / Math.PI)}°`;
+              const badgeText = `🌋 Ravine (${ravine.length} blocks) • Bed Y=${ravine.y ?? 'unknown'} • Heading ${Math.round((ravine.yaw * 180) / Math.PI)}°`;
               ctx.font = 'bold 12px system-ui';
               const tw = ctx.measureText(badgeText).width;
               ctx.fillStyle = 'rgba(15, 23, 42, 0.96)';
@@ -811,7 +824,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           if (isHovered) {
             // Full expanded pill with depth
             const title = cave.name;
-            const sub = `Subterranean Depth Y=${cave.y} • ${cave.notes || 'Cavern System'}`;
+            const sub = `Y=${cave.y ?? 'unknown'} • ${cave.notes || 'Cavern System'}`;
             ctx.font = 'bold 13px system-ui';
             const tw1 = ctx.measureText(title).width;
             ctx.font = '10px monospace';
@@ -835,7 +848,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             ctx.fillText(sub, cPos.x + pinRadius + 12, cPos.y + 13);
           } else {
             // Crisp, clear abbreviation pill
-            const abbr = cave.type === 'lush_caves' ? 'LSH · Y=-48' : cave.type === 'dripstone_caves' ? 'DRP · Y=-32' : 'DRK · Y=-52';
+            const abbr = cave.type === 'lush_caves' ? 'LSH' : cave.type === 'dripstone_caves' ? 'DRP' : 'DRK';
             ctx.font = 'bold 11px monospace';
             const tw = ctx.measureText(abbr).width;
 
@@ -875,8 +888,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
         const isHovered =
           hoveredStructure?.id === struct.id || pinnedFeature?.id === struct.id;
-        const dist =
-          struct.distanceToHub ?? Math.round(Math.sqrt(struct.x * struct.x + struct.z * struct.z));
+        const dist = struct.distanceToHub;
 
         const isApex = isApexLandmark(struct.type);
 
@@ -912,7 +924,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           if (isHovered) {
             // Full expanded card on hover
             const title = struct.name;
-            const sub = `X:${struct.x} Z:${struct.z} • Depth Y=${struct.y ?? 64} • ${dist}m Hub`;
+            const sub = `X:${struct.x} Z:${struct.z} • Y=${struct.y ?? 'unknown'} • ${dist == null ? 'distance unknown' : `${dist} ${struct.distanceUnits ?? 'blocks'}`}`;
             ctx.font = 'bold 13px system-ui';
             const tw1 = ctx.measureText(title).width;
             ctx.font = '10px monospace';
@@ -999,7 +1011,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     ctx.fillStyle = '#f1f5f9';
     ctx.font = 'bold 9px monospace';
     ctx.textAlign = 'center';
-    ctx.fillText(`${niceBlocks}m`, scaleBarX + actualBarPx / 2, scaleBarY - 7);
+    ctx.fillText(`${niceBlocks} blocks`, scaleBarX + actualBarPx / 2, scaleBarY - 7);
     ctx.restore();
 
     // 10. Compass Rose in bottom right
@@ -1164,17 +1176,18 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
   const handleResetView = () => {
     setZoom(0.35);
-    if (candidate) {
-      setOffset({
-        x: -candidate.strongholdAnchor[0] * 0.35,
-        y: -candidate.strongholdAnchor[1] * 0.35,
-      });
-    } else {
-      setOffset({ x: 0, y: 0 });
-    }
+    const viewCenter = candidate?.strongholdAnchor ?? candidate?.evaluationCenter ?? [0, 0];
+    const scale = dimension === 'overworld' ? 1 : 1 / 8;
+    setOffset({ x: -(viewCenter[0] * scale) * 0.35, y: -(viewCenter[1] * scale) * 0.35 });
   };
 
   const activeFeature = pinnedFeature || hoveredStructure || hoveredCave || hoveredRavine;
+  const activeFeatureDistance = activeFeature && 'viable' in activeFeature
+    ? activeFeature.distanceToHub
+    : null;
+  const activeFeatureDistanceUnits = activeFeature && 'viable' in activeFeature
+    ? activeFeature.distanceUnits ?? 'blocks'
+    : 'blocks';
 
   return (
     <div className="relative flex-1 h-full w-full overflow-hidden bg-slate-950">
@@ -1211,7 +1224,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             <span className="text-slate-500">Z:</span>
             <span className="text-white font-bold">{cursorWorld.z}</span>
             <span className="text-slate-500 text-[10px]">
-              ({Math.round(Math.sqrt(cursorWorld.x * cursorWorld.x + cursorWorld.z * cursorWorld.z))}m)
+              ({Math.round(Math.sqrt(cursorWorld.x * cursorWorld.x + cursorWorld.z * cursorWorld.z))} blocks from origin)
             </span>
           </div>
         </div>
@@ -1407,13 +1420,15 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             <div className="flex items-center justify-between text-slate-300">
               <span className="text-slate-400">Depth:</span>
               <span className="text-cyan-400 font-bold">
-                Y={'y' in activeFeature ? activeFeature.y : 64}
+                Y={'y' in activeFeature && activeFeature.y != null ? activeFeature.y : 'unknown'}
               </span>
             </div>
             <div className="flex items-center justify-between text-slate-300">
-              <span className="text-slate-400">Hub Distance:</span>
+              <span className="text-slate-400">Distance evidence:</span>
               <span className="text-amber-400 font-bold">
-                {Math.round(Math.sqrt(activeFeature.x * activeFeature.x + activeFeature.z * activeFeature.z))}m
+                {activeFeatureDistance == null
+                  ? 'unknown'
+                  : `${activeFeatureDistance} ${activeFeatureDistanceUnits}`}
               </span>
             </div>
 
@@ -1421,7 +1436,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               <div className="flex items-center justify-between text-slate-300">
                 <span className="text-slate-400">Chasm Dimensions:</span>
                 <span className="text-amber-300">
-                  {(activeFeature as RavineMarker).length}m long · {Math.round((activeFeature as RavineMarker).thick * 10) / 10}m wide
+                  {(activeFeature as RavineMarker).length} blocks long · {Math.round((activeFeature as RavineMarker).thick * 10) / 10} blocks wide
                 </span>
               </div>
             )}
@@ -1442,7 +1457,8 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             </button>
             <button
               onClick={() => {
-                const text = `X:${activeFeature.x} Z:${activeFeature.z} Y:${'y' in activeFeature ? activeFeature.y : 64}`;
+                const y = 'y' in activeFeature && activeFeature.y != null ? activeFeature.y : 'unknown';
+                const text = `X:${activeFeature.x} Z:${activeFeature.z} Y:${y}`;
                 navigator.clipboard.writeText(text);
               }}
               className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-semibold transition-all"
@@ -1476,14 +1492,14 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               ? 'bg-slate-700 text-cyan-300'
               : 'bg-slate-800 text-slate-400 hover:text-white'
           }`}
-          title="Toggle 500m / 1000m concentric distance rings"
+          title="Toggle 500 / 1000 block rings from world origin"
         >
           Rings
         </button>
         <button
           onClick={handleResetView}
           className="px-2 h-7 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-semibold flex items-center justify-center"
-          title="Reset Center & Zoom to (0,0)"
+          title="Reset view to supplied anchor, evaluation center, or origin"
         >
           Center (0,0)
         </button>

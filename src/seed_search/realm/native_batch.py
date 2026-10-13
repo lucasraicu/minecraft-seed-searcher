@@ -18,7 +18,7 @@ from seed_search.backend import biome_catalog, structure_type
 from seed_search.realm.blueprint import PALETTE, evaluate_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -37,9 +37,6 @@ def semantic_record(value):
 class Prototype:
     def __init__(self,directory,cfg):
         validate_config(cfg)
-        from .config import two_group_policy
-        if two_group_policy(cfg):
-            raise ValueError("Two-group screening requires Phase 2 native hard-floor enforcement")
         if cfg.get('contract')!=BLUEPRINT_CONTRACT:raise ValueError('Prototype requires the exact blueprint contract')
         if not outpost_policy(cfg) and tuple(cfg['search']['structure_order'])!=(tuple(LOCKED_ORDER) if locked_policy(cfg) else NAMES[:10]):raise ValueError('Prototype requires its audited structure order')
         if cfg['search']['inventory_mode']!='eligibility':raise ValueError('Native baseline requires eligibility inventory mode; use the Python route for other profiles')
@@ -68,9 +65,15 @@ class Prototype:
         self.policy=self.ffi.new('NBPolicy *')
         self.policy.max_buffer_bytes=256<<20
         if not hasattr(self.policy,'outpost_goal'):raise ValueError('Native blueprint ABI changed; rebuild the extension before using this adapter')
+        if two_group_policy(cfg) and not all(hasattr(self.policy,n) for n in ('two_group','floors','flexible_mask')):
+            raise ValueError('Two-group policy requires the rebuilt native hard-floor ABI')
         self.policy.locked=int(locked_policy(cfg))
         self.policy.river=int(river_policy(cfg))
-        self.policy.outpost_goal=2 if outpost_policy(cfg) else 0
+        self.policy.outpost_goal=cfg['structures']['minimum_counts']['outpost'] if outpost_policy(cfg) else 0
+        if two_group_policy(cfg):
+            self.policy.two_group=1
+            self.policy.floors=[cfg['structures']['hard_floors'].get(n,0) for n in NAMES]
+            self.policy.flexible_mask=sum(1<<NAMES.index(n) for n in ('mansion','trial_chamber','village','ruined_portal','mineshaft','ancient_city','fortress','bastion'))
         if origin_policy(cfg) and not hasattr(self.policy,'origin'):
             raise ValueError('Origin policy needs the rebuilt native ABI')
         if hasattr(self.policy,'origin'):self.policy.origin=int(origin_policy(cfg))
@@ -103,8 +106,9 @@ class Prototype:
             'policy_sha256':hashlib.sha256(bytes(self.ffi.buffer(self.policy))).hexdigest(),
             'record_computation_identity':production_identity()}
 
-    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=0,fixture_masks=None):
+    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None):
         seeds=[parse_seed(s) for s in seeds]
+        if max_misses is None:max_misses=self.cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(self.cfg) else 0
         if not 1<=len(seeds)<=16384:raise ValueError('Native batches must contain 1–16,384 inputs')
         if isinstance(threads,bool) or not isinstance(threads,int) or not 1<=threads<=36:raise ValueError('Threads must be 1–36')
         if threads>1 and not self.identity['openmp']:raise ValueError('Parallel sweep needs an OpenMP private build')
@@ -115,17 +119,20 @@ class Prototype:
         if retention=='survivors' and complete:raise ValueError('Compact retention and complete oracle sweep are separate paths')
         if fixture_masks is not None and (fixtures is None or len(fixture_masks)!=len(seeds) or any(isinstance(v,bool) or not isinstance(v,int) or not 0<=v<1<<29 for v in fixture_masks)):
             raise ValueError('Invalid synthetic missing masks')
+        if fixture_deltas is not None and (fixtures is None or len(fixture_deltas)!=len(seeds) or any(type(v) is not int or not 1<=v<=32 for v in fixture_deltas)):
+            raise ValueError('Invalid synthetic deficit depths')
         # Independent call-local policy and buffers; shared adapters never mutate
         # a policy while CFFI releases the GIL for another call.
         policy=self.ffi.new('NBPolicy *');self.ffi.memmove(policy,self.policy,self.ffi.sizeof('NBPolicy'))
-        policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=max_misses;values=self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
+        policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses);values=self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
         fixture_values=None
         if fixtures is not None:
             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
             for x,z,missing in fixtures:
                 if any(isinstance(v,bool) or not isinstance(v,int) for v in (x,z,missing)) or not -1000000<=x<=1000000 or not -1000000<=z<=1000000 or not -1<=missing<=28:
                     raise ValueError('Invalid synthetic fixture')
-            fixture_values=self.ffi.new('NBFixture[]',[(*f, fixture_masks[i] if fixture_masks else 0) for i,f in enumerate(fixtures)])
+            fixture_values=self.ffi.new('NBFixture[]',[(*f, fixture_masks[i] if fixture_masks else 0,
+                fixture_deltas[i] if fixture_deltas else 1) for i,f in enumerate(fixtures)])
         start=time.perf_counter()
         pointer=(self.lib.nb_sweep(values,len(seeds),policy,threads) if fixtures is None else
                  self.lib.nb_fixture_sweep(values,fixture_values,len(seeds),policy,threads))
@@ -165,7 +172,9 @@ class Batch:
                 {'stronghold':[a.x,a.z],'count_missing':a.count_missing,
                  'biome_evaluated':bool(a.biome_evaluated),'biome_mask':a.biome_mask,
                  'biome_n':a.biome_n,'score':a.score,
-                 'qualification':'PREDICTED' if not a.count_missing and a.biome_mask==8191 else 'PENDING'}
+                 'qualification':('PREDICTED' if not a.fatal_missing and a.stronghold_count>=1 and a.biome_mask==8191 and
+                     int(a.count_missing & self.prototype.policy.flexible_mask).bit_count()<=self.prototype.cfg['search']['max_misses'] else 'PENDING') if two_group_policy(self.prototype.cfg) else
+                     ('PREDICTED' if not a.count_missing and a.biome_mask==8191 else 'PENDING')}
                 for a in [r.anchors[j] for j in range(r.nanchors)]]})
         return rows
 
@@ -185,7 +194,8 @@ class Batch:
             if len(record['anchors'])!=native.nanchors:raise RuntimeError('Native/reconstructed anchor count mismatch')
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
-                expected=(not origin_policy(cfg) or c.stronghold_count>=1) and not c.count_missing and c.biome_mask==8191
+                expected=(not c.fatal_missing and c.stronghold_count>=1 and c.biome_mask==8191 and
+                          (int(c.count_missing & self.prototype.policy.flexible_mask).bit_count()<=cfg['search']['max_misses'])) if two_group_policy(cfg) else (not origin_policy(cfg) or c.stronghold_count>=1) and not c.count_missing and c.biome_mask==8191
                 order=[10,11,*[NAMES.index(n) for n in cfg['search']['structure_order']]] if locked_policy(cfg) else range(12)
                 pending=['count_'+NAMES[k] for k in order if c.count_missing&(1<<k)]
                 if origin_policy(cfg) and c.stronghold_evaluated and c.stronghold_count<1:
@@ -217,14 +227,19 @@ class Batch:
         records=[]
         for i in range(self.pointer.result_count):
             native=self.pointer.results[i];offset=native.input_offset
-            record=build_record(native,start_index+offset,self.seeds[offset],self.prototype.cfg)
+            cfg=self.prototype.cfg
+            if two_group_policy(cfg):
+                cfg=json.loads(json.dumps(cfg));cfg['search']['max_misses']=self.max_misses
+            record=build_record(native,start_index+offset,self.seeds[offset],cfg)
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
-                misses=int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
-                if (not c.biome_evaluated or misses>self.max_misses or misses!=len(a['pending_reasons']) or
-                    (origin_policy(self.prototype.cfg) and c.stronghold_count<1)):
+                misses=int(c.count_missing & self.prototype.policy.flexible_mask).bit_count() if two_group_policy(cfg) else int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
+                if (not c.biome_evaluated or misses>self.max_misses or
+                    (two_group_policy(cfg) and (c.fatal_missing or c.biome_mask!=8191)) or
+                    (not two_group_policy(cfg) and misses!=len(a['pending_reasons'])) or
+                    (origin_policy(cfg) and c.stronghold_count<1)):
                     raise RuntimeError('Native retention decision parity failure')
-                a['retention']={'classification':'NEAR_MISS' if misses else 'PREDICTED_SURVIVOR',
+                a['retention']={'classification':'PREDICTED_SURVIVOR' if two_group_policy(cfg) or not misses else 'NEAR_MISS',
                     'unmet_requirements':misses,'allowed_unmet_requirements':self.max_misses,
                     'requirements_total':baseline_requirements(self.prototype.cfg),
                     'scope':f'{baseline_requirements(self.prototype.cfg)-13} core structure-count and 13 biome-family requirements; marine deferred' if locked_policy(self.prototype.cfg) else '12 structure-count and 13 biome-family predictor requirements at this anchor'}
@@ -473,9 +488,12 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
 
 def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
                     native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
-                    allow_prediction_scale=False,retention="full",max_misses=0):
+                    allow_prediction_scale=False,retention="full",max_misses=None):
     """Production opt-in; unsupported profiles fail before any input publication."""
     validate_config(cfg)
+    if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
+    if two_group_policy(cfg) and retention=='survivors' and max_misses!=cfg['search']['max_misses']:
+        raise ValueError('V2 survivor budget must match the resolved config; set search.max_misses in the policy')
     if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=100000 or isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64+1 or start_index+count>MASK64+1:raise ValueError('Invalid bounded full64 range')
     search=cfg['search']
     if search.get('numeric_threads_per_worker',1)!=1:raise ValueError('Numerical threads must equal one')

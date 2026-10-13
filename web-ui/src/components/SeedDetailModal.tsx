@@ -15,7 +15,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (!candidate || !canvasRef.current) return;
+    if (!candidate || candidate.provenance !== 'reference' || !canvasRef.current) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -145,12 +145,11 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
 
   if (!candidate) return null;
 
-  const chunkbaseUrl =
-    candidate.chunkbaseUrl ||
-    `https://www.chunkbase.com/apps/seed-map#${candidate.seed}&version=b1.21&x=0&z=0`;
-  const spawn = candidate.spawnPoint || [0, 0];
-  const spawnDist =
-    candidate.spawnDistance ?? Math.round(Math.sqrt(spawn[0] * spawn[0] + spawn[1] * spawn[1]));
+  const chunkbaseUrl = candidate.chunkbaseUrl;
+  const spawn = candidate.spawnPoint;
+  const spawnDist = candidate.spawnDistance;
+  const terrainMetrics = candidate.terrainMetrics;
+  const isDemo = candidate.provenance === 'reference';
 
   return (
     <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
@@ -160,8 +159,17 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-lg font-bold text-white">Seed Candidate Inspection</h3>
+              <span className={`px-2 py-0.5 rounded font-mono font-bold text-[10px] ${
+                isDemo
+                  ? 'bg-purple-500/20 text-purple-300'
+                  : candidate.provenance === 'live'
+                    ? 'bg-emerald-500/20 text-emerald-300'
+                    : 'bg-slate-700 text-slate-300'
+              }`}>
+                {isDemo ? 'DEMO SAMPLE' : candidate.provenance === 'live' ? 'LIVE' : 'SOURCE UNKNOWN'}
+              </span>
               <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono font-bold text-xs">
-                Score: {candidate.score} / 100
+                {candidate.score === null ? 'Unrated' : `Score: ${candidate.score} / 100`}
               </span>
             </div>
             <p className="text-xs font-mono text-slate-400 mt-0.5">Seed: {candidate.seed}</p>
@@ -180,19 +188,28 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
           {/* 3D Elevation Cross-Section Canvas */}
           <div>
             <div className="flex justify-between items-center text-xs mb-1.5 text-slate-400">
-              <span className="font-semibold uppercase tracking-wider">
-                Elevation Cross-Section &amp; Terrain Profile
-              </span>
-              <span
-                className={`font-semibold ${
-                  candidate.terrainPassed !== false ? 'text-cyan-400' : 'text-amber-400'
-                }`}
-              >
-                {candidate.terrainType}
+              <span className="font-semibold uppercase tracking-wider">Terrain Profile</span>
+              <span className="font-semibold text-slate-400">
+                {candidate.terrainPassed === true
+                  ? 'Terrain passed'
+                  : candidate.terrainPassed === false
+                    ? 'Terrain failed'
+                    : 'Unknown / pending evidence'}
               </span>
             </div>
             <div className="border border-slate-800 rounded-lg overflow-hidden shadow-inner">
-              <canvas ref={canvasRef} width={600} height={200} className="w-full h-48 block" />
+              {isDemo ? (
+                <>
+                  <canvas ref={canvasRef} width={600} height={200} className="w-full h-48 block" />
+                  <p className="px-3 py-1.5 bg-purple-950/40 text-[10px] text-purple-300">
+                    Illustrative demo profile; this is not measured terrain evidence.
+                  </p>
+                </>
+              ) : (
+                <div className="h-48 flex items-center justify-center bg-slate-950 text-xs text-slate-400">
+                  No measured terrain profile / pending evidence
+                </div>
+              )}
             </div>
           </div>
 
@@ -202,27 +219,29 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
               <span className="text-[10px] text-slate-400 uppercase font-semibold">Spawn Offset</span>
               <div
                 className={`text-sm font-bold font-mono ${
-                  spawnDist <= 50
+                  spawnDist != null && spawnDist <= 50
                     ? 'text-emerald-400'
-                    : spawnDist <= 100
+                    : spawnDist != null && spawnDist <= 100
                     ? 'text-cyan-400'
                     : 'text-amber-400'
                 }`}
               >
-                {spawnDist}m
+                {spawnDist == null ? 'Unknown / pending evidence' : `${spawnDist} ${candidate.spawnDistanceUnits ?? 'blocks'}`}
               </div>
-              <span className="text-[9px] text-slate-500">({spawn[0]}, {spawn[1]})</span>
+              <span className="text-[9px] text-slate-500">
+                {spawn ? `(${spawn[0]}, ${spawn[1]})` : 'Coordinates pending'}
+              </span>
             </div>
 
             <div className="p-2.5 bg-slate-950/70 border border-slate-800 rounded-lg">
               <span className="text-[10px] text-slate-400 uppercase font-semibold">Mainland Share</span>
               <div className="text-sm font-bold text-emerald-400 font-mono">
-                {candidate.terrainPassed !== false
-                  ? `${((candidate.terrainMetrics.mainlandFraction || 0.77) * 100).toFixed(0)}%`
-                  : 'Unchecked'}
+                {terrainMetrics?.mainlandFraction == null
+                  ? 'Unknown / pending evidence'
+                  : `${(terrainMetrics.mainlandFraction * 100).toFixed(0)}%`}
               </div>
               <span className="text-[9px] text-slate-500">
-                {candidate.terrainPassed !== false ? 'Target: 70–80%' : 'Baseline Mode'}
+                {terrainMetrics?.mainlandFraction == null ? 'Not measured' : 'Measured value'}
               </span>
             </div>
 
@@ -230,35 +249,38 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
               <span className="text-[10px] text-slate-400 uppercase font-semibold">Ocean Edge</span>
               <div
                 className={`text-sm font-bold font-mono truncate ${
-                  candidate.terrainPassed !== false ? 'text-blue-400' : 'text-slate-400'
+                  terrainMetrics?.oceanEdge ? 'text-blue-400' : 'text-slate-400'
                 }`}
               >
-                {candidate.terrainPassed !== false ? '320m Corridor' : 'Unconstrained'}
+                {terrainMetrics?.oceanEdge ?? 'Unknown / pending evidence'}
               </div>
               <span className="text-[9px] text-slate-500">
-                {candidate.terrainPassed !== false ? 'Open West Sea' : 'Baseline Mode'}
+                {terrainMetrics?.oceanEdge ? 'Measured terrain evidence' : 'Not measured'}
               </span>
             </div>
 
             <div className="p-2.5 bg-slate-950/70 border border-slate-800 rounded-lg">
               <span className="text-[10px] text-slate-400 uppercase font-semibold">Flat Build Land</span>
               <div className="text-sm font-bold text-amber-400 font-mono truncate">
-                {(candidate.terrainMetrics.flatAreaBlocks / 1000).toFixed(0)}k m²
+                {terrainMetrics?.flatAreaBlocks == null
+                  ? 'Unknown / pending evidence'
+                  : `${(terrainMetrics.flatAreaBlocks / 1000).toFixed(0)}k m²`}
               </div>
-              <span className="text-[9px] text-slate-500">Y=63–72 solid</span>
+              <span className="text-[9px] text-slate-500">
+                {terrainMetrics?.flatAreaBlocks == null ? 'Not measured' : 'Backend-reported area'}
+              </span>
             </div>
           </div>
 
           {/* Observed Structures with Euclidean Distances */}
           <div>
             <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5 font-semibold uppercase tracking-wider">
-              <span>Observed Key Structures ({candidate.structures.length})</span>
-              <span>Distance to (0,0) Hub</span>
+              <span>Recorded Structures ({candidate.structures.length})</span>
+              <span>Distance evidence</span>
             </div>
             <div className="max-h-44 overflow-y-auto space-y-1 bg-slate-950/50 p-2 rounded-lg border border-slate-800 text-xs">
               {candidate.structures.map((s) => {
-                const dist =
-                  s.distanceToHub ?? Math.round(Math.sqrt(s.x * s.x + s.z * s.z));
+                const dist = s.distanceToHub;
                 return (
                   <div
                     key={s.id}
@@ -273,8 +295,8 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                     </div>
                     <div className="flex items-center gap-3 font-mono text-[11px]">
                       <span className="text-slate-400">X:{s.x} Z:{s.z}</span>
-                      <span className="text-emerald-400 font-bold w-16 text-right">
-                        {dist}m
+                      <span className="text-emerald-400 font-bold w-32 text-right">
+                        {dist == null ? 'Unknown / pending evidence' : `${dist} ${s.distanceUnits ?? 'blocks'}`}
                       </span>
                     </div>
                   </div>
@@ -309,7 +331,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       )}
                     </span>
                     <span className="font-mono text-[10px] text-slate-400">
-                      X:{r.x} Z:{r.z} (Y={r.y})
+                      X:{r.x} Z:{r.z} (Y={r.y ?? 'unknown'})
                     </span>
                   </div>
                 ))}
@@ -323,12 +345,12 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <span className="font-medium truncate max-w-[110px]">{c.name}</span>
                     </span>
                     <span className="font-mono text-[10px] text-emerald-400 font-bold">
-                      Y={c.y}
+                      Y={c.y ?? 'unknown'}
                     </span>
                   </div>
                 ))}
               </div>
-              {candidate.ravines?.some((r) => r.giant && Math.hypot(r.x, r.z) <= 200) && (
+                  {isDemo && candidate.ravines?.some((r) => r.giant && Math.hypot(r.x, r.z) <= 200) && (
                 <div className="mt-2 p-2 bg-orange-950/30 border border-orange-500/40 rounded-lg flex items-center justify-between text-xs">
                   <span className="flex items-center gap-1.5 text-orange-300 font-semibold">
                     <span>🌋</span>
@@ -346,27 +368,35 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
           <div className="p-3.5 bg-slate-950 border border-blue-900/40 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-blue-300 flex items-center gap-1.5">
-                <span>🛡️</span> BDS 1.26.52.3 Container Ground Truth
+                <span>🛡️</span> Authoritative Bedrock Verification
               </span>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">
-                {candidate.bdsVerified ? 'VERIFIED PASSED' : 'PREDICTION-SCALE OK'}
+                {candidate.bdsVerified === true ? 'VERIFIED' : 'Unknown / pending evidence'}
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs text-slate-300">
-              <div>
-                <span className="text-slate-500">Palette Agreement: </span>
-                <span className="font-mono text-emerald-400 font-semibold">
-                  {candidate.bdsAccuracy.paletteAgreement}
-                </span>
+            {candidate.bdsVerified === true && candidate.bdsAccuracy ? (
+              <div className="grid grid-cols-2 gap-2 text-xs text-slate-300">
+                <div>
+                  <span className="text-slate-500">Palette Agreement: </span>
+                  <span className="font-mono text-emerald-400 font-semibold">
+                    {candidate.bdsAccuracy.paletteAgreement ?? 'Not reported'}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-slate-500">Height MAE: </span>
+                  <span className="font-mono text-emerald-400 font-semibold">
+                    {candidate.bdsAccuracy.heightMae == null
+                      ? 'Not reported'
+                      : `${candidate.bdsAccuracy.heightMae} blocks`}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className="text-slate-500">Height MAE: </span>
-                <span className="font-mono text-emerald-400 font-semibold">
-                  {candidate.bdsAccuracy.heightMae} blocks
-                </span>
-              </div>
-            </div>
+            ) : (
+              <p className="text-xs text-slate-400">
+                No authoritative Bedrock verification evidence is attached to this record.
+              </p>
+            )}
           </div>
         </div>
 
@@ -382,14 +412,14 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
             >
               📋 Copy Seed
             </button>
-            <a
+            {chunkbaseUrl && <a
               href={chunkbaseUrl}
               target="_blank"
               rel="noreferrer"
               className="px-3 py-1.5 rounded-lg bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 text-xs font-semibold flex items-center gap-1"
             >
               ↗ Open in Chunkbase
-            </a>
+            </a>}
           </div>
 
           <button

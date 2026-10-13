@@ -86,7 +86,7 @@ def import_positive(store,index,evidence,*,candidate_id=None,backend_factory=Bac
         from .reports import ensure_score_revision_complete
         ensure_score_revision_complete(store)
         previous_revision=store.get_state('rescore_revision')
-        centers=points if target is None else [tuple(target['stronghold'])]
+        centers=points if target is None else [tuple(target.get('evaluation_center',target['stronghold']))]
         configure_native_threads(cfg['search'].get('native_threads_per_worker',1))
         # DDL is transactional too; a failed evaluation/commit leaves no half import.
         store.db.execute('CREATE TABLE IF NOT EXISTS actual_anchor_recovery(candidate_id TEXT PRIMARY KEY,idx TEXT NOT NULL,observation_id TEXT NOT NULL)')

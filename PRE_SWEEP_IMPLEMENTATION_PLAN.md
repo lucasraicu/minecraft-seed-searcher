@@ -1,12 +1,12 @@
 # Final executable pre-sweep plan
 
-Phase 1 audit: 2026-10-13. **Not sweep-ready:** the checkpoint preserves recent work, including known release blockers below. Phase 2 must implement and verify these gates before promoting the new policy. No unlimited sweep is authorized by this plan.
+Phase 1 audit: 2026-10-13. Phase 2 executed W1–W5 against the versioned v2 policy, repaired the listed correctness blockers, and passed the 929-test backend suite, frontend build/lint, native/Python/replay parity gates, and five finite held-out benchmark pairs. The achieved readiness level is **bounded predictor sweep readiness**; actual Bedrock initial-player spawn, generated terrain and structure footprints remain pending external evidence. The CPU ledger records both measured adoptions and explicitly deferred ideas; no claim of exhaustive CPU optimization or unlimited sweep authorization follows from these results. See `PRE_SWEEP_IMPLEMENTATION_RESULTS.md` for final identities, timings and the finite launch command.
 
 ## Contract and reproducibility
 
 The active target is Bedrock 26.52, pinned model MC_26_50 and backend commit 294c72ab0392dd818a91d293dbd5774d4874d64b. Predictor starts, sampled biomes, website markers and actual BDS evidence are distinct. Fixed Overworld square is half-open [-1024,1024)²; Nether is [-512,512)². Origin is the evaluation center, never a fabricated Stronghold location.
 
-The new policy revision is `origin-fixed-2048-two-group-v2`, provided by `two_group_blueprint_config()` and `config/realm.yaml`. Historical `origin-fixed-2048-v1` and its helper remain reproducible. Phase 2 must select the new helper as CLI default, bind its defaults everywhere, and refuse older native ABIs. Both native and Python entry points explicitly refuse v2 until Phase 2 replaces the guards with verified hard-floor enforcement. Config acceptance is not enforcement.
+The active policy revision is `origin-fixed-2048-two-group-v2`, provided by `two_group_blueprint_config()` and `config/realm.yaml`. It is the CLI and live UI default; historical `origin-fixed-2048-v1` and its helper remain reproducible. Native v2 use refuses older ABIs. The former native/Python fail-closed guards were replaced by tested hard-floor, deficit-category and biome enforcement; config acceptance alone is still not proof of a candidate.
 
 | Category | Ideal | Fatal floor | Budget |
 |---|---:|---:|---|
@@ -23,7 +23,7 @@ The new policy revision is `origin-fixed-2048-two-group-v2`, provided by `two_gr
 
 B defaults to 2 and counts **deficit categories**, independently of fatal floors. Missing two Chambers is one category; a below-floor category rejects even with unused B. All required biome families remain mandatory: the old native `structure misses + missing biome families` formula must not apply to v2. At most eight flexible categories exist. Custom API ideals must remain >= fixed floors; strict categories and the fixed footprint cannot be relaxed accidentally. Persist the exact resolved config and budget in each run identity.
 
-Bonuses: first and second Mansion +50 each; second Stronghold +50; qualifying ravine within <=200 blocks of documented hub +35; river highway +35; third/fourth City +25 each; third/fourth Fortress +20 each; Bastions >=4 +20 each; second coastal Monument +25; Chambers >10 +10 each; Villages >7 and Portals >7 +5 each; Mineshafts >20 +1 each; Cherry/Badlands/Mushroom families +15 each. Deferred terrain bonuses require evidence, not generated illustrations. Keep any additional historical bonuses versioned rather than silently applying them to v2.
+Bonuses: first and second Mansion +50 each; second Stronghold +50; qualifying ravine within <=200 blocks of documented hub +35; river highway +35; third/fourth City +25 each; third/fourth Fortress +20 each; Bastions >=4 +20 each; second coastal Monument +25; Chambers >10 +10 each; Villages >7 and Portals >7 +5 each; Mineshafts >20 +1 each; Cherry/Badlands/Mushroom families +15 each. Preserve the nonconflicting existing second Outpost, Desert Pyramid and Jungle Temple bonuses (+10 each), and the Shipwreck count >5 bonus (+5). Deferred terrain bonuses require evidence, not generated illustrations.
 
 Baseline survivors pass Stages 1 and 2 under this policy, including permitted target deficits. Persist those rows and tasks before Stage 3. Missing ocean/marine evidence gives PENDING/NEAR_MATCH downstream and must not erase or revoke baseline survival. Record deficit categories separately from fatal reasons, biome failure, marine status, and actual-generation verification.
 
@@ -39,7 +39,7 @@ Completed in Phase 1:
 
 Historical origin result: 41,854 checkpointed inputs/sec, 21,735/sec including CLI startup; 30,000 distinct inputs repeated three times, no natural retained origin candidate. The claimed 44,972/sec lacks matched raw evidence in this audit. Neither is comparable to v2's stricter counts/floors. The new **same-policy control** must be frozen only after semantic repairs and before optimization. Record source/config/extension/runtime/compiler/linker hashes, exact commands, cohort interval/key, threads, batch/chunk, environment, wall time, counts and memory. Do not compare a v1 control to v2 as a speedup.
 
-### Release-blocking audit findings and owners
+### Phase 1 release-blocking audit findings, resolved in Phase 2
 
 | Location | Finding | Required fix / acceptance |
 |---|---|---|

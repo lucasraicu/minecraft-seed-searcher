@@ -5,7 +5,7 @@ from ..seeds import parse_seed
 
 def verify_surface_families(candidate, cfg, adapter, points, *, retry_failed=False):
     """Check positive family presence inside the configured candidate square."""
-    sx, sz = candidate['stronghold']
+    sx, sz = candidate.get('evaluation_center',candidate['stronghold'])
     half = cfg['deployment']['overworld_side_blocks']//2
     points = list(points)
     if not 1 <= len(points) <= 16:

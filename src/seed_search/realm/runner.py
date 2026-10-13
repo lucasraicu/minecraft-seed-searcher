@@ -148,7 +148,7 @@ def _scale_gate(cfg, output, count, allow_prediction_scale):
 def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, identity=None,
              evaluator="seed_search.realm.baseline:evaluate_seed", stop_after=None, progress=None,
              allow_prediction_scale=False, progress_interval_seconds=10, *, execution="python",
-             native_build=None, native_threads=16, native_batch_size=4096, retention="full", max_misses=0):
+             native_build=None, native_threads=16, native_batch_size=4096, retention="full", max_misses=None):
     """Run a finite interval; stop_after limits newly committed seeds in this invocation.
 
     A worker error stops dispatch, drains other submitted batches, and leaves the failed

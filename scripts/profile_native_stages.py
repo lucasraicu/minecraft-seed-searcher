@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from seed_search.backend import biome_catalog
 from seed_search.realm.native_batch import Prototype,Batch,NAMES,semantic_record
-from seed_search.realm.config import blueprint_config,locked_blueprint_config,outpost_blueprint_config
+from seed_search.realm.config import blueprint_config,locked_blueprint_config,outpost_blueprint_config,two_group_blueprint_config,two_group_policy
 from seed_search.realm.store import canonical
 from seed_search.seeds import seed_from_index,MASK64
 
@@ -60,17 +60,18 @@ def measured(prototype,seeds,threads,*,complete=False,profile=False):
     """Measure C call only; evidence extraction/aggregation happens afterward."""
     aggregate={section:{} for section in ('stages','biome_y','biome_ids','biome_families')}
     logical=0;unique=0;mansion_queries=mansion_cache_hits=0
+    misses=prototype.cfg['search']['max_misses'] if two_group_policy(prototype.cfg) else 1 if prototype.cfg.get('screening_revision') else 2
     if profile:
         ffi,lib=prototype.ffi,prototype.lib
         policy=ffi.new('NBPolicy *');ffi.memmove(policy,prototype.policy,ffi.sizeof('NBPolicy'))
-        policy.complete=int(complete);policy.retention=int(not complete);policy.max_misses=0 if complete else (1 if prototype.cfg.get('screening_revision') else 2)
+        policy.complete=int(complete);policy.retention=int(not complete);policy.max_misses=0 if complete else misses
         values=ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
         started=time.perf_counter();handle=lib.nb_profile_sweep(values,len(seeds),policy,threads)
         seconds=time.perf_counter()-started
         if handle==ffi.NULL:raise RuntimeError('Profile capacity/policy failure')
-        batch=Batch(prototype,handle.batch,seeds,seconds,complete,False,'full' if complete else 'survivors',0 if complete else (1 if prototype.cfg.get('screening_revision') else 2))
+        batch=Batch(prototype,handle.batch,seeds,seconds,complete,False,'full' if complete else 'survivors',0 if complete else misses)
     else:
-        batch=prototype.sweep(seeds,threads,complete=complete,retention='full' if complete else 'survivors',max_misses=0 if complete else (1 if prototype.cfg.get('screening_revision') else 2))
+        batch=prototype.sweep(seeds,threads,complete=complete,retention='full' if complete else 'survivors',max_misses=0 if complete else misses)
         seconds=batch.native_seconds
     try:
         pointer=batch.pointer
@@ -118,6 +119,7 @@ def main():
     parser.add_argument('--output',required=True,type=Path)
     parser.add_argument('--locked',action='store_true')
     parser.add_argument('--outpost',action='store_true')
+    parser.add_argument('--two-group',action='store_true')
     parser.add_argument('--count',type=int,default=10000)
     parser.add_argument('--diagnostic-count',type=int,default=128)
     parser.add_argument('--threads',type=int,default=32)
@@ -128,10 +130,11 @@ def main():
         parser.error('Bounded count 1–100,000, diagnostic count 1–512, trials 1–5 required')
     if args.output.exists():parser.error('Use a fresh output directory to retain earlier evidence')
     args.output.mkdir(parents=True)
-    cfg=outpost_blueprint_config() if args.outpost else locked_blueprint_config() if args.locked else blueprint_config();normal=Prototype(args.native,cfg);profile=Prototype(args.profile_native,cfg)
+    if sum((args.locked,args.outpost,args.two_group))>1:parser.error('Choose one policy revision')
+    cfg=two_group_blueprint_config() if args.two_group else outpost_blueprint_config() if args.outpost else locked_blueprint_config() if args.locked else blueprint_config();normal=Prototype(args.native,cfg);profile=Prototype(args.profile_native,cfg)
     if not profile.identity.get('profiling'):raise ValueError('Instrumented --profile build required')
     if not 1<=args.threads<=36 or not 1<=args.diagnostic_threads<=36:raise ValueError('Invalid thread budget')
-    active_phase='active_one_miss' if args.locked or args.outpost else 'active_two_miss'
+    active_phase='active_two_category' if args.two_group else 'active_one_miss' if args.locked or args.outpost else 'active_two_miss'
     arms={'normal':normal,'profile':profile};trials=[];overall={phase:{s:{} for s in ('stages','biome_y','biome_ids','biome_families')} for phase in (active_phase,'forced_complete_diagnostic')}
     for phase,count,key in [(active_phase,args.count,120264001000),('forced_complete_diagnostic',args.diagnostic_count,120265001000)]:
         complete=phase.startswith('forced')

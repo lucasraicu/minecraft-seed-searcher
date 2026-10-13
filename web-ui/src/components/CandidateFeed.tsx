@@ -22,16 +22,16 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
   const [filterMode, setFilterMode] = useState<'all' | 'continent' | 'baseline' | 'spawn50' | 'spawn100' | 'bds'>('all');
   const [sortBy, setSortBy] = useState<'score' | 'spawn' | 'structures'>('score');
 
-  const continentCount = candidates.filter((c) => c.terrainPassed !== false).length;
+  const continentCount = candidates.filter((c) => c.terrainPassed === true).length;
   const baselineCount = candidates.filter((c) => c.terrainPassed === false).length;
 
   const filtered = candidates
     .filter((c) => {
-      if (c.score < minScore) return false;
-      if (filterMode === 'continent' && c.terrainPassed === false) return false;
+      if (c.score !== null && c.score < minScore) return false;
+      if (filterMode === 'continent' && c.terrainPassed !== true) return false;
       if (filterMode === 'baseline' && c.terrainPassed !== false) return false;
-      if (filterMode === 'spawn50' && (c.spawnDistance ?? 999) > 50) return false;
-      if (filterMode === 'spawn100' && (c.spawnDistance ?? 999) > 100) return false;
+      if (filterMode === 'spawn50' && (c.spawnDistance == null || c.spawnDistance > 50)) return false;
+      if (filterMode === 'spawn100' && (c.spawnDistance == null || c.spawnDistance > 100)) return false;
       if (filterMode === 'bds' && !c.bdsVerified) return false;
       return true;
     })
@@ -42,7 +42,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
       if (sortBy === 'structures') {
         return b.structures.length - a.structures.length;
       }
-      return b.score - a.score;
+      return (b.score ?? -1) - (a.score ?? -1);
     });
 
   const handleCopySeed = (seed: string, e: React.MouseEvent) => {
@@ -53,6 +53,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
 
   const handleCopyTp = (c: SeedCandidate, e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!c.strongholdAnchor) return;
     const cmd = `/tp @s ${c.strongholdAnchor[0]} 100 ${c.strongholdAnchor[1]}`;
     navigator.clipboard.writeText(cmd);
     onCopyNotice(`Copied Teleport: ${cmd}`);
@@ -117,9 +118,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-cyan-600/40 text-cyan-300 border border-cyan-500/40'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Seeds certified with 70–80% Coastal Continent terrain"
+              title="Records with explicit passing terrain evidence"
             >
-              <span>🌊</span> Continent ({continentCount})
+              <span>🌊</span> Terrain pass ({continentCount})
             </button>
             <button
               onClick={() => setFilterMode('baseline')}
@@ -128,9 +129,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-amber-600/40 text-amber-300 border border-amber-500/40'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Seeds passing structure & biome floors (unconstrained terrain)"
+              title="Records with explicit failing terrain evidence"
             >
-              <span>🏰</span> Baseline ({baselineCount})
+              <span>Terrain fail ({baselineCount})</span>
             </button>
           </div>
 
@@ -143,9 +144,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Spawn point within 50m of (0,0)"
+              title="Supplied spawn distance is at most 50 blocks from the reference point"
             >
-              ≤50m Spawn
+              ≤50 blocks
             </button>
             <button
               onClick={() => setFilterMode('spawn100')}
@@ -154,9 +155,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Spawn point within 100m of (0,0)"
+              title="Supplied spawn distance is at most 100 blocks from the reference point"
             >
-              ≤100m Spawn
+              ≤100 blocks
             </button>
             <button
               onClick={() => setFilterMode('bds')}
@@ -179,7 +180,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
               className="bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5 text-[10px] text-white outline-none focus:border-emerald-500"
             >
               <option value="score">Highest Score</option>
-              <option value="spawn">Closest Spawn to (0,0)</option>
+              <option value="spawn">Closest Supplied Spawn</option>
               <option value="structures">Most Structures</option>
             </select>
           </div>
@@ -190,9 +191,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
       <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
         {filtered.map((cand) => {
           const isSelected = selectedCandidate?.id === cand.id;
-          const chunkbaseUrl =
-            cand.chunkbaseUrl ||
-            `https://www.chunkbase.com/apps/seed-map#${cand.seed}&version=b1.21&x=0&z=0`;
+          const chunkbaseUrl = cand.chunkbaseUrl;
 
           const villageCount = cand.structures.filter((s) => s.type === 'village').length;
           const trialCount = cand.structures.filter((s) => s.type === 'trial_chamber').length;
@@ -216,60 +215,68 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                 </span>
                 <span
                   className={`text-[11px] font-mono font-bold px-1.5 py-0.5 rounded ${
-                    cand.score >= 90
+                    cand.score !== null && cand.score >= 90
                       ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : cand.score >= 75
+                      : cand.score !== null && cand.score >= 75
                       ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                       : 'bg-slate-700 text-slate-300'
                   }`}
                 >
-                  {cand.score}
+                  {cand.score === null ? 'Unrated' : cand.score}
                 </span>
               </div>
 
               {/* Terrain, Spawn Distance & Verification Badges */}
               <div className="flex items-center gap-1.5 mb-2 flex-wrap">
                 {cand.provenance === 'reference' ? (
-                  <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-semibold border border-purple-500/30" title="Curated reference finalist from benchmark suite">
-                    ★ Reference
+                  <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-semibold border border-purple-500/30" title="Illustrative sample; not a live scan result">
+                    DEMO SAMPLE
                   </span>
-                ) : (
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-semibold border border-emerald-500/30" title="Live candidate discovered by native engine sweep">
+                ) : cand.provenance === 'live' ? (
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-semibold border border-emerald-500/30" title="Candidate record returned by the live backend">
                     ⚡ Live
                   </span>
+                ) : (
+                  <span className="px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 text-[10px] font-semibold border border-slate-600" title="Source provenance was not provided">
+                    Source unknown
+                  </span>
                 )}
-                {cand.terrainPassed !== false ? (
+                {cand.terrainPassed === true ? (
                   <span
                     className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-semibold border border-cyan-500/30"
-                    title="Certified Coastal Continent: 70–80% mainland & 320m ocean edge"
+                    title="Backend supplied a passing terrain result"
                   >
-                    🌊 Continent
+                    🌊 Terrain passed
                   </span>
-                ) : (
+                ) : cand.terrainPassed === false ? (
                   <span
                     className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-semibold border border-amber-500/30"
-                    title="Baseline Candidate: Passed structure & biome floors; terrain unconstrained"
+                    title="Backend supplied a failing terrain result"
                   >
-                    🏰 Baseline
+                    Terrain failed
+                  </span>
+                ) : (
+                  <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] border border-slate-700" title="Terrain evidence was not supplied">
+                    Terrain pending
                   </span>
                 )}
-                {cand.terrainType.includes('River Highway') && (
+                {cand.terrainMetrics?.riverCorridor && (
                   <span
                     className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-500/30"
-                    title="Jackpot River Highway: Navigable water corridor linking (0,0) to Sea (+35 pts)"
+                    title="River-corridor evidence supplied by backend"
                   >
-                    🛶 River Link (+35)
+                    🛶 River evidence
                   </span>
                 )}
                 {cand.ravines?.some((r) => r.giant && Math.hypot(r.x, r.z) <= 200) && (
                   <span
                     className="px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 text-[10px] font-semibold border border-orange-500/30"
-                    title="Jackpot Mega Ravine Hub: Giant magma chasm within ≤200m of (0,0) hub (+35 pts)"
+                    title="Ravine marker supplied by candidate record"
                   >
-                    🌋 Mega Ravine Hub (+35)
+                    🌋 Mega ravine marker
                   </span>
                 )}
-                {cand.spawnDistance !== undefined && (
+                {cand.spawnDistance != null && (
                   <span
                     className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold flex items-center gap-0.5 ${
                       cand.spawnDistance <= 50
@@ -278,12 +285,12 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                         ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                         : 'bg-red-500/20 text-red-300 border border-red-500/30'
                     }`}
-                    title={`Spawn Point: (${cand.spawnPoint?.[0] ?? 0}, ${cand.spawnPoint?.[1] ?? 0})`}
+                    title={cand.spawnPoint ? `Spawn coordinates: (${cand.spawnPoint[0]}, ${cand.spawnPoint[1]})` : 'Spawn distance supplied; coordinates pending'}
                   >
-                    🧭 {cand.spawnDistance}m spawn
+                    🧭 {cand.spawnDistance} {cand.spawnDistanceUnits ?? 'blocks'} spawn
                   </span>
                 )}
-                {cand.bdsVerified && (
+                {cand.bdsVerified === true && (
                   <span className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-500/30">
                     ✓ BDS Certified
                   </span>
@@ -319,7 +326,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                 {cand.structures.slice(0, 6).map((s) => (
                   <span
                     key={s.id}
-                    title={`${s.name} (${s.dimension}): ${s.distanceToHub ?? Math.round(Math.sqrt(s.x * s.x + s.z * s.z))}m from hub (X:${s.x}, Z:${s.z})`}
+                    title={`${s.name} (${s.dimension}): ${s.distanceToHub == null ? 'distance pending' : `${s.distanceToHub}${s.distanceUnits ?? ' blocks'} from reference`} (X:${s.x}, Z:${s.z}${s.y == null ? ', Y: unknown' : `, Y:${s.y}`})`}
                     className="opacity-90 hover:scale-125 transition-transform cursor-help"
                   >
                     {s.icon}
@@ -343,21 +350,22 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                 </button>
                 <button
                   onClick={(e) => handleCopyTp(cand, e)}
-                  className="flex-1 py-1 px-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors font-medium flex items-center justify-center gap-1"
-                  title="Copy /tp command"
+                  disabled={!cand.strongholdAnchor}
+                  className="flex-1 py-1 px-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:hover:bg-slate-800 text-slate-300 transition-colors font-medium flex items-center justify-center gap-1"
+                  title={cand.strongholdAnchor ? 'Copy teleport to supplied stronghold anchor' : 'Stronghold anchor coordinates are pending'}
                 >
                   🧭 /tp
                 </button>
-                <a
+                {chunkbaseUrl && <a
                   href={chunkbaseUrl}
                   target="_blank"
                   rel="noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   className="flex-1 py-1 px-1.5 rounded bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/30 transition-colors font-medium flex items-center justify-center gap-1"
-                  title="One-click open in Chunkbase Bedrock 1.21"
+                  title="Backend supplied a verified map link"
                 >
                   ↗ Map
-                </a>
+                </a>}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

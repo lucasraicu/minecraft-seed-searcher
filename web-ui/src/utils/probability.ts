@@ -1,17 +1,12 @@
 /**
- * Mathematical probability and selectivity engine for Bedrock seed generation
- * within the origin-fixed 2048 x 2048 Overworld and 1024 x 1024 Nether bounds.
+ * Planning heuristic for the pinned v2 Bedrock search policy.
  *
- * Calibrated directly against:
- * 1. The 1,846,578 retained candidate anchor dataset from the 1,000,000-seed benchmark
- *    (COUNT_REQUIREMENT_FEASIBILITY.md, million-count-feasibility.json).
- * 2. 2,000-seed native Bedrock C11 engine empirical counts on 2048x2048 Overworld & 1024x1024 Nether.
- * 3. Multi-noise climate lattice spatial models for 13 distinct biome families.
+ * Structure marginals and biome/terrain estimates come from separate historical
+ * models. The combined result assumes independence and is not a calibrated joint
+ * pass rate or a discovery guarantee.
  */
 
 import type { SearchConfig } from '../types';
-
-export const BENCHMARK_SEEDS_PER_SEC = 44972; // Intel Xeon W-2191B (18C/36T) AVX2 OpenMP
 
 // Helper to format fractional odds and percentages
 export function formatOdds(p: number): string {
@@ -28,24 +23,6 @@ export function formatOdds(p: number): string {
     return `1 in ${Math.round(1 / p).toLocaleString()} (${p.toExponential(2)})`;
   }
   return `1 in ${Math.round(1 / p).toExponential(2)}`;
-}
-
-// Helper to format duration in human-readable units
-export function formatDuration(sec: number): string {
-  if (sec < 0.05) return '<0.1 sec';
-  if (sec < 1.0) return `${sec.toFixed(2)} sec`;
-  if (sec < 60) return `${sec.toFixed(1)} sec`;
-  if (sec < 3600) {
-    const m = Math.floor(sec / 60);
-    const s = Math.round(sec % 60);
-    return `${m}m ${s}s`;
-  }
-  if (sec < 86400) {
-    const h = (sec / 3600).toFixed(1);
-    return `${h} hours`;
-  }
-  const d = (sec / 86400).toFixed(1);
-  return `${d} days`;
 }
 
 // --------------------------------------------------------------------------
@@ -280,46 +257,78 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
     bottleneck = sorted[0];
   }
 
-  const probs = activeEntries.map((e) => Math.max(1e-6, e.prob));
-  let baseP = 1.0;
+  const STRICT_IDS = new Set(['stronghold', 'pyramid', 'desert_pyramid', 'jungle_temple', 'outpost']);
+  const HARD_FLOORS: Record<string, number> = {
+    stronghold: 1,
+    desert_pyramid: 1,
+    pyramid: 1,
+    jungle_temple: 1,
+    outpost: 1,
+    mansion: 0,
+    ancient_city: 1,
+    fortress: 1,
+    bastion: 2,
+    trial_chamber: 8,
+    village: 5,
+    ruined_portal: 5,
+    mineshaft: 17,
+    monument: 1,
+    shipwreck: 3,
+  };
+  const IDEAL_TARGETS: Record<string, number> = {
+    stronghold: 1,
+    desert_pyramid: 1,
+    pyramid: 1,
+    jungle_temple: 1,
+    outpost: 1,
+    mansion: 1,
+    ancient_city: 2,
+    fortress: 2,
+    bastion: 3,
+    trial_chamber: 10,
+    village: 7,
+    ruined_portal: 7,
+    mineshaft: 20,
+    monument: 1,
+    shipwreck: 5,
+  };
 
-  if (probs.length > 0) {
-    const pExact = probs.reduce((acc, v) => acc * v, 1.0);
+  const strictEntries = activeEntries.filter((e) => STRICT_IDS.has(e.id));
+  const flexibleEntries = activeEntries.filter((e) => !STRICT_IDS.has(e.id));
 
-    if (config.maxMisses === 0 || probs.length <= 1) {
-      baseP = pExact;
-    } else if (config.maxMisses === 1) {
-      let sumMissOne = 0.0;
-      for (let j = 0; j < probs.length; j++) {
-        let term = 1.0 - probs[j];
-        for (let k = 0; k < probs.length; k++) {
-          if (k !== j) term *= probs[k];
-        }
-        sumMissOne += term;
+  // Strict categories: non-negotiable hard floors (never spend miss budget)
+  let pStrict = 1.0;
+  for (const s of strictEntries) {
+    pStrict *= Math.max(1e-6, s.prob);
+  }
+
+  // Flexible categories: Poisson-Binomial deficit polynomial under budget B
+  let pFlexible = 1.0;
+  if (flexibleEntries.length > 0) {
+    let poly = [1.0];
+    for (const f of flexibleEntries) {
+      const idealCount = IDEAL_TARGETS[f.id] ?? f.count;
+      const floorCount = HARD_FLOORS[f.id] ?? 0;
+      const pIdeal = calculateStructureProb(f.id, Math.max(f.count, idealCount));
+      const pFloor = calculateStructureProb(f.id, floorCount);
+      const dDeficit = Math.max(0.0, pFloor - pIdeal);
+
+      const nextPoly = new Array(poly.length + 1).fill(0.0);
+      for (let deg = 0; deg < poly.length; deg++) {
+        nextPoly[deg] += poly[deg] * pIdeal;
+        nextPoly[deg + 1] += poly[deg] * dDeficit;
       }
-      baseP = Math.min(1.0, pExact + sumMissOne);
-    } else {
-      let sumMissOne = 0.0;
-      for (let j = 0; j < probs.length; j++) {
-        let term = 1.0 - probs[j];
-        for (let k = 0; k < probs.length; k++) {
-          if (k !== j) term *= probs[k];
-        }
-        sumMissOne += term;
-      }
-      let sumMissTwo = 0.0;
-      for (let j = 0; j < probs.length; j++) {
-        for (let l = j + 1; l < probs.length; l++) {
-          let term = (1.0 - probs[j]) * (1.0 - probs[l]);
-          for (let k = 0; k < probs.length; k++) {
-            if (k !== j && k !== l) term *= probs[k];
-          }
-          sumMissTwo += term;
-        }
-      }
-      baseP = Math.min(1.0, pExact + sumMissOne + sumMissTwo);
+      poly = nextPoly;
+    }
+
+    const maxB = Math.max(0, Math.min(config.maxMisses, poly.length - 1));
+    pFlexible = 0.0;
+    for (let b = 0; b <= maxB; b++) {
+      pFlexible += poly[b];
     }
   }
+
+  const baseP = pStrict * pFlexible;
 
   // Nether pair & overlap factor
   let netherMultiplier = 1.0;
@@ -330,7 +339,7 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
   }
 
   const finalProb = Math.max(1e-12, baseP * netherMultiplier);
-  const pExactAll = probs.reduce((acc, v) => acc * v, 1.0) * netherMultiplier;
+  const pExactAll = activeEntries.map((e) => Math.max(1e-6, e.prob)).reduce((acc: number, v: number) => acc * v, 1.0) * netherMultiplier;
   const toleranceBoost = pExactAll > 0 ? finalProb / pExactAll : 1.0;
 
   return {
@@ -352,18 +361,22 @@ export const BIOME_MARGINAL_RATES: Record<string, number> = {
   forest: 0.986,
   taiga: 0.766,
   mountains: 0.778,
+  peaks: 0.542,
   deep_dark: 0.768,
   caves: 0.962,
+  lush_caves: 0.958,
   dripstone_caves: 0.824,
   jungle: 0.616,
   snowy_ice: 0.566,
   swamp: 0.34,
+  dark_forest: 0.458,
   cherry_grove: 0.39,
   desert: 0.242,
   pale_garden: 0.204,
   badlands: 0.192,
   mushroom_fields: 0.092,
   ocean: 0.85,
+  stony_shore: 0.680,
 };
 
 export interface BiomeFeasibility {
@@ -420,6 +433,7 @@ export function computeBiomeFeasibility(config: SearchConfig): BiomeFeasibility 
   const hasCherry = selected.includes('cherry_grove');
   const hasPale = selected.includes('pale_garden');
   const hasMushroom = selected.includes('mushroom_fields');
+  const hasDarkForest = selected.includes('dark_forest');
 
   if (hasCold) jointP *= 0.65;
   if (hasJungle) jointP *= 0.7;
@@ -429,6 +443,7 @@ export function computeBiomeFeasibility(config: SearchConfig): BiomeFeasibility 
   } else if (hasDesert || hasBadlands) {
     jointP *= 0.35;
   }
+  if (hasDarkForest) jointP *= 0.55;
   if (hasCherry) jointP *= 0.42;
   if (hasPale) jointP *= 0.25;
   if (hasMushroom) jointP *= 0.12;
@@ -531,9 +546,7 @@ export function computeTerrainFeasibility(config: SearchConfig): TerrainFeasibil
 export interface TotalFeasibilityAssessment {
   jointProbability: number;
   expectedSeedsNeeded: number;
-  expectedSweepSeconds: number;
   formattedOdds: string;
-  formattedTime: string;
   feasibilityRating: 'Instant' | 'High' | 'Balanced' | 'Rare' | 'Extreme' | 'Astronomical';
   color: string;
   structures: StructureFeasibility;
@@ -548,7 +561,6 @@ export function computeTotalFeasibility(config: SearchConfig): TotalFeasibilityA
 
   const totalP = Math.max(1e-12, structures.probability * biomes.probability * terrain.probability);
   const expectedSeeds = Math.round(1.0 / totalP);
-  const expectedSec = expectedSeeds / BENCHMARK_SEEDS_PER_SEC;
 
   let rating: TotalFeasibilityAssessment['feasibilityRating'] = 'Balanced';
   let color = 'text-emerald-400';
@@ -576,9 +588,7 @@ export function computeTotalFeasibility(config: SearchConfig): TotalFeasibilityA
   return {
     jointProbability: totalP,
     expectedSeedsNeeded: expectedSeeds,
-    expectedSweepSeconds: expectedSec,
     formattedOdds: formatOdds(totalP),
-    formattedTime: formatDuration(expectedSec),
     feasibilityRating: rating,
     color,
     structures,

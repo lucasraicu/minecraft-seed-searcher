@@ -375,7 +375,7 @@ class VerificationAdapter:
         return Raster(**result['raster'])
 
     def verify_candidate(self, candidate, bounds=None, **kwargs):
-        sx, sz = candidate['stronghold']
+        sx, sz = candidate.get('evaluation_center',candidate['stronghold'])
         bounds = bounds or candidate.get('bounds', {}).get('overworld') or square((sx,sz), self.cfg.get('deployment', {}).get('overworld_side_blocks', 1536))
         if isinstance(bounds, dict):
             bounds = bounds['overworld']
@@ -388,7 +388,8 @@ class VerificationAdapter:
 
     def verify_final_nether(self, seed, stronghold, *, evidence=None):
         return final_nether_evidence(seed, stronghold, evidence, self.identity,
-                                     side=self.cfg.get('deployment', {}).get('nether_side_blocks', 896))
+                                     side=self.cfg.get('deployment', {}).get('nether_side_blocks', 896),
+                                     center_kind='world_origin' if self.cfg.get('screening_revision','').startswith('origin-fixed-2048') else 'stronghold')
 
     def sample_caves(self, seed, bounds, spacing=128, ys=(0,-16,-32,-48)):
         """Explicit manual coarse cave inventory, with no absence certification."""
@@ -720,7 +721,7 @@ def raster_from_columns(bounds, spacing, columns, evidence):
                       'limitations':['Structure provenance unavailable; cover can hide substrate; fractional fluid surface height unverified; new column policy awaiting pinned-runtime validation', 'Sparse sampling cannot certify unsampled connectivity']})
 
 
-def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, side=896):
+def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, side=896, center_kind='stronghold'):
     seed = str(parse_seed(seed))
     sx,sz = stronghold
     if any(isinstance(v,bool) or not isinstance(v,int) for v in stronghold):
@@ -728,7 +729,8 @@ def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, sid
     exact_bounds = nether_square(stronghold, side)
     lo_x, lo_z, hi_x, hi_z = native_bounds(exact_bounds)
     bounds = [lo_x, lo_z, hi_x+1, hi_z+1]
-    result = {'seed':seed, 'stronghold':list(stronghold), 'center':[sx/8,sz/8], 'bounds':bounds,
+    result = {'seed':seed, 'stronghold':list(stronghold) if center_kind=='stronghold' else None,
+              'evaluation_center':list(stronghold),'center_kind':center_kind,'center':[sx/8,sz/8], 'bounds':bounds,
               'half_open':True, 'required':['fortress','bastion'], 'status':'PARTIAL', 'structures':{},
               'reason':'Stable Script API does not support exhaustive structure enumeration; import actual pinned-generation evidence'}
     if not evidence:

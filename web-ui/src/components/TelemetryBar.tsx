@@ -3,6 +3,7 @@ import type { TelemetryState } from '../types';
 
 interface TelemetryBarProps {
   telemetry: TelemetryState;
+  dataMode: 'demo' | 'live';
   onToggleSweep: () => void;
   onOpenFunnel: () => void;
   onExport: () => void;
@@ -10,6 +11,7 @@ interface TelemetryBarProps {
 
 export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   telemetry,
+  dataMode,
   onToggleSweep,
   onOpenFunnel,
   onExport,
@@ -36,6 +38,8 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
 
   const remaining = Math.max(0, telemetry.targetCount - telemetry.totalScanned);
   const etaSec = telemetry.seedsPerSec > 0 ? Math.ceil(remaining / telemetry.seedsPerSec) : 0;
+  const hasLiveTelemetry =
+    dataMode === 'live' && (telemetry.status === 'running' || Boolean(telemetry.runId));
 
   return (
     <header className="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between z-20 shadow-md">
@@ -50,12 +54,20 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
               Bedrock Seed Searcher
             </h1>
             <span className="text-[10px] text-slate-400 font-mono">
-              Intel Xeon W-2191B • C11 OpenMP Native
+              {dataMode === 'demo' ? 'Illustrative sample data' : 'Live backend status'}
             </span>
           </div>
         </div>
 
         <div className="h-6 w-px bg-slate-800"></div>
+
+        <span className={`px-2 py-1 rounded text-[10px] font-bold tracking-wide border ${
+          dataMode === 'demo'
+            ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+            : 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+        }`}>
+          {dataMode === 'demo' ? 'DEMO PREVIEW' : 'LIVE'}
+        </span>
 
         {/* Global Status Pill */}
         <div className="flex items-center gap-2">
@@ -85,7 +97,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           <div className="flex flex-col text-right">
             <span className="text-[10px] text-slate-400 uppercase font-semibold">Throughput</span>
             <span className="font-mono text-sm font-bold text-emerald-400">
-              {telemetry.seedsPerSec.toLocaleString()}{' '}
+              {hasLiveTelemetry ? telemetry.seedsPerSec.toLocaleString() : '—'}{' '}
               <span className="text-[10px] text-slate-500 font-normal">seeds/s</span>
             </span>
           </div>
@@ -119,10 +131,10 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           </div>
           <div className="flex items-baseline gap-1.5 font-mono">
             <span className="text-sm font-bold text-slate-200">
-              {telemetry.totalScanned.toLocaleString()}
+              {hasLiveTelemetry ? telemetry.totalScanned.toLocaleString() : '—'}
             </span>
             <span className="text-[10px] text-slate-500">
-              / {telemetry.targetCount.toLocaleString()}
+              / {hasLiveTelemetry ? telemetry.targetCount.toLocaleString() : '—'}
             </span>
           </div>
           {telemetry.status === 'running' && etaSec > 0 && (
@@ -136,9 +148,13 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
         <div className="flex flex-col">
           <span className="text-[10px] text-slate-400 uppercase font-semibold">Elapsed / RSS</span>
           <span className="font-mono text-xs font-semibold text-slate-300">
-            {formatTime(telemetry.elapsedSeconds)}{' '}
+            {hasLiveTelemetry ? formatTime(telemetry.elapsedSeconds) : '—'}{' '}
             <span className="text-slate-500">•</span>{' '}
-            <span className="text-cyan-400">{telemetry.memoryRssGib} GB</span>
+            <span className="text-cyan-400">
+              {hasLiveTelemetry && telemetry.memoryRssGib !== null
+                ? `${telemetry.memoryRssGib} GB RSS`
+                : 'RSS unknown'}
+            </span>
           </span>
         </div>
       </div>

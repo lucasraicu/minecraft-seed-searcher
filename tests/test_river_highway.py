@@ -37,7 +37,8 @@ def test_river_revision_active_floors_and_old_revision_are_distinct():
     from seed_search.realm.cli import load
     cfg=river_blueprint_config();validate_config(cfg);old=locked_blueprint_config();validate_config(old)
     explicit=yaml.safe_load((ROOT/'config/realm.yaml').read_text());validate_config(explicit)
-    assert load(None)['screening_revision']==origin_blueprint_config()['screening_revision']
+    assert load(None)['screening_revision']==two_group_blueprint_config()['screening_revision']
+    assert origin_blueprint_config()['screening_revision']=='origin-fixed-2048-v1'
     assert explicit['structures']==two_group_blueprint_config()['structures']
     assert explicit['terrain']['v1']==origin_blueprint_config()['terrain']['v1']
     assert cfg['structures']['nether_minimum_counts']=={'fortress':2,'bastion':3}

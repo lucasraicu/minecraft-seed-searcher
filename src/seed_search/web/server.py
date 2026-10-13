@@ -13,20 +13,26 @@ import http.server
 import json
 import math
 import os
-import resource
+import platform
 import sqlite3
 import subprocess
 import sys
 import threading
 import time
+import uuid
 from pathlib import Path
 from urllib.parse import urlparse
+
+import yaml
+
+from seed_search.realm.config import two_group_blueprint_config, validate_config
+from seed_search.realm.runner import process_tree_resources
 
 # Base paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
-DEFAULT_NATIVE_BUILD = PROJECT_ROOT / "runs" / "origin-fixed-pilot-2026-10-13" / "final-native"
+DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'pre-sweep-v2-2026-10-13' / 'control-native')))
 
 
 class SweepManager:
@@ -45,20 +51,44 @@ class SweepManager:
         self.status: str = "idle"  # idle | running | completed | stopped | error
         self.error_message: str | None = None
         self.logs: list[str] = [
-            "Server initialized. C11 OpenMP kernel ready at runs/origin-fixed-pilot-2026-10-13/final-native",
-            "Host: Intel(R) Xeon(R) W-2191B (18 Cores, 36 Threads) • Bedrock 1.21+",
+            f"Server initialized. Native build: {DEFAULT_NATIVE_BUILD}",
+            f"Host: {platform.processor() or platform.machine()} • target Bedrock 26.52 predictor",
         ]
         self.candidates: list[dict] = []
         self.history: list[int] = [0] * 12
         self.monitor_thread: threading.Thread | None = None
+        self.generation = 0
+        self.threads = 0
+        self.effective_config: dict | None = None
 
     def start_sweep(
         self,
         count: int = 100000,
-        threads: int = 32,
+        threads: int = 34,
         batch_size: int = 16384,
-        max_misses: int = 1,
+        max_misses: int = 2,
+        counts: dict | None = None,
     ) -> dict:
+        try:
+            if any(type(v) is not int for v in (count,threads,batch_size,max_misses)):
+                raise ValueError('Sweep controls must be integers')
+            if not 1<=count<=100000 or not 1<=threads<=36 or not 1<=batch_size<=16384 or not 0<=max_misses<=8:
+                raise ValueError('Sweep controls outside supported bounded ranges')
+            if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
+                raise ValueError('counts must map structure names to integer ideals')
+            cfg=two_group_blueprint_config()
+            cfg['search']['max_misses']=max_misses
+            allowed=set(cfg['structures']['minimum_counts'])|set(cfg['structures']['nether_minimum_counts'])
+            if counts and set(counts)-allowed:raise ValueError('Unsupported structure count key')
+            for key,value in (counts or {}).items():
+                group='nether_minimum_counts' if key in cfg['structures']['nether_minimum_counts'] else 'minimum_counts'
+                cfg['structures'][group][key]=value
+            validate_config(cfg)
+            if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native v2 build is unavailable')
+            from seed_search.realm.native_batch import Prototype
+            Prototype(DEFAULT_NATIVE_BUILD,cfg)
+        except (ValueError,KeyError,TypeError,OSError,ImportError) as exc:
+            return {'ok':False,'error':str(exc)}
         with self.lock:
             if self.process is not None and self.process.poll() is None:
                 return {
@@ -68,9 +98,15 @@ class SweepManager:
                 }
 
             timestamp = time.strftime("%Y%m%d-%H%M%S")
-            self.run_id = f"web-sweep-{timestamp}"
+            self.run_id = f"web-sweep-{timestamp}-{uuid.uuid4().hex[:8]}"
             self.run_dir = RUNS_DIR / self.run_id
             self.run_dir.mkdir(parents=True, exist_ok=True)
+            policy_path=self.run_dir/'policy.yaml'
+            policy_path.write_text(yaml.safe_dump(cfg,sort_keys=False))
+            self.effective_config=cfg
+            self.threads=threads
+            self.generation+=1
+            generation=self.generation
             self.target_count = count
             self.scanned_count = 0
             self.seeds_per_sec = 0.0
@@ -88,6 +124,8 @@ class SweepManager:
                 python_bin,
                 "-m",
                 "seed_search",
+                "--config",
+                str(policy_path),
                 "scan",
                 "--count",
                 str(count),
@@ -135,69 +173,48 @@ class SweepManager:
                 return {"ok": False, "error": str(e)}
 
             self.monitor_thread = threading.Thread(
-                target=self._monitor_process, daemon=True
+                target=self._monitor_process, args=(self.process,self.run_dir,generation), daemon=True
             )
             self.monitor_thread.start()
 
-            return {"ok": True, "runId": self.run_id, "status": "running"}
+            return {"ok": True, "runId": self.run_id, "status": "running", "effectiveConfig":cfg,
+                    "command":cmd}
 
-    def _monitor_process(self):
+    def _monitor_process(self,proc,run_dir,generation):
         """Reads stdout/stderr asynchronously and updates progress."""
-        proc = self.process
-        if not proc or not proc.stdout:
+        if not proc or not proc.stdout or not proc.stderr:
             return
-
         stdout_chunks = []
-        for line in proc.stdout:
-            stdout_chunks.append(line)
-            # Live check db periodically
-            if len(stdout_chunks) % 5 == 0:
-                with self.lock:
-                    self._query_sqlite_progress()
-
+        stderr_chunks=[]
+        def drain(stream,output):
+            for line in stream:
+                output.append(line)
+                if len(output)>200:del output[:-200]
+        out_thread=threading.Thread(target=drain,args=(proc.stdout,stdout_chunks),daemon=True)
+        err_thread=threading.Thread(target=drain,args=(proc.stderr,stderr_chunks),daemon=True)
+        out_thread.start();err_thread.start()
         proc.wait()
-        raw_output = "".join(stdout_chunks).strip()
+        out_thread.join();err_thread.join()
 
         with self.lock:
+            if generation!=self.generation or run_dir!=self.run_dir:return
             self.end_time = time.time()
             elapsed = max(0.001, self.end_time - self.start_time)
-
-            # Try parsing final summary JSON
-            try:
-                first_brace = raw_output.find("{")
-                last_brace = raw_output.rfind("}")
-                if first_brace != -1 and last_brace != -1:
-                    data = json.loads(raw_output[first_brace : last_brace + 1])
-                    if isinstance(data, dict):
-                        self.scanned_count = data.get("completed_seeds", self.scanned_count)
-                        if "execution" in data and isinstance(data["execution"], dict):
-                            rate = data["execution"].get("checkpointed_scanned_inputs_per_second", 0)
-                            if rate:
-                                self.seeds_per_sec = round(rate)
-                                self._record_throughput(self.seeds_per_sec)
-            except Exception:
-                pass
-
             # Sync from SQLite
             self._query_sqlite_progress()
             self._query_sqlite_candidates()
+            self.seeds_per_sec=round(self.scanned_count/elapsed) if self.scanned_count else 0
+            self._record_throughput(self.seeds_per_sec)
 
             if proc.returncode == 0:
                 self.status = "completed"
-                if self.scanned_count == 0:
-                    self.scanned_count = self.target_count
-                if self.seeds_per_sec == 0 and elapsed > 0:
-                    self.seeds_per_sec = round(self.scanned_count / elapsed)
-                self._record_throughput(self.seeds_per_sec)
                 self.logs.insert(
                     0,
                     f"Sweep complete! Scanned {self.scanned_count:,} seeds in {elapsed:.2f}s ({self.seeds_per_sec:,} seeds/s)",
                 )
             else:
                 self.status = "error" if self.status != "stopped" else "stopped"
-                err_text = ""
-                if proc.stderr:
-                    err_text = proc.stderr.read().strip()
+                err_text = "".join(stderr_chunks).strip()
                 self.logs.insert(
                     0,
                     f"Process exited with code {proc.returncode}. {err_text[:200]}",
@@ -217,16 +234,6 @@ class SweepManager:
             row = cur.fetchone()
             if row and row[0]:
                 self.scanned_count = int(row[0])
-            cur.execute("SELECT value FROM meta WHERE key = 'native_pipeline'")
-            row2 = cur.fetchone()
-            if row2 and row2[0]:
-                pipe_data = json.loads(row2[0])
-                native_sec = pipe_data.get("service_seconds", {}).get("native_seconds", 0)
-                if native_sec > 0:
-                    rate = round(self.scanned_count / native_sec)
-                    if rate > 0 and (self.seeds_per_sec == 0 or self.status == "completed"):
-                        self.seeds_per_sec = rate
-                        self._record_throughput(rate)
             conn.close()
         except Exception:
             pass
@@ -238,18 +245,18 @@ class SweepManager:
 
     def stop_sweep(self) -> dict:
         with self.lock:
-            if self.process is not None and self.process.poll() is None:
-                try:
-                    self.process.terminate()
-                    time.sleep(0.3)
-                    if self.process.poll() is None:
-                        self.process.kill()
-                except Exception as e:
-                    self.logs.insert(0, f"Error terminating process: {e}")
-                self.status = "stopped"
-                self.logs.insert(0, "Sweep aborted by user.")
-                return {"ok": True, "status": "stopped"}
-            return {"ok": False, "error": "No active sweep to stop"}
+            proc=self.process
+            if proc is None or proc.poll() is not None:
+                return {"ok": False, "error": "No active sweep to stop"}
+            self.status="stopped"
+            self.logs.insert(0,"Sweep stopped by user.")
+        try:
+            proc.terminate()
+            try:proc.wait(timeout=2)
+            except subprocess.TimeoutExpired:proc.kill()
+        except Exception as exc:
+            with self.lock:self.logs.insert(0,f"Error terminating process: {exc}")
+        return {"ok":True,"status":"stopped"}
 
     def _query_sqlite_candidates(self):
         """Extracts candidates from the active or latest run's SQLite file."""
@@ -294,8 +301,7 @@ class SweepManager:
                     if cand:
                         parsed.append(cand)
 
-            if parsed:
-                self.candidates = parsed
+            self.candidates = parsed
             conn.close()
         except Exception as e:
             self.logs.insert(0, f"Error reading candidates DB: {e}")
@@ -307,8 +313,7 @@ class SweepManager:
                 elapsed = max(0, now - self.start_time)
                 self._query_sqlite_progress()
                 self._query_sqlite_candidates()
-                if self.scanned_count > 0 and self.seeds_per_sec == 0:
-                    self.seeds_per_sec = round(self.scanned_count / max(0.001, elapsed))
+                self.seeds_per_sec=round(self.scanned_count/max(0.001,elapsed)) if self.scanned_count else 0
             elif self.end_time > 0:
                 elapsed = self.end_time - self.start_time
                 if self.scanned_count == 0 and self.run_dir:
@@ -316,14 +321,9 @@ class SweepManager:
             else:
                 elapsed = 0
 
-            # Memory RSS
-            try:
-                rss_bytes = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-                rss_gib = round(rss_bytes / (1024 * 1024 * 1024), 2)
-                if rss_gib < 0.1:
-                    rss_gib = round(rss_bytes / (1024 * 1024), 2)
-            except Exception:
-                rss_gib = 3.8
+            active_pid=getattr(self.process,'pid',None) if self.status=='running' and self.process is not None and self.process.poll() is None else None
+            resources=process_tree_resources(active_pid) if active_pid is not None else {'available':False}
+            rss_gib=round(resources['rss_bytes']/(1024**3),3) if resources['available'] else None
 
             progress_pct = (
                 round((self.scanned_count / max(1, self.target_count)) * 100, 1)
@@ -341,7 +341,9 @@ class SweepManager:
                 "candidatesFound": len(self.candidates),
                 "sweepProgress": min(100.0, progress_pct),
                 "memoryRssGib": rss_gib,
-                "activeThreads": 32 if self.status == "running" else 0,
+                "activeThreads": self.threads if self.status == "running" else 0,
+                "throughputScope":"durable SQLite completed inputs / elapsed wall seconds",
+                "effectiveConfig":self.effective_config,
                 "history": list(self.history),
                 "logs": self.logs[:30],
                 "candidates": self.candidates,
@@ -356,15 +358,14 @@ def parse_candidate_row(
         data = json.loads(raw_res) if isinstance(raw_res, str) else raw_res
     except Exception:
         return None
-
-    stronghold = data.get("stronghold", [0, 0])
-    # Strict origin-fixed policy check: Stronghold MUST be within [-1024, 1024]
-    if len(stronghold) >= 2:
-        if abs(stronghold[0]) > 1024 or abs(stronghold[1]) > 1024:
-            return None
+    if not isinstance(data,dict):return None
 
     req_overworld = data.get("required_structures", {})
     req_nether = data.get("required_nether_structures", {})
+    actual_strongholds=req_overworld.get('stronghold',{}).get('predicted_viable',[])
+    stronghold=actual_strongholds[0] if actual_strongholds else None
+    center=data.get('evaluation_center')
+    if not isinstance(center,list) or len(center)!=2:center=[0,0]
 
     STRUCTURE_METAS = {
         "stronghold": {"name": "Stronghold Portal", "icon": "🏰", "color": "#10b981", "dim": "overworld"},
@@ -389,93 +390,93 @@ def parse_candidate_row(
 
     # Overworld structures
     for stype, sdata in req_overworld.items():
-        coords_list = sdata.get("coordinates", []) or sdata.get("predicted_viable", [])
+        coords_list = sdata.get("predicted_viable", [])
         meta = STRUCTURE_METAS.get(stype, {"name": stype.title(), "icon": "📍", "color": "#ffffff", "dim": "overworld"})
         for c in coords_list:
             if len(c) >= 2:
                 x, z = c[0], c[1]
-                dist = round(math.sqrt(x * x + z * z))
+                dist = round(math.hypot(x-center[0],z-center[1]),1)
                 structures.append({
                     "id": f"s-{idx}",
                     "type": stype,
                     "name": meta["name"],
                     "x": x,
                     "z": z,
-                    "y": 64 if stype != "ancient_city" else -52,
+                    "y": None,
                     "dimension": meta["dim"],
                     "icon": meta["icon"],
                     "color": meta["color"],
                     "viable": True,
                     "distanceToHub": dist,
+                    "distanceUnits":"overworld horizontal blocks",
+                    "hubKind":"world_origin" if center==[0,0] else "evaluation_center",
+                    "evidenceStatus":sdata.get('data_status','PREDICTED'),
                 })
                 idx += 1
 
     # Nether structures
     for stype, sdata in req_nether.items():
-        coords_list = sdata.get("coordinates", []) or sdata.get("predicted_viable", [])
+        coords_list = sdata.get("predicted_viable", [])
         meta = STRUCTURE_METAS.get(stype, {"name": stype.title(), "icon": "📍", "color": "#ffffff", "dim": "nether"})
         for c in coords_list:
             if len(c) >= 2:
                 x, z = c[0], c[1]
-                dist = round(math.sqrt(x * x + z * z))
+                dist = round(math.hypot(x-center[0]/8,z-center[1]/8),1)
                 structures.append({
                     "id": f"s-{idx}",
                     "type": stype,
                     "name": meta["name"],
                     "x": x,
                     "z": z,
-                    "y": 64,
+                    "y": None,
                     "dimension": meta["dim"],
                     "icon": meta["icon"],
                     "color": meta["color"],
                     "viable": True,
                     "distanceToHub": dist,
+                    "distanceUnits":"nether horizontal blocks",
+                    "hubKind":"evaluation_center_scaled_to_nether",
+                    "evidenceStatus":sdata.get('data_status','PREDICTED'),
                 })
                 idx += 1
 
-    # Spawn Point estimation (within 100m)
-    spawn_x = int((hash(str(seed) + "x") % 120) - 60)
-    spawn_z = int((hash(str(seed) + "z") % 120) - 60)
-    spawn_dist = round(math.sqrt(spawn_x * spawn_x + spawn_z * spawn_z), 1)
-
-    chunkbase_url = f"https://www.chunkbase.com/apps/seed-map#{seed}&version=b1.21&x=0&z=0"
-
-    ravines = predict_candidate_ravines(seed)
-    cave_clusters = predict_candidate_cave_clusters(seed, data)
+    spawn_evidence=data.get('spawn_stage') or {}
+    point=spawn_evidence.get('coordinates') if isinstance(spawn_evidence,dict) else None
+    spawn_point=[point[0],point[2]] if isinstance(point,list) and len(point)==3 and all(type(v) in (int,float) for v in point) else None
+    spawn_dist=round(math.hypot(spawn_point[0]-center[0],spawn_point[1]-center[1]),1) if spawn_point else None
+    biomes=data.get('biomes') or {}
+    verified=data.get('actual_generation_verification') or {}
+    terrain=data.get('terrain_status') or {}
+    terrain_source=terrain.get('source') if isinstance(terrain,dict) else None
+    terrain_metrics=terrain.get('metrics') if isinstance(terrain_source,dict) and terrain_source.get('kind')=='actual_generation' else None
+    actual_source=verified.get('source') if isinstance(verified,dict) else None
+    actual_verified=verified.get('status')=='VERIFIED' and isinstance(actual_source,dict) and actual_source.get('kind')=='actual_generation'
 
     return {
         "id": f"cand-{seed}",
         "seed": str(seed),
-        "score": round(float(score or 65.0), 1),
-        "strongholdAnchor": stronghold if len(stronghold) >= 2 else [0, 0],
-        "spawnPoint": [spawn_x, spawn_z],
+        "score": round(float(score),1) if score is not None else None,
+        "strongholdAnchor": stronghold,
+        "evaluationCenter":center,
+        "predictedStrongholds":actual_strongholds,
+        "spawnPoint": spawn_point,
         "spawnDistance": spawn_dist,
-        "chunkbaseUrl": chunkbase_url,
-        "terrainType": "Coastal Continent (River Highway)" if has_terrain_pass else "Baseline (Structures Only)",
+        "spawnEvidence":spawn_evidence if isinstance(spawn_evidence,dict) else None,
+        "spawnStatus":spawn_evidence.get('status','PENDING') if isinstance(spawn_evidence,dict) else 'PENDING',
+        "chunkbaseUrl": None,
+        "terrainType": "Coastal terrain evidence" if has_terrain_pass else "Baseline structure prediction",
         "terrainPassed": has_terrain_pass,
-        "terrainMetrics": {
-            "diameter": 1650 if has_terrain_pass else 1250,
-            "waterEnclosure": 0.84 if has_terrain_pass else 0.50,
-            "mainlandFraction": 0.78 if has_terrain_pass else 0.60,
-            "oceanEdge": "West Shoreline (320m deep sea corridor)" if has_terrain_pass else "Unconstrained",
-            "riverCorridor": "Navigable River linking Stronghold Hub to West Ocean" if has_terrain_pass else "Unconstrained",
-            "elevationRange": [63, 140] if has_terrain_pass else [63, 115],
-            "flatAreaBlocks": 240000 if has_terrain_pass else 180000,
-        },
+        "terrainMetrics":terrain_metrics,
         "structures": structures,
-        "ravines": ravines,
-        "caveClusters": cave_clusters,
-        "biomes": [
-            "Plains", "Desert", "Forest", "Taiga", "Jungle",
-            "Swamp", "Snowy Plains", "Dark Forest", "Jagged Peaks",
-            "Cherry Grove", "Badlands", "Deep Dark", "Lush Caves"
-        ],
-        "bdsVerified": True if score and score >= 90 else False,
-        "bdsAccuracy": {
-            "paletteAgreement": "100% (64/64 probes)" if score and score >= 90 else "98.4%",
-            "heightMae": 0.5,
-            "settledColumns": 16,
-        },
+        "ravines": data.get('ravines',[]) if data.get('ravine_evidence',{}).get('kind')=='actual_generation' else [],
+        "caveClusters": data.get('cave_clusters',[]) if data.get('cave_evidence',{}).get('kind')=='actual_generation' else [],
+        "biomes": biomes.get('raw_names',[]) if isinstance(biomes,dict) else [],
+        "bdsVerified": actual_verified,
+        "bdsAccuracy": verified.get('metrics') if actual_verified else None,
+        "baselineStatus":data.get('baseline_qualification',data.get('qualification','PENDING')),
+        "marineStatus":(data.get('marine_stage') or {}).get('status','DEFERRED'),
+        "actualGenerationStatus":verified.get('status','PENDING'),
+        "screeningRevision":data.get('screening_revision'),
         "discoveredAt": time.strftime("%H:%M:%S"),
         "provenance": "live",
     }
@@ -656,14 +657,18 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(DIST_DIR), **kwargs)
 
     def end_headers(self):
-        # Enable CORS for local dev
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        origin=self.headers.get('Origin')
+        if origin in {f'http://{host}:{port}' for host in ('localhost','127.0.0.1') for port in (3000,5173)}:
+            self.send_header('Access-Control-Allow-Origin',origin)
+            self.send_header('Vary','Origin')
+            self.send_header('Access-Control-Allow-Methods','GET, POST, OPTIONS')
+            self.send_header('Access-Control-Allow-Headers','Content-Type')
         super().end_headers()
 
     def do_OPTIONS(self):
-        self.send_response(200)
+        origin=self.headers.get('Origin')
+        allowed={f'http://{host}:{port}' for host in ('localhost','127.0.0.1') for port in (3000,5173)}
+        self.send_response(200 if origin in allowed else 403)
         self.end_headers()
 
     def do_GET(self):
@@ -682,10 +687,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            active_cands = MANAGER.candidates
-            if not active_cands:
-                active_cands = get_curated_or_historical_candidates()
-            self.wfile.write(json.dumps({"candidates": active_cands}).encode("utf-8"))
+            self.wfile.write(json.dumps({"candidates": MANAGER.candidates}).encode("utf-8"))
             return
 
         elif path == "/api/system/info":
@@ -693,13 +695,13 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             info = {
-                "cpu": "Intel(R) Xeon(R) W-2191B (18 Cores, 36 Threads)",
-                "platform": "macOS (x86_64 Skylake-X)",
+                "cpu": platform.processor() or platform.machine(),
+                "platform": platform.platform(),
                 "nativeBuild": str(DEFAULT_NATIVE_BUILD),
                 "nativeBuildReady": DEFAULT_NATIVE_BUILD.exists(),
                 "defaultBatchSize": 16384,
-                "defaultThreads": 32,
-                "benchmarkSpeed": 44972,
+                "defaultThreads": 34,
+                "defaultMaxMisses":2,
             }
             self.wfile.write(json.dumps(info).encode("utf-8"))
             return
@@ -711,25 +713,39 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         url = urlparse(self.path)
         path = url.path
 
-        content_length = int(self.headers.get("Content-Length", 0))
-        body = self.rfile.read(content_length) if content_length > 0 else b"{}"
-
+        def reject(message,code=400):
+            self.send_response(code);self.send_header('Content-Type','application/json');self.end_headers()
+            self.wfile.write(json.dumps({'ok':False,'error':message}).encode('utf-8'))
+        origin=self.headers.get('Origin')
+        allowed_origins={f'http://{host}:{port}' for host in ('localhost','127.0.0.1') for port in (3000,5173)}
+        if origin and origin not in allowed_origins:
+            reject('Origin is not allowed',403);return
+        if path not in ('/api/sweep/start','/api/sweep/stop'):
+            reject('Unknown endpoint',404);return
         try:
-            req_data = json.loads(body.decode("utf-8")) if body else {}
-        except Exception:
-            req_data = {}
+            content_length=int(self.headers.get('Content-Length',''))
+            if content_length==0 and path=='/api/sweep/stop':req_data={}
+            else:
+                if content_length<2 or content_length>16384:raise ValueError('JSON body must be 2–16384 bytes')
+                req_data=json.loads(self.rfile.read(content_length).decode('utf-8'))
+            if not isinstance(req_data,dict):raise ValueError('JSON body must be an object')
+            allowed={'count','threads','batchSize','maxMisses','counts'} if path=='/api/sweep/start' else set()
+            if set(req_data)-allowed:raise ValueError('Unsupported request field')
+        except (ValueError,UnicodeError,json.JSONDecodeError) as exc:
+            reject(str(exc));return
 
         if path == "/api/sweep/start":
-            count = int(req_data.get("count", 100000))
-            threads = int(req_data.get("threads", 32))
-            batch_size = int(req_data.get("batchSize", 16384))
-            max_misses = int(req_data.get("maxMisses", 1))
+            count = req_data.get("count", 100000)
+            threads = req_data.get("threads", 34)
+            batch_size = req_data.get("batchSize", 16384)
+            max_misses = req_data.get("maxMisses", 2)
 
             result = MANAGER.start_sweep(
                 count=count,
                 threads=threads,
                 batch_size=batch_size,
                 max_misses=max_misses,
+                counts=req_data.get('counts'),
             )
             self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")
@@ -749,12 +765,12 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
 
-def run_server(port: int = 3000):
-    server_address = ("", port)
+def run_server(port: int = 3000,host: str = '127.0.0.1'):
+    server_address = (host, port)
     httpd = http.server.ThreadingHTTPServer(server_address, WebSearchHandler)
-    print(f"🚀 Seed Searcher Web Server running at http://localhost:{port}/")
+    print(f"Seed Searcher Web Server running at http://{host}:{port}/")
     print(f"📁 Serving static files from {DIST_DIR}")
-    print("⚡ Ready to orchestrate native C11 OpenMP sweeps on Xeon W-2191B")
+    print(f"Native build: {DEFAULT_NATIVE_BUILD}")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -767,4 +783,4 @@ if __name__ == "__main__":
     port = 3000
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         port = int(sys.argv[1])
-    run_server(port)
+    run_server(port,os.environ.get('SEED_SEARCH_WEB_HOST','127.0.0.1'))
