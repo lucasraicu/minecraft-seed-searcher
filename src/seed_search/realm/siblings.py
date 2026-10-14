@@ -53,17 +53,22 @@ def run_adaptive(cfg, output, layouts, *, budget=4096, key='0', resume=False, wo
             used=sum(r['evaluated'] for r in stats.values())
             highs=dispersed_high32(16,key)
             records=parent.get_state('adaptive_rounds') or []
+            partial_round=parent.get_state('adaptive_partial_round')
             for number,target in enumerate((1,4,16)):
                 if number<next_round or used>=budget:continue
-                chosen=layouts if number==0 else allocation_members(layouts,stats,min(len(layouts),promotion[number]),f'{key}:round:{number}')
-                rows=[]
-                # Round-robin siblings prevents an exhausted budget favoring the
-                # first selected layout with many more upper32 evaluations.
-                for sibling in range(target):
-                    for low in chosen:
-                        if sibling>=stats[str(low)]['evaluated'] and len(rows)<budget-used:
-                            rows.append({'low32':low,'high32':highs[sibling],
-                                         'seed':str(compose_seed(low,highs[sibling])),'round':number})
+                if partial_round is not None and partial_round.get('round')==number:
+                    chosen=partial_round['chosen']
+                    rows=partial_round['rows']
+                else:
+                    chosen=layouts if number==0 else allocation_members(layouts,stats,min(len(layouts),promotion[number]),f'{key}:round:{number}')
+                    rows=[]
+                    # Round-robin siblings prevents an exhausted budget favoring the
+                    # first selected layout with many more upper32 evaluations.
+                    for sibling in range(target):
+                        for low in chosen:
+                            if sibling>=stats[str(low)]['evaluated'] and len(rows)<budget-used:
+                                rows.append({'low32':low,'high32':highs[sibling],
+                                             'seed':str(compose_seed(low,highs[sibling])),'round':number})
                 if not rows:continue
                 run_cfg=copy.deepcopy(cfg)
                 run_cfg['search'].update(sequence='manifest',manifest_seeds=[r['seed'] for r in rows])
@@ -74,11 +79,25 @@ def run_adaptive(cfg, output, layouts, *, budget=4096, key='0', resume=False, wo
                     (child/'compatibility.json').write_text(json.dumps(report(run_cfg),indent=2)+'\n')
                 begin=time.perf_counter();cpu=time.process_time()
                 child_identity={'policy':'adaptive-round-v1','config':run_cfg,'backend':identity['backend'],'inputs':rows}
+                with parent.db:
+                    parent._set('adaptive_partial_round', {
+                        'round': number,
+                        'target': target,
+                        'chosen': chosen,
+                        'rows': rows,
+                        'child_identity': child_identity,
+                    })
                 status=run_scan(run_cfg,child,len(rows),workers=workers or cfg['search']['workers'],
                                 resume=(child/'realm.sqlite').exists(),identity=child_identity,allow_prediction_scale=True)
                 elapsed=time.perf_counter()-begin;parent_cpu=time.process_time()-cpu
                 with RealmStore(child,resume=True) as store:
-                    for row,result in zip(rows,store.iter_results()):
+                    completed=store.status()['completed_seeds']
+                    if status.get('interrupted') or completed<len(rows):
+                        # Child batch was interrupted; do not advance round counter by planned batch size.
+                        break
+                    from itertools import zip_longest
+                    for row,result in zip_longest(rows,store.iter_results()):
+                        if row is None or result is None:raise ValueError('Adaptive sibling result coverage mismatch')
                         if result['seed']!=row['seed']:raise ValueError('Adaptive sibling manifest mismatch')
                         record=stats[str(row['low32'])]
                         qualified=sum(a['qualification']=='PREDICTED' for a in result['anchors'])
@@ -92,11 +111,15 @@ def run_adaptive(cfg, output, layouts, *, budget=4096, key='0', resume=False, wo
                 records.append(record)
                 with parent.db:
                     parent._set('adaptive_stats',stats);parent._set('adaptive_next_round',number+1);parent._set('adaptive_rounds',records)
+                    parent._set('adaptive_partial_round',None)
+                partial_round=None
                 if progress:progress(record)
             summary={'policy':identity['policy'],'budget':budget,'evaluated_inputs':used,'rounds':records,
                      'qualified_seeds':sum(r['qualified'] for r in stats.values()),
                      'qualifying_anchors':sum(r['anchors'] for r in stats.values()),'stats':stats,
                      'selection_semantics':'finite heuristic allocation with 20% uniform exploration; no lossless world rejection'}
+            if partial_round is not None or parent.get_state('adaptive_partial_round') is not None:
+                summary['interrupted']=True
             parent.set_state('adaptive_summary',summary)
             return summary
     finally:lock.close()

@@ -27,3 +27,25 @@ def test_zero_island_wood_is_preferred_not_disqualified():
     assert surrounding_score(.6)==1
     assert band(299,300,700)<band(300,300,700)==1
     assert band(701,300,700)<1
+
+def test_largest_gap_empty():
+    from seed_search.geometry import largest_gap
+    assert largest_gap([]) == 0.0
+    assert largest_gap(np.array([], dtype=bool)) == 0.0
+    assert largest_gap([True, True]) == 360.0
+    assert largest_gap([False, False]) == 0.0
+    assert largest_gap([True, False]) == 180.0
+
+def test_angular_metrics_enforces_bool():
+    from seed_search.geometry import angular_metrics
+    cfg = {
+        'water': {'angular_samples': 8, 'preferred_gap_blocks': [100, 500], 'preferred_enclosure_fraction': 0.5},
+        'overworld': {'surrounding_range_from_shore_blocks': 200},
+        'mountains': {'minimum_height_above_water_blocks': 20}
+    }
+    height = np.full((20, 20), 64, dtype=int)
+    island = np.zeros((20, 20), dtype=bool)
+    island[10, 10] = True
+    metrics = angular_metrics(height, island, (10, 10), 0, 0, 16, cfg)
+    assert isinstance(metrics['largest_water_opening_degrees'], float)
+    assert isinstance(metrics['largest_mountain_gap_degrees'], float)

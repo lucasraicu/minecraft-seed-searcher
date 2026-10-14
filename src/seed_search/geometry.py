@@ -59,6 +59,7 @@ def components(land,x0,z0,spacing,center_bounds):
 
 def largest_gap(mask):
     a=np.asarray(mask,dtype=bool)
+    if not len(a): return 0.0
     if a.all(): return 360.0
     if not a.any(): return 0.0
     doubled=np.concatenate((a,a)); best=run=0
@@ -98,8 +99,8 @@ def angular_metrics(height,island,center,x0,z0,step,cfg,unknown=None,high_mask=N
             'median_gap':float(np.median(gaps)) if gaps else None,
             'gap_percentiles':np.percentile(gaps,[10,50,90]).tolist() if gaps else None,
             'preferred_gap_fraction':sum(cfg['water']['preferred_gap_blocks'][0]<=v<=cfg['water']['preferred_gap_blocks'][1] for v in gaps)/n,
-            'largest_water_opening_degrees':largest_gap(~np.array(enclosed)&~np.array(unresolved)),
-            'largest_mountain_gap_degrees':largest_gap(~np.array(high)&~np.array(unresolved)),
+            'largest_water_opening_degrees':largest_gap(~np.array(enclosed,dtype=bool)&~np.array(unresolved,dtype=bool)),
+            'largest_mountain_gap_degrees':largest_gap(~np.array(high,dtype=bool)&~np.array(unresolved,dtype=bool)),
             'median_high_relative_height':float(np.median(high_heights)) if high_heights else None,
             'median_mountain_distance_from_shore':float(np.median(high_distances)) if high_distances else None,
             'enclosure_preference_met':ef>=cfg['water']['preferred_enclosure_fraction']}

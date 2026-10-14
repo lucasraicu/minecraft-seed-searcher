@@ -1,18 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import type { SearchConfig } from '../types';
-import { DEFAULT_STRUCTURE_FLOORS } from '../mockData';
+import {
+  V2_FLEXIBLE_FLOORS,
+  ALL_STRUCTURES,
+  CAVE_CLUSTERS,
+  DEFAULT_STRUCTURE_FLOORS,
+} from '../constants/structures';
 import { computeTotalFeasibility } from '../utils/probability';
-
-const V2_FLEXIBLE_FLOORS: Record<string, number> = {
-  mansion: 0,
-  trial_chamber: 8,
-  village: 5,
-  ruined_portal: 5,
-  mineshaft: 17,
-  ancient_city: 1,
-  fortress: 1,
-  bastion: 2,
-};
 
 interface FilterSidebarProps {
   config: SearchConfig;
@@ -31,7 +25,6 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onResumeSweep,
   sweepRunning,
 }) => {
-  const [showPlanning, setShowPlanning] = useState(false);
   const [savedRuns, setSavedRuns] = useState<Array<{ runId: string; completedSeeds: number; targetCount: number; resumable: boolean }>>([]);
   const [resumeRunId, setResumeRunId] = useState('');
   const [runsError, setRunsError] = useState('');
@@ -48,29 +41,6 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   };
   const [activeTab, setActiveTab] = useState<'targets' | 'engine' | 'logs'>('targets');
   const feasibility = useMemo(() => computeTotalFeasibility(config), [config]);
-
-  const ALL_STRUCTURES = [
-    { id: 'stronghold', name: 'Stronghold', icon: '🏰', min: 1, max: 3 },
-    { id: 'mansion', name: 'Woodland Mansion', icon: '🏛️', min: 0, max: 3 },
-    { id: 'village', name: 'Villages', icon: '🏡', min: 5, max: 15 },
-    { id: 'trial_chamber', name: 'Trial Chambers', icon: '⚔️', min: 8, max: 15 },
-    { id: 'ancient_city', name: 'Ancient Cities', icon: '🏙️', min: 1, max: 8 },
-    { id: 'outpost', name: 'Pillager Outposts', icon: '🏹', min: 1, max: 8 },
-    { id: 'fortress', name: 'Nether Fortresses', icon: '🏯', min: 1, max: 8 },
-    { id: 'bastion', name: 'Bastion Remnants', icon: '🐖', min: 1, max: 8 },
-    { id: 'pyramid', name: 'Desert Pyramids', icon: '🏺', min: 1, max: 6 },
-    { id: 'jungle_temple', name: 'Jungle Temples', icon: '🌿', min: 1, max: 6 },
-    { id: 'monument', name: 'Ocean Monuments', icon: '🏛️', min: 1, max: 6 },
-    { id: 'shipwreck', name: 'Shipwrecks', icon: '⛵', min: 1, max: 15 },
-    { id: 'ruined_portal', name: 'Ruined Portals', icon: '🚪', min: 5, max: 15 },
-    { id: 'mineshaft', name: 'Mineshafts', icon: '⛏️', min: 17, max: 40 },
-  ];
-
-  const CAVE_CLUSTERS = [
-    { id: 'lush_caves', name: 'Lush Caves', icon: '🌿', min: 0, max: 10 },
-    { id: 'deep_dark', name: 'Deep Dark', icon: '🌌', min: 0, max: 10 },
-    { id: 'dripstone_caves', name: 'Dripstone Caves', icon: '🪨', min: 0, max: 10 },
-  ];
 
   const ALL_BIOMES = [
     { id: 'plains', name: 'Plains / Meadow', icon: '🌾' },
@@ -100,8 +70,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     const minVal = V2_FLEXIBLE_FLOORS[id];
     if (minVal === undefined) return;
     const current = config.structureFloorCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? minVal;
-    const nextVal = Math.max(minVal, current + delta);
+    const nextVal = Math.min(64, Math.max(minVal, current + delta));
     const nextFloorCounts = { ...config.structureFloorCounts, [id]: nextVal };
+
 
     // If currently not selected, add it
     const nextRequired = config.requiredStructures.includes(id)
@@ -220,10 +191,6 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             Live sweeps use the fixed v2 categories. The eight flexible structure ideals, B, count, starting index, threads and batch size apply to live sweeps. Required categories and biome rules remain fixed. Optional planning controls never change live qualification.
           </div>
 
-          <button onClick={() => setShowPlanning(!showPlanning)} className="text-xs text-cyan-300 border border-slate-700 rounded px-3 py-2">
-            {showPlanning ? 'Hide planning estimates — show live filters' : 'Show separate planning estimates'}
-          </button>
-          {showPlanning && <>
           {/* Box 4: Total Search Odds Hero Card (End-to-End Pipeline) */}
           <div className="p-3 bg-gradient-to-b from-slate-900 to-slate-950 border border-emerald-500/40 rounded-xl space-y-2.5 shadow-xl relative overflow-hidden">
             <div className="flex items-center justify-between">
@@ -284,16 +251,20 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {/* 1-Click Sync Button */}
             <button
               onClick={() => {
-                const targetVol = Math.min(Number.MAX_SAFE_INTEGER, Math.max(1, feasibility.expectedSeedsNeeded));
+                const targetVol = Math.min(
+                  100_000_000_000,
+                  Math.max(1, isFinite(feasibility.expectedSeedsNeeded) ? Math.round(feasibility.expectedSeedsNeeded) : 100_000_000)
+                );
                 onChangeConfig({ ...config, sweepSeedCount: targetVol });
               }}
               className="w-full py-1.5 px-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
-              title="Set the input volume near the heuristic 1/P scale (capped at 100,000)"
+              title="Set the input volume to calculated 1/P probability scale (automatically partitioned into 16,384-seed batches by native engine)"
             >
               <span>⚡</span>
-              <span>Sync Sweep Volume ({feasibility.expectedSeedsNeeded.toLocaleString()} seeds)</span>
+              <span>Sync Sweep Volume ({feasibility.expectedSeedsNeeded >= 1000000000 ? `${(feasibility.expectedSeedsNeeded / 1000000000).toFixed(2)}B` : feasibility.expectedSeedsNeeded >= 1000000 ? `${(feasibility.expectedSeedsNeeded / 1000000).toFixed(1)}M` : `${feasibility.expectedSeedsNeeded.toLocaleString()}`} seeds)</span>
             </button>
           </div>
+
 
           {/* Box 1: Structure Odds Box (Stage 1 Screening) */}
           <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2">
@@ -328,23 +299,33 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
           </div>
 
-          </>}
           {/* Structure Counts with Steppers */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Live structure ideals (fatal floors remain fixed)
+                Structure Floors ({ALL_STRUCTURES.length})
               </label>
               <span className="text-[10px] text-emerald-400 font-mono font-bold">
-                {showPlanning ? ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length : 12} {showPlanning ? 'planned' : 'fixed categories'}
+                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length} active
               </span>
+            </div>
+
+            {/* Marine Evaluation Timing Notice */}
+            <div className="mb-2 p-2 rounded-lg bg-blue-950/30 border border-blue-500/30 text-[10px] text-blue-200 leading-relaxed flex items-start gap-1.5">
+              <span className="text-blue-400 text-xs mt-0.5">⛵</span>
+              <div>
+                <span className="font-bold text-white">Marine Evaluation Timing: </span>
+                <span>
+                  <strong>Ocean Monuments &amp; Shipwrecks</strong> are <strong>deferred from Stage 1 Baseline screening</strong>. They are strictly evaluated in <strong>Stage 3 Terrain Pass-Through</strong> once coastal ocean is confirmed. Qualifying seeds retain Baseline Survivor status regardless of marine presence.
+                </span>
+              </div>
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
               {ALL_STRUCTURES.map((s) => {
                 const isMarine = s.id === 'monument' || s.id === 'shipwreck';
-                const isExempt = !showPlanning ? isMarine : isBaselineInland && isMarine;
-                const isSelected = !isExempt && (!showPlanning || config.requiredStructures.includes(s.id));
+                const isExempt = isBaselineInland && isMarine;
+                const isSelected = !isExempt && config.requiredStructures.includes(s.id);
                 const count = config.structureFloorCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 1;
                 const indP = feasibility.structures.individualProbs[s.id];
 
@@ -353,7 +334,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     <div
                       key={s.id}
                       className="flex items-center justify-between px-2.5 py-1.5 rounded-lg border bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60"
-                      title={showPlanning ? "Planning exemption for inland mode" : "Marine checks are deferred to downstream verification"}
+                      title="Exempt in inland baseline mode (no ocean biome selected)"
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="text-sm">{s.icon}</span>
@@ -361,7 +342,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="text-[9px] font-mono px-1.5 py-0.5 rounded text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 font-bold">
-                          {showPlanning ? 'Exempt (No Ocean)' : 'Deferred verification'}
+                          Exempt (No Ocean)
                         </span>
                         <span className="text-[10px] text-slate-500 font-mono italic pr-1">
                           N/A
@@ -382,15 +363,23 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   >
                     {/* Toggle check & Structure Label */}
                     <button
-                      disabled={!showPlanning}
                       onClick={() => toggleStructure(s.id)}
+                      title="Planning selection only; live sweep floors remain required"
                       className="flex items-center justify-between gap-1 text-left truncate flex-1 hover:text-white transition-colors"
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="text-sm">{s.icon}</span>
                         <span className="text-xs font-semibold truncate">{s.name}</span>
+                        {isMarine && (
+                          <span
+                            className="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                            title="Deferred from Stage 1 Baseline; evaluated in Stage 3 Terrain Pass once coastal ocean is confirmed"
+                          >
+                            Stage 3
+                          </span>
+                        )}
                       </div>
-                      {showPlanning && isSelected && indP !== undefined && (
+                      {isSelected && indP !== undefined && (
                         <span
                           className={`text-[9px] font-mono px-1 rounded mr-1 ${
                             indP < 0.2
@@ -419,9 +408,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       </span>
                       <button
                         onClick={() => handleCountChange(s.id, 1)}
-                        disabled={!(s.id in V2_FLEXIBLE_FLOORS)}
-                        title={s.id in V2_FLEXIBLE_FLOORS ? 'Adjust live ideal count' : 'This target is fixed by v2'}
-                        className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold flex items-center justify-center transition-all"
+                        disabled={count >= 64 || !(s.id in V2_FLEXIBLE_FLOORS)}
+                        title={count >= 64 ? 'Maximum goal reached (64)' : s.id in V2_FLEXIBLE_FLOORS ? 'Adjust live ideal count' : 'This target is fixed by v2'}
+                        className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         +
                       </button>
@@ -432,8 +421,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
           </div>
 
-          {showPlanning && <section aria-label="Planning estimates only" className="space-y-4">
-          <p className="text-xs text-amber-200">Planning only: these settings do not filter live seeds.</p>
+          <section aria-label="Planning estimates only" className="space-y-4">
+          <p className="text-xs text-amber-200">Planning only: the following controls do not change live sweep filtering.</p>
           {/* Nether Requirements */}
           <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
@@ -509,7 +498,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-sm">{c.icon}</span>
                         <span className="text-xs font-semibold truncate">{c.name}</span>
                       </div>
-                      {showPlanning && isSelected && indP !== undefined && (
+                      {isSelected && indP !== undefined && (
                         <span
                           className={`text-[9px] font-mono px-1.5 py-0.5 rounded mr-1 font-bold ${
                             indP < 0.3
@@ -547,9 +536,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       <button
                         type="button"
                         onClick={() => handleCountChange(c.id, 1)}
-                        disabled={!isSelected}
-                        className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 text-white text-xs font-bold flex items-center justify-center border border-slate-700 transition-all"
-                        title="Increase cluster requirement"
+                        disabled={count >= 64 || !isSelected}
+                        className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center border border-slate-700 transition-all"
+                        title={count >= 64 ? 'Maximum goal reached (64)' : 'Increase cluster requirement'}
                       >
                         +
                       </button>
@@ -823,7 +812,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               Planning heuristic only. Spawn evidence is downstream and remains pending until the backend supplies it; this control is not part of the live v2 sweep request.
             </p>
           </div>
-          </section>}
+          </section>
         </div>
       )}
 
@@ -872,7 +861,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
             {/* Quick 1-click convenience chips */}
             <div className="flex flex-wrap items-center gap-1 pt-1">
-              {[100000, 1000000, 2000000].map((v) => (
+              {[100000, 1000000, 10000000, 100000000, 1000000000].map((v) => (
                 <button
                   key={v}
                   onClick={() => onChangeConfig({ ...config, sweepSeedCount: v })}
@@ -882,20 +871,24 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       : 'bg-slate-800/40 border-slate-800 text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  {v >= 1000000 ? `${v / 1000000}M` : `${v / 1000}k`}
+                  {v >= 1000000000 ? `${v / 1000000000}B` : v >= 1000000 ? `${v / 1000000}M` : `${v / 1000}k`}
                 </button>
               ))}
               <button
-                onClick={() =>
+                onClick={() => {
+                  const targetVol = Math.min(
+                    100_000_000_000,
+                    Math.max(1, isFinite(feasibility.expectedSeedsNeeded) ? Math.round(feasibility.expectedSeedsNeeded) : 100_000_000)
+                  );
                   onChangeConfig({
                     ...config,
-                    sweepSeedCount: Math.min(Number.MAX_SAFE_INTEGER, Math.max(1, feasibility.expectedSeedsNeeded)),
-                  })
-                }
+                    sweepSeedCount: targetVol,
+                  });
+                }}
                 className="px-2 py-0.5 rounded text-[10px] font-mono transition-colors border bg-cyan-600/20 border-cyan-500/40 text-cyan-300 hover:bg-cyan-600/30"
-                title="Set the input volume near the uncalibrated heuristic 1/P scale"
+                title="Set input volume near the uncalibrated heuristic 1/P scale, subject to disk and range limits"
               >
-                1/P ({feasibility.expectedSeedsNeeded >= 1000000 ? `${(feasibility.expectedSeedsNeeded / 1000000).toFixed(1)}M` : `${Math.round(feasibility.expectedSeedsNeeded / 1000)}k`})
+                1/P ({feasibility.expectedSeedsNeeded >= 1000000000 ? `${(feasibility.expectedSeedsNeeded / 1000000000).toFixed(1)}B` : feasibility.expectedSeedsNeeded >= 1000000 ? `${(feasibility.expectedSeedsNeeded / 1000000).toFixed(1)}M` : `${Math.round(feasibility.expectedSeedsNeeded / 1000)}k`})
               </button>
             </div>
             <p className="text-[10px] text-slate-400">

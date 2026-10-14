@@ -50,7 +50,8 @@ class Prototype:
             self.identity={'extension':str(path),'extension_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
                 'openmp':bool(lib.ss_openmp_enabled()),'runtime':runtime,
                 'runtime_sha256':hashlib.sha256(Path(runtime).read_bytes()).hexdigest() if runtime else None,
-                'scope':'packaged complete native blueprint baseline','production_extension_replaced':False}
+                'scope':'packaged complete native blueprint baseline','production_extension_replaced':False,
+                'stronghold_after':int(lib.nb_stronghold_after()) if hasattr(lib,'nb_stronghold_after') else None}
         else:
             self.directory=Path(directory).resolve();self.identity=json.loads((self.directory/'identity.json').read_text())
             path=Path(self.identity['extension'])
@@ -377,7 +378,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                          'evidence_schema':'realm-full-records-v1','adapter':'owned-native-pipeline-v1'}
     identity={**identity,'retention':{'mode':retention,'max_misses':max_misses}}
     if production:_scale_gate(cfg,run,count,allow_prediction_scale)
-    limits=disk_policy(cfg['search']);_,ceiling,reserve=memory_budget_gib(cfg['search'])
+    limits=disk_policy(cfg['search'],retention=retention);_,ceiling,reserve=memory_budget_gib(cfg['search'])
     wall=time.perf_counter();cpu=time.process_time();service=Counter();latencies=deque(maxlen=4096);pending=deque()
     peak=0;batches=committed=dispatched=0;failure=None;interrupted=False;max_pending=0;max_payload=0
     pool=None;preparer=None;native_futures=set();last_monitor=0.;last_progress=0.
@@ -443,8 +444,8 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 native_futures.discard(native_future)
                 now=time.perf_counter()
                 if now-last_monitor>=1:
-                    resources=process_tree_resources()
-                    if not resources['available']:raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
+                    resources=process_tree_resources() or {}
+                    if not resources.get('available'):raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
                     peak=max(peak,resources['rss_bytes']);last_monitor=now
                     if resources['rss_bytes']+reserve*(1<<30)>ceiling*(1<<30):
                         raise RuntimeError('Process-tree RSS plus reserve exceeded memory ceiling')

@@ -7,6 +7,11 @@
  */
 
 import type { SearchConfig } from '../types';
+import {
+  HARD_FLOORS,
+  IDEAL_TARGETS,
+  STRICT_STRUCTURE_IDS,
+} from '../constants/structures';
 
 // Helper to format fractional odds and percentages
 export function formatOdds(p: number): string {
@@ -31,6 +36,7 @@ export function formatOdds(p: number): string {
 
 export function calculateStructureProb(type: string, requiredCount: number): number {
   const k = Math.max(0, requiredCount);
+  if (k <= 0) return 1.0;
 
   switch (type) {
     case 'stronghold':
@@ -257,44 +263,8 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
     bottleneck = sorted[0];
   }
 
-  const STRICT_IDS = new Set(['stronghold', 'pyramid', 'desert_pyramid', 'jungle_temple', 'outpost']);
-  const HARD_FLOORS: Record<string, number> = {
-    stronghold: 1,
-    desert_pyramid: 1,
-    pyramid: 1,
-    jungle_temple: 1,
-    outpost: 1,
-    mansion: 0,
-    ancient_city: 1,
-    fortress: 1,
-    bastion: 2,
-    trial_chamber: 8,
-    village: 5,
-    ruined_portal: 5,
-    mineshaft: 17,
-    monument: 1,
-    shipwreck: 3,
-  };
-  const IDEAL_TARGETS: Record<string, number> = {
-    stronghold: 1,
-    desert_pyramid: 1,
-    pyramid: 1,
-    jungle_temple: 1,
-    outpost: 1,
-    mansion: 1,
-    ancient_city: 2,
-    fortress: 2,
-    bastion: 3,
-    trial_chamber: 10,
-    village: 7,
-    ruined_portal: 7,
-    mineshaft: 20,
-    monument: 1,
-    shipwreck: 5,
-  };
-
-  const strictEntries = activeEntries.filter((e) => STRICT_IDS.has(e.id));
-  const flexibleEntries = activeEntries.filter((e) => !STRICT_IDS.has(e.id));
+  const strictEntries = activeEntries.filter((e) => STRICT_STRUCTURE_IDS.has(e.id));
+  const flexibleEntries = activeEntries.filter((e) => !STRICT_STRUCTURE_IDS.has(e.id));
 
   // Strict categories: non-negotiable hard floors (never spend miss budget)
   let pStrict = 1.0;
@@ -330,15 +300,14 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
 
   const baseP = pStrict * pFlexible;
 
-  // Nether pair & overlap factor
+  // Nether physical overlap factor (Fortress and Bastion presence already evaluated in structure model)
   let netherMultiplier = 1.0;
   if (config.requireNetherOverlap) {
     netherMultiplier = 0.057; // 5.7% physical overlap
-  } else if (config.mandatoryFortressAndBastion) {
-    netherMultiplier = 0.802; // 80.2% joint coexistence
   }
 
   const finalProb = Math.max(1e-12, baseP * netherMultiplier);
+
   const pExactAll = activeEntries.map((e) => Math.max(1e-6, e.prob)).reduce((acc: number, v: number) => acc * v, 1.0) * netherMultiplier;
   const toleranceBoost = pExactAll > 0 ? finalProb / pExactAll : 1.0;
 

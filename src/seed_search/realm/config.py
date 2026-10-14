@@ -334,12 +334,12 @@ def validate_blueprint_config(cfg):
             raise ValueError('Blueprint structure goal keys differ from the policy')
         strict={'jungle_temple','desert_pyramid','outpost'}
         for name,goal in actual['minimum_counts'].items():
-            _integer(goal,0,100,f'minimum_counts.{name}')
+            _integer(goal,0,64,f'minimum_counts.{name}')
             floor=baseline['hard_floors'].get(name,baseline['minimum_counts'][name])
             if goal<floor or (name in strict and goal!=1):
                 raise ValueError(f'Blueprint goal below fixed floor or strict target: {name}')
         for name,goal in actual['nether_minimum_counts'].items():
-            _integer(goal,0,100,f'nether_minimum_counts.{name}')
+            _integer(goal,0,64,f'nether_minimum_counts.{name}')
             if goal<baseline['hard_floors'][name]:raise ValueError(f'Blueprint goal below fixed floor: {name}')
     elif cfg['structures']!=expected['structures']:
         raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')

@@ -20,11 +20,11 @@ def evaluate_marine_stage(candidate, cfg, raster, precheck, *, backend_factory=B
     semantic inventories. Model footprints and sampled beach witnesses remain
     explicitly unverified. Near misses keep their baseline classification.
     """
-    if not cfg.get('screening_revision') or candidate.get('marine_stage', {}).get('status') not in ('DEFERRED','PENDING'):
+    if not cfg.get('screening_revision') or (candidate.get('marine_stage') or {}).get('status') not in ('DEFERRED','PENDING'):
         return precheck, None
     if (raster.resolution != min(cfg['terrain']['resolutions']) or
             not precheck.get('model_geometry_pass') or
-            precheck.get('metrics', {}).get('known_fraction') != 1. or
+            (precheck.get('metrics') or {}).get('known_fraction') != 1. or
             precheck.get('evidence') not in ('PREDICTED', 'VERIFIED')):
         return precheck, None
     bounds=candidate['bounds']['overworld']
@@ -37,10 +37,10 @@ def evaluate_marine_stage(candidate, cfg, raster, precheck, *, backend_factory=B
     if not available:return pending('ocean_evidence_unavailable')
     ocean &= (_overlap(raster,bounds)>0)
     labels, _ = ndimage.label(ocean)
-    coastal=np.isin(labels,precheck['metrics'].get('coastal_component_ids',[]))
+    coastal=np.isin(labels,(precheck.get('metrics') or {}).get('coastal_component_ids',[]))
     if not coastal.any():return pending('coastal_ocean_absent_in_sample')
     required=copy.deepcopy(candidate['required_structures'])
-    optional=copy.deepcopy(candidate.get('optional_structures',{}))
+    optional=copy.deepcopy(candidate.get('optional_structures') or {})
     started=time.perf_counter()
     with backend_factory(candidate['seed']) as backend:
         for name in ('monument','shipwreck'):
@@ -72,12 +72,12 @@ def evaluate_marine_stage(candidate, cfg, raster, precheck, *, backend_factory=B
         if name=='shipwreck':observation['coastal_witnesses']=witnesses
     missing=['count_'+name for name in ('monument','shipwreck') if required[name]['floor_status']!='PREDICTED']
     from .config import origin_policy
-    source=terrain.get('source',{})
+    source=terrain.get('source') or {}
     actual=source.get('kind')=='actual_generation' if isinstance(source,dict) else False
     v2=two_group_policy(cfg)
     ranking=smart_score(required,candidate['required_nether_structures'],optional,locked=True,river=river_policy(cfg),
                         origin=origin_policy(cfg),two_group=v2,
-                        biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),
+                        biome_names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63),
                         metrics=terrain['metrics'] if not v2 or actual else None,
                         coastal_footprint_verified=actual and len(qualified_monuments)>=2)
     patch={'id':candidate['id'],'required_structures':required,'optional_structures':optional,'ranking':ranking,

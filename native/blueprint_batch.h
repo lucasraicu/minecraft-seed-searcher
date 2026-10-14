@@ -52,6 +52,7 @@ NBBatch *nb_sweep(const uint64_t *seeds, int count, const NBPolicy *policy, int 
 NBBatch *nb_fixture_sweep(const uint64_t *seeds, const NBFixture *fixtures,
                         int count, const NBPolicy *policy, int threads);
 void nb_free(NBBatch *batch);
+int nb_stronghold_after(void);
 
 int ss_openmp_enabled(void);
 const char *ss_openmp_library(void);

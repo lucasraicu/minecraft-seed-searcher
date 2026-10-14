@@ -314,7 +314,7 @@ def main(argv=None):
             native_threads=args.native_threads if args.native_threads is not None else ((store.get_state('native_pipeline') or {}).get('threads',16) if store else 16)
             native_batch=args.native_batch_size if args.native_batch_size is not None else (store.get_state('batch_size') if store and execution=='native' else 4096)
             saved_retention=(store.identity or {}).get('retention',{}) if store else {}
-            retention=args.retention or saved_retention.get('mode','full')
+            retention=args.retention or saved_retention.get('mode','survivors' if execution=='native' else 'full')
             misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(cfg['search']['max_misses'] if two_group_policy(cfg) else 1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
             if execution=='python' and (retention!='full' or misses):raise ValueError('Compact retention requires --executor native')
             if execution=='python' and any(v is not None for v in (args.native_build,args.native_threads,args.native_batch_size)):

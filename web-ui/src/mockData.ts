@@ -1,24 +1,8 @@
 import type { SeedCandidate, SearchConfig } from './types';
+import { DEFAULT_STRUCTURE_FLOORS } from './constants/structures';
 
-export const DEFAULT_STRUCTURE_FLOORS: Record<string, number> = {
-  stronghold: 1,
-  mansion: 1,
-  village: 7,
-  trial_chamber: 10,
-  ancient_city: 2,
-  outpost: 1,
-  fortress: 2,
-  bastion: 3,
-  pyramid: 1,
-  jungle_temple: 1,
-  monument: 1,
-  shipwreck: 3,
-  ruined_portal: 7,
-  mineshaft: 20,
-  lush_caves: 0,
-  dripstone_caves: 0,
-  deep_dark: 0,
-};
+export { DEFAULT_STRUCTURE_FLOORS };
+
 
 export const INITIAL_CONFIG: SearchConfig = {
   requiredStructures: Object.keys(DEFAULT_STRUCTURE_FLOORS),
@@ -50,7 +34,7 @@ export const INITIAL_CONFIG: SearchConfig = {
   maxSpawnDistance: 100,
   playableRadiusOverworld: 2048,
   playableRadiusNether: 1024,
-  sweepSeedCount: 100000,
+  sweepSeedCount: 10000000,
   startIndex: '0',
   maxMisses: 2,
   openmpThreads: 34,

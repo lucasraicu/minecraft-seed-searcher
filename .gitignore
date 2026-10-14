@@ -3,9 +3,12 @@ __pycache__/
 .pytest_cache/
 build/
 *.egg-info/
+*.dylib
 *.so
 *.o
 *.a
+*.profraw
+/seed_search/
 # Retain small audit records, omit generated bulk outputs.
 runs/*
 !runs/*/

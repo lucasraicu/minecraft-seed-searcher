@@ -36,13 +36,10 @@ GROUPS={
  'crimson':(3,'crimson_forest'),
  'warped':(3,'warped_forest'),
  'basalt':(2,'basalt_deltas'),
- 'sulfur_caves':(2,'sulfur_caves'),
- 'dappled_forest':(2,'dappled_forest'),
- 'ice_caves':(1,'ice_caves'),
 }
 FAMILIES={name:family for family,(_,names) in GROUPS.items() for name in names.split()}
 DEFAULT_WEIGHTS={family:w for family,(w,_) in GROUPS.items()}
-MANUAL_CAVE_FAMILIES=frozenset(('lush_caves','dripstone_caves','deep_dark','sulfur_caves','ice_caves'))
+MANUAL_CAVE_FAMILIES=frozenset(('lush_caves','dripstone_caves','deep_dark'))
 
 def validate_policy(p):
     if p.get('version')!=VERSION or p.get('scope') not in ('structure_qualified','all_evaluated'):

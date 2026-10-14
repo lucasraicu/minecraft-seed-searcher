@@ -6,7 +6,7 @@ WOODLAND_NAMES=frozenset({
     "forest","flower_forest","birch_forest","old_growth_birch_forest","dark_forest",
     "taiga","old_growth_pine_taiga","old_growth_spruce_taiga","snowy_taiga",
     "jungle","bamboo_jungle","cherry_grove","grove","mangrove_swamp","swamp",
-    "pale_garden","dappled_forest",
+    "pale_garden",
 })
 SPARSE_WOOD_NAMES=frozenset({"sparse_jungle","windswept_forest","savanna",
                            "savanna_plateau","windswept_savanna","wooded_badlands"})

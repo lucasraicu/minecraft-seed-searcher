@@ -13,10 +13,11 @@ header = (ROOT / 'native/blueprint_batch.h').read_text()
 ffibuilder.cdef('\n'.join(line for line in header.splitlines() if not line.startswith('#')))
 ffibuilder.set_source('seed_search._blueprint_batch',
     '#include "bridge.c"\n#include "blueprint_batch.inc"\n',
-    sources=[f'vendor/cubiomes-bedrock/{u}.c' for u in units],
+    sources=[str(ROOT / f'vendor/cubiomes-bedrock/{u}.c') if __name__ == '__main__' else f'vendor/cubiomes-bedrock/{u}.c' for u in units],
     include_dirs=include_dirs, extra_compile_args=compile_args, libraries=libraries,
     library_dirs=library_dirs, extra_link_args=link_args)
 
 if __name__ == '__main__':
     os.chdir(ROOT)
-    ffibuilder.compile(tmpdir='.', target=str(ROOT / 'src/seed_search/_blueprint_batch.abi3.so'), verbose=True)
+    (ROOT / 'build').mkdir(exist_ok=True)
+    ffibuilder.compile(tmpdir='build', target=str(ROOT / 'src/seed_search/_blueprint_batch.abi3.so'), verbose=True)

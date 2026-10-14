@@ -50,7 +50,7 @@ Place `--config config/realm.yaml` before the command to select the profile expl
 
 Production builds include the count kernel directly through `native/bridge.h` and `native/filters.inc`; no ignored pilot library is loaded. `native/build.py` builds a portable serial extension by default. Optional OpenMP requires an explicitly supplied runtime prefix and, on macOS, an explicit matching host `ARCHFLAGS`. Baseline uses multiple spawned processes with one native/numeric thread each; terrain native threads are configured separately. Concurrent workloads need their own measured resource profile. The existing backend lock serializes shared Python-process handle access while OpenMP parallelizes immutable native column/point work.
 
-The `web-ui/` and `web-api/` directories are **mock demonstrations**. Their generated candidates, throughput and verification labels do not come from the native search or SQLite database; the API start endpoint does not start a real scan. Use CLI/SQLite/JSONL/CSV outputs for actual measured results. Live dashboard integration remains unfinished.
+The React dashboard in `web-ui/` connects to `seed_search.web.server`, launches explicit native sweeps, and reads durable SQLite progress and a bounded candidate pool. Initial demo records are labeled illustrative; prediction, terrain screening and actual BDS evidence remain distinct. Some controls are explicitly planning-only. Use CLI exports for complete result sets, and use the saved original computation identity when resuming; this dashboard does not certify actual worlds or exhaustive CPU optimality.
 
 See [ENGINE_AUDIT_RESULTS.md](ENGINE_AUDIT_RESULTS.md) for implementation and correctness findings, [BLUEPRINT_FEASIBILITY_ANALYSIS.md](BLUEPRINT_FEASIBILITY_ANALYSIS.md) for requirement feasibility, and [BLUEPRINT_BENCHMARK_RESULTS.md](BLUEPRINT_BENCHMARK_RESULTS.md) for measured throughput, stage costs, cleanup and conditional runtime scenarios. The 30,000-input pilot measured 1,238.23 baseline inputs/second; full-blueprint success probability and verified-world runtime remain unknown.
 
@@ -289,6 +289,10 @@ The supported install/rebuild path is:
 The dependency lock targets Intel macOS/Python 3.13. The vendored Bedrock backend commit is `294c72ab0392dd818a91d293dbd5774d4874d64b`. [vendor/backend.json](vendor/backend.json) records 33 source/license hashes. Compile flags are `-O3 -std=c11 -fwrapv`, without fast-math. The direct `native/build.py` compilation entry point now changes to the repository root before compiling; its standalone CFFI target is `_native.abi3.so`, matching the Python loader. Prefer the supported editable-install path.
 
 Current implementation verification artifacts are under `runs/implementation-2026-10-08`; `runs/filter-optimization` contains historical measurements; earlier sweep/expansion/preflight/phone/audit evidence remains preserved. [SEARCH_TARGETS.md](SEARCH_TARGETS.md) defines distances and eligibility; [CHUNKBASE_WORKFLOW.md](CHUNKBASE_WORKFLOW.md) defines external review; [GOAL.md](GOAL.md) records the implementation goal and history.
+
+## Distributed sweeps
+
+See [DISTRIBUTED_README.md](DISTRIBUTED_README.md) for disjoint index ranges under a shared run key, per-machine native validation, safe SQLite backups and a read-only aggregate leaderboard. Production execution currently supports up to 34 native threads and 16,384 inputs per batch. The tuner reports bounded native-kernel comparisons; throughput on other machines and complete actual-world certification require their own evidence.
 
 ## Sweep verification
 

@@ -7,6 +7,7 @@ import math
 import shutil
 import sqlite3
 import time
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -95,6 +96,27 @@ def _restore_prepared(fields):
 
 class RealmStore:
     _canonical_candidate_reference = staticmethod(canonical)
+
+    @contextmanager
+    def _immediate_transaction(self, retries=5, delay=0.05):
+        for attempt in range(retries):
+            try:
+                self.db.execute("BEGIN IMMEDIATE")
+                break
+            except sqlite3.OperationalError as exc:
+                if ("locked" in str(exc).lower() or "busy" in str(exc).lower()) and attempt < retries - 1:
+                    time.sleep(delay * (2 ** attempt))
+                    continue
+                raise
+        try:
+            yield
+            self.db.commit()
+        except BaseException:
+            self.db.rollback()
+            raise
+
+    _transaction = _immediate_transaction
+
     def __init__(self, run, identity=None, resume=False):
         self.run = Path(run)
         path = self.run / "realm.sqlite"
@@ -104,6 +126,10 @@ class RealmStore:
             raise ValueError("No Realm checkpoint exists to resume")
         self.run.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(path, timeout=30)
+        if resume and self.db.execute("SELECT 1 FROM sqlite_master WHERE name='meta'").fetchone():
+            if self.db.execute("SELECT 1 FROM meta WHERE key='aggregate_contract'").fetchone():
+                self.db.close()
+                raise ValueError('Read-only aggregate is not a resumable Realm checkpoint; use the original source run')
         self.db.execute("PRAGMA journal_mode=WAL")
         self.db.execute("PRAGMA synchronous=FULL")
         # Keep complete WAL/FULL durability. A larger bounded page cache avoids
@@ -524,9 +550,9 @@ class RealmStore:
             last = rows[-1]
 
     def claim_discovery_task(self, worker):
-        with self.db:
-            # Serialize competing recovery consumers before selecting a pending lease.
-            self.db.execute("UPDATE discovery_tasks SET worker=worker WHERE 0")
+        if self.db.in_transaction:
+            raise ValueError("Finish caller transaction before claiming discovery task")
+        with self._immediate_transaction():
             row = self.db.execute("SELECT idx,structure FROM discovery_tasks WHERE status='pending' ORDER BY idx,structure LIMIT 1").fetchone()
             if row is None:
                 return None
@@ -548,8 +574,7 @@ class RealmStore:
         """
         if self.db.in_transaction:
             raise ValueError("Finish the caller transaction before completing discovery recovery")
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             return self._complete_discovery_task_locked(index, structure, evidence)
 
     def _complete_discovery_task_locked(self, index, structure, evidence):
@@ -609,8 +634,7 @@ class RealmStore:
     def claim_inventory_work(self, worker, candidate_id=None, *, include_pending=False):
         if self.db.in_transaction:
             raise ValueError('Finish caller transaction before inventory dispatch')
-        with self.db:
-            self.db.execute('BEGIN IMMEDIATE')
+        with self._immediate_transaction():
             terms = ["w.status='pending'"]
             args = []
             if candidate_id is not None:
@@ -627,8 +651,7 @@ class RealmStore:
 
     def complete_inventory_work(self, unit, patch):
         digest = hashlib.sha256(canonical(patch).encode()).hexdigest()
-        with self.db:
-            self.db.execute('BEGIN IMMEDIATE')
+        with self._immediate_transaction():
             row = self.db.execute('SELECT status,worker,attempts,digest FROM inventory_work WHERE unit_id=?', (unit['unit_id'],)).fetchone()
             if row is None or row[2] != unit['attempt']:
                 raise ValueError('Stale inventory lease')
@@ -644,14 +667,24 @@ class RealmStore:
             updated['inventory'] = {**candidate['inventory'], 'tasks': remaining,
                                     'status': 'DEFERRED' if remaining else 'COMPLETE'}
             updated['baseline_score_complete'] = not remaining
-            observed = (updated.get('biomes') or {}).get('score', 0) + sum(
-                obs.get('bonus', 0) for obs in updated.get('optional_structures', {}).values())
-            updated['baseline_score_observed'] = observed
-            updated['baseline_score'] = None if remaining else observed
-            updated['baseline_score_status'] = 'PARTIAL; inventory deferred' if remaining else 'PREDICTED; observed predictor score'
-            policy = self.get_state('score_policy') or self.identity['config']
-            from .baseline import baseline_score_uncertainty
-            updated['baseline_score_uncertainty'] = baseline_score_uncertainty(updated.get('biomes'), updated.get('optional_structures', {}), policy, updated.get('pending_reasons', []))
+            if candidate.get('revision', '').startswith('blueprint'):
+                score = candidate.get('baseline_score')
+                if score is None:
+                    score = candidate.get('baseline_score_observed', 0)
+                updated['baseline_score_observed'] = score
+                updated['baseline_score'] = None if remaining else score
+                updated['baseline_score_status'] = 'PARTIAL; baseline unresolved' if remaining else 'PREDICTED count bonuses'
+                from .blueprint import score_uncertainty
+                updated['baseline_score_uncertainty'] = score_uncertainty(score, candidate.get('pending_reasons', []), not remaining)
+            else:
+                observed = (updated.get('biomes') or {}).get('score', 0) + sum(
+                    obs.get('bonus', 0) for obs in updated.get('optional_structures', {}).values())
+                updated['baseline_score_observed'] = observed
+                updated['baseline_score'] = None if remaining else observed
+                updated['baseline_score_status'] = 'PARTIAL; inventory deferred' if remaining else 'PREDICTED; observed predictor score'
+                policy = self.get_state('score_policy') or self.identity['config']
+                from .baseline import baseline_score_uncertainty
+                updated['baseline_score_uncertainty'] = baseline_score_uncertainty(updated.get('biomes'), updated.get('optional_structures', {}), policy, updated.get('pending_reasons', []))
             if not remaining:
                 updated['processing_status'] = 'baseline_complete' if updated['qualification'] != 'PENDING' else 'baseline_pending'
             self._upsert_candidate_locked(updated)
@@ -673,8 +706,7 @@ class RealmStore:
         """
         if self.db.in_transaction:
             raise ValueError("Finish caller transaction before updating candidate evidence")
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             return self._upsert_candidate_locked(candidate, allow_qualification_change=allow_qualification_change)
 
     def _upsert_candidate_locked(self, candidate, *, allow_qualification_change=False):
@@ -682,7 +714,14 @@ class RealmStore:
         previous = self.get_candidate(cid)
         if previous is None:
             raise ValueError("Unknown baseline candidate")
-        updated = {**previous, **candidate}
+        updated = dict(previous)
+        for key, value in candidate.items():
+            if isinstance(value, dict) and isinstance(previous.get(key), dict):
+                merged = dict(previous[key])
+                merged.update(value)
+                updated[key] = merged
+            else:
+                updated[key] = value
         immutable = ("id", "seed", "stronghold", "index", "game_version", "bds_version", "backend_model", "backend_commit", "bounds")
         if any(updated.get(key) != previous.get(key) for key in immutable if key in previous):
             raise ValueError("Baseline candidate identity is immutable")
@@ -702,8 +741,7 @@ class RealmStore:
             raise ValueError("Finish caller transaction before freezing a terrain pool")
         statuses = sorted(set(statuses or ('PREDICTED', 'VERIFIED')))
         encoded_identity, encoded_statuses = canonical(identity), canonical(statuses)
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             active = self.get_state('terrain_pool_revision')
             if active is not None and self.get_terrain_pool(active)['identity'] != identity:
                 raise ValueError("Terrain provider/algorithm identity changed; use a separate checkpoint")
@@ -800,8 +838,7 @@ class RealmStore:
     def ensure_terrain_work(self, revision, candidate_id, variant, payload, status='pending'):
         if self.db.in_transaction:
             raise ValueError("Finish caller transaction before enqueuing terrain work")
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             return self._insert_terrain_work(revision, candidate_id, variant, payload, status)
 
     def get_terrain_work(self, unit_id):
@@ -832,8 +869,7 @@ class RealmStore:
     def claim_terrain_work(self, unit_id, worker):
         if self.db.in_transaction:
             raise ValueError("Finish caller transaction before claiming terrain work")
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             unit = self.get_terrain_work(unit_id)
             if unit is None:
                 raise ValueError("Unknown terrain work")
@@ -865,8 +901,7 @@ class RealmStore:
         policy={'version':'terrain-priority-v1','ranked_per_oldest':3,'refill_limit':4096,
                 'baseline_range':[0,60],'geometry_range':[0,100],'unknown_hint':50,'weights':[.5,.5]}
         key=f'terrain_priority_cycle:{revision}'
-        with self.db:
-            self.db.execute('BEGIN IMMEDIATE')
+        with self._immediate_transaction():
             saved=self.get_state(key) or {'policy':policy,'next_variant':'v1','positions':{'v1':0,'v2':0},'dispatches':0}
             if saved['policy']!=policy:raise ValueError('Priority queue policy changed')
             rows=self.db.execute("SELECT w.rowid,w.unit_id,w.variant,w.payload,c.result FROM terrain_work w JOIN candidates c ON c.id=w.candidate_id LEFT JOIN terrain_priority_queue q ON q.unit_id=w.unit_id WHERE w.revision=? AND q.unit_id IS NULL ORDER BY w.rowid LIMIT 4096",(revision,)).fetchall()
@@ -917,8 +952,7 @@ class RealmStore:
         completed = {'result': result, 'successor_units': successor_units, 'variant_results': variant_results, 'observation': observation, 'state': state}
         if candidate_update is not None:completed['candidate_update']=candidate_update
         digest = hashlib.sha256(canonical(completed).encode()).hexdigest()
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             unit = self.get_terrain_work(unit_id)
             if unit is None:
                 raise ValueError("Unknown terrain work")
@@ -950,7 +984,7 @@ class RealmStore:
                     raise ValueError("Terrain result must preserve its evaluation chain")
                 wrapper = {key: variant_result[key] for key in ('candidate_id','variant','center','result')}
                 self.db.execute("INSERT INTO variants VALUES (?,?,?,?) ON CONFLICT(candidate_id,variant,center) DO UPDATE SET result=excluded.result",
-                                (unit['candidate_id'], unit['variant'], canonical(wrapper['center']), canonical(wrapper)))
+                                 (unit['candidate_id'], unit['variant'], canonical(wrapper['center']), canonical(wrapper)))
             if candidate_update is not None:
                 if candidate_update.get('id')!=unit['candidate_id']:raise ValueError('Marine update must preserve terrain candidate')
                 self._upsert_candidate_locked(candidate_update)
@@ -976,8 +1010,7 @@ class RealmStore:
             raise ValueError("Terrain deferral batch exceeds bounded commit size")
         contents = {'result': result, 'state': state, 'observation': observation, 'variant_results': variant_results}
         digest = hashlib.sha256(canonical(contents).encode()).hexdigest()
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             unit = self.get_terrain_work(unit_id)
             if unit is None:
                 raise ValueError("Unknown terrain work")
@@ -1037,8 +1070,7 @@ class RealmStore:
                 raise ValueError(f'{name} must be a nonnegative integer number of bytes')
         if self.db.in_transaction:
             raise ValueError("Finish caller transaction before configuring terrain disk policy")
-        with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+        with self._immediate_transaction():
             if not self.get_state('terrain_disk_accounting_initialized'):
                 self.db.execute("INSERT OR IGNORE INTO terrain_observation_bytes SELECT id,length(CAST(result AS BLOB)) FROM observations WHERE json_extract(result,'$.kind')='terrain_raster'")
                 # Prior attempt journals duplicated raw payloads. Preserve them and
@@ -1176,14 +1208,16 @@ class RealmStore:
         terrain_raw = payload.get('kind') == 'terrain_raster'
         if terrain_raw and self.db.in_transaction:
             raise ValueError("Finish caller transaction before writing terrain observation")
-        with self.db:
-            if terrain_raw:
-                self.db.execute("BEGIN IMMEDIATE")
+        if terrain_raw:
+            with self._immediate_transaction():
                 prior = self.get_observation(oid)
                 if prior is not None and canonical(prior) != canonical(payload):
                     raise ValueError("Durable terrain observation is immutable")
                 self._account_terrain_observation(payload)
-            self.db.execute("INSERT INTO observations VALUES (?,?,?) ON CONFLICT(id) DO UPDATE SET candidate_id=excluded.candidate_id,result=excluded.result", (str(oid), candidate_id, canonical(payload)))
+                self.db.execute("INSERT INTO observations VALUES (?,?,?) ON CONFLICT(id) DO UPDATE SET candidate_id=excluded.candidate_id,result=excluded.result", (str(oid), candidate_id, canonical(payload)))
+        else:
+            with self.db:
+                self.db.execute("INSERT INTO observations VALUES (?,?,?) ON CONFLICT(id) DO UPDATE SET candidate_id=excluded.candidate_id,result=excluded.result", (str(oid), candidate_id, canonical(payload)))
         return oid
 
     def iter_observations(self, candidate_id=None, batch_size=256):

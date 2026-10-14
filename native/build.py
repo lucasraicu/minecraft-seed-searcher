@@ -9,7 +9,7 @@ header = (ROOT / "native/bridge.h").read_text()
 ffibuilder.cdef("\n".join(line for line in header.splitlines() if not line.startswith("#")))
 units = ["noise", "biomes", "layers", "biomenoise", "cave", "generator", "finders", "util", "quadbase", "mt"]
 compile_args = ["-O3", "-std=c11", "-fwrapv"]
-include_dirs = ["native", "vendor/cubiomes-bedrock"]
+include_dirs = [str(ROOT / "native"), str(ROOT / "vendor/cubiomes-bedrock")]
 libraries = ["m"]
 library_dirs, link_args = [], []
 # Portable serial is the default. The opt-in runtime must be explicitly supplied;
@@ -37,13 +37,14 @@ if prefix:
     link_args += ["-Wl,-rpath," + str(prefix / "lib")]
 ffibuilder.set_source(
     "seed_search._native", '#include "bridge.h"',
-    sources=["native/bridge.c"] + [f"vendor/cubiomes-bedrock/{u}.c" for u in units],
+    sources=[str(ROOT / p) if __name__ == "__main__" else p for p in ["native/bridge.c"] + [f"vendor/cubiomes-bedrock/{u}.c" for u in units]],
     include_dirs=include_dirs,
     extra_compile_args=compile_args,
     libraries=libraries, library_dirs=library_dirs, extra_link_args=link_args,
 )
 if __name__ == "__main__":
     os.chdir(ROOT)
+    (ROOT / "build").mkdir(exist_ok=True)
     # Match Python's extension loader; a macOS .dylib can otherwise leave an
     # older .abi3.so silently active after a successful standalone build.
-    ffibuilder.compile(tmpdir=".", target=str(ROOT / "src/seed_search/_native.abi3.so"), verbose=True)
+    ffibuilder.compile(tmpdir="build", target=str(ROOT / "src/seed_search/_native.abi3.so"), verbose=True)

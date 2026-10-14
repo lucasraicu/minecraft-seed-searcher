@@ -141,3 +141,13 @@ def test_missing_top_footprint_does_not_block_later_measurable_result(tmp_path):
         selected,_=select_verification(store,'v1',cfg,adapter=adapter,require_footprint=True)
         assert selected[0][0]['candidate_id']=='1:1:0'
     finally:store.close()
+
+
+def test_coastal_2048_footprint_supported():
+    cfg = {'terrain': {'variants': ['v1'], 'v1': {'mode': 'coastal_continent', 'square_side_blocks': 2048}}}
+    prediction = {'center': [100, -200], 'border_fit': {'footprint': [-924, -1224, 1124, 824]}}
+    bounds = verification_region(prediction, 'v1', cfg, 16)
+    assert bounds == (-924, -1224, 1124, 824)
+    # Also works when derived from candidate bounds
+    cand = {'center': [100, -200], 'bounds': {'overworld': [-924, -1224, 1124, 824]}}
+    assert verification_region(cand, 'v1', {'terrain': {'variants': ['v1'], 'v1': {'mode': 'coastal_continent'}}}, 16) == (-924, -1224, 1124, 824)

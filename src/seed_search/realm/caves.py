@@ -22,16 +22,19 @@ def verify_caves(seed, stronghold, cfg, adapter=None, predictor=None):
         isinstance(budget,bool) or not isinstance(budget,int) or budget<1 or
         isinstance(limit,bool) or not isinstance(limit,int) or limit<0):
         raise ValueError('Positive manual cave spacing and sample budget required')
-    bounds = square((sx,sz), cfg.get('deployment', {}).get('overworld_side_blocks', 1536))
-    points = [(x,y,z) for z in range(bounds[1],bounds[3],spacing)
-              for x in range(bounds[0],bounds[2],spacing) for y in ys]
+    bounds = square((sx,sz), (cfg.get('deployment') or {}).get('overworld_side_blocks', 1536))
+    count_x = len(range(bounds[0], bounds[2], spacing))
+    count_z = len(range(bounds[1], bounds[3], spacing))
+    requested_samples = count_x * count_z * len(ys)
     result = {'seed':seed, 'stronghold':list(stronghold), 'bounds':list(bounds), 'half_open':True,
               'manual_only':True, 'distance_reference_y':0, 'score_effect':None, 'initial_y_levels':list(ys), 'spacing':spacing,
-              'sample_budget':budget, 'requested_samples':len(points), 'families':{}, 'errors':[], 'status':'UNSUPPORTED'}
-    if len(points)>budget:
+              'sample_budget':budget, 'requested_samples':requested_samples, 'families':{}, 'errors':[], 'status':'UNSUPPORTED'}
+    if requested_samples > budget:
         result['reason'] = 'Requested coarse grid exceeds explicit sample budget; increase spacing or budget'
         result['sampled_points'] = 0
         return result
+    points = [(x,y,z) for z in range(bounds[1],bounds[3],spacing)
+              for x in range(bounds[0],bounds[2],spacing) for y in ys]
     observations = []
     actual = False
     if adapter is not None and hasattr(adapter,'sample_caves'):

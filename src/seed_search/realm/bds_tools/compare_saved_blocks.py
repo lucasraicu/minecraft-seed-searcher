@@ -65,34 +65,37 @@ def probe_matches(p,names):
     return primary and ('waterlogged' not in p or overlay_water(names)==p['waterlogged'])
 
 source=Path(sys.argv[1]);columns=json.loads(Path(sys.argv[2]).read_text())
-tmp=Path(tempfile.mkdtemp());shutil.copytree(source,tmp/'world')
-db=LevelDB(str(tmp/'world/db'));cache={};matches=0;unknown=[];mismatch=[];overlayWater=0;overlayChecked=0;overlayMatched=0;stateChecked=0;stateMatched=0;stateUnknown=0;probes=0
-for col in columns:
-    targets=list(col['probes'])
-    if col['waterBottom'] is not None:targets.append({'x':col['x'],'y':col['waterBottom'],'z':col['z'],'block':'minecraft:water','waterEither':True})
-    for p in targets:
-        key=struct.pack('<ii',p['x']//16,p['z']//16)+b'\x2f'+struct.pack('b',p['y']//16)
-        if key not in cache:
-            try:data=db.get(key)
-            except KeyError:data=None
-            cache[key]=decode(data) if data is not None else None
-        probes+=1
-        if cache[key] is None:unknown.append(p);continue
-        entries=entries_at(cache[key],p['x'],p['y'],p['z'])
-        names=[entry['name'] for entry in entries]
-        okay=probe_matches(p,names)
-        if 'states' in p:
-            state_result=states_match(p['states'],entries[0]['states'] if entries else None)
-            if state_result is None:
-                stateUnknown+=1;unknown.append({'probe':p,'reason':'API or saved permutation states unavailable','savedEntries':entries});continue
-            stateChecked+=1
-            if state_result:stateMatched+=1
-            okay=okay and state_result
-        if 'waterlogged' in p:
-            overlayChecked+=1
-            if overlay_water(names)==p['waterlogged']:overlayMatched+=1
-        if okay:matches+=1
-        else:mismatch.append({'probe':p,'savedLayers':names,'savedEntries':entries})
-        if any(n in ('minecraft:water','minecraft:flowing_water') for n in names[1:]):overlayWater+=1
-db.close();shutil.rmtree(tmp)
-print(json.dumps({'probes':probes,'matches':matches,'unknownCount':len(unknown),'mismatches':mismatch,'unknown':unknown,'overlayWaterProbes':overlayWater,'overlayCheckedProbes':overlayChecked,'overlayMatchedProbes':overlayMatched,'stateCheckedProbes':stateChecked,'stateMatchedProbes':stateMatched,'stateUnknownProbes':stateUnknown},indent=2))
+with tempfile.TemporaryDirectory() as tmp:
+    tmp_path=Path(tmp);shutil.copytree(source,tmp_path/'world')
+    db=LevelDB(str(tmp_path/'world/db'));cache={};matches=0;unknown=[];mismatch=[];overlayWater=0;overlayChecked=0;overlayMatched=0;stateChecked=0;stateMatched=0;stateUnknown=0;probes=0
+    try:
+        for col in columns:
+            targets=list(col['probes'])
+            if col['waterBottom'] is not None:targets.append({'x':col['x'],'y':col['waterBottom'],'z':col['z'],'block':'minecraft:water','waterEither':True})
+            for p in targets:
+                key=struct.pack('<ii',p['x']//16,p['z']//16)+b'\x2f'+struct.pack('b',p['y']//16)
+                if key not in cache:
+                    try:data=db.get(key)
+                    except KeyError:data=None
+                    cache[key]=decode(data) if data is not None else None
+                probes+=1
+                if cache[key] is None:unknown.append(p);continue
+                entries=entries_at(cache[key],p['x'],p['y'],p['z'])
+                names=[entry['name'] for entry in entries]
+                okay=probe_matches(p,names)
+                if 'states' in p:
+                    state_result=states_match(p['states'],entries[0]['states'] if entries else None)
+                    if state_result is None:
+                        stateUnknown+=1;unknown.append({'probe':p,'reason':'API or saved permutation states unavailable','savedEntries':entries});continue
+                    stateChecked+=1
+                    if state_result:stateMatched+=1
+                    okay=okay and state_result
+                if 'waterlogged' in p:
+                    overlayChecked+=1
+                    if overlay_water(names)==p['waterlogged']:overlayMatched+=1
+                if okay:matches+=1
+                else:mismatch.append({'probe':p,'savedLayers':names,'savedEntries':entries})
+                if any(n in ('minecraft:water','minecraft:flowing_water') for n in names[1:]):overlayWater+=1
+    finally:
+        db.close()
+    print(json.dumps({'probes':probes,'matches':matches,'unknownCount':len(unknown),'mismatches':mismatch,'unknown':unknown,'overlayWaterProbes':overlayWater,'overlayCheckedProbes':overlayChecked,'overlayMatchedProbes':overlayMatched,'stateCheckedProbes':stateChecked,'stateMatchedProbes':stateMatched,'stateUnknownProbes':stateUnknown},indent=2))

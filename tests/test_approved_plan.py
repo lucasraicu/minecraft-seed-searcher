@@ -67,7 +67,7 @@ def test_quart_land_parity_with_unaligned_negative_points_and_mutation():
 
 def test_every_supported_biome_maps_except_end_and_void():
     known={biome_name(i) for i in range(256) if not biome_name(i).startswith('unknown')}
-    assert known-set(FAMILIES)=={'the_end','the_void','small_end_islands','end_midlands','end_highlands','end_barrens'}
+    assert known-set(FAMILIES)=={'the_end','the_void','small_end_islands','end_midlands','end_highlands','end_barrens','dappled_forest','sulfur_caves','ice_caves'}
 
 @pytest.mark.parametrize('seed',[-1,0,12345,4294979641])
 def test_batched_biomes_match_scalar_at_surface_cave_and_nether_layers(seed):

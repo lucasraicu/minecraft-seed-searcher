@@ -39,7 +39,7 @@ def pinned_world_settings():
 
 def validate_bds_pins(cfg):
     """Reject settings the tested adapter cannot honor instead of ignoring them."""
-    options = cfg.get('bds', cfg.get('verification',{}).get('bds',{}))
+    options = cfg.get('bds', (cfg.get('verification') or {}).get('bds',{}))
     allowed = {'enabled','version','docker_cli','image','image_id','cpus','memory_gib','verification_budget',
                'persist_snapshot','compare_reference','maximum_region_side','max_tiles_per_request',
                'max_cave_tiles','evidence_dir','world_settings'}
@@ -140,12 +140,12 @@ def saved_blocks_consistent(saved):
         return False
     mismatches=saved.get('mismatches',[])
     if not mismatches:return True
-    proof=saved.get('semantic_validation',{})
-    identity=proof.get('identity',{})
+    proof=saved.get('semantic_validation') or {}
+    identity=proof.get('identity') or {}
     if (proof.get('policy')!=SEMANTIC_POLICY or proof.get('source')!=SEMANTIC_SOURCE
         or proof.get('same_container_restart') is not True or proof.get('snapshot_copied_before_restart') is not True
         or not isinstance(proof.get('container_name'),str) or not proof['container_name']
-        or proof.get('restart_cleanup',{}).get('clean_shutdown') is not True
+        or (proof.get('restart_cleanup') or {}).get('clean_shutdown') is not True
         or identity.get('bds_version')!=BUILD or identity.get('script_api')!='2.10.0'
         or identity.get('image_id')!=IMAGE_ID or identity.get('server_zip_sha256')!=ZIP_SHA256
         or identity.get('persist_snapshot') is not True or identity.get('tools_sha256')!=tooling_identity()):
@@ -196,17 +196,22 @@ class VerificationAdapter:
         db = self.store.db
         if db.in_transaction:
             raise RuntimeError('Verification reservation requires no open caller transaction')
-        with db:
-            db.execute('BEGIN IMMEDIATE')
+        db.execute('BEGIN IMMEDIATE')
+        try:
             row = db.execute("SELECT value FROM meta WHERE key='bds_verification_used'").fetchone()
             used = json.loads(row[0]) if row else 0
             if isinstance(used,bool) or not isinstance(used,int) or used<0:
                 raise ValueError('Invalid persisted BDS verification attempt count')
             if used >= budget:
+                db.rollback()
                 return None
             attempt = used+1
             db.execute("INSERT INTO meta(key,value) VALUES ('bds_verification_used',?) "
                        "ON CONFLICT(key) DO UPDATE SET value=excluded.value",(str(attempt),))
+            db.commit()
+        except Exception:
+            db.rollback()
+            raise
         self.used = attempt
         return attempt
 
@@ -368,7 +373,7 @@ class VerificationAdapter:
         return result
 
     def sample_raster(self, seed, bounds, resolution, **kwargs):
-        result = self.verify(seed, bounds, resolution, kwargs.get('settings', {}).get('selection_reason', 'explicit'))
+        result = self.verify(seed, bounds, resolution, (kwargs.get('settings') or {}).get('selection_reason', 'explicit'))
         if 'raster' not in result:
             shape = (math.ceil((bounds[3]-bounds[1])/resolution), math.ceil((bounds[2]-bounds[0])/resolution))
             return Raster(bounds, resolution, np.full(shape, np.nan), metadata={'unsupported': result['status']=='UNSUPPORTED', 'failed':result['status']=='FAILED', 'reason': result.get('reason')})
@@ -376,11 +381,11 @@ class VerificationAdapter:
 
     def verify_candidate(self, candidate, bounds=None, **kwargs):
         sx, sz = candidate.get('evaluation_center',candidate['stronghold'])
-        bounds = bounds or candidate.get('bounds', {}).get('overworld') or square((sx,sz), self.cfg.get('deployment', {}).get('overworld_side_blocks', 1536))
+        bounds = bounds or (candidate.get('bounds') or {}).get('overworld') or square((sx,sz), (self.cfg.get('deployment') or {}).get('overworld_side_blocks', 1536))
         if isinstance(bounds, dict):
             bounds = bounds['overworld']
         from .coastal import coastal_mode
-        side=self.cfg.get('deployment',{}).get('overworld_side_blocks',1536)
+        side=(self.cfg.get('deployment') or {}).get('overworld_side_blocks',1536)
         half=side//2
         if coastal_mode(self.cfg) and tuple(bounds) != (sx-half, sz-half, sx+half, sz+half):
             raise ValueError('Coastal candidate verification requires the configured center square')
@@ -388,8 +393,9 @@ class VerificationAdapter:
 
     def verify_final_nether(self, seed, stronghold, *, evidence=None):
         return final_nether_evidence(seed, stronghold, evidence, self.identity,
-                                     side=self.cfg.get('deployment', {}).get('nether_side_blocks', 896),
-                                     center_kind='world_origin' if self.cfg.get('screening_revision','').startswith('origin-fixed-2048') else 'stronghold')
+                                     side=(self.cfg.get('deployment') or {}).get('nether_side_blocks', 896),
+                                     center_kind='world_origin' if self.cfg.get('screening_revision','').startswith('origin-fixed-2048') else 'stronghold',
+                                     cfg=self.cfg)
 
     def sample_caves(self, seed, bounds, spacing=128, ys=(0,-16,-32,-48)):
         """Explicit manual coarse cave inventory, with no absence certification."""
@@ -499,7 +505,7 @@ class VerificationAdapter:
                 if primary_error is None:primary_error=error
                 else:primary_error.add_note('Persisting semantic restart diagnostics also failed: '+str(error))
         if primary_error is not None:raise primary_error
-        if cleanup.get('termination',{}).get('type')=='SystemExit':raise SystemExit(cleanup['termination']['code'])
+        if (cleanup.get('termination') or {}).get('type')=='SystemExit':raise SystemExit(cleanup['termination']['code'])
         if cleanup.get('interrupted'):raise KeyboardInterrupt('Interrupted during semantic restart cleanup')
         if not cleanup.get('clean_shutdown'):
             raise RuntimeError('Clean stopped semantic confirmation server not established')
@@ -603,7 +609,7 @@ class VerificationAdapter:
                 else:primary_error.add_note('Persisting cleanup diagnostics also failed: '+str(error))
         if primary_error is not None:
             raise primary_error
-        if report['cleanup'].get('termination',{}).get('type')=='SystemExit':
+        if ((report.get('cleanup') or {}).get('termination') or {}).get('type')=='SystemExit':
             raise SystemExit(report['cleanup']['termination']['code'])
         if report['cleanup'].get('interrupted'):
             raise KeyboardInterrupt('Interrupted during BDS cleanup')
@@ -657,7 +663,7 @@ def raster_from_columns(bounds, spacing, columns, evidence):
         if row.get('evidenceRole')=='controlled_fixture':
             raise ValueError('Controlled fixture mutations cannot supply natural-world rasters')
         key = (x,z)
-        surface = row.get('surfaceBiome',{})
+        surface = row.get('surfaceBiome') or {}
         sample = {'x':x,'z':z,'y':surface.get('y'),'name':surface.get('name'),
                   'status':surface.get('status','MISSING'),'source':surface.get('source',biome_source)}
         if sample['status']=='OBSERVED':
@@ -665,7 +671,7 @@ def raster_from_columns(bounds, spacing, columns, evidence):
             elif (sample['source']!=biome_source or surface.get('queryPolicy')!=biome_query_policy
                   or surface.get('canopyRule')!=biome_canopy_rule):sample['status']='INVALID_QUERY_POLICY'
             else:
-                levels=[row.get('ground',{}).get('y'),row.get('waterTop')]+[c.get('y') for c in row.get('cover',[])]
+                levels=[(row.get('ground') or {}).get('y'),row.get('waterTop')]+[c.get('y') for c in (row.get('cover') or [])]
                 levels=[v for v in levels if isinstance(v,(int,np.integer)) and not isinstance(v,bool)]
                 expected_y=max(levels)+1 if levels else None
                 if (row.get('waterKnown') is not True or sample['y']!=expected_y
@@ -674,7 +680,7 @@ def raster_from_columns(bounds, spacing, columns, evidence):
         if key in biome_samples and biome_samples[key]!=sample:
             raise ValueError('Overlapping tile surface biome observations disagree')
         biome_samples[key]=sample
-        value = (row.get('ground',{}).get('y'), row.get('waterDepth'), row.get('waterKnown'), row.get('policy'))
+        value = ((row.get('ground') or {}).get('y'), row.get('waterDepth'), row.get('waterKnown'), row.get('policy'))
         if key in seen and seen[key] != value:
             raise ValueError('Overlapping tile observations disagree')
         seen[key] = value
@@ -687,9 +693,9 @@ def raster_from_columns(bounds, spacing, columns, evidence):
             # but exclude them from certifiable geometry.
             water_known[index] = (row.get('policy')=='actual-column-v2' and row.get('waterKnown') is True
                                   and valid_depth)
-            classification=row.get('ground',{}).get('classification','legacy_unclassified')
+            classification=(row.get('ground') or {}).get('classification','legacy_unclassified')
             policy_counts[classification]=policy_counts.get(classification,0)+1
-    saved = evidence.get('saved_blocks', {})
+    saved = evidence.get('saved_blocks') or {}
     consistent = saved_blocks_consistent(saved)
     known = np.isfinite(height) & water_known
     if not evidence.get('stable', False) or not consistent or evidence.get('complete_snapshot') is False:
@@ -721,7 +727,7 @@ def raster_from_columns(bounds, spacing, columns, evidence):
                       'limitations':['Structure provenance unavailable; cover can hide substrate; fractional fluid surface height unverified; new column policy awaiting pinned-runtime validation', 'Sparse sampling cannot certify unsampled connectivity']})
 
 
-def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, side=896, center_kind='stronghold'):
+def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, side=896, center_kind='stronghold', cfg=None, required_counts=None):
     seed = str(parse_seed(seed))
     sx,sz = stronghold
     if any(isinstance(v,bool) or not isinstance(v,int) for v in stronghold):
@@ -729,9 +735,16 @@ def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, sid
     exact_bounds = nether_square(stronghold, side)
     lo_x, lo_z, hi_x, hi_z = native_bounds(exact_bounds)
     bounds = [lo_x, lo_z, hi_x+1, hi_z+1]
+    policy_counts = ((cfg or {}).get('structures') or {}).get('nether_minimum_counts') or {}
+    floors = ((cfg or {}).get('structures') or {}).get('hard_floors') or {'fortress': 1, 'bastion': 2}
+    selected = required_counts if required_counts is not None else policy_counts
+    required_counts = {name: max(floors.get(name, 1), selected.get(name, default))
+                       for name, default in (('fortress', 2), ('bastion', 3))}
+    if any(type(n) is not int or not 1 <= n <= 64 for n in required_counts.values()):
+        raise ValueError('Nether required counts must be integers in 1–64')
     result = {'seed':seed, 'stronghold':list(stronghold) if center_kind=='stronghold' else None,
               'evaluation_center':list(stronghold),'center_kind':center_kind,'center':[sx/8,sz/8], 'bounds':bounds,
-              'half_open':True, 'required':['fortress','bastion'], 'status':'PARTIAL', 'structures':{},
+              'half_open':True, 'required':['fortress','bastion'], 'required_counts':dict(required_counts), 'status':'PARTIAL', 'structures':{},
               'reason':'Stable Script API does not support exhaustive structure enumeration; import actual pinned-generation evidence'}
     if not evidence:
         return result
@@ -741,8 +754,8 @@ def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, sid
         raise ValueError('Imported Nether evidence seed/build/dimension mismatch')
     exhaustive = evidence.get('coverage_complete') is True and evidence.get('exhaustive') is True and evidence.get('bounds')==bounds
     for kind in ('fortress','bastion'):
-        anchors = []
-        for row in evidence.get('structures',{}).get(kind,[]):
+        anchors = []; seen = set()
+        for row in (evidence.get('structures') or {}).get(kind,[]):
             if any(isinstance(row.get(k), bool) or not isinstance(row.get(k), int) for k in ('x','y','z')):
                 raise ValueError('Imported Nether anchors require integer X/Y/Z block coordinates')
             if 'actual' in row and not isinstance(row['actual'], bool):
@@ -750,11 +763,18 @@ def final_nether_evidence(seed, stronghold, evidence=None, identity=None, *, sid
             if 'source' in row and (not isinstance(row['source'], str) or not row['source'].strip()):
                 raise ValueError('Imported anchor source must be a nonempty string')
             x,z = row['x'],row['z']
-            if row.get('actual') is True and contains((x,z), exact_bounds):
-                anchors.append(row)
-        result['structures'][kind] = {'anchors':anchors, 'status':'VERIFIED' if anchors else ('ABSENT' if exhaustive else 'UNKNOWN')}
+            if row.get('actual') is True and contains((x,z), exact_bounds) and (x,z) not in seen:
+                anchors.append(row); seen.add((x,z))
+        req = required_counts[kind]
+        if len(anchors) >= req:
+            st = 'VERIFIED'
+        elif exhaustive:
+            st = 'ABSENT' if not anchors else 'DEFICIENT'
+        else:
+            st = 'PARTIAL' if anchors else 'UNKNOWN'
+        result['structures'][kind] = {'anchors':anchors, 'required':req, 'status':st}
     statuses = [v['status'] for v in result['structures'].values()]
-    result['status'] = 'VERIFIED' if all(s=='VERIFIED' for s in statuses) else ('FAILED' if 'ABSENT' in statuses else 'PARTIAL')
+    result['status'] = 'VERIFIED' if all(s=='VERIFIED' for s in statuses) else ('FAILED' if any(s in ('ABSENT', 'DEFICIENT') for s in statuses) else 'PARTIAL')
     result['evidence'] = evidence
     return result
 
@@ -783,8 +803,8 @@ def calibrate_prediction(predictor, observation, *, sea_level=63):
     if columns is not None:
         # Unknown or malformed ground/water fields are not negative evidence.
         valid = [row for row in columns if 'error' not in row
-                 and isinstance(row.get('ground',{}).get('y'),(int,np.integer))
-                 and not isinstance(row['ground']['y'],bool)
+                 and isinstance((row.get('ground') or {}).get('y'),(int,np.integer))
+                 and not isinstance((row.get('ground') or {}).get('y'),bool)
                  and isinstance(row.get('waterDepth'),(int,np.integer))
                  and not isinstance(row['waterDepth'],bool) and row['waterDepth']>=0]
         raster = raster_from_columns(tuple(bounds), spacing, valid, evidence)
@@ -794,7 +814,7 @@ def calibrate_prediction(predictor, observation, *, sea_level=63):
             raster.known &= saved.known & (raster.height==saved.height) & (raster.water==saved.water)
     elif saved is not None:
         raster = saved
-        comparisons = evidence.get('saved_blocks',{})
+        comparisons = evidence.get('saved_blocks') or {}
         if comparisons.get('mismatches') or comparisons.get('unknownCount') or evidence.get('complete_snapshot') is False:
             return empty('Saved block consistency or requested snapshot coverage is unresolved')
     else:

@@ -4,7 +4,13 @@ import type { TelemetryState } from '../types';
 interface TelemetryBarProps {
   telemetry: TelemetryState;
   dataMode: 'demo' | 'live';
+  targetVolume?: number;
+  onChangeTargetVolume?: (vol: number) => void;
   onToggleSweep: () => void;
+  onPauseSweep?: () => void;
+  onContinueSweep?: () => void;
+  onStartTerrain?: () => void;
+  onStopTerrain?: () => void;
   onOpenFunnel: () => void;
   onExport: () => void;
 }
@@ -12,7 +18,13 @@ interface TelemetryBarProps {
 export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   telemetry,
   dataMode,
+  targetVolume,
+  onChangeTargetVolume,
   onToggleSweep,
+  onPauseSweep,
+  onContinueSweep,
+  onStartTerrain,
+  onStopTerrain,
   onOpenFunnel,
   onExport,
 }) => {
@@ -75,6 +87,8 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
             className={`w-2.5 h-2.5 rounded-full ${
               telemetry.status === 'running'
                 ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]'
+                : telemetry.status === 'paused'
+                ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]'
                 : telemetry.status === 'bds_verifying'
                 ? 'bg-blue-400 animate-ping shadow-[0_0_8px_#38bdf8]'
                 : 'bg-slate-600'
@@ -83,9 +97,11 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
             {telemetry.status === 'running'
               ? 'Sweeping Native Kernel'
+              : telemetry.status === 'paused'
+              ? 'Sweep Paused'
               : telemetry.status === 'bds_verifying'
               ? 'BDS 1.26.52.3 Verifying...'
-              : 'Idle'}
+              : telemetry.status === 'error' ? 'Sweep Error' : telemetry.status === 'completed' ? 'Sweep Complete' : 'Idle'}
           </span>
         </div>
       </div>
@@ -177,25 +193,128 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           💾 Export
         </button>
 
-        <button
-          onClick={onToggleSweep}
-          className={`px-5 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white transition-all shadow-lg flex items-center gap-2 ${
-            telemetry.status === 'running'
-              ? 'bg-red-500 hover:bg-red-600 shadow-red-500/20'
-              : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30'
-          }`}
-        >
-          {telemetry.status === 'running' ? (
-            <>
+        {/* Run Terrain Filtering Action */}
+        {telemetry.terrainStatus === 'running' ? (
+          <div className="flex items-center gap-2 bg-blue-950/80 border border-blue-600/60 rounded-lg px-2.5 py-1 text-xs shadow-inner">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+            <div className="flex flex-col">
+              <span className="text-[10px] text-blue-300 font-bold uppercase tracking-wider flex items-center gap-1">
+                🌊 Terrain ({telemetry.terrainProgress?.completed ?? 0}/{telemetry.terrainProgress?.total ?? 0})
+              </span>
+              <span className="text-[9px] text-blue-400 font-mono">
+                {telemetry.terrainProgress?.pct ?? 0}% • ETA: {telemetry.terrainProgress?.etaSeconds == null ? 'Pending' : `${Math.round(telemetry.terrainProgress.etaSeconds / 60)}m`}
+              </span>
+            </div>
+            {onStopTerrain && (
+              <button
+                onClick={onStopTerrain}
+                className="ml-1 p-1 hover:bg-blue-800/80 rounded text-red-300 hover:text-red-200 text-xs font-bold transition-colors"
+                title="Stop Terrain Filtering"
+              >
+                ⏹
+              </button>
+            )}
+          </div>
+        ) : (
+          <button
+            onClick={onStartTerrain}
+            disabled={!telemetry.runId || telemetry.candidatesFound === 0 || telemetry.status === 'running'}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+              (telemetry.terrainProgress?.completed ?? 0) > 0 && (telemetry.terrainProgress?.completed ?? 0) >= (telemetry.terrainProgress?.total ?? 1)
+                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40 hover:bg-blue-500/30'
+                : 'bg-indigo-600 hover:bg-indigo-500 text-white border-indigo-500 shadow-md shadow-indigo-600/30'
+            } disabled:opacity-50 disabled:cursor-not-allowed`}
+            title="Run 2048-block Continental Ocean Terrain Filtering across Candidates"
+          >
+            <span>🌊</span>
+            <span>
+              {(telemetry.terrainProgress?.completed ?? 0) > 0
+                ? `Resume Terrain (${telemetry.terrainProgress?.completed}/${telemetry.terrainProgress?.total})`
+                : 'Run Terrain Filtering'}
+            </span>
+          </button>
+        )}
+
+        {/* Quick Volume Target Selector */}
+        {onChangeTargetVolume && (
+          <div className="hidden md:flex items-center gap-1 bg-slate-950/90 border border-slate-800 rounded-lg p-1 text-[10px] font-mono">
+            <span className="text-slate-500 uppercase px-1 font-semibold">Target:</span>
+            {[100_000, 1_000_000, 10_000_000, 100_000_000, 1_000_000_000].map((v) => {
+              const active = (targetVolume ?? telemetry.targetCount) === v;
+              return (
+                <button
+                  key={v}
+                  onClick={() => onChangeTargetVolume(v)}
+                  disabled={telemetry.status === 'running'}
+                  className={`px-1.5 py-0.5 rounded transition-all ${
+                    active
+                      ? 'bg-emerald-600 text-white font-bold shadow'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-50'
+                  }`}
+                  title={`Set sweep target volume: ${v.toLocaleString()} seeds`}
+                >
+                  {v >= 1_000_000_000 ? `${v / 1_000_000_000}B` : v >= 1_000_000 ? `${v / 1_000_000}M` : `${v / 1_000}k`}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {telemetry.status === 'running' ? (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onPauseSweep}
+              className="px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-amber-500 hover:bg-amber-600 shadow-lg shadow-amber-500/20 transition-all flex items-center gap-1.5"
+              title="Pause and retain committed checkpoint; unfinished batches remain retryable"
+            >
+              <span>⏸</span> Pause
+            </button>
+            <button
+              onClick={onToggleSweep}
+              className="px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/20 transition-all flex items-center gap-1.5"
+              title="Stop and abort sweep immediately"
+            >
               <span className="w-2 h-2 rounded-full bg-white animate-ping"></span>
-              Stop Sweep
-            </>
-          ) : (
-            <>
+              Stop
+            </button>
+          </div>
+        ) : telemetry.status === 'paused' ? (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onContinueSweep}
+              className="px-5 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-emerald-500 hover:bg-emerald-600 shadow-lg shadow-emerald-500/30 transition-all flex items-center gap-1.5 animate-pulse"
+              title="Continue sweep from last paused seed"
+            >
+              <span>▶</span> Continue Sweep
+            </button>
+            <button
+              onClick={onToggleSweep}
+              className="px-3 py-2 rounded-lg font-semibold text-xs text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-all border border-slate-700"
+              title="Reset or stop current run"
+            >
+              ⏹ Stop
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            {Boolean(telemetry.runId && telemetry.totalScanned > 0 && telemetry.totalScanned < telemetry.targetCount) && (
+              <button
+                onClick={onContinueSweep}
+                className="px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-1.5"
+                title="Continue saved sweep run to completion"
+              >
+                <span>▶</span> Continue Sweep
+              </button>
+            )}
+            <button
+              onClick={onToggleSweep}
+              className="px-5 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-emerald-500 hover:bg-emerald-600 shadow-lg shadow-emerald-500/30 transition-all flex items-center gap-1.5"
+              title="Start a new sweep"
+            >
               <span>▶</span> Start Sweep
-            </>
-          )}
-        </button>
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );

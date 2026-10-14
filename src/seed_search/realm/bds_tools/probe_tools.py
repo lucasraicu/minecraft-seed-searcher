@@ -75,12 +75,16 @@ class Probe(Console):
             if 'PROBE_BATCH ' in line:
                 b=json.loads(line.split('PROBE_BATCH ',1)[1])
                 if b['id']==q['id']:batches.append(b)
-        assert [b['batch'] for b in batches]==list(range(len(batches)))
+        if [b['batch'] for b in batches] != list(range(len(batches))):
+            raise RuntimeError('Incomplete or out-of-order probe batches')
         rows=[row for batch in batches for row in batch['rows']]
         expected=((q['side']+q['spacing']-1)//q['spacing'])**2
-        assert len(rows)==expected,(len(rows),expected)
-        assert len({(r['x'],r['z']) for r in rows})==expected
-        assert not any('error' in r for r in rows)
+        if len(rows) != expected:
+            raise RuntimeError(f'Unexpected row count: {len(rows)} != {expected}')
+        if len({(r['x'],r['z']) for r in rows}) != expected:
+            raise RuntimeError('Duplicate or missing coordinates in probe rows')
+        if any('error' in r for r in rows):
+            raise RuntimeError('Error in probe rows')
         return rows
     def fixture_failure_report(self,q):
         """Recover bounded setup/rollback artifacts already persisted in raw logs."""

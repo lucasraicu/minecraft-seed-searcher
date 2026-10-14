@@ -162,7 +162,7 @@ int ss_biome(SeedContext *ctx, int dimension, int x, int y, int z) {
 }
 int ss_grid(SeedContext *ctx, int x0, int z0, int nx, int nz, int step,
             int y, int *biomes, double *climate, double *approx_height) {
-    if (nx < 1 || nz < 1 || step < 1) return -1;
+    if (!ctx || !biomes || !climate || !approx_height || nx < 1 || nz < 1 || step < 1) return -1;
 #ifdef _OPENMP
     #pragma omp parallel for schedule(static) num_threads(ctx->threads) if(ctx->threads>1 && nx*nz>=256)
 #endif
@@ -181,7 +181,7 @@ int ss_grid(SeedContext *ctx, int x0, int z0, int nx, int nz, int step,
 }
 int ss_heights(SeedContext *ctx, const int *xz, int n, int vertical_step,
                int *heights, int *surface_biomes) {
-    if (n < 0 || vertical_step < 1 || vertical_step > 16) return -1;
+    if (!ctx || !xz || !heights || !surface_biomes || n < 0 || vertical_step < 1 || vertical_step > 16) return -1;
     if (!ctx->terrain_ready) {
         initTerrainNoise(&ctx->terrain,ctx->seed);
         initTerrainShaper(&ctx->shaper);
@@ -419,7 +419,7 @@ static uint64_t land_hash(int x,int z) {
     return key^(key>>31);
 }
 int ss_land(SeedContext *ctx, const int *xz, int n, int *land) {
-    if (n<0 || n>100000) return -1;
+    if (!ctx || !xz || !land || n<0 || n>100000) return -1;
     if (!ctx->terrain_ready) {
         initTerrainNoise(&ctx->terrain,ctx->seed);
         initTerrainShaper(&ctx->shaper);
@@ -456,7 +456,7 @@ int ss_land(SeedContext *ctx, const int *xz, int n, int *land) {
 
 /* Diagnostic interface for exact raw-density parity/calibration. */
 int ss_density_points(SeedContext *ctx,const int *xyz,int n,double *out) {
-    if(n<0 || n>100000)return -1;
+    if (!ctx || !xyz || !out || n<0 || n>100000) return -1;
     if(!ctx->terrain_ready) {
         initTerrainNoise(&ctx->terrain,ctx->seed);
         initTerrainShaper(&ctx->shaper);ctx->terrain_ready=1;

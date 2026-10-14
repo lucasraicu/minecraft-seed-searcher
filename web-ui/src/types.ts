@@ -32,28 +32,11 @@ export interface StructureMarker {
   color: string;
   viable: boolean;
   distanceToHub?: number | null;
+  distanceToOrigin?: number | null;
+  distanceToSpawn?: number | null;
   distanceUnits?: string;
   evidenceStatus?: string | null;
   notes?: string;
-}
-
-export interface BiomeRegion {
-  name: string;
-  category:
-    | 'ocean'
-    | 'mountain'
-    | 'mushroom'
-    | 'forest'
-    | 'plains'
-    | 'jungle'
-    | 'badlands'
-    | 'nether_wastes'
-    | 'crimson_forest'
-    | 'warped_forest'
-    | 'soul_sand_valley'
-    | 'basalt_deltas';
-  color: string;
-  polygon: [number, number][]; // Relative block coords
 }
 
 export interface RavineMarker {
@@ -85,11 +68,14 @@ export interface SeedCandidate {
   id: string;
   seed: string;
   score: number | null;
+  rankingTier?: number | null;
+  unmetRequirements?: number | null;
   strongholdAnchor?: [number, number] | null;
   evaluationCenter?: [number, number] | null;
   predictedStrongholds?: [number, number][];
   spawnPoint?: [number, number] | null;
   spawnDistance?: number | null;
+  spawnDistanceToOrigin?: number | null;
   spawnDistanceUnits?: string;
   spawnEvidence?: {
     status?: string;
@@ -98,8 +84,11 @@ export interface SeedCandidate {
     [key: string]: unknown;
   } | null;
   chunkbaseUrl?: string | null;
-  terrainType?: 'Coastal Continent' | 'Coastal Continent (River Highway)' | 'Baseline (Structures Only)' | string | null;
+  terrainType?: 'Coastal Continent' | 'Coastal Continent (River Highway)' | 'Coastal Continent (Near-Miss)' | 'Baseline (Structures Only)' | string | null;
   terrainPassed?: boolean | null;
+  terrainStatus?: 'passed' | 'near_miss' | 'failed' | 'pending' | null;
+  terrainGeometryScore?: number | null;
+  terrainReasons?: string[] | null;
   terrainMetrics?: {
     diameter?: number | null;
     waterEnclosure?: number | null;
@@ -115,6 +104,8 @@ export interface SeedCandidate {
   ravines?: RavineMarker[];
   caveClusters?: CaveClusterMarker[];
   biomes?: string[] | null;
+  biomeWitnesses?: Record<string, any> | null;
+  biomeSamples?: Array<{ biome: string; coordinate?: number[]; x?: number; y?: number; z?: number; id?: number }> | null;
   bdsVerified?: boolean | null;
   bdsAccuracy?: {
     paletteAgreement?: string | null;
@@ -143,6 +134,15 @@ export interface TelemetryState {
   sweepProgress: number; // 0 to 100
   history: number[]; // Last 20 data points for sparkline
   runId?: string;
+  terrainStatus?: 'idle' | 'running' | 'completed' | 'error';
+  terrainProgress?: {
+    completed: number;
+    total: number;
+    pct: number;
+    elapsedSeconds: number;
+    etaSeconds: number | null;
+    currentSeed?: string | null;
+  };
 }
 
 export interface SearchConfig {

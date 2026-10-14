@@ -127,3 +127,83 @@ def test_candidate_updates_keep_identity_and_require_eligibility_opt_in(tmp_path
         assert store.status()["candidate_counts"]["VERIFIED"] == 1
         # Digest still covers original worker results, not later rescores/evidence.
         assert not store.complete_range(0, 1, [original])
+
+
+def test_blueprint_integer_score_protected_during_complete_inventory_work(tmp_path):
+    with RealmStore(tmp_path) as store:
+        store.configure_range(0, 1)
+        store.claim_range(1)
+        cid = "0:1:2"
+        candidate = {
+            "id": cid, "index": 0, "seed": "0", "stronghold": [1, 2], "qualification": "PREDICTED",
+            "revision": "blueprint-locked-v1",
+            "baseline_score": 42,
+            "baseline_score_observed": 42,
+            "baseline_score_complete": False,
+            "pending_reasons": [],
+            "inventory": {"version": "blueprint-v1", "sampling_policy": {}, "tasks": ["structures"], "status": "PENDING"},
+            "bounds": {"overworld": [-100, -100, 100, 100]},
+        }
+        res = {"index": 0, "seed": "0", "anchors": [candidate], "counts": {"anchors": 1}}
+        store.complete_range(0, 1, [res])
+
+        unit = store.claim_inventory_work("worker-1")
+        assert unit is not None
+        assert unit["candidate_id"] == cid
+
+        patch = {"required_structures": {"monument": {"predicted_viable": True}}}
+        success = store.complete_inventory_work(unit, patch)
+        assert success is True
+
+        updated = store.get_candidate(cid)
+        # Protect integer blueprint score from being overwritten with legacy floating percentages
+        assert updated["baseline_score"] == 42
+        assert updated["baseline_score_observed"] == 42
+        assert isinstance(updated["baseline_score"], int)
+        assert updated["baseline_score_status"] == "PREDICTED count bonuses"
+        assert updated["baseline_score_complete"] is True
+
+
+def test_transaction_helper_clean_commit_and_rollback(tmp_path):
+    with RealmStore(tmp_path) as store:
+        # Commit behavior
+        assert not store.db.in_transaction
+        with store._immediate_transaction():
+            assert store.db.in_transaction
+            store._set("tx_test", "committed")
+        assert not store.db.in_transaction
+        assert store.get_state("tx_test") == "committed"
+
+        # Rollback behavior
+        with pytest.raises(RuntimeError, match="tx_fail"):
+            with store._immediate_transaction():
+                assert store.db.in_transaction
+                store._set("tx_test", "rolled_back")
+                raise RuntimeError("tx_fail")
+        assert not store.db.in_transaction
+        assert store.get_state("tx_test") == "committed"
+
+
+def test_concurrent_candidate_publication_does_not_clobber_subfields(tmp_path):
+    with RealmStore(tmp_path) as store:
+        store.configure_range(0, 1)
+        store.claim_range(1)
+        cid = "0:1:2"
+        candidate = {
+            "id": cid, "index": 0, "seed": "0", "stronghold": [1, 2], "qualification": "PREDICTED",
+            "terrain_status": {"v1": "complete"},
+            "optional_structures": {"monument": {"bonus": 5}},
+        }
+        res = {"index": 0, "seed": "0", "anchors": [candidate], "counts": {"anchors": 1}}
+        store.complete_range(0, 1, [res])
+
+        # Worker A updates v2 terrain_status
+        store.upsert_candidate({"id": cid, "terrain_status": {"v2": "complete"}})
+        # Worker B updates optional_structures with shipwreck
+        store.upsert_candidate({"id": cid, "optional_structures": {"shipwreck": {"bonus": 2}}})
+
+        saved = store.get_candidate(cid)
+        # Verify both v1 and v2 terrain_status survived without clobbering
+        assert saved["terrain_status"] == {"v1": "complete", "v2": "complete"}
+        # Verify both monument and shipwreck optional_structures survived without clobbering
+        assert saved["optional_structures"] == {"monument": {"bonus": 5}, "shipwreck": {"bonus": 2}}

@@ -9,12 +9,18 @@ class WorkspaceCapacityError(RuntimeError):
     pass
 
 
-def disk_policy(search):
-    values={key:search.get(key,default) for key,default in (
-        ('run_disk_limit_bytes',128 << 30),('free_disk_reserve_bytes',16 << 30),
-        ('projected_bytes_per_seed',65536))}
-    for key,value in values.items():
-        if isinstance(value,bool) or not isinstance(value,int) or value<1:
+def disk_policy(search, retention='full'):
+    if retention not in ('full', 'survivors'):
+        raise ValueError('Unsupported retention mode')
+    rate = search.get('compact_projected_bytes_per_seed', 32) if retention == 'survivors' else search.get('projected_bytes_per_seed', 65536)
+    values = {
+        'run_disk_limit_bytes': search.get('run_disk_limit_bytes', 128 << 30),
+        'free_disk_reserve_bytes': search.get('free_disk_reserve_bytes', 16 << 30),
+        'projected_bytes_per_seed': rate,
+        'retention': retention,
+    }
+    for key, value in values.items():
+        if key != 'retention' and (isinstance(value, bool) or not isinstance(value, int) or value < 1):
             raise ValueError(f'{key} must be a positive integer')
     return values
 
@@ -40,9 +46,10 @@ def disk_status(root,policy,*,additional_bytes=0,remaining_seeds=0,completed_see
     except OSError as exc:
         raise WorkspaceCapacityError('Workspace disk monitoring unavailable; checkpoint retained') from exc
     estimate=policy['projected_bytes_per_seed'] if bytes_per_seed is None else bytes_per_seed
-    if bytes_per_seed is None and completed_seeds>=128:
-        estimate=max(4096,int(used/completed_seeds*1.5))
-    projected=used+remaining_seeds*estimate
+    if bytes_per_seed is None and completed_seeds >= 128:
+        minimum = 1 if policy.get('retention') == 'survivors' else 4096
+        estimate = max(minimum, estimate, int(used / completed_seeds * 1.5))
+    projected = used + remaining_seeds * estimate
     required_free=policy['free_disk_reserve_bytes']+additional_bytes
     result={**policy,'run_bytes':used,'free_bytes':free,'additional_bytes':additional_bytes,
             'projected_run_bytes':projected,'bytes_per_seed_estimate':estimate,
@@ -53,3 +60,9 @@ def disk_status(root,policy,*,additional_bytes=0,remaining_seeds=0,completed_see
     if projected>policy['run_disk_limit_bytes'] or free<policy['free_disk_reserve_bytes']+max(0,projected-used):
         raise WorkspaceCapacityError('Projected finite shard exceeds disk budget; use a smaller shard')
     return result
+
+
+def process_tree_resources(root_pid=None):
+    # Preserve the complete-tree availability contract; partial SELF data is diagnostic only.
+    from .runner import process_tree_resources as monitor
+    return monitor(root_pid)

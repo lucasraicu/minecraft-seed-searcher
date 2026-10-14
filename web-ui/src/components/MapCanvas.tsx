@@ -25,22 +25,6 @@ interface MapCanvasProps {
   onToggleCaves?: () => void;
 }
 
-const getFallbackRavines = (): RavineMarker[] => [
-  { id: 'rav-f1', x: 120, z: -180, y: 44, yaw: 0.62, length: 110, thick: 4.8, giant: true, underwater: false },
-  { id: 'rav-f2', x: -340, z: -120, y: 38, yaw: 2.15, length: 112, thick: 5.2, giant: true, underwater: false },
-  { id: 'rav-f3', x: 260, z: 280, y: 52, yaw: 1.28, length: 94, thick: 3.2, giant: false, underwater: false },
-  { id: 'rav-f4', x: -160, z: 380, y: 48, yaw: 2.85, length: 98, thick: 3.4, giant: false, underwater: false },
-  { id: 'rav-f5', x: 420, z: -360, y: 56, yaw: 0.94, length: 88, thick: 2.8, giant: false, underwater: false },
-  { id: 'rav-f6', x: -520, z: 140, y: 42, yaw: 1.85, length: 104, thick: 3.4, giant: false, underwater: false },
-  { id: 'rav-f7', x: -740, z: -40, y: 28, yaw: 0.45, length: 106, thick: 3.8, giant: false, underwater: true },
-];
-
-const getFallbackCaves = (): CaveClusterMarker[] => [
-  { id: 'cave-f1', type: 'lush_caves', name: 'Lush Caves Cavern', x: 160, z: -220, y: -48, icon: '🌿', color: '#10b981', notes: 'Glow berries & spore blossom cavern' },
-  { id: 'cave-f2', type: 'dripstone_caves', name: 'Dripstone Cavern', x: -240, z: 180, y: -32, icon: '🪨', color: '#f59e0b', notes: 'Massive stalactites & infinite lava source' },
-  { id: 'cave-f3', type: 'deep_dark', name: 'Deep Dark Cavern', x: 256, z: 80, y: -52, icon: '🌌', color: '#06b6d4', notes: 'Surrounds Ancient City' },
-];
-
 const isUndergroundStructure = (type: string): boolean =>
   [
     'ancient_city',
@@ -76,6 +60,98 @@ const getStructureAbbr = (type: string, name?: string): string => {
   return (name || type).slice(0, 3).toUpperCase();
 };
 
+interface BiomeGridData {
+  seed: string;
+  dimension: string;
+  bounds: { x0: number; z0: number; nx: number; nz: number; step: number };
+  grid: number[][];
+  approx_height: number[][] | null;
+  names: Record<string, string>;
+}
+
+const BIOME_COLORS: Record<string, string> = {
+  // Oceans
+  ocean: '#1e40af',
+  deep_ocean: '#172554',
+  warm_ocean: '#0284c7',
+  deep_warm_ocean: '#0369a1',
+  lukewarm_ocean: '#0ea5e9',
+  deep_lukewarm_ocean: '#0284c7',
+  cold_ocean: '#3b82f6',
+  deep_cold_ocean: '#1d4ed8',
+  frozen_ocean: '#93c5fd',
+  deep_frozen_ocean: '#60a5fa',
+
+  // Rivers & Shores
+  river: '#2563eb',
+  frozen_river: '#7dd3fc',
+  beach: '#fef08a',
+  snowy_beach: '#e2e8f0',
+  stony_shore: '#94a3b8',
+
+  // Plains & Meadows
+  plains: '#84cc16',
+  sunflower_plains: '#a3e635',
+  snowy_plains: '#f8fafc',
+  ice_spikes: '#e0f2fe',
+  meadow: '#4ade80',
+  cherry_grove: '#f472b6',
+
+  // Forests
+  forest: '#15803d',
+  flower_forest: '#22c55e',
+  birch_forest: '#16a34a',
+  old_growth_birch_forest: '#15803d',
+  dark_forest: '#14532d',
+  pale_garden: '#64748b',
+
+  // Taigas
+  taiga: '#047857',
+  snowy_taiga: '#0f766e',
+  old_growth_pine_taiga: '#065f46',
+  old_growth_spruce_taiga: '#064e3b',
+
+  // Jungles
+  jungle: '#16a34a',
+  sparse_jungle: '#65a30d',
+  bamboo_jungle: '#84cc16',
+
+  // Savannas & Deserts
+  savanna: '#ca8a04',
+  savanna_plateau: '#a16207',
+  windswept_savanna: '#b45309',
+  desert: '#d97706',
+  badlands: '#ea580c',
+  wooded_badlands: '#c2410c',
+  eroded_badlands: '#9a3412',
+
+  // Swamps
+  swamp: '#0d9488',
+  mangrove_swamp: '#115e59',
+
+  // Mountains & Peaks
+  jagged_peaks: '#cbd5e1',
+  frozen_peaks: '#e2e8f0',
+  stony_peaks: '#94a3b8',
+  snowy_slopes: '#f1f5f9',
+  grove: '#0284c7',
+  windswept_hills: '#64748b',
+  windswept_gravelly_hills: '#475569',
+  windswept_forest: '#334155',
+
+  // Caves & Subterranean
+  dripstone_caves: '#78350f',
+  lush_caves: '#059669',
+  deep_dark: '#030712',
+
+  // Nether
+  nether_wastes: '#7f1d1d',
+  crimson_forest: '#991b1b',
+  warped_forest: '#0f766e',
+  soul_sand_valley: '#451a03',
+  basalt_deltas: '#334155',
+};
+
 export const MapCanvas: React.FC<MapCanvasProps> = ({
   candidate,
   dimension,
@@ -102,7 +178,46 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   }, [zoom]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [cursorWorld, setCursorWorld] = useState<{ x: number; z: number }>({ x: 0, z: 0 });
+  const cursorWorldRef = useRef<{ x: number; z: number }>({ x: 0, z: 0 });
+  const cursorCoordXRef = useRef<HTMLSpanElement | null>(null);
+  const cursorCoordZRef = useRef<HTMLSpanElement | null>(null);
+  const cursorCoordDistRef = useRef<HTMLSpanElement | null>(null);
+  const cursorCoordBiomeRef = useRef<HTMLSpanElement | null>(null);
+
+  // Biome Grid State & Fetching
+  const [biomeGrid, setBiomeGrid] = useState<BiomeGridData | null>(null);
+  const [isLoadingBiomeGrid, setIsLoadingBiomeGrid] = useState<boolean>(false);
+  const biomeGridCacheRef = useRef<Map<string, BiomeGridData>>(new Map());
+
+  useEffect(() => {
+    if (!candidate?.seed || !showBiomes) return;
+    const cacheKey = `${candidate.seed}_${dimension}`;
+    const cached = biomeGridCacheRef.current.get(cacheKey);
+    if (cached) {
+      setBiomeGrid(cached);
+      return;
+    }
+    let isCancelled = false;
+    setBiomeGrid(null);
+    setIsLoadingBiomeGrid(true);
+    fetch(`/api/candidate/biome-grid?seed=${encodeURIComponent(candidate.seed)}&dimension=${dimension}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!isCancelled && data && data.ok) {
+          if (biomeGridCacheRef.current.size >= 20) biomeGridCacheRef.current.delete(biomeGridCacheRef.current.keys().next().value!);
+          biomeGridCacheRef.current.set(cacheKey, data);
+          setBiomeGrid(data);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!isCancelled) setIsLoadingBiomeGrid(false);
+      });
+    return () => {
+      isCancelled = true;
+    };
+  }, [candidate?.seed, dimension, showBiomes]);
+
   const [hoveredStructure, setHoveredStructure] = useState<StructureMarker | null>(null);
   const [hoveredRavine, setHoveredRavine] = useState<RavineMarker | null>(null);
   const [hoveredCave, setHoveredCave] = useState<CaveClusterMarker | null>(null);
@@ -111,21 +226,44 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   >(null);
   const [showDistanceRings, setShowDistanceRings] = useState<boolean>(true);
 
+  // Hover entity ID tracking for RAF throttling
+  const hoverRafRef = useRef<number | null>(null);
+  const latestMousePosRef = useRef<{ clientX: number; clientY: number } | null>(null);
+  const hoveredStructureIdRef = useRef<string | null>(null);
+  const hoveredCaveIdRef = useRef<string | null>(null);
+  const hoveredRavineIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    hoveredStructureIdRef.current = hoveredStructure?.id ?? null;
+  }, [hoveredStructure]);
+
+  useEffect(() => {
+    hoveredCaveIdRef.current = hoveredCave?.id ?? null;
+  }, [hoveredCave]);
+
+  useEffect(() => {
+    hoveredRavineIdRef.current = hoveredRavine?.id ?? null;
+  }, [hoveredRavine]);
+
+  useEffect(() => {
+    return () => {
+      if (hoverRafRef.current != null) {
+        cancelAnimationFrame(hoverRafRef.current);
+      }
+    };
+  }, []);
+
   // Smart Level-of-Detail & Layer Filters
   const [labelMode, setLabelMode] = useState<MapLabelMode>('smart');
   const [elevationFilter, setElevationFilter] = useState<MapElevationFilter>('all');
 
-  // Memoized ravines and subterranean cave clusters
+  // Memoized ravines and subterranean cave clusters (render nothing if absent)
   const ravinesList: RavineMarker[] = useMemo(() => {
-    if (!candidate) return [];
-    if (candidate.ravines && candidate.ravines.length > 0) return candidate.ravines;
-    return candidate.provenance === 'reference' ? getFallbackRavines() : [];
+    return candidate?.ravines ?? [];
   }, [candidate]);
 
   const cavesList: CaveClusterMarker[] = useMemo(() => {
-    if (!candidate) return [];
-    if (candidate.caveClusters && candidate.caveClusters.length > 0) return candidate.caveClusters;
-    return candidate.provenance === 'reference' ? getFallbackCaves() : [];
+    return candidate?.caveClusters ?? [];
   }, [candidate]);
 
   const mouseDownPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -302,123 +440,64 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       ctx.restore();
     }
 
-    // 3. Biome Terrain Render: Coastal Continent (70–80%) & River Highway
-    if (showBiomes && candidate?.provenance === 'reference') {
-      ctx.save();
+    // 3. Authentic Bedrock Biome Terrain Render
+    if (showBiomes && candidate) {
+      if (biomeGrid && String(biomeGrid.seed) === String(candidate.seed) && biomeGrid.dimension === dimension) {
+        const { bounds, grid, approx_height, names } = biomeGrid;
+        const { x0, z0, nx, nz, step } = bounds;
 
-      if (dimension === 'overworld') {
-        const continentRadius = 820 * zoom;
+        ctx.save();
+        for (let r = 0; r < nz; r++) {
+          for (let c = 0; c < nx; c++) {
+            const bx = x0 + c * step;
+            const bz = z0 + r * step;
+            const bId = grid[r][c];
+            const bName = names[String(bId)] || 'unknown';
+            const h = approx_height?.[r]?.[c] ?? 64;
 
-        // Main continental landmass gradient
-        const landGrad = ctx.createRadialGradient(
-          originScreen.x,
-          originScreen.y,
-          0,
-          originScreen.x,
-          originScreen.y,
-          continentRadius * 1.2
-        );
-        landGrad.addColorStop(0, '#2d6a4f'); // Lush Plains / Forest center
-        landGrad.addColorStop(0.5, '#40916c'); // Meadow / Forest
-        landGrad.addColorStop(0.75, '#52b788'); // Coastal lowlands
-        landGrad.addColorStop(0.92, '#d4c28f'); // Sandy shoreline / beaches
-        landGrad.addColorStop(1, 'rgba(8, 18, 38, 0)'); // Blend into deep ocean
+            const p1 = worldToScreen(bx, bz, width, height);
+            const p2 = worldToScreen(bx + step, bz + step, width, height);
 
-        ctx.fillStyle = landGrad;
-        ctx.beginPath();
+            const cellW = Math.ceil(p2.x - p1.x) + 1;
+            const cellH = Math.ceil(p2.y - p1.y) + 1;
 
-        const isContinent = candidate.terrainPassed === true;
+            // Frustum culling
+            if (p1.x + cellW < 0 || p1.x > width || p1.y + cellH < 0 || p1.y > height) {
+              continue;
+            }
 
-        // Organic continent polygon (with 320m West Ocean corridor cutout for certified continent)
-        const numPoints = 36;
-        for (let i = 0; i < numPoints; i++) {
-          const angle = (i / numPoints) * Math.PI * 2;
-          let oceanIndent = 1.0;
-          if (isContinent && angle > Math.PI * 0.65 && angle < Math.PI * 1.35) {
-            // Cutout for 320m ocean edge
-            oceanIndent = 0.68 + 0.1 * Math.sin((angle - Math.PI) * 4);
+            const baseColor = BIOME_COLORS[bName] || '#334155';
+            ctx.fillStyle = baseColor;
+            ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
+
+            // Shading: water depth for oceans (h < 63), elevation brightness for peaks (h > 100)
+            if (h < 63) {
+              const depth = Math.min(0.35, Math.max(0.05, (63 - h) / 50));
+              ctx.fillStyle = `rgba(15, 23, 42, ${depth})`;
+              ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
+            } else if (h > 100) {
+              const peak = Math.min(0.25, (h - 100) / 80);
+              ctx.fillStyle = `rgba(255, 255, 255, ${peak})`;
+              ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
+            }
           }
-          const wobble =
-            (1 + Math.sin(angle * 4 + 0.8) * 0.08 + Math.cos(angle * 6) * 0.05) * oceanIndent;
-          const r = continentRadius * wobble;
-          const px = originScreen.x + Math.cos(angle) * r;
-          const py = originScreen.y + Math.sin(angle) * r;
-          if (i === 0) ctx.moveTo(px, py);
-          else ctx.lineTo(px, py);
         }
-        ctx.closePath();
-        ctx.fill();
-
-        // Shallow Coastal Water halo
-        ctx.strokeStyle = '#1e3a8a';
-        ctx.lineWidth = 14 * zoom;
-        ctx.stroke();
-
-        if (isContinent) {
-          // River Highway artery (navigable corridor connecting hub to West Ocean)
-          ctx.save();
-          ctx.strokeStyle = '#38bdf8';
-          ctx.lineWidth = Math.max(3, 10 * zoom);
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
+        ctx.restore();
+      } else if (candidate.biomeSamples && candidate.biomeSamples.length > 0) {
+        // Fallback: render discrete sampled biome lattice points
+        ctx.save();
+        for (const sample of candidate.biomeSamples) {
+          const sx = sample.x ?? sample.coordinate?.[0] ?? 0;
+          const sz = sample.z ?? sample.coordinate?.[2] ?? 0;
+          const p = worldToScreen(sx, sz, width, height);
+          const color = BIOME_COLORS[sample.biome] || '#475569';
+          ctx.fillStyle = color;
           ctx.beginPath();
-          const rStart = worldToScreen(60, 40, width, height);
-          const rMid1 = worldToScreen(-120, -60, width, height);
-          const rMid2 = worldToScreen(-380, 20, width, height);
-          const rEnd = worldToScreen(-740, 80, width, height);
-
-          ctx.moveTo(rStart.x, rStart.y);
-          ctx.quadraticCurveTo(rMid1.x, rMid1.y, rMid2.x, rMid2.y);
-          ctx.lineTo(rEnd.x, rEnd.y);
-          ctx.stroke();
-
-          ctx.fillStyle = '#7dd3fc';
-          ctx.font = 'bold 9px monospace';
-          ctx.fillText('〰 RIVER HIGHWAY (≥400m)', rMid1.x - 20, rMid1.y - 12);
-          ctx.restore();
-
-          // West Ocean Edge annotation
-          const oceanLabelPos = worldToScreen(-780, -40, width, height);
-          ctx.fillStyle = '#38bdf8';
-          ctx.font = 'bold 10px system-ui';
-          ctx.fillText('🌊 320m OPEN OCEAN CORRIDOR', oceanLabelPos.x, oceanLabelPos.y);
-        } else {
-          // Baseline annotation
-          const baselineLabelPos = worldToScreen(-700, -40, width, height);
-          ctx.fillStyle = '#fbbf24';
-          ctx.font = 'bold 10px monospace';
-          ctx.fillText('🏰 BASELINE TERRAIN (UNCONSTRAINED)', baselineLabelPos.x, baselineLabelPos.y);
+          ctx.arc(p.x, p.y, Math.max(2, 16 * zoom), 0, Math.PI * 2);
+          ctx.fill();
         }
-      } else {
-        // Nether Wastes / Crimson / Warped
-        ctx.fillStyle = '#450a0a';
-        ctx.beginPath();
-        ctx.arc(originScreen.x, originScreen.y, 450 * zoom, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Warped Forest patch
-        ctx.fillStyle = '#042f2e';
-        ctx.beginPath();
-        ctx.arc(originScreen.x + 180 * zoom, originScreen.y - 120 * zoom, 160 * zoom, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Basalt Deltas patch
-        ctx.fillStyle = '#292524';
-        ctx.beginPath();
-        ctx.arc(originScreen.x - 200 * zoom, originScreen.y + 160 * zoom, 140 * zoom, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.restore();
       }
-      ctx.restore();
-    }
-
-    if (showBiomes && candidate && candidate.provenance !== 'reference') {
-      ctx.save();
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
-      ctx.fillRect(16, 76, 280, 34);
-      ctx.fillStyle = '#cbd5e1';
-      ctx.font = '11px system-ui';
-      ctx.fillText('Terrain / biome map: pending spatial evidence', 25, 97);
-      ctx.restore();
     }
 
     // 4. Subtle Coordinate Grid
@@ -924,7 +1003,8 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           if (isHovered) {
             // Full expanded card on hover
             const title = struct.name;
-            const sub = `X:${struct.x} Z:${struct.z} • Y=${struct.y ?? 'unknown'} • ${dist == null ? 'distance unknown' : `${dist} ${struct.distanceUnits ?? 'blocks'}`}`;
+            const dist0 = Math.round(struct.distanceToOrigin ?? Math.hypot(struct.x, struct.z));
+            const sub = `X:${struct.x} Z:${struct.z} • ${dist0}b from (0,0)${dist != null && Math.abs(dist - dist0) > 2 ? ` • ${dist}b to Hub` : ''}${struct.distanceToSpawn != null ? ` • ${Math.round(struct.distanceToSpawn)}b to Spawn` : ''}`;
             ctx.font = 'bold 13px system-ui';
             const tw1 = ctx.measureText(title).width;
             ctx.font = '10px monospace';
@@ -1069,6 +1149,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     worldToScreen,
     ravinesList,
     cavesList,
+    biomeGrid,
   ]);
 
   // Mouse pan and zoom handlers
@@ -1077,6 +1158,83 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     setDragStart({ x: e.clientX - offset.x, y: e.clientY - offset.y });
     mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
   };
+
+  // Throttled hit-testing collision math
+  const performHitTest = useCallback(() => {
+    hoverRafRef.current = null;
+    const canvas = canvasRef.current;
+    if (!canvas || !latestMousePosRef.current || !candidate) return;
+
+    const { clientX, clientY } = latestMousePosRef.current;
+
+    // 1. Hit test structures (Generous radius ~24px for larger pins & abbr tags)
+    const activeStructures = candidate.structures.filter((s) => s.dimension === dimension);
+    const hitStruct = activeStructures.find((s) => {
+      const sPos = worldToScreen(s.x, s.z, canvas.width, canvas.height);
+      const dx = clientX - sPos.x;
+      const dy = clientY - sPos.y;
+      return dx * dx + dy * dy < 24 * 24;
+    }) || null;
+
+    const nextStructId = hitStruct?.id ?? null;
+    if (nextStructId !== hoveredStructureIdRef.current) {
+      hoveredStructureIdRef.current = nextStructId;
+      setHoveredStructure(hitStruct);
+    }
+
+    // 2. Hit test cave clusters (Overworld)
+    let hitC: CaveClusterMarker | null = null;
+    if (dimension === 'overworld' && showCaves && cavesList.length > 0) {
+      hitC = cavesList.find((c) => {
+        const cPos = worldToScreen(c.x, c.z, canvas.width, canvas.height);
+        const dx = clientX - cPos.x;
+        const dy = clientY - cPos.y;
+        return dx * dx + dy * dy < 26 * 26;
+      }) || null;
+    }
+
+    const nextCaveId = hitC?.id ?? null;
+    if (nextCaveId !== hoveredCaveIdRef.current) {
+      hoveredCaveIdRef.current = nextCaveId;
+      setHoveredCave(hitC);
+    }
+
+    // 3. Hit test ravines (Overworld)
+    let hitR: RavineMarker | null = null;
+    if (dimension === 'overworld' && showRavines && ravinesList.length > 0) {
+      hitR = ravinesList.find((r) => {
+        const halfLen = (r.length || 100) / 2;
+        const cosA = Math.cos(r.yaw);
+        const sinA = Math.sin(r.yaw);
+        const s = worldToScreen(
+          r.x - cosA * halfLen,
+          r.z - sinA * halfLen,
+          canvas.width,
+          canvas.height
+        );
+        const e = worldToScreen(
+          r.x + cosA * halfLen,
+          r.z + sinA * halfLen,
+          canvas.width,
+          canvas.height
+        );
+        const l2 = (e.x - s.x) * (e.x - s.x) + (e.y - s.y) * (e.y - s.y);
+        if (l2 === 0) return false;
+        let t = ((clientX - s.x) * (e.x - s.x) + (clientY - s.y) * (e.y - s.y)) / l2;
+        t = Math.max(0, Math.min(1, t));
+        const px = s.x + t * (e.x - s.x);
+        const py = s.y + t * (e.y - s.y);
+        const distSq = (clientX - px) * (clientX - px) + (clientY - py) * (clientY - py);
+        return distSq < 16 * 16;
+      }) || null;
+    }
+
+    const nextRavineId = hitR?.id ?? null;
+    if (nextRavineId !== hoveredRavineIdRef.current) {
+      hoveredRavineIdRef.current = nextRavineId;
+      setHoveredRavine(hitR);
+    }
+  }, [candidate, dimension, showCaves, cavesList, showRavines, ravinesList, worldToScreen]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -1087,73 +1245,46 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     const clientY = e.clientY - rect.top;
 
     const world = screenToWorld(clientX, clientY, canvas.width, canvas.height);
-    setCursorWorld(world);
+    cursorWorldRef.current = world;
+    if (cursorCoordXRef.current) cursorCoordXRef.current.textContent = String(world.x);
+    if (cursorCoordZRef.current) cursorCoordZRef.current.textContent = String(world.z);
+    if (cursorCoordDistRef.current) {
+      const dist = Math.round(Math.sqrt(world.x * world.x + world.z * world.z));
+      cursorCoordDistRef.current.textContent = `(${dist} blocks from origin)`;
+    }
+    if (cursorCoordBiomeRef.current && biomeGrid && String(biomeGrid.seed) === String(candidate?.seed) && biomeGrid.dimension === dimension) {
+      const { bounds, grid, names } = biomeGrid;
+      const col = Math.floor((world.x - bounds.x0) / bounds.step);
+      const row = Math.floor((world.z - bounds.z0) / bounds.step);
+      if (row >= 0 && row < bounds.nz && col >= 0 && col < bounds.nx) {
+        const bId = grid[row][col];
+        const rawName = names[String(bId)] || 'unknown';
+        cursorCoordBiomeRef.current.textContent = rawName.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+    }
 
     if (isDragging) {
       setOffset({
         x: e.clientX - dragStart.x,
         y: e.clientY - dragStart.y,
       });
-    } else if (candidate) {
-      // 1. Hit test structures (Generous radius ~24px for larger pins & abbr tags)
-      const activeStructures = candidate.structures.filter((s) => s.dimension === dimension);
-      const hitStruct = activeStructures.find((s) => {
-        const sPos = worldToScreen(s.x, s.z, canvas.width, canvas.height);
-        const dx = clientX - sPos.x;
-        const dy = clientY - sPos.y;
-        return Math.sqrt(dx * dx + dy * dy) < 24;
-      });
-      setHoveredStructure(hitStruct || null);
+      return;
+    }
 
-      // 2. Hit test cave clusters (Overworld)
-      if (dimension === 'overworld' && showCaves && cavesList.length > 0) {
-        const hitC = cavesList.find((c) => {
-          const cPos = worldToScreen(c.x, c.z, canvas.width, canvas.height);
-          const dx = clientX - cPos.x;
-          const dy = clientY - cPos.y;
-          return Math.sqrt(dx * dx + dy * dy) < 26;
-        });
-        setHoveredCave(hitC || null);
-      } else {
-        setHoveredCave(null);
-      }
+    if (!candidate) return;
 
-      // 3. Hit test ravines (Overworld)
-      if (dimension === 'overworld' && showRavines && ravinesList.length > 0) {
-        const hitR = ravinesList.find((r) => {
-          const halfLen = (r.length || 100) / 2;
-          const cosA = Math.cos(r.yaw);
-          const sinA = Math.sin(r.yaw);
-          const s = worldToScreen(
-            r.x - cosA * halfLen,
-            r.z - sinA * halfLen,
-            canvas.width,
-            canvas.height
-          );
-          const e = worldToScreen(
-            r.x + cosA * halfLen,
-            r.z + sinA * halfLen,
-            canvas.width,
-            canvas.height
-          );
-          const l2 = (e.x - s.x) * (e.x - s.x) + (e.y - s.y) * (e.y - s.y);
-          if (l2 === 0) return false;
-          let t = ((clientX - s.x) * (e.x - s.x) + (clientY - s.y) * (e.y - s.y)) / l2;
-          t = Math.max(0, Math.min(1, t));
-          const px = s.x + t * (e.x - s.x);
-          const py = s.y + t * (e.y - s.y);
-          const dist = Math.sqrt((clientX - px) * (clientX - px) + (clientY - py) * (clientY - py));
-          return dist < 16;
-        });
-        setHoveredRavine(hitR || null);
-      } else {
-        setHoveredRavine(null);
-      }
+    latestMousePosRef.current = { clientX, clientY };
+    if (hoverRafRef.current == null) {
+      hoverRafRef.current = requestAnimationFrame(performHitTest);
     }
   };
 
   const handleMouseUp = (e: React.MouseEvent<HTMLCanvasElement>) => {
     setIsDragging(false);
+    if (hoverRafRef.current != null) {
+      cancelAnimationFrame(hoverRafRef.current);
+      performHitTest();
+    }
     const dx = e.clientX - mouseDownPosRef.current.x;
     const dy = e.clientY - mouseDownPosRef.current.y;
     const isClick = Math.sqrt(dx * dx + dy * dy) < 6;
@@ -1165,6 +1296,27 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       } else if (hoveredStructure) {
         jumpToLocation(hoveredStructure.x, hoveredStructure.z, hoveredStructure);
       }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    if (hoverRafRef.current != null) {
+      cancelAnimationFrame(hoverRafRef.current);
+      hoverRafRef.current = null;
+    }
+    latestMousePosRef.current = null;
+    if (hoveredStructureIdRef.current !== null) {
+      hoveredStructureIdRef.current = null;
+      setHoveredStructure(null);
+    }
+    if (hoveredCaveIdRef.current !== null) {
+      hoveredCaveIdRef.current = null;
+      setHoveredCave(null);
+    }
+    if (hoveredRavineIdRef.current !== null) {
+      hoveredRavineIdRef.current = null;
+      setHoveredRavine(null);
     }
   };
 
@@ -1220,12 +1372,23 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
           <div className="bg-slate-950/80 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] font-mono text-slate-300 flex items-center gap-1.5 shadow-inner">
             <span className="text-slate-500">X:</span>
-            <span className="text-white font-bold">{cursorWorld.x}</span>
+            <span ref={cursorCoordXRef} className="text-white font-bold">0</span>
             <span className="text-slate-500">Z:</span>
-            <span className="text-white font-bold">{cursorWorld.z}</span>
-            <span className="text-slate-500 text-[10px]">
-              ({Math.round(Math.sqrt(cursorWorld.x * cursorWorld.x + cursorWorld.z * cursorWorld.z))} blocks from origin)
+            <span ref={cursorCoordZRef} className="text-white font-bold">0</span>
+            <span ref={cursorCoordDistRef} className="text-slate-500 text-[10px]">
+              (0 blocks from origin)
             </span>
+            {showBiomes && (
+              <>
+                <span className="text-slate-700">|</span>
+                <span className="text-slate-400 flex items-center gap-1">
+                  <span>🌿</span>
+                  <span ref={cursorCoordBiomeRef} className="text-emerald-400 font-bold">
+                    Unknown
+                  </span>
+                </span>
+              </>
+            )}
           </div>
         </div>
 
@@ -1423,14 +1586,36 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
                 Y={'y' in activeFeature && activeFeature.y != null ? activeFeature.y : 'unknown'}
               </span>
             </div>
-            <div className="flex items-center justify-between text-slate-300">
-              <span className="text-slate-400">Distance evidence:</span>
-              <span className="text-amber-400 font-bold">
-                {activeFeatureDistance == null
-                  ? 'unknown'
-                  : `${activeFeatureDistance} ${activeFeatureDistanceUnits}`}
-              </span>
-            </div>
+            {'x' in activeFeature && 'z' in activeFeature && (
+              <div className="flex items-center justify-between text-slate-300">
+                <span className="text-slate-400">Dist to (0,0):</span>
+                <span className="text-cyan-400 font-bold">
+                  {Math.round(('distanceToOrigin' in activeFeature && (activeFeature as StructureMarker).distanceToOrigin != null)
+                    ? (activeFeature as StructureMarker).distanceToOrigin!
+                    : Math.hypot(activeFeature.x, activeFeature.z))} blocks
+                </span>
+              </div>
+            )}
+            {Boolean(candidate?.evaluationCenter && (candidate.evaluationCenter[0] !== 0 || candidate.evaluationCenter[1] !== 0)) && (
+              <>
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">Dist to Hub:</span>
+                  <span className="text-amber-400 font-bold">
+                    {activeFeatureDistance == null
+                      ? 'unknown'
+                      : `${activeFeatureDistance} ${activeFeatureDistanceUnits}`}
+                  </span>
+                </div>
+                {'distanceToSpawn' in activeFeature && (activeFeature as StructureMarker).distanceToSpawn != null && (
+                  <div className="flex items-center justify-between text-slate-300">
+                    <span className="text-slate-400">Dist to Spawn:</span>
+                    <span className="text-emerald-400 font-bold">
+                      {Math.round((activeFeature as StructureMarker).distanceToSpawn!)} blocks
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
 
             {'length' in activeFeature && (
               <div className="flex items-center justify-between text-slate-300">
@@ -1466,6 +1651,29 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               📋 Copy Coords
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Biome Status Overlay */}
+      {showBiomes && candidate && !activeFeature && (
+        <div className="absolute top-16 left-3 z-10 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-xs shadow-xl pointer-events-none">
+          {isLoadingBiomeGrid ? (
+            <>
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+              <span className="text-cyan-300 font-mono text-[11px]">Sampling model biomes (2,048×2,048)...</span>
+            </>
+          ) : biomeGrid ? (
+            <>
+              <span>🌿</span>
+              <span className="text-emerald-300 font-semibold text-[11px]">Predicted Bedrock Biome Map</span>
+              <span className="text-[10px] text-slate-400 font-mono">({Object.keys(biomeGrid.names).length} Biomes Active)</span>
+            </>
+          ) : (
+            <>
+              <span className="text-slate-400">🗺️</span>
+              <span className="text-slate-300 text-[11px]">Biome overlay active</span>
+            </>
+          )}
         </div>
       )}
 
@@ -1514,7 +1722,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
         onWheel={handleWheel}
         className={`w-full h-full block ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
       />

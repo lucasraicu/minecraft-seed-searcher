@@ -52,6 +52,11 @@ def test_fractional_negative_nether_positive_and_unknown():
     evidence={'seed':'1','bds_version':'1.26.52.3','dimension':'nether','source':'snapshot-abc',
               'structures':{'fortress':[{'x':-448,'y':64,'z':-449,'actual':True}],
                             'bastion':[{'x':447,'y':64,'z':446,'actual':True}]}}
+    # 1 Fortress + 1 Bastion is insufficient under policy-aware verification (requires 2 fortresses, 3 bastions)
+    assert a.verify_final_nether('1',(-1,-9),evidence=evidence)['status']=='PARTIAL'
+    evidence['structures']['fortress'].append({'x':-100,'y':64,'z':-100,'actual':True})
+    evidence['structures']['bastion'].extend([{'x':100,'y':64,'z':100,'actual':True},
+                                             {'x':200,'y':64,'z':200,'actual':True}])
     assert a.verify_final_nether('1',(-1,-9),evidence=evidence)['status']=='VERIFIED'
     evidence['structures']['bastion']=[{'x':448,'y':64,'z':446,'actual':True}]
     assert a.verify_final_nether('1',(-1,-9),evidence=evidence)['status']=='PARTIAL'
@@ -359,3 +364,29 @@ def test_calibration_all_prediction_unknowns_keep_empty_metrics():
     assert result['status']=='PARTIAL' and result['known_prediction_count']==0
     assert result['height_mae_blocks'] is None and result['height_max_absolute_error_blocks'] is None
     assert result['water_proxy_mismatch_count']==0 and result['actual_exposed_water_count']==0
+
+
+def test_nether_verification_hard_floor_and_policy():
+    cfg = {'structures': {'nether_minimum_counts': {'fortress': 1, 'bastion': 1}}}
+    a = VerificationAdapter(cfg)
+    evidence = {'seed': '1', 'bds_version': '1.26.52.3', 'dimension': 'nether', 'source': 'snap',
+                'structures': {'fortress': [{'x': 0, 'y': 64, 'z': 0, 'actual': True}],
+                               'bastion': [{'x': 0, 'y': 64, 'z': 0, 'actual': True}]}}
+    # Resolve the current distinct hard floors (Fortress 1, Bastion 2), not a shared invented floor.
+    r = a.verify_final_nether('1', (0, 0), evidence=evidence)
+    assert r['status'] == 'PARTIAL'
+    assert r['required_counts']['fortress'] == 1
+    assert r['required_counts']['bastion'] >= 2
+
+
+def test_guard_nested_none_dict_accesses():
+    a = VerificationAdapter({'deployment': None, 'bds': {'verification_budget': 1}})
+    # verify_candidate with None bounds
+    candidate = {'seed': '42', 'stronghold': [0, 0], 'bounds': None, 'id': 'cand-1'}
+    # bounds derived from center square without AttributeError
+    r = a.verify_candidate(candidate, spacing=16)
+    assert r is not None
+
+    # final_nether_evidence with None structures
+    r2 = final_nether_evidence('1', (0, 0), evidence={'seed': '1', 'bds_version': '1.26.52.3', 'dimension': 'nether', 'source': 's', 'structures': None})
+    assert r2['status'] == 'PARTIAL'

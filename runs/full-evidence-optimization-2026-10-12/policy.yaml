@@ -1,0 +1,172 @@
+bds:
+  compare_reference: true
+  cpus: 4
+  docker_cli: /Applications/Docker.app/Contents/Resources/bin/docker
+  enabled: true
+  image: bedrock-verification-poc:1.26.52.3
+  image_id: sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8
+  maximum_region_side: 256
+  memory_gib: 6
+  persist_snapshot: false
+  verification_budget: 20
+  version: 1.26.52.3
+biomes:
+  family_bonuses: {}
+  gate_batch_size: 16
+  lattice: world
+  refinement_budget: 128
+  required_families:
+  - plains
+  - desert
+  - forest
+  - taiga
+  - jungle
+  - swamp
+  - snowy_ice
+  - dark_forest
+  - peaks
+  - stony_shore
+  - lush_caves
+  - dripstone_caves
+  - deep_dark
+  sample_y: 63
+  sample_y_levels:
+  - 63
+  - -48
+  - 0
+  - 160
+  spacing: 64
+  variant_bonuses: {}
+  wooded_minimum_families: 2
+caves:
+  automatic: false
+  maximum_samples: 10000
+  spacing: 64
+  y_levels:
+  - 0
+  - -16
+  - -32
+  - -48
+contract: master_seed_blueprint_v1
+deployment:
+  nether_side_blocks: 1024
+  overworld_side_blocks: 2048
+discovery:
+  nether_bounds:
+  - -2000
+  - -2000
+  - 2000
+  - 2000
+  overworld_bounds:
+  - -2000
+  - -2000
+  - 2000
+  - 2000
+game:
+  backend_commit: 294c72ab0392dd818a91d293dbd5774d4874d64b
+  backend_model: MC_26_50
+  bds_version: 1.26.52.3
+  edition: bedrock
+  target_version: '26.52'
+schema_version: 5
+scoring:
+  baseline_quality_cap: 60
+  baseline_weight: 0.1
+  biome_fit_weight: 0.1
+  geometry_weight: 0.8
+screening_revision: locked-2048-1024-outpost-v3
+search:
+  batch_size: 32
+  docker_reserve_gib: 8
+  free_disk_reserve_bytes: 17179869184
+  inventory_mode: eligibility
+  max_workers: 36
+  memory_ceiling_gib: 30
+  memory_target_gib: 25
+  mode: prediction
+  native_threads_per_worker: 1
+  numeric_threads_per_worker: 1
+  pilot_limit: 1000
+  projected_bytes_per_seed: 65536
+  run_disk_limit_bytes: 137438953472
+  run_key: '0'
+  sequence: permutation
+  structure_order:
+  - ruined_portal
+  - outpost
+  - desert_pyramid
+  - jungle_temple
+  - mansion
+  - ancient_city
+  - village
+  - trial_chamber
+  - mineshaft
+  workers: 30
+structures:
+  deferred_until_coastal_terrain:
+  - monument
+  - shipwreck
+  minimum_counts:
+    ancient_city: 2
+    desert_pyramid: 1
+    jungle_temple: 1
+    mansion: 1
+    mineshaft: 15
+    monument: 1
+    outpost: 2
+    ruined_portal: 6
+    shipwreck: 5
+    stronghold: 1
+    trial_chamber: 5
+    village: 6
+  nether_minimum_counts:
+    bastion: 3
+    fortress: 2
+  nether_required:
+  - fortress
+  - bastion
+  optional_bonuses: {}
+  required:
+  - stronghold
+  - mansion
+  - village
+  - trial_chamber
+  - ancient_city
+  - desert_pyramid
+  - jungle_temple
+  - monument
+  - ruined_portal
+  - shipwreck
+  - mineshaft
+  - outpost
+terrain:
+  center_spacing: 64
+  maximum_refinements_per_anchor: 8
+  native_threads: 1
+  rays: 32
+  refine_center_spacing: 16
+  resolutions:
+  - 128
+  - 64
+  - 32
+  - 16
+  - 8
+  - 4
+  scheduler: rotation
+  v1:
+    coastal_continent:
+      bridge_inland_freshwater: true
+      land_connectivity: 8
+      land_fraction_max: 0.85
+      land_fraction_min: 0.75
+      monument_envelope_half_size_blocks: 80
+      ocean_edge_fraction_min: 0.5
+      ocean_edge_min_width_blocks: 250
+      ocean_edge_preferred_max_width_blocks: 400
+      river_corridor_min_length_blocks: 600
+      river_highway_bonus_points: 20
+      river_highway_hub_radius_blocks: 250
+    mode: coastal_continent
+    square_side_blocks: 2048
+  variants:
+  - v1

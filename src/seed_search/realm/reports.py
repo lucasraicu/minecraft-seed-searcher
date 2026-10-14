@@ -22,7 +22,7 @@ def _ranked(store, variant='baseline', limit=20):
         result=[]
         for encoded,score,tier,misses in rows(store.db,limit):
             row=json.loads(encoded)
-            near=row.get('retention',{}).get('classification')=='NEAR_MISS'
+            near=(row.get('retention') or {}).get('classification')=='NEAR_MISS'
             row['smart_score']=score
             row['unmet_requirements']=misses if near else None
             row['leaderboard_rank']=len(result)+1
@@ -81,25 +81,25 @@ def _export_files(store, root, output):
                                  'screening_revision':candidate.get('screening_revision'),
                                  'deficit_categories':json.dumps(candidate.get('deficit_categories',[])),
                                  'fatal_reasons':json.dumps(candidate.get('fatal_reasons',[])),
-                                 'marine_status':candidate.get('marine_stage',{}).get('status','DEFERRED'),
-                                 'spawn_status':candidate.get('spawn_stage',{}).get('status','PENDING'),
-                                 'actual_generation_status':candidate.get('actual_generation_verification',{}).get('status','PENDING'),
+                                 'marine_status':(candidate.get('marine_stage') or {}).get('status','DEFERRED'),
+                                 'spawn_status':(candidate.get('spawn_stage') or {}).get('status','PENDING'),
+                                 'actual_generation_status':(candidate.get('actual_generation_verification') or {}).get('status','PENDING'),
                                  'variant':variant,'center':json.dumps(record.get('center')),
                                  'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
                                  'smart_score':smart_score,
-                                 'retention_classification':candidate.get('retention',{}).get('classification'),
-                                 'unmet_requirements':candidate.get('retention',{}).get('unmet_requirements'),
+                                 'retention_classification':(candidate.get('retention') or {}).get('classification'),
+                                 'unmet_requirements':(candidate.get('retention') or {}).get('unmet_requirements'),
                                  'pending_reasons':json.dumps(candidate.get('pending_reasons',[])),
                                  'score':record.get('score',record.get('baseline_score')),
                                  'score_status':record.get('baseline_score_status',record.get('score_component_status')),
-                                 'inventory_status':candidate.get('inventory',{}).get('status','legacy'),
+                                 'inventory_status':(candidate.get('inventory') or {}).get('status','legacy'),
                                  'predicted_score':record.get('predicted_score'),
                                  'actual_partial_score':record.get('actual_partial_score'),'verified_score':record.get('verified_score'),'geometry_score':record.get('geometry_score'),
                                  'border_fit':json.dumps(record.get('border_fit')),
                                  'final_nether_status':candidate.get('final_nether_status'),
                                  'surface_wooded_requirement':surface.get('wooded_requirement'),
                                  'surface_wooded_families':json.dumps(surface_classification.get('wooded_families',[])),
-                                 'surface_bonus_interval':json.dumps(surface_classification.get('uncertainty',{}).get('actual_generation_score_interval')),
+                                 'surface_bonus_interval':json.dumps(((surface_classification.get('uncertainty') or {}).get('actual_generation_score_interval'))),
                                  'raw_record':encoded})
                 n+=1
         counts[variant]=n
@@ -127,7 +127,7 @@ def _export_files(store, root, output):
                             'hub_x':hub[0],'hub_z':hub[1],
                             'hub_kind':'fixed_world_origin' if candidate.get('evaluation_center')==[0,0] else 'candidate_center',
                             'evidence_status':observation.get('data_status','PREDICTED'),
-                            'actual_generation_status':candidate.get('actual_generation_verification',{}).get('status','PENDING')})
+                            'actual_generation_status':(candidate.get('actual_generation_verification') or {}).get('status','PENDING')})
                         structure_rows+=1
     summary={'status':store.status(),'exported_records':counts,'output':str(output.resolve())}
     summary['structure_start_rows']=structure_rows
@@ -318,7 +318,7 @@ def _candidate_rescore(candidate,policy,revision_id):
         from .blueprint import smart_score,score_uncertainty
         from .config import river_policy,origin_policy,two_group_policy
         v2=two_group_policy(candidate)
-        names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63)
+        names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63)
         required=candidate['required_structures']
         optional=candidate['optional_structures']
         # Stage 3 may have appended marine inventories. Re-score the durable
@@ -334,13 +334,13 @@ def _candidate_rescore(candidate,policy,revision_id):
                          baseline_score_uncertainty=score_uncertainty(ranking['score'],
                              candidate.get('fatal_reasons',[])+candidate.get('biome_failures',[]) if v2 else candidate['pending_reasons'],
                              candidate['baseline_score_complete']),score_revision=revision_id)
-        if v2 and candidate.get('marine_stage',{}).get('status') in ('PREDICTED','VERIFIED'):
+        if v2 and (candidate.get('marine_stage') or {}).get('status') in ('PREDICTED','VERIFIED'):
             source=(candidate.get('terrain_status') or {}).get('source')
             actual=isinstance(source,dict) and source.get('kind')=='actual_generation'
             prior_ranking=candidate.get('ranking') or {}
             combined=smart_score(required,candidate['required_nether_structures'],optional,
                                  locked=True,river=river_policy(candidate),origin=True,two_group=True,
-                                 biome_names=(s['biome'] for s in (candidate.get('biomes') or {}).get('sampling',{}).get('samples',()) if s['coordinate'][1]==63),
+                                 biome_names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63),
                                  metrics=candidate.get('terrain_score_metrics') if actual else None,
                                  coastal_footprint_verified=actual and prior_ranking.get('coastal_footprint_bonus_status')=='VERIFIED')
             candidate.update(ranking=combined,combined_score=combined['score'])
@@ -360,13 +360,13 @@ def _candidate_rescore(candidate,policy,revision_id):
         candidate['baseline_score']=observed_score if candidate.get('baseline_score_complete',True) else None
         for key,observation in candidate['optional_structures'].items():
             observation['bonus']=policy['structures']['optional_bonuses'].get(key,0) if observation.get('predicted_viable') else 0
-    candidate['baseline_score_uncertainty']=baseline_score_uncertainty(candidate.get('biomes'),candidate.get('optional_structures',{}),policy,candidate.get('pending_reasons',[]))
+    candidate['baseline_score_uncertainty']=baseline_score_uncertainty(candidate.get('biomes'),candidate.get('optional_structures') or {},policy,candidate.get('pending_reasons',[]))
     surface=candidate.get('surface_biome_verification')
     if surface and surface.get('classification'):
         detected=surface['classification']
         # Keep actual point evidence separate from the predictor baseline score.
         surface['classification']=classify(detected['raw_names'],policy['biomes'],complete=False,
-                                            verified=detected.get('uncertainty',{}).get('domain')=='actual_generated_surface')
+                                            verified=(detected.get('uncertainty') or {}).get('domain')=='actual_generated_surface')
         surface['wooded_requirement']=surface['classification']['qualification']
         surface['score_revision']=revision_id
     candidate['score_revision']=revision_id

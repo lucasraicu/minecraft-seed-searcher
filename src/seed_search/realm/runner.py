@@ -120,9 +120,28 @@ def process_tree_resources(root_pid=None):
         processes = [{"pid": pid, "rss_bytes": rows[pid][1] * 1024, "cpu_percent": rows[pid][2]} for pid in sorted(selected) if pid in rows]
         if root_pid not in rows:
             raise ValueError('Requested process is absent from resource snapshot')
-        return {"available": True, "rss_bytes": sum(row["rss_bytes"] for row in processes), "cpu_percent": sum(row["cpu_percent"] for row in processes), "processes": processes, "shared_memory_caveat": "RSS sum can double-count shared pages", "sampled_at": time.time()}
+        return {
+            "available": True,
+            "rss_bytes": sum(row["rss_bytes"] for row in processes),
+            "cpu_percent": sum(row["cpu_percent"] for row in processes),
+            "processes": processes,
+            "shared_memory_caveat": "RSS sum can double-count shared pages",
+            "sampled_at": time.time(),
+        }
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
-        # SELF high-water RSS cannot enforce a live process-tree budget.
+        if root_pid == os.getpid():
+            ru = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+            rss_bytes = ru if sys.platform == "darwin" else ru * 1024
+            return {
+                "available": False,
+                "rss_bytes": rss_bytes,
+                "cpu_percent": 0.0,
+                "processes": [{"pid": root_pid, "rss_bytes": rss_bytes, "cpu_percent": 0.0}],
+                "fallback": "rusage_self",
+                "scope": "SELF high-water diagnostic only; descendants unobserved",
+                "error": str(exc),
+                "sampled_at": time.time(),
+            }
         return {"available": False, "error": str(exc), "sampled_at": time.time()}
 
 
@@ -236,7 +255,7 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
         def sample_memory():
             nonlocal peak_rss, latest_memory, stopping, failure
             sample = process_tree_resources()
-            if sample["available"]:
+            if sample.get("available"):
                 peak_rss = max(peak_rss, sample["rss_bytes"])
                 combined = sample["rss_bytes"] + docker_reserve
                 sample.update({"combined_budget_estimate_bytes": combined, "above_target": combined > target})

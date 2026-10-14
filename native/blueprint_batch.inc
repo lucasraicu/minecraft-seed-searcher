@@ -20,6 +20,7 @@
 #ifndef NB_STRONGHOLD_AFTER
 #define NB_STRONGHOLD_AFTER 4
 #endif
+int nb_stronghold_after(void) { return NB_STRONGHOLD_AFTER; }
 #if NB_EXPERIMENT_ORDER < 0 || NB_EXPERIMENT_ORDER > 2
 #error NB_EXPERIMENT_ORDER must be 0, 1 or 2
 #endif

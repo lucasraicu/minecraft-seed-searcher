@@ -19,11 +19,11 @@ COASTAL = dict(land_fraction_min=.75, land_fraction_max=.85,
 
 
 def coastal_mode(cfg):
-    return cfg.get('terrain', {}).get('v1', {}).get('mode') == 'coastal_continent'
+    return ((cfg.get('terrain') or {}).get('v1') or {}).get('mode') == 'coastal_continent'
 
 
 def monument_inputs(candidate):
-    inventory = candidate.get('required_structures', {}).get('monument', {})
+    inventory = (candidate.get('required_structures') or {}).get('monument') or {}
     return inventory.get('footprints', inventory.get('coordinates', inventory.get('predicted_viable', [])))
 
 
@@ -164,7 +164,7 @@ def evaluate_coastal(raster, center=None, bounds=None, stronghold=(0, 0), *, thr
     from .terrain import _finish, apply_score_policy
     started = time.perf_counter()
     values = thresholds or {}
-    p = {**COASTAL, **values.get('coastal_continent', values)}
+    p = {**COASTAL, **(values.get('coastal_continent') or values)}
     side=values.get('square_side_blocks',1536)
     if side not in (1536,2048):raise ValueError('Unsupported coastal square')
     sx, sz = stronghold;half=side//2

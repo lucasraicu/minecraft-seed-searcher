@@ -79,9 +79,11 @@ def structure_centers(scans,cfg):
         x0=math.ceil(x0/8)*8;z0=math.ceil(z0/8)*8;x1=math.floor(x1/8)*8;z1=math.floor(z1/8)*8
         # Midpoints, corners and Stronghold-centered proposals remain feasible.
         xs={x0,x1,((x0+x1)//16)*8};zs={z0,z1,((z0+z1)//16)*8}
-        for p in scans['stronghold']['viable']:
-            xs.add(min(x1,max(x0,round(p[0]/8)*8)));zs.add(min(z1,max(z0,round(p[1]/8)*8)))
         centers.update((x,z) for x in xs for z in zs)
+        for p in scans['stronghold']['viable']:
+            sx=min(x1,max(x0,round(p[0]/8)*8))
+            sz=min(z1,max(z0,round(p[1]/8)*8))
+            centers.add((sx,sz))
     return sorted(centers)
 
 def at_center(scans,center,cfg):
