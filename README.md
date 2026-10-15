@@ -1,31 +1,59 @@
 # Bedrock Coastal Continent seed search
 
-The active CLI, web control plane, and `config/realm.yaml` implement the explicit `dynamic-envelope-1664-v1` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 4.2). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
+The active CLI, web control plane, and `config/realm.yaml` implement the explicit `dynamic-envelope-1664-v1` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 4.3). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
 
 The active screening revision is **`dynamic-envelope-1664-v1`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $1664 \times 1664$ Playable Overworld window ($104 \times 104$ chunks, radius 832m) around a dynamic center $(C_X, C_Z) \in [-1168, 1168]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and an $832 \times 832$ Playable Nether window ($52 \times 52$ chunks, radius 416m) around scaled center $(C_X/8, C_Z/8) \in [-146, 146]^2$ within a $1124 \times 1124$ Nether preflight ($[-562, 562)^2$).
 
-Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull, and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Structures adhere to the two-group tolerance matrix under a total Miss Budget $B \le 2$ (hard floors are fatal; up to two flexible floors may be missed with deficit penalties).
+Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull, and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Structures adhere to the two-group tolerance matrix under a total Miss Budget $B \le 2$ (hard floors are fatal; up to two flexible floors may be missed with deficit penalties).
 
 ### Measured Performance & Throughput (Intel Xeon W-2191B, 34 Threads)
 
-Following the native C low-32 PRNG preflight, lazy 2D prefix evaluation, overlapping pipeline dispatch, and SQLite memory-mapping optimizations:
-- **Pure Native OpenMP Kernel:** **33,200 – 39,500 seeds/sec** ($\sim 27\text{s}$ per million seeds).
-- **Durable End-to-End Pipeline:** **27,600 – 32,500 seeds/sec** ($\sim 33\text{s}$ per million seeds, $\sim 54\text{ mins}$ for a complete 100M-seed shard).
-- **Control Baseline Speedup:** **$5.1\times - 6.0\times$ faster** than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
+Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict equivalence cell lattice invariance, single-pass argmin selection, Clang Profile-Guided Optimization (PGO), and Link-Time Optimization (LTO):
+- **Pure Native OpenMP Kernel:** **46,100 – 47,860 seeds/sec** ($\sim 20.9\text{s}$ per million seeds).
+- **Durable End-to-End Pipeline:** **32,500 – 38,000 seeds/sec** ($\sim 26\text{s}$ per million seeds, $\sim 44\text{ mins}$ for a complete 100M-seed shard).
+- **Control Baseline Speedup:** **$8.8\times$ faster** than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
 
-The historical Outpost floor, measured filter order and coastal optimization are documented in [OUTPOST_OPTIMIZATION_RESULTS.md](OUTPOST_OPTIMIZATION_RESULTS.md). Under the active policy, Outposts above the floor of two earn +10 each. The one-miss allowance includes an unmet Outpost floor. A new run and rebuilt native extension are required for this policy revision.
+The active score awards **50 points each for a second Mansion and a second distinct predicted Stronghold**, **30 for a second qualifying Monument**, **20 per Bastion above three**, and **5 per qualifying Shipwreck above five**. River evidence and its score commit with finest-resolution marine/terrain completion and survive rescoring. Historical configurations retain their original thresholds and formulas. New source/configuration identities require a fresh run and rebuilt batch extension. The current operational mainland range remains 75–85%; the authored blueprint's newer 70–80% wording is a separate unresolved policy difference.
 
-Earlier river semantics, tests and measurements are documented in [RIVER_HIGHWAY_RESULTS.md](RIVER_HIGHWAY_RESULTS.md).
+## System Architecture & Engineering Framework
 
-The river revision uses 8-way geographic land connectivity and lets enclosed inland freshwater join river banks without adding water area to dry-land totals. Ocean water requires an ocean-family biome; dry shores, rivers and enclosed non-ocean lakes cannot supply the ocean strip. River paths use face connectivity, so diagonal water contact cannot establish a channel. A two-sweep graph path gives a conservative sampled length witness; a lake alone does not satisfy the river gate. Under the active origin policy, a qualifying unfrozen freshwater route passing within 250 blocks of `(0, 0)` and touching the approved coastal ocean earns **35 points**. Historical Stronghold-centered policies use their saved scoring rules. This is a predicted connection: depth, boat clearance, ice and unsampled continuity require actual verification.
+The search framework operates on three tightly integrated tiers designed for maximum CPU utilization, durability, and zero false positives:
 
-The latest full-evidence optimization measures **2,466.15 durably persisted inputs/sec**, up from **1,413.39/sec** for the preserved implementation on the same 30,000-input cohort (**1.745×**). A separate 5,000-input comparison measures **1,855.75/sec native versus 906.33/sec Python**. All records and task fingerprints match; **880 tests passed**. The 5,000/sec full-evidence target remains unmet. See [FULL_EVIDENCE_OPTIMIZATION_RESULTS.md](FULL_EVIDENCE_OPTIMIZATION_RESULTS.md) for profiles, variability, resource costs and rejected alternatives. Use a fresh run for the changed Python source identity; the verified Outpost-v3 native extension remains compatible.
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        Web Control Plane & UI                          │
+│  React 19 + TypeScript + Vite + Tailwind CSS + HTML5 Canvas (web-ui/)  │
+│  FastAPI/HTTP Daemon (src/seed_search/web/server.py)                   │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ HTTP / REST / JSON
+┌───────────────────────────────────▼────────────────────────────────────┐
+│                  Python Orchestration & Storage Layer                  │
+│  Bounded In-Flight Batch Dispatch (src/seed_search/realm/native_batch) │
+│  WAL-Mode SQLite Persistence (src/seed_search/realm/store.py)          │
+│  Ground-Truth Reference Oracle (src/seed_search/realm/blueprint.py)    │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ CFFI Zero-Copy In-Memory Pointers
+┌───────────────────────────────────▼────────────────────────────────────┐
+│                    Native High-Throughput C11 Engine                   │
+│  Low-32 Mersenne Twister Preflight (native/blueprint_dynamic.inc)      │
+│  2D Half-Open Event-Slab Sliding Window Solver (C11 + OpenMP)          │
+│  Cubiomes Bedrock 1.21+ Generator (MC_26_50 / BDS 1.26.52.3)          │
+│  Clang Profile-Guided Optimization (PGO) + Link-Time Optimization (LTO)│
+└────────────────────────────────────────────────────────────────────────┘
+```
 
-The preceding Outpost-v3 report measured **22,525.37 checkpointed compact inputs/sec** and **1,179.67 full-evidence persisted inputs/sec** versus **886.78/sec** for its matching Python control. Compact throughput was 1.88× the fresh previous-policy control, including the added Outpost floor's selectivity. C-only screening measured **35,385.17/sec** on that held-out cohort. Exact coastal geometry evaluation improved another **1.13×**; density generation and BDS verification are separate. See the Outpost results report for its trial ranges, resource costs and parity evidence.
-
-Historical river-revision medians were **12,086.87 checkpointed compact inputs/sec**, **15,227.87/sec C only**, and **1,218.96 full-evidence persisted inputs/sec** versus **904.67/sec** for the matching Python control. River/terrain/BDS work is separate. The stricter Bastion floor changes selectivity; this is not an isolated screening optimization. River-aware coastal evaluation became **2.56× faster** with compiled traversal while preserving complete results against the Python queue oracle.
-
-The active score awards **50 points each for a second Mansion and a second distinct predicted Stronghold**, **25 for a second qualifying Monument**, **20 per Bastion above three**, and **5 per qualifying Shipwreck above five**. River evidence and its score commit with finest-resolution marine/terrain completion and survive rescoring. Historical configurations retain their original thresholds and formulas. New source/configuration identities require a fresh run and rebuilt batch extension. The current operational mainland range remains 75–85%; the authored blueprint's newer 70–80% wording is a separate unresolved policy difference.
+1. **Tier 1 — Native C11 Engine (`native/`):**
+   - Direct OpenMP multi-threading over batch sizes of up to 16,384 seeds across 34 cores.
+   - Low-32 Mersenne Twister PRNG preflight short-circuits ~99.8% of non-viable seeds before biome sampling.
+   - 2D event-slab geometric solver evaluates half-open Overworld and Nether window containment with exact integer entry asymmetry (`X - 831`, `8X - 3327`) and strict 64-block lattice invariance.
+   - Profile-Guided Optimization (PGO) and Link-Time Optimization (LTO) compiled via Clang with `-O3 -march=native`.
+2. **Tier 2 — Python Durable Pipeline (`src/seed_search/realm/`):**
+   - Zero-copy CFFI memory buffer sharing passes verdicts and coordinate arrays between native memory and Python.
+   - Multi-stage pipeline with bounded memory reservation (`max_buffer_bytes`), preventing process runaway.
+   - Multi-process and SQLite WAL-mode storage (`RealmStore`) with transactional lease-based checkpoints and automatic failure recovery.
+3. **Tier 3 — Web Control Plane & Real-Time Dashboard (`web-ui/`):**
+   - High-speed interactive 2D HTML5 canvas renderer visualizing 1664×1664 biome palettes, structure footprints, and elevation rasters.
+   - Real-time telemetry monitoring throughput, hardware resource utilization, and candidate discovery rates.
 
 Saved highway evidence can be inspected directly:
 
