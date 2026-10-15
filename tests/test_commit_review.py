@@ -15,7 +15,7 @@ from scripts import tune_machine
 def test_compact_projection_uses_observed_growth(tmp_path):
     (tmp_path / 'data').write_bytes(b'x' * 100000)
     policy = disk_policy({'run_disk_limit_bytes': 1 << 30, 'free_disk_reserve_bytes': 1}, retention='survivors')
-    sample = disk_status(tmp_path, policy, completed_seeds=1000, remaining_seeds=1000)
+    sample = disk_status(tmp_path, policy, completed_seeds=1000, remaining_seeds=1000, initial_used_bytes=0)
     assert sample['bytes_per_seed_estimate'] >= 150
     assert sample['projected_run_bytes'] >= 250000
     assert disk_policy({})['retention'] == 'full'

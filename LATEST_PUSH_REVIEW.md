@@ -94,3 +94,15 @@ Final throughput evidence, build hashes, compiler choices and scope are recorded
 The bounded optimization comparison does not prove universal CPU optimality. Natural held-out cohorts contain no positive survivors, so synthetic positive fixtures and independent geometry/scoring checks remain essential. Known model/Stronghold recall limitations and lack of a Bedrock client remain; the surface provider does not certify complete structure generation, portal rooms, loot or actual initial-player spawn. Joint survivor probability and cluster throughput projections remain uncalibrated.
 
 The saved terrain-enabled source is `saved/terrain-enabled-ui` at `63728a35184be99be54ddde78cbe6aedeceea371`. Old checkpoints retain original policy/build identity and cannot silently resume under the new default.
+
+## Follow-up fixes after Revision 4.2 review — 2026-10-14
+
+Reviewed the subsequent disk-accounting, canonical structure-key and score-fallback changes against Revision 4.2 and `BASELINE_WORKFLOW.md`. Approved for push after the following corrections and checks:
+
+- `resources.py`: clamp WAL shrinkage to zero marginal growth; retain a paired initial byte/completed-input baseline. A legacy checkpoint without a usable pair starts a fresh observation interval. Physical disk caps, configured projection floors and free-space reserves remain enforced.
+- `runner.py` / `native_batch.py`: persist and restore that baseline and use completed input coverage rather than compact retained row counts. The native writer now checks remaining-shard projections alongside physical capacity.
+- `baselinePolicy.ts`, `structures.ts`, `FilterSidebar.tsx`, `App.tsx`, `mockData.ts`: use `desert_pyramid` internally and in API payloads. Read legacy `pyramid` at the boundary; canonical values, including zero, take precedence. Sidebar display, edits, estimates, reset, profile switching and launch validation agree.
+- `leaderboard.py`: prefer `combined_score`, then baseline/midpoint/observed scores while preserving deficit-tier precedence and the separate near-miss observed-score path.
+- Added regression coverage in resource, native/Python resume, leaderboard and UI policy tests; updated the baseline workflow's disk-monitor description. No C source or scoring weights changed.
+
+Validation for this follow-up: **75 targeted Python tests passed** across commit review, disk resources, leaderboard, memory policy, pipeline review, native throughput and dynamic integration; **two additional tests passed** for the UI wrapper and compact native disk-monitor resume path (**77 total**). The Node UI suite's **three scenarios passed**, including legacy alias-only values and canonical zero precedence. Frontend lint and production TypeScript/Vite build passed; whitespace checks passed. The earlier full-suite and throughput measurements above describe the preceding integration, not a newly repeated full-suite or performance measurement of this follow-up.

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import type { SeedCandidate, TelemetryState, SearchConfig, Dimension } from './types';
 import { INITIAL_CONFIG } from './mockData';
-import { SEARCH_PROFILES, getSearchProfile } from './constants/baselinePolicy';
+import { SEARCH_PROFILES, getSearchProfile, normalizeStructureCounts, normalizeStructureKeys } from './constants/baselinePolicy';
 import type { SearchProfileName } from './constants/baselinePolicy';
 import { MapCanvas } from './components/MapCanvas';
 import { CandidateFeed } from './components/CandidateFeed';
@@ -98,13 +98,13 @@ function App() {
   }, []);
   const applyEffectiveConfig = useCallback((effective: any) => {
     if (!effective?.structures) return;
-    const counts = { ...effective.structures.minimum_counts, ...effective.structures.nether_minimum_counts };
-    if (counts.desert_pyramid != null) counts.pyramid = counts.desert_pyramid;
+    const counts = normalizeStructureCounts({ ...effective.structures.minimum_counts, ...effective.structures.nether_minimum_counts });
     const profile = (Object.keys(SEARCH_PROFILES) as SearchProfileName[]).find((name) => SEARCH_PROFILES[name].revision === effective.screening_revision);
     setConfig((previous) => ({ ...previous, ...(profile ? { profile } : {}),
       playableRadiusOverworld: effective.deployment?.overworld_side_blocks ?? previous.playableRadiusOverworld,
       playableRadiusNether: effective.deployment?.nether_side_blocks ?? previous.playableRadiusNether,
-      structureFloorCounts: { ...previous.structureFloorCounts, ...counts } }));
+      requiredStructures: normalizeStructureKeys(previous.requiredStructures),
+      structureFloorCounts: { ...normalizeStructureCounts(previous.structureFloorCounts), ...counts } }));
   }, []);
 
   // On mount, load any existing candidate database from backend
@@ -233,10 +233,10 @@ function App() {
         throw new Error('Enter a positive whole seed count and a valid full64 starting index');
       }
       const policy = getSearchProfile(config.profile);
+      const floorCounts = normalizeStructureCounts(config.structureFloorCounts);
       const counts: Record<string, number> = {};
       for (const [key, defaultIdeal] of Object.entries(policy.counts)) {
-        if (key === 'pyramid') continue; // UI alias maps to the canonical API key below.
-        const ideal = config.structureFloorCounts[key === 'desert_pyramid' ? 'pyramid' : key];
+        const ideal = floorCounts[key];
         if (!Number.isInteger(ideal) || ideal < 0 || ideal > 64) throw new Error(`${key}: enter a whole count from 0 to 64`);
         const floor = config.profile === 'dynamic1664' && key !== 'stronghold' ? policy.floors[key] : policy.flexible.includes(key) ? policy.floors[key] : undefined;
         if (floor == null && ideal !== defaultIdeal) throw new Error(`${key}: the selected policy fixes this target at ${defaultIdeal}`);

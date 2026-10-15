@@ -241,11 +241,12 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
             nonlocal last_disk_sample,latest_disk,stopping,failure
             if not force and time.monotonic()-last_disk_sample<10:return
             try:
-                completed=store.db.execute('SELECT count(*) FROM seeds').fetchone()[0]
-                # Use an observed upper estimate after 128 commits. WAL/startup
-                # overhead remains included rather than subtracted optimistically.
+                completed=store.get_state('completed_seeds')
+                # Startup bytes count toward the physical cap, not marginal
+                # growth. Restore the paired baseline when resuming a checkpoint.
                 latest_disk=disk_status(store.run,disk_limits,additional_bytes=additional_bytes,
-                                        remaining_seeds=count-completed,completed_seeds=completed)
+                                        remaining_seeds=count-completed,completed_seeds=completed,
+                                        previous_sample=store.get_state('workspace_disk'))
                 last_disk_sample=time.monotonic()
                 store.set_state('workspace_disk',latest_disk)
             except WorkspaceCapacityError as exc:

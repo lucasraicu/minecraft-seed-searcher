@@ -5,7 +5,7 @@ import {
   CAVE_CLUSTERS,
   DEFAULT_STRUCTURE_FLOORS,
 } from '../constants/structures';
-import { SEARCH_PROFILES, getSearchProfile } from '../constants/baselinePolicy';
+import { SEARCH_PROFILES, getSearchProfile, normalizeStructureCounts, normalizeStructureKeys } from '../constants/baselinePolicy';
 import type { SearchProfileName } from '../constants/baselinePolicy';
 import { computeTotalFeasibility } from '../utils/probability';
 
@@ -42,8 +42,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   };
   const [activeTab, setActiveTab] = useState<'targets' | 'engine' | 'logs'>('targets');
   const policy = getSearchProfile(config.profile);
-  const profileCounts: Record<string, number> = { ...policy.counts, pyramid: policy.counts.desert_pyramid };
-  const feasibility = useMemo(() => computeTotalFeasibility(config), [config]);
+  const profileCounts = policy.counts;
+  const floorCounts = normalizeStructureCounts(config.structureFloorCounts);
+  const requiredStructures = normalizeStructureKeys(config.requiredStructures);
+  const feasibility = useMemo(() => computeTotalFeasibility({ ...config,
+    structureFloorCounts: normalizeStructureCounts(config.structureFloorCounts),
+    requiredStructures: normalizeStructureKeys(config.requiredStructures) }), [config]);
 
   const ALL_BIOMES = [
     { id: 'plains', name: 'Plains / Meadow', icon: '🌾' },
@@ -65,14 +69,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   ];
 
   const handleCountChange = (id: string, delta: number) => {
-    const current = config.structureFloorCounts[id] ?? profileCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? 0;
+    const current = floorCounts[id] ?? profileCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? 0;
     const nextVal = Math.min(64, Math.max(0, current + delta));
-    const nextFloorCounts = { ...config.structureFloorCounts, [id]: nextVal };
+    const nextFloorCounts = { ...floorCounts, [id]: nextVal };
 
     // If incrementing from 0 or currently not selected, add to required
-    const nextRequired = nextVal > 0 && !config.requiredStructures.includes(id)
-      ? [...config.requiredStructures, id]
-      : config.requiredStructures;
+    const nextRequired = nextVal > 0 && !requiredStructures.includes(id)
+      ? [...requiredStructures, id]
+      : requiredStructures;
 
     onChangeConfig({
       ...config,
@@ -82,10 +86,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   };
 
   const toggleStructure = (id: string) => {
-    const isSelected = config.requiredStructures.includes(id);
+    const isSelected = requiredStructures.includes(id);
     const nextRequired = isSelected
-      ? config.requiredStructures.filter((s) => s !== id)
-      : [...config.requiredStructures, id];
+      ? requiredStructures.filter((s) => s !== id)
+      : [...requiredStructures, id];
 
     onChangeConfig({ ...config, requiredStructures: nextRequired });
   };
@@ -102,7 +106,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   const handleResetDefaults = () => {
     onChangeConfig({
       ...config,
-      requiredStructures: Object.keys(profileCounts).filter((key) => key !== 'desert_pyramid'),
+      requiredStructures: Object.keys(profileCounts),
       structureFloorCounts: { ...profileCounts },
     });
   };
@@ -152,9 +156,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               onChange={(event) => {
                 const profile = event.target.value as SearchProfileName;
                 const selected = getSearchProfile(profile);
-                const counts = { ...selected.counts, pyramid: selected.counts.desert_pyramid };
+                const counts = { ...selected.counts };
                 onChangeConfig({ ...config, profile, structureFloorCounts: counts,
-                  requiredStructures: Object.keys(counts).filter((key) => key !== 'desert_pyramid'),
+                  requiredStructures: Object.keys(counts),
                   maxMisses: Math.min(config.maxMisses, selected.maxMisses),
                   playableRadiusOverworld: selected.overworldSide, playableRadiusNether: selected.netherSide });
               }} className="w-full bg-slate-950 border border-slate-700 rounded p-2">
@@ -299,14 +303,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 Live Structure Targets ({ALL_STRUCTURES.length})
               </label>
               <span className="text-[10px] text-emerald-400 font-mono font-bold">
-                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id)).length} active
+                {ALL_STRUCTURES.filter((s) => requiredStructures.includes(s.id)).length} active
               </span>
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
               {ALL_STRUCTURES.map((s) => {
                 const isSelected = true; // Every selected policy includes these categories.
-                const count = config.structureFloorCounts[s.id] ?? profileCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 0;
+                const count = floorCounts[s.id] ?? profileCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 0;
                 const indP = feasibility.structures.individualProbs[s.id];
 
                 return (
@@ -413,7 +417,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 </span>
               </div>
               <span className="text-[10px] text-emerald-400 font-mono font-bold">
-                {CAVE_CLUSTERS.filter((c) => config.requiredStructures.includes(c.id)).length} active
+                {CAVE_CLUSTERS.filter((c) => requiredStructures.includes(c.id)).length} active
               </span>
             </div>
 
@@ -423,8 +427,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
             <div className="space-y-1.5 pt-1">
               {CAVE_CLUSTERS.map((c) => {
-                const isSelected = config.requiredStructures.includes(c.id);
-                const count = config.structureFloorCounts[c.id] ?? DEFAULT_STRUCTURE_FLOORS[c.id] ?? 0;
+                const isSelected = requiredStructures.includes(c.id);
+                const count = floorCounts[c.id] ?? DEFAULT_STRUCTURE_FLOORS[c.id] ?? 0;
                 const indP = feasibility.structures.individualProbs[c.id];
 
                 return (

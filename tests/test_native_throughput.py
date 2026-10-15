@@ -161,14 +161,41 @@ def test_pipeline_three_stages_and_exact_partial_resume(prototype,tmp_path,monke
     monkeypatch.setattr(prototype,'sweep',sweep);monkeypatch.setattr(RealmStore,'prepare_range',prepare);monkeypatch.setattr(RealmStore,'complete_prepared',write)
     first=persist_pipeline(prototype,tmp_path,65,threads=1,batch_size=16,stop_after=33)
     assert first['newly_committed']==33 and first['max_outstanding_batches']<=3
+    with RealmStore(tmp_path,resume=True) as s:
+        disk_baseline=s.get_state('workspace_disk')
+        assert disk_baseline['initial_completed_seeds']==0
     resumed=persist_pipeline(prototype,tmp_path,65,threads=1,batch_size=8,resume=True)
     assert resumed['newly_committed']==32
     assert len({e[2] for e in events})==3
     starts=[e[1] for e in events if e[0]=='write_start'];ends=[e[1] for e in events if e[0]=='write_end']
     assert any(a<e[1]<b for a,b in zip(starts,ends) for e in events if e[0]=='prepare_start')
     with RealmStore(tmp_path,resume=True) as s:
+        saved=s.get_state('workspace_disk')
+        assert (saved['initial_used_bytes'],saved['initial_completed_seeds'])==(disk_baseline['initial_used_bytes'],0)
         rows=list(s.iter_results());assert [r['index'] for r in rows]==list(range(65))
         for r in rows:assert semantic_record(r)==semantic_record(evaluate_seed(r['index'],seed_from_index(r['index']),blueprint_config()))
+
+
+def test_compact_disk_growth_uses_completed_coverage_on_resume(prototype,tmp_path,monkeypatch):
+    from seed_search.realm import resources
+    original=resources.disk_status;calls=[]
+    def monitor(*args,**kwargs):
+        calls.append((kwargs.get('completed_seeds'),kwargs.get('remaining_seeds')))
+        return original(*args,**kwargs)
+    monkeypatch.setattr(resources,'disk_status',monitor)
+    persist_pipeline(prototype,tmp_path,257,threads=1,batch_size=128,
+                     stop_after=128,retention='survivors')
+    with RealmStore(tmp_path,resume=True) as store:
+        first=store.get_state('workspace_disk')
+        assert store.status()['completed_seeds']==128
+    persist_pipeline(prototype,tmp_path,257,threads=1,batch_size=128,
+                     resume=True,retention='survivors')
+    with RealmStore(tmp_path,resume=True) as store:
+        saved=store.get_state('workspace_disk')
+        assert (saved['initial_used_bytes'],saved['initial_completed_seeds'])==(first['initial_used_bytes'],0)
+        assert store.status()['completed_seeds']==257
+        assert store.status()['saved_seed_rows']<257  # Rejected inputs still count toward growth coverage.
+    assert (128,129) in calls and (256,1) in calls
 
 
 def test_native_large_finite_range_requires_scale_and_resumes_without_large_run(prototype,tmp_path,monkeypatch):

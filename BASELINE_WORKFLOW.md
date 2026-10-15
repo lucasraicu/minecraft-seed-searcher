@@ -49,6 +49,8 @@ Historical `2048 marine` and `2048 two-group` profiles remain selectable. Their 
 
 A checkpoint retains its original geometry, policy and computation identity. An old checkpoint can be inspected; it cannot silently resume with an incompatible new engine. Keep its original build/source checkout to resume it, or start a new dynamic run. `git worktree add ../minecraft-seed-searcher-terrain saved/terrain-enabled-ui` opens the saved version independently.
 
+Disk projections retain a paired startup-byte/completed-input baseline across resume. Fixed SQLite overhead counts toward physical disk usage but is not multiplied across the remaining shard; WAL shrinkage clamps observed growth to zero. Older checkpoints without a usable baseline begin a new observation interval at their existing coverage. Observed growth may raise the configured per-input estimate after 128 newly observed inputs; physical caps and free-space reserves remain enforced.
+
 ## Evidence and verification
 
 Map biomes are an on-demand, cached Y=63 sample overlay. Its geometry follows the candidate's reported bounds and selected center, including exact Nether scaling. It does not generate heights or become a sweep gate.

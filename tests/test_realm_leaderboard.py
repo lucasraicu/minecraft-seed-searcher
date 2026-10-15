@@ -83,3 +83,24 @@ def test_sql_leaderboard_hides_incomplete_rescore_revision(tmp_path):
 def test_leaderboard_rejects_unbounded_limits(tmp_path,limit):
     with RealmStore(tmp_path) as s:
         with pytest.raises(ValueError,match='limit'):ranked(s,limit=limit)
+
+
+def test_dynamic_tiers_precede_combined_score_and_score_fallbacks():
+    from seed_search.realm import leaderboard
+    db=sqlite3.connect(':memory:')
+    db.executescript('CREATE TABLE candidates(id TEXT,idx INTEGER,seed TEXT,qualification TEXT,result TEXT);CREATE TABLE meta(key TEXT,value TEXT);')
+    cases=[('zero',0,{'combined_score':0,'baseline_score':100}),
+           ('combined',1,{'combined_score':9999,'baseline_score':1}),
+           ('baseline',0,{'combined_score':None,'baseline_score':30}),
+           ('midpoint',0,{'baseline_score_uncertainty':{'prediction_score_interval':[10,30]}}),
+           ('observed',0,{'baseline_score_observed':15}),
+           ('near',2,{'combined_score':999,'baseline_score_observed':5,
+                      'retention':{'classification':'NEAR_MISS','unmet_requirements':1}})]
+    for name,tier,fields in cases:
+        record={'screening_revision':'dynamic-envelope-1664-v1',
+                'deficit_categories':['village']*tier,**fields}
+        db.execute('INSERT INTO candidates VALUES(?,0,?,\'PREDICTED\',?)',(name,'1',json.dumps(record)))
+    db.commit();leaderboard.install(db)
+    assert db.execute(f'SELECT id,ranking_tier,smart_score FROM candidate_leaderboard_view ORDER BY {ORDER}').fetchall()==[
+        ('baseline',0,30),('midpoint',0,20),('observed',0,15),('zero',0,0),('combined',1,9999),('near',2,5)]
+    db.close()

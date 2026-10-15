@@ -1,13 +1,13 @@
 import type { SearchConfig } from './types';
 import { SEARCH_PROFILES } from './constants/baselinePolicy';
 const policy = SEARCH_PROFILES.dynamic1664;
-const activeCounts = { ...policy.counts, pyramid: policy.counts.desert_pyramid };
+const activeCounts = { ...policy.counts };
 
 
 
 export const INITIAL_CONFIG: SearchConfig = {
   profile: 'dynamic1664',
-  requiredStructures: Object.keys(activeCounts).filter((key) => key !== 'desert_pyramid'),
+  requiredStructures: Object.keys(activeCounts),
   structureFloorCounts: { ...activeCounts },
   mandatoryFortressAndBastion: true,
   requireNetherOverlap: false,

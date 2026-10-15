@@ -17,7 +17,7 @@ export const ALL_STRUCTURES: StructureMeta[] = [
   { id: 'outpost', name: 'Pillager Outposts', icon: '🏹', min: 1, max: 8 },
   { id: 'fortress', name: 'Nether Fortresses', icon: '🏯', min: 1, max: 8 },
   { id: 'bastion', name: 'Bastion Remnants', icon: '🐖', min: 1, max: 8 },
-  { id: 'pyramid', name: 'Desert Pyramids', icon: '🏺', min: 1, max: 6 },
+  { id: 'desert_pyramid', name: 'Desert Pyramids', icon: '🏺', min: 1, max: 6 },
   { id: 'jungle_temple', name: 'Jungle Temples', icon: '🌿', min: 1, max: 6 },
   { id: 'monument', name: 'Ocean Monuments', icon: '🏛️', min: 1, max: 6 },
   { id: 'shipwreck', name: 'Shipwrecks', icon: '⛵', min: 1, max: 15 },
@@ -34,5 +34,4 @@ export const CAVE_CLUSTERS: StructureMeta[] = [
 // Counts come from the generated engine policy; do not duplicate YAML targets.
 export const DEFAULT_STRUCTURE_FLOORS: Record<string, number> = {
   ...SEARCH_PROFILES.dynamic1664.counts,
-  pyramid: SEARCH_PROFILES.dynamic1664.counts.desert_pyramid,
 };

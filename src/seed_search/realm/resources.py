@@ -40,15 +40,32 @@ def workspace_usage(root):
     return total
 
 
-def disk_status(root,policy,*,additional_bytes=0,remaining_seeds=0,completed_seeds=0,bytes_per_seed=None):
+def disk_status(root,policy,*,additional_bytes=0,remaining_seeds=0,completed_seeds=0,bytes_per_seed=None,initial_used_bytes=None,previous_sample=None):
     try:
         used=workspace_usage(root);free=shutil.disk_usage(root).free
     except OSError as exc:
         raise WorkspaceCapacityError('Workspace disk monitoring unavailable; checkpoint retained') from exc
+    if initial_used_bytes is not None:
+        policy.update(initial_used_bytes=initial_used_bytes,initial_completed_seeds=0)
+    if 'initial_used_bytes' not in policy:
+        # Persist bytes and coverage together: a legacy/resumed run without a
+        # baseline starts a new observation interval, not a per-seed startup tax.
+        previous=previous_sample if isinstance(previous_sample,dict) else {}
+        initial=previous.get('initial_used_bytes')
+        initial_completed=previous.get('initial_completed_seeds')
+        valid=(type(initial) is int and initial>=0 and type(initial_completed) is int
+               and 0<=initial_completed<=completed_seeds)
+        policy.update(initial_used_bytes=initial if valid else used,
+                      initial_completed_seeds=initial_completed if valid else completed_seeds)
+    initial=policy['initial_used_bytes']
+    initial_completed=policy.get('initial_completed_seeds',0)
+    observed_seeds=completed_seeds-initial_completed
     estimate=policy['projected_bytes_per_seed'] if bytes_per_seed is None else bytes_per_seed
-    if bytes_per_seed is None and completed_seeds >= 128:
+    if bytes_per_seed is None and observed_seeds >= 128:
         minimum = 1 if policy.get('retention') == 'survivors' else 4096
-        estimate = max(minimum, estimate, int(used / completed_seeds * 1.5))
+        # SQLite checkpointing can shrink the WAL below the initial footprint.
+        marginal=max(0,used-initial)
+        estimate=max(minimum,estimate,int(marginal/observed_seeds*1.5))
     projected = used + remaining_seeds * estimate
     required_free=policy['free_disk_reserve_bytes']+additional_bytes
     result={**policy,'run_bytes':used,'free_bytes':free,'additional_bytes':additional_bytes,

@@ -487,7 +487,14 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         dispatched+=end-first;max_pending=max(max_pending,len(pending));return True
     with _scan_lock(run),_numerical_threads(),RealmStore(run,identity=identity,resume=resume) as store:
         store.configure_range(start_index,start_index+count,batch_size);store.recover_assignments()
-        disk_status(store.run,limits,remaining_seeds=count-store.status()['completed_seeds'])
+        completed=store.get_state('completed_seeds')
+        initial_disk=disk_status(store.run,limits,remaining_seeds=count-completed,
+            completed_seeds=completed,previous_sample=store.get_state('workspace_disk'))
+        store.set_state('workspace_disk',initial_disk)
+        def check_capacity(additional_bytes):
+            completed=store.get_state('completed_seeds')
+            return disk_status(store.run,limits,additional_bytes=additional_bytes,
+                completed_seeds=completed,remaining_seeds=count-completed)
         pool=ThreadPoolExecutor(max_workers=1,thread_name_prefix='native-blueprint')
         preparer=ThreadPoolExecutor(max_workers=1,thread_name_prefix='native-records')
         try:
@@ -506,7 +513,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 max_payload=max(max_payload,owned_estimate)
                 before=time.perf_counter()
                 store.complete_prepared(prepared,lease=('native-pipeline',attempt),
-                    capacity_check=lambda n:disk_status(store.run,limits,additional_bytes=n))
+                    capacity_check=check_capacity)
                 service['writer_wall_seconds']+=time.perf_counter()-before
                 service.update(store.last_range_timings)
                 batches+=1;committed+=end-first;latencies.append(time.perf_counter()-queued)
