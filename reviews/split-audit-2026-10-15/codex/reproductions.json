@@ -1,0 +1,135 @@
+[
+  {
+    "id": "G-STORE-02",
+    "status": "completed",
+    "result": true,
+    "stdout": "[Probe] Inside capacity_check: simulating recovery and reassignment to Worker B...\n[Probe] Range in DB is now: status=in_progress, worker=worker-B, attempts=2\n[Probe] Stale Worker A complete_prepared returned: True\n[Probe] Range in DB after stale Worker A commit: ('complete', None, 2)\n[Probe] completed_seeds after Worker A: 10\n[Probe] Worker B failed to commit with error: ValueError: Completed range retry differs from committed results\n[Probe] Final completed_seeds: 10\n[BUG CONFIRMED] G-STORE-02: Stale Worker A committed and hijacked Worker B's active lease!\n  Worker B had active lease ('worker-B', 2), but Worker A ('worker-A', 1) overwritten it to complete!\n"
+  },
+  {
+    "id": "G-STORE-03",
+    "status": "completed",
+    "result": true,
+    "stdout": "[Probe] Initially claimed by: ('in_progress', 'worker-1', 1)\n[Probe] After recovery: ('retry', None, 1)\n[Probe] Reclaimed by worker-2: ('in_progress', 'worker-2', 2)\n[Probe] complete_range returned: True\n[Probe] Final range state: ('complete', None, 2)\n[BUG CONFIRMED] G-STORE-03: complete_range bypassed lease ownership and committed!\n"
+  },
+  {
+    "id": "G-STORE-05",
+    "status": "completed",
+    "result": true,
+    "stdout": "[Probe] Calling manager.pause_sweep()...\n[Probe] Client sending GET /api/sweep/status (calling get_status())...\n[Probe] pause_sweep() returned after 2.026s with: {'ok': True, 'status': 'paused', 'scannedCount': 0, 'runId': 'test-run'}\n[Probe] get_status() unblocked after 1.921s! Status: paused\n[Probe] Polling request was blocked for 1.921s while holding manager.lock.\n[BUG CONFIRMED] G-STORE-05: Web server get_status was starved for > 1.5s while pause_sweep blocked on subprocess!\n"
+  },
+  {
+    "id": "G-STORE-07",
+    "status": "completed",
+    "result": true,
+    "stdout": "[Probe] Expected ProgrammingError caught when accessing store.db from another thread: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140704694985152 and this is thread id 123145492598784.\n[Probe] prepare_range executed successfully on thread without touching store.db.\n[Probe] Cross-thread call to store.get_state() resulted in: CRASH: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140704694985152 and this is thread id 123145492598784.\n[AUDIT CONFIRMED] G-STORE-07: RealmStore.db is strictly thread-confined. Passing store instance to preparer thread creates fragile coupling across thread boundaries.\n"
+  },
+  {
+    "id": "single-scanner-owner-contract",
+    "status": "completed",
+    "result": {
+      "second_scanner_blocked": true,
+      "returncode": 1,
+      "error": "Traceback (most recent call last):\n  File \"/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/runner.py\", line 34, in _scan_lock\n    fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nBlockingIOError: [Errno 35] Resource temporarily unavailable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    with _scan_lock(sys.argv[1]):print(\"ACQUIRED\")\n         ~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/runner.py\", line 36, in _scan_lock\n    raise ValueError(\"Another Realm scanner owns this run\") from exc\nValueError: Another Realm scanner owns this run"
+    },
+    "stdout": ""
+  },
+  {
+    "id": "G-MEM-02-G-MEM-05-G-FFI-04",
+    "status": "completed",
+    "result": {
+      "allocation_cases": [
+        {
+          "cap": 1400000,
+          "failed_allocation": 0,
+          "error": 0,
+          "peak": 1872336,
+          "live_before_free": 48956,
+          "live_after_free": 0
+        },
+        {
+          "cap": 268435456,
+          "failed_allocation": 35,
+          "error": -3,
+          "peak": 1283868,
+          "live_before_free": 256,
+          "live_after_free": 0
+        }
+      ],
+      "unmanaged_batch": {
+        "batch_collected": true,
+        "live_after_collection": 48956,
+        "live_after_explicit_free": 0
+      }
+    },
+    "stdout": ""
+  },
+  {
+    "id": "G-MEM-01",
+    "status": "completed",
+    "result": [
+      {
+        "allocation": 34,
+        "returncode": -11,
+        "stderr": "INJECTED malloc failure call=34 bytes=11696"
+      },
+      {
+        "allocation": 35,
+        "returncode": -11,
+        "stderr": "INJECTED malloc failure call=35 bytes=11696"
+      },
+      {
+        "allocation": 36,
+        "returncode": -11,
+        "stderr": "INJECTED malloc failure call=36 bytes=77928"
+      }
+    ],
+    "stdout": ""
+  },
+  {
+    "id": "gemini-patch-applicability",
+    "status": "completed",
+    "result": [
+      {
+        "patch": "G-GEO-01-optional-snapped-recount.patch",
+        "applies": false,
+        "error": "error: patch failed: src/seed_search/realm/dynamic.py:95\nerror: src/seed_search/realm/dynamic.py: patch does not apply"
+      },
+      {
+        "patch": "G-MEM-01-capacity-poisoning-fix.patch",
+        "applies": false,
+        "error": "error: corrupt patch at line 20"
+      },
+      {
+        "patch": "G-MEM-03-inflight-queue-fix.patch",
+        "applies": false,
+        "error": "error: patch failed: src/seed_search/realm/native_batch.py:501\nerror: src/seed_search/realm/native_batch.py: patch does not apply"
+      },
+      {
+        "patch": "G-STORE-01-web-cache-invalidation.patch",
+        "applies": true,
+        "error": ""
+      },
+      {
+        "patch": "G-STORE-02-toctou-lease-fix.patch",
+        "applies": false,
+        "error": "error: corrupt patch at line 17"
+      }
+    ],
+    "stdout": ""
+  },
+  {
+    "id": "G-GEO-01",
+    "status": "completed",
+    "result": {
+      "stdout": "C selected -752 -816 score 434 huts 1\nPython selected [-784, -816] score 422 huts []\nPython with optional recount [-752, -816] score 434\n",
+      "returncode": 0
+    },
+    "stdout": ""
+  },
+  {
+    "id": "G-STORE-01",
+    "status": "completed",
+    "result": true,
+    "stdout": "[Probe] Initial sig: ('/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/tmpylgaw5yr/web-sweep-20261015-120000-abcd1234', (1, 1), (0, None), (0, None))\n[Probe] Initial candidate score: 55.0, qualification: PREDICTED\n[Probe] SQLite DB verified: qualification=VERIFIED, score=99.0\n[Probe] SQLite count, max(rowid) after update: (1, 1)\n[Probe] After query_sqlite_candidates(): sig=('/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/tmpylgaw5yr/web-sweep-20261015-120000-abcd1234', (1, 1), (0, None), (0, None))\n[Probe] Cached candidate score: 55.0, qualification: PREDICTED\n[BUG CONFIRMED] G-STORE-01: Manager served stale candidate data from cache!\n  Expected: score=99.0, qualification=VERIFIED\n  Actual:   score=55.0, qualification=PREDICTED\n"
+  }
+]

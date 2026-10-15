@@ -9,6 +9,7 @@ Endpoints:
   GET  /api/system/info   - Hardware and engine specs
 """
 
+import contextlib
 import http.server
 import json
 import math
@@ -77,7 +78,7 @@ class SweepManager:
         db = directory / 'realm.sqlite'
         if directory.is_symlink() or directory.resolve().parent != RUNS_DIR.resolve() or db.is_symlink() or not db.is_file():
             raise ValueError('Saved checkpoint must be a direct run directory')
-        with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as conn:
+        with contextlib.closing(sqlite3.connect(f'file:{db}?mode=ro', uri=True)) as conn:
             values = {key: json.loads(value) for key, value in conn.execute(
                 "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds')")}
         identity = values.get('identity')
@@ -276,7 +277,7 @@ class SweepManager:
             raise ValueError("Saved run must be a direct run directory")
         db=directory/'realm.sqlite'
         if not db.is_file() or db.is_symlink():raise ValueError("Saved checkpoint is unavailable")
-        with sqlite3.connect(f"file:{db}?mode=ro",uri=True) as conn:
+        with contextlib.closing(sqlite3.connect(f"file:{db}?mode=ro",uri=True)) as conn:
             values={key:json.loads(value) for key,value in conn.execute(
                 "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds','native_pipeline')")}
         identity=values.get('identity')
@@ -683,7 +684,7 @@ class SweepManager:
                 if not isinstance(candidate_id,str) or not candidate_id:
                     raise ValueError('An exact candidateId is required')
                 from seed_search.seeds import parse_seed
-                with sqlite3.connect(f'file:{self.run_dir / "realm.sqlite"}?mode=ro',uri=True) as conn:
+                with contextlib.closing(sqlite3.connect(f'file:{self.run_dir / "realm.sqlite"}?mode=ro',uri=True)) as conn:
                     row=conn.execute('SELECT result FROM candidates WHERE id=?',(candidate_id,)).fetchone()
                 if not row:raise ValueError('Candidate does not belong to the selected run')
                 candidate=json.loads(row[0])

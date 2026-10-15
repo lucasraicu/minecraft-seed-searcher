@@ -1,0 +1,22 @@
+{
+  "baseline_commit": "54b7d631b8bdb481894980a31be16aaa02901b18",
+  "policy": "dynamic-envelope-1664-v1",
+  "backend_version_pins": {
+    "bedrock": "26.52",
+    "bds": "1.26.52.3",
+    "cubiomes": "MC_26_50"
+  },
+  "runtime_environment": {
+    "os": "macOS (darwin24.6.0)",
+    "arch": "x86_64",
+    "python": "3.13.15",
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+    "pytest": "9.1.1",
+    "venv_path": "./.venv"
+  },
+  "binaries": {
+    "native_library": "src/seed_search/_native.abi3.so",
+    "blueprint_batch_library": "src/seed_search/_blueprint_batch.abi3.so"
+  },
+  "timestamp": "2026-10-15T02:44:00-07:00"
+}

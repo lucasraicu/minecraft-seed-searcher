@@ -1,0 +1,32 @@
+--- a/native/blueprint_dynamic.inc
++++ b/native/blueprint_dynamic.inc
+@@ -310,6 +310,20 @@
+     if(n<0)return n;
+     code=nb_copy(w,&r->discovery,w->scratch,n);
+     r->stage_seconds[0]+=nb_time()-start;return code;
++}
++/* Necessary Y=63 witness only; positive seeds retain full inventories. */
++static int nb_audit_dark_possible(NBWorker *w,const int *b) {
++    if(w->fixture)return 1;
++    StructureConfig cfg;if(!getStructureConfig(Mansion,MC_26_50,&cfg))return -1;
++    int size=cfg.regionSize*16,n=0;
++    for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
++      for(int rz=floordiv(b[1],size);rz<=floordiv(b[3],size);rz++) {
++        Pos p;
++        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
++           inside(p,b[0],b[1],b[2],b[3])&&
++           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
++      }
++    return 0;
+ }
+ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
+     double start=nb_time();r->seed=seed;
+@@ -349,6 +363,8 @@
+     if(w->p->retention)applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
+     /* One inexpensive macro Mansion preflight before all other structure inventories. */
+     stage=nb_time();
++    possible=nb_audit_dark_possible(w,feasible);
++    if(possible<0){code=possible;goto done;}if(!possible)goto done;
+     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
+     r->stage_seconds[1]+=nb_time()-stage;
+     if(nb_dynamic_count(&macro[0].viable,0,0,2000,0,macro[0].mansion_ids,w->p->dark_id)<w->p->goals[0])goto done;

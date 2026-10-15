@@ -1,0 +1,873 @@
+{
+  "status": "instrumented attribution only",
+  "count": 256,
+  "start_index": 50000000,
+  "run_key": 2026101401,
+  "threads": 1,
+  "build": {
+    "extension": "/private/tmp/minecraft-sol-audit-20261015/diagnostic/native-build/_blueprint_batch.cpython-313-darwin.so",
+    "extension_sha256": "b14ccca86071f84f55c5e48c2fe34201bc93961be52f0817126f0a67d214e6d8",
+    "inputs": {
+      "scripts/build_blueprint_batch.py": "33fc257e14d835c3e89d77ec02ac751752f13a5c3deee7fa5f85cfc5b6661231",
+      "native/bridge.c": "da3164afd6c11d2a7986e1e98f7fa818dd3dcf13724bf2779879a9f9bd4c110c",
+      "native/bridge.h": "4888898a0c0c519c0773a5d825329dfbb59d3e840290aa42f7d482afdf5de963",
+      "native/blueprint_batch.h": "ddf3d645a276c913209fbb6b98f51eee2f925a0e89f23bb8be61e65bf24004fd",
+      "native/sol_diagnostics_api.h": "6735b3265be1e230d9c3d1a7606d83a5a0b3e38e0e805b7b68abd851508f20ee",
+      "native/sol_diagnostics.h": "9a16d17af11589801148d5b760b118651ad37d6afc5456c4f961998c78527b03",
+      "native/blueprint_profile.h": "4ea140baeacc51ec6366f9eb59bf250be000379db5362af71b128ab9b0617942",
+      "native/filters.inc": "78a2951aa7cd2521a48d37d4433055078aa67f5fa5432736def4dd81e09b0abe",
+      "native/blueprint_batch.inc": "9f546d2456e14d57452a8affe8438751daab8018cd6eff796ea62c58e64b7e27",
+      "native/blueprint_dynamic.inc": "583e5226bb248aa5299bf24b31d99f24e1d4e5ebc89abf8204b3eac79ad6f452",
+      "vendor/cubiomes-bedrock/noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+      "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+      "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+      "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+      "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+      "vendor/cubiomes-bedrock/biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+      "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+      "vendor/cubiomes-bedrock/mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
+      "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+      "vendor/cubiomes-bedrock/generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+      "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+      "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+      "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+      "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+      "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+      "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+      "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+      "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+      "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+      "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+      "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+      "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+      "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+      "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+      "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+      "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+      "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+      "vendor/cubiomes-bedrock/finders.c": "2c5bdb4e9a04e6d996c4700a953625457df0b3d79611624c4af366160477372f",
+      "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+      "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+      "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+    },
+    "source_digest": "56b24cc8e0f8f9dde46a8761729a1dcd6755bb2b84060f8f1c7a422351b40812",
+    "build_seconds": 10.61723230300413,
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-DNB_WORK_CHUNK=16",
+      "-DNB_EXPERIMENT_ORDER=0",
+      "-DNB_STRONGHOLD_AFTER=4",
+      "-DNB_DYNAMIC_PREFLIGHT=1",
+      "-march=native",
+      "-flto",
+      "-Xpreprocessor",
+      "-fopenmp",
+      "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+    ],
+    "openmp": true,
+    "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+    "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+    "links": [
+      "-flto",
+      "-Wl,-rpath,/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib"
+    ],
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+    "configured_cc": "clang",
+    "configured_ldshared": "clang -bundle -undefined dynamic_lookup   -arch x86_64 -arch x86_64",
+    "environment_flags": {
+      "CC": null,
+      "CFLAGS": null,
+      "LDFLAGS": null,
+      "ARCHFLAGS": null,
+      "MACOSX_DEPLOYMENT_TARGET": null
+    },
+    "linker": "@(#)PROGRAM:ld PROJECT:ld-1230.1\nBUILD 10:12:58 Jan  9 2026\nconfigured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main\nwill use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em\nLTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)\nTAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)",
+    "python": "3.13.15 (v3.13.15:4061bc4c35f, Aug  5 2026, 09:08:51) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "arch": "x86_64",
+    "cpu_native": true,
+    "lto": true,
+    "pgo_generate": false,
+    "pgo_profile_sha256": null,
+    "production_extension_replaced": false,
+    "profiling": false,
+    "mansion_cache": true,
+    "work_chunk": 16,
+    "experiment_order": 0,
+    "stronghold_after": 4,
+    "dynamic_preflight": true,
+    "scope": "private complete blueprint baseline prototype",
+    "record_adapter_sha256": "f9feda8ac580039af86df67eac866330c76d0351ab45958f2445a58782ff8f03",
+    "record_sources_sha256": {
+      "native_records.py": "c489e5aca303bfaaee467184e9967009b3b20e176549baf2c293f304e6128eb8",
+      "native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+    },
+    "policy_sha256": "ede64f8d135904b0f8e117de76315854fe32ddf83fd745b8d38da4cbc09129c5",
+    "record_computation_identity": {
+      "model": {
+        "model": "26.50",
+        "structure_rng": {
+          "trial_chamber": 1,
+          "stronghold": 0,
+          "mineshaft": 0,
+          "ancient_city": 0,
+          "village": 0,
+          "ruined_portal": 0,
+          "shipwreck": 0,
+          "monument": 0,
+          "outpost": 0,
+          "fortress": 0,
+          "bastion": 0,
+          "desert_pyramid": 0,
+          "jungle_temple": 0,
+          "swamp_hut": 0,
+          "igloo": 0,
+          "ocean_ruin": 0,
+          "mansion": 0,
+          "buried_treasure": 0,
+          "trail_ruins": 1,
+          "abandoned_camp": 1,
+          "ruined_portal_nether": 0,
+          "end_city": 0
+        }
+      },
+      "native_runtime": {
+        "openmp": false,
+        "runtime_sha256": null,
+        "policy": "outer-columns-static-min256-v1"
+      },
+      "sha256": {
+        "src/seed_search/_native.abi3.so": "fe552134dc6d5cf6229524bfc8288b0bc115e82b97f110f200c203c2db46a18a",
+        "vendor/backend.json": "b86503f3c4aa7369ea9365331e7d634e3c01797d9595fb2059b226fd37fe94d8",
+        "native/bridge.c": "a1ee0f0d3e4d610afde6f6323905c6f82ec7c7a3919f735b4d5522745b78c252",
+        "native/bridge.h": "4888898a0c0c519c0773a5d825329dfbb59d3e840290aa42f7d482afdf5de963",
+        "native/filters.inc": "78a2951aa7cd2521a48d37d4433055078aa67f5fa5432736def4dd81e09b0abe",
+        "native/blueprint_batch.h": "26df64189a546b5528a5e184f193d409bdc6372e43eb41c8c194d87eb83e5f5b",
+        "native/blueprint_batch.inc": "ea4c0a328106e262d513141233ad5bd5352b524ff851f3210b02210fb7938fe4",
+        "native/blueprint_dynamic.inc": "053f417f6330f2c2da56b92f12a349f6db62e4e69e2dc7a903e6a2b458b7b8f5",
+        "src/seed_search/backend.py": "85167c4f6ea4d59ba88401350beffe64fb516060ca41093594918569ef7dc0d8",
+        "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+        "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+        "src/seed_search/realm/blueprint.py": "6eacdc4a7b6a63b27518f9997396eec66f31708cde2a1004cf0283ae6a5eaab1",
+        "src/seed_search/realm/dynamic.py": "bcde9480d2c1e4c6847ce0af709f634703c1c0630eea8e983231dfb09d6b281b",
+        "src/seed_search/realm/coastal.py": "f416ffbf5b4966d42066cb555b6385a9350808b08cefffc4c86e2b9d4d7ea511",
+        "src/seed_search/realm/marine.py": "a1b273d3d397a46b9f2fbdaa7aa8bacb451d0f7c14445142995d1b3b87f6fff3",
+        "src/seed_search/realm/spawn.py": "46d1a1a6b2d55ac29bc6bfa2515bb741c18bda338b94a47b27d510c754433f65",
+        "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+        "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+        "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+        "src/seed_search/realm/inventory.py": "b7d00ab4777b8b2b3e1bfabfba830ac42e619de31945bcc548a5b8337264cfbd",
+        "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+        "src/seed_search/realm/siblings.py": "90f5e4607f26dd0f7fe415705f1aecfb821bd24b365242d8c794d5155b6dc77b",
+        "src/seed_search/realm/config.py": "3563f7bf55966fd8bc0855a265e7a38a646cfbc987b41868f4714a30f4a6acc4",
+        "src/seed_search/realm/runner.py": "11063975d969d803bfa52a7f0b9fc537c5118f2073eb71abe36f7d9f499790df",
+        "src/seed_search/realm/store.py": "908f8abc273811ebc4260d867d65738e9af9aa3011f514abd20004ac8be46d0e",
+        "src/seed_search/realm/resources.py": "5d338efaf8b3a191c39290d165ad267c6c3544c617a377079a214a93d20d8854",
+        "src/seed_search/realm/native_batch.py": "f9feda8ac580039af86df67eac866330c76d0351ab45958f2445a58782ff8f03",
+        "src/seed_search/realm/native_records.py": "c489e5aca303bfaaee467184e9967009b3b20e176549baf2c293f304e6128eb8",
+        "src/seed_search/realm/native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+      }
+    }
+  },
+  "native_seconds_instrumented": 0.12574201000097673,
+  "retained_inputs": 0,
+  "workers": {
+    "0": {
+      "seeds": 256,
+      "eval_seconds": 0.12458699995477218
+    }
+  },
+  "counters": {
+    "raw_nether_pair": {
+      "count": 256,
+      "seconds": 0.0033020000555552542
+    },
+    "raw_nether_bounds": {
+      "count": 256,
+      "seconds": 0.00011399999493733048
+    },
+    "raw_outpost": {
+      "count": 105,
+      "seconds": 0.00045099997078068554
+    },
+    "raw_mansion": {
+      "count": 105,
+      "seconds": 0.00028800012660212815
+    },
+    "raw_trial_chamber": {
+      "count": 105,
+      "seconds": 4.899986379314214e-05
+    },
+    "raw_ancient_city": {
+      "count": 105,
+      "seconds": 0.000886000125319697
+    },
+    "raw_village": {
+      "count": 105,
+      "seconds": 0.0010939999046968296
+    },
+    "nether_viability_pair": {
+      "count": 1,
+      "seconds": 2.5999994250014424e-05
+    },
+    "outpost_inventory": {
+      "count": 1,
+      "seconds": 7.500000356230885e-05
+    },
+    "mansion_inventory": {
+      "count": 105,
+      "seconds": 0.10410000004048925
+    },
+    "mansion_y63_witnesses": {
+      "count": 1,
+      "seconds": 7.000009645707905e-06
+    },
+    "mansion_viability": {
+      "count": 596,
+      "seconds": 0.10287500002596062
+    },
+    "mansion_surface_initialization": {
+      "count": 596,
+      "seconds": 0.09132999986468349
+    },
+    "mansion_approx_height": {
+      "count": 596,
+      "seconds": 0.005653000102029182
+    },
+    "mansion_radius": {
+      "count": 596,
+      "seconds": 0.0057090000045718625
+    },
+    "biome_point": {
+      "count": 1,
+      "seconds": 7.000009645707905e-06
+    },
+    "mansion_cache_queries": {
+      "count": 596,
+      "seconds": 0.0
+    },
+    "mansion_cache_hits": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "mansion_raw_starts": {
+      "count": 596,
+      "seconds": 0.0
+    },
+    "mansion_viable_starts": {
+      "count": 1,
+      "seconds": 0.0
+    },
+    "stage_stronghold": {
+      "count": 1,
+      "seconds": 0.00020599999697878957
+    },
+    "stage_mansion": {
+      "count": 105,
+      "seconds": 0.10411400007433258
+    },
+    "stage_jungle_temple": {
+      "count": 1,
+      "seconds": 0.0003880000003846362
+    },
+    "stage_desert_pyramid": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_monument": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_ancient_city": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_village": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_trial_chamber": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_ruined_portal": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_shipwreck": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_mineshaft": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_raw_preflight_plus_final_nether": {
+      "count": 256,
+      "seconds": 0.006318999934592284
+    },
+    "stage_final_evidence": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_dynamic_center_search": {
+      "count": 0,
+      "seconds": 0.0
+    },
+    "stage_outpost": {
+      "count": 1,
+      "seconds": 7.500000356230885e-05
+    }
+  },
+  "late_stage_inputs": {
+    "mansion_inventory": [
+      {
+        "index": 50000003,
+        "seed": "-1898311147530207376",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000007,
+        "seed": "1112798389278510484",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000008,
+        "seed": "-82956234025602930",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000012,
+        "seed": "3443403148286352680",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000013,
+        "seed": "-3158080593634507876",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000014,
+        "seed": "8558549049962893912",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000015,
+        "seed": "-6526899813197068801",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000019,
+        "seed": "-5146902789215258655",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000021,
+        "seed": "-5516490572206390877",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000023,
+        "seed": "6795388565748116294",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000024,
+        "seed": "3317768589408893339",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000026,
+        "seed": "8318551025207043354",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000031,
+        "seed": "-4294983698255618272",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000032,
+        "seed": "-6239637854365939660",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000034,
+        "seed": "2848617491464065220",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000039,
+        "seed": "-8466795880240060117",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000040,
+        "seed": "-4203422869444928907",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000044,
+        "seed": "-8389502772422569685",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000045,
+        "seed": "-1184604146704690066",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000047,
+        "seed": "5331915589688135619",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000050,
+        "seed": "7104644950291077023",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000052,
+        "seed": "-8925432601493791538",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000054,
+        "seed": "7995982043029806530",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000056,
+        "seed": "7084568836884773898",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000058,
+        "seed": "4255976854730940334",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000059,
+        "seed": "-1558297866947756796",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000064,
+        "seed": "7714940186727834693",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000066,
+        "seed": "-5511952112436368488",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000067,
+        "seed": "-497606819148607416",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000072,
+        "seed": "7462187582903321823",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000073,
+        "seed": "-1359447479341655696",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000075,
+        "seed": "8574790178188937349",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000076,
+        "seed": "-2157233691853828210",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000081,
+        "seed": "-1336616139593403168",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000082,
+        "seed": "8554989033910081708",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000084,
+        "seed": "4898643168420908376",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000085,
+        "seed": "2195929840584176258",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000087,
+        "seed": "-1684974443085868597",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000088,
+        "seed": "-7654492976970590229",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000091,
+        "seed": "6848091510372260863",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000092,
+        "seed": "4395671919817306749",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000093,
+        "seed": "-7853590433686077603",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000095,
+        "seed": "-7248129218927209693",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000096,
+        "seed": "-5399303403157495145",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000101,
+        "seed": "6635090393332850492",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000102,
+        "seed": "-7303038906701293200",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000103,
+        "seed": "3544722164258898771",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000108,
+        "seed": "5176281280668844978",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000109,
+        "seed": "2628915032065735247",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000111,
+        "seed": "-4209685690497831813",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000113,
+        "seed": "-3695881460177674623",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000115,
+        "seed": "-7237078483286409669",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000117,
+        "seed": "3009584996191788069",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000118,
+        "seed": "-5553278516046119270",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000119,
+        "seed": "-2391746433478485476",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000125,
+        "seed": "5685831721726317009",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000126,
+        "seed": "-3918582985929226747",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000130,
+        "seed": "-6343872527025232212",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000133,
+        "seed": "4706468548992919381",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000138,
+        "seed": "5585564975354417308",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000139,
+        "seed": "3371120719774907889",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000146,
+        "seed": "-680814821459013210",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000148,
+        "seed": "-2556556133518315121",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000151,
+        "seed": "2811772220842082681",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000153,
+        "seed": "-4882655014034900562",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000157,
+        "seed": "4759608796095346540",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000158,
+        "seed": "1016346893060113635",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000159,
+        "seed": "1965380015230620968",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000161,
+        "seed": "-8034217521667018624",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000162,
+        "seed": "-2790446742822027168",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000168,
+        "seed": "-7957422820020931823",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000169,
+        "seed": "-7580546396817806127",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000170,
+        "seed": "7554434529988983172",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000175,
+        "seed": "4994173303530281985",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000176,
+        "seed": "495868227331606223",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000177,
+        "seed": "-7373510606811301638",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000180,
+        "seed": "-5706613068198150859",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000185,
+        "seed": "-852120748341422033",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000186,
+        "seed": "-8686600104600306227",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000187,
+        "seed": "-9197390434329046128",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000188,
+        "seed": "-3105080109988765897",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000189,
+        "seed": "4458184919118341022",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000190,
+        "seed": "-6500426156427920964",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000193,
+        "seed": "-8007579345679405545",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000200,
+        "seed": "-1592417086017870235",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000203,
+        "seed": "1376579620806125232",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000206,
+        "seed": "6333995899084046786",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000208,
+        "seed": "-2754208214952591300",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000210,
+        "seed": "2677913660703686115",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000211,
+        "seed": "-4734269593356485441",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000216,
+        "seed": "6254254588457512822",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000217,
+        "seed": "3893116540984270055",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000220,
+        "seed": "-1694337630702407011",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000223,
+        "seed": "-6190019348690312035",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000226,
+        "seed": "8230108759230376061",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000228,
+        "seed": "-2083212039695929362",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000230,
+        "seed": "2927929553469851104",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000233,
+        "seed": "-7692649324664873149",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000234,
+        "seed": "-4484507178594141325",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000237,
+        "seed": "2455004892916820733",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000239,
+        "seed": "-5156227984258304219",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000245,
+        "seed": "-4213587883156731295",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000246,
+        "seed": "-8185564647714077471",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000251,
+        "seed": "-7532689550956894532",
+        "run_key": 2026101401
+      },
+      {
+        "index": 50000254,
+        "seed": "2787562289333792094",
+        "run_key": 2026101401
+      }
+    ],
+    "outpost_inventory": [
+      {
+        "index": 50000176,
+        "seed": "495868227331606223",
+        "run_key": 2026101401
+      }
+    ],
+    "nether_viability_pair": [
+      {
+        "index": 50000176,
+        "seed": "495868227331606223",
+        "run_key": 2026101401
+      }
+    ],
+    "dynamic_center_search": []
+  },
+  "caveats": [
+    "Timing groups overlap; do not sum parent and child times",
+    "Instrumented throughput is not a production/candidate benchmark",
+    "Native stage-field counts indicate nonzero timing, not exact predicate entries",
+    "Late-stage inputs reached a stage; they are not necessarily qualified survivors"
+  ]
+}

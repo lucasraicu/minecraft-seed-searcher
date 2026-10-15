@@ -1,0 +1,39 @@
+{
+  "production_tracked_diff_empty": true,
+  "patches": [
+    {
+      "patch": "dark-gate-incremental.patch",
+      "base": "/tmp/minecraft-sol-audit-20261015/lazy-no-surface-init",
+      "applies": true,
+      "error": ""
+    },
+    {
+      "patch": "dark-gate.patch",
+      "base": "/Users/lucasraicu/Downloads/minecraft-seed-searcher",
+      "applies": true,
+      "error": ""
+    },
+    {
+      "patch": "lazy-no-surface-init.patch",
+      "base": "/Users/lucasraicu/Downloads/minecraft-seed-searcher",
+      "applies": true,
+      "error": ""
+    },
+    {
+      "patch": "lazy.patch",
+      "base": "/Users/lucasraicu/Downloads/minecraft-seed-searcher",
+      "applies": true,
+      "error": ""
+    },
+    {
+      "patch": "no-surface-init.patch",
+      "base": "/Users/lucasraicu/Downloads/minecraft-seed-searcher",
+      "applies": true,
+      "error": ""
+    }
+  ],
+  "python_syntax": "passed",
+  "report_links": "passed",
+  "report_placeholders": "none",
+  "json": "valid"
+}

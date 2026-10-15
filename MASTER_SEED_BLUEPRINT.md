@@ -103,10 +103,11 @@ Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors un
 | 🌿 **Jungle Temple** | Overworld | **3** | **$-1$** | **$\ge 2$** | Stage 1B | Guaranteed $\ge 2$. 2 temples = 1 deficit. **+20 pts** one-time milestone for 3rd (not linear). |
 | ⛵ **Shipwrecks** | Overworld | **6** | **$-2$** | **$\ge 4$** | Stage 1B | Guaranteed $\ge 4$. 4–5 wrecks = 1 deficit. **+5 pts** each above 6 (linear surplus). |
 | 🌀 **Ruined Portals** | Overworld | **7** | **$-2$** | **$\ge 5$** | Stage 1B | Guaranteed $\ge 5$. 5–6 portals = 1 deficit. **+5 pts** each above 7 (linear surplus). |
-| ⛏️ **Mineshafts** | Overworld | **15** | **$-3$** | **$\ge 12$** | Stage 1B | Guaranteed $\ge 12$. 12–14 shafts = 1 deficit. **+1 pt** each above 15 (linear surplus). |
-| 🧙 **Swamp Hut (Witch Hut)** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Automated witch/redstone farm; **+20 pts** (predicted placement). |
-| 🛖 **Igloo (with Basement)**| Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Starter brewing stand, golden apple & zombie curing; **+15 pts** (predicted via PRNG). |
-| 🏺 **Trail Ruins** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Archaeology trims & relic discs; **+15 pts** (predicted placement). |
+| 🧙 **Swamp Hut (Witch Hut)** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Automated witch/redstone farm; **+15 pts** (1st), **+3 pts** each additional (predicted placement). |
+| 🛖 **Igloo (with Basement)**| Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Starter brewing stand, golden apple & zombie curing; **+10 pts** (1st), **+3 pts** each additional (predicted via PRNG). |
+| 🏺 **Trail Ruins** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Archaeology trims & relic discs; **+10 pts** (1st), **+3 pts** each additional (predicted placement). |
+| 🌊 **Ocean Ruins** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Underwater ruins cluster; **+10 pts** (1st), **+3 pts** each additional (predicted placement). |
+| 💎 **Buried Treasure** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Heart of the Sea & starter iron/diamonds; **+10 pts** (1st), **+3 pts** each additional (predicted placement). |
 
 > [!IMPORTANT]
 > **Implementation Capabilities vs. Approved Blueprint Design (Group D Audit Reconciliation):**
@@ -181,21 +182,26 @@ To ensure immediate player engagement without requiring 15-minute treks on day o
 | **Tier 2 (Elite)** | 3rd Nether Fortress inside borders (one-time milestone; not linear) | **+20 pts** |
 | **Tier 2 (Elite)** | 3rd Bastion Remnant inside borders (one-time milestone; not linear) | **+20 pts** |
 | **Tier 2 (Elite)** | 🏜️ **Badlands / Mesa** biome | **+20 pts** |
-| **Tier 2 (Elite)** | Swamp Hut (Witch Hut) inside borders (predicted placement) | **+20 pts** |
 | **Tier 3 (Quality)** | 🪸 **Warm Ocean / Coral Reef** | **+15 pts** |
 | **Tier 3 (Quality)** | 🧊 **Ice Spikes** biome | **+15 pts** |
 | **Tier 3 (Quality)** | 🌾 **Windswept / Shattered Savanna** | **+15 pts** |
-| **Tier 3 (Quality)** | Igloo with Basement inside borders (predicted via PRNG) | **+15 pts** |
-| **Tier 3 (Quality)** | Trail Ruins site inside borders (predicted placement) | **+15 pts** |
+| **Tier 3 (Quality)** | Swamp Hut (Witch Hut) inside borders | **+15 pts** (1st), **+3 pts** each additional |
 | **Tier 3 (Quality)** | Every Trial Chamber above 7 (8th, 9th...) | **+10 pts each** (linear surplus) |
 | **Tier 3 (Quality)** | Flower Forest; Bamboo Jungle | **+10 pts each** |
-| **Tier 3 (Quality)** | Ocean Ruins; Buried Treasure | **+10 pts each** |
+| **Tier 3 (Quality)** | Igloo with Basement inside borders (predicted via PRNG) | **+10 pts** (1st), **+3 pts** each additional |
+| **Tier 3 (Quality)** | Trail Ruins site inside borders (predicted placement) | **+10 pts** (1st), **+3 pts** each additional |
+| **Tier 3 (Quality)** | Ocean Ruins; Buried Treasure | **+10 pts** (1st), **+3 pts** each additional |
 | **Tier 3 (Quality)** | Every Ruined Portal above 7; Shipwrecks above 6 | **+5 pts each** (linear surplus) |
 | **Tier 3 (Quality)** | Mineshafts above 15 | **+1 pt each** (linear surplus) |
 
 > [!NOTE]
 > **Milestone vs. Linear Scoring Rules (User Decision Record):**
 > Per the user's explicit specification, bonuses awarded at the 3rd Outpost, 3rd Desert Pyramid, 3rd Jungle Temple, 3rd Nether Fortress, 3rd Bastion Remnant (+20 pts each milestone) and the 4th Ancient City (+25 pts milestone) are strictly **one-time milestone bonuses** awarded upon reaching that structure count, not recurring linear increments. In contrast, surplus Villages (+25 pts each for 9th+), Trial Chambers (+10 pts each for 8th+), Ruined Portals (+5 pts each above 7), Shipwrecks (+5 pts each above 6), and Mineshafts (+1 pt each above 15) scale linearly per surplus structure.
+>
+> **Optional Structure Scoring Model (User Decision Record):**
+> Per user specification across all models and languages, optional structures are scored as:
+> - **Swamp Hut:** **+15 pts** for the 1st instance, plus **+3 pts** for each additional instance (`count > 0 ? 15 + (count - 1) * 3 : 0`).
+> - **Igloo (with Basement), Trail Ruins, Ocean Ruins, Buried Treasure:** **+10 pts** for the 1st instance, plus **+3 pts** for each additional instance (`count > 0 ? 10 + (count - 1) * 3 : 0`).
 
 ---
 

@@ -1,0 +1,14 @@
+--- a/src/seed_search/realm/dynamic.py
++++ b/src/seed_search/realm/dynamic.py
+@@ -95,6 +95,11 @@ def candidate_centers(structures,nether,optional,cfg=None):
+             if not (lower<=upper and 0<=density<=weight):continue
+             axes=[nb_dynamic_snap(lo,hi,s,w,step) for lo,hi,s,w,step in zip(bounds[:2],bounds[2:],sums,weights,steps)]
+             if any(v is None for v in axes):continue
++            snapped = tuple(axes)
++            snapped_bounds = (snapped[0]-832, snapped[1]-832, snapped[0]+831, snapped[1]+831)
++            for name in OPTIONAL_NAMES:
++                counts[name] = sum(contains(point, snapped_bounds)
++                                   for point in inventories.get(name, ()))
+             rows.append(Candidate(tuple(axes),density,counts,deficits,radial))
+     return rows
+

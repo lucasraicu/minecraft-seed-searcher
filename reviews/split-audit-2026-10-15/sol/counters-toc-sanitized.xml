@@ -1,0 +1,72 @@
+<trace-toc>
+    <run number="1">
+        <info>
+            <target>
+                <device uuid="0036B3B8-27EB-5578-BFDF-BCD756E45B2B" model="iMac Pro" name="Ioan’s iMac Pro" os-version="15.8 (24H23)" platform="macOS" />
+                <process type="attached" return-exit-status="0" name="Python" pid="37066" termination-reason="exit(0)" />
+                </target>
+            <summary>
+                <start-date>2026-10-15T03:32:34.550-07:00</start-date>
+                <end-date>2026-10-15T03:32:38.531-07:00</end-date>
+                <duration>3.981488</duration>
+                <end-reason>Time limit reached</end-reason>
+                <instruments-version>26.0 (17C529)</instruments-version>
+                <template-name>CPU Counters</template-name>
+                <recording-mode>Deferred</recording-mode>
+                <time-limit>3 seconds</time-limit>
+            </summary>
+        </info>
+        <processes>
+            <process name="Python" pid="37066" path="/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python" />
+            <process name="kernel" pid="0" path="/System/Library/Kernels/kernel" />
+        </processes>
+        <data>
+            <table schema="tick" frequency="1" />
+            <table schema="life-cycle-period" target-pid="SINGLE" />
+            <table schema="tick" frequency="10" />
+            <table schema="thread-state" target-pid="SINGLE" />
+            <table schema="syscall-name-map" />
+            <table schema="os-log" category="PointsOfInterest" />
+            <table category="PointsOfInterest" schema="os-signpost" dynamic-tracing-enabled-subsystems="&quot;com.apple.neappprivacy&quot;" />
+            <table schema="cpu-state" target-pid="SINGLE" />
+            <table schema="cpu-narrative" />
+            <table exclude-os-logs="0" schema="global-poi-layout" target-pid="SINGLE" />
+            <table schema="context-switch" target-pid="SINGLE" />
+            <table target-pid="SINGLE" context-switch-sampling="0" high-frequency-sampling="0" schema="time-profile" needs-kernel-callstack="0" record-waiting-threads="0" />
+            <table schema="kdebug-signpost" target-pid="SINGLE" />
+            <table codes="&quot;0x1f,0x05&quot;" schema="kdebug-strings" target="SINGLE" />
+            <table schema="dyld-library-load" target-pid="SINGLE" />
+            <table schema="process-info" />
+            <table codes="&quot;0x1,0x30&quot;" schema="kdebug" callstack="user" target="SINGLE" />
+            <table codes="&quot;0x1f,0x7&quot;" schema="kdebug" target="SINGLE" />
+            <table schema="syscall" target-pid="SINGLE" />
+            <table exclude-os-logs="0" schema="region-of-interest" target-pid="SINGLE" />
+            <table codes="&quot;0x2b,0x87&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x2b,0xdc&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x07,0x00&quot;" schema="kdebug" target="SINGLE" />
+            <table schema="thread-narrative" />
+            <table codes="&quot;0x1,0x25&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x31,0xca&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x2d,*&quot;" schema="kdebug" callstack="user" target="SINGLE" />
+            <table codes="&quot;0x2b,0xd8&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x1,0xa&quot;" schema="kdebug" callstack="user" target="SINGLE" />
+            <table codes="&quot;0x21,0xa&quot;" schema="kdebug" callstack="user" target="SINGLE" />
+            <table codes="&quot;46,2&quot;" schema="kdebug" callstack="user" target="SINGLE" />
+            <table codes="&quot;0x07,0x00&quot; &quot;0x1f,0x05&quot;" schema="kdebug" target="SINGLE" />
+            <table codes="&quot;0x1,0xc&quot; &quot;0x4,0xc&quot;" schema="kdebug" target="SINGLE" callstack="user" />
+            <table schema="global-roi-layout" target-pid="SINGLE" />
+            <table schema="virtual-memory" target-pid="SINGLE" />
+            <table codes="&quot;0x1,0x9&quot; &quot;0x1,0x5&quot;" schema="kdebug" />
+            <table codes="&quot;0x1,0x40&quot;" schema="kdebug" />
+            <table schema="gcd-perf-event" target-pid="SINGLE" />
+            <table codes="&quot;0x7,0x0&quot;" schema="kdebug" />
+            <table schema="thread-info" />
+            <table schema="thread-snapshot" />
+            <table schema="os-log-arg" category="PointsOfInterest" />
+            <table exclude-os-logs="0" schema="roi-metadata" target-pid="SINGLE" />
+            <table callstack="user" target="SINGLE" schema="time-sample" sample-rate-micro-seconds="1000" all-thread-states="NO" />
+            <table schema="os-signpost-arg" category="PointsOfInterest" />
+        </data>
+        <tracks />
+    </run>
+</trace-toc>

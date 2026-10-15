@@ -110,6 +110,9 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
                 axes.append(value)
             if any(value is None for value in axes):continue
             snapped=tuple(axes)
+            s_ow=overworld_bounds(snapped)
+            for name in OPTIONAL_NAMES:
+                if name in inventories:counts[name]=sum(contains(p,s_ow) for p in inventories[name])
             radial=sum(w*math.hypot(x-snapped[0],z-snapped[1]) for x,z,w in captured)/weight if weight else 0.
             density=sum(weights[name]*counts.get(name,0) for name in DENSITY_NAMES)
             rows.append(Candidate(snapped,density,counts,deficits,radial))

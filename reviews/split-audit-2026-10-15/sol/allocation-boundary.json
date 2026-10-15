@@ -1,0 +1,40 @@
+{
+  "allocation_cases": [
+    {
+      "count": 1,
+      "threads": 1,
+      "synthetic": true,
+      "allocation_calls": 72,
+      "peak_requested_live_bytes": 1872336,
+      "retained_live_bytes": 48956,
+      "live_after_free": 0
+    },
+    {
+      "count": 2,
+      "threads": 1,
+      "synthetic": true,
+      "allocation_calls": 132,
+      "peak_requested_live_bytes": 1921244,
+      "retained_live_bytes": 97864,
+      "live_after_free": 0
+    },
+    {
+      "count": 32,
+      "threads": 1,
+      "synthetic": true,
+      "allocation_calls": 1932,
+      "peak_requested_live_bytes": 3388484,
+      "retained_live_bytes": 1565104,
+      "live_after_free": 0
+    }
+  ],
+  "allocation_scope": "one worker; NB allocations only, excludes SeedContext and allocator metadata; no failure injection",
+  "boundary": {
+    "count": 16384,
+    "trials": 20,
+    "array_creation_median_seconds": 0.001711069002340082,
+    "verdict_hash_median_seconds": 0.0005467739974847063,
+    "hash_input": "zero-initialized verdict bytes; hashing is content-independent in cost",
+    "includes_native": false
+  }
+}

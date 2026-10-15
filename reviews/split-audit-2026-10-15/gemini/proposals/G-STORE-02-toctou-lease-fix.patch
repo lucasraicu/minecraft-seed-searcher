@@ -1,0 +1,16 @@
+--- a/src/seed_search/realm/store.py
++++ b/src/seed_search/realm/store.py
+@@ -438,8 +438,11 @@ class RealmStore:
+                 self._store_candidates(prepared.candidate_rows)
+             if prepared.receipt_row:
+                 self._store_receipt(prepared.receipt_row)
+-            self.db.execute("UPDATE ranges SET status='complete',digest=?,completed_at=? WHERE start=?",
+-                            (prepared.digest,time.time(),start_key))
++            cur = self.db.execute("UPDATE ranges SET status='complete',digest=?,completed_at=? WHERE start=? AND worker=? AND attempts=?",
++                                  (prepared.digest,time.time(),start_key,worker,attempt))
++            if cur.rowcount == 0:
++                raise StaleLeaseError('Range lease was superseded or reclaimed prior to commit')
+             if self.compact:
+                 self._increment_compact_state(prepared.seed_count,prepared.anchor_count)
+             else:
+

@@ -1,0 +1,317 @@
+[
+  {
+    "id": "G-GEO-01",
+    "original_severity": "P1",
+    "claim": "Optional structure counting boundary drift during snapping in Python reference oracle",
+    "disposition": "accepted",
+    "reviewed_severity": "P1",
+    "reason": "Independent numerical reproduction selects C (-752,-816),434 versus Python (-784,-816),422 with hut (56,-800). Recount at snapped center restores parity. The claimed 80-block within-cell displacement is unsupported and unnecessary to establish this defect.",
+    "action": "Recount optional structures at the snapped center using exact half-open bounds; add an independent selection fixture.",
+    "source_file": "src/seed_search/realm/dynamic.py",
+    "source_anchor_reference": "src/seed_search/realm/dynamic.py:82-115, src/seed_search/realm/blueprint.py:526",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/geo/probe_task3_optional_drift.py"
+    ]
+  },
+  {
+    "id": "G-MEM-01",
+    "original_severity": "P1",
+    "claim": "Dynamic worker reusable buffer capacity poisoning causing NULL pointer dereference (SIGSEGV)",
+    "disposition": "accepted",
+    "reviewed_severity": "P1",
+    "reason": "Two same-worker fixtures crash with SIGSEGV when allocation 34,35,or36 fails. Worker state is reused within a batch, not across native calls.",
+    "action": "Allocate replacements into temporaries and publish pointers/capacities only after all required allocations succeed.",
+    "source_file": "native/blueprint_dynamic.inc",
+    "source_anchor_reference": "native/blueprint_dynamic.inc:378-382, 409-414",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/mem/test_capacity_poisoning.py"
+    ]
+  },
+  {
+    "id": "G-STORE-02",
+    "original_severity": "P1",
+    "claim": "Time-of-Check to Time-of-Use (TOCTOU) lease validation race and blind overwrite in complete_prepared",
+    "disposition": "unresolved",
+    "reviewed_severity": "defensive hardening; production P1 not verified",
+    "reason": "Gemini callback deliberately recovers and reassigns the range on the same store between check and commit. This reproduces stale completion under that API interleaving, but production uses a single parent writer and an OS scan lock. A second scanner is independently rejected. Their probe shows completed_seeds=10 and the conflicting second commit rejected, not double-counting. No supported production interleaving supplied.",
+    "action": "If lease operations are to support external reassignment, validate and update atomically inside a transaction, preserving idempotent retry behavior. Do not adopt the supplied invalid patch.",
+    "source_file": "src/seed_search/realm/store.py",
+    "source_anchor_reference": "src/seed_search/realm/store.py:423-444",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_toctou_lease_overwrite.py"
+    ]
+  },
+  {
+    "id": "G-MEM-02",
+    "original_severity": "P2",
+    "claim": "Dynamic envelope working buffers completely bypass declared reservation contract (max_buffer_bytes)",
+    "disposition": "accepted",
+    "reviewed_severity": "P1",
+    "reason": "One survivor fixture succeeds with cap 1,400,000 and peak requested live bytes 1,872,336, excluding SeedContext and allocator metadata. Retain earlier P1 severity because the documented resource bound is violated.",
+    "action": "Route dynamic owned buffers through nb_alloc; preserve reuse and monotonic reservation semantics; define/reserve context cost.",
+    "source_file": "native/blueprint_dynamic.inc",
+    "source_anchor_reference": "native/blueprint_dynamic.inc:78, 82, 123, 127, 380, 412",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/mem/probe_buffer_reservation.py"
+    ]
+  },
+  {
+    "id": "G-STORE-01",
+    "original_severity": "P2",
+    "claim": "Web UI stale candidate caching via invariant (count, max(rowid)) signature on in-place UPDATE",
+    "disposition": "accepted",
+    "reviewed_severity": "P2",
+    "reason": "The (count,max(rowid)) signature cannot detect an in-place candidate UPDATE. Reproduced separately with temporary DB; earlier audit also observed score100 ->130 with UI remaining100.",
+    "action": "Invalidate using a robust persistent revision or perform a bounded refresh; timestamps alone are not a proof of correctness.",
+    "source_file": "src/seed_search/web/server.py",
+    "source_anchor_reference": "src/seed_search/web/server.py:516-535",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_candidate_cache_invalidation.py"
+    ]
+  },
+  {
+    "id": "G-MEM-03",
+    "original_severity": "P2",
+    "claim": "In-flight pipeline queue allows active batches to exceed configured inflight limit by 1",
+    "disposition": "accepted",
+    "reviewed_severity": "P2",
+    "reason": "Popleft removes the current still-owned batch from pending before the early refill. Thus inflight=3 can own4 ranges. Existing targeted reproduction and current unchanged source agree; no end-to-end rerun performed.",
+    "action": "Remove the early refill and replenish after the current batch has been committed and its native resources released.",
+    "source_file": "src/seed_search/realm/native_batch.py",
+    "source_anchor_reference": "src/seed_search/realm/native_batch.py:501-504",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/mem/probe_inflight_bounds.py"
+    ]
+  },
+  {
+    "id": "G-GEO-02",
+    "original_severity": "P2",
+    "claim": "Replay provider masks candidate selection divergence by bypassing equivalence cell solver",
+    "disposition": "accepted",
+    "reviewed_severity": "validation gap",
+    "reason": "ReplayProvider intentionally supplies the C-selected center. This validates reconstruction, not independent center selection. Existing mandatory fixtures are independently evaluated, so calling all parity checks circular overstates the gap.",
+    "action": "Keep replay checks; supplement independent selection fixtures with nonempty optional inventories and lattice boundary transitions.",
+    "source_file": "src/seed_search/realm/native_batch.py",
+    "source_anchor_reference": "src/seed_search/realm/native_batch.py:326, src/seed_search/realm/blueprint.py:483-518",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/ffi/probe_replay_verification.py"
+    ]
+  },
+  {
+    "id": "G-FFI-02",
+    "original_severity": "P2",
+    "claim": "Discovered anchors count discrepancy in dynamic retention receipts",
+    "disposition": "unresolved",
+    "reviewed_severity": "metric naming; no coverage defect verified",
+    "reason": "Fixture has2 discovered Strongholds but1 selected dynamic center; receipt anchors=1. Dynamic anchors are evaluated centers, unlike origin mode. Compact early rejects deliberately skip discovery. Substituting discovery.n changes the metric and does not measure all discovered Strongholds without additional expensive work.",
+    "action": "Specify whether discovered_anchors means nominated centers or Stronghold inventory. Rename/document it rather than blindly switching the counter.",
+    "source_file": "native/blueprint_batch.inc",
+    "source_anchor_reference": "native/blueprint_batch.inc:586",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/ffi/probe_batch_lifetime_receipt.py"
+    ]
+  },
+  {
+    "id": "G-FFI-03",
+    "original_severity": "P2",
+    "claim": "Synthetic fixtures silently truncate optional structure inventories in dynamic survivor evaluation",
+    "disposition": "duplicate",
+    "reviewed_severity": "validation gap",
+    "reason": "NBFixture intentionally supplies empty optional inventories. This limits coverage; it is not truncation of production seed evidence. Consolidate with G-GEO-02; optional injection probe already demonstrates the missed bug.",
+    "action": "Add a narrow optional-inventory test provider; do not expand the production ABI without a need.",
+    "source_file": "native/blueprint_dynamic.inc",
+    "source_anchor_reference": "native/blueprint_dynamic.inc:221",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "G-STORE-03",
+    "original_severity": "P2",
+    "claim": "Missing lease validation in complete_range",
+    "disposition": "rejected",
+    "reviewed_severity": "no verified production defect",
+    "reason": "complete_range is the trusted parent-owned compatibility path. A lease=None call bypasses an optional lease check by API design; workers do not receive writer authority. The probe invokes that trusted API manually.",
+    "action": "No mandatory change; document the parent-owned contract if exposing a broader API.",
+    "source_file": "src/seed_search/realm/store.py",
+    "source_anchor_reference": "src/seed_search/realm/store.py:415-416",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_complete_range_no_lease.py"
+    ]
+  },
+  {
+    "id": "G-STORE-04",
+    "original_severity": "P2",
+    "claim": "Deferred transactions in claim_range cause IntegrityError under concurrency",
+    "disposition": "rejected",
+    "reviewed_severity": "no verified production defect",
+    "reason": "claim_range explicitly states Only the parent calls this. Simultaneous independent writer connections violate that contract and bypass scanner ownership. Gemini probe can return success even if no conflicting error occurs.",
+    "action": "No multiwriter redesign justified for this production architecture.",
+    "source_file": "src/seed_search/realm/store.py",
+    "source_anchor_reference": "src/seed_search/realm/store.py:247-266",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_deferred_transaction_lock.py"
+    ]
+  },
+  {
+    "id": "G-STORE-05",
+    "original_severity": "P2",
+    "claim": "Web server global lock starvation during sweep pause/stop blocking waits",
+    "disposition": "accepted",
+    "reviewed_severity": "P2",
+    "reason": "A deterministic two-second SIGINT-ignoring child holds pause_sweep under manager.lock; status blocks1.921s. Slow termination can delay other control requests.",
+    "action": "Capture process ownership under lock, wait outside the lock, then revalidate the same process/generation before publishing state.",
+    "source_file": "src/seed_search/web/server.py",
+    "source_anchor_reference": "src/seed_search/web/server.py:366-384, 468-489",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_web_server_lock_starvation.py"
+    ]
+  },
+  {
+    "id": "G-GEO-03",
+    "original_severity": "P3",
+    "claim": "Documentation contradiction in README.md for Bastion milestone and Shipwreck surplus scoring",
+    "disposition": "accepted",
+    "reviewed_severity": "P3",
+    "reason": "README says20 per Bastion above three and shipwreck above five. Actual dynamic scoring gives Bastion counts2->3:+20,3->4:+0; shipwreck5->6:+0,6->7:+5. Monument second milestone remains+30.",
+    "action": "Update the two README formulas to match approved active policy; do not alter scoring.",
+    "source_file": "README.md",
+    "source_anchor_reference": "README.md:16",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "G-MEM-04",
+    "original_severity": "P3",
+    "claim": "Monotonic reservation counter allocated_bytes permanently incremented on allocation check rejection",
+    "disposition": "rejected",
+    "reviewed_severity": "intentional behavior",
+    "reason": "The source explicitly documents deliberate monotonic reservation. It resets at each nb_run and any allocation error invalidates the batch. No permanent cross-batch poisoning was demonstrated.",
+    "action": "Keep the reservation semantics; fix the bypass and unsafe capacity publication separately.",
+    "source_file": "native/blueprint_batch.inc",
+    "source_anchor_reference": "native/blueprint_batch.inc:66-74",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "G-MEM-05",
+    "original_severity": "P3",
+    "claim": "Asymmetric allocation failure memory leak in dyn_ex / dyn_ez",
+    "disposition": "rejected",
+    "reviewed_severity": "refuted by cleanup reproduction",
+    "reason": "When dyn_ex succeeds and dyn_ez fails, dyn_ex remains owned in w.dyn_ex and is freed at worker exit. One fixture with allocation35 failed returns-3 and tracked live bytes after nb_free are0. A two-fixture reuse crash is G-MEM-01, not an orphaned allocation.",
+    "action": "No separate leak fix; use the G-MEM-01 failure-safe growth fix.",
+    "source_file": "native/blueprint_dynamic.inc",
+    "source_anchor_reference": "native/blueprint_dynamic.inc:378-382",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "G-FFI-04",
+    "original_severity": "P3",
+    "claim": "Absence of native resource finalizer / destructor in Batch class",
+    "disposition": "accepted",
+    "reviewed_severity": "P3 API footgun",
+    "reason": "Dropping an unmanaged Batch makes it collectible but leaves48,956 requested native bytes. Explicit nb_free releases them. Inspected production callers use context-manager or finally cleanup.",
+    "action": "Consider ffi.gc or weakref.finalize with close detachment if unmanaged use is supported; preserve explicit ownership.",
+    "source_file": "src/seed_search/realm/native_batch.py",
+    "source_anchor_reference": "src/seed_search/realm/native_batch.py:177",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/ffi/probe_batch_lifetime_receipt.py"
+    ]
+  },
+  {
+    "id": "G-FFI-05",
+    "original_severity": "P3",
+    "claim": "Asymmetric Nether biome witness representation in NBAnchor",
+    "disposition": "rejected",
+    "reviewed_severity": "representation choice",
+    "reason": "All five Nether families are required by the prefix check and169 retained IDs/coordinates reconstruct witnesses. Missing redundant mask/first-witness fields does not establish lost evidence.",
+    "action": "No ABI expansion justified.",
+    "source_file": "native/blueprint_batch.h",
+    "source_anchor_reference": "native/blueprint_batch.h:17",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "G-STORE-06",
+    "original_severity": "P3",
+    "claim": "WAL checkpoint blockage under long concurrent readers",
+    "disposition": "rejected",
+    "reviewed_severity": "operational risk; no production defect verified",
+    "reason": "A deliberately held external SQLite reader can prevent WAL reclamation: normal SQLite behavior. Production iterators fetch bounded pages before yielding. No leaked production reader was identified. TRUNCATE on close cannot overcome an active reader and may block.",
+    "action": "Retain normal bounded-reader discipline; monitor WAL if this operational hypothesis arises.",
+    "source_file": "src/seed_search/realm/store.py",
+    "source_anchor_reference": "src/seed_search/realm/store.py:134-144",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_wal_checkpoint_growth.py"
+    ]
+  },
+  {
+    "id": "G-STORE-07",
+    "original_severity": "P3",
+    "claim": "Fragile cross-thread RealmStore sharing violates connection thread confinement",
+    "disposition": "rejected",
+    "reviewed_severity": "refuted as present thread-confinement violation",
+    "reason": "Independent reproduction successfully runs prepare_range off-thread without touching db. A deliberately injected get_state off-thread correctly raises ProgrammingError. Future accidental SQL use is a maintainability concern, not an existing violation.",
+    "action": "Keep SQLite thread checks and writer confinement; no check_same_thread=False change.",
+    "source_file": "src/seed_search/realm/native_batch.py",
+    "source_anchor_reference": "src/seed_search/realm/native_batch.py:485, store.py:310",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/store/probe_connection_thread_confinement.py"
+    ]
+  },
+  {
+    "id": "G-STORE-08",
+    "original_severity": "P3",
+    "claim": "Unsynchronized _runs_cache mutation under concurrent HTTP requests",
+    "disposition": "unresolved",
+    "reviewed_severity": "hypothesis",
+    "reason": "Substring checks show unlocked cache access but no harmful interleaving, iteration exception, or wrong-result trace. The current CPython GIL protects individual dict operations; that alone does not prove compound behavior correct, either.",
+    "action": "Provide a deterministic observable failure before prescribing synchronization.",
+    "source_file": "src/seed_search/web/server.py",
+    "source_anchor_reference": "src/seed_search/web/server.py:315-325",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_secondary_findings.py"
+    ]
+  },
+  {
+    "id": "P-PERF-01",
+    "original_severity": "OPTIMIZATION",
+    "claim": "Lazy Generator Seeding in Dynamic Pipeline",
+    "disposition": "accepted",
+    "reviewed_severity": "measured optimization; updated by Sol",
+    "reason": "Lazy initialization is still unapplied and passes parity. Gemini verification script does not time throughput; its+10% repeats the historical result. Sol provides new matched-PGO screens and five-pair confirmation, including interaction with unused surface initialization.",
+    "action": "Use Sol measured patch and adoption prerequisites; do not publish historical numbers as a new benchmark.",
+    "source_file": "native/blueprint_dynamic.inc",
+    "source_anchor_reference": "reviews/codex-audit-2026-10-15/lazy-generator.patch",
+    "evidence": [
+      "codex/reproductions.json",
+      "reviews/split-audit-2026-10-15/gemini/probes/verify/verify_lazy_generator.py"
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+--- a/src/seed_search/web/server.py
++++ b/src/seed_search/web/server.py
+@@ -513,6 +513,10 @@ class SweepManager:
+             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+             cur = conn.cursor()
+ 
++            wal_path = self.run_dir / "realm.sqlite-wal"
++            wal_stat = (wal_path.stat().st_mtime_ns if wal_path.exists() else 0, wal_path.stat().st_size if wal_path.exists() else 0)
++            db_mtime = db_path.stat().st_mtime_ns
++
+             # Dirtiness check before re-parsing
+             cur.execute("SELECT count(*), max(rowid) FROM candidates")
+             cand_sig = cur.fetchone()
+@@ -528,7 +532,7 @@ class SweepManager:
+             if has_obs:
+                 cur.execute("SELECT count(*), max(rowid) FROM observations")
+                 obs_sig = cur.fetchone()
+ 
+-            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig)
++            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig, db_mtime, wal_stat)
+             if getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
+                 return
+             self._last_candidates_sig = sig
+

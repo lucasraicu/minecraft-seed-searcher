@@ -1,0 +1,34 @@
+--- a/native/blueprint_dynamic.inc
++++ b/native/blueprint_dynamic.inc
+@@ -378,9 +378,13 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
+     size_t ex_need=(size_t)(nx*2+2048)*sizeof(int);
+     if(w->dyn_ex_cap<ex_need) {
+-        free(w->dyn_ex);free(w->dyn_ez);
+-        w->dyn_ex=malloc(ex_need);w->dyn_ez=malloc(ex_need);
+-        w->dyn_ex_cap=ex_need;
+-        if(!w->dyn_ex||!w->dyn_ez){code=-3;goto done;}
++        int *nex=malloc(ex_need);int *nez=malloc(ex_need);
++        if(!nex||!nez){
++            free(nex);free(nez);
++            code=-3;goto done;
++        }
++        free(w->dyn_ex);free(w->dyn_ez);
++        w->dyn_ex=nex;w->dyn_ez=nez;
++        w->dyn_ex_cap=ex_need;
+     }
+     ex=w->dyn_ex;ez=w->dyn_ez;
+@@ -409,6 +413,10 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
+     if(maxcells>0 && w->dyn_cells_cap<maxcells) {
+-        free(w->dyn_cells);
+-        w->dyn_cells_cap=maxcells+1024;
+-        w->dyn_cells=malloc(w->dyn_cells_cap*sizeof(NBDynamicCell));
+-        if(!w->dyn_cells){code=-3;goto done;}
++        size_t ncap=maxcells+1024;
++        NBDynamicCell *ncells=malloc(ncap*sizeof(NBDynamicCell));
++        if(!ncells){code=-3;goto done;}
++        free(w->dyn_cells);
++        w->dyn_cells=ncells;
++        w->dyn_cells_cap=ncap;
+     }
+     cells=w->dyn_cells;
+

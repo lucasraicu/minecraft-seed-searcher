@@ -1,0 +1,11 @@
+--- a/src/seed_search/realm/native_batch.py
++++ b/src/seed_search/realm/native_batch.py
+@@ -501,7 +501,6 @@ def persist_pipeline(prototype,start_index,count,batch_size,run,threads=None,
+                 while len(pending)<inflight and submit(store):pass
+                 while pending:
+                     first,end,attempt,future,queued,native_future=pending.popleft()
+-                    while len(pending)<inflight and submit(store):pass
+                     before=time.perf_counter()
+                     if future is None:
+                         native_future.result()
+

@@ -1,0 +1,52 @@
+--- a/native/blueprint_dynamic.inc
++++ b/native/blueprint_dynamic.inc
+@@ -318,8 +318,7 @@
+     w->mansion_cache_n=0;
+ #endif
+     if(!w->ctx)return -3;
+-    w->ctx->seed=seed;applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
+-    applySeed(&w->ctx->nether,DIM_NETHER,seed);
++    w->ctx->seed=seed;
+     int code=0;const int ow[4]={-2000,-2000,1999,1999};
+     const int nw[4]={-562,-562,561,561};
+     double stage=nb_time();
+@@ -338,6 +337,7 @@
+      * need no discarded discovery row, so defer village/Stronghold biome work
+      * until the mandatory Mansion predicate has passed. */
+     if(!w->p->retention) {
++        applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
+         code=nb_dynamic_discovery(w,r,ow);if(code)goto done;
+         if(!r->discovery.n)goto done;
+     }
+@@ -346,6 +346,7 @@
+         r->stage_seconds[11]+=nb_time()-stage;
+         if(possible<0){code=possible;goto done;}if(!possible)goto done;
+     }
++    if(w->p->retention)applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
+     /* One inexpensive macro Mansion preflight before all other structure inventories. */
+     stage=nb_time();
+     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
+@@ -360,6 +361,7 @@
+     r->stage_seconds[14]+=nb_time()-stage;
+     if(macro[12].viable.n<w->p->outpost_goal)goto done;
+     stage=nb_time();
++    applySeed(&w->ctx->nether,DIM_NETHER,seed);
+     code=nb_nether(w,nw,&nether_macro);if(code)goto done;
+     r->stage_seconds[11]+=nb_time()-stage;
+     macro[10]=nether_macro.observations[10];macro[11]=nether_macro.observations[11];
+--- a/vendor/cubiomes-bedrock/finders.c
++++ b/vendor/cubiomes-bedrock/finders.c
+@@ -1822,11 +1822,10 @@
+             {
+                 if (g->mc >= MC_1_21_60)
+                     m |= (1ULL << (pale_garden - 128));
+-                SurfaceNoise sn;
+-                initSurfaceNoise(&sn, DIM_OVERWORLD, g->seed);
++                /* This MC_1_18+ path does not read SurfaceNoise. */
+                 float height;
+                 int biome_id;
+-                mapApproxHeight(&height, &biome_id, g, &sn, x >> 2, z >> 2, 1, 1);
++                mapApproxHeight(&height, &biome_id, g, NULL, x >> 2, z >> 2, 1, 1);
+                 if (!areBiomesViable(g, sampleX, (int)height+23/*mansion height*/, sampleZ, 32, b, m, approx))
+                     goto L_not_viable;
+             }
