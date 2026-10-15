@@ -726,8 +726,11 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
           // Midpoint Badge
           if (elevationFilter !== 'surface') {
-            if (isHovered) {
-              // Full expanded pill on hover
+            const showExpanded = isHovered || labelMode === 'all';
+            const showPill = isHovered || labelMode !== 'minimal';
+
+            if (showExpanded) {
+              // Full expanded pill on hover or when labelMode === 'all'
               const badgeText = `🌋 Mega Ravine Fissure (${ravine.length} blocks) • Bed Y=${ravine.y ?? 'unknown'}`;
               ctx.font = 'bold 12px system-ui';
               const tw = ctx.measureText(badgeText).width;
@@ -740,7 +743,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               ctx.stroke();
               ctx.fillStyle = '#fed7aa';
               ctx.fillText(badgeText, mid.x + 13, mid.y + 3);
-            } else {
+            } else if (showPill) {
               // Clear, punchy abbreviation badge
               const badgeText = `🌋 MEGA ${ravine.length} blocks`;
               ctx.font = 'bold 11px monospace';
@@ -922,7 +925,10 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           ctx.textAlign = 'left';
           ctx.textBaseline = 'alphabetic';
 
-          if (isHovered) {
+          const showExpanded = isHovered || labelMode === 'all';
+          const showPill = isHovered || labelMode !== 'minimal';
+
+          if (showExpanded) {
             // Full expanded pill with depth
             const title = cave.name;
             const sub = `Y=${cave.y ?? 'unknown'} • ${cave.notes || 'Cavern System'}`;
@@ -947,7 +953,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             ctx.fillStyle = cave.color;
             ctx.font = 'bold 10px monospace';
             ctx.fillText(sub, cPos.x + pinRadius + 12, cPos.y + 13);
-          } else {
+          } else if (showPill) {
             // Crisp, clear abbreviation pill
             const abbr = cave.type === 'lush_caves' ? 'LSH' : cave.type === 'dripstone_caves' ? 'DRP' : 'DRK';
             ctx.font = 'bold 11px monospace';
@@ -1022,8 +1028,11 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
           ctx.textAlign = 'left';
           ctx.textBaseline = 'alphabetic';
 
-          if (isHovered) {
-            // Full expanded card on hover
+          const showExpanded = isHovered || labelMode === 'all';
+          const showPill = isHovered || labelMode !== 'minimal';
+
+          if (showExpanded) {
+            // Full expanded card on hover or labelMode === 'all'
             const title = struct.name;
             const dist0 = Math.round(struct.distanceToOrigin ?? Math.hypot(struct.x, struct.z));
             const sub = `X:${struct.x} Z:${struct.z} • ${dist0}b from (0,0)${dist != null && Math.abs(dist - dist0) > 2 ? ` • ${dist}b to Hub` : ''}${struct.distanceToSpawn != null ? ` • ${Math.round(struct.distanceToSpawn)}b to Spawn` : ''}`;
@@ -1050,8 +1059,8 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             ctx.fillStyle = struct.color;
             ctx.font = 'bold 10px monospace';
             ctx.fillText(sub, sPos.x + pinRadius + 12, sPos.y + 13);
-          } else {
-            // Standard state: Clear Abbreviation Pill
+          } else if (showPill) {
+            // Standard state: Clear Abbreviation Pill (suppressed when labelMode === 'minimal')
             const abbr = getStructureAbbr(struct.type, struct.name);
             ctx.font = 'bold 11px monospace';
             const tw = ctx.measureText(abbr).width;

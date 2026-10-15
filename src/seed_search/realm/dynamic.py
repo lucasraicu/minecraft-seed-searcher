@@ -74,12 +74,9 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
     """
     xs=[];zs=[];nether_x=[];nether_z=[]
     for name,points in inventories.items():
+        if name in OPTIONAL_NAMES:continue
         target_x,target_z=(nether_x,nether_z) if name in NETHER_NAMES else (xs,zs)
         for x,z in points:target_x.append(x);target_z.append(z)
-    # World-aligned four-Y sampling: a lattice point is present throughout an
-    # interval between its entry/exit events, independent of the sampled ID.
-    xs.extend(range(-1984,1985,64));zs.extend(range(-1984,1985,64))
-    nether_x.extend(range(-512,513,64));nether_z.extend(range(-512,513,64))
     ex=sorted(set(_axis_events(xs,OVERWORLD_HALF)+_axis_events(nether_x,NETHER_HALF,True)))
     ez=sorted(set(_axis_events(zs,OVERWORLD_HALF)+_axis_events(nether_z,NETHER_HALF,True)))
     rows=[]

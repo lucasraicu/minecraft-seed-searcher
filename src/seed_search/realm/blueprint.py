@@ -493,7 +493,8 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     inventories[name]=timed('final_'+name,lambda name=name:structure_observation(backend,name,nw_macro,combined,pair=pairs[name] if pairs else None))
             if (strongholds['predicted_viable'] and mansion['predicted_viable'] and
                     len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost'] and
-                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['fortress']):
+                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['fortress'] and
+                    len(inventories.get('bastion',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['bastion']):
                 for name in OVERWORLD_NAMES:
                     if name not in inventories:
                         inventories[name]=timed('structure_'+name,lambda name=name:structure_observation(backend,name,ow_macro,combined))

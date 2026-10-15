@@ -49,6 +49,14 @@ typedef struct NBWorker {
 #ifndef NB_DISABLE_MANSION_CACHE
     int mansion_cache_n, mansion_cache[64][3];
 #endif
+    int *dyn_prefix;
+    int *dyn_nether_prefix;
+    int *dyn_ex;
+    int *dyn_ez;
+    void *dyn_cells;
+    size_t dyn_cells_cap;
+    int *dyn_biome_grid;
+    int *dyn_nether_grid;
 } NBWorker;
 
 /* A call-wide allocation reservation bounds owned outputs and scratch even for
@@ -95,7 +103,7 @@ static void nb_clear_full(NBObservation *o) {
 }
 static int nb_reserve(NBWorker *w,int n) {
     if(n<=w->cap)return 0;
-    int *scratch=nb_alloc(w,(size_t)n*4*sizeof(int),0),*flags=nb_alloc(w,(size_t)n*sizeof(int),0);
+    int *scratch=malloc((size_t)n*4*sizeof(int)),*flags=malloc((size_t)n*sizeof(int));
     if(!scratch||!flags){free(scratch);free(flags);return -3;}
     free(w->scratch);free(w->flags);w->scratch=scratch;w->flags=flags;w->cap=n;
     return 0;
@@ -228,7 +236,13 @@ static int nb_palette(NBWorker *w,const int *b,NBAnchor *a) {
         for(int i=offset;i<end;i++) {
             int index=(int)(((int64_t)(i/4)*stride)%n),layer=i%4;
             int x=x0+(index%nx)*step,z=z0+(index/nx)*step,y=w->p->y[layer];
-            int id=nb_point(w,x,y,z),k=a->biome_n++;
+            int id;
+            if(w->p->dynamic && w->dyn_biome_grid && x>=-1984 && x<=2048 && z>=-1984 && z<=2048) {
+                int ix=(x-(-1984))/64+1,iz=(z-(-1984))/64+1;
+                if(ix>=1 && ix<64 && iz>=1 && iz<64)id=w->dyn_biome_grid[layer*64*64+ix*64+iz];
+                else id=nb_point(w,x,y,z);
+            } else id=nb_point(w,x,y,z);
+            int k=a->biome_n++;
             a->biome_xyz[3*k]=x;a->biome_xyz[3*k+1]=y;a->biome_xyz[3*k+2]=z;a->biome_ids[k]=id;
             if((w->p->origin||w->p->dynamic)&&y==63&&id>=0&&id<256)a->bonus_biomes|=(unsigned int)w->p->bonus_biome_members[id];
             unsigned int mask=(id>=0&&id<256)?w->p->biome_members[id]:0;
@@ -582,6 +596,8 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
             }
         }
         ss_destroy(w.ctx);free(w.scratch);free(w.flags);
+        free(w.dyn_prefix);free(w.dyn_nether_prefix);free(w.dyn_ex);free(w.dyn_ez);
+        free(w.dyn_cells);free(w.dyn_biome_grid);free(w.dyn_nether_grid);
     }
     batch->result_count=count;
     if(p->retention) {

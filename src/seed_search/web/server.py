@@ -114,6 +114,7 @@ class SweepManager:
             self.error_message = None
             self.generation += 1
             self.candidates = []
+            self._last_candidates_sig = None
             self._query_sqlite_progress()
             self._query_sqlite_candidates()
             self.logs.insert(0, f'Viewing {run_id}: {completed:,} durable inputs')
@@ -342,6 +343,7 @@ class SweepManager:
                 self.effective_config=identity['config'];self.threads=threads;self.generation+=1
                 self.start_time=time.time();self.end_time=0.;self.seeds_per_sec=0.;self.history=[0]*12
                 self.status='running';self.error_message=None
+                self._last_candidates_sig=None
                 self._query_sqlite_candidates()
                 python=PROJECT_ROOT/'.venv'/'bin'/'python'
                 cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search','resume',
@@ -441,6 +443,7 @@ class SweepManager:
         db_path = self.run_dir / "realm.sqlite"
         if not db_path.exists():
             return
+        conn = None
         try:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
             cur = conn.cursor()
@@ -448,9 +451,12 @@ class SweepManager:
             row = cur.fetchone()
             if row and row[0]:
                 self.scanned_count = int(row[0])
-            conn.close()
         except Exception:
             pass
+        finally:
+            if conn:
+                try: conn.close()
+                except Exception: pass
 
     def _record_throughput(self, rate: int):
         self.history.append(rate)
@@ -500,6 +506,7 @@ class SweepManager:
         if not db_path.exists():
             return
 
+        conn = None
         try:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
             cur = conn.cursor()
@@ -513,10 +520,15 @@ class SweepManager:
             if has_variants:
                 cur.execute("SELECT count(*), max(rowid) FROM variants")
                 var_sig = cur.fetchone()
+            cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='observations'")
+            has_obs = bool(cur.fetchone())
+            obs_sig = None
+            if has_obs:
+                cur.execute("SELECT count(*), max(rowid) FROM observations")
+                obs_sig = cur.fetchone()
 
-            sig = (cand_sig, var_sig)
+            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig)
             if getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
-                conn.close()
                 return
             self._last_candidates_sig = sig
 
@@ -598,9 +610,12 @@ class SweepManager:
                     parsed.append(cand)
 
             self.candidates = parsed
-            conn.close()
         except Exception as e:
             self.logs.insert(0, f"Error reading candidates DB: {e}")
+        finally:
+            if conn:
+                try: conn.close()
+                except Exception: pass
 
     def get_status(self) -> dict:
         with self.lock:
@@ -717,6 +732,7 @@ class SweepManager:
                 if generation!=self.generation or run_dir!=self.run_dir or self.process is not proc:return
                 self.process=None
                 if self.status=='bds_verifying':self.status=previous
+                self._last_candidates_sig = None
                 self._query_sqlite_candidates()
                 if code:
                     self.error_message=''.join(output)[-2000:] or f'BDS surface job exited {code}'
@@ -749,6 +765,7 @@ def parse_candidate_row(
 
     req_overworld = (data.get("required_structures") or {})
     req_nether = (data.get("required_nether_structures") or {})
+    opt_structures = (data.get("optional_structures") or {})
     actual_strongholds = req_overworld.get('stronghold', {}).get('predicted_viable', [])
     stronghold = actual_strongholds[0] if actual_strongholds else None
     center = data.get('evaluation_center')
@@ -771,6 +788,11 @@ def parse_candidate_row(
         "mineshaft": {"name": "Abandoned Mineshaft", "icon": "⛏️", "color": "#94a3b8", "dim": "overworld"},
         "fortress": {"name": "Nether Fortress", "icon": "🏯", "color": "#ef4444", "dim": "nether"},
         "bastion": {"name": "Bastion Remnant", "icon": "🐖", "color": "#d97706", "dim": "nether"},
+        "swamp_hut": {"name": "Witch Hut", "icon": "🧙‍♀️", "color": "#14b8a6", "dim": "overworld"},
+        "igloo": {"name": "Igloo Basement", "icon": "🧊", "color": "#38bdf8", "dim": "overworld"},
+        "trail_ruins": {"name": "Trail Ruins", "icon": "🏺", "color": "#a855f7", "dim": "overworld"},
+        "ocean_ruin": {"name": "Ocean Ruin", "icon": "🌊", "color": "#06b6d4", "dim": "overworld"},
+        "buried_treasure": {"name": "Buried Treasure", "icon": "💎", "color": "#facc15", "dim": "overworld"},
     }
 
     spawn_evidence = data.get('spawn_stage') or {}
@@ -839,6 +861,36 @@ def parse_candidate_row(
                     "distanceToSpawn": dist_spawn,
                     "distanceUnits": "nether horizontal blocks",
                     "hubKind": "evaluation_center_scaled_to_nether",
+                    "evidenceStatus": sdata.get('data_status', 'PREDICTED'),
+                })
+                idx += 1
+
+    # Optional structures
+    for stype, sdata in opt_structures.items():
+        coords_list = sdata.get("predicted_viable", [])
+        meta = STRUCTURE_METAS.get(stype, {"name": stype.title(), "icon": "📍", "color": "#ffffff", "dim": "overworld"})
+        for c in coords_list:
+            if len(c) >= 2:
+                x, z = c[0], c[1]
+                dist = round(math.hypot(x - center[0], z - center[1]), 1)
+                dist_origin = round(math.hypot(x, z), 1)
+                dist_spawn = round(math.hypot(x - spawn_point[0], z - spawn_point[1]), 1) if spawn_point else None
+                structures.append({
+                    "id": f"s-{idx}",
+                    "type": stype,
+                    "name": meta["name"],
+                    "x": x,
+                    "z": z,
+                    "y": None,
+                    "dimension": meta["dim"],
+                    "icon": meta["icon"],
+                    "color": meta["color"],
+                    "viable": True,
+                    "distanceToHub": dist,
+                    "distanceToOrigin": dist_origin,
+                    "distanceToSpawn": dist_spawn,
+                    "distanceUnits": "overworld horizontal blocks",
+                    "hubKind": "world_origin" if center == [0, 0] else "evaluation_center",
                     "evidenceStatus": sdata.get('data_status', 'PREDICTED'),
                 })
                 idx += 1

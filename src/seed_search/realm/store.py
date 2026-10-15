@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ..seeds import parse_seed
+from .config import dynamic_policy
 
 LIMIT = 1 << 64
 SCHEMA = 1
@@ -337,7 +338,10 @@ class RealmStore:
                 point = candidate.get("stronghold")
                 if not isinstance(point, (list, tuple)) or len(point) != 2 or any(isinstance(v, bool) or not isinstance(v, int) for v in point):
                     raise ValueError("Invalid candidate Stronghold")
-                cid = f"{seed}:{point[0]}:{point[1]}"
+                id_point = candidate.get("evaluation_center") if dynamic_policy(candidate) else point
+                if not isinstance(id_point, (list, tuple)) or len(id_point) != 2 or any(isinstance(v, bool) or not isinstance(v, int) for v in id_point):
+                    raise ValueError("Invalid candidate evaluation center")
+                cid = f"{seed}:{id_point[0]}:{id_point[1]}"
                 if candidate.get("id") != cid or candidate.get("seed") != seed:
                     raise ValueError("Candidate id/seed/Stronghold mismatch")
                 qualification = candidate.get("qualification")

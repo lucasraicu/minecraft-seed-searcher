@@ -12,8 +12,17 @@ def field(path):
 CLASS = field('retention.classification')
 DYNAMIC = f"{field('screening_revision')}='dynamic-envelope-1664-v1'"
 DEFICITS = f"COALESCE(json_array_length({field('deficit_categories')}),0)"
-TIER = f"CASE WHEN {DYNAMIC} THEN {DEFICITS} ELSE CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 WHEN 'FAILED' THEN 4 ELSE CASE WHEN {CLASS}='NEAR_MISS' THEN 2 ELSE 3 END END END"
-MISSES = f"CASE WHEN {CLASS}='NEAR_MISS' THEN CAST({field('retention.unmet_requirements')} AS INTEGER) ELSE 0 END"
+HAS_DEFICITS = f"json_type({field('deficit_categories')})='array'"
+TIER = (
+    f"CASE WHEN {DYNAMIC} THEN CASE WHEN qualification IN ('VERIFIED','PREDICTED') THEN {DEFICITS} "
+    f"WHEN qualification='PENDING' THEN 3 ELSE 4 END "
+    f"ELSE CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 WHEN 'FAILED' THEN 4 "
+    f"ELSE CASE WHEN {CLASS}='NEAR_MISS' THEN 2 ELSE 3 END END END"
+)
+MISSES = (
+    f"CASE WHEN {HAS_DEFICITS} THEN {DEFICITS} "
+    f"WHEN {CLASS}='NEAR_MISS' THEN CAST({field('retention.unmet_requirements')} AS INTEGER) ELSE 0 END"
+)
 MIDPOINT = f"(CAST({field('baseline_score_uncertainty.prediction_score_interval[0]')} AS REAL)+CAST({field('baseline_score_uncertainty.prediction_score_interval[1]')} AS REAL))/2"
 SCORE = f"CASE WHEN {CLASS}='NEAR_MISS' THEN CAST({field('baseline_score_observed')} AS REAL) ELSE COALESCE(CAST({field('combined_score')} AS REAL),CAST({field('baseline_score')} AS REAL),{MIDPOINT},CAST({field('baseline_score_observed')} AS REAL)) END"
 RADIAL = f"CASE WHEN {DYNAMIC} THEN COALESCE(CAST({field('weighted_radial_dist')} AS REAL),1e30) ELSE 0 END"

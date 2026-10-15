@@ -73,13 +73,23 @@ static int nb_dynamic_subset(NBWorker *w,const NBObservation *src,NBObservation 
 /* Prefix tables retain all defined lattice witnesses and Y=63 luxury bonuses.
  * Structure viability is not a substitute for a sampled biome witness. */
 static int nb_dynamic_palette_prefix(NBWorker *w,int **out) {
-    const int side=64;int *prefix=nb_alloc(w,23*side*side*sizeof(int),1);
-    if(!prefix)return -3;
+    const int side=64;
+    if(!w->dyn_prefix) {
+        w->dyn_prefix=malloc(23*side*side*sizeof(int));
+        if(!w->dyn_prefix)return -3;
+    }
+    if(!w->dyn_biome_grid) {
+        w->dyn_biome_grid=malloc(4*side*side*sizeof(int));
+        if(!w->dyn_biome_grid)return -3;
+    }
+    int *prefix=w->dyn_prefix;
+    memset(prefix,0,23*side*side*sizeof(int));
     for(int ix=1;ix<64;ix++)for(int iz=1;iz<64;iz++) {
         int x=-1984+(ix-1)*64,z=-1984+(iz-1)*64;
         unsigned int mask=0,bonus=0;
         for(int layer=0;layer<4;layer++) {
             int y=w->p->y[layer],id=nb_point(w,x,y,z);
+            w->dyn_biome_grid[layer*side*side+ix*side+iz]=id;
             unsigned int bits=id>=0&&id<256?w->p->biome_members[id]:0;
             mask|=bits&((y==-48||y==0)?7168u:1023u);
             if(y==63&&id>=0&&id<256)bonus=w->p->bonus_biome_members[id];
@@ -109,9 +119,19 @@ static int nb_dynamic_nether_point(NBWorker *w,int x,int z) {
     return w->fixture->missing==29+k?none:w->p->nether_ids[k];
 }
 static int nb_dynamic_nether_prefix(NBWorker *w,int **out) {
-    int *p=nb_alloc(w,5*18*18*sizeof(int),1);if(!p)return -3;
+    if(!w->dyn_nether_prefix) {
+        w->dyn_nether_prefix=malloc(5*18*18*sizeof(int));
+        if(!w->dyn_nether_prefix)return -3;
+    }
+    if(!w->dyn_nether_grid) {
+        w->dyn_nether_grid=malloc(18*18*sizeof(int));
+        if(!w->dyn_nether_grid)return -3;
+    }
+    int *p=w->dyn_nether_prefix;
+    memset(p,0,5*18*18*sizeof(int));
     for(int ix=1;ix<=17;ix++)for(int iz=1;iz<=17;iz++) {
         int id=nb_dynamic_nether_point(w,-512+(ix-1)*64,-512+(iz-1)*64);
+        w->dyn_nether_grid[ix*18+iz]=id;
         for(int k=0;k<5;k++) {
             int at=k*18*18+ix*18+iz;
             p[at]=p[at-18]+p[at-1]-p[at-19]+(id==w->p->nether_ids[k]);
@@ -136,7 +156,13 @@ static int nb_dynamic_nether_evidence(NBWorker *w,NBAnchor *a) {
     for(int iz=0;iz<13;iz++)for(int ix=0;ix<13;ix++) {
         int x=x0+ix*64,z=z0+iz*64,k=a->nether_biome_n++;
         a->nether_biome_xyz[3*k]=x;a->nether_biome_xyz[3*k+1]=64;a->nether_biome_xyz[3*k+2]=z;
-        a->nether_biome_ids[k]=nb_dynamic_nether_point(w,x,z);
+        int id;
+        if(w->dyn_nether_grid && x>=-512 && x<=576 && z>=-512 && z<=576) {
+            int gix=(x-(-512))/64+1,giz=(z-(-512))/64+1;
+            if(gix>=1 && gix<=17 && giz>=1 && giz<=17)id=w->dyn_nether_grid[gix*18+giz];
+            else id=nb_dynamic_nether_point(w,x,z);
+        } else id=nb_dynamic_nether_point(w,x,z);
+        a->nether_biome_ids[k]=id;
     }
     return 0;
 }
@@ -289,7 +315,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     const int nw[4]={-562,-562,561,561};
     double stage=nb_time();
     NBObservation macro[13]={0},optional[5]={0};NBAnchor nether_macro={0};int *ex=NULL,*ez=NULL,*prefix=NULL,*nether_prefix=NULL;
-    NBDynamicCell *cells=NULL;int nx=0,nz=0,ncells=0;
+    NBDynamicCell *cells=NULL;int nx=0,nz=0,ncells=0,optional_evaluated=0;
     int feasible[4]={-2000,-2000,1999,1999},possible=1;
     /* Compact rejects carry a range decision, not an invented discovery row.
      * Defer Stronghold's expensive village path until raw floors can succeed. */
@@ -329,30 +355,21 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     r->stage_seconds[11]+=nb_time()-stage;
     macro[10]=nether_macro.observations[10];macro[11]=nether_macro.observations[11];
     memset(nether_macro.observations+10,0,2*sizeof(NBObservation));
-    if(macro[10].viable.n<w->p->nether_goal||macro[11].viable.n<w->p->floors[11])goto done;
+    if(macro[10].viable.n<w->p->nether_goal||macro[11].viable.n<w->p->bastion_goal)goto done;
     for(int k=1;k<10;k++) {
         stage=nb_time();code=nb_pair(w,k,feasible,&macro[k]);if(code)goto done;
         r->stage_seconds[k+1]+=nb_time()-stage;
         if(macro[k].viable.n<w->p->floors[k])goto done;
     }
     stage=nb_time();
-    for(int k=0;k<5;k++){code=nb_dynamic_optional(w,feasible,k,optional+k);if(code)goto done;}
     int total=256;
-    for(int k=0;k<5;k++)total+=optional[k].viable.n*2;
     for(int k=0;k<13;k++)total+=macro[k].viable.n*2;
     total+=r->discovery.n*2;
-    ex=nb_alloc(w,(size_t)(total*2+256)*sizeof(int),0);
-    ez=nb_alloc(w,(size_t)(total*2+256)*sizeof(int),0);
-    if(!ex||!ez){code=-3;goto done;}
+    size_t ex_need=(size_t)(total*2+256)*sizeof(int);
+    if(!w->dyn_ex) { w->dyn_ex=malloc(ex_need > 8192 ? ex_need : 8192); if(!w->dyn_ex){code=-3;goto done;} }
+    if(!w->dyn_ez) { w->dyn_ez=malloc(ex_need > 8192 ? ex_need : 8192); if(!w->dyn_ez){code=-3;goto done;} }
+    ex=w->dyn_ex; ez=w->dyn_ez;
     ex[nx++]=-1168;ex[nx++]=1169;ez[nz++]=-1168;ez[nz++]=1169;
-    for(int v=-1984;v<=1984;v+=64) {
-        nb_dynamic_event(ex,&nx,v-831);nb_dynamic_event(ex,&nx,v+833);
-        nb_dynamic_event(ez,&nz,v-831);nb_dynamic_event(ez,&nz,v+833);
-    }
-    for(int v=-512;v<=512;v+=64) {
-        nb_dynamic_event(ex,&nx,8*(v-416)+1);nb_dynamic_event(ex,&nx,8*(v+416)+1);
-        nb_dynamic_event(ez,&nz,8*(v-416)+1);nb_dynamic_event(ez,&nz,8*(v+416)+1);
-    }
     for(int k=-1;k<13;k++) {
         const NBPoints *points=k<0?&r->discovery:&macro[k].viable;
         int nether=k==10||k==11;
@@ -364,16 +381,16 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             nb_dynamic_event(ez,&nz,nether?8*(z+416)+1:z+833);
         }
     }
-    for(int k=0;k<5;k++)for(int i=0;i<optional[k].viable.n;i++) {
-        int x=optional[k].viable.xz[2*i],z=optional[k].viable.xz[2*i+1];
-        nb_dynamic_event(ex,&nx,x-831);nb_dynamic_event(ex,&nx,x+833);
-        nb_dynamic_event(ez,&nz,z-831);nb_dynamic_event(ez,&nz,z+833);
-    }
     nx=nb_dynamic_unique(ex,nx);nz=nb_dynamic_unique(ez,nz);
     size_t maxcells=(size_t)(nx-1)*(size_t)(nz-1);
     if(maxcells>10000000){code=-3;goto done;}
-    cells=nb_alloc(w,maxcells*sizeof(NBDynamicCell),0);
-    if(!cells){code=-3;goto done;}
+    if(w->dyn_cells_cap<maxcells) {
+        free(w->dyn_cells);
+        w->dyn_cells_cap=maxcells+1024;
+        w->dyn_cells=malloc(w->dyn_cells_cap*sizeof(NBDynamicCell));
+        if(!w->dyn_cells){code=-3;goto done;}
+    }
+    cells=(NBDynamicCell*)w->dyn_cells;
     for(int ix=0;ix<nx-1;ix++)for(int iz=0;iz<nz-1;iz++) {
         int x=nb_dynamic_nearest(ex[ix],ex[ix+1]-1);
         int z=nb_dynamic_nearest(ez[iz],ez[iz+1]-1);
@@ -399,6 +416,10 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(!(nb_dynamic_snap(ez[iz],ez[iz+1]-1,sz,weight,16,&zz)||
              nb_dynamic_snap(ez[iz],ez[iz+1]-1,sz,weight,8,&zz)))continue;
         x=xx;z=zz;
+        if(!optional_evaluated) {
+            optional_evaluated=1;
+            for(int k=0;k<5;k++){code=nb_dynamic_optional(w,feasible,k,optional+k);if(code)goto done;}
+        }
         if(!prefix) {
             code=nb_dynamic_palette_prefix(w,&prefix);if(code)goto done;
             code=nb_dynamic_nether_prefix(w,&nether_prefix);if(code)goto done;
@@ -445,7 +466,6 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     r->stage_seconds[12]+=nb_time()-stage;
     a->score=nb_score(w,a);
 done:
-    free(ex);free(ez);free(prefix);free(nether_prefix);free(cells);
     for(int k=0;k<13;k++)nb_clear_full(&macro[k]);
     for(int k=0;k<5;k++)nb_clear_full(&optional[k]);
     r->seconds=nb_time()-start;
