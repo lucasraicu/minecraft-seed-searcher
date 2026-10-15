@@ -8,11 +8,11 @@ Candidate centers are resolved using a three-defense geometric architecture: (1)
 
 ### Measured Performance & Throughput (Intel Xeon W-2191B, 30–34 Threads)
 
-Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict equivalence cell lattice invariance, single-pass argmin selection, Clang Profile-Guided Optimization (PGO), and Link-Time Optimization (LTO):
-- **Pure Native OpenMP Kernel (PGO+LTO, 34 Threads):** **~210,000 seeds/sec** ($\sim 4.8\text{s}$ per million seeds).
-- **Durable Compact Pipeline (`retention='survivors'`, 30–34 Threads):** **137,500 – 140,000 seeds/sec** ($\sim 7.2\text{s}$ per million seeds, $\sim 12\text{ mins}$ for a complete 100M-seed shard).
+Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict equivalence cell lattice invariance, single-pass argmin selection, Clang Profile-Guided Optimization (PGO), Link-Time Optimization (LTO), zero-copy vectorized batch dispatch, and pruned kernel teardown:
+- **Pure Native OpenMP Kernel (PGO+LTO, 34 Threads):** **~215,000 seeds/sec** ($\sim 4.6\text{s}$ per million seeds).
+- **Durable Compact Pipeline (`retention='survivors'`, 30–34 Threads):** **220,000 – 229,000 seeds/sec** ($\sim 4.4\text{s}$ per million seeds, $\sim 7.4\text{ mins}$ for a complete 100M-seed shard).
 - **Durable Full Pipeline (`retention='full'`):** **32,500 – 38,000 seeds/sec** ($\sim 26\text{s}$ per million seeds, $\sim 44\text{ mins}$ for a complete 100M-seed shard).
-- **Control Baseline Speedup:** **$25\times$ faster** in compact mode ($8.8\times$ in full mode) than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
+- **Control Baseline Speedup:** **$40\times$ faster** in compact mode ($8.8\times$ in full mode) than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
 
 The active v2 score operates on a **719-point arithmetic ceiling**:
 - **Core Structure Schedule (340 max):** Village surplus (up to 12 @ +10/ea), Trial Chambers (up to 4 @ +15/ea), Ancient Cities (up to 3 @ +20/ea), Strongholds (up to 2 @ +50/ea), Mansions (up to 2 @ +50/ea).

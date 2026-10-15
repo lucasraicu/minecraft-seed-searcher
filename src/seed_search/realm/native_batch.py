@@ -11,7 +11,7 @@ import json
 import statistics
 import time
 from pathlib import Path
-
+import os
 import numpy as np
 
 from seed_search.backend import biome_catalog, structure_type
@@ -32,6 +32,16 @@ METRICS={'biome_cache_hits','stage_seconds','native_work','worker_cpu_seconds','
 
 def semantic_record(value):
     return {k:v for k,v in value.items() if k not in METRICS}
+
+
+def seeds_np(first: int, end: int, run_key: int):
+    import numpy as np
+    indices = np.arange(first, end, dtype=np.uint64)
+    z = (indices + np.uint64(run_key & MASK64)) & np.uint64(MASK64)
+    z = ((z ^ (z >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)) & np.uint64(MASK64)
+    z = ((z ^ (z >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)) & np.uint64(MASK64)
+    z ^= (z >> np.uint64(31))
+    return z.astype(np.int64)
 
 
 class Prototype:
@@ -147,7 +157,9 @@ class Prototype:
             'record_computation_identity':production_identity()}
 
     def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None):
-        seeds=[parse_seed(s) for s in seeds]
+        is_np = hasattr(seeds, '__array_interface__')
+        if not is_np:
+            seeds=[parse_seed(s) for s in seeds]
         if max_misses is None:max_misses=self.cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(self.cfg) else 0
         if not 1<=len(seeds)<=16384:raise ValueError('Native batches must contain 1–16,384 inputs')
         if isinstance(threads,bool) or not isinstance(threads,int) or not 1<=threads<=36:raise ValueError('Threads must be 1–36')
@@ -164,7 +176,8 @@ class Prototype:
         # Independent call-local policy and buffers; shared adapters never mutate
         # a policy while CFFI releases the GIL for another call.
         policy=self.ffi.new('NBPolicy *');self.ffi.memmove(policy,self.policy,self.ffi.sizeof('NBPolicy'))
-        policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses);values=self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
+        policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses)
+        values = self.ffi.from_buffer('uint64_t[]', seeds) if is_np else self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
         fixture_values=None
         if fixtures is not None:
             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
@@ -185,7 +198,7 @@ class Prototype:
             if pointer.error:raise RuntimeError(f'Native batch failed with code {pointer.error}; no range may be committed')
             for i in range(pointer.result_count):
                 offset=pointer.results[i].input_offset
-                if not 0<=offset<len(seeds) or pointer.results[i].seed!=(seeds[offset]&MASK64):raise RuntimeError('Native full64 input identity mismatch')
+                if not 0<=offset<len(seeds) or pointer.results[i].seed!=(int(seeds[offset])&MASK64):raise RuntimeError('Native full64 input identity mismatch')
                 if pointer.results[i].error:raise RuntimeError(f'Native input {i} failed with code {pointer.results[i].error}; no range may be committed')
             return batch
         except BaseException:
@@ -207,7 +220,8 @@ class Batch:
         if self.pointer is None:raise ValueError('Closed native batch')
         rows=[]
         for i in range(self.pointer.result_count):
-            r=self.pointer.results[i];seed=self.seeds[r.input_offset]
+            r=self.pointer.results[i];raw_seed=int(self.seeds[r.input_offset])
+            seed=raw_seed if raw_seed<(1<<63) else raw_seed-(1<<64)
             rows.append({'seed':str(seed),'anchors':[
                 {'stronghold':[a.x,a.z],'count_missing':a.count_missing,
                  'biome_evaluated':bool(a.biome_evaluated),'biome_mask':a.biome_mask,
@@ -226,12 +240,14 @@ class Batch:
         if adapter not in ('direct','replay'):raise ValueError('Unknown record adapter')
         if self.retention!='full':raise ValueError('Use retained_records for compact batches')
         for i,seed in enumerate(self.seeds):
+            raw_seed=int(seed)
+            signed_seed=raw_seed if raw_seed<(1<<63) else raw_seed-(1<<64)
             native=self.pointer.results[i]
             if dynamic_policy(cfg):
-                if adapter=='direct':record=build_record(native,start_index+i,seed,cfg)
+                if adapter=='direct':record=build_record(native,start_index+i,signed_seed,cfg)
                 else:
                     provider=ReplayProvider(native,self.prototype)
-                    record=evaluate_dynamic_seed(start_index+i,seed,cfg,backend_factory=lambda _:provider)
+                    record=evaluate_dynamic_seed(start_index+i,signed_seed,cfg,backend_factory=lambda _:provider)
                 if len(record['anchors'])!=native.nanchors:raise RuntimeError('Dynamic center count parity failure')
                 if native.nanchors:
                     a=record['anchors'][0];c=native.anchors[0]
@@ -250,10 +266,10 @@ class Batch:
                     'python_role':'record reconstruction and checkpoint persistence'}
                 records.append(record)
                 continue
-            if adapter=='direct':record=build_record(native,start_index+i,seed,cfg)
+            if adapter=='direct':record=build_record(native,start_index+i,signed_seed,cfg)
             else:
                 provider=ReplayProvider(native,self.prototype)
-                record=evaluate_seed(start_index+i,seed,cfg,backend_factory=lambda _:provider,short_circuit=not self.complete)
+                record=evaluate_seed(start_index+i,signed_seed,cfg,backend_factory=lambda _:provider,short_circuit=not self.complete)
             if len(record['anchors'])!=native.nanchors:raise RuntimeError('Native/reconstructed anchor count mismatch')
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
@@ -294,9 +310,11 @@ class Batch:
             cfg=dict(cfg);cfg['search']=dict(cfg.get('search',{}));cfg['search']['max_misses']=self.max_misses
         for i in range(self.pointer.result_count):
             native=self.pointer.results[i];offset=native.input_offset
+            raw_seed=int(self.seeds[offset])
+            signed_seed=raw_seed if raw_seed<(1<<63) else raw_seed-(1<<64)
             if dynamic_policy(cfg):
                 provider=ReplayProvider(native,self.prototype)
-                record=evaluate_dynamic_seed(start_index+offset,self.seeds[offset],cfg,
+                record=evaluate_dynamic_seed(start_index+offset,signed_seed,cfg,
                     backend_factory=lambda _:provider)
                 if len(record['anchors'])!=1 or record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score:
                     raise RuntimeError('Native dynamic retained-record parity failure')
@@ -305,7 +323,7 @@ class Batch:
                 record['stage_seconds']={key:float(native.stage_seconds[k])
                     for k,key in enumerate(stage_keys) if native.stage_seconds[k]}
                 record['total_seconds']+=float(native.seconds)
-            else:record=build_record(native,start_index+offset,self.seeds[offset],cfg)
+            else:record=build_record(native,start_index+offset,signed_seed,cfg)
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
                 misses=int(c.count_missing & self.prototype.policy.flexible_mask).bit_count() if two_group_policy(cfg) else int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
@@ -480,12 +498,18 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                          'evidence_schema':'realm-full-records-v1','adapter':'owned-native-pipeline-v1'}
     identity={**identity,'retention':{'mode':retention,'max_misses':max_misses}}
     if production:_scale_gate(cfg,run,count,allow_prediction_scale)
+    os.environ.setdefault("KMP_BLOCKTIME", "0")
     limits=disk_policy(cfg['search'],retention=retention);_,ceiling,reserve=memory_budget_gib(cfg['search'])
     wall=time.perf_counter();cpu=time.process_time();service=Counter();latencies=deque(maxlen=4096);pending=deque()
     peak=0;batches=committed=dispatched=0;failure=None;interrupted=False;max_pending=0;max_payload=0
     pool=None;preparer=None;native_futures=set();last_monitor=0.;last_progress=0.
+    run_key_val=cfg['search'].get('run_key', 0)
+    try:run_key_int=int(run_key_val)
+    except (ValueError,TypeError):run_key_int=int.from_bytes(hashlib.sha256(str(run_key_val).encode()).digest()[:8], 'big')
+    use_np_permutation=(cfg['search'].get('sequence', 'permutation') == 'permutation')
     def compute(first,end):
-        before=time.perf_counter();seeds=[_seed(i,cfg['search']) for i in range(first,end)]
+        before=time.perf_counter()
+        seeds=seeds_np(first,end,run_key_int) if use_np_permutation else [_seed(i,cfg['search']) for i in range(first,end)]
         seed_seconds=time.perf_counter()-before
         return prototype.sweep(seeds,threads,**({'retention':retention,'max_misses':max_misses} if retention=='survivors' else {})),seed_seconds
     def prepare(native_future,first,end,store):

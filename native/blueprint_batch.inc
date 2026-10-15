@@ -630,7 +630,8 @@ NBBatch *nb_fixture_sweep(const uint64_t *seeds,const NBFixture *fixtures,int co
 }
 void nb_free(NBBatch *batch) {
     if(!batch)return;
-    for(int i=0;i<batch->count;i++) {
+    int limit = (batch->verdicts && !batch->error) ? batch->result_count : batch->count;
+    for(int i=0;i<limit;i++) {
         nb_clear_result(batch->results+i);
     }
     free(batch->verdicts);free(batch->results);free(batch);
