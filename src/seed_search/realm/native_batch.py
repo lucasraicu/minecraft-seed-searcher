@@ -271,11 +271,11 @@ class Batch:
         if isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64 or start_index+len(self.seeds)>MASK64+1:
             raise ValueError('Invalid full64 range')
         records=[]
+        cfg=self.prototype.cfg
+        if two_group_policy(cfg):
+            cfg=dict(cfg);cfg['search']=dict(cfg.get('search',{}));cfg['search']['max_misses']=self.max_misses
         for i in range(self.pointer.result_count):
             native=self.pointer.results[i];offset=native.input_offset
-            cfg=self.prototype.cfg
-            if two_group_policy(cfg):
-                cfg=json.loads(json.dumps(cfg));cfg['search']['max_misses']=self.max_misses
             if dynamic_policy(cfg):
                 provider=ReplayProvider(native,self.prototype)
                 record=evaluate_dynamic_seed(start_index+offset,self.seeds[offset],cfg,
@@ -501,6 +501,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             while len(pending)<inflight and submit(store):pass
             while pending:
                 first,end,attempt,future,queued,native_future=pending.popleft()
+                while len(pending)<inflight and submit(store):pass
                 before=time.perf_counter()
                 if future is None:
                     native_future.result()

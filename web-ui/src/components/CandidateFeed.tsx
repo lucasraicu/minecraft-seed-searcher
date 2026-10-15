@@ -222,6 +222,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                 onInspectCandidate(cand);
               }}
               title="Click to select on map • Double-click for full expanded candidate details"
+              style={{ contentVisibility: 'auto', containIntrinsicSize: '0 160px' }}
               className={`p-3 rounded-lg border transition-all cursor-pointer relative group select-none ${
                 isSelected
                   ? 'bg-slate-800/95 border-emerald-500 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/50'

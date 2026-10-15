@@ -255,9 +255,11 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
     int possible=nb_dynamic_raw_bounds(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible);
     if(possible<=0)return possible;
     int raw[8192];
-    const int slots[2]={12,6};
-    for(int j=0;j<2;j++) {
-        int slot=slots[j],goal=slot==12?w->p->outpost_goal:w->p->floors[slot];
+    const int slots[5]={0,4,12,6,5};
+    for(int j=0;j<5;j++) {
+        int slot=slots[j];
+        int goal=(w->p->flexible_mask&(1u<<slot))?w->p->floors[slot]:(slot==12?w->p->outpost_goal:w->p->goals[slot]);
+        if(goal<=0)continue;
         int n=ss_scan(w->ctx,w->p->types[slot],feasible[0],feasible[1],feasible[2],feasible[3],0,raw,4096);
         if(n<0)return -3;if(n<goal)return 0;
     }
@@ -372,8 +374,6 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     if(maxcells>10000000){code=-3;goto done;}
     cells=nb_alloc(w,maxcells*sizeof(NBDynamicCell),0);
     if(!cells){code=-3;goto done;}
-    code=nb_dynamic_palette_prefix(w,&prefix);if(code)goto done;
-    code=nb_dynamic_nether_prefix(w,&nether_prefix);if(code)goto done;
     for(int ix=0;ix<nx-1;ix++)for(int iz=0;iz<nz-1;iz++) {
         int x=nb_dynamic_nearest(ex[ix],ex[ix+1]-1);
         int z=nb_dynamic_nearest(ez[iz],ez[iz+1]-1);
@@ -399,6 +399,10 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(!(nb_dynamic_snap(ez[iz],ez[iz+1]-1,sz,weight,16,&zz)||
              nb_dynamic_snap(ez[iz],ez[iz+1]-1,sz,weight,8,&zz)))continue;
         x=xx;z=zz;
+        if(!prefix) {
+            code=nb_dynamic_palette_prefix(w,&prefix);if(code)goto done;
+            code=nb_dynamic_nether_prefix(w,&nether_prefix);if(code)goto done;
+        }
         unsigned int mask=nb_dynamic_palette_mask(prefix,x,z);
         if((mask&8191u)!=8191u||!nb_dynamic_nether_ok(nether_prefix,x,z))continue;
         int hub=nb_dynamic_hub(macro,x,z);

@@ -138,6 +138,9 @@ class RealmStore:
         self.db.execute("PRAGMA cache_size=-131072")
         self.db.execute("PRAGMA wal_autocheckpoint=16384")
         self.db.execute("PRAGMA journal_size_limit=134217728")
+        self.db.execute("PRAGMA mmap_size=268435456")
+        self.db.execute("PRAGMA temp_store=MEMORY")
+        self.db.execute("PRAGMA busy_timeout=30000")
         self.db.executescript("""
             CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY, value TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS ranges(start TEXT PRIMARY KEY, end TEXT NOT NULL,

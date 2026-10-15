@@ -199,6 +199,8 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   const [biomeGrid, setBiomeGrid] = useState<BiomeGridData | null>(null);
   const [isLoadingBiomeGrid, setIsLoadingBiomeGrid] = useState<boolean>(false);
   const biomeGridCacheRef = useRef<Map<string, BiomeGridData>>(new Map());
+  const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const offscreenGridKeyRef = useRef<string>('');
 
   useEffect(() => {
     if (!candidate?.seed || !showBiomes) return;
@@ -457,43 +459,52 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         const { bounds, grid, approx_height, names } = biomeGrid;
         const { x0, z0, nx, nz, step } = bounds;
 
-        ctx.save();
-        for (let r = 0; r < nz; r++) {
-          for (let c = 0; c < nx; c++) {
-            const bx = x0 + c * step;
-            const bz = z0 + r * step;
-            const bId = grid[r][c];
-            const bName = names[String(bId)] || 'unknown';
-            const h = approx_height?.[r]?.[c];
+        const gridKey = `${candidate.seed}_${dimension}_${gridCenterX}_${gridCenterZ}_${nx}_${nz}`;
+        if (offscreenGridKeyRef.current !== gridKey || !offscreenCanvasRef.current) {
+          let offscreen = offscreenCanvasRef.current;
+          if (!offscreen) {
+            offscreen = document.createElement('canvas');
+            offscreenCanvasRef.current = offscreen;
+          }
+          offscreen.width = nx;
+          offscreen.height = nz;
+          const offCtx = offscreen.getContext('2d');
+          if (offCtx) {
+            for (let r = 0; r < nz; r++) {
+              for (let c = 0; c < nx; c++) {
+                const bId = grid[r][c];
+                const bName = names[String(bId)] || 'unknown';
+                const h = approx_height?.[r]?.[c];
+                const baseColor = BIOME_COLORS[bName] || '#334155';
+                offCtx.fillStyle = baseColor;
+                offCtx.fillRect(c, r, 1, 1);
 
-            const p1 = worldToScreen(bx, bz, width, height);
-            const p2 = worldToScreen(bx + step, bz + step, width, height);
-
-            const cellW = Math.ceil(p2.x - p1.x) + 1;
-            const cellH = Math.ceil(p2.y - p1.y) + 1;
-
-            // Frustum culling
-            if (p1.x + cellW < 0 || p1.x > width || p1.y + cellH < 0 || p1.y > height) {
-              continue;
-            }
-
-            const baseColor = BIOME_COLORS[bName] || '#334155';
-            ctx.fillStyle = baseColor;
-            ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
-
-            // Shading: water depth for oceans (h < 63), elevation brightness for peaks (h > 100)
-            if (h != null && h < 63) {
-              const depth = Math.min(0.35, Math.max(0.05, (63 - h) / 50));
-              ctx.fillStyle = `rgba(15, 23, 42, ${depth})`;
-              ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
-            } else if (h != null && h > 100) {
-              const peak = Math.min(0.25, (h - 100) / 80);
-              ctx.fillStyle = `rgba(255, 255, 255, ${peak})`;
-              ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
+                if (h != null && h < 63) {
+                  const depth = Math.min(0.35, Math.max(0.05, (63 - h) / 50));
+                  offCtx.fillStyle = `rgba(15, 23, 42, ${depth})`;
+                  offCtx.fillRect(c, r, 1, 1);
+                } else if (h != null && h > 100) {
+                  const peak = Math.min(0.25, (h - 100) / 80);
+                  offCtx.fillStyle = `rgba(255, 255, 255, ${peak})`;
+                  offCtx.fillRect(c, r, 1, 1);
+                }
+              }
             }
           }
+          offscreenGridKeyRef.current = gridKey;
         }
-        ctx.restore();
+
+        const p1 = worldToScreen(x0, z0, width, height);
+        const p2 = worldToScreen(x0 + nx * step, z0 + nz * step, width, height);
+        const drawW = p2.x - p1.x;
+        const drawH = p2.y - p1.y;
+
+        if (offscreenCanvasRef.current && p1.x + drawW >= 0 && p1.x <= width && p1.y + drawH >= 0 && p1.y <= height) {
+          ctx.save();
+          ctx.imageSmoothingEnabled = false;
+          ctx.drawImage(offscreenCanvasRef.current, Math.floor(p1.x), Math.floor(p1.y), Math.ceil(drawW), Math.ceil(drawH));
+          ctx.restore();
+        }
       } else if (candidate.biomeSamples && candidate.biomeSamples.length > 0) {
         // Fallback: render discrete sampled biome lattice points
         ctx.save();

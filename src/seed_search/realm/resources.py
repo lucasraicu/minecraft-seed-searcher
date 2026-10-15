@@ -27,16 +27,29 @@ def disk_policy(search, retention='full'):
 
 def workspace_usage(root):
     """No symlink traversal or deletion. Hard links are counted once per inode."""
-    total=0;seen=set()
-    for folder,_,files in os.walk(root,followlinks=False):
-        for name in files:
-            path=Path(folder)/name
-            if path.is_symlink():continue
-            try:stat=path.stat()
-            except FileNotFoundError:continue  # e.g. SQLite's removed WAL
-            key=(stat.st_dev,stat.st_ino)
-            if key not in seen:
-                seen.add(key);total+=stat.st_size
+    total = 0
+    seen = set()
+    stack = [os.fspath(root)]
+    while stack:
+        curr = stack.pop()
+        try:
+            with os.scandir(curr) as it:
+                for entry in it:
+                    try:
+                        if entry.is_symlink():
+                            continue
+                        if entry.is_dir():
+                            stack.append(entry.path)
+                        elif entry.is_file():
+                            st = entry.stat(follow_symlinks=False)
+                            key = (st.st_dev, st.st_ino)
+                            if key not in seen:
+                                seen.add(key)
+                                total += st.st_size
+                    except FileNotFoundError:
+                        continue
+        except OSError:
+            continue
     return total
 
 

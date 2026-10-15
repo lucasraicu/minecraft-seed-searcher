@@ -503,24 +503,50 @@ class SweepManager:
         try:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
             cur = conn.cursor()
+
+            # Dirtiness check before re-parsing
+            cur.execute("SELECT count(*), max(rowid) FROM candidates")
+            cand_sig = cur.fetchone()
             cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='variants'")
             has_variants = bool(cur.fetchone())
-
-            parsed = []
+            var_sig = None
             if has_variants:
-                cur.execute("""
+                cur.execute("SELECT count(*), max(rowid) FROM variants")
+                var_sig = cur.fetchone()
+
+            sig = (cand_sig, var_sig)
+            if getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
+                conn.close()
+                return
+            self._last_candidates_sig = sig
+
+            from seed_search.realm.leaderboard import order_for
+            order = order_for(conn)
+            cur.execute(f"""
+                SELECT id, seed, smart_score, result,
+                       ranking_tier, unmet_requirements
+                FROM candidate_leaderboard_view
+                ORDER BY {order} LIMIT 250
+            """)
+            top_rows = cur.fetchall()
+
+            v_map = {}
+            if has_variants and top_rows:
+                top_ids = [row[0] for row in top_rows]
+                placeholders = ','.join('?' for _ in top_ids)
+                cur.execute(f"""
                     SELECT candidate_id,
                            json_extract(result, '$.result.geometry_pass') as geometry_pass,
                            json_extract(result, '$.result.geometry_score') as geometry_score,
                            json_extract(result, '$.result.metrics.mainland_fraction') as mainland_fraction,
-                           json_extract(result, '$.result.reasons') as reasons
+                           json_extract(result, '$.result.reasons') as reasons,
+                           json_extract(result, '$.result.metrics') as raw_metrics
                     FROM variants
-                    WHERE variant = 'v1' OR variant = 'coastal'
-                    ORDER BY geometry_pass DESC, geometry_score DESC, candidate_id LIMIT 250
-                """)
-                v_map = {}
-                for cid, g_pass, g_score, m_frac, r_reasons in cur.fetchall():
-                    if cid in v_map: continue  # Retain the highest-ranked evaluated center, not the last row.
+                    WHERE (variant = 'v1' OR variant = 'coastal') AND candidate_id IN ({placeholders})
+                    ORDER BY geometry_pass DESC, geometry_score DESC
+                """, top_ids)
+                for cid, g_pass, g_score, m_frac, r_reasons, r_metrics in cur.fetchall():
+                    if cid in v_map: continue
                     if g_pass == 1:
                         st = 'passed'
                     elif g_pass == 0 and (g_score is not None and g_score >= 50.0 or (m_frac is not None and m_frac >= 0.50)):
@@ -533,58 +559,43 @@ class SweepManager:
                         reasons_list = json.loads(r_reasons) if r_reasons else []
                     except Exception:
                         reasons_list = []
+                    try:
+                        m_obj = json.loads(r_metrics) if r_metrics else {}
+                    except Exception:
+                        m_obj = {}
+
+                    t_metrics = None
+                    if m_obj or m_frac is not None:
+                        t_metrics = {
+                            'mainlandFraction': round(float(m_obj.get('mainland_fraction', m_frac)), 3) if m_frac is not None else None,
+                            'oceanEdge': m_obj.get('ocean_edges'),
+                            'flatAreaBlocks': m_obj.get('flat_area_blocks'),
+                            'riverCorridor': m_obj.get('river_corridor_model_pass') or m_obj.get('river_highway_connected'),
+                        }
+
                     v_map[cid] = {
                         'status': st,
                         'geometry_score': g_score,
                         'reasons': reasons_list,
-                        'mainland_fraction': m_frac
+                        'mainland_fraction': m_frac,
+                        'metrics': t_metrics,
                     }
 
-                from seed_search.realm.leaderboard import order_for
-                order=order_for(conn)
-                # Query top candidates from candidate_leaderboard_view
-                cur.execute(f"""
-                    SELECT id, seed, smart_score, result,
-                           ranking_tier, unmet_requirements
-                    FROM candidate_leaderboard_view
-                    ORDER BY {order} LIMIT 250
-                """)
-                top_rows = cur.fetchall()
-
-                # Historical terrain evidence can annotate a baseline candidate,
-                # but it never adds rows to or changes the canonical baseline pool.
-                for cid, seed, score, raw_res, ranking_tier, unmet_reqs in top_rows:
-                    v_info = v_map.get(cid, {})
-                    cand = parse_candidate_row(
-                        seed, score, raw_res,
-                        has_terrain_pass=v_info.get('status', 'pending'),
-                        ranking_tier=ranking_tier,
-                        unmet_requirements=unmet_reqs,
-                        terrain_geometry_score=v_info.get('geometry_score'),
-                        terrain_reasons=v_info.get('reasons'),
-                        terrain_mainland_fraction=v_info.get('mainland_fraction'),
-                    )
-                    if cand:
-                        parsed.append(cand)
-            else:
-                from seed_search.realm.leaderboard import order_for
-                order=order_for(conn)
-                cur.execute(f"""
-                    SELECT id, seed, smart_score, result,
-                           ranking_tier, unmet_requirements
-                    FROM candidate_leaderboard_view
-                    ORDER BY {order} LIMIT 250
-                """)
-                rows = cur.fetchall()
-                for cid, seed, score, raw_res, ranking_tier, unmet_reqs in rows:
-                    cand = parse_candidate_row(
-                        seed, score, raw_res,
-                        has_terrain_pass='pending',
-                        ranking_tier=ranking_tier,
-                        unmet_requirements=unmet_reqs,
-                    )
-                    if cand:
-                        parsed.append(cand)
+            parsed = []
+            for cid, seed, score, raw_res, ranking_tier, unmet_reqs in top_rows:
+                v_info = v_map.get(cid, {})
+                cand = parse_candidate_row(
+                    seed, score, raw_res,
+                    has_terrain_pass=v_info.get('status', 'pending'),
+                    ranking_tier=ranking_tier,
+                    unmet_requirements=unmet_reqs,
+                    terrain_geometry_score=v_info.get('geometry_score'),
+                    terrain_reasons=v_info.get('reasons'),
+                    terrain_mainland_fraction=v_info.get('mainland_fraction'),
+                    terrain_metrics_arg=v_info.get('metrics'),
+                )
+                if cand:
+                    parsed.append(cand)
 
             self.candidates = parsed
             conn.close()
@@ -726,6 +737,7 @@ def parse_candidate_row(
     terrain_geometry_score: float | None = None,
     terrain_reasons: list | None = None,
     terrain_mainland_fraction: float | None = None,
+    terrain_metrics_arg: dict | None = None,
 ) -> dict | None:
     """Parses a candidate row into the full Web UI SeedCandidate schema."""
     try:
@@ -833,8 +845,8 @@ def parse_candidate_row(
     biomes = data.get('biomes') or {}
     verified = data.get('actual_generation_verification') or {}
     terrain = data.get('terrain_status') or {}
-    terrain_source = terrain.get('source') if isinstance(terrain, dict) else None
-    terrain_metrics = terrain.get('metrics') if isinstance(terrain_source, dict) and terrain_source.get('kind') == 'actual_generation' else None
+    terrain_source = terrain.get('score_generation_source') or terrain.get('source') if isinstance(terrain, dict) else None
+    terrain_metrics = terrain_metrics_arg or (terrain.get('metrics') if isinstance(terrain, dict) and ((isinstance(terrain_source, dict) and terrain_source.get('kind') == 'actual_generation') or terrain.get('provider')) else None)
     actual_verified = False  # No supported provider currently certifies a whole Realm.
     surface_evidence=data.get('surface_biome_verification') or {}
     classification=surface_evidence.get('classification') or {}
