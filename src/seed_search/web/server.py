@@ -67,6 +67,7 @@ class SweepManager:
         self.effective_config: dict | None = None
         self._runs_cache: dict[str, tuple[tuple[float, float], dict, int, dict]] = {}
         self._biome_grid_cache: dict = {}
+        self._grid_lock = threading.Lock()
         self._bind_latest_run()
 
     def _view_run(self, run_id):
@@ -1076,7 +1077,8 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 if side not in (832,896,1024,1536,1664,2048):raise ValueError('Unsupported map side')
                 x0=math.ceil(cx-side/2);z0=math.ceil(cz-side/2);n=side//32+1
                 cache_key = (seed_int, dim_param, cx, cz, side)
-                cached = MANAGER._biome_grid_cache.get(cache_key)
+                with MANAGER._grid_lock:
+                    cached = MANAGER._biome_grid_cache.get(cache_key)
                 if cached is None:
                     if dim_param not in ('overworld', 'nether'):
                         raise ValueError('dimension must be overworld or nether')
@@ -1096,9 +1098,10 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                         "approx_height": None,
                         "names": names_map,
                     }
-                    if len(MANAGER._biome_grid_cache) > 20:
-                        MANAGER._biome_grid_cache.pop(next(iter(MANAGER._biome_grid_cache)))
-                    MANAGER._biome_grid_cache[cache_key] = cached
+                    with MANAGER._grid_lock:
+                        if len(MANAGER._biome_grid_cache) > 20:
+                            MANAGER._biome_grid_cache.pop(next(iter(MANAGER._biome_grid_cache)))
+                        MANAGER._biome_grid_cache[cache_key] = cached
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")
                 self.end_headers()

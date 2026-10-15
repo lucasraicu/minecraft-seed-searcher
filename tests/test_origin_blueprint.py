@@ -73,7 +73,7 @@ def test_origin_jackpot_values():
         'fortress','bastion','monument','village','outpost','desert_pyramid',
         'jungle_temple','cherry_grove','badlands','mushroom_fields')}=={
         'stronghold':50,'mansion':50,'river_highway':35,'ancient_city':50,
-        'fortress':40,'bastion':40,'monument':25,'village':10,'outpost':20,
+        'fortress':40,'bastion':40,'monument':30,'village':10,'outpost':20,
         'desert_pyramid':10,'jungle_temple':10,'cherry_grove':15,'badlands':15,
         'mushroom_fields':15}
 

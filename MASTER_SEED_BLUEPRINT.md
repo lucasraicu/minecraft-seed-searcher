@@ -92,7 +92,7 @@ Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors un
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
 | 🏰 **Stronghold** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Non-negotiable.** End portal access. **+50 pts** for 2nd Stronghold. |
 | 🏛️ **Woodland Mansion** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. **+50 pts** for 2nd Mansion. |
-| 🗿 **Ocean Monument** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. **+35 pts** for 2nd Monument. |
+| 🗿 **Ocean Monument** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. **+30 pts** for 2nd Monument. |
 | 🏴‍☠️ **Pillager Outpost** | Overworld | **2** | **0** | **$\ge 2$** | Stage 1A | **Mandatory $\ge 2$.** Infinite Bad Omen & raid farming. **+20 pts** one-time milestone for 3rd (not linear). |
 | 🔥 **Nether Fortress** | Nether | **2** | **0** | **$\ge 2$** | Stage 1A (1st) | **Mandatory $\ge 2$** inside $832 \times 832$ Nether. Blaze rods & skulls. **+20 pts** one-time milestone for 3rd (not linear). |
 | 🐷 **Bastion Remnant** | Nether | **2** | **0** | **$\ge 2$** | Stage 1A (1st) | **Mandatory $\ge 2$** inside $832 \times 832$ Nether. Piglin bartering & upgrade trims. **+20 pts** one-time milestone for 3rd (not linear). |
@@ -168,7 +168,7 @@ To ensure immediate player engagement without requiring 15-minute treks on day o
 | :---: | :--- | :---: |
 | **Tier 1 (Jackpot)** | 2nd Woodland Mansion within $1664 \times 1664$ (one-time jackpot) | **+50 pts** |
 | **Tier 1 (Jackpot)** | 2nd Stronghold within $1664 \times 1664$ (one-time jackpot) | **+50 pts** |
-| **Tier 1 (Jackpot)** | 2nd Ocean Monument within coastal ocean (one-time jackpot) | **+35 pts** |
+| **Tier 1 (Jackpot)** | 2nd Ocean Monument within coastal ocean (one-time jackpot) | **+30 pts** |
 | **Tier 2 (Elite)** | 🌸 **Cherry Grove** biome inside borders | **+30 pts** |
 | **Tier 2 (Elite)** | 👻 **Pale Garden** biome inside borders | **+30 pts** |
 | **Tier 2 (Elite)** | 🌿 **Mangrove Swamp** biome inside borders | **+25 pts** |

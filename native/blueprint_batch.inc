@@ -53,6 +53,7 @@ typedef struct NBWorker {
     int *dyn_nether_prefix;
     int *dyn_ex;
     int *dyn_ez;
+    size_t dyn_ex_cap;
     void *dyn_cells;
     size_t dyn_cells_cap;
     int *dyn_biome_grid;
@@ -103,7 +104,7 @@ static void nb_clear_full(NBObservation *o) {
 }
 static int nb_reserve(NBWorker *w,int n) {
     if(n<=w->cap)return 0;
-    int *scratch=malloc((size_t)n*4*sizeof(int)),*flags=malloc((size_t)n*sizeof(int));
+    int *scratch=nb_alloc(w,(size_t)n*4*sizeof(int),0),*flags=nb_alloc(w,(size_t)n*sizeof(int),0);
     if(!scratch||!flags){free(scratch);free(flags);return -3;}
     free(w->scratch);free(w->flags);w->scratch=scratch;w->flags=flags;w->cap=n;
     return 0;
@@ -259,7 +260,7 @@ static int nb_dynamic_score_values(const int *n,int strong,unsigned int bonus,in
         (n[4]>=4?25:0)+(n[2]>=3?20:0)+
         (n[1]>=3?20:0)+(n[12]>=3?20:0)+
         (n[10]>=3?20:0)+(n[11]>=3?20:0)+
-        (n[3]>=2?35:0)+(n[8]>6?(n[8]-6)*5:0)+
+        (n[3]>=2?30:0)+(n[8]>6?(n[8]-6)*5:0)+
         (n[7]>7?(n[7]-7)*5:0)+(n[9]>15?n[9]-15:0)+hub;
     const int points[10]={30,20,25,30,25,10,10,15,15,15};
     for(int i=0;i<10;i++)if(bonus&(1u<<i))score+=points[i];
@@ -298,7 +299,7 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
                 (n[10]>2?((n[10]<4?n[10]:4)-2)*20:0)+
                 (n[11]>3?(n[11]-3)*20:0)+
                 (n[0]>=2?50:0)+(a->stronghold_count>=2?50:0)+
-                (n[2]>=2?10:0)+(n[1]>=2?10:0)+(n[3]>=2?25:0)+
+                (n[2]>=2?10:0)+(n[1]>=2?10:0)+(n[3]>=2?30:0)+
                 (n[12]>2?(n[12]-2)*10:0);
             for(int i=0;i<3;i++)if(a->bonus_biomes&(1u<<i))score+=15;
             return score;
@@ -312,7 +313,7 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
         }
         if(w->p->river&&n[0]>=2)score+=50;
         score+=(n[2]>=2?20:0)+(n[2]>=3?10:0)+(n[1]>=2?20:0);
-        score+=(n[3]>=2?25:0)+n[12]*10;
+        score+=(n[3]>=2?30:0)+n[12]*10;
         return score;
     }
     int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
@@ -321,7 +322,7 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
     score+=(n[6]>2?((n[6]<4?n[6]:4)-2)*10:0);
     for(int i=4;i<=11;i++)if(i==4||i==10||i==11)score+=(n[i]>1?((n[i]<3?n[i]:3)-1)*15:0);
     for(int i=1;i<=2;i++)score+=(n[i]>=2?20:0)+(n[i]>=3?10:0);
-    score+=(n[3]>=2?25:0)+n[12]*10;
+    score+=(n[3]>=2?30:0)+n[12]*10;
     return score;
 }
 static void nb_clear_anchor(NBAnchor *a) {

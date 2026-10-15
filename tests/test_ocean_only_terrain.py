@@ -50,5 +50,5 @@ def test_rescore_keeps_marine_baseline_bonus_and_ignores_river_evidence():
     }
     result=_candidate_rescore(candidate,{},'test')
     assert result['baseline_score']==10  # Seven Shipwrecks: two extra above five.
-    assert result['combined_score']==35  # Verified second monument still earns 25.
+    assert result['combined_score']==40  # Verified second monument now earns 30.
     assert 'river_highway' not in result['ranking']['bonuses']

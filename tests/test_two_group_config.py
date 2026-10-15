@@ -198,7 +198,7 @@ def test_v2_bonus_boundaries_use_fixed_targets():
                       biome_names=['cherry_grove','badlands','mushroom_fields'],
                       metrics={'river_highway_connected':True,'mega_ravine_hub':True})['bonuses']
     assert bonus=={'mansion':100,'stronghold':50,'mega_ravine_hub':35,'river_highway':35,
-                   'ancient_city':50,'fortress':40,'bastion':40,'monument':25,'trial_chamber':20,
+                   'ancient_city':50,'fortress':40,'bastion':40,'monument':30,'trial_chamber':20,
                    'village':10,'ruined_portal':5,'mineshaft':2,'outpost':10,'desert_pyramid':10,
                    'jungle_temple':10,'shipwreck':5,'cherry_grove':15,'badlands':15,'mushroom_fields':15}
 

@@ -55,6 +55,11 @@ def _nearest_zero(lo,hi):
     return 0 if lo<=0<=hi else hi if hi<0 else lo
 
 
+_LAT = {v for s in range(-1984, 1985, 64) for v in (s - 831, s + 833)} | \
+       {v for n in range(-512, 513, 64) for v in (8 * n - 3327, 8 * n + 3329)}
+_LAT = {v for v in _LAT if MIN_CENTER < v <= MAX_CENTER}
+
+
 @dataclass(frozen=True)
 class Candidate:
     center:tuple[int,int]
@@ -77,8 +82,8 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
         if name in OPTIONAL_NAMES:continue
         target_x,target_z=(nether_x,nether_z) if name in NETHER_NAMES else (xs,zs)
         for x,z in points:target_x.append(x);target_z.append(z)
-    ex=sorted(set(_axis_events(xs,OVERWORLD_HALF)+_axis_events(nether_x,NETHER_HALF,True)))
-    ez=sorted(set(_axis_events(zs,OVERWORLD_HALF)+_axis_events(nether_z,NETHER_HALF,True)))
+    ex=sorted(set(_axis_events(xs,OVERWORLD_HALF)+_axis_events(nether_x,NETHER_HALF,True))|_LAT)
+    ez=sorted(set(_axis_events(zs,OVERWORLD_HALF)+_axis_events(nether_z,NETHER_HALF,True))|_LAT)
     rows=[]
     for xi in range(len(ex)-1):
         cx=_nearest_zero(ex[xi],ex[xi+1]-1)

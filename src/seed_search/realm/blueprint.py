@@ -125,7 +125,7 @@ def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,lo
             'ancient_city':25*max(0,min(counts.get('ancient_city',0),4)-2),
             'fortress':20*max(0,min(counts.get('fortress',0),4)-2),
             'bastion':20*max(0,counts.get('bastion',0)-3),
-            'monument':25*int(coastal_footprint_verified and counts.get('monument',0)>=2),
+            'monument':30*int(coastal_footprint_verified and counts.get('monument',0)>=2),
             'trial_chamber':10*max(0,counts.get('trial_chamber',0)-10),
             'village':5*max(0,counts.get('village',0)-7),
             'ruined_portal':5*max(0,counts.get('ruined_portal',0)-7),
@@ -149,7 +149,7 @@ def smart_score(structures,nether,optional,*,coastal_footprint_verified=False,lo
         bonuses[name]=max(0,min(cap,counts.get(name,0))-floor)*points
     for name in ('desert_pyramid','jungle_temple'):
         n=counts.get(name,0);bonuses[name]=(20 if n>=2 else 0)+(10 if n>=3 and (not locked or name=='desert_pyramid') else 0)
-    bonuses['monument']=25*int(counts.get('monument',0)>=2)
+    bonuses['monument']=30*int(counts.get('monument',0)>=2)
     if river:
         bonuses['bastion']=max(0,counts.get('bastion',0)-3)*15
         bonuses['mansion']=50*int(counts.get('mansion',0)>=2)
@@ -443,7 +443,7 @@ def evaluate_locked_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,
 def dynamic_score(counts,biome_names,hub=0):
     """Revision 4.1 predictor score; named ordinal jackpots are awarded once."""
     n=lambda name:counts.get(name,0)
-    score=50*(n('mansion')>=2)+50*(n('stronghold')>=2)+35*(n('monument')>=2)
+    score=50*(n('mansion')>=2)+50*(n('stronghold')>=2)+30*(n('monument')>=2)
     score+=max(0,n('village')-8)*25+max(0,n('trial_chamber')-7)*10
     score+=25*(n('ancient_city')>=4)
     score+=sum(20*(n(name)>=3) for name in ('desert_pyramid','jungle_temple','outpost','fortress','bastion'))

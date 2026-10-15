@@ -223,7 +223,7 @@ static int nb_dynamic_optional(NBWorker *w,const int *bounds,int slot,NBObservat
     int n=ss_scan(w->ctx,w->p->optional_types[slot],bounds[0],bounds[1],bounds[2],bounds[3],0,w->scratch,w->cap);
     if(n<0)return n;
     code=nb_copy(w,&o->raw,w->scratch,n);if(code)return code;
-    code=ss_filter_starts(w->ctx,w->p->optional_types[slot],o->raw.xz,n,w->flags);if(code)return code;
+    code=ss_filter_starts(w->ctx,w->p->optional_types[slot],o->raw.xz,o->raw.n,w->flags);if(code)return code;
     n=0;
     for(int i=0;i<o->raw.n;i++)if(w->flags[i]) {
         int x=o->raw.xz[2*i],z=o->raw.xz[2*i+1];
@@ -269,6 +269,16 @@ int nb_dynamic_raw_bounds(const int *fort,int nf,const int *bast,int nb,int fort
 #ifndef NB_DYNAMIC_PREFLIGHT
 #define NB_DYNAMIC_PREFLIGHT 1
 #endif
+static int nb_raw_atleast(NBWorker *w,int type,const int *b,int goal){
+    StructureConfig cfg;if(!getStructureConfig(type,MC_26_50,&cfg))return -1;
+    int size=cfg.regionSize*16,n=0;
+    for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
+      for(int rz=floordiv(b[1],size);rz<=floordiv(b[3],size);rz++){
+        Pos p;
+        if(getStructurePos(type,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,b[0],b[1],b[2],b[3])&&++n>=goal)return 1;
+      }
+    return 0;
+}
 static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
     if(w->fixture||!NB_DYNAMIC_PREFLIGHT)return 1;
     int fort[512],bast[512],pairs[768],nf=0,nb=0;
@@ -280,14 +290,13 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
     }
     int possible=nb_dynamic_raw_bounds(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible);
     if(possible<=0)return possible;
-    int raw[8192];
-    const int slots[5]={0,4,12,6,5};
+    const int slots[5]={12,0,6,4,5};
     for(int j=0;j<5;j++) {
         int slot=slots[j];
         int goal=(w->p->flexible_mask&(1u<<slot))?w->p->floors[slot]:(slot==12?w->p->outpost_goal:w->p->goals[slot]);
         if(goal<=0)continue;
-        int n=ss_scan(w->ctx,w->p->types[slot],feasible[0],feasible[1],feasible[2],feasible[3],0,raw,4096);
-        if(n<0)return -3;if(n<goal)return 0;
+        int ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
+        if(ok<0)return -3;if(!ok)return 0;
     }
     return 1;
 }
@@ -365,15 +374,28 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     int total=256;
     for(int k=0;k<13;k++)total+=macro[k].viable.n*2;
     total+=r->discovery.n*2;
-    size_t ex_need=(size_t)(total*2+256)*sizeof(int);
-    if(!w->dyn_ex) { w->dyn_ex=malloc(ex_need > 8192 ? ex_need : 8192); if(!w->dyn_ex){code=-3;goto done;} }
-    if(!w->dyn_ez) { w->dyn_ez=malloc(ex_need > 8192 ? ex_need : 8192); if(!w->dyn_ez){code=-3;goto done;} }
+    size_t ex_need=(size_t)(total*2+2048)*sizeof(int);
+    if(w->dyn_ex_cap<ex_need) {
+        free(w->dyn_ex);free(w->dyn_ez);
+        w->dyn_ex=malloc(ex_need);w->dyn_ez=malloc(ex_need);
+        w->dyn_ex_cap=ex_need;
+        if(!w->dyn_ex||!w->dyn_ez){code=-3;goto done;}
+    }
     ex=w->dyn_ex; ez=w->dyn_ez;
     ex[nx++]=-1168;ex[nx++]=1169;ez[nz++]=-1168;ez[nz++]=1169;
+    for(int v=-1984;v<=1984;v+=64) {
+        nb_dynamic_event(ex,&nx,v-831);nb_dynamic_event(ex,&nx,v+833);
+        nb_dynamic_event(ez,&nz,v-831);nb_dynamic_event(ez,&nz,v+833);
+    }
+    for(int v=-512;v<=512;v+=64) {
+        nb_dynamic_event(ex,&nx,8*(v-416)+1);nb_dynamic_event(ex,&nx,8*(v+416)+1);
+        nb_dynamic_event(ez,&nz,8*(v-416)+1);nb_dynamic_event(ez,&nz,8*(v+416)+1);
+    }
     for(int k=-1;k<13;k++) {
         const NBPoints *points=k<0?&r->discovery:&macro[k].viable;
         int nether=k==10||k==11;
         for(int i=0;i<points->n;i++) {
+            if(k==0 && macro[0].mansion_ids && macro[0].mansion_ids[i]!=w->p->dark_id) continue;
             int x=points->xz[2*i],z=points->xz[2*i+1];
             nb_dynamic_event(ex,&nx,nether?8*(x-416)+1:x-831);
             nb_dynamic_event(ex,&nx,nether?8*(x+416)+1:x+833);
@@ -434,10 +456,11 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id)};
     }
     if(!ncells){r->stage_seconds[13]+=nb_time()-stage;goto done;}
-    qsort(cells,(size_t)ncells,sizeof(NBDynamicCell),nb_dynamic_cellcmp);
+    int best=0;
+    for(int i=1;i<ncells;i++) if(nb_dynamic_cellcmp(&cells[i],&cells[best])<0) best=i;
     r->stage_seconds[13]+=nb_time()-stage;
     stage=nb_time();
-    int chosen=0;
+    int chosen=best;
     r->stage_seconds[12]+=nb_time()-stage;
     if(chosen<0)goto done;
     stage=nb_time();
@@ -466,6 +489,8 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     r->stage_seconds[12]+=nb_time()-stage;
     a->score=nb_score(w,a);
 done:
+    nb_clear_full(nether_macro.observations+10);
+    nb_clear_full(nether_macro.observations+11);
     for(int k=0;k<13;k++)nb_clear_full(&macro[k]);
     for(int k=0;k<5;k++)nb_clear_full(&optional[k]);
     r->seconds=nb_time()-start;

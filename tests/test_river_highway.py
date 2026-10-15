@@ -146,8 +146,8 @@ def test_bonus_matrix_with_cumulative_bastions_and_no_implicit_highway():
     for bastions in (3,4,5,7):
         core={**base,'shipwreck':obs(6),'mansion':obs(3),'monument':obs(3)}
         score=smart_score(core,{'bastion':obs(bastions)},{},locked=True,river=True,metrics={'river_highway_connected':True})
-        assert score['score']==100+15*(bastions-3)
-        assert score['bonuses']['mansion']==50 and score['bonuses']['monument']==25
+        assert score['score']==105+15*(bastions-3)
+        assert score['bonuses']['mansion']==50 and score['bonuses']['monument']==30
     assert smart_score(base,{}, {},locked=True,river=True,metrics={'river_highway_connected':'unverified'})['bonuses']['river_highway']==0
 
 
@@ -224,7 +224,7 @@ def test_marine_river_bonus_persists_through_rescore_and_atomic_retry(river_nati
     terrain,patch=evaluate_marine_stage(candidate,cfg,raster,pre,backend_factory=Backend)
     assert terrain['model_geometry_pass'] and patch['marine_stage']['status']=='PREDICTED'
     assert patch['ranking']['bonuses']['river_highway']==20
-    assert patch['ranking']['bonuses']['monument']==25 and patch['ranking']['bonuses']['shipwreck']==5
+    assert patch['ranking']['bonuses']['monument']==30 and patch['ranking']['bonuses']['shipwreck']==5
     updated={**candidate,**patch};again=_candidate_rescore(copy.deepcopy(updated),cfg,'new-score')
     assert again['ranking']==updated['ranking']
     # Atomic candidate patch and duplicate retry use the production store API.

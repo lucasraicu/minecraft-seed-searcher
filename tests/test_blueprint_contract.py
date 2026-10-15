@@ -117,8 +117,8 @@ def test_smart_ranking_caps_and_unbounded_extras():
     def obs(n):return {'predicted_viable':[(i,0) for i in range(n)]}
     structures={name:obs(n) for name,n in [('village',8),('trial_chamber',8),('ancient_city',4),('desert_pyramid',4),('jungle_temple',3),('monument',3),('ruined_portal',6),('shipwreck',7),('mineshaft',25)]}
     result=smart_score(structures,{'fortress':obs(4),'bastion':obs(3)},{'outpost':obs(2)})
-    assert result['score']==290
-    assert result['bonuses']['trial_chamber']==20 and result['bonuses']['monument']==25
+    assert result['score']==295
+    assert result['bonuses']['trial_chamber']==20 and result['bonuses']['monument']==30
     assert smart_score(structures,{}, {},coastal_footprint_verified=True)['bonuses']['coastal_monument_footprint']==25
 
 
