@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 from scripts.build_blueprint_batch import build
-from seed_search.realm.config import two_group_blueprint_config
+from seed_search.realm.config import dynamic_blueprint_config
 from seed_search.realm.native_batch import Prototype
 from seed_search.seeds import seed_from_index
 
@@ -45,12 +45,15 @@ def find_default_openmp_prefix() -> Path | None:
 def tune_machine(native_dir: Path, openmp_prefix: Path | None, count: int = 30000):
     if type(count) is not int or not 1 <= count <= 50000:
         raise ValueError("Tuning trials must contain 1–50,000 inputs")
-    total_cpus = min(34, os.cpu_count() or 1)
+    detected_cpus = os.cpu_count() or 1
+    # The production sweep accepts at most 34 native threads, even on larger hosts.
+    total_cpus = min(34, detected_cpus)
     system = platform.system()
     machine = platform.machine()
 
     print(f"\n=======================================================")
-    print(f"  Hardware Detection: {system} ({machine}) with {total_cpus} Logical Cores")
+    print(f"  Hardware Detection: {system} ({machine}) with {detected_cpus} Logical Cores")
+    print(f"  Supported native sweep threads: 1–{total_cpus}")
     print(f"=======================================================\n")
 
     native_dir = native_dir.resolve()
@@ -59,7 +62,10 @@ def tune_machine(native_dir: Path, openmp_prefix: Path | None, count: int = 3000
         try:
             import json
             meta = json.loads((native_dir / "identity.json").read_text())
-            if not openmp_prefix or meta.get("openmp"):
+            import hashlib
+            inputs=meta.get('inputs') or {}
+            current=bool(inputs) and all((ROOT/name).is_file() and hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest for name,digest in inputs.items())
+            if current and (not openmp_prefix or meta.get("openmp")):
                 rebuild = False
         except Exception:
             rebuild = True
@@ -67,10 +73,10 @@ def tune_machine(native_dir: Path, openmp_prefix: Path | None, count: int = 3000
     if rebuild:
         print(f"[*] Building native OpenMP engine in {native_dir}...")
         prefix_arg = str(openmp_prefix) if openmp_prefix else None
-        build(native_dir, openmp_prefix=prefix_arg, cpu_native=machine.lower() in ("x86_64", "amd64"), work_chunk=64 if total_cpus >= 64 else 16)
+        build(native_dir, openmp_prefix=prefix_arg, cpu_native=machine.lower() in ("x86_64", "amd64"), work_chunk=64 if detected_cpus >= 64 else 16)
         print("[*] Build complete.\n")
 
-    prototype = Prototype(native_dir, two_group_blueprint_config())
+    prototype = Prototype(native_dir, dynamic_blueprint_config())
 
     # Build an intelligent candidate thread grid based on core count
     candidate_threads = set()
@@ -83,7 +89,7 @@ def tune_machine(native_dir: Path, openmp_prefix: Path | None, count: int = 3000
     thread_list = sorted([t for t in candidate_threads if 1 <= t <= total_cpus]) if prototype.identity["openmp"] else [1]
 
     # Batch sizes to test
-    batch_sizes = [4096, 8192] if total_cpus < 64 else [8192, 16384]
+    batch_sizes = [4096, 8192] if detected_cpus < 64 else [8192, 16384]
 
     print(f"Benchmarking OpenMP thread and batch scaling on {count:,} seeds...")
     print(f"{'Threads':<10} | {'Batch Size':<12} | {'Time (s)':<10} | {'Seeds/Second':<15}")
@@ -119,7 +125,7 @@ def tune_machine(native_dir: Path, openmp_prefix: Path | None, count: int = 3000
 
     print("\n" + "=" * 55)
     print(f"[*] Best measured native-kernel settings in this bounded grid:")
-    print(f"    Threads    : {winner['threads']} (out of {total_cpus} cores)")
+    print(f"    Threads    : {winner['threads']} (out of {total_cpus} supported threads; {detected_cpus} detected cores)")
     print(f"    Batch Size : {winner['batch_size']}")
     print(f"    Kernel rate: {winner['seeds_per_sec']:,.1f} seeds/second")
     print("=" * 55)

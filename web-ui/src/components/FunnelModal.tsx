@@ -7,20 +7,20 @@ interface FunnelModalProps {
 const STEPS = [
   {
     name: 'Stage 1 & 2: Native Baseline Screening',
-    detail: 'Fast C screening against inland structure floors and 4-Y biome diversity lattice. Ocean Monuments & Shipwrecks are deliberately deferred from this stage. Seeds meeting these criteria qualify as Baseline Survivors.',
+    detail: 'The active native engine selects a qualifying 1664-block window inside the 4000-block envelope, enforcing a mandatory Mansion, structure floors, category deficits, marine start counts, the four-Y Overworld palette and all five Nether biomes. Historical policies remain selectable. No terrain geometry is a sweep gate.',
     evidence: 'Run counts and baseline candidate records come directly from the native sweep.',
     color: 'border-emerald-500 bg-emerald-500/10 text-emerald-400',
   },
   {
-    name: 'Stage 3: Ocean Continent Terrain Pass-Through & Marine Gating',
-    detail: 'A multi-resolution predictor screens the configured mainland and coastal corridor thresholds, then evaluates marine structure predictions. Actual-generation verification is separate.',
-    evidence: 'Coastal geometry and marine evidence attached when backend supplies terrain pass.',
+    name: 'Map: Predicted Biome Sampling',
+    detail: 'The map samples biome predictions for selected candidates, including river and frozen river. It does not test width, depth, navigability, or ocean connection.',
+    evidence: 'Map colors come from the biome-grid endpoint and do not change baseline qualification.',
     color: 'border-cyan-500 bg-cyan-500/10 text-cyan-400',
   },
   {
-    name: 'Stage 5: Authoritative BDS Docker Verification',
-    detail: 'Explicit bounded Bedrock server requests can provide sampled block and surface evidence. Structure counts, portal rooms and first-player spawn require their own evidence; a terrain pass does not certify them.',
-    evidence: 'A Bedrock server result is shown only when a candidate includes explicit verification evidence.',
+    name: 'Optional Authoritative BDS Verification',
+    detail: 'The optional BDS job observes explicit surface points. Generated structure counts, portal rooms, loot and initial player spawn remain unverified.',
+    evidence: 'Measured point evidence is shown separately from predictor eligibility and remains partial.',
     color: 'border-blue-500 bg-blue-500/10 text-blue-400',
   },
 ];
@@ -83,7 +83,7 @@ export const FunnelModal: React.FC<FunnelModalProps> = ({ onClose }) => {
               <span>📊</span> Evidence Pipeline
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
-              Live counts and verification status come from backend run records. Demo records are illustrative.
+              Live counts and evidence status come from saved backend run records.
             </p>
           </div>
           <button

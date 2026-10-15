@@ -317,6 +317,13 @@ class Backend:
             if code:raise RuntimeError(f'Native start filter error {code}')
             return list(raw),[p for p,ok in zip(raw,flags) if ok]
 
+    def igloo_basement(self,x,z):
+        with _LOCK:
+            value=lib.ss_igloo_basement(self._handle(),_int(x),_int(z))
+        if value<0:raise RuntimeError('Igloo variant prediction is unavailable')
+        return bool(value)
+
+
 def model_metadata():
     return {"model": ffi.string(lib.ss_model_name()).decode(),
             "structure_rng": {name: int(lib.ss_structure_rng(structure_type(name))) for name in STRUCTURES}}

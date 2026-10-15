@@ -1,3 +1,6 @@
+import { playableBounds } from '../utils/geometry';
+import type { SearchProfileName } from '../constants/baselinePolicy';
+import { spawnEvidenceLabel } from '../utils/spawn';
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import type {
   SeedCandidate,
@@ -10,6 +13,7 @@ import type {
 } from '../types';
 
 interface MapCanvasProps {
+  profile: SearchProfileName;
   candidate: SeedCandidate | null;
   dimension: Dimension;
   onDimensionChange: (dim: Dimension) => void;
@@ -40,7 +44,7 @@ const isApexLandmark = (type: string): boolean =>
   ['stronghold', 'mansion', 'ancient_city', 'monument', 'fortress', 'bastion'].includes(type);
 
 const getStructureAbbr = (type: string, name?: string): string => {
-  if (type === 'stronghold') return 'HUB';
+  if (type === 'stronghold') return 'SH';
   if (type === 'mansion') return 'MAN';
   if (type === 'ancient_city') return 'ANC';
   if (type === 'trial_chamber') return 'TRI';
@@ -66,6 +70,7 @@ interface BiomeGridData {
   bounds: { x0: number; z0: number; nx: number; nz: number; step: number };
   grid: number[][];
   approx_height: number[][] | null;
+  center: [number, number];
   names: Record<string, string>;
 }
 
@@ -154,6 +159,7 @@ const BIOME_COLORS: Record<string, string> = {
 
 export const MapCanvas: React.FC<MapCanvasProps> = ({
   candidate,
+  profile,
   dimension,
   onDimensionChange,
   showBorders,
@@ -184,6 +190,11 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   const cursorCoordDistRef = useRef<HTMLSpanElement | null>(null);
   const cursorCoordBiomeRef = useRef<HTMLSpanElement | null>(null);
 
+  const boundsForView = playableBounds(candidate, dimension, profile);
+  const gridCenterX = (boundsForView[0] + boundsForView[2]) / 2;
+  const gridCenterZ = (boundsForView[1] + boundsForView[3]) / 2;
+  const gridSide = boundsForView[2] - boundsForView[0];
+
   // Biome Grid State & Fetching
   const [biomeGrid, setBiomeGrid] = useState<BiomeGridData | null>(null);
   const [isLoadingBiomeGrid, setIsLoadingBiomeGrid] = useState<boolean>(false);
@@ -191,7 +202,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
   useEffect(() => {
     if (!candidate?.seed || !showBiomes) return;
-    const cacheKey = `${candidate.seed}_${dimension}`;
+    const cacheKey = `${candidate.seed}_${dimension}_${gridCenterX}_${gridCenterZ}_${gridSide}`;
     const cached = biomeGridCacheRef.current.get(cacheKey);
     if (cached) {
       setBiomeGrid(cached);
@@ -200,7 +211,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     let isCancelled = false;
     setBiomeGrid(null);
     setIsLoadingBiomeGrid(true);
-    fetch(`/api/candidate/biome-grid?seed=${encodeURIComponent(candidate.seed)}&dimension=${dimension}`)
+    fetch(`/api/candidate/biome-grid?seed=${encodeURIComponent(candidate.seed)}&dimension=${dimension}&centerX=${gridCenterX}&centerZ=${gridCenterZ}&side=${gridSide}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (!isCancelled && data && data.ok) {
@@ -216,7 +227,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     return () => {
       isCancelled = true;
     };
-  }, [candidate?.seed, dimension, showBiomes]);
+  }, [candidate?.seed, dimension, showBiomes, gridCenterX, gridCenterZ, gridSide]);
 
   const [hoveredStructure, setHoveredStructure] = useState<StructureMarker | null>(null);
   const [hoveredRavine, setHoveredRavine] = useState<RavineMarker | null>(null);
@@ -355,8 +366,8 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   // Use an evidence-backed anchor, the policy evaluation center, or world
   // origin as a view position. The origin is not treated as a stronghold.
   const candidateId = candidate?.id;
-  const anchorX = candidate?.strongholdAnchor?.[0] ?? candidate?.evaluationCenter?.[0] ?? 0;
-  const anchorZ = candidate?.strongholdAnchor?.[1] ?? candidate?.evaluationCenter?.[1] ?? 0;
+  const anchorX = candidate?.evaluationCenter?.[0] ?? candidate?.strongholdAnchor?.[0] ?? 0;
+  const anchorZ = candidate?.evaluationCenter?.[1] ?? candidate?.strongholdAnchor?.[1] ?? 0;
   useEffect(() => {
     const scale = dimension === 'overworld' ? 1 : 1 / 8;
     const frame = requestAnimationFrame(() => {
@@ -440,9 +451,9 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       ctx.restore();
     }
 
-    // 3. Authentic Bedrock Biome Terrain Render
+    // 3. Sampled predicted Bedrock biome map (no block or height verification)
     if (showBiomes && candidate) {
-      if (biomeGrid && String(biomeGrid.seed) === String(candidate.seed) && biomeGrid.dimension === dimension) {
+      if (biomeGrid && String(biomeGrid.seed) === String(candidate.seed) && biomeGrid.dimension === dimension && biomeGrid.center[0] === gridCenterX && biomeGrid.center[1] === gridCenterZ) {
         const { bounds, grid, approx_height, names } = biomeGrid;
         const { x0, z0, nx, nz, step } = bounds;
 
@@ -453,7 +464,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             const bz = z0 + r * step;
             const bId = grid[r][c];
             const bName = names[String(bId)] || 'unknown';
-            const h = approx_height?.[r]?.[c] ?? 64;
+            const h = approx_height?.[r]?.[c];
 
             const p1 = worldToScreen(bx, bz, width, height);
             const p2 = worldToScreen(bx + step, bz + step, width, height);
@@ -471,11 +482,11 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
             ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
 
             // Shading: water depth for oceans (h < 63), elevation brightness for peaks (h > 100)
-            if (h < 63) {
+            if (h != null && h < 63) {
               const depth = Math.min(0.35, Math.max(0.05, (63 - h) / 50));
               ctx.fillStyle = `rgba(15, 23, 42, ${depth})`;
               ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
-            } else if (h > 100) {
+            } else if (h != null && h > 100) {
               const peak = Math.min(0.25, (h - 100) / 80);
               ctx.fillStyle = `rgba(255, 255, 255, ${peak})`;
               ctx.fillRect(Math.floor(p1.x), Math.floor(p1.y), cellW, cellH);
@@ -541,33 +552,19 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       ctx.restore();
     }
 
-    // 5. Playable Border Squares
+    // Playable bounds follow the chosen density center, with exact Nether scaling.
     if (showBorders) {
+      const bounds = playableBounds(candidate, dimension, profile);
+      const topLeft = worldToScreen(bounds[0], bounds[1], width, height);
+      const bottomRight = worldToScreen(bounds[2], bounds[3], width, height);
       ctx.save();
-      if (dimension === 'overworld') {
-        // Unified Playable Boundary: 2048 x 2048 ([-1024, 1024])
-        const halfSide = (2048 / 2) * zoom;
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.85)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([8, 6]);
-        ctx.strokeRect(originScreen.x - halfSide, originScreen.y - halfSide, halfSide * 2, halfSide * 2);
-
-        // Corner coordinate labels
-        ctx.fillStyle = '#10b981';
-        ctx.font = 'bold 10px monospace';
-        ctx.fillText('OVERWORLD 2048 × 2048 BOUNDARY [X: ±1024, Z: ±1024]', originScreen.x - halfSide + 8, originScreen.y - halfSide + 18);
-      } else {
-        // Nether playable square (1024 x 1024) ([-512, 512])
-        const netherHalf = (1024 / 2) * zoom;
-        ctx.strokeStyle = 'rgba(239, 68, 68, 0.85)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([8, 6]);
-        ctx.strokeRect(originScreen.x - netherHalf, originScreen.y - netherHalf, netherHalf * 2, netherHalf * 2);
-
-        ctx.fillStyle = '#ef4444';
-        ctx.font = 'bold 10px monospace';
-        ctx.fillText('NETHER 1024 × 1024 BOUNDARY [X: ±512, Z: ±512]', originScreen.x - netherHalf + 8, originScreen.y - netherHalf + 18);
-      }
+      ctx.strokeStyle = dimension === 'overworld' ? 'rgba(16, 185, 129, 0.85)' : 'rgba(239, 68, 68, 0.85)';
+      ctx.fillStyle = dimension === 'overworld' ? '#10b981' : '#ef4444';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 6]);
+      ctx.strokeRect(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
+      ctx.font = 'bold 10px monospace';
+      ctx.fillText(`${dimension.toUpperCase()} ${bounds[2] - bounds[0]} × ${bounds[3] - bounds[1]} · (${(bounds[0]+bounds[2])/2}, ${(bounds[1]+bounds[3])/2})`, topLeft.x + 8, topLeft.y + 18);
       ctx.restore();
     }
 
@@ -587,6 +584,18 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     ctx.fillText('Origin (0,0)', originScreen.x + 14, originScreen.y + 4);
     ctx.restore();
 
+    if (candidate?.evaluationCenter) {
+      const scale = dimension === 'nether' ? 1 / 8 : 1;
+      const center = candidate.evaluationCenter;
+      const hub = worldToScreen(center[0] * scale, center[1] * scale, width, height);
+      ctx.save();
+      ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(hub.x, hub.y, 7, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 11px monospace';
+      ctx.fillText('Realm center', hub.x + 14, hub.y + 19);
+      ctx.restore();
+    }
+
     // 7. Spawn Point Marker & Vector
     if (candidate?.spawnPoint && dimension === 'overworld') {
       const sp = candidate.spawnPoint;
@@ -594,12 +603,14 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       const spawnDist = candidate.spawnDistance;
 
       ctx.save();
-      // Dashed connector line from (0,0) to Spawn Point
+      // Distance is measured from the evaluation hub, which may differ on archived runs.
       ctx.strokeStyle = 'rgba(234, 179, 8, 0.75)';
       ctx.lineWidth = 2;
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
-      ctx.moveTo(originScreen.x, originScreen.y);
+      const hub = candidate.evaluationCenter ?? [0, 0];
+      const hubScreen = worldToScreen(hub[0], hub[1], width, height);
+      ctx.moveTo(hubScreen.x, hubScreen.y);
       ctx.lineTo(spawnScreen.x, spawnScreen.y);
       ctx.stroke();
 
@@ -619,7 +630,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
       ctx.fillStyle = '#fef08a';
       ctx.font = 'bold 11px system-ui';
       ctx.fillText(
-        `🧭 Spawn (${sp[0]}, ${sp[1]})${spawnDist == null ? '' : ` • ${spawnDist} ${candidate.spawnDistanceUnits ?? 'blocks'}`}`,
+        `🧭 ${spawnEvidenceLabel(candidate)} (${sp[0]}, ${sp[1]})${spawnDist == null ? '' : ` • ${spawnDist} ${candidate.spawnDistanceUnits ?? 'blocks'}`}`,
         spawnScreen.x + 14,
         spawnScreen.y + 4
       );
@@ -1149,7 +1160,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
     worldToScreen,
     ravinesList,
     cavesList,
-    biomeGrid,
+    biomeGrid, profile, gridCenterX, gridCenterZ,
   ]);
 
   // Mouse pan and zoom handlers
@@ -1328,7 +1339,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
 
   const handleResetView = () => {
     setZoom(0.35);
-    const viewCenter = candidate?.strongholdAnchor ?? candidate?.evaluationCenter ?? [0, 0];
+    const viewCenter = candidate?.evaluationCenter ?? candidate?.strongholdAnchor ?? [0, 0];
     const scale = dimension === 'overworld' ? 1 : 1 / 8;
     setOffset({ x: -(viewCenter[0] * scale) * 0.35, y: -(viewCenter[1] * scale) * 0.35 });
   };
@@ -1504,7 +1515,7 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               className={`px-2 py-1 rounded text-[11px] font-semibold transition-all ${
                 showBorders ? 'bg-slate-700 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'
               }`}
-              title="Toggle Playable Bounds (2048x2048)"
+              title="Toggle the selected playable bounds"
             >
               Bounds
             </button>
@@ -1517,9 +1528,9 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
               className={`px-2 py-1 rounded text-[11px] font-semibold transition-all ${
                 showBiomes ? 'bg-slate-700 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'
               }`}
-              title="Toggle Continent Terrain Shading"
+              title="Toggle sampled predicted biomes"
             >
-              Terrain
+              Biomes
             </button>
           )}
 

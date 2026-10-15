@@ -166,7 +166,7 @@ def evaluate_coastal(raster, center=None, bounds=None, stronghold=(0, 0), *, thr
     values = thresholds or {}
     p = {**COASTAL, **(values.get('coastal_continent') or values)}
     side=values.get('square_side_blocks',1536)
-    if side not in (1536,2048):raise ValueError('Unsupported coastal square')
+    if side not in (1536,1664,2048):raise ValueError('Unsupported coastal square')
     sx, sz = stronghold;half=side//2
     expected = (sx-half, sz-half, sx+half, sz+half)
     bounds = tuple(bounds or expected)
@@ -183,7 +183,8 @@ def evaluate_coastal(raster, center=None, bounds=None, stronghold=(0, 0), *, thr
     ocean &= inside
     freshwater=river=open_river=lakes=np.zeros(raster.shape,bool)
     river_enabled='river_corridor_min_length_blocks' in p
-    if river_enabled:freshwater,river,open_river,lakes=_freshwater_masks(raster,inside,land,ocean)
+    if river_enabled or p.get('bridge_inland_freshwater'):
+        freshwater,river,open_river,lakes=_freshwater_masks(raster,inside,land,ocean)
     connectivity=p.get('land_connectivity',4)
     structure=np.ones((3,3),dtype=bool) if connectivity==8 else ndimage.generate_binary_structure(2,1)
     labels, count = ndimage.label(land | (freshwater if p.get('bridge_inland_freshwater') else False),structure=structure)
@@ -320,7 +321,7 @@ def evaluate_coastal(raster, center=None, bounds=None, stronghold=(0, 0), *, thr
     if actual and not complete:
         result['evidence'] = 'PARTIAL'
         apply_score_policy(result, component_status={'geometry':'PARTIAL'})
-    if side==2048:metrics['coastal_component_ids']=sorted(coast_ids)
+    if side in (1664,2048):metrics['coastal_component_ids']=sorted(coast_ids)
     result['mode'] = 'coastal_continent'
     result['evaluation_scope'] = 'coastal_geometry_subset'
     result['full_blueprint_certification'] = False

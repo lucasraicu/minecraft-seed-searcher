@@ -1,0 +1,1924 @@
+{
+  "date": "2026-10-14",
+  "policy": {
+    "schema_version": 5,
+    "game": {
+      "edition": "bedrock",
+      "target_version": "26.52",
+      "backend_model": "MC_26_50",
+      "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+      "bds_version": "1.26.52.3"
+    },
+    "deployment": {
+      "overworld_side_blocks": 1664,
+      "nether_side_blocks": 832
+    },
+    "discovery": {
+      "overworld_bounds": [
+        -2000,
+        -2000,
+        2000,
+        2000
+      ],
+      "nether_bounds": [
+        -562,
+        -562,
+        562,
+        562
+      ]
+    },
+    "search": {
+      "mode": "prediction",
+      "sequence": "permutation",
+      "run_key": "0",
+      "workers": 30,
+      "max_workers": 36,
+      "numeric_threads_per_worker": 1,
+      "native_threads_per_worker": 1,
+      "batch_size": 32,
+      "pilot_limit": 1000,
+      "inventory_mode": "eligibility",
+      "memory_target_gib": 25,
+      "memory_ceiling_gib": 30,
+      "docker_reserve_gib": 8,
+      "run_disk_limit_bytes": 137438953472,
+      "free_disk_reserve_bytes": 17179869184,
+      "projected_bytes_per_seed": 65536,
+      "structure_order": [
+        "outpost",
+        "desert_pyramid",
+        "jungle_temple",
+        "ruined_portal",
+        "trial_chamber",
+        "mansion",
+        "ancient_city",
+        "village",
+        "mineshaft"
+      ],
+      "max_misses": 2,
+      "density_weights": {
+        "village": 3,
+        "trial_chamber": 2,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "outpost": 1
+      },
+      "centroid_weights": {
+        "village": 3,
+        "trial_chamber": 2,
+        "ruined_portal": 2,
+        "ancient_city": 2,
+        "outpost": 1,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "mansion": 1,
+        "monument": 1,
+        "stronghold": 1,
+        "shipwreck": 1
+      }
+    },
+    "structures": {
+      "required": [
+        "stronghold",
+        "mansion",
+        "village",
+        "trial_chamber",
+        "ancient_city",
+        "desert_pyramid",
+        "jungle_temple",
+        "monument",
+        "ruined_portal",
+        "shipwreck",
+        "mineshaft",
+        "outpost"
+      ],
+      "minimum_counts": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 9,
+        "trial_chamber": 8,
+        "ancient_city": 4,
+        "desert_pyramid": 3,
+        "jungle_temple": 3,
+        "monument": 1,
+        "ruined_portal": 7,
+        "shipwreck": 6,
+        "mineshaft": 15,
+        "outpost": 2
+      },
+      "nether_required": [
+        "fortress",
+        "bastion"
+      ],
+      "nether_minimum_counts": {
+        "fortress": 2,
+        "bastion": 2
+      },
+      "optional_bonuses": {},
+      "deferred_until_coastal_terrain": [],
+      "hard_floors": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 8,
+        "trial_chamber": 7,
+        "ancient_city": 3,
+        "desert_pyramid": 2,
+        "jungle_temple": 2,
+        "monument": 1,
+        "ruined_portal": 5,
+        "shipwreck": 4,
+        "mineshaft": 12,
+        "outpost": 2,
+        "fortress": 2,
+        "bastion": 2
+      }
+    },
+    "biomes": {
+      "spacing": 64,
+      "sample_y": 63,
+      "lattice": "world",
+      "gate_batch_size": 16,
+      "refinement_budget": 128,
+      "wooded_minimum_families": 2,
+      "family_bonuses": {},
+      "variant_bonuses": {},
+      "sample_y_levels": [
+        63,
+        -48,
+        0,
+        160
+      ],
+      "required_families": [
+        "plains",
+        "desert",
+        "forest",
+        "taiga",
+        "jungle",
+        "swamp",
+        "snowy_ice",
+        "dark_forest",
+        "peaks",
+        "stony_shore",
+        "lush_caves",
+        "dripstone_caves",
+        "deep_dark"
+      ],
+      "include_frozen_peaks": true,
+      "nether_required": [
+        "nether_wastes",
+        "crimson_forest",
+        "warped_forest",
+        "soul_sand_valley",
+        "basalt_deltas"
+      ]
+    },
+    "scoring": {
+      "geometry_weight": 0.8,
+      "biome_fit_weight": 0.1,
+      "baseline_weight": 0.1,
+      "baseline_quality_cap": 60
+    },
+    "terrain": {
+      "variants": [
+        "v1"
+      ],
+      "native_threads": 1,
+      "scheduler": "rotation",
+      "resolutions": [
+        128,
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "center_spacing": 64,
+      "refine_center_spacing": 16,
+      "rays": 32,
+      "maximum_refinements_per_anchor": 8,
+      "v1": {
+        "mode": "coastal_continent",
+        "coastal_continent": {
+          "land_fraction_min": 0.7,
+          "land_fraction_max": 0.8,
+          "ocean_edge_min_width_blocks": 200,
+          "ocean_edge_preferred_max_width_blocks": 300,
+          "ocean_edge_fraction_min": 0.5,
+          "monument_envelope_half_size_blocks": 80,
+          "land_connectivity": 8,
+          "bridge_inland_freshwater": true
+        },
+        "square_side_blocks": 1664
+      }
+    },
+    "bds": {
+      "enabled": true,
+      "version": "1.26.52.3",
+      "docker_cli": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "image": "bedrock-verification-poc:1.26.52.3",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "cpus": 4,
+      "memory_gib": 6,
+      "verification_budget": 20,
+      "persist_snapshot": false,
+      "compare_reference": true,
+      "maximum_region_side": 256
+    },
+    "caves": {
+      "automatic": false,
+      "y_levels": [
+        0,
+        -16,
+        -32,
+        -48
+      ],
+      "spacing": 64,
+      "maximum_samples": 10000
+    },
+    "contract": "master_seed_blueprint_v1",
+    "screening_revision": "dynamic-envelope-1664-v1"
+  },
+  "status": "complete",
+  "validation": {
+    "status": "complete",
+    "prior": "runs/dynamic-final-2026-10-14/results.json",
+    "prior_seconds": 927.1315788253414,
+    "run_key": "2027101403",
+    "inputs_per_trial": 100000,
+    "budget_seconds": 1200,
+    "selected": {
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "path": "runs/dynamic-final-2026-10-14/shared-pgo16"
+    },
+    "durable_pairs": [
+      {
+        "trial": 0,
+        "arm": "control",
+        "wall_seconds": 16.830950987001415,
+        "durable_inputs_per_second": 5941.434924100857,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "0feab23d98deb033f4309f1c4a3b60bad2c1484991ef69caacea379be5ac9fdd",
+        "execution": {
+          "kind": "native",
+          "threads": 16,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 16.743096837999474,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 7.959894689003704,
+          "batch_latency_p95_seconds": 8.154537406997406,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 5972.610740269024
+        }
+      },
+      {
+        "trial": 0,
+        "arm": "selected",
+        "wall_seconds": 2.9278459979977924,
+        "durable_inputs_per_second": 34154.801881104744,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "0feab23d98deb033f4309f1c4a3b60bad2c1484991ef69caacea379be5ac9fdd",
+        "execution": {
+          "kind": "native",
+          "threads": 34,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 2.8914099780013203,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 1.1578252719991724,
+          "batch_latency_p95_seconds": 1.3632794919976732,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 34585.20263844588
+        }
+      },
+      {
+        "trial": 1,
+        "arm": "selected",
+        "wall_seconds": 3.173853259999305,
+        "durable_inputs_per_second": 31507.442785814834,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "83f92d5ebe54bb0e2117841325ef33290678713bc6b07fb750dc3e3c2bdbf487",
+        "execution": {
+          "kind": "native",
+          "threads": 34,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 3.1511166150012286,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 1.3827651430037804,
+          "batch_latency_p95_seconds": 1.5480165869958,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 31734.782370141198
+        }
+      },
+      {
+        "trial": 1,
+        "arm": "control",
+        "wall_seconds": 16.49117609899986,
+        "durable_inputs_per_second": 6063.848897111996,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "83f92d5ebe54bb0e2117841325ef33290678713bc6b07fb750dc3e3c2bdbf487",
+        "execution": {
+          "kind": "native",
+          "threads": 16,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 16.458851985000365,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 7.777941997002927,
+          "batch_latency_p95_seconds": 8.25254711299931,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 6075.75790165281
+        }
+      },
+      {
+        "trial": 2,
+        "arm": "control",
+        "wall_seconds": 16.56386475400359,
+        "durable_inputs_per_second": 6037.238379154803,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "982913ace7fbc6214bb822cc29425a2086d6fa06636e8da7b57b4f0c026968df",
+        "execution": {
+          "kind": "native",
+          "threads": 16,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 16.530447868004558,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 7.946058453999285,
+          "batch_latency_p95_seconds": 8.12604967399966,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 6049.442870423045
+        }
+      },
+      {
+        "trial": 2,
+        "arm": "selected",
+        "wall_seconds": 2.997962286004622,
+        "durable_inputs_per_second": 33355.98998921023,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "982913ace7fbc6214bb822cc29425a2086d6fa06636e8da7b57b4f0c026968df",
+        "execution": {
+          "kind": "native",
+          "threads": 34,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 2.9582623329988564,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 1.1724583389950567,
+          "batch_latency_p95_seconds": 1.5514914200030034,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 33803.62819230699
+        }
+      },
+      {
+        "trial": 3,
+        "arm": "selected",
+        "wall_seconds": 2.8040165939964936,
+        "durable_inputs_per_second": 35663.12703501963,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "314d7a06c44d7019c0ec5ee9f180f650dbca06cd637d9af5ebf8cab166d0db5d",
+        "execution": {
+          "kind": "native",
+          "threads": 34,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 2.773095463999198,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 1.282273263001116,
+          "batch_latency_p95_seconds": 1.4140464890006115,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 36060.785248188244
+        }
+      },
+      {
+        "trial": 3,
+        "arm": "control",
+        "wall_seconds": 16.74418339699332,
+        "durable_inputs_per_second": 5972.223167237678,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "314d7a06c44d7019c0ec5ee9f180f650dbca06cd637d9af5ebf8cab166d0db5d",
+        "execution": {
+          "kind": "native",
+          "threads": 16,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 16.71236906899867,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 8.020302040997194,
+          "batch_latency_p95_seconds": 8.200575602000754,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 5983.592127910777
+        }
+      },
+      {
+        "trial": 4,
+        "arm": "control",
+        "wall_seconds": 15.868707869005448,
+        "durable_inputs_per_second": 6301.710310977411,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "59c15f5f47336079882dd3903cbc3188c193e715754a23db5eb5b76b85895ed4",
+        "execution": {
+          "kind": "native",
+          "threads": 16,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 15.835151349994703,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 7.593262122994929,
+          "batch_latency_p95_seconds": 7.837547142000403,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 6315.064364701096
+        }
+      },
+      {
+        "trial": 4,
+        "arm": "selected",
+        "wall_seconds": 2.96651107899379,
+        "durable_inputs_per_second": 33709.63307978576,
+        "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipt_fingerprint": "59c15f5f47336079882dd3903cbc3188c193e715754a23db5eb5b76b85895ed4",
+        "execution": {
+          "kind": "native",
+          "threads": 34,
+          "batch_size": 16384,
+          "newly_committed": 100000,
+          "wall_seconds": 2.9336740059952717,
+          "batch_latency_sample_scope": "last 4096 completed batches",
+          "batch_latency_p50_seconds": 1.2927650959973107,
+          "batch_latency_p95_seconds": 1.41874745899986,
+          "retention": "survivors",
+          "max_misses": 2,
+          "checkpointed_scanned_inputs_per_second": 34086.95028678697
+        }
+      }
+    ],
+    "cumulative_benchmark_seconds": 1025.0061289313453,
+    "median_durable_inputs_per_second": {
+      "control": 6037.238379154803,
+      "selected": 33709.63307978576
+    }
+  },
+  "adopted_build": {
+    "extension": "runs/dynamic-baseline-1664/native/_blueprint_batch.cpython-313-darwin.so",
+    "extension_sha256": "d4e6831c66a9562180ddafc68d531fc91bffaeaf34546fd9505c15cd97964c8f",
+    "inputs": {
+      "scripts/build_blueprint_batch.py": "33fc257e14d835c3e89d77ec02ac751752f13a5c3deee7fa5f85cfc5b6661231",
+      "native/bridge.c": "a1ee0f0d3e4d610afde6f6323905c6f82ec7c7a3919f735b4d5522745b78c252",
+      "native/bridge.h": "4888898a0c0c519c0773a5d825329dfbb59d3e840290aa42f7d482afdf5de963",
+      "native/blueprint_batch.h": "26df64189a546b5528a5e184f193d409bdc6372e43eb41c8c194d87eb83e5f5b",
+      "native/blueprint_profile.h": "4ea140baeacc51ec6366f9eb59bf250be000379db5362af71b128ab9b0617942",
+      "native/filters.inc": "78a2951aa7cd2521a48d37d4433055078aa67f5fa5432736def4dd81e09b0abe",
+      "native/blueprint_batch.inc": "a6672c9f236c58eb77aca967c587c51832b089cbb5829024b299d7dc73395aa7",
+      "native/blueprint_dynamic.inc": "3e48ec5091a64fccb6ea3489b47ce5cff7d4483f5275b2ca4702813225ce5b1a",
+      "vendor/cubiomes-bedrock/noise.h": "abec22393485e92722e1e44dd0bc1cdbe98cc487a8625564467549d303ab1bd0",
+      "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+      "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+      "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+      "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+      "vendor/cubiomes-bedrock/biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
+      "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+      "vendor/cubiomes-bedrock/mt.h": "38aca21ff5b2feaca6c78b8aa94e0c641937148c231c7e1a9651feb1f1ce7b2c",
+      "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+      "vendor/cubiomes-bedrock/generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+      "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+      "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+      "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+      "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+      "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+      "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+      "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+      "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+      "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+      "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+      "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+      "vendor/cubiomes-bedrock/noise.c": "4976bde9b593130bcd7d6433392806c68b70ac1db039d89c7c471ccd024b76d5",
+      "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+      "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+      "vendor/cubiomes-bedrock/biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+      "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+      "vendor/cubiomes-bedrock/generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
+      "vendor/cubiomes-bedrock/finders.c": "8980c6703765398a1c6af2934bd990b247c0c9d0e61db9270b4e5eb7e644dcef",
+      "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+      "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+      "vendor/cubiomes-bedrock/mt.c": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+    },
+    "source_digest": "2d3e14863b78a5b78d21c48aace36b20cd13d628590390ab3d1f263c932c299b",
+    "build_seconds": 9.570376747004048,
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-DNB_WORK_CHUNK=16",
+      "-DNB_EXPERIMENT_ORDER=0",
+      "-DNB_STRONGHOLD_AFTER=4",
+      "-DNB_DYNAMIC_PREFLIGHT=1",
+      "-march=native",
+      "-flto",
+      "-Xpreprocessor",
+      "-fopenmp",
+      "-DSS_OPENMP_LIBRARY=\"runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\"",
+      "-fprofile-instr-use=runs/dynamic-final-2026-10-14/chunk16.profdata"
+    ],
+    "openmp": true,
+    "runtime": "runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+    "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+    "links": [
+      "-flto",
+      "-Wl,-rpath,runs/master-implementation-2026-10-10/openmp/install/lib",
+      "-fprofile-instr-use=runs/dynamic-final-2026-10-14/chunk16.profdata"
+    ],
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+    "configured_cc": "clang",
+    "configured_ldshared": "clang -bundle -undefined dynamic_lookup   -arch x86_64 -arch x86_64",
+    "environment_flags": {
+      "CC": null,
+      "CFLAGS": null,
+      "LDFLAGS": null,
+      "ARCHFLAGS": null,
+      "MACOSX_DEPLOYMENT_TARGET": null
+    },
+    "linker": "@(#)PROGRAM:ld PROJECT:ld-1230.1\nBUILD 10:12:58 Jan  9 2026\nconfigured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main\nwill use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em\nLTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)\nTAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)",
+    "python": "3.13.15 (v3.13.15:4061bc4c35f, Aug  5 2026, 09:08:51) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "arch": "x86_64",
+    "cpu_native": true,
+    "lto": true,
+    "pgo_generate": false,
+    "pgo_profile_sha256": "7725e2d71a8dec2ec6143734d31f0a4f7c0901d59efd2e40baafada0b46d4084",
+    "production_extension_replaced": false,
+    "profiling": false,
+    "mansion_cache": true,
+    "work_chunk": 16,
+    "experiment_order": 0,
+    "stronghold_after": 4,
+    "dynamic_preflight": true,
+    "scope": "private complete blueprint baseline prototype"
+  },
+  "initial_compiler_rows": [
+    {
+      "phase": "kernel",
+      "arm": "control",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 6.375438116003352,
+      "wall_seconds": 6.42495328199584,
+      "kernel_inputs_per_second": 7842.598279558567,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.9032316140001058,
+      "wall_seconds": 1.9607538039999781,
+      "kernel_inputs_per_second": 26271.10627639943,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "native",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.9446039870017557,
+      "wall_seconds": 2.000075208998169,
+      "kernel_inputs_per_second": 25712.176018466045,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "lto",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7624510990062845,
+      "wall_seconds": 1.8181467190006515,
+      "kernel_inputs_per_second": 28369.581447219327,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "native-lto",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.861838472999807,
+      "wall_seconds": 1.91709670900309,
+      "kernel_inputs_per_second": 26855.176066611006,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "chunk64",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.931520461992477,
+      "wall_seconds": 1.9854396840019035,
+      "kernel_inputs_per_second": 25886.342383565567,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "chunk128",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.9567438590020174,
+      "wall_seconds": 2.0107178520047455,
+      "kernel_inputs_per_second": 25552.654615459534,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "chunk128",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.944334538995463,
+      "wall_seconds": 2.0004911180003546,
+      "kernel_inputs_per_second": 25715.73923993163,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "chunk64",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.8316141180039267,
+      "wall_seconds": 1.886335079005221,
+      "kernel_inputs_per_second": 27298.326382463933,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "native-lto",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7946735990044544,
+      "wall_seconds": 1.8500148020029883,
+      "kernel_inputs_per_second": 27860.219277609096,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "lto",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.8359221009959583,
+      "wall_seconds": 1.8906486659980146,
+      "kernel_inputs_per_second": 27234.270981800262,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "native",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.9761393320077332,
+      "wall_seconds": 2.0337029099973734,
+      "kernel_inputs_per_second": 25301.859636182948,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7546531120096915,
+      "wall_seconds": 1.8089385150015005,
+      "kernel_inputs_per_second": 28495.660856140683,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "control",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 6.725035541996476,
+      "wall_seconds": 6.781414700002642,
+      "kernel_inputs_per_second": 7434.904944034896,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4579151430079946,
+      "wall_seconds": 1.5097431350004626,
+      "kernel_inputs_per_second": 34295.54884575735,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4651498980019824,
+      "wall_seconds": 1.5224893080012407,
+      "kernel_inputs_per_second": 34126.20105846149,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 2.169575245003216,
+      "wall_seconds": 2.217266120998829,
+      "kernel_inputs_per_second": 23045.985667081983,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.8744734059946495,
+      "wall_seconds": 1.9210975710011553,
+      "kernel_inputs_per_second": 26674.15810760386,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.792032442004711,
+      "wall_seconds": 1.8332781959979911,
+      "kernel_inputs_per_second": 27901.280595158198,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.800869070997578,
+      "wall_seconds": 1.854333173003397,
+      "kernel_inputs_per_second": 27764.372660530436,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.57593872200232,
+      "wall_seconds": 1.6285958209991804,
+      "kernel_inputs_per_second": 31727.121938137385,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.59703846899356,
+      "wall_seconds": 1.6501181439962238,
+      "kernel_inputs_per_second": 31307.94966480023,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.6862259699919377,
+      "wall_seconds": 1.7428645499967388,
+      "kernel_inputs_per_second": 29652.01633102535,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.5066231460004929,
+      "wall_seconds": 1.5611069330043392,
+      "kernel_inputs_per_second": 33186.79932186814,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5914220950071467,
+      "wall_seconds": 1.644363892999536,
+      "kernel_inputs_per_second": 31418.440247164886,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.6752312009921297,
+      "wall_seconds": 1.7336871070001507,
+      "kernel_inputs_per_second": 29846.62652557347,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.4763224900016212,
+      "wall_seconds": 1.5329552180046448,
+      "kernel_inputs_per_second": 33867.93897581625,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5395211180002661,
+      "wall_seconds": 1.6004539990026387,
+      "kernel_inputs_per_second": 32477.631787829334,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.7019348289977643,
+      "wall_seconds": 1.7625932800001465,
+      "kernel_inputs_per_second": 29378.328210983265,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.47866185100429,
+      "wall_seconds": 1.5363858389973757,
+      "kernel_inputs_per_second": 33814.35719467611,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4616774560054182,
+      "wall_seconds": 1.5181315949957934,
+      "kernel_inputs_per_second": 34207.273153575035,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5058951480023097,
+      "wall_seconds": 1.5622775410010945,
+      "kernel_inputs_per_second": 33202.842884731384,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.5344141810128349,
+      "wall_seconds": 1.5921491210028762,
+      "kernel_inputs_per_second": 32585.725952425728,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 34,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.6325499450176721,
+      "wall_seconds": 1.6955900030006887,
+      "kernel_inputs_per_second": 30626.934356644604,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5204678700029035,
+      "wall_seconds": 1.5816952839959413,
+      "kernel_inputs_per_second": 32884.6146547671,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.5219572570058517,
+      "wall_seconds": 1.581637094001053,
+      "kernel_inputs_per_second": 32852.43377883362,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 32,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.6631053020028048,
+      "wall_seconds": 1.7220814650063403,
+      "kernel_inputs_per_second": 30064.2418371147,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5243596190048265,
+      "wall_seconds": 1.5777956009987975,
+      "kernel_inputs_per_second": 32800.65896303547,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.5345214860062697,
+      "wall_seconds": 1.5928671240035328,
+      "kernel_inputs_per_second": 32583.44731954813,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 30,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.73890510401543,
+      "wall_seconds": 1.80094915600057,
+      "kernel_inputs_per_second": 28753.7254819377,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7263717289897613,
+      "wall_seconds": 1.7811918590014102,
+      "kernel_inputs_per_second": 28962.47613441806,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.6689299639838282,
+      "wall_seconds": 1.7263733979998506,
+      "kernel_inputs_per_second": 29959.315896424578,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 24,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.7550531700253487,
+      "wall_seconds": 1.8098853480041726,
+      "kernel_inputs_per_second": 28489.165373421612,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.8422818860053667,
+      "wall_seconds": 1.8843300619992078,
+      "kernel_inputs_per_second": 27140.2549087726,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.8179438039878733,
+      "wall_seconds": 1.8593132399983006,
+      "kernel_inputs_per_second": 27503.600436008597,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "pgo",
+      "threads": 16,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.8969285110069904,
+      "wall_seconds": 1.9417734439994092,
+      "kernel_inputs_per_second": 26358.399755116414,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    }
+  ],
+  "final_tuning_rows": [
+    {
+      "phase": "kernel",
+      "arm": "shared-portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.6695710350031732,
+      "wall_seconds": 1.7195216260006418,
+      "kernel_inputs_per_second": 29947.812313301765,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.6591291389922844,
+      "wall_seconds": 1.7148853559992858,
+      "kernel_inputs_per_second": 30136.291880431207,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7354353850023472,
+      "wall_seconds": 1.7917934689976391,
+      "kernel_inputs_per_second": 28811.213849907974,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3136534320074134,
+      "wall_seconds": 1.369921327001066,
+      "kernel_inputs_per_second": 38061.78919168525,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo64",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3273480250063585,
+      "wall_seconds": 1.3841443590063136,
+      "kernel_inputs_per_second": 37669.09586486218,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo128",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4329989310062956,
+      "wall_seconds": 1.488899752002908,
+      "kernel_inputs_per_second": 34891.86133927432,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo128",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4074887220122037,
+      "wall_seconds": 1.4659332139999606,
+      "kernel_inputs_per_second": 35524.26333371819,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo64",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3343749069972546,
+      "wall_seconds": 1.3899557889963035,
+      "kernel_inputs_per_second": 37470.7286069363,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.2967950329984888,
+      "wall_seconds": 1.3510968289992888,
+      "kernel_inputs_per_second": 38556.59431729044,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7691622559941607,
+      "wall_seconds": 1.8269815710009425,
+      "kernel_inputs_per_second": 28261.964006180468,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-portable",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.7718039079991286,
+      "wall_seconds": 1.8285152669996023,
+      "kernel_inputs_per_second": 28219.827134518655,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.2687732349950238,
+      "wall_seconds": 1.327505592002126,
+      "kernel_inputs_per_second": 39408.14530202168,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo64",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3571042030016542,
+      "wall_seconds": 1.4147777860052884,
+      "kernel_inputs_per_second": 36843.15462984316,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo128",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4298432330033393,
+      "wall_seconds": 1.485596678998263,
+      "kernel_inputs_per_second": 34968.86850663805,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.6495700259838486,
+      "wall_seconds": 1.6948913439991884,
+      "kernel_inputs_per_second": 30310.929037510025,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.541427376010688,
+      "wall_seconds": 1.5822116139970603,
+      "kernel_inputs_per_second": 32437.467232094434,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5907238549916656,
+      "wall_seconds": 1.631351566000376,
+      "kernel_inputs_per_second": 31432.231209144702,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.5901723279966973,
+      "wall_seconds": 1.6489107369998237,
+      "kernel_inputs_per_second": 31443.13299866695,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.4168769579919172,
+      "wall_seconds": 1.4658316189961624,
+      "kernel_inputs_per_second": 35288.87933279894,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3750851279837661,
+      "wall_seconds": 1.42271757999697,
+      "kernel_inputs_per_second": 36361.385184430765,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.5373612759940443,
+      "wall_seconds": 1.596790941999643,
+      "kernel_inputs_per_second": 32523.25967926468,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.353809818996524,
+      "wall_seconds": 1.40916706599819,
+      "kernel_inputs_per_second": 36932.809393465024,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3154926409915788,
+      "wall_seconds": 1.369485541996255,
+      "kernel_inputs_per_second": 38008.574462500605,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.4785480860009557,
+      "wall_seconds": 1.5383129019974149,
+      "kernel_inputs_per_second": 33816.9589974145,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.3763678049945156,
+      "wall_seconds": 1.4313934169986169,
+      "kernel_inputs_per_second": 36327.498956719086,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3358323789943825,
+      "wall_seconds": 1.3919162099991809,
+      "kernel_inputs_per_second": 37429.84582963928,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.4900810360049945,
+      "wall_seconds": 1.5475235339981737,
+      "kernel_inputs_per_second": 33555.22202608074,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.4106774249958107,
+      "wall_seconds": 1.4754894279976725,
+      "kernel_inputs_per_second": 35443.964094164534,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.2930497390043456,
+      "wall_seconds": 1.3513766079995548,
+      "kernel_inputs_per_second": 38668.272759948304,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3742704119940754,
+      "wall_seconds": 1.4344171979973908,
+      "kernel_inputs_per_second": 36382.941496535364,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.383779802992649,
+      "wall_seconds": 1.4402066080001532,
+      "kernel_inputs_per_second": 36132.9164451359,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 34,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.5154414639837341,
+      "wall_seconds": 1.5788175630004844,
+      "kernel_inputs_per_second": 32993.68612269716,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.3557710420063813,
+      "wall_seconds": 1.412671871999919,
+      "kernel_inputs_per_second": 36879.38335517618,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.3962914629955776,
+      "wall_seconds": 1.4529428699970595,
+      "kernel_inputs_per_second": 35809.14252152694,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 32,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.5291824200103292,
+      "wall_seconds": 1.5865866870008176,
+      "kernel_inputs_per_second": 32697.210840065938,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.321328881997033,
+      "wall_seconds": 1.3792369209986646,
+      "kernel_inputs_per_second": 37840.69256431517,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.4025561099915649,
+      "wall_seconds": 1.4605191049995483,
+      "kernel_inputs_per_second": 35649.19766404262,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 30,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.524463531008223,
+      "wall_seconds": 1.5844418999986374,
+      "kernel_inputs_per_second": 32798.4231718104,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.4285754949960392,
+      "wall_seconds": 1.4831862220016774,
+      "kernel_inputs_per_second": 34999.90037288063,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.3964164600038202,
+      "wall_seconds": 1.4443811040036962,
+      "kernel_inputs_per_second": 35805.937148480196,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 24,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.4727108299994143,
+      "wall_seconds": 1.523362118001387,
+      "kernel_inputs_per_second": 33950.99634055104,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 16384,
+      "inputs": 50000,
+      "native_seconds": 1.5356615500058979,
+      "wall_seconds": 1.5763061969992123,
+      "kernel_inputs_per_second": 32559.257604520975,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 8192,
+      "inputs": 50000,
+      "native_seconds": 1.4606453349988442,
+      "wall_seconds": 1.5030617090014857,
+      "kernel_inputs_per_second": 34231.444692245954,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    },
+    {
+      "phase": "kernel",
+      "arm": "shared-pgo16",
+      "threads": 16,
+      "batch_size": 4096,
+      "inputs": 50000,
+      "native_seconds": 1.5972021450143075,
+      "wall_seconds": 1.642251554003451,
+      "kernel_inputs_per_second": 31304.741329127195,
+      "fingerprint": [
+        "f183fb4c3581aa83f0cdbebcd565138af03f25386a81fdd631e647236cdf7dc7",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ]
+    }
+  ],
+  "excluded_validation_reason": "Adjacent seed run keys overlap because the permutation uses index + run_key. Adoption uses the disjoint cohort in dynamic-disjoint-holdout-2026-10-14 instead."
+}

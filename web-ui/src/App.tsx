@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import type { SeedCandidate, TelemetryState, SearchConfig, Dimension } from './types';
-import { INITIAL_CONFIG, MOCK_CANDIDATES } from './mockData';
-import { DEFAULT_SWEEP_IDEAL_COUNTS, V2_FLEXIBLE_FLOORS } from './constants/structures';
+import { INITIAL_CONFIG } from './mockData';
+import { SEARCH_PROFILES, getSearchProfile } from './constants/baselinePolicy';
+import type { SearchProfileName } from './constants/baselinePolicy';
 import { MapCanvas } from './components/MapCanvas';
 import { CandidateFeed } from './components/CandidateFeed';
 import { TelemetryBar } from './components/TelemetryBar';
@@ -20,11 +21,11 @@ const VALID_TELEMETRY_STATUSES: TelemetryState['status'][] = [
 
 function App() {
   const [config, setConfig] = useState<SearchConfig>(INITIAL_CONFIG);
-  const [candidates, setCandidates] = useState<SeedCandidate[]>(MOCK_CANDIDATES);
-  const [selectedCandidate, setSelectedCandidate] = useState<SeedCandidate | null>(MOCK_CANDIDATES[0]);
+  const [candidates, setCandidates] = useState<SeedCandidate[]>([]);
+  const [selectedCandidate, setSelectedCandidate] = useState<SeedCandidate | null>(null);
   const [inspectedCandidate, setInspectedCandidate] = useState<SeedCandidate | null>(null);
   const [isFunnelOpen, setIsFunnelOpen] = useState<boolean>(false);
-  const [dataMode, setDataMode] = useState<'demo' | 'live'>('demo');
+  const [dataMode, setDataMode] = useState<'connecting' | 'live'>('connecting');
 
   // Map display settings
   const [dimension, setDimension] = useState<Dimension>('overworld');
@@ -98,7 +99,12 @@ function App() {
   const applyEffectiveConfig = useCallback((effective: any) => {
     if (!effective?.structures) return;
     const counts = { ...effective.structures.minimum_counts, ...effective.structures.nether_minimum_counts };
-    setConfig((previous) => ({ ...previous, structureFloorCounts: { ...previous.structureFloorCounts, ...counts } }));
+    if (counts.desert_pyramid != null) counts.pyramid = counts.desert_pyramid;
+    const profile = (Object.keys(SEARCH_PROFILES) as SearchProfileName[]).find((name) => SEARCH_PROFILES[name].revision === effective.screening_revision);
+    setConfig((previous) => ({ ...previous, ...(profile ? { profile } : {}),
+      playableRadiusOverworld: effective.deployment?.overworld_side_blocks ?? previous.playableRadiusOverworld,
+      playableRadiusNether: effective.deployment?.nether_side_blocks ?? previous.playableRadiusNether,
+      structureFloorCounts: { ...previous.structureFloorCounts, ...counts } }));
   }, []);
 
   // On mount, load any existing candidate database from backend
@@ -132,6 +138,7 @@ function App() {
         setTelemetry((prev) => ({
           ...prev,
           status: resolvedStatus,
+          runId: data.runId,
           totalScanned: data.totalScanned || 0,
           targetCount: data.targetCount ?? INITIAL_CONFIG.sweepSeedCount,
           seedsPerSec: data.seedsPerSec || 0,
@@ -187,8 +194,6 @@ function App() {
             activeThreads: data.activeThreads ?? null,
             history: data.history && data.history.length > 0 ? data.history : prev.history,
             runId: data.runId,
-            terrainStatus: data.terrainStatus ?? 'idle',
-            terrainProgress: data.terrainProgress ?? prev.terrainProgress,
           }));
 
           if (Array.isArray(data.candidates)) {
@@ -227,14 +232,20 @@ function App() {
           BigInt(config.startIndex) + BigInt(config.sweepSeedCount) > (1n << 64n)) {
         throw new Error('Enter a positive whole seed count and a valid full64 starting index');
       }
+      const policy = getSearchProfile(config.profile);
+      const counts: Record<string, number> = {};
+      for (const [key, defaultIdeal] of Object.entries(policy.counts)) {
+        if (key === 'pyramid') continue; // UI alias maps to the canonical API key below.
+        const ideal = config.structureFloorCounts[key === 'desert_pyramid' ? 'pyramid' : key];
+        if (!Number.isInteger(ideal) || ideal < 0 || ideal > 64) throw new Error(`${key}: enter a whole count from 0 to 64`);
+        const floor = config.profile === 'dynamic1664' && key !== 'stronghold' ? policy.floors[key] : policy.flexible.includes(key) ? policy.floors[key] : undefined;
+        if (floor == null && ideal !== defaultIdeal) throw new Error(`${key}: the selected policy fixes this target at ${defaultIdeal}`);
+        if (floor != null && ideal < floor) throw new Error(`${key}: the active policy requires at least ${floor}`);
+        if (ideal !== defaultIdeal) counts[key] = ideal;
+      }
       const data = await postCommand('/api/sweep/start', {
         count: config.sweepSeedCount, startIndex: config.startIndex, threads: config.openmpThreads,
-        batchSize: config.batchSize, maxMisses: config.maxMisses,
-        counts: Object.fromEntries(Object.entries(DEFAULT_SWEEP_IDEAL_COUNTS)
-          .filter(([key, defaultIdeal]) => {
-            const ideal = config.structureFloorCounts[key];
-            return Number.isInteger(ideal) && ideal >= (V2_FLEXIBLE_FLOORS[key] ?? 0) && ideal !== defaultIdeal;
-          }).map(([key]) => [key, config.structureFloorCounts[key]])),
+        batchSize: config.batchSize, maxMisses: config.maxMisses, counts, profile: config.profile,
       });
       applyEffectiveConfig(data.effectiveConfig);
       setTelemetry((prev) => ({ ...prev, status: 'running', runId: data.runId, totalScanned: 0,
@@ -285,27 +296,48 @@ function App() {
     }
   }, [telemetry.runId, telemetry.totalScanned, showToast, postCommand, applyEffectiveConfig]);
 
-  const handleStartTerrain = useCallback(async () => {
-    try {
-      showToast('Starting Continental Ocean Terrain Filtering...');
-      await postCommand('/api/terrain/start', {});
-      setTelemetry((prev) => ({ ...prev, terrainStatus: 'running' }));
-      showToast('🌊 Terrain Filtering Started');
-    } catch (error) {
-      showToast(`Terrain start error: ${error instanceof Error ? error.message : String(error)}`);
-    }
-  }, [showToast, postCommand]);
+  const [verificationPending, setVerificationPending] = useState(false);
+  const isVerifyingBDS = verificationPending || telemetry.status === 'bds_verifying';
 
-  const handleStopTerrain = useCallback(async () => {
-    try {
-      showToast('Stopping Terrain Filtering...');
-      await postCommand('/api/terrain/stop', {});
-      setTelemetry((prev) => ({ ...prev, terrainStatus: 'idle' }));
-      showToast('Terrain Filtering Stopped');
-    } catch (error) {
-      showToast(`Terrain stop error: ${error instanceof Error ? error.message : String(error)}`);
-    }
-  }, [showToast, postCommand]);
+  const handleBeginBDSParity = useCallback(
+    async (targetCandidate?: SeedCandidate | null) => {
+      const cand = targetCandidate || selectedCandidate || candidates[0];
+      if (!cand) {
+        showToast('Select a candidate first to begin BDS parity');
+        return;
+      }
+      setVerificationPending(true);
+      showToast(`🛡️ Launching BDS surface observation job for seed ${cand.seed}...`);
+      setLogs((prev) => [
+        `[BDS] Launching Bedrock Dedicated Server 1.26.52.3 verification for seed ${cand.seed}...`,
+        ...prev,
+      ]);
+
+      try {
+        const data = await postCommand('/api/bds/verify', {
+          seed: cand.seed,
+          candidateId: cand.id,
+        });
+
+        if (data && data.ok) {
+          setTelemetry((prev) => ({ ...prev, status: 'bds_verifying' }));
+          setLogs((prev) => [`[BDS] Surface observation job accepted for ${cand.id}; full Realm verification remains pending.`,...prev]);
+          showToast(`BDS surface job started for ${data.points} points. Results appear after the provider finishes.`);
+        } else {
+          throw new Error(data?.error || 'BDS verification failed');
+        }
+      } catch (error) {
+        showToast(`BDS Verification failed: ${error instanceof Error ? error.message : String(error)}`);
+        setLogs((prev) => [
+          `[BDS] Error: ${error instanceof Error ? error.message : String(error)}`,
+          ...prev,
+        ]);
+      } finally {
+        setVerificationPending(false);
+      }
+    },
+    [selectedCandidate, candidates, showToast, postCommand]
+  );
 
   const handleExport = () => {
     const dataStr =
@@ -365,10 +397,9 @@ function App() {
         onToggleSweep={handleToggleSweep}
         onPauseSweep={handlePauseSweep}
         onContinueSweep={handleContinueSweep}
-        onStartTerrain={handleStartTerrain}
-        onStopTerrain={handleStopTerrain}
         onOpenFunnel={() => setIsFunnelOpen(true)}
         onExport={handleExport}
+        onBeginBDSParity={() => handleBeginBDSParity(selectedCandidate)}
       />
 
       {/* Main 3-Column Workspace */}
@@ -387,6 +418,7 @@ function App() {
         <div className="flex-1 flex flex-col relative h-full">
           <MapCanvas
             candidate={selectedCandidate}
+            profile={config.profile}
             dimension={dimension}
             onDimensionChange={setDimension}
             showBorders={showBorders}
@@ -410,6 +442,8 @@ function App() {
           onInspectCandidate={setInspectedCandidate}
           onCopyNotice={showToast}
           onClearCandidates={() => setCandidates([])}
+          onVerifyBDS={handleBeginBDSParity}
+          isVerifyingBDS={isVerifyingBDS}
         />
       </div>
 
@@ -427,6 +461,8 @@ function App() {
           candidate={inspectedCandidate}
           onClose={() => setInspectedCandidate(null)}
           onCopyNotice={showToast}
+          onVerifyBDS={handleBeginBDSParity}
+          isVerifyingBDS={isVerifyingBDS}
         />
       )}
 

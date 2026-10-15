@@ -469,3 +469,10 @@ int ss_density_points(SeedContext *ctx,const int *xyz,int n,double *out) {
     }
     return 0;
 }
+
+/* Variant evidence is a pinned predictor, not observed generated loot. */
+int ss_igloo_basement(SeedContext *ctx,int x,int z) {
+    StructureVariant variant={0};
+    if(!ctx||!getVariant(&variant,Igloo,MC_26_50,ctx->seed,x,z,-1))return -1;
+    return !!variant.basement;
+}

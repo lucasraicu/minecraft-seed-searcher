@@ -43,7 +43,7 @@ class FakeProc:
 
 def test_start_sweep_cleanup_on_popen_failure(monkeypatch, tmp_path):
     monkeypatch.setattr(server, 'RUNS_DIR', tmp_path)
-    monkeypatch.setattr(server, 'DEFAULT_NATIVE_BUILD', server.PROJECT_ROOT / 'runs/cpu-completion-2026-10-13/final-portable')
+    monkeypatch.setattr(server, 'DEFAULT_NATIVE_BUILD', server.PROJECT_ROOT / 'runs/dynamic-baseline-1664/native')
 
     def fail_popen(*args, **kwargs):
         raise OSError("Exec format error")
@@ -303,6 +303,11 @@ def test_post_security_validation():
     server.WebSearchHandler.do_POST(h_cl_zero)
     assert h_cl_zero.responses[0] == 200
 
+    # The website cannot launch terrain filtering in baseline-only mode.
+    h_terrain = MockHandler('/api/terrain/start', {'Content-Length': '2'}, b'{}')
+    server.WebSearchHandler.do_POST(h_terrain)
+    assert h_terrain.responses[0] == 404
+
 
 def test_candidate_biome_grid_endpoint():
     from unittest.mock import MagicMock
@@ -339,4 +344,51 @@ def test_candidate_biome_grid_endpoint():
     assert len(data['grid']) == 65
     assert len(data['grid'][0]) == 65
     assert 'names' in data
-    assert 'approx_height' in data
+    assert data['approx_height'] is None
+
+
+def test_biome_grid_river_prediction_never_requests_terrain(monkeypatch):
+    import numpy as np
+    from seed_search import backend
+
+    class BiomeOnlyBackend:
+        def __init__(self, seed):
+            assert seed == 456
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            pass
+
+        def grid(self, **kwargs):
+            raise AssertionError('Terrain grid must not run')
+
+        def biome_points(self, points, dimension):
+            assert dimension == 0 and len(points) == 65 * 65
+            values = np.zeros(len(points), dtype=np.int32)
+            values[0] = 7
+            values[1] = 8
+            return values
+
+    monkeypatch.setattr(backend, 'Backend', BiomeOnlyBackend)
+    monkeypatch.setattr(backend, 'biome_name', lambda value: {0: 'plains', 7: 'river', 8: 'frozen_river'}[value])
+    server.MANAGER._biome_grid_cache.clear()
+
+    class Handler:
+        path = '/api/candidate/biome-grid?seed=456&dimension=overworld'
+        wfile = io.BytesIO()
+        responses = []
+        def send_response(self, code, message=None):
+            self.responses.append(code)
+        def send_header(self, key, value):
+            pass
+        def end_headers(self):
+            pass
+
+    handler = Handler()
+    server.WebSearchHandler.do_GET(handler)
+    data = json.loads(handler.wfile.getvalue())
+    assert handler.responses == [200]
+    assert data['names']['7'] == 'river' and data['names']['8'] == 'frozen_river'
+    assert data['approx_height'] is None

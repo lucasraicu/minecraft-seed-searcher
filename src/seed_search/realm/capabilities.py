@@ -45,9 +45,9 @@ def report(cfg):
 def identity():
     from .. import _native
     from ..backend import native_runtime
-    paths=[Path(_native.__file__),ROOT/'vendor/backend.json',ROOT/'native/bridge.c',ROOT/'native/bridge.h',ROOT/'native/filters.inc',ROOT/'native/blueprint_batch.h',ROOT/'native/blueprint_batch.inc']
+    paths=[Path(_native.__file__),ROOT/'vendor/backend.json',ROOT/'native/bridge.c',ROOT/'native/bridge.h',ROOT/'native/filters.inc',ROOT/'native/blueprint_batch.h',ROOT/'native/blueprint_batch.inc',ROOT/'native/blueprint_dynamic.inc']
     # Freeze computational implementation independently from historical report rendering.
     paths += [ROOT/f'src/seed_search/{name}.py' for name in ('backend','seeds')]
-    paths += [ROOT/f'src/seed_search/realm/{name}.py' for name in ('baseline','blueprint','coastal','marine','spawn','bounds','biomes','sampling','inventory','raw','siblings','config','runner','store','resources','native_batch','native_records','native_encoding')]
+    paths += [ROOT/f'src/seed_search/realm/{name}.py' for name in ('baseline','blueprint','dynamic','coastal','marine','spawn','bounds','biomes','sampling','inventory','raw','siblings','config','runner','store','resources','native_batch','native_records','native_encoding')]
     return {'model':model_metadata(),'native_runtime':native_runtime(),
             'sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}

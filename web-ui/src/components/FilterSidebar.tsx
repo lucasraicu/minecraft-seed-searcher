@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import type { SearchConfig } from '../types';
 import {
-  V2_FLEXIBLE_FLOORS,
   ALL_STRUCTURES,
   CAVE_CLUSTERS,
   DEFAULT_STRUCTURE_FLOORS,
 } from '../constants/structures';
+import { SEARCH_PROFILES, getSearchProfile } from '../constants/baselinePolicy';
+import type { SearchProfileName } from '../constants/baselinePolicy';
 import { computeTotalFeasibility } from '../utils/probability';
 
 interface FilterSidebarProps {
@@ -40,13 +41,16 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     } catch (error) { setRunsError(error instanceof Error ? error.message : String(error)); }
   };
   const [activeTab, setActiveTab] = useState<'targets' | 'engine' | 'logs'>('targets');
+  const policy = getSearchProfile(config.profile);
+  const profileCounts: Record<string, number> = { ...policy.counts, pyramid: policy.counts.desert_pyramid };
   const feasibility = useMemo(() => computeTotalFeasibility(config), [config]);
 
   const ALL_BIOMES = [
     { id: 'plains', name: 'Plains / Meadow', icon: '🌾' },
     { id: 'forest', name: 'Forest / Dark Forest', icon: '🌲' },
     { id: 'jungle', name: 'Jungle', icon: '🌴' },
-    { id: 'desert', name: 'Desert / Badlands', icon: '🏜️' },
+    { id: 'desert', name: 'Desert', icon: '🏜️' },
+    { id: 'badlands', name: 'Badlands / Mesa', icon: '🧡' },
     { id: 'taiga', name: 'Taiga / Old Growth', icon: '🌲' },
     { id: 'snowy_ice', name: 'Snowy Plains / Spikes', icon: '❄️' },
     { id: 'swamp', name: 'Swamp / Mangrove', icon: '🐊' },
@@ -60,24 +64,15 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     { id: 'ocean', name: 'Ocean / Deep Sea', icon: '🌊' },
   ];
 
-  const hasOceanBiome = config.selectedBiomes.some(
-    (b) => b === 'ocean' || b.includes('ocean')
-  );
-  const isBaselineInland = config.terrainMode === 'all_baseline' && !hasOceanBiome;
-
   const handleCountChange = (id: string, delta: number) => {
-    if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) return;
-    const minVal = V2_FLEXIBLE_FLOORS[id];
-    if (minVal === undefined) return;
-    const current = config.structureFloorCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? minVal;
-    const nextVal = Math.min(64, Math.max(minVal, current + delta));
+    const current = config.structureFloorCounts[id] ?? profileCounts[id] ?? DEFAULT_STRUCTURE_FLOORS[id] ?? 0;
+    const nextVal = Math.min(64, Math.max(0, current + delta));
     const nextFloorCounts = { ...config.structureFloorCounts, [id]: nextVal };
 
-
-    // If currently not selected, add it
-    const nextRequired = config.requiredStructures.includes(id)
-      ? config.requiredStructures
-      : [...config.requiredStructures, id];
+    // If incrementing from 0 or currently not selected, add to required
+    const nextRequired = nextVal > 0 && !config.requiredStructures.includes(id)
+      ? [...config.requiredStructures, id]
+      : config.requiredStructures;
 
     onChangeConfig({
       ...config,
@@ -87,7 +82,6 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   };
 
   const toggleStructure = (id: string) => {
-    if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) return;
     const isSelected = config.requiredStructures.includes(id);
     const nextRequired = isSelected
       ? config.requiredStructures.filter((s) => s !== id)
@@ -102,29 +96,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       ? [...config.selectedBiomes, id]
       : config.selectedBiomes.filter((b) => b !== id);
 
-    let nextStructures = config.requiredStructures;
-    if (config.terrainMode === 'all_baseline') {
-      const hasOcean = nextBiomes.some((b) => b === 'ocean' || b.includes('ocean'));
-      if (!hasOcean) {
-        nextStructures = nextStructures.filter((s) => s !== 'monument' && s !== 'shipwreck');
-      } else {
-        nextStructures = Array.from(new Set([...nextStructures, 'monument', 'shipwreck']));
-      }
-    }
-
-    onChangeConfig({ ...config, selectedBiomes: nextBiomes, requiredStructures: nextStructures });
+    onChangeConfig({ ...config, selectedBiomes: nextBiomes });
   };
 
   const handleResetDefaults = () => {
     onChangeConfig({
       ...config,
-      requiredStructures: Object.keys(DEFAULT_STRUCTURE_FLOORS),
-      structureFloorCounts: { ...DEFAULT_STRUCTURE_FLOORS },
-      mainlandTargetPct: 75,
-      oceanEdgeWidthM: 320,
-      riverHighwayLengthM: 400,
-      enforceSpawnGate: true,
-      maxSpawnDistance: 100,
+      requiredStructures: Object.keys(profileCounts).filter((key) => key !== 'desert_pyramid'),
+      structureFloorCounts: { ...profileCounts },
     });
   };
 
@@ -167,12 +146,28 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       {/* Tab 1: Search Targets */}
       {activeTab === 'targets' && (
         <div className="flex-1 overflow-y-auto p-4 space-y-5">
+          <label className="block text-xs text-slate-300 space-y-2">
+            <span>Search policy</span>
+            <select value={config.profile} disabled={sweepRunning}
+              onChange={(event) => {
+                const profile = event.target.value as SearchProfileName;
+                const selected = getSearchProfile(profile);
+                const counts = { ...selected.counts, pyramid: selected.counts.desert_pyramid };
+                onChangeConfig({ ...config, profile, structureFloorCounts: counts,
+                  requiredStructures: Object.keys(counts).filter((key) => key !== 'desert_pyramid'),
+                  maxMisses: Math.min(config.maxMisses, selected.maxMisses),
+                  playableRadiusOverworld: selected.overworldSide, playableRadiusNether: selected.netherSide });
+              }} className="w-full bg-slate-950 border border-slate-700 rounded p-2">
+              {(Object.keys(SEARCH_PROFILES) as SearchProfileName[]).map((name) => <option key={name} value={name}>{SEARCH_PROFILES[name].name}</option>)}
+            </select>
+          </label>
+
           {/* Master Blueprint Banner & Reset */}
           <div className="p-3 bg-slate-950/80 border border-emerald-500/30 rounded-lg flex items-center justify-between">
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span className="text-xs font-bold text-white">Corrected v2 Policy</span>
+              <span className="text-xs font-bold text-white">{policy.name}</span>
               </div>
               <p className="text-[10px] text-slate-400 mt-0.5">
                 Fixed structure floors and required biome families
@@ -188,7 +183,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           </div>
 
           <div className="p-2.5 rounded-lg border border-amber-500/30 bg-amber-950/20 text-[10px] leading-relaxed text-amber-100">
-            Live sweeps use the fixed v2 categories. The eight flexible structure ideals, B, count, starting index, threads and batch size apply to live sweeps. Required categories and biome rules remain fixed. Optional planning controls never change live qualification.
+            {config.profile === 'dynamic1664'
+              ? 'Sliding 1664 × 1664 window inside the 4000-block envelope. Mansion and Stronghold are mandatory; marine starts are checked without terrain filtering.'
+              : policy.deferredMarine ? 'Historical fixed-origin policy; marine structures are deferred.' : 'Fixed-origin 2048 marine policy; Monument and Shipwreck starts are required.'}
+            {' '}Counts are editable from 0 to 64. Starting a sweep enforces the selected policy floors and fixed targets; unsupported values produce an error.
           </div>
 
           {/* Box 4: Total Search Odds Hero Card (End-to-End Pipeline) */}
@@ -227,7 +225,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
 
             {/* 3-Stage Multiplier Breakdown */}
-            <div className="grid grid-cols-3 gap-1.5 text-[10px] font-mono">
+            <div className="grid grid-cols-2 gap-1.5 text-[10px] font-mono">
               <div className="p-1.5 bg-slate-900/90 rounded border border-slate-800 text-center">
                 <span className="text-slate-500 block text-[9px]">🏰 Struct</span>
                 <span className="text-white font-bold">
@@ -240,12 +238,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   {(feasibility.biomes.probability * 100).toFixed(1)}%
                 </span>
               </div>
-              <div className="p-1.5 bg-slate-900/90 rounded border border-slate-800 text-center">
-                <span className="text-slate-500 block text-[9px]">🌊 Terrain</span>
-                <span className="text-blue-400 font-bold">
-                  {(feasibility.terrain.probability * 100).toFixed(1)}%
-                </span>
-              </div>
+
             </div>
 
             {/* 1-Click Sync Button */}
@@ -303,54 +296,18 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Structure Floors ({ALL_STRUCTURES.length})
+                Live Structure Targets ({ALL_STRUCTURES.length})
               </label>
               <span className="text-[10px] text-emerald-400 font-mono font-bold">
-                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id) && (!isBaselineInland || (s.id !== 'monument' && s.id !== 'shipwreck'))).length} active
+                {ALL_STRUCTURES.filter((s) => config.requiredStructures.includes(s.id)).length} active
               </span>
-            </div>
-
-            {/* Marine Evaluation Timing Notice */}
-            <div className="mb-2 p-2 rounded-lg bg-blue-950/30 border border-blue-500/30 text-[10px] text-blue-200 leading-relaxed flex items-start gap-1.5">
-              <span className="text-blue-400 text-xs mt-0.5">⛵</span>
-              <div>
-                <span className="font-bold text-white">Marine Evaluation Timing: </span>
-                <span>
-                  <strong>Ocean Monuments &amp; Shipwrecks</strong> are <strong>deferred from Stage 1 Baseline screening</strong>. They are strictly evaluated in <strong>Stage 3 Terrain Pass-Through</strong> once coastal ocean is confirmed. Qualifying seeds retain Baseline Survivor status regardless of marine presence.
-                </span>
-              </div>
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
               {ALL_STRUCTURES.map((s) => {
-                const isMarine = s.id === 'monument' || s.id === 'shipwreck';
-                const isExempt = isBaselineInland && isMarine;
-                const isSelected = !isExempt && config.requiredStructures.includes(s.id);
-                const count = config.structureFloorCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 1;
+                const isSelected = true; // Every selected policy includes these categories.
+                const count = config.structureFloorCounts[s.id] ?? profileCounts[s.id] ?? DEFAULT_STRUCTURE_FLOORS[s.id] ?? 0;
                 const indP = feasibility.structures.individualProbs[s.id];
-
-                if (isExempt) {
-                  return (
-                    <div
-                      key={s.id}
-                      className="flex items-center justify-between px-2.5 py-1.5 rounded-lg border bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60"
-                      title="Exempt in inland baseline mode (no ocean biome selected)"
-                    >
-                      <div className="flex items-center gap-1.5 truncate">
-                        <span className="text-sm">{s.icon}</span>
-                        <span className="text-xs font-semibold truncate line-through opacity-70">{s.name}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 font-bold">
-                          Exempt (No Ocean)
-                        </span>
-                        <span className="text-[10px] text-slate-500 font-mono italic pr-1">
-                          N/A
-                        </span>
-                      </div>
-                    </div>
-                  );
-                }
 
                 return (
                   <div
@@ -362,22 +319,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     }`}
                   >
                     {/* Toggle check & Structure Label */}
-                    <button
-                      onClick={() => toggleStructure(s.id)}
-                      title="Planning selection only; live sweep floors remain required"
+                    <div
+                      title="Live target; the selected policy hard floor remains mandatory"
                       className="flex items-center justify-between gap-1 text-left truncate flex-1 hover:text-white transition-colors"
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="text-sm">{s.icon}</span>
                         <span className="text-xs font-semibold truncate">{s.name}</span>
-                        {isMarine && (
-                          <span
-                            className="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                            title="Deferred from Stage 1 Baseline; evaluated in Stage 3 Terrain Pass once coastal ocean is confirmed"
-                          >
-                            Stage 3
-                          </span>
-                        )}
                       </div>
                       {isSelected && indP !== undefined && (
                         <span
@@ -391,14 +339,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                           {(indP * 100).toFixed(0)}%
                         </span>
                       )}
-                    </button>
+                    </div>
 
                     {/* Stepper Count Controls */}
                     <div className="flex items-center gap-1.5 ml-2">
                       <button
                         onClick={() => handleCountChange(s.id, -1)}
-                        disabled={!(s.id in V2_FLEXIBLE_FLOORS) || count <= (V2_FLEXIBLE_FLOORS[s.id] ?? s.min)}
-                        title={s.id in V2_FLEXIBLE_FLOORS ? `Cannot go below v2 fatal floor ${V2_FLEXIBLE_FLOORS[s.id]}` : 'This target is fixed by v2'}
+                        disabled={count <= 0}
+                        title={count <= 0 ? 'Minimum count reached (0)' : 'Decrease target count'}
                         className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         -
@@ -408,8 +356,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       </span>
                       <button
                         onClick={() => handleCountChange(s.id, 1)}
-                        disabled={count >= 64 || !(s.id in V2_FLEXIBLE_FLOORS)}
-                        title={count >= 64 ? 'Maximum goal reached (64)' : s.id in V2_FLEXIBLE_FLOORS ? 'Adjust live ideal count' : 'This target is fixed by v2'}
+                        disabled={count >= 64}
+                        title={count >= 64 ? 'Maximum goal reached (64)' : 'Increase target count'}
                         className="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center transition-all"
                       >
                         +
@@ -427,7 +375,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-300">🔥 Nether Fort &amp; Bastion Pairing</span>
-              <span className="text-[10px] text-red-400 font-mono">1024 × 1024</span>
+              <span className="text-[10px] text-red-400 font-mono">{policy.netherSide} × {policy.netherSide}</span>
             </div>
 
             <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
@@ -617,200 +565,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
           </div>
 
-          {/* Terrain Screening Mode Segmented Control */}
-          <div className="p-3 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2.5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="text-sm">🧭</span>
-              <span className="text-xs font-bold text-white uppercase tracking-wider">Terrain Planning Mode</span>
-              </div>
-              <span
-                className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                  config.terrainMode === 'all_baseline'
-                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                    : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
-                }`}
-              >
-                {config.terrainMode === 'all_baseline' ? 'BASELINE (STRUCTURES)' : 'COASTAL CONTINENT'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-900 rounded-lg border border-slate-800">
-              <button
-                type="button"
-                onClick={() => {
-                  const hasOcean = config.selectedBiomes.some((b) => b === 'ocean' || b.includes('ocean'));
-                  const nextReq = hasOcean
-                    ? config.requiredStructures
-                    : config.requiredStructures.filter((s) => s !== 'monument' && s !== 'shipwreck');
-                  onChangeConfig({ ...config, terrainMode: 'all_baseline', requiredStructures: nextReq });
-                }}
-                className={`py-2 px-2 rounded text-[11px] font-semibold flex flex-col items-center gap-0.5 transition-all ${
-                  config.terrainMode === 'all_baseline'
-                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30 font-bold'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <span className="flex items-center gap-1 font-bold">🏰 Baseline Only</span>
-                <span className="text-[9px] opacity-80 font-normal">Inland structures (marine exempt)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const nextReq = Array.from(new Set([...config.requiredStructures, 'monument', 'shipwreck']));
-                  onChangeConfig({ ...config, terrainMode: 'coastal_continent', requiredStructures: nextReq });
-                }}
-                className={`py-2 px-2 rounded text-[11px] font-semibold flex flex-col items-center gap-0.5 transition-all ${
-                  config.terrainMode === 'coastal_continent'
-                    ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30 font-bold'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <span className="flex items-center gap-1 font-bold">🌊 Coastal Continent</span>
-                <span className="text-[9px] opacity-80 font-normal">70–80% Mainland + Sea</span>
-              </button>
-            </div>
-
-            <p className="text-[10px] text-slate-400 leading-relaxed">
-              {config.terrainMode === 'all_baseline'
-                ? '★ Baseline Mode retains all seeds passing core structure & biome floors (marine structures auto-exempted if no ocean biome is selected).'
-                : '★ Coastal Continent Mode strictly verifies 70%–80% continuous mainland, 320m ocean edge corridor, coastal monuments/shipwrecks, and river highway.'}
-            </p>
-          </div>
-
-          {/* Box 3: 3D Terrain & Spawn Odds Box (Stage 3 Verification) */}
-          <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-lg space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs">🌊</span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                  Modeled Terrain / Spawn Estimates
-                </span>
-              </div>
-              <span className="font-mono text-[10px] font-bold text-blue-400">
-                {feasibility.terrain.formattedOdds}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-1 text-[9px] font-mono text-slate-400">
-              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
-                <span>Landmass {config.mainlandTargetPct}%:</span>
-                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-white font-semibold'}>
-                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : `${(feasibility.terrain.landmassProb * 100).toFixed(1)}%`}
-                </span>
-              </div>
-              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
-                <span>River Highway:</span>
-                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-cyan-400 font-semibold'}>
-                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : '42.5%'}
-                </span>
-              </div>
-              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
-                <span>Ocean Edge 320m:</span>
-                <span className={config.terrainMode === 'all_baseline' ? 'text-amber-400 font-semibold' : 'text-blue-400 font-semibold'}>
-                  {config.terrainMode === 'all_baseline' ? 'Bypassed' : '64.0%'}
-                </span>
-              </div>
-              <div className="px-1.5 py-1 bg-slate-900 rounded border border-slate-800/80 flex justify-between">
-                <span>Spawn ≤{config.maxSpawnDistance}m:</span>
-                <span className="text-emerald-400 font-semibold">{(feasibility.terrain.spawnGateProb * 100).toFixed(1)}%</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 3D Terrain Spec: Dedicated Coastal Continent */}
-          <div
-            className={`p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-3 transition-opacity ${
-              config.terrainMode === 'all_baseline' ? 'opacity-60' : 'opacity-100'
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="text-sm">🌊</span>
-                <span className="text-xs font-bold text-white">Coastal Continent Specification</span>
-              </div>
-              <span
-                className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                  config.terrainMode === 'all_baseline'
-                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                    : 'bg-emerald-500/20 text-emerald-400'
-                }`}
-              >
-                {config.terrainMode === 'all_baseline' ? 'BYPASSED' : 'ACTIVE'}
-              </span>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-xs text-slate-300 mb-1">
-                <span>Target Mainland Landmass:</span>
-                <span className="font-mono text-emerald-400 font-bold">{config.mainlandTargetPct}%</span>
-              </div>
-              <input
-                type="range"
-                min="65"
-                max="85"
-                disabled={config.terrainMode === 'all_baseline'}
-                value={config.mainlandTargetPct}
-                onChange={(e) =>
-                  onChangeConfig({ ...config, mainlandTargetPct: Number(e.target.value) })
-                }
-                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 disabled:opacity-40"
-              />
-              <span className="text-[10px] text-slate-500">Master blueprint target: 70% – 80%</span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 text-[10px] text-slate-300 pt-1 border-t border-slate-800/80">
-              <div className="p-1.5 bg-slate-900 rounded border border-slate-800">
-                <span className="text-slate-500 block">River Highway:</span>
-                <span className="font-mono text-cyan-400 font-semibold">
-                  {config.terrainMode === 'all_baseline' ? 'Optional' : '≥400m Navigable'}
-                </span>
-              </div>
-              <div className="p-1.5 bg-slate-900 rounded border border-slate-800">
-                <span className="text-slate-500 block">Ocean Edge Corridor:</span>
-                <span className="font-mono text-blue-400 font-semibold">
-                  {config.terrainMode === 'all_baseline' ? 'Optional' : '320m Deep Sea'}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Downstream Stage 3 Spawn Gate */}
-          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 text-xs text-slate-300 font-bold cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={config.enforceSpawnGate}
-                  onChange={(e) =>
-                    onChangeConfig({ ...config, enforceSpawnGate: e.target.checked })
-                  }
-                  className="rounded accent-emerald-500"
-                />
-                  <span>Spawn model toggle (planning only)</span>
-              </label>
-              <span className="text-[10px] font-mono text-emerald-400 font-bold">
-                ≤{config.maxSpawnDistance}m
-              </span>
-            </div>
-            {config.enforceSpawnGate && (
-              <div>
-                <input
-                  type="range"
-                  min="25"
-                  max="200"
-                  step="25"
-                  value={config.maxSpawnDistance}
-                  onChange={(e) =>
-                    onChangeConfig({ ...config, maxSpawnDistance: Number(e.target.value) })
-                  }
-                  className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                />
-              </div>
-            )}
-            <p className="text-[10px] text-slate-400 leading-tight">
-              Planning heuristic only. Spawn evidence is downstream and remains pending until the backend supplies it; this control is not part of the live v2 sweep request.
-            </p>
+          <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg text-[10px] text-slate-400 leading-relaxed">
+            The map samples predicted river and frozen river biomes. Water depth, boat access, and ocean connection are unverified.
           </div>
           </section>
         </div>
@@ -828,7 +584,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <span className="text-[10px] font-mono text-slate-400">18C / 36T</span>
             </div>
             <p className="text-[10px] text-slate-400">
-              Run controls for the corrected v2 native policy. Throughput is reported only from live run telemetry.
+              Run controls for the marine baseline v3 native policy. Throughput is reported only from live run telemetry.
             </p>
           </div>
 
@@ -991,7 +747,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </span>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>Native OpenMP sweep with corrected v2 policy identity</span>
+              <span>Native OpenMP sweep with marine baseline v3 policy identity</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
@@ -999,7 +755,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>
-              <span>Biome families remain required by the v2 policy</span>
+              <span>Biome families remain required by the marine baseline policy</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-emerald-400">✓</span>

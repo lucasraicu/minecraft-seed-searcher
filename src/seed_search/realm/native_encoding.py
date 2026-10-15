@@ -160,6 +160,8 @@ def fast_records(batch,start_index,store):
     if isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64 or start_index+len(batch.seeds)>MASK64+1:
         raise ValueError('Invalid full64 index range')
     prototype=batch.prototype;cfg=prototype.cfg;result=[]
+    from .config import dynamic_policy
+    if dynamic_policy(cfg):return batch.records(start_index)
     if store._digest_version != 2 or batch.complete:return batch.records(start_index)
     if cfg.get('screening_revision'):return locked_records(batch,start_index,store)
     encoder=getattr(prototype,'_pending_encoder',None)

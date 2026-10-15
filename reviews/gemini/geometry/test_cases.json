@@ -1,0 +1,869 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "title": "Master Seed Blueprint Geometry and Snapping Test Cases",
+    "author": "Task 1 Independent Geometry Oracle",
+    "timestamp": "2026-10-15T01:45:00Z",
+    "description": "Exhaustive verification test suite for 1664 Overworld and 832 Nether sliding geometry, safe intervals, centroid weighting, and snapping."
+  },
+  "tests": [
+    {
+      "id": "OW_01_CENTER",
+      "category": "overworld_containment",
+      "description": "Center block (0,0) with center (0,0)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          0,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "Exact center is contained in both conventions."
+    },
+    {
+      "id": "OW_02_WEST_BORDER",
+      "category": "overworld_containment",
+      "description": "West border block X = Cx - 832 with center (0,0)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          -832,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "West border is inclusive in half-open [Cx-832, Cx+832)."
+    },
+    {
+      "id": "OW_03_EAST_BORDER",
+      "category": "overworld_containment",
+      "description": "East border block X = Cx + 832 with center (0,0)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          832,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "East border is EXCLUDED in half-open [Cx-832, Cx+832) because X < Cx+832 is false. Included in closed."
+    },
+    {
+      "id": "OW_04_NORTH_BORDER",
+      "category": "overworld_containment",
+      "description": "North border block Z = Cz - 832 with center (0,0)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          0,
+          -832
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "North border is inclusive in half-open."
+    },
+    {
+      "id": "OW_05_SOUTH_BORDER",
+      "category": "overworld_containment",
+      "description": "South border block Z = Cz + 832 with center (0,0)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          0,
+          832
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "South border is EXCLUDED in half-open because Z < Cz+832 is false. Included in closed."
+    },
+    {
+      "id": "OW_06_JUST_INSIDE_EAST",
+      "category": "overworld_containment",
+      "description": "Block just inside East border: X = Cx + 831",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          831,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "831 < 832 is true; block 831 is the easternmost block in half-open window."
+    },
+    {
+      "id": "OW_07_JUST_INSIDE_SOUTH",
+      "category": "overworld_containment",
+      "description": "Block just inside South border: Z = Cz + 831",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          0,
+          831
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "831 < 832 is true; block 831 is the southernmost block in half-open window."
+    },
+    {
+      "id": "OW_08_JUST_OUTSIDE_WEST",
+      "category": "overworld_containment",
+      "description": "Block just outside West border: X = Cx - 833",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          -833,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": false
+      },
+      "mathematical_notes": "Excluded in both conventions."
+    },
+    {
+      "id": "OW_09_JUST_OUTSIDE_NORTH",
+      "category": "overworld_containment",
+      "description": "Block just outside North border: Z = Cz - 833",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          0,
+          -833
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": false
+      },
+      "mathematical_notes": "Excluded in both conventions."
+    },
+    {
+      "id": "OW_10_NW_CORNER",
+      "category": "overworld_containment",
+      "description": "Northwest corner block (Cx - 832, Cz - 832)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          -832,
+          -832
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "Both coordinate boundaries are inclusive."
+    },
+    {
+      "id": "OW_11_SE_CORNER",
+      "category": "overworld_containment",
+      "description": "Southeast corner block (Cx + 832, Cz + 832)",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "point": [
+          832,
+          832
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "Both coordinate boundaries are exclusive in half-open."
+    },
+    {
+      "id": "OW_12_NEGATIVE_CENTER",
+      "category": "overworld_containment",
+      "description": "Negative center at macro envelope limit (-1168, -1168)",
+      "inputs": {
+        "center": [
+          -1168,
+          -1168
+        ],
+        "point": [
+          -2000,
+          -2000
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "West/North borders reach exact macro envelope boundary -2000."
+    },
+    {
+      "id": "OW_13_POSITIVE_CENTER",
+      "category": "overworld_containment",
+      "description": "Positive center at macro limit (1168, 1168), testing point at 2000",
+      "inputs": {
+        "center": [
+          1168,
+          1168
+        ],
+        "point": [
+          2000,
+          2000
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "East/South borders reach 2000, which is excluded under half-open [336, 2000)."
+    },
+    {
+      "id": "NETHER_01_INTEGER_CENTER",
+      "category": "nether_containment",
+      "description": "Nether center at (0,0) from Overworld center (0,0)",
+      "inputs": {
+        "overworld_center": [
+          0,
+          0
+        ],
+        "nether_point": [
+          0,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "Exact Nether center is contained in both."
+    },
+    {
+      "id": "NETHER_02_WEST_BORDER",
+      "category": "nether_containment",
+      "description": "Nether West border Xn = -416 with Overworld center (0,0)",
+      "inputs": {
+        "overworld_center": [
+          0,
+          0
+        ],
+        "nether_point": [
+          -416,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "West border -416 is inclusive in half-open [-416, 416)."
+    },
+    {
+      "id": "NETHER_03_EAST_BORDER",
+      "category": "nether_containment",
+      "description": "Nether East border Xn = 416 with Overworld center (0,0)",
+      "inputs": {
+        "overworld_center": [
+          0,
+          0
+        ],
+        "nether_point": [
+          416,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "East border 416 is EXCLUDED in half-open [-416, 416). Included in closed."
+    },
+    {
+      "id": "NETHER_04_JUST_INSIDE_EAST",
+      "category": "nether_containment",
+      "description": "Nether block just inside East border Xn = 415",
+      "inputs": {
+        "overworld_center": [
+          0,
+          0
+        ],
+        "nether_point": [
+          415,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "Block 415 is the easternmost block in Nether window."
+    },
+    {
+      "id": "NETHER_05_MACRO_LIMIT",
+      "category": "nether_containment",
+      "description": "Overworld center at 1168 -> Nether center 146; East border at 562",
+      "inputs": {
+        "overworld_center": [
+          1168,
+          1168
+        ],
+        "nether_point": [
+          562,
+          562
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": true
+      },
+      "mathematical_notes": "Point 562 is at Nether preflight envelope radius, excluded in half-open."
+    },
+    {
+      "id": "NETHER_06_FRACTIONAL_CENTER_POS",
+      "category": "nether_containment",
+      "description": "Non-multiple-of-8 Overworld center (4, 4) -> Nether center (0.5, 0.5)",
+      "inputs": {
+        "overworld_center": [
+          4,
+          4
+        ],
+        "nether_point": [
+          -416,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": false,
+        "closed": false
+      },
+      "mathematical_notes": "Center is 0.5. Window is [-415.5, 416.5). Point -416 is < -415.5, so EXCLUDED in both!"
+    },
+    {
+      "id": "NETHER_07_FRACTIONAL_CENTER_EAST_INCLUDED",
+      "category": "nether_containment",
+      "description": "Non-multiple-of-8 Overworld center (4, 4) -> Nether center (0.5, 0.5) testing point 416",
+      "inputs": {
+        "overworld_center": [
+          4,
+          4
+        ],
+        "nether_point": [
+          416,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "416 < 416.5 is TRUE! Point 416 is now INCLUDED because center shifted east by 0.5 blocks."
+    },
+    {
+      "id": "NETHER_08_FRACTIONAL_CENTER_NEG",
+      "category": "nether_containment",
+      "description": "Overworld center (-4, -4) -> Nether center (-0.5, -0.5) testing point -416",
+      "inputs": {
+        "overworld_center": [
+          -4,
+          -4
+        ],
+        "nether_point": [
+          -416,
+          0
+        ]
+      },
+      "expected": {
+        "half_open": true,
+        "closed": true
+      },
+      "mathematical_notes": "Center is -0.5. Window is [-416.5, 415.5). Point -416 is >= -416.5, so INCLUDED!"
+    },
+    {
+      "id": "SAFE_01_OW_ORIGIN",
+      "category": "safe_intervals",
+      "description": "Safe interval for Overworld structure at X = 0",
+      "inputs": {
+        "type": "overworld",
+        "coord": 0
+      },
+      "expected": {
+        "half_open": {
+          "min": -831,
+          "max": 832,
+          "width": 1664
+        },
+        "closed": {
+          "min": -832,
+          "max": 832,
+          "width": 1665
+        }
+      },
+      "mathematical_notes": "Blueprint claims [-832, 832], but in half-open, C = -832 excludes X = 0. True min is -831."
+    },
+    {
+      "id": "SAFE_02_OW_NEGATIVE",
+      "category": "safe_intervals",
+      "description": "Safe interval for Overworld structure at X = -500",
+      "inputs": {
+        "type": "overworld",
+        "coord": -500
+      },
+      "expected": {
+        "half_open": {
+          "min": -1331,
+          "max": 332,
+          "width": 1664
+        },
+        "closed": {
+          "min": -1332,
+          "max": 332,
+          "width": 1665
+        }
+      },
+      "mathematical_notes": "Lower bound exceeds macro envelope [-1168, 1168]; clamping yields [-1168, 332]."
+    },
+    {
+      "id": "SAFE_03_NETHER_ORIGIN",
+      "category": "safe_intervals",
+      "description": "Safe interval for Nether structure at Xn = 0",
+      "inputs": {
+        "type": "nether",
+        "coord": 0
+      },
+      "expected": {
+        "half_open": {
+          "min": -3327,
+          "max": 3328,
+          "width": 6656
+        },
+        "closed": {
+          "min": -3328,
+          "max": 3328,
+          "width": 6657
+        }
+      },
+      "mathematical_notes": "Blueprint claims [-3328, 3328]. In half-open, C = -3328 leaves Xn=0 on excluded border."
+    },
+    {
+      "id": "SAFE_04_NETHER_100",
+      "category": "safe_intervals",
+      "description": "Safe interval for Nether structure at Xn = 100",
+      "inputs": {
+        "type": "nether",
+        "coord": 100
+      },
+      "expected": {
+        "half_open": {
+          "min": -2527,
+          "max": 4128,
+          "width": 6656
+        },
+        "closed": {
+          "min": -2528,
+          "max": 4128,
+          "width": 6657
+        }
+      },
+      "mathematical_notes": "Scaled coordinate is 800. Center interval spans [800 - 3327, 800 + 3328]."
+    },
+    {
+      "id": "SAFE_05_TIGHT_INTERSECTION",
+      "category": "safe_intervals",
+      "description": "Joint safe zone for two Overworld structures at X = -800 and X = 800",
+      "inputs": {
+        "overworld": [
+          [
+            -800,
+            0
+          ],
+          [
+            800,
+            0
+          ]
+        ],
+        "nether": []
+      },
+      "expected": {
+        "half_open": {
+          "x_min": -31,
+          "x_max": 32,
+          "width": 64
+        },
+        "closed": {
+          "x_min": -32,
+          "x_max": 32,
+          "width": 65
+        }
+      },
+      "mathematical_notes": "Structure at -800 requires C <= 32; structure at +800 requires C >= -31 (half-open)."
+    },
+    {
+      "id": "SAFE_06_DISJOINT_FAILURE",
+      "category": "safe_intervals",
+      "description": "Incompatible structures at X = -900 and X = 900",
+      "inputs": {
+        "overworld": [
+          [
+            -900,
+            0
+          ],
+          [
+            900,
+            0
+          ]
+        ],
+        "nether": []
+      },
+      "expected": {
+        "is_empty": true
+      },
+      "mathematical_notes": "Distance between structures is 1800 > 1664. No center can contain both."
+    },
+    {
+      "id": "CENTROID_01_BLUEPRINT_WEIGHTS",
+      "category": "weighted_centroid",
+      "description": "Standard multi-structure centroid using blueprint capped weights",
+      "inputs": {
+        "structures": [
+          [
+            "village",
+            100,
+            200
+          ],
+          [
+            "trial_chamber",
+            -50,
+            100
+          ],
+          [
+            "ruined_portal",
+            0,
+            0
+          ],
+          [
+            "ancient_city",
+            -100,
+            -200
+          ],
+          [
+            "outpost",
+            50,
+            50
+          ]
+        ]
+      },
+      "expected": {
+        "total_weight": 10,
+        "centroid_x": "5",
+        "centroid_z": "45",
+        "exact_fraction_x": [
+          5,
+          1
+        ],
+        "exact_fraction_z": [
+          45,
+          1
+        ]
+      },
+      "mathematical_notes": "Wx = 300 - 100 + 0 - 200 + 50 = 50. Wz = 600 + 200 + 0 - 400 + 50 = 450."
+    },
+    {
+      "id": "CENTROID_02_FRACTIONAL",
+      "category": "weighted_centroid",
+      "description": "Exact irreducible rational centroid",
+      "inputs": {
+        "structures": [
+          [
+            "village",
+            10,
+            20
+          ],
+          [
+            "stronghold",
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": {
+        "total_weight": 4,
+        "centroid_x": "15/2",
+        "centroid_z": "65/4",
+        "exact_fraction_x": [
+          15,
+          2
+        ],
+        "exact_fraction_z": [
+          65,
+          4
+        ]
+      },
+      "mathematical_notes": "Cx* = 30/4 = 15/2 = 7.5. Cz* = 65/4 = 16.25."
+    },
+    {
+      "id": "CENTROID_03_ALL_WEIGHTS_VERIFIED",
+      "category": "weighted_centroid",
+      "description": "Verify weights for all 11 blueprint structure types",
+      "inputs": {
+        "structures": [
+          [
+            "village",
+            1,
+            0
+          ],
+          [
+            "trial_chamber",
+            1,
+            0
+          ],
+          [
+            "ruined_portal",
+            1,
+            0
+          ],
+          [
+            "ancient_city",
+            1,
+            0
+          ],
+          [
+            "outpost",
+            1,
+            0
+          ],
+          [
+            "desert_pyramid",
+            1,
+            0
+          ],
+          [
+            "jungle_temple",
+            1,
+            0
+          ],
+          [
+            "mansion",
+            1,
+            0
+          ],
+          [
+            "monument",
+            1,
+            0
+          ],
+          [
+            "stronghold",
+            1,
+            0
+          ],
+          [
+            "shipwreck",
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "total_weight": 16,
+        "centroid_x": "1",
+        "centroid_z": "0",
+        "exact_fraction_x": [
+          1,
+          1
+        ],
+        "exact_fraction_z": [
+          0,
+          1
+        ]
+      },
+      "mathematical_notes": "Total weight must sum exactly to 3+2+2+2+1+1+1+1+1+1+1 = 16."
+    },
+    {
+      "id": "SNAP_01_EXACT_MULTIPLE_16",
+      "category": "snapping_and_fallbacks",
+      "description": "Centroid is already exact multiple of 16",
+      "inputs": {
+        "val": 64,
+        "interval": [
+          -100,
+          100
+        ]
+      },
+      "expected": {
+        "snapped": 64,
+        "status": "16_safe"
+      },
+      "mathematical_notes": "No rounding needed."
+    },
+    {
+      "id": "SNAP_02_TIE_POSITIVE",
+      "category": "snapping_and_fallbacks",
+      "description": "Rounding tie in positive space at val = 8",
+      "inputs": {
+        "val": 8,
+        "interval": [
+          -100,
+          100
+        ]
+      },
+      "expected": {
+        "snapped": 16,
+        "status": "16_safe"
+      },
+      "mathematical_notes": "16 * floor((8+8)/16) = 16. Equidistant from 0 and 16, rounds up."
+    },
+    {
+      "id": "SNAP_03_TIE_NEGATIVE_ZERO",
+      "category": "snapping_and_fallbacks",
+      "description": "Rounding tie in negative space at val = -8",
+      "inputs": {
+        "val": -8,
+        "interval": [
+          -100,
+          100
+        ]
+      },
+      "expected": {
+        "snapped": 0,
+        "status": "16_safe"
+      },
+      "mathematical_notes": "16 * floor((-8+8)/16) = 0. Equidistant from -16 and 0, rounds up towards +inf."
+    },
+    {
+      "id": "SNAP_04_TIE_NEGATIVE_NONZERO",
+      "category": "snapping_and_fallbacks",
+      "description": "Rounding tie in negative space at val = -24",
+      "inputs": {
+        "val": -24,
+        "interval": [
+          -100,
+          100
+        ]
+      },
+      "expected": {
+        "snapped": -16,
+        "status": "16_safe"
+      },
+      "mathematical_notes": "16 * floor((-24+8)/16) = -16. Equidistant from -32 and -16, rounds up."
+    },
+    {
+      "id": "SNAP_05_FALLBACK_8_TIGHT_INTERVAL",
+      "category": "snapping_and_fallbacks",
+      "description": "Interval [18, 30] contains no multiple of 16, fallback to 8 finds 24",
+      "inputs": {
+        "val": 20,
+        "interval": [
+          18,
+          30
+        ]
+      },
+      "expected": {
+        "snapped": 24,
+        "status": "8_fallback_safe"
+      },
+      "mathematical_notes": "Multiples of 16 (0, 16, 32) are all outside [18, 30]. Multiple of 8 is 24."
+    },
+    {
+      "id": "TRAP_01_NAIVE_FORMULA_FAILS_VALID_16_EXISTS",
+      "category": "edge_cases_and_traps",
+      "description": "Centroid = 18 in [17, 35]: naive formula gives 16 (outside), but 32 is valid",
+      "inputs": {
+        "val": 18,
+        "interval": [
+          17,
+          35
+        ]
+      },
+      "expected": {
+        "naive_formula_result": 16,
+        "naive_formula_in_bounds": false,
+        "constrained_search_result": 32,
+        "constrained_status": "16_safe"
+      },
+      "mathematical_notes": "Naive blueprint formula 16*floor((18+8)/16)=16 produces a FALSE REJECT even though 32 is in [17, 35]."
+    },
+    {
+      "id": "TRAP_02_NO_VALID_GRID_MULTIPLE",
+      "category": "edge_cases_and_traps",
+      "description": "Tight interval [91, 95] contains neither multiple of 16 nor 8",
+      "inputs": {
+        "val": 93,
+        "interval": [
+          91,
+          95
+        ]
+      },
+      "expected": {
+        "snapped": null,
+        "status": "no_valid_grid_multiple",
+        "available_16": [],
+        "available_8": []
+      },
+      "mathematical_notes": "Width is 5. Multiples of 8 are 88 and 96. Snapping to either would violate safe interval."
+    },
+    {
+      "id": "TRAP_03_SNAPPING_CAUSES_STRUCTURE_LOSS",
+      "category": "edge_cases_and_traps",
+      "description": "Structure at X = 847 requires C >= 16. If centroid is clamped to 15, unconstrained snap to 0 loses structure",
+      "inputs": {
+        "structure_x": 847,
+        "safe_min_c": 16,
+        "forced_snap_center": 0
+      },
+      "expected": {
+        "structure_contained_at_16": true,
+        "structure_contained_at_0": false
+      },
+      "mathematical_notes": "If algorithm forces unconstrained snapping to 0, upper bound is 832 < 847, losing the structure."
+    }
+  ]
+}

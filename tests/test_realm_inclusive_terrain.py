@@ -57,7 +57,8 @@ def mountains(kind, resolution=8):
 
 
 def test_default_and_explicit_active_profiles_have_same_terrain_preferences():
-    cfg = origin_blueprint_config()
+    from seed_search.realm.cli import load
+    cfg = load(None)
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
     assert cfg['terrain']['v1'] == explicit['terrain']['v1']
     for profile in (cfg, explicit):

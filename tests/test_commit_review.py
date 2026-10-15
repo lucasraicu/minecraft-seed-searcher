@@ -72,6 +72,15 @@ def test_merge_is_atomic_readonly_and_idempotent(tmp_path):
         merge_runs([second],first)
 
 
+def test_merge_conflict_into_new_destination_can_retry(tmp_path):
+    first, conflict, master = (tmp_path / n for n in ('first', 'conflict', 'master'))
+    source_run(first, 'A')
+    source_run(conflict, 'B')
+    with pytest.raises(ValueError, match='incompatible records'):
+        merge_runs([first, conflict], master)
+    assert merge_runs([first], master)['total_candidates'] == 1
+
+
 def test_tuner_partitions_actual_batches_and_respects_production_threads(monkeypatch,tmp_path,capsys):
     calls=[]
     class Batch:
@@ -80,7 +89,9 @@ def test_tuner_partitions_actual_batches_and_respects_production_threads(monkeyp
         def __exit__(self,*args): pass
     class Prototype:
         identity={'openmp':True}
-        def __init__(self,*args): pass
+        def __init__(self,directory,cfg):
+            assert cfg['screening_revision'] == 'dynamic-envelope-1664-v1'
+            assert cfg['structures']['hard_floors']['shipwreck'] == 4
         def sweep(self,seeds,threads,**kwargs):
             assert 1 <= threads <= 34
             assert len(seeds) <= 16384
@@ -88,11 +99,17 @@ def test_tuner_partitions_actual_batches_and_respects_production_threads(monkeyp
             return Batch(len(seeds))
     (tmp_path/'identity.json').write_text(json.dumps({'openmp':True}))
     monkeypatch.setattr(tune_machine,'Prototype',Prototype)
+    builds=[]
+    monkeypatch.setattr(tune_machine,'build',lambda *args,**kwargs: builds.append(kwargs))
     monkeypatch.setattr(tune_machine.os,'cpu_count',lambda:192)
     winner=tune_machine.tune_machine(tmp_path,None,count=30000)
+    assert builds and builds[0]['work_chunk']==64
     assert winner['threads'] <= 34
-    assert any(n == 4096 for _,n in calls)
     assert any(n == 8192 for _,n in calls)
-    assert '--native-build' in capsys.readouterr().out
+    assert any(n == 16384 for _,n in calls)
+    output = capsys.readouterr().out
+    assert '192 Logical Cores' in output
+    assert '1–34' in output
+    assert '--native-build' in output
     with pytest.raises(ValueError,match='50,000'):
         tune_machine.tune_machine(tmp_path,None,count=50001)

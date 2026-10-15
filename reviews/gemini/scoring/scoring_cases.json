@@ -1,0 +1,4712 @@
+{
+  "test_suite_version": "1.0",
+  "target_blueprint": "Revision 4.1",
+  "cases_count": 104,
+  "cases": [
+    {
+      "id": "MANDATORY_STRONGHOLD_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Stronghold: Immediately Below Hard Floor",
+      "description": "Count = 0 drops below guaranteed hard floor (1). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 0,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_stronghold",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 0 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_STRONGHOLD_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Stronghold: Exactly At Target",
+      "description": "Count = 1 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_STRONGHOLD_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Stronghold: First Surplus Instance (+1)",
+      "description": "Count = 2 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 2,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 150,
+        "smart_score": 150,
+        "ranking_tuple": [
+          0,
+          150,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +50 points for achieving 2th instance."
+    },
+    {
+      "id": "MANDATORY_STRONGHOLD_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Stronghold: Second Surplus Instance (+2)",
+      "description": "Count = 3. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 3,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 150,
+        "smart_score": 150,
+        "ranking_tuple": [
+          0,
+          150,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For stronghold: Blueprint Section 3 specifies '+50 pts for 2th', whereas historical code used (count - 1) * 50."
+    },
+    {
+      "id": "MANDATORY_MANSION_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Mansion: Immediately Below Hard Floor",
+      "description": "Count = 0 drops below guaranteed hard floor (1). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 0,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_mansion",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 0 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_MANSION_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Mansion: Exactly At Target",
+      "description": "Count = 1 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_MANSION_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Mansion: First Surplus Instance (+1)",
+      "description": "Count = 2 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 2,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 150,
+        "smart_score": 150,
+        "ranking_tuple": [
+          0,
+          150,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +50 points for achieving 2th instance."
+    },
+    {
+      "id": "MANDATORY_MANSION_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Mansion: Second Surplus Instance (+2)",
+      "description": "Count = 3. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 3,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 150,
+        "smart_score": 150,
+        "ranking_tuple": [
+          0,
+          150,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mansion: Blueprint Section 3 specifies '+50 pts for 2th', whereas historical code used (count - 1) * 50."
+    },
+    {
+      "id": "MANDATORY_MONUMENT_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Monument: Immediately Below Hard Floor",
+      "description": "Count = 0 drops below guaranteed hard floor (1). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 0,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_monument",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 0 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_MONUMENT_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Monument: Exactly At Target",
+      "description": "Count = 1 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_MONUMENT_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Monument: First Surplus Instance (+1)",
+      "description": "Count = 2 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 2,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 135,
+        "smart_score": 135,
+        "ranking_tuple": [
+          0,
+          135,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +35 points for achieving 2th instance."
+    },
+    {
+      "id": "MANDATORY_MONUMENT_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Monument: Second Surplus Instance (+2)",
+      "description": "Count = 3. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 3,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 135,
+        "smart_score": 135,
+        "ranking_tuple": [
+          0,
+          135,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For monument: Blueprint Section 3 specifies '+35 pts for 2th', whereas historical code used (count - 1) * 35."
+    },
+    {
+      "id": "MANDATORY_OUTPOST_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Outpost: Immediately Below Hard Floor",
+      "description": "Count = 1 drops below guaranteed hard floor (2). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 1,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_outpost",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 1 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_OUTPOST_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Outpost: Exactly At Target",
+      "description": "Count = 2 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_OUTPOST_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Outpost: First Surplus Instance (+1)",
+      "description": "Count = 3 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 3,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +20 points for achieving 3th instance."
+    },
+    {
+      "id": "MANDATORY_OUTPOST_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Outpost: Second Surplus Instance (+2)",
+      "description": "Count = 4. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 4,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "MANDATORY_FORTRESS_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Fortress: Immediately Below Hard Floor",
+      "description": "Count = 1 drops below guaranteed hard floor (2). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 1,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_fortress",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 1 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_FORTRESS_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Fortress: Exactly At Target",
+      "description": "Count = 2 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_FORTRESS_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Fortress: First Surplus Instance (+1)",
+      "description": "Count = 3 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 3,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +20 points for achieving 3th instance."
+    },
+    {
+      "id": "MANDATORY_FORTRESS_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Fortress: Second Surplus Instance (+2)",
+      "description": "Count = 4. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 4,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "MANDATORY_BASTION_BELOW_FLOOR",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Bastion: Immediately Below Hard Floor",
+      "description": "Count = 1 drops below guaranteed hard floor (2). Mandatory category has 0 tolerance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 1,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_bastion",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Mandatory categories cannot consume the deficit budget. Drop to 1 triggers instant rejection."
+    },
+    {
+      "id": "MANDATORY_BASTION_AT_TARGET",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Bastion: Exactly At Target",
+      "description": "Count = 2 exactly satisfies target and floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "At exact target, 0 surplus bonus points are awarded and 0 deficits are consumed."
+    },
+    {
+      "id": "MANDATORY_BASTION_FIRST_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Bastion: First Surplus Instance (+1)",
+      "description": "Count = 3 achieves the first surplus instance.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 3,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Awards +20 points for achieving 3th instance."
+    },
+    {
+      "id": "MANDATORY_BASTION_SECOND_SURPLUS",
+      "section": "mandatory_floor_boundaries",
+      "title": "Mandatory Bastion: Second Surplus Instance (+2)",
+      "description": "Count = 4. Evaluates whether surplus is capped as a one-time milestone or open-ended linear.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 4,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 120,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Village: Immediately Below Hard Floor",
+      "description": "Count = 7 drops below guaranteed hard floor (8). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 7,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_village",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Village: Exactly At Hard Floor",
+      "description": "Count = 8 meets hard floor but is in deficit below ideal target (9). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "village"
+        ],
+        "structure_surplus_score": 75,
+        "smart_score": 75,
+        "ranking_tuple": [
+          1,
+          75,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Village: Exactly At Target",
+      "description": "Count = 9 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 9. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Village: First Surplus Above Target (+1)",
+      "description": "Count = 10 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 10,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 125,
+        "smart_score": 125,
+        "ranking_tuple": [
+          0,
+          125,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mineshafts: Target=15. Count=16 awards +1 pt in Blueprint and C, but historical Python subtracted 20, giving 0 pts!"
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Trial Chamber: Immediately Below Hard Floor",
+      "description": "Count = 6 drops below guaranteed hard floor (7). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 6,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_trial_chamber",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Trial Chamber: Exactly At Hard Floor",
+      "description": "Count = 7 meets hard floor but is in deficit below ideal target (8). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 7,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "trial_chamber"
+        ],
+        "structure_surplus_score": 90,
+        "smart_score": 90,
+        "ranking_tuple": [
+          1,
+          90,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Trial Chamber: Exactly At Target",
+      "description": "Count = 8 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 8. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Trial Chamber: First Surplus Above Target (+1)",
+      "description": "Count = 9 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 9,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 110,
+        "smart_score": 110,
+        "ranking_tuple": [
+          0,
+          110,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mineshafts: Target=15. Count=16 awards +1 pt in Blueprint and C, but historical Python subtracted 20, giving 0 pts!"
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ancient City: Immediately Below Hard Floor",
+      "description": "Count = 2 drops below guaranteed hard floor (3). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 2,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_ancient_city",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ancient City: Exactly At Hard Floor",
+      "description": "Count = 3 meets hard floor but is in deficit below ideal target (4). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 3,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "ancient_city"
+        ],
+        "structure_surplus_score": 75,
+        "smart_score": 75,
+        "ranking_tuple": [
+          1,
+          75,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ancient City: Exactly At Target",
+      "description": "Count = 4 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 4. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ancient City: First Surplus Above Target (+1)",
+      "description": "Count = 5 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 5,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Desert Pyramid: Immediately Below Hard Floor",
+      "description": "Count = 1 drops below guaranteed hard floor (2). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 1,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_desert_pyramid",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Desert Pyramid: Exactly At Hard Floor",
+      "description": "Count = 2 meets hard floor but is in deficit below ideal target (3). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 2,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "desert_pyramid"
+        ],
+        "structure_surplus_score": 80,
+        "smart_score": 80,
+        "ranking_tuple": [
+          1,
+          80,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Desert Pyramid: Exactly At Target",
+      "description": "Count = 3 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 3. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Desert Pyramid: First Surplus Above Target (+1)",
+      "description": "Count = 4 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 4,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Jungle Temple: Immediately Below Hard Floor",
+      "description": "Count = 1 drops below guaranteed hard floor (2). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 1,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_jungle_temple",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Jungle Temple: Exactly At Hard Floor",
+      "description": "Count = 2 meets hard floor but is in deficit below ideal target (3). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 2,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "jungle_temple"
+        ],
+        "structure_surplus_score": 80,
+        "smart_score": 80,
+        "ranking_tuple": [
+          1,
+          80,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Jungle Temple: Exactly At Target",
+      "description": "Count = 3 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 3. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Jungle Temple: First Surplus Above Target (+1)",
+      "description": "Count = 4 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 4,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: One-time milestone bonus (+20 pts for 3rd structure / +25 pts for 4th Ancient City); no additional award for later instances."
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Shipwreck: Immediately Below Hard Floor",
+      "description": "Count = 3 drops below guaranteed hard floor (4). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 3,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_shipwreck",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Shipwreck: Exactly At Hard Floor",
+      "description": "Count = 4 meets hard floor but is in deficit below ideal target (6). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 4,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "shipwreck"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_INTERMEDIATE_DEFICIT",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Shipwreck: Intermediate Deficit (5)",
+      "description": "Count = 5 is between floor (4) and target (6). Demonstrates that 1 deficient category consumes 1 budget unit regardless of depth.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 5,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "shipwreck"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For shipwrecks at count=5: Historical Python subtracted 4, giving 5 points! Blueprint and Native C correctly give 0 points."
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Shipwreck: Exactly At Target",
+      "description": "Count = 6 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 6. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Shipwreck: First Surplus Above Target (+1)",
+      "description": "Count = 7 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 7,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 105,
+        "smart_score": 105,
+        "ranking_tuple": [
+          0,
+          105,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mineshafts: Target=15. Count=16 awards +1 pt in Blueprint and C, but historical Python subtracted 20, giving 0 pts!"
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ruined Portal: Immediately Below Hard Floor",
+      "description": "Count = 4 drops below guaranteed hard floor (5). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 4,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_ruined_portal",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ruined Portal: Exactly At Hard Floor",
+      "description": "Count = 5 meets hard floor but is in deficit below ideal target (7). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 5,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "ruined_portal"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_INTERMEDIATE_DEFICIT",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ruined Portal: Intermediate Deficit (6)",
+      "description": "Count = 6 is between floor (5) and target (7). Demonstrates that 1 deficient category consumes 1 budget unit regardless of depth.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 6,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "ruined_portal"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For shipwrecks at count=5: Historical Python subtracted 4, giving 5 points! Blueprint and Native C correctly give 0 points."
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ruined Portal: Exactly At Target",
+      "description": "Count = 7 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 7. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Ruined Portal: First Surplus Above Target (+1)",
+      "description": "Count = 8 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 8,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 105,
+        "smart_score": 105,
+        "ranking_tuple": [
+          0,
+          105,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mineshafts: Target=15. Count=16 awards +1 pt in Blueprint and C, but historical Python subtracted 20, giving 0 pts!"
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_BELOW_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Mineshaft: Immediately Below Hard Floor",
+      "description": "Count = 11 drops below guaranteed hard floor (12). Disqualifies seed immediately.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 11
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_mineshaft",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null
+      },
+      "notes": "Even flexible categories cause instant rejection if they fall below their guaranteed hard floor."
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_AT_FLOOR",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Mineshaft: Exactly At Hard Floor",
+      "description": "Count = 12 meets hard floor but is in deficit below ideal target (15). Consumes exactly 1 deficit budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 12
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "mineshaft"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Consumes 1 budget unit. Notice that in the database view, unmet_requirements evaluates to 0, causing a tie with Tier 0!"
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_INTERMEDIATE_DEFICIT",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Mineshaft: Intermediate Deficit (13)",
+      "description": "Count = 13 is between floor (12) and target (15). Demonstrates that 1 deficient category consumes 1 budget unit regardless of depth.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 13
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "mineshaft"
+        ],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For shipwrecks at count=5: Historical Python subtracted 4, giving 5 points! Blueprint and Native C correctly give 0 points."
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_AT_TARGET",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Mineshaft: Exactly At Target",
+      "description": "Count = 15 meets ideal target. 0 deficits consumed.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 100,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Target count is 15. If shipwreck: Historical Python subtracted 4 and awarded 10 pts for 6 wrecks!"
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_SURPLUS_PLUS_1",
+      "section": "flexible_deficit_boundaries",
+      "title": "Flexible Mineshaft: First Surplus Above Target (+1)",
+      "description": "Count = 16 exceeds target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 16
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "structure_surplus_score": 101,
+        "smart_score": 101,
+        "ranking_tuple": [
+          0,
+          101,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "For mineshafts: Target=15. Count=16 awards +1 pt in Blueprint and C, but historical Python subtracted 20, giving 0 pts!"
+    },
+    {
+      "id": "BUDGET_TIER_0_PERFECT",
+      "section": "deficit_budget_combinations",
+      "title": "Perfect Seed: All 14 Categories Meet Ideal Target",
+      "description": "0 categories in deficit. All structures at or above ideal target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "budget_consumed": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_1_SHALLOW_MISS",
+      "section": "deficit_budget_combinations",
+      "title": "Tier 1: Single Shallow Deficit (-1 Drop in Villages)",
+      "description": "8 Villages (Target 9, Floor 8). All other 13 categories at target.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "village"
+        ],
+        "budget_consumed": 1,
+        "smart_score": 75,
+        "ranking_tuple": [
+          1,
+          75,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_1_DEEP_MISS_SHIPWRECKS",
+      "section": "deficit_budget_combinations",
+      "title": "Tier 1: Single Deep Deficit (-2 Drop in Shipwrecks)",
+      "description": "4 Shipwrecks (Target 6, Floor 4). Drops 2 structures, but consumes exactly 1 budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 4,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "shipwreck"
+        ],
+        "budget_consumed": 1,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_1_DEEPEST_MISS_MINESHAFTS",
+      "section": "deficit_budget_combinations",
+      "title": "Tier 1: Single Deepest Deficit (-3 Drop in Mineshafts)",
+      "description": "12 Mineshafts (Target 15, Floor 12). Drops 3 structures, but consumes exactly 1 budget unit.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 12
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 1,
+        "deficit_tier": 1,
+        "deficit_categories": [
+          "mineshaft"
+        ],
+        "budget_consumed": 1,
+        "smart_score": 100,
+        "ranking_tuple": [
+          1,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_2_TWO_SHALLOW_MISSES",
+      "section": "deficit_budget_combinations",
+      "title": "Tier 2: Two Shallow Deficits (8 Villages + 7 Trial Chambers)",
+      "description": "8 Villages and 7 Trial Chambers. Both at floor. Consumes exactly 2 budget units.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 7,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 2,
+        "deficit_tier": 2,
+        "deficit_categories": [
+          "village",
+          "trial_chamber"
+        ],
+        "budget_consumed": 2,
+        "smart_score": 65,
+        "ranking_tuple": [
+          2,
+          65,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_2_TWO_DEEP_MISSES",
+      "section": "deficit_budget_combinations",
+      "title": "Tier 2: Two Deep Deficits (4 Shipwrecks [-2] + 12 Mineshafts [-3])",
+      "description": "Shipwrecks at floor 4 (-2 drop) and Mineshafts at floor 12 (-3 drop). Consumes 2 budget units.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 4,
+          "ruined_portal": 7,
+          "mineshaft": 12
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 2,
+        "deficit_tier": 2,
+        "deficit_categories": [
+          "shipwreck",
+          "mineshaft"
+        ],
+        "budget_consumed": 2,
+        "smart_score": 100,
+        "ranking_tuple": [
+          2,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_3_EXCESS_BUDGET_REJECT",
+      "section": "deficit_budget_combinations",
+      "title": "Excess Budget Rejection: Three Deficits (8 Vill + 7 TC + 3 AC)",
+      "description": "8 Villages, 7 Trial Chambers, and 3 Ancient Cities. All meet floors, but total deficits = 3 > 2.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 7,
+          "ancient_city": 3,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "excess_deficits",
+        "is_fatal": true,
+        "deficit_count": 3,
+        "deficit_tier": null,
+        "deficit_categories": [
+          "village",
+          "trial_chamber",
+          "ancient_city"
+        ],
+        "smart_score": 0,
+        "ranking_tuple": null,
+        "budget_consumed": ">2 or fatal"
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_TIER_3_DEEP_EXCESS_REJECT",
+      "section": "deficit_budget_combinations",
+      "title": "Excess Budget Rejection: Three Deep Deficits (4 Wrecks + 12 Shafts + 8 Vill)",
+      "description": "4 Shipwrecks, 12 Mineshafts, and 8 Villages. Total deficits = 3 > 2.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 4,
+          "ruined_portal": 7,
+          "mineshaft": 12
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "excess_deficits",
+        "is_fatal": true,
+        "deficit_count": 3,
+        "deficit_tier": null,
+        "deficit_categories": [
+          "village",
+          "shipwreck",
+          "mineshaft"
+        ],
+        "smart_score": 0,
+        "ranking_tuple": null,
+        "budget_consumed": ">2 or fatal"
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_MANDATORY_FAIL_WITH_ZERO_OTHER_MISSES",
+      "section": "deficit_budget_combinations",
+      "title": "Instant Disqualification: Mandatory Floor Drop with 0 Flexible Misses",
+      "description": "0 Strongholds (Floor 1). All other 13 categories at ideal target. Instant fatal reject.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 0,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_stronghold",
+        "is_fatal": true,
+        "deficit_count": 0,
+        "deficit_tier": null,
+        "deficit_categories": [],
+        "smart_score": 0,
+        "ranking_tuple": null,
+        "budget_consumed": ">2 or fatal"
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "BUDGET_MANDATORY_FAIL_WITH_ONE_FLEXIBLE_MISS",
+      "section": "deficit_budget_combinations",
+      "title": "Instant Disqualification: Mandatory Floor Drop with 1 Flexible Deficit",
+      "description": "1 Outpost (Floor 2) and 8 Villages (Floor 8). Instant fatal reject on outpost floor.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 1,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 8,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "REJECT",
+        "rejection_reason": "floor_outpost",
+        "is_fatal": true,
+        "deficit_count": 1,
+        "deficit_tier": null,
+        "deficit_categories": [
+          "village"
+        ],
+        "smart_score": 0,
+        "ranking_tuple": null,
+        "budget_consumed": ">2 or fatal"
+      },
+      "notes": "Crucial test case proving that depth of miss (e.g. -2 or -3 drops) consumes exactly 1 deficit unit, and that >2 deficits reject."
+    },
+    {
+      "id": "HUB_ZERO_STRUCTURES",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: Zero Structures Within Visual Range",
+      "description": "No qualifying structures located within 512m of center.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 0,
+        "hub_bonus_clamped": 0,
+        "cap_applied": false,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_VILLAGE",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Village Within 512m",
+      "description": "1 Village within 512m (award +6 pts).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "village": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 6,
+        "hub_bonus_clamped": 6,
+        "cap_applied": false,
+        "smart_score": 106,
+        "ranking_tuple": [
+          0,
+          106,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_PYRAMID",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Desert Pyramid Within 512m",
+      "description": "1 Desert Pyramid within 512m (award +6 pts).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "desert_pyramid": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 6,
+        "hub_bonus_clamped": 6,
+        "cap_applied": false,
+        "smart_score": 106,
+        "ranking_tuple": [
+          0,
+          106,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_TEMPLE",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Jungle Temple Within 512m",
+      "description": "1 Jungle Temple within 512m (award +6 pts).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "jungle_temple": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 6,
+        "hub_bonus_clamped": 6,
+        "cap_applied": false,
+        "smart_score": 106,
+        "ranking_tuple": [
+          0,
+          106,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_OUTPOST",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Pillager Outpost Within 512m",
+      "description": "1 Pillager Outpost within 512m (award +6 pts).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "outpost": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 6,
+        "hub_bonus_clamped": 6,
+        "cap_applied": false,
+        "smart_score": 106,
+        "ranking_tuple": [
+          0,
+          106,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_PORTAL",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Ruined Portal Within 512m",
+      "description": "1 Ruined Portal within 512m (award +4 pts).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "ruined_portal": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 4,
+        "hub_bonus_clamped": 4,
+        "cap_applied": false,
+        "smart_score": 104,
+        "ranking_tuple": [
+          0,
+          104,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SINGLE_MEGA_CAVE",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: 1 Mega-Cave Witness Within 512m",
+      "description": "1 Mega-Cave witness within 512m (Blueprint awards +4 pts; omitted in code).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "mega_cave": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 0,
+        "hub_bonus_clamped": 0,
+        "cap_applied": false,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Resolved milestone rule: No invented +4 entry bonus is awarded for mega-cave witnesses from climate noise alone without BDS confirmation. Hub bonus is 0 pts."
+    },
+    {
+      "id": "HUB_MIXED_BELOW_CAP",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: Mixed Features Sub-Cap (34 pts)",
+      "description": "3 Villages (18 pts) + 1 Outpost (6 pts) + 1 Pyramid (6 pts) + 1 Portal (4 pts) = 34 pts.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "village": 3,
+          "outpost": 1,
+          "desert_pyramid": 1,
+          "ruined_portal": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 34,
+        "hub_bonus_clamped": 34,
+        "cap_applied": false,
+        "smart_score": 134,
+        "ranking_tuple": [
+          0,
+          134,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_EXACTLY_AT_CAP",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: Exactly At 40-Point Cap (40 pts)",
+      "description": "6 Villages (36 pts) + 1 Portal (4 pts) = exactly 40 pts.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "village": 6,
+          "ruined_portal": 1
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 40,
+        "hub_bonus_clamped": 40,
+        "cap_applied": false,
+        "smart_score": 140,
+        "ranking_tuple": [
+          0,
+          140,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_SLIGHTLY_ABOVE_CAP_CLAMPED",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: Immediately Above Cap Clamped (44 pts -> 40 pts)",
+      "description": "6 Villages (36 pts) + 2 Portals (8 pts) = 44 pts -> strictly clamped to 40 pts.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "village": 6,
+          "ruined_portal": 2
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 44,
+        "hub_bonus_clamped": 40,
+        "cap_applied": true,
+        "smart_score": 140,
+        "ranking_tuple": [
+          0,
+          140,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "HUB_HIGH_SURPLUS_CLAMPED",
+      "section": "starter_hub_bonus_and_cap",
+      "title": "512m Hub: Large Cluster Strictly Clamped (72 pts -> 40 pts)",
+      "description": "8 Villages (48 pts) + 2 Pyramids (12 pts) + 3 Portals (12 pts) = 72 pts -> strictly clamped to 40 pts.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [],
+        "hub_items": {
+          "village": 8,
+          "desert_pyramid": 2,
+          "ruined_portal": 3
+        }
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "hub_bonus_raw": 72,
+        "hub_bonus_clamped": 40,
+        "cap_applied": true,
+        "smart_score": 140,
+        "ranking_tuple": [
+          0,
+          140,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Audit finding: While hub_bonus() is implemented with min(40, ...), it was never invoked during production scans and omits mega-caves."
+    },
+    {
+      "id": "LUXURY_CHERRY_GROVE",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Cherry Grove",
+      "description": "Tests point award for cherry_grove (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "cherry_grove"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 30,
+        "smart_score": 130,
+        "ranking_tuple": [
+          0,
+          130,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Python over-awarded 35 pts vs blueprint 30 pts"
+    },
+    {
+      "id": "LUXURY_PALE_GARDEN",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Pale Garden",
+      "description": "Tests point award for pale_garden (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "pale_garden"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 30,
+        "smart_score": 130,
+        "ranking_tuple": [
+          0,
+          130,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Match"
+    },
+    {
+      "id": "LUXURY_MANGROVE_SWAMP",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Mangrove Swamp",
+      "description": "Tests point award for mangrove_swamp (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "mangrove_swamp"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 25,
+        "smart_score": 125,
+        "ranking_tuple": [
+          0,
+          125,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Match"
+    },
+    {
+      "id": "LUXURY_MUSHROOM_FIELDS",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Mushroom Fields",
+      "description": "Tests point award for mushroom_fields (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "mushroom_fields"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 25,
+        "smart_score": 125,
+        "ranking_tuple": [
+          0,
+          125,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Python under-awarded 15 pts vs blueprint 25 pts"
+    },
+    {
+      "id": "LUXURY_BADLANDS",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Badlands",
+      "description": "Tests point award for badlands (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "badlands"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 20,
+        "smart_score": 120,
+        "ranking_tuple": [
+          0,
+          120,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Match"
+    },
+    {
+      "id": "LUXURY_WARM_OCEAN",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Warm Ocean",
+      "description": "Tests point award for warm_ocean (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "warm_ocean"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 15,
+        "smart_score": 115,
+        "ranking_tuple": [
+          0,
+          115,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Python completely omitted warm ocean in historical code"
+    },
+    {
+      "id": "LUXURY_ICE_SPIKES",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Ice Spikes",
+      "description": "Tests point award for ice_spikes (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "ice_spikes"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 15,
+        "smart_score": 115,
+        "ranking_tuple": [
+          0,
+          115,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Python completely omitted ice spikes in historical code"
+    },
+    {
+      "id": "LUXURY_WINDSWEPT_SAVANNA",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Windswept Savanna",
+      "description": "Tests point award for windswept_savanna (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "windswept_savanna"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 15,
+        "smart_score": 115,
+        "ranking_tuple": [
+          0,
+          115,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Python completely omitted windswept savanna in historical code"
+    },
+    {
+      "id": "LUXURY_FLOWER_FOREST",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Flower Forest",
+      "description": "Tests point award for flower_forest (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "flower_forest"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 10,
+        "smart_score": 110,
+        "ranking_tuple": [
+          0,
+          110,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Match"
+    },
+    {
+      "id": "LUXURY_BAMBOO_JUNGLE",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Bamboo Jungle",
+      "description": "Tests point award for bamboo_jungle (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "bamboo_jungle"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 10,
+        "smart_score": 110,
+        "ranking_tuple": [
+          0,
+          110,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Match"
+    },
+    {
+      "id": "LUXURY_SWAMP_HUT",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Swamp Hut",
+      "description": "Tests point award for swamp_hut (Tier 2).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "swamp_hut"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 2"
+      },
+      "notes": "Resolved milestone rule: Minor structures are structure predictors, not luxury biomes. When omitted from structure counts, 0 bonus points are awarded; total score is 100 base points."
+    },
+    {
+      "id": "LUXURY_IGLOO_BASEMENT",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Igloo Basement",
+      "description": "Tests point award for igloo_basement (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "igloo_basement"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Resolved milestone rule: Minor structures are structure predictors, not luxury biomes. When omitted from structure counts, 0 bonus points are awarded; total score is 100 base points."
+    },
+    {
+      "id": "LUXURY_TRAIL_RUINS",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Trail Ruins",
+      "description": "Tests point award for trail_ruins (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "trail_ruins"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Resolved milestone rule: Minor structures are structure predictors, not luxury biomes. When omitted from structure counts, 0 bonus points are awarded; total score is 100 base points."
+    },
+    {
+      "id": "LUXURY_OCEAN_RUINS",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Ocean Ruins",
+      "description": "Tests point award for ocean_ruins (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "ocean_ruins"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Resolved milestone rule: Minor structures are structure predictors, not luxury biomes. When omitted from structure counts, 0 bonus points are awarded; total score is 100 base points."
+    },
+    {
+      "id": "LUXURY_BURIED_TREASURE",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Feature: Buried Treasure",
+      "description": "Tests point award for buried_treasure (Tier 3).",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "buried_treasure"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 0,
+        "smart_score": 100,
+        "ranking_tuple": [
+          0,
+          100,
+          0.0,
+          0.0
+        ],
+        "tier": "Tier 3"
+      },
+      "notes": "Resolved milestone rule: Minor structures are structure predictors, not luxury biomes. When omitted from structure counts, 0 bonus points are awarded; total score is 100 base points."
+    },
+    {
+      "id": "LUXURY_ALL_SUPPORTED_BIOMES",
+      "section": "luxury_biomes_and_discrepancies",
+      "title": "Luxury Biomes: All 10 Supported Biomes Present",
+      "description": "All 10 supported luxury biomes present inside playable envelope simultaneously.",
+      "inputs": {
+        "center": [
+          0,
+          0
+        ],
+        "counts": {
+          "stronghold": 1,
+          "mansion": 1,
+          "monument": 1,
+          "outpost": 2,
+          "fortress": 2,
+          "bastion": 2,
+          "village": 9,
+          "trial_chamber": 8,
+          "ancient_city": 4,
+          "desert_pyramid": 3,
+          "jungle_temple": 3,
+          "shipwreck": 6,
+          "ruined_portal": 7,
+          "mineshaft": 15
+        },
+        "biomes": [
+          "cherry_grove",
+          "pale_garden",
+          "mangrove_swamp",
+          "mushroom_fields",
+          "badlands",
+          "warm_ocean",
+          "ice_spikes",
+          "windswept_savanna",
+          "flower_forest",
+          "bamboo_jungle"
+        ],
+        "hub_items": {}
+      },
+      "expected_blueprint": {
+        "qualification": "PASS",
+        "rejection_reason": null,
+        "is_fatal": false,
+        "deficit_count": 0,
+        "deficit_tier": 0,
+        "deficit_categories": [],
+        "luxury_bonus_points": 195,
+        "smart_score": 295,
+        "ranking_tuple": [
+          0,
+          295,
+          0.0,
+          0.0
+        ]
+      },
+      "notes": "Demonstrates the cumulative point gap in historical Python due to omitted biomes and mismatched point constants."
+    },
+    {
+      "id": "RANKING_PAIR_1_TIER_0_BEATS_TIER_1_HIGHER_SCORE",
+      "section": "ranking_and_tie_breaking",
+      "title": "Level 1 Priority: Deficit Tier 0 Beats Deficit Tier 1 Regardless of Score",
+      "description": "Candidate A (Tier 0, 0 deficits, score 250) vs Candidate B (Tier 1, 1 deficit, score 450). Blueprint mandates Tier 0 ranks ahead of Tier 1.",
+      "candidate_A": {
+        "name": "Candidate A",
+        "deficit_tier": 0,
+        "score": 250,
+        "weighted_radial": 220.0,
+        "origin_dist": 150.0
+      },
+      "candidate_B": {
+        "name": "Candidate B",
+        "deficit_tier": 1,
+        "score": 450,
+        "weighted_radial": 180.0,
+        "origin_dist": 50.0
+      },
+      "expected_winner": "Candidate A",
+      "database_view_winner": "Candidate B",
+      "audit_finding": "CRITICAL FLAW: In candidate_leaderboard_view, both candidates have ranking_tier = 1 and unmet_requirements = 0. SQL sorts by smart_score DESC, causing Candidate B (450 pts) to erroneously win!"
+    },
+    {
+      "id": "RANKING_PAIR_2_TIER_1_BEATS_TIER_2_HIGHER_SCORE",
+      "section": "ranking_and_tie_breaking",
+      "title": "Level 1 Priority: Deficit Tier 1 Beats Deficit Tier 2 Regardless of Score",
+      "description": "Candidate A (Tier 1, 1 deficit, score 280) vs Candidate B (Tier 2, 2 deficits, score 480).",
+      "candidate_A": {
+        "name": "Candidate A",
+        "deficit_tier": 1,
+        "score": 280,
+        "weighted_radial": 210.0,
+        "origin_dist": 100.0
+      },
+      "candidate_B": {
+        "name": "Candidate B",
+        "deficit_tier": 2,
+        "score": 480,
+        "weighted_radial": 150.0,
+        "origin_dist": 40.0
+      },
+      "expected_winner": "Candidate A",
+      "database_view_winner": "Candidate B",
+      "audit_finding": "CRITICAL FLAW: SQL view collapses Tier 1 and Tier 2, ranking purely by smart_score DESC."
+    },
+    {
+      "id": "RANKING_PAIR_3_SAME_TIER_SCORE_TIE_BREAKER",
+      "section": "ranking_and_tie_breaking",
+      "title": "Level 2 Priority: Same Tier, Score Breaks Tie",
+      "description": "Both Candidate A and B are Tier 0. Candidate A has score 350; Candidate B has score 300.",
+      "candidate_A": {
+        "name": "Candidate A",
+        "deficit_tier": 0,
+        "score": 350,
+        "weighted_radial": 220.0,
+        "origin_dist": 150.0
+      },
+      "candidate_B": {
+        "name": "Candidate B",
+        "deficit_tier": 0,
+        "score": 300,
+        "weighted_radial": 180.0,
+        "origin_dist": 50.0
+      },
+      "expected_winner": "Candidate A",
+      "database_view_winner": "Candidate A",
+      "audit_finding": "Within the same deficit tier, higher smart_score wins in both Blueprint and SQL."
+    },
+    {
+      "id": "RANKING_PAIR_4_SAME_SCORE_RADIAL_DISTANCE_TIE_BREAKER",
+      "section": "ranking_and_tie_breaking",
+      "title": "Level 3 Priority: Same Tier & Score, Walkability (weighted_radial_dist) Breaks Tie",
+      "description": "Both Candidate A and B are Tier 0 with smart_score 350. Candidate A has weighted_radial_dist = 185.4m; Candidate B has 242.1m.",
+      "candidate_A": {
+        "name": "Candidate A",
+        "deficit_tier": 0,
+        "score": 350,
+        "weighted_radial": 185.4,
+        "origin_dist": 150.0
+      },
+      "candidate_B": {
+        "name": "Candidate B",
+        "deficit_tier": 0,
+        "score": 350,
+        "weighted_radial": 242.1,
+        "origin_dist": 50.0
+      },
+      "expected_winner": "Candidate A",
+      "database_view_winner": "Arbitrary (id ASC)",
+      "audit_finding": "CRITICAL FLAW: weighted_radial_dist is not in the SQL view or ORDER BY clause; tie is broken arbitrarily by candidate string ID."
+    },
+    {
+      "id": "RANKING_PAIR_5_SAME_RADIAL_ORIGIN_DISTANCE_TIE_BREAKER",
+      "section": "ranking_and_tie_breaking",
+      "title": "Level 4 Priority: Same Tier, Score & Radial, Origin Distance Breaks Tie",
+      "description": "Both candidates match on Tier 0, smart_score 350, and weighted_radial 200.0m. Candidate A is at (C_X, C_Z) = (32, 32) (dist 45.25m). Candidate B is at (128, 128) (dist 181.02m).",
+      "candidate_A": {
+        "name": "Candidate A",
+        "deficit_tier": 0,
+        "score": 350,
+        "weighted_radial": 200.0,
+        "origin_dist": 45.25
+      },
+      "candidate_B": {
+        "name": "Candidate B",
+        "deficit_tier": 0,
+        "score": 350,
+        "weighted_radial": 200.0,
+        "origin_dist": 181.02
+      },
+      "expected_winner": "Candidate A",
+      "database_view_winner": "Arbitrary (id ASC)",
+      "audit_finding": "CRITICAL FLAW: Origin distance is not in the SQL view or ORDER BY clause; tie is broken arbitrarily by candidate string ID."
+    },
+    {
+      "id": "EVIDENCE_MEGA_CAVE_PREDICTOR_VS_TRUTH",
+      "section": "unverified_evidence",
+      "title": "Epistemic Boundary: Mega-Cave Biome Noise Witness vs Live Cavern Opening",
+      "description": "Predictor samples lush_caves at Y=-48. Can this witness certify a mega-cave starter hub bonus?",
+      "predictor_evidence": "3D Perlin noise climate witness at (X, -48, Z) matches lush_caves parameters",
+      "actual_generation_state": "Solid deepslate block; noise carvers did not generate open chamber",
+      "allowed_predictor_claim": "Positive 3D climate witness; cavern air volume remains UNVERIFIED",
+      "prohibited_claim": "Mega-cave opening certified for starter hub access without BDS voxel confirmation",
+      "code_status": "hub_bonus() omits mega_cave entirely; caves.py marks score_effect=None"
+    },
+    {
+      "id": "EVIDENCE_IGLOO_BASEMENT_PREDICTOR_VS_TRUTH",
+      "section": "unverified_evidence",
+      "title": "Epistemic Boundary: Igloo Structure Start vs 50% Basement Generation",
+      "description": "Cubiomes identifies Igloo start chunk at (X, Z). Can +15 pts be awarded for igloo with basement?",
+      "predictor_evidence": "Igloo start chunk PRNG placement viable",
+      "actual_generation_state": "Surface igloo generated without trapdoor or basement laboratory (50% roll failed)",
+      "allowed_predictor_claim": "Igloo structure start candidate only",
+      "prohibited_claim": "Igloo with basement (+15 pts) awarded at predictor stage",
+      "code_status": "Igloo completely omitted from predictor structure scanning"
+    },
+    {
+      "id": "EVIDENCE_STRONGHOLD_PORTAL_ROOM_PREDICTOR_VS_TRUTH",
+      "section": "unverified_evidence",
+      "title": "Epistemic Boundary: Stronghold Start Chunk vs Intact End Portal Room",
+      "description": "Cubiomes predicts Stronghold start staircase. Can stronghold access be certified without checking portal frame?",
+      "predictor_evidence": "Stronghold spiral staircase origin predicted at chunk (X, Z)",
+      "actual_generation_state": "Deep ocean aquifer or ravine cut through portal room coordinates; 0 frame blocks generated",
+      "allowed_predictor_claim": "Stronghold start chunk candidate",
+      "prohibited_claim": "End Portal access certified without headless BDS chunk inspection",
+      "code_status": "verification.py lacks portal_room_present verification; BDS runs only test columns/terrain"
+    }
+  ]
+}

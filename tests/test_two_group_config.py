@@ -12,10 +12,11 @@ from seed_search.realm.config import (
 
 
 def test_current_yaml_matches_two_group_policy():
-    cfg=yaml.safe_load(Path('config/realm.yaml').read_text())
+    cfg=yaml.safe_load(Path('config/realm_2048_marine.yaml').read_text())
     validate_config(cfg)
-    assert cfg['screening_revision']==TWO_GROUP_REVISION
-    assert cfg['structures']==two_group_blueprint_config()['structures']
+    from seed_search.realm.config import TWO_GROUP_MARINE_REVISION, marine_baseline_blueprint_config
+    assert cfg['screening_revision']==TWO_GROUP_MARINE_REVISION
+    assert cfg['structures']==marine_baseline_blueprint_config()['structures']
     assert cfg['search']['max_misses']==2
     assert origin_policy(cfg)
 

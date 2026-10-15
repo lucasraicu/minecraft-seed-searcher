@@ -3,16 +3,15 @@ import type { TelemetryState } from '../types';
 
 interface TelemetryBarProps {
   telemetry: TelemetryState;
-  dataMode: 'demo' | 'live';
+  dataMode: 'connecting' | 'live';
   targetVolume?: number;
   onChangeTargetVolume?: (vol: number) => void;
   onToggleSweep: () => void;
   onPauseSweep?: () => void;
   onContinueSweep?: () => void;
-  onStartTerrain?: () => void;
-  onStopTerrain?: () => void;
   onOpenFunnel: () => void;
   onExport: () => void;
+  onBeginBDSParity?: () => void;
 }
 
 export const TelemetryBar: React.FC<TelemetryBarProps> = ({
@@ -23,10 +22,9 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   onToggleSweep,
   onPauseSweep,
   onContinueSweep,
-  onStartTerrain,
-  onStopTerrain,
   onOpenFunnel,
   onExport,
+  onBeginBDSParity,
 }) => {
   // Generate sparkline path from history
   const history = telemetry.history.length > 0 ? telemetry.history : [0, 0, 0, 0, 0];
@@ -54,9 +52,9 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
     dataMode === 'live' && (telemetry.status === 'running' || Boolean(telemetry.runId));
 
   return (
-    <header className="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between z-20 shadow-md">
+    <header className="min-h-16 shrink-0 bg-slate-900 border-b border-slate-800 px-4 py-3 flex flex-wrap items-center justify-between gap-3 z-20 shadow-md">
       {/* Left: Brand & Status */}
-      <div className="flex items-center gap-6">
+      <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-sm shadow-inner">
             ⛏️
@@ -66,7 +64,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
               Bedrock Seed Searcher
             </h1>
             <span className="text-[10px] text-slate-400 font-mono">
-              {dataMode === 'demo' ? 'Illustrative sample data' : 'Live backend status'}
+              {dataMode === 'connecting' ? 'Connecting to local backend' : 'Live backend status'}
             </span>
           </div>
         </div>
@@ -74,11 +72,11 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
         <div className="h-6 w-px bg-slate-800"></div>
 
         <span className={`px-2 py-1 rounded text-[10px] font-bold tracking-wide border ${
-          dataMode === 'demo'
+          dataMode === 'connecting'
             ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
             : 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
         }`}>
-          {dataMode === 'demo' ? 'DEMO PREVIEW' : 'LIVE'}
+          {dataMode === 'connecting' ? 'CONNECTING' : 'LIVE'}
         </span>
 
         {/* Global Status Pill */}
@@ -107,7 +105,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
       </div>
 
       {/* Middle: Live Telemetry Gauges + Sparkline */}
-      <div className="flex items-center gap-6">
+      <div className="flex flex-wrap items-center gap-3">
         {/* Sparkline & Throughput */}
         <div className="flex items-center gap-3">
           <div className="flex flex-col text-right">
@@ -176,7 +174,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
       </div>
 
       {/* Right: Actions */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={onOpenFunnel}
           className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all border border-slate-700 flex items-center gap-1.5"
@@ -192,48 +190,6 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
         >
           💾 Export
         </button>
-
-        {/* Run Terrain Filtering Action */}
-        {telemetry.terrainStatus === 'running' ? (
-          <div className="flex items-center gap-2 bg-blue-950/80 border border-blue-600/60 rounded-lg px-2.5 py-1 text-xs shadow-inner">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
-            <div className="flex flex-col">
-              <span className="text-[10px] text-blue-300 font-bold uppercase tracking-wider flex items-center gap-1">
-                🌊 Terrain ({telemetry.terrainProgress?.completed ?? 0}/{telemetry.terrainProgress?.total ?? 0})
-              </span>
-              <span className="text-[9px] text-blue-400 font-mono">
-                {telemetry.terrainProgress?.pct ?? 0}% • ETA: {telemetry.terrainProgress?.etaSeconds == null ? 'Pending' : `${Math.round(telemetry.terrainProgress.etaSeconds / 60)}m`}
-              </span>
-            </div>
-            {onStopTerrain && (
-              <button
-                onClick={onStopTerrain}
-                className="ml-1 p-1 hover:bg-blue-800/80 rounded text-red-300 hover:text-red-200 text-xs font-bold transition-colors"
-                title="Stop Terrain Filtering"
-              >
-                ⏹
-              </button>
-            )}
-          </div>
-        ) : (
-          <button
-            onClick={onStartTerrain}
-            disabled={!telemetry.runId || telemetry.candidatesFound === 0 || telemetry.status === 'running'}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border flex items-center gap-1.5 ${
-              (telemetry.terrainProgress?.completed ?? 0) > 0 && (telemetry.terrainProgress?.completed ?? 0) >= (telemetry.terrainProgress?.total ?? 1)
-                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40 hover:bg-blue-500/30'
-                : 'bg-indigo-600 hover:bg-indigo-500 text-white border-indigo-500 shadow-md shadow-indigo-600/30'
-            } disabled:opacity-50 disabled:cursor-not-allowed`}
-            title="Run 2048-block Continental Ocean Terrain Filtering across Candidates"
-          >
-            <span>🌊</span>
-            <span>
-              {(telemetry.terrainProgress?.completed ?? 0) > 0
-                ? `Resume Terrain (${telemetry.terrainProgress?.completed}/${telemetry.terrainProgress?.total})`
-                : 'Run Terrain Filtering'}
-            </span>
-          </button>
-        )}
 
         {/* Quick Volume Target Selector */}
         {onChangeTargetVolume && (
@@ -258,6 +214,19 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
               );
             })}
           </div>
+        )}
+
+        {/* Sample Surface Button */}
+        {onBeginBDSParity && (
+          <button
+            onClick={onBeginBDSParity}
+            disabled={telemetry.status === 'bds_verifying'}
+            className="px-3.5 py-2 rounded-lg font-bold text-xs uppercase tracking-wider text-blue-200 bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/40 shadow-lg shadow-blue-500/10 transition-all flex items-center gap-1.5 disabled:opacity-50"
+            title="Begin Bedrock Dedicated Server (BDS) 1.26.52.3 Parity Audit on active candidate"
+          >
+            <span className={telemetry.status === 'bds_verifying' ? 'animate-spin' : ''}>🛡️</span>
+            <span>{telemetry.status === 'bds_verifying' ? 'Verifying BDS...' : 'Sample Surface'}</span>
+          </button>
         )}
 
         {telemetry.status === 'running' ? (

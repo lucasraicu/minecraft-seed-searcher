@@ -10,7 +10,7 @@ import sys
 import time
 from pathlib import Path
 import yaml
-from .config import two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
+from .config import dynamic_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
 from .capabilities import report, identity as provider_identity
 from .store import RealmStore, canonical
 from .reports import ranked, export, rescore
@@ -46,7 +46,7 @@ def handles(argv=None):
 
 
 def load(path=None):
-    cfg=yaml.safe_load(Path(path).read_text()) if path else two_group_blueprint_config()
+    cfg=yaml.safe_load(Path(path).read_text()) if path else dynamic_blueprint_config()
     validate_config(cfg)
     return cfg
 

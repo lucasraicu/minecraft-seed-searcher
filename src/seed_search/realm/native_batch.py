@@ -15,10 +15,10 @@ from pathlib import Path
 import numpy as np
 
 from seed_search.backend import biome_catalog, structure_type
-from seed_search.realm.blueprint import PALETTE, evaluate_seed
+from seed_search.realm.blueprint import PALETTE, evaluate_seed, evaluate_dynamic_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, stronghold_after, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, marine_baseline_policy, dynamic_policy, stronghold_after, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -26,7 +26,7 @@ from seed_search.seeds import MASK64, parse_seed, seed_from_index
 
 NAMES=('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
        'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
-METRICS={'stage_seconds','native_work','worker_cpu_seconds','total_seconds','worker_pid',
+METRICS={'biome_cache_hits','stage_seconds','native_work','worker_cpu_seconds','total_seconds','worker_pid',
          'worker_peak_rss_bytes','prototype'}
 
 
@@ -62,7 +62,7 @@ class Prototype:
                 raise ValueError('Native OpenMP runtime identity mismatch')
             spec=importlib.util.spec_from_file_location('_blueprint_batch',path)
             self.module=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.module)
-        if two_group_policy(cfg) and self.identity.get('stronghold_after',2)!=stronghold_after(cfg):
+        if two_group_policy(cfg) and not dynamic_policy(cfg) and self.identity.get('stronghold_after',2)!=stronghold_after(cfg):
             raise ValueError('Native Stronghold placement differs from the resolved policy')
         self.ffi,self.lib=self.module.ffi,self.module.lib;self.cfg=json.loads(json.dumps(cfg))
         self.policy=self.ffi.new('NBPolicy *')
@@ -70,13 +70,25 @@ class Prototype:
         if not hasattr(self.policy,'outpost_goal'):raise ValueError('Native blueprint ABI changed; rebuild the extension before using this adapter')
         if two_group_policy(cfg) and not all(hasattr(self.policy,n) for n in ('two_group','floors','flexible_mask')):
             raise ValueError('Two-group policy requires the rebuilt native hard-floor ABI')
+        if marine_baseline_policy(cfg) and not hasattr(self.policy,'marine_baseline'):
+            raise ValueError('Marine baseline policy requires a rebuilt native extension')
+        if dynamic_policy(cfg) and not all(hasattr(self.policy,name) for name in ('dynamic','nether_ids','optional_types')):
+            raise ValueError('Dynamic baseline requires a rebuilt native extension')
         self.policy.locked=int(locked_policy(cfg))
         self.policy.river=int(river_policy(cfg))
         self.policy.outpost_goal=cfg['structures']['minimum_counts']['outpost'] if outpost_policy(cfg) else 0
         if two_group_policy(cfg):
             self.policy.two_group=1
             self.policy.floors=[cfg['structures']['hard_floors'].get(n,0) for n in NAMES]
-            self.policy.flexible_mask=sum(1<<NAMES.index(n) for n in ('mansion','trial_chamber','village','ruined_portal','mineshaft','ancient_city','fortress','bastion'))
+            self.policy.flexible_mask=sum(1<<NAMES.index(n) for n in
+                (('trial_chamber','village','ruined_portal','mineshaft','ancient_city',
+                  'desert_pyramid','jungle_temple','shipwreck') if dynamic_policy(cfg) else
+                 ('mansion','trial_chamber','village','ruined_portal','mineshaft','ancient_city','fortress','bastion')))
+        if dynamic_policy(cfg):
+            self.policy.dynamic=1
+            self.policy.density_weights=[cfg['search']['density_weights'][n] for n in
+                ('village','trial_chamber','ancient_city','desert_pyramid','jungle_temple','outpost')]
+        if hasattr(self.policy,'marine_baseline'):self.policy.marine_baseline=int(marine_baseline_policy(cfg))
         if origin_policy(cfg) and not hasattr(self.policy,'origin'):
             raise ValueError('Origin policy needs the rebuilt native ABI')
         if hasattr(self.policy,'origin'):self.policy.origin=int(origin_policy(cfg))
@@ -93,12 +105,19 @@ class Prototype:
         catalog=biome_catalog();ids={row['name']:row['id'] for row in catalog}
         self.families=cfg['biomes']['required_families']
         for row in catalog:
-            self.policy.biome_members[row['id']]=sum(1<<i for i,f in enumerate(self.families) if canonical(row['name']) in PALETTE[f])
+            self.policy.biome_members[row['id']]=sum(1<<i for i,f in enumerate(self.families) if canonical(row['name']) in (PALETTE[f]|({'frozen_peaks'} if dynamic_policy(cfg) and f=='peaks' else set())))
             name=canonical(row['name'])
             if hasattr(self.policy,'bonus_biome_members'):
                 self.policy.bonus_biome_members[row['id']]=(int(name=='cherry_grove')|
                     int(name in ('badlands','wooded_badlands','eroded_badlands'))<<1|
-                    int(name=='mushroom_fields')<<2)
+                    int(name=='mushroom_fields')<<2|
+                    int(name=='pale_garden')<<3|
+                    int(name=='mangrove_swamp')<<4|
+                    int(name=='flower_forest')<<5|
+                    int(name=='bamboo_jungle')<<6|
+                    ((int(name=='warm_ocean')<<7|int(name=='ice_spikes')<<8|int(name in ('windswept_savanna','shattered_savanna'))<<9) if dynamic_policy(cfg) else 0))
+        if dynamic_policy(cfg):self.policy.nether_ids=[ids[name] for name in cfg['biomes']['nether_required']]
+        if dynamic_policy(cfg):self.policy.optional_types=[structure_type(n) for n in ('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')]
         self.policy.dark_id=ids['dark_forest'];self.policy.pale_id=ids['pale_garden']
         self.policy.fixture_surface=[ids[n] for n in ('plains','desert','forest','taiga','jungle',
                                                      'swamp','snowy_plains','dark_forest','jagged_peaks','stony_shore')]
@@ -132,7 +151,7 @@ class Prototype:
         if fixtures is not None:
             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
             for x,z,missing in fixtures:
-                if any(isinstance(v,bool) or not isinstance(v,int) for v in (x,z,missing)) or not -1000000<=x<=1000000 or not -1000000<=z<=1000000 or not -1<=missing<=28:
+                if any(isinstance(v,bool) or not isinstance(v,int) for v in (x,z,missing)) or not -1000000<=x<=1000000 or not -1000000<=z<=1000000 or not -1<=missing<=(33 if dynamic_policy(self.cfg) else 28):
                     raise ValueError('Invalid synthetic fixture')
             fixture_values=self.ffi.new('NBFixture[]',[(*f, fixture_masks[i] if fixture_masks else 0,
                 fixture_deltas[i] if fixture_deltas else 1) for i,f in enumerate(fixtures)])
@@ -190,6 +209,29 @@ class Batch:
         if self.retention!='full':raise ValueError('Use retained_records for compact batches')
         for i,seed in enumerate(self.seeds):
             native=self.pointer.results[i]
+            if dynamic_policy(cfg):
+                if adapter=='direct':record=build_record(native,start_index+i,seed,cfg)
+                else:
+                    provider=ReplayProvider(native,self.prototype)
+                    record=evaluate_dynamic_seed(start_index+i,seed,cfg,backend_factory=lambda _:provider)
+                if len(record['anchors'])!=native.nanchors:raise RuntimeError('Dynamic center count parity failure')
+                if native.nanchors:
+                    a=record['anchors'][0];c=native.anchors[0]
+                    if (a['evaluation_center']!=[c.x,c.z] or
+                        a['baseline_score_observed']!=c.score or
+                        a['biomes']['sample_count']!=c.biome_n or
+                        a['qualification']!='PREDICTED'):
+                        raise RuntimeError('Native dynamic center, palette, or score parity failure')
+                stage_keys=['stronghold',*[f'structure_{n}' for n in NAMES[:10]],
+                    'final_nether_pair','biome_palette_4y','dynamic_center_search','structure_outpost']
+                record['stage_seconds']={key:float(native.stage_seconds[k])
+                    for k,key in enumerate(stage_keys) if native.stage_seconds[k]}
+                record['total_seconds']+=float(native.seconds)
+                record['prototype']={'provider':'isolated_native_blueprint_batch',
+                    'synthetic':self.synthetic,'evidence':'pinned predictor only; actual generation unverified',
+                    'python_role':'record reconstruction and checkpoint persistence'}
+                records.append(record)
+                continue
             if adapter=='direct':record=build_record(native,start_index+i,seed,cfg)
             else:
                 provider=ReplayProvider(native,self.prototype)
@@ -204,6 +246,7 @@ class Batch:
                 if origin_policy(cfg) and c.stronghold_evaluated and c.stronghold_count<1:
                     pending.insert(sum(bool(c.count_missing&(1<<k)) for k in order[:2+stronghold_after(cfg)]),'count_stronghold')
                 if c.biome_evaluated:pending+=['biome_'+f for k,f in enumerate(self.prototype.families) if not c.biome_mask&(1<<k)]
+                if marine_baseline_policy(cfg):pending+=['count_'+NAMES[k] for k in (3,8) if c.count_missing&(1<<k)]
                 if (a['qualification']=='PREDICTED')!=expected or a['pending_reasons']!=pending or a['baseline_score_observed']!=c.score:
                     raise RuntimeError('Native decision/count/biome/ranking parity failure')
                 if c.biome_evaluated:
@@ -233,7 +276,18 @@ class Batch:
             cfg=self.prototype.cfg
             if two_group_policy(cfg):
                 cfg=json.loads(json.dumps(cfg));cfg['search']['max_misses']=self.max_misses
-            record=build_record(native,start_index+offset,self.seeds[offset],cfg)
+            if dynamic_policy(cfg):
+                provider=ReplayProvider(native,self.prototype)
+                record=evaluate_dynamic_seed(start_index+offset,self.seeds[offset],cfg,
+                    backend_factory=lambda _:provider)
+                if len(record['anchors'])!=1 or record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score:
+                    raise RuntimeError('Native dynamic retained-record parity failure')
+                stage_keys=['stronghold',*[f'structure_{n}' for n in NAMES[:10]],
+                    'final_nether_pair','biome_palette_4y','dynamic_center_search','structure_outpost']
+                record['stage_seconds']={key:float(native.stage_seconds[k])
+                    for k,key in enumerate(stage_keys) if native.stage_seconds[k]}
+                record['total_seconds']+=float(native.seconds)
+            else:record=build_record(native,start_index+offset,self.seeds[offset],cfg)
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
                 misses=int(c.count_missing & self.prototype.policy.flexible_mask).bit_count() if two_group_policy(cfg) else int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
@@ -245,7 +299,7 @@ class Batch:
                 a['retention']={'classification':'PREDICTED_SURVIVOR' if two_group_policy(cfg) or not misses else 'NEAR_MISS',
                     'unmet_requirements':misses,'allowed_unmet_requirements':self.max_misses,
                     'requirements_total':baseline_requirements(self.prototype.cfg),
-                    'scope':f'{baseline_requirements(self.prototype.cfg)-13} core structure-count and 13 biome-family requirements; marine deferred' if locked_policy(self.prototype.cfg) else '12 structure-count and 13 biome-family predictor requirements at this anchor'}
+                    'scope':('14 structure categories, 13 Overworld biome families and 5 Nether biome families; no terrain gate' if dynamic_policy(self.prototype.cfg) else f'{baseline_requirements(self.prototype.cfg)-13} structure-count and 13 biome-family predictor requirements; marine starts required, terrain unassessed' if marine_baseline_policy(self.prototype.cfg) else f'{baseline_requirements(self.prototype.cfg)-13} core structure-count and 13 biome-family requirements; marine deferred' if locked_policy(self.prototype.cfg) else '12 structure-count and 13 biome-family predictor requirements at this anchor')}
             if self.synthetic:record['prototype']={'synthetic':True,'provider':'explicit_native_retention_fixture','evidence':'synthetic provider fixture; not a natural-world discovery'}
             record['retention']={'mode':'survivors','max_misses':self.max_misses,
                                  'discarded_anchor_records_not_retained':True}
@@ -269,11 +323,17 @@ class ReplayProvider:
     """Return only evidence already calculated by C; unknown queries fail closed."""
     def __init__(self,result,prototype):
         self.native_work={};self.discovery=self.points(result.discovery)
-        self.queries={};self.ids={};self.pairs={}
+        self.dynamic_center=(int(result.anchors[0].x),int(result.anchors[0].z)) if dynamic_policy(prototype.cfg) and result.nanchors else None
+        self.dynamic_no_anchor=bool(dynamic_policy(prototype.cfg) and not result.nanchors)
+        self.queries={};self.ids={};self.nether_ids={};self.pairs={};self.igloo_basements=set()
         for j in range(result.nanchors):
             a=result.anchors[j];h=prototype.policy.overworld_half;nh=prototype.policy.nether_half
             bounds=(a.x-h,a.z-h,a.x+h-1,a.z+h-1)
-            nx=-((-a.x)//8);nz=-((-a.z)//8);nb=(nx-nh,nz-nh,nx+nh-1,nz+nh-1)
+            if dynamic_policy(prototype.cfg):
+                from seed_search.realm.dynamic import nether_bounds
+                bb=nether_bounds((a.x,a.z));nb=native_bounds(bb)
+            else:
+                nx=-((-a.x)//8);nz=-((-a.z)//8);nb=(nx-nh,nz-nh,nx+nh-1,nz+nh-1)
             for k,name in enumerate(NAMES):
                 o=a.observations[k]
                 if not o.evaluated:continue
@@ -286,6 +346,13 @@ class ReplayProvider:
                 self.pairs[nb]={n:(self.queries[(n,nb)]['raw'],self.queries[(n,nb)]['viable']) for n in ('fortress','bastion')}
             for q in range(a.biome_n):
                 self.ids[tuple(int(a.biome_xyz[3*q+t]) for t in range(3))]=int(a.biome_ids[q])
+            if dynamic_policy(prototype.cfg):
+                for k,name in enumerate(('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')):
+                    o=a.optional[k]
+                    self.queries[(name,bounds)]={'raw':self.points(o.raw),'viable':self.points(o.viable),'floor':[],'full':True}
+                    if name=='igloo':self.igloo_basements.update(self.points(o.viable))
+                for q in range(a.nether_biome_n):
+                    self.nether_ids[tuple(int(a.nether_biome_xyz[3*q+t]) for t in range(3))]=int(a.nether_biome_ids[q])
         self.discovery_bounds=native_bounds(prototype.cfg['discovery']['overworld_bounds'])
 
     @staticmethod
@@ -302,8 +369,11 @@ class ReplayProvider:
     def structure_count(self,name,bounds,minimum):
         q=self.queries[(name,tuple(bounds))]
         return q['floor']
+    def igloo_basement(self,x,z):return (x,z) in self.igloo_basements
     def nether_structure_pairs(self,bounds):return self.pairs[tuple(bounds)]
-    def biome_points(self,points):return np.array([self.ids[tuple(map(int,p))] for p in points],dtype=np.int32)
+    def biome_points(self,points,dimension=0):
+        source=self.nether_ids if dimension==-1 else self.ids
+        return np.array([source[tuple(map(int,p))] for p in points],dtype=np.int32)
 
 
 def persist_scan(prototype,run,count,*,run_key=0,threads=18,batch_size=256,resume=False):

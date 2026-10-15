@@ -22,23 +22,23 @@ class FakeProcess:
 
 def test_start_binds_validated_counts_and_budget(monkeypatch,tmp_path):
     monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
-    monkeypatch.setattr(server,'DEFAULT_NATIVE_BUILD',server.PROJECT_ROOT/'runs/cpu-completion-2026-10-13/final-portable')
+    monkeypatch.setattr(server,'DEFAULT_NATIVE_BUILD',server.PROJECT_ROOT/'runs/dynamic-baseline-1664/native')
     captured=[]
     monkeypatch.setattr(server.subprocess,'Popen',lambda cmd,**kwargs:(captured.append(cmd),FakeProcess())[1])
     manager=server.SweepManager()
     result=manager.start_sweep(count=3,threads=2,batch_size=16,max_misses=2,
-                               counts={'trial_chamber':8,'fortress':1})
+                               counts={'trial_chamber':8,'fortress':2})
     assert result['ok']
     manager.monitor_thread.join(timeout=5)
     assert manager.status=='completed'
     assert manager.scanned_count==0  # stdout cannot invent durable coverage
     cfg=yaml.safe_load((tmp_path/result['runId']/'policy.yaml').read_text())
     assert cfg['structures']['minimum_counts']['trial_chamber']==8
-    assert cfg['structures']['nether_minimum_counts']['fortress']==1
+    assert cfg['structures']['nether_minimum_counts']['fortress']==2
     assert cfg['search']['max_misses']==2
     assert captured[0][captured[0].index('--config')+1]==str(tmp_path/result['runId']/'policy.yaml')
     assert captured[0][captured[0].index('--max-misses')+1]=='2'
-    for invalid in ({'counts':{'outpost':0}}, {'counts':{'trial_chamber':7}},
+    for invalid in ({'counts':{'outpost':0}}, {'counts':{'trial_chamber':6}},
                     {'counts':{'unknown':1}}, {'count':True}, {'threads':0}):
         before=len(list(tmp_path.iterdir()))
         assert not manager.start_sweep(**invalid)['ok']

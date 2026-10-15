@@ -15,9 +15,9 @@ def test_explicit_locked_and_historical_profiles_keep_their_geometry():
     previous=outpost_blueprint_config()
     for profile in (cfg, previous, explicit):
         validate_config(profile)
-        assert profile['deployment'] == ({'overworld_side_blocks':1536,'nether_side_blocks':896} if profile is cfg else {'overworld_side_blocks':2048,'nether_side_blocks':1024})
+        assert profile['deployment'] == ({'overworld_side_blocks':1536,'nether_side_blocks':896} if profile is cfg else {'overworld_side_blocks':1664,'nether_side_blocks':832} if profile is explicit else {'overworld_side_blocks':2048,'nether_side_blocks':1024})
         assert set(map(tuple, profile['discovery'].values())) == (
-            {(-1024,-1024,1024,1024),(-512,-512,512,512)} if profile is explicit else
+            {(-2000,-2000,2000,2000),(-562,-562,562,562)} if profile is explicit else
             {(-2000,-2000,2000,2000)})
     assert FAMILIES == (
         ('village', (-2768, -2768, 2766, 2766)),

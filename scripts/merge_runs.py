@@ -130,9 +130,9 @@ def merge_runs(sources, destination, *, strict=True):
         with dest:
             dest.execute("INSERT OR IGNORE INTO meta VALUES ('aggregate_contract',?)", (canonical(CONTRACT),))
             dest.execute("INSERT OR IGNORE INTO meta VALUES ('compatibility',?)", (canonical(expected),))
+        # This contract must survive a conflicting merge transaction so a
+        # corrected source can be retried safely against the same destination.
         with dest:
-            dest.execute("INSERT OR IGNORE INTO meta VALUES ('aggregate_contract',?)", (canonical(CONTRACT),))
-            dest.execute("INSERT OR IGNORE INTO meta VALUES ('compatibility',?)", (canonical(expected),))
             for conn, db, source_id, identity, intervals in snapshots:
                 dest.execute('INSERT OR REPLACE INTO merged_source_runs VALUES (?,?,?)', (source_id, canonical(identity), str(db)))
                 for table, columns, keys in (

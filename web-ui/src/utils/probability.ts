@@ -1,17 +1,13 @@
 /**
- * Planning heuristic for the pinned v2 Bedrock search policy.
+ * Planning heuristic for the pinned marine baseline Bedrock search policy.
  *
- * Structure marginals and biome/terrain estimates come from separate historical
+ * Structure marginals and biome estimates come from separate historical
  * models. The combined result assumes independence and is not a calibrated joint
  * pass rate or a discovery guarantee.
  */
 
 import type { SearchConfig } from '../types';
-import {
-  HARD_FLOORS,
-  IDEAL_TARGETS,
-  STRICT_STRUCTURE_IDS,
-} from '../constants/structures';
+import { getSearchProfile } from '../constants/baselinePolicy';
 
 // Helper to format fractional odds and percentages
 export function formatOdds(p: number): string {
@@ -213,27 +209,13 @@ export interface StructureFeasibility {
 }
 
 export function computeStructureFeasibility(config: SearchConfig): StructureFeasibility {
+  const policy = getSearchProfile(config.profile);
+  const strict = new Set(Object.keys(policy.counts).filter((key) => !policy.flexible.includes(key)));
+  if (strict.has('desert_pyramid')) strict.add('pyramid');
   const individualProbs: Record<string, number> = {};
   const activeEntries: { id: string; name: string; count: number; prob: number }[] = [];
 
-  // Marine Gating Rule: If in baseline mode and no ocean biome is selected,
-  // shipwrecks and ocean monuments are completely exempted from required floors.
-  const hasOceanBiome = config.selectedBiomes.some(
-    (b) => b === 'ocean' || b.includes('ocean')
-  );
-  const isBaselineInland = config.terrainMode === 'all_baseline' && !hasOceanBiome;
-
-  const effectiveRequired = config.requiredStructures.filter((id) => {
-    if (isBaselineInland && (id === 'monument' || id === 'shipwreck')) {
-      return false; // Exempted
-    }
-    return true;
-  });
-
-  if (isBaselineInland) {
-    individualProbs['monument'] = 1.0;
-    individualProbs['shipwreck'] = 1.0;
-  }
+  const effectiveRequired = config.requiredStructures.filter((id) => !policy.deferredMarine || (id !== 'monument' && id !== 'shipwreck'));
 
   for (const id of effectiveRequired) {
     const count = config.structureFloorCounts[id] ?? 0;
@@ -263,8 +245,8 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
     bottleneck = sorted[0];
   }
 
-  const strictEntries = activeEntries.filter((e) => STRICT_STRUCTURE_IDS.has(e.id));
-  const flexibleEntries = activeEntries.filter((e) => !STRICT_STRUCTURE_IDS.has(e.id));
+  const strictEntries = activeEntries.filter((e) => strict.has(e.id));
+  const flexibleEntries = activeEntries.filter((e) => !strict.has(e.id));
 
   // Strict categories: non-negotiable hard floors (never spend miss budget)
   let pStrict = 1.0;
@@ -277,8 +259,8 @@ export function computeStructureFeasibility(config: SearchConfig): StructureFeas
   if (flexibleEntries.length > 0) {
     let poly = [1.0];
     for (const f of flexibleEntries) {
-      const idealCount = IDEAL_TARGETS[f.id] ?? f.count;
-      const floorCount = HARD_FLOORS[f.id] ?? 0;
+      const idealCount = f.count;
+      const floorCount = policy.floors[f.id] ?? policy.floors[f.id === 'pyramid' ? 'desert_pyramid' : f.id] ?? 0;
       const pIdeal = calculateStructureProb(f.id, Math.max(f.count, idealCount));
       const pFloor = calculateStructureProb(f.id, floorCount);
       const dDeficit = Math.max(0.0, pFloor - pIdeal);
@@ -435,81 +417,7 @@ export function computeBiomeFeasibility(config: SearchConfig): BiomeFeasibility 
 }
 
 // --------------------------------------------------------------------------
-// 3. STAGE 3: 3D TERRAIN & SPAWN PROBABILITIES
-// --------------------------------------------------------------------------
-
-export function calculateSpawnGateProb(maxDistM: number): number {
-  if (maxDistM <= 0) return 0.001;
-  const sigma = 74.0; // Rayleigh parameter yielding exactly 68.3% at 100m
-  const p = 1.0 - Math.exp(-(maxDistM * maxDistM) / (2 * sigma * sigma));
-  return Math.max(0.001, Math.min(1.0, p));
-}
-
-export function calculateLandmassProb(targetPct: number): number {
-  // Peak at 75% mainland (15.8% for [70%, 80%])
-  const diff = targetPct - 75;
-  const p = 0.158 * Math.exp(-(diff * diff) / (2 * 8 * 8));
-  return Math.max(0.01, Math.min(0.35, p));
-}
-
-export interface TerrainFeasibility {
-  probability: number;
-  formattedOdds: string;
-  landmassProb: number;
-  riverHighwayProb: number;
-  oceanEdgeProb: number;
-  spawnGateProb: number;
-  bottleneckDesc: string;
-}
-
-export function computeTerrainFeasibility(config: SearchConfig): TerrainFeasibility {
-  if (config.terrainMode === 'all_baseline') {
-    let pSpawn = 1.0;
-    if (config.enforceSpawnGate) {
-      pSpawn = calculateSpawnGateProb(config.maxSpawnDistance);
-    }
-    return {
-      probability: pSpawn,
-      formattedOdds: config.enforceSpawnGate ? formatOdds(pSpawn) : '1 in 1 (100% - Baseline)',
-      landmassProb: 1.0,
-      riverHighwayProb: 1.0,
-      oceanEdgeProb: 1.0,
-      spawnGateProb: pSpawn,
-      bottleneckDesc: config.enforceSpawnGate
-        ? `Spawn ≤${config.maxSpawnDistance}m (${(pSpawn * 100).toFixed(1)}%)`
-        : 'Bypassed (Baseline Structures & Biomes Only)',
-    };
-  }
-
-  const pLand = calculateLandmassProb(config.mainlandTargetPct);
-  const pRiver = 0.425; // 42.5% seeds have continuous >=400m river corridor
-  const pOcean = 0.64; // 64.0% seeds have >=320m ocean edge corridor
-
-  let pSpawn = 1.0;
-  if (config.enforceSpawnGate) {
-    pSpawn = calculateSpawnGateProb(config.maxSpawnDistance);
-  }
-
-  const jointP = Math.max(1e-6, pLand * pRiver * pOcean * pSpawn);
-
-  let bottleneckDesc = `Landmass ${config.mainlandTargetPct}% (${(pLand * 100).toFixed(1)}%)`;
-  if (config.enforceSpawnGate && pSpawn < pLand) {
-    bottleneckDesc = `Spawn ≤${config.maxSpawnDistance}m (${(pSpawn * 100).toFixed(1)}%)`;
-  }
-
-  return {
-    probability: jointP,
-    formattedOdds: formatOdds(jointP),
-    landmassProb: pLand,
-    riverHighwayProb: pRiver,
-    oceanEdgeProb: pOcean,
-    spawnGateProb: pSpawn,
-    bottleneckDesc,
-  };
-}
-
-// --------------------------------------------------------------------------
-// 4. TOTAL SEARCH PIPELINE ODDS
+// 3. BASELINE PLANNING TOTAL
 // --------------------------------------------------------------------------
 
 export interface TotalFeasibilityAssessment {
@@ -520,15 +428,13 @@ export interface TotalFeasibilityAssessment {
   color: string;
   structures: StructureFeasibility;
   biomes: BiomeFeasibility;
-  terrain: TerrainFeasibility;
 }
 
 export function computeTotalFeasibility(config: SearchConfig): TotalFeasibilityAssessment {
   const structures = computeStructureFeasibility(config);
   const biomes = computeBiomeFeasibility(config);
-  const terrain = computeTerrainFeasibility(config);
 
-  const totalP = Math.max(1e-12, structures.probability * biomes.probability * terrain.probability);
+  const totalP = Math.max(1e-12, structures.probability * biomes.probability);
   const expectedSeeds = Math.round(1.0 / totalP);
 
   let rating: TotalFeasibilityAssessment['feasibilityRating'] = 'Balanced';
@@ -562,6 +468,5 @@ export function computeTotalFeasibility(config: SearchConfig): TotalFeasibilityA
     color,
     structures,
     biomes,
-    terrain,
   };
 }

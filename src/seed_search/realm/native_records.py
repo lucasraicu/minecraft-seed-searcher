@@ -11,7 +11,7 @@ import time
 from ..backend import biome_catalog, biome_name
 from .biomes import canonical
 from .blueprint import smart_score, score_uncertainty
-from .config import BLUEPRINT_CONTRACT, stronghold_after, locked_policy, origin_policy, two_group_policy
+from .config import BLUEPRINT_CONTRACT, stronghold_after, locked_policy, origin_policy, two_group_policy, marine_baseline_policy
 
 NAMES = ('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
          'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -97,6 +97,20 @@ def palette(c, bounds, policy, cache):
 
 
 def build_record(native,index,seed,cfg):
+    from .config import dynamic_policy
+    if dynamic_policy(cfg):
+        from types import SimpleNamespace
+        from .native_batch import ReplayProvider
+        from .blueprint import evaluate_dynamic_seed
+        policy=SimpleNamespace(overworld_half=cfg['deployment']['overworld_side_blocks']//2,
+                               nether_half=cfg['deployment']['nether_side_blocks']//2)
+        provider=ReplayProvider(native,SimpleNamespace(policy=policy,cfg=cfg))
+        record=evaluate_dynamic_seed(index,seed,cfg,backend_factory=lambda _:provider)
+        if len(record['anchors'])!=native.nanchors or (native.nanchors and
+            (record['anchors'][0]['evaluation_center']!=[native.anchors[0].x,native.anchors[0].z] or
+             record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score)):
+            raise RuntimeError('Native/direct dynamic record parity failure')
+        return record
     wall=time.perf_counter();cpu=time.process_time();seed=str(seed)
     discovery_bounds=list(cfg['discovery']['overworld_bounds'])
     strongholds=full_observation('stronghold',discovery_bounds,points(native.discovery),points(native.discovery))
@@ -138,7 +152,8 @@ def build_record(native,index,seed,cfg):
             order=['fortress','bastion',*cfg['search']['structure_order']]
             if origin:order.insert(2+stronghold_after(cfg),'stronghold')
             pending=[p for name in order for p in pending if p=='count_'+name]
-        if ((not c.fatal_missing and int(c.count_missing).bit_count()<=cfg['search']['max_misses']) if two_group_policy(cfg) else not pending):
+        early_fatal=int(c.fatal_missing) & (~((1<<3)|(1<<8)) if marine_baseline_policy(cfg) else -1)
+        if ((not early_fatal and int(c.count_missing & ((1<<0)|(1<<4)|(1<<5)|(1<<6)|(1<<7)|(1<<9)|(1<<10)|(1<<11))).bit_count()<=cfg['search']['max_misses']) if two_group_policy(cfg) else not pending):
             increment('structure_stage_passed')
         if c.biome_evaluated:
             increment('biome_stage_entered')
@@ -146,6 +161,13 @@ def build_record(native,index,seed,cfg):
             increment('biome_samples',queried);cache_hits+=hits
             if biomes['missing_families']:pending.extend('biome_'+f for f in biomes['missing_families'])
             else:increment('biome_stage_passed')
+        if marine_baseline_policy(cfg):
+            for name in ('monument','shipwreck'):
+                k=NAMES.index(name);o=c.observations[k]
+                required[name]=observation(o,name,bounds,cfg['structures']['minimum_counts'][name])
+                if o.evaluated:
+                    increment('checked_'+name)
+                    if c.count_missing&(1<<k):pending.append('count_'+name);increment('pending_'+name)
         two_group=two_group_policy(cfg)
         deficit_categories=[NAMES[k] for k in (0,4,5,6,7,9,10,11) if c.count_missing&(1<<k)] if two_group else []
         fatal_reasons=(['floor_'+NAMES[k] for k in range(13) if c.fatal_missing&(1<<k)]+
@@ -154,7 +176,7 @@ def build_record(native,index,seed,cfg):
         complete=bool(not fatal_reasons and len(deficit_categories)<=cfg['search']['max_misses'] and not biome_failures and c.biome_evaluated) if two_group else not pending
         if complete and not locked:optional['outpost']=observation(c.observations[12],'outpost',bounds)
         from .config import river_policy
-        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,two_group=two_group,
+        ranking=smart_score(required,nether,optional,locked=locked,river=river_policy(cfg),origin=origin,two_group=two_group,river_bonus=not marine_baseline_policy(cfg),
                             biome_names=(s['biome'] for s in biomes['sampling']['samples'] if s['coordinate'][1]==63) if biomes else ());score=ranking['score']
         if score!=c.score:raise RuntimeError('Native/direct score parity failure')
         anchors.append({'id':f'{seed}:{x}:{z}','index':index,'seed':seed,'stronghold':anchor,
@@ -182,8 +204,15 @@ def build_record(native,index,seed,cfg):
             anchors[-1]['spawn_stage']=classify_spawn(anchors[-1],cfg)
     if locked:
         for a in anchors:
-            a.update(screening_revision=cfg['screening_revision'],deferred_requirements=['count_monument','count_shipwreck']+([] if 'outpost' in cfg['structures']['minimum_counts'] else ['optional_outpost']),
-                     marine_stage={'status':'DEFERRED','required_counts':{n:cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')},'trigger':'complete coastal ocean/water/land footprint'},full_blueprint_certification=False)
+            if marine_baseline_policy(cfg):
+                a.update(screening_revision=cfg['screening_revision'],deferred_requirements=[],
+                         marine_stage={'status':'PREDICTED' if all(a['required_structures'][n].get('predicted_count',0)>=cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')) else 'PENDING',
+                                       'required_counts':{n:cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')},
+                                       'predicted_counts':{n:a['required_structures'][n].get('predicted_count') for n in ('monument','shipwreck')},
+                                       'actual_generation_verified':False},full_blueprint_certification=False)
+            else:
+                a.update(screening_revision=cfg['screening_revision'],deferred_requirements=['count_monument','count_shipwreck']+([] if 'outpost' in cfg['structures']['minimum_counts'] else ['optional_outpost']),
+                         marine_stage={'status':'DEFERRED','required_counts':{n:cfg['structures']['minimum_counts'][n] for n in ('monument','shipwreck')},'trigger':'complete coastal ocean/water/land footprint'},full_blueprint_certification=False)
     counts.update(baseline_predicted=sum(a['qualification']=='PREDICTED' for a in anchors),
                   baseline_pending=sum(a['qualification']=='PENDING' for a in anchors),confirmed_rejections=0,
                   unresolved_discovery=int(not strongholds['predicted_viable'] if origin else not anchors),unresolved_stronghold_coverage=1)

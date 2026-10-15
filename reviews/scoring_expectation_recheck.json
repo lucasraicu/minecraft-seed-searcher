@@ -1,0 +1,282 @@
+{
+  "scope": "PASS cases with counts, numeric smart_score and no hub_items; pure dynamic_score only",
+  "checked": 55,
+  "mismatches": [
+    {
+      "id": "MANDATORY_STRONGHOLD_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_STRONGHOLD_FIRST_SURPLUS",
+      "expected_in_review": 50,
+      "current_formula": 150
+    },
+    {
+      "id": "MANDATORY_STRONGHOLD_SECOND_SURPLUS",
+      "expected_in_review": 50,
+      "current_formula": 150
+    },
+    {
+      "id": "MANDATORY_MANSION_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_MANSION_FIRST_SURPLUS",
+      "expected_in_review": 50,
+      "current_formula": 150
+    },
+    {
+      "id": "MANDATORY_MANSION_SECOND_SURPLUS",
+      "expected_in_review": 50,
+      "current_formula": 150
+    },
+    {
+      "id": "MANDATORY_MONUMENT_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_MONUMENT_FIRST_SURPLUS",
+      "expected_in_review": 35,
+      "current_formula": 135
+    },
+    {
+      "id": "MANDATORY_MONUMENT_SECOND_SURPLUS",
+      "expected_in_review": 35,
+      "current_formula": 135
+    },
+    {
+      "id": "MANDATORY_OUTPOST_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_OUTPOST_FIRST_SURPLUS",
+      "expected_in_review": 20,
+      "current_formula": 120
+    },
+    {
+      "id": "MANDATORY_FORTRESS_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_FORTRESS_FIRST_SURPLUS",
+      "expected_in_review": 20,
+      "current_formula": 120
+    },
+    {
+      "id": "MANDATORY_BASTION_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "MANDATORY_BASTION_FIRST_SURPLUS",
+      "expected_in_review": 20,
+      "current_formula": 120
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 75
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_AT_TARGET",
+      "expected_in_review": 25,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_VILLAGE_SURPLUS_PLUS_1",
+      "expected_in_review": 50,
+      "current_formula": 125
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 90
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_AT_TARGET",
+      "expected_in_review": 10,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_TRIAL_CHAMBER_SURPLUS_PLUS_1",
+      "expected_in_review": 20,
+      "current_formula": 110
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 75
+    },
+    {
+      "id": "FLEXIBLE_ANCIENT_CITY_AT_TARGET",
+      "expected_in_review": 25,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 80
+    },
+    {
+      "id": "FLEXIBLE_DESERT_PYRAMID_AT_TARGET",
+      "expected_in_review": 20,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 80
+    },
+    {
+      "id": "FLEXIBLE_JUNGLE_TEMPLE_AT_TARGET",
+      "expected_in_review": 20,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_INTERMEDIATE_DEFICIT",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_SHIPWRECK_SURPLUS_PLUS_1",
+      "expected_in_review": 5,
+      "current_formula": 105
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_INTERMEDIATE_DEFICIT",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_RUINED_PORTAL_SURPLUS_PLUS_1",
+      "expected_in_review": 5,
+      "current_formula": 105
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_AT_FLOOR",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_INTERMEDIATE_DEFICIT",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_AT_TARGET",
+      "expected_in_review": 0,
+      "current_formula": 100
+    },
+    {
+      "id": "FLEXIBLE_MINESHAFT_SURPLUS_PLUS_1",
+      "expected_in_review": 1,
+      "current_formula": 101
+    },
+    {
+      "id": "LUXURY_CHERRY_GROVE",
+      "expected_in_review": 30,
+      "current_formula": 130
+    },
+    {
+      "id": "LUXURY_PALE_GARDEN",
+      "expected_in_review": 30,
+      "current_formula": 130
+    },
+    {
+      "id": "LUXURY_MANGROVE_SWAMP",
+      "expected_in_review": 25,
+      "current_formula": 125
+    },
+    {
+      "id": "LUXURY_MUSHROOM_FIELDS",
+      "expected_in_review": 25,
+      "current_formula": 125
+    },
+    {
+      "id": "LUXURY_BADLANDS",
+      "expected_in_review": 20,
+      "current_formula": 120
+    },
+    {
+      "id": "LUXURY_WARM_OCEAN",
+      "expected_in_review": 15,
+      "current_formula": 115
+    },
+    {
+      "id": "LUXURY_ICE_SPIKES",
+      "expected_in_review": 15,
+      "current_formula": 115
+    },
+    {
+      "id": "LUXURY_WINDSWEPT_SAVANNA",
+      "expected_in_review": 15,
+      "current_formula": 115
+    },
+    {
+      "id": "LUXURY_FLOWER_FOREST",
+      "expected_in_review": 10,
+      "current_formula": 110
+    },
+    {
+      "id": "LUXURY_BAMBOO_JUNGLE",
+      "expected_in_review": 10,
+      "current_formula": 110
+    },
+    {
+      "id": "LUXURY_SWAMP_HUT",
+      "expected_in_review": 20,
+      "current_formula": 100
+    },
+    {
+      "id": "LUXURY_IGLOO_BASEMENT",
+      "expected_in_review": 15,
+      "current_formula": 100
+    },
+    {
+      "id": "LUXURY_TRAIL_RUINS",
+      "expected_in_review": 15,
+      "current_formula": 100
+    },
+    {
+      "id": "LUXURY_OCEAN_RUINS",
+      "expected_in_review": 10,
+      "current_formula": 100
+    },
+    {
+      "id": "LUXURY_BURIED_TREASURE",
+      "expected_in_review": 10,
+      "current_formula": 100
+    },
+    {
+      "id": "LUXURY_ALL_SUPPORTED_BIOMES",
+      "expected_in_review": 195,
+      "current_formula": 295
+    }
+  ],
+  "snapshot": "Initial Gemini fixtures, before follow-up correction"
+}

@@ -1,5 +1,7 @@
+import { compareCandidateRank } from '../utils/ranking';
 import React, { useState } from 'react';
 import type { SeedCandidate } from '../types';
+import { spawnWithinRadius, spawnEvidenceLabel } from '../utils/spawn';
 
 interface CandidateFeedProps {
   candidates: SeedCandidate[];
@@ -8,6 +10,8 @@ interface CandidateFeedProps {
   onInspectCandidate: (candidate: SeedCandidate) => void;
   onCopyNotice: (msg: string) => void;
   onClearCandidates?: () => void;
+  onVerifyBDS?: (candidate: SeedCandidate) => void;
+  isVerifyingBDS?: boolean;
 }
 
 export const CandidateFeed: React.FC<CandidateFeedProps> = ({
@@ -17,37 +21,27 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
   onInspectCandidate,
   onCopyNotice,
   onClearCandidates,
+  onVerifyBDS,
+  isVerifyingBDS,
 }) => {
   const [minScore, setMinScore] = useState<number>(0);
-  const [leaderboardTab, setLeaderboardTab] = useState<'continent' | 'near_miss' | 'baseline' | 'both'>('both');
   const [secondaryFilter, setSecondaryFilter] = useState<'all' | 'spawn50' | 'spawn100' | 'bds'>('all');
-  const [sortBy, setSortBy] = useState<'rank' | 'score' | 'geometry' | 'spawn' | 'structures'>('rank');
-
-  const continentCount = candidates.filter((c) => c.terrainPassed === true || c.terrainStatus === 'passed').length;
-  const nearMissCount = candidates.filter((c) => c.terrainStatus === 'near_miss').length;
-  const baselineCount = candidates.filter((c) => c.terrainStatus !== 'passed' && c.terrainStatus !== 'near_miss' && c.terrainPassed !== true).length;
-  const bothCount = candidates.length;
+  const [sortBy, setSortBy] = useState<'rank' | 'score' | 'spawn' | 'structures'>('rank');
 
   const filtered = candidates
     .filter((c) => {
       if (c.score !== null && c.score < minScore) return false;
-      if (leaderboardTab === 'continent' && !(c.terrainPassed === true || c.terrainStatus === 'passed')) return false;
-      if (leaderboardTab === 'near_miss' && c.terrainStatus !== 'near_miss') return false;
-      if (leaderboardTab === 'baseline' && (c.terrainPassed === true || c.terrainStatus === 'passed' || c.terrainStatus === 'near_miss')) return false;
-      if (secondaryFilter === 'spawn50' && (c.spawnDistance == null || c.spawnDistance > 50)) return false;
-      if (secondaryFilter === 'spawn100' && (c.spawnDistance == null || c.spawnDistance > 100)) return false;
-      if (secondaryFilter === 'bds' && !c.bdsVerified) return false;
+      if (secondaryFilter === 'spawn50' && spawnWithinRadius(c, 50) !== true) return false;
+      if (secondaryFilter === 'spawn100' && spawnWithinRadius(c, 100) !== true) return false;
+      if (secondaryFilter === 'bds' && c.surfaceVerification?.status !== 'PARTIAL') return false;
       return true;
     })
     .sort((a, b) => {
       if (sortBy === 'rank') {
-        return (a.rankingTier ?? 99) - (b.rankingTier ?? 99) || (a.unmetRequirements ?? 0) - (b.unmetRequirements ?? 0) || (b.score ?? -1) - (a.score ?? -1) || a.id.localeCompare(b.id);
-      }
-      if (sortBy === 'geometry') {
-        return (b.terrainGeometryScore ?? 0) - (a.terrainGeometryScore ?? 0) || (b.score ?? -1) - (a.score ?? -1);
+        return compareCandidateRank(a, b);
       }
       if (sortBy === 'spawn') {
-        return (a.spawnDistance ?? 999) - (b.spawnDistance ?? 999);
+        return (a.spawnDistance ?? Number.POSITIVE_INFINITY) - (b.spawnDistance ?? Number.POSITIVE_INFINITY);
       }
       if (sortBy === 'structures') {
         return b.structures.length - a.structures.length;
@@ -85,12 +79,23 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-white">Leaderboards</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">Baseline Candidates</h2>
           </div>
           <div className="flex items-center gap-2">
             <span className="px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono font-bold text-amber-400">
               {filtered.length} / {candidates.length}
             </span>
+            {onVerifyBDS && selectedCandidate && (
+              <button
+                onClick={() => onVerifyBDS(selectedCandidate)}
+                disabled={isVerifyingBDS}
+                className="px-2 py-0.5 rounded bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 text-[10px] font-bold flex items-center gap-1 transition-all disabled:opacity-40"
+                title={`Sample surface points with BDS for seed ${selectedCandidate.seed}`}
+              >
+                <span>🛡️</span>
+                <span>{isVerifyingBDS ? 'Verifying...' : 'Sample Surface'}</span>
+              </button>
+            )}
             {onClearCandidates && candidates.length > 0 && (
               <button
                 onClick={onClearCandidates}
@@ -103,83 +108,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
           </div>
         </div>
 
-        {/* Primary Leaderboard Selection: Ocean Continent vs Near Miss vs Baselines vs Both */}
-        <div className="space-y-1.5">
-          <div className="grid grid-cols-4 gap-1 p-1 bg-slate-950 rounded-lg border border-slate-800 text-[10px] font-semibold">
-            <button
-              onClick={() => setLeaderboardTab('continent')}
-              className={`py-1.5 px-0.5 rounded flex flex-col items-center justify-center transition-all ${
-                leaderboardTab === 'continent'
-                  ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30 font-bold border border-cyan-400/40'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-              }`}
-              title="Candidates with passing terrain screening evidence; actual BDS verification is separate"
-            >
-              <div className="flex items-center gap-0.5">
-                <span>🌊</span>
-                <span>Continent</span>
-              </div>
-              <span className="text-[9px] opacity-80 font-mono">({continentCount})</span>
-            </button>
-            <button
-              onClick={() => setLeaderboardTab('near_miss')}
-              className={`py-1.5 px-0.5 rounded flex flex-col items-center justify-center transition-all ${
-                leaderboardTab === 'near_miss'
-                  ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30 font-bold border border-amber-400/40'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-              }`}
-              title="Near Misses: Promising continental formations (≥50 pts geometry score or ≥50% mainland)"
-            >
-              <div className="flex items-center gap-0.5">
-                <span>🎯</span>
-                <span>Near Miss</span>
-              </div>
-              <span className="text-[9px] opacity-80 font-mono">({nearMissCount})</span>
-            </button>
-            <button
-              onClick={() => setLeaderboardTab('baseline')}
-              className={`py-1.5 px-0.5 rounded flex flex-col items-center justify-center transition-all ${
-                leaderboardTab === 'baseline'
-                  ? 'bg-slate-700 text-white shadow-md font-bold border border-slate-500/40'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-              }`}
-              title="Baseline survivors from Stage 1 & 2 screening (before terrain pass-throughs)"
-            >
-              <div className="flex items-center gap-0.5">
-                <span>🏰</span>
-                <span>Baselines</span>
-              </div>
-              <span className="text-[9px] opacity-80 font-mono">({baselineCount})</span>
-            </button>
-            <button
-              onClick={() => setLeaderboardTab('both')}
-              className={`py-1.5 px-0.5 rounded flex flex-col items-center justify-center transition-all ${
-                leaderboardTab === 'both'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-bold border border-indigo-400/40'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-              }`}
-              title="View all candidates in current pool"
-            >
-              <div className="flex items-center gap-0.5">
-                <span>🌐</span>
-                <span>All</span>
-              </div>
-              <span className="text-[9px] opacity-80 font-mono">({bothCount})</span>
-            </button>
-          </div>
-
-          <div className="flex items-center justify-between px-1 text-[10px] text-slate-400">
-            <span>
-              {leaderboardTab === 'continent'
-                ? '🌊 Stage 3 finalists (passed strict terrain filter)'
-                : leaderboardTab === 'near_miss'
-                ? '🎯 Near-miss formations (≥50 pts geometry score or ≥50% mainland)'
-                : leaderboardTab === 'baseline'
-                ? '🏰 Stage 1 & 2 survivors (before terrain graduation)'
-                : '🌐 Unified pool (all candidates & survivors)'}
-            </span>
-          </div>
-        </div>
+        <p className="text-[10px] text-slate-400">Canonical baseline order from structure and biome screening. Historical terrain results do not affect this list.</p>
 
         {/* Marine Timing Notice Banner */}
         <div className="p-2 rounded bg-slate-950/70 border border-slate-800 text-[10px] leading-relaxed text-slate-300">
@@ -188,7 +117,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
             <span>Marine Gating Notice:</span>
           </div>
           <p className="text-slate-400 text-[9px] leading-tight">
-            <strong>Shipwrecks &amp; Ocean Monuments</strong> are deferred from Stage 1 Baseline; evaluated strictly in Stage 3 Terrain Pass once coastal sea is verified.
+            <strong>Shipwrecks &amp; Ocean Monuments</strong> are required by the current sliding-window baseline. Historical profiles retain their recorded marine scope; actual generation remains unverified.
           </p>
         </div>
 
@@ -226,9 +155,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Supplied spawn distance is at most 50 blocks from the reference point"
+              title="Recorded spawn within 50 horizontal blocks of the evaluation hub; unknown distances are excluded"
             >
-              ≤50m
+              ≤50 blocks
             </button>
             <button
               onClick={() => setSecondaryFilter('spawn100')}
@@ -237,9 +166,9 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
-              title="Supplied spawn distance is at most 100 blocks from the reference point"
+              title="Recorded spawn within 100 horizontal blocks of the evaluation hub; unknown distances are excluded"
             >
-              ≤100m
+              ≤100 blocks
             </button>
             <button
               onClick={() => setSecondaryFilter('bds')}
@@ -249,7 +178,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                   : 'bg-slate-800/60 text-slate-400 hover:text-white'
               }`}
             >
-              BDS ✓
+              BDS points
             </button>
           </div>
 
@@ -263,7 +192,6 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
             >
               <option value="rank">Canonical Ranking</option>
               <option value="score">Highest Score</option>
-              <option value="geometry">Best Geometry Score</option>
               <option value="spawn">Closest Supplied Spawn</option>
               <option value="structures">Most Structures</option>
             </select>
@@ -349,74 +277,17 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                     Source unknown
                   </span>
                 )}
-                {cand.terrainPassed === true || cand.terrainStatus === 'passed' ? (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-semibold border border-cyan-500/30"
-                    title="Passed the recorded coastal terrain screening thresholds; actual generation requires separate evidence"
-                  >
-                    🌊 Ocean Continent
-                  </span>
-                ) : cand.terrainStatus === 'near_miss' ? (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-300 text-[10px] font-semibold border border-amber-500/50 flex items-center gap-1 shadow-sm shadow-amber-500/20"
-                    title={`Near Miss (${cand.terrainGeometryScore ? Math.round(cand.terrainGeometryScore) + ' pts' : '50+ pts'}): ${cand.terrainReasons?.join(', ') || 'Close mainland/ocean formation'}`}
-                  >
-                    <span>🎯</span>
-                    <span>Near Miss {cand.terrainGeometryScore ? `(${Math.round(cand.terrainGeometryScore)} pts)` : ''}</span>
-                  </span>
-                ) : cand.terrainStatus === 'failed' ? (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[10px] font-semibold border border-rose-500/30"
-                    title={`Terrain Rejected: ${cand.terrainReasons?.join(', ') || 'Did not meet geometry criteria'}`}
-                  >
-                    ❌ Rejected
-                  </span>
-                ) : (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-semibold border border-slate-700"
-                    title="Qualified in Stage 1 & 2 baseline screening. Baseline survivor awaiting / before Stage 3 terrain pass-through."
-                  >
-                    🏰 Baseline Survivor
-                  </span>
-                )}
-                {cand.terrainStatus === 'near_miss' && cand.terrainReasons && cand.terrainReasons.length > 0 && (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300/90 text-[9px] font-mono border border-amber-800/40 truncate max-w-[190px]"
-                    title={`Unmet threshold: ${cand.terrainReasons.join('; ')}`}
-                  >
-                    ⚠️ {cand.terrainReasons[0].replace('single connected mainland must occupy ', 'Land ').replace('no complete ocean-connected border strip at minimum width', 'Moat < 250m')}
-                  </span>
-                )}
-                {cand.marineStatus === 'EVALUATED' || cand.marineStatus === 'CONFIRMED' ? (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-500/30"
-                    title="Recorded marine-stage status; actual verification requires its own evidence"
-                  >
-                    ⛵ Marine: {cand.marineStatus}
-                  </span>
-                ) : cand.terrainPassed === true ? (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-semibold border border-cyan-500/30"
-                    title="Terrain screening passed; marine evidence remains separate"
-                  >
-                    ⛵ Marine: {cand.marineStatus ?? 'Pending'}
-                  </span>
-                ) : (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] border border-slate-700"
-                    title="Ocean Monuments & Shipwrecks deferred from Stage 1 Baseline; evaluated in Stage 3"
-                  >
-                    ⛵ Marine: Deferred
-                  </span>
-                )}
-                {cand.terrainMetrics?.riverCorridor && (
-                  <span
-                    className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-500/30"
-                    title="River-corridor evidence supplied by backend"
-                  >
-                    🛶 River evidence
-                  </span>
-                )}
+                <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-semibold border border-slate-700"
+                  title="Baseline structure and biome candidate; terrain geometry is not a qualification gate">
+                  🏰 Baseline candidate
+                </span>
+                <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] border border-slate-700"
+                  title={(cand.screeningRevision === 'origin-fixed-2048-two-group-marine-v3' || cand.screeningRevision === 'dynamic-envelope-1664-v1')
+                    ? 'Marine start counts are required by this baseline; actual generation is unverified'
+                    : 'Historical baseline deferred marine structures'}>
+                  ⛵ Marine: {cand.marineStatus?.toLowerCase() ??
+                    ((cand.screeningRevision === 'origin-fixed-2048-two-group-marine-v3' || cand.screeningRevision === 'dynamic-envelope-1664-v1') ? 'required' : 'deferred')}
+                </span>
                 {cand.ravines?.some((r) => r.giant && Math.hypot(r.x, r.z) <= 200) && (
                   <span
                     className="px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 text-[10px] font-semibold border border-orange-500/30"
@@ -425,23 +296,26 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
                     🌋 Mega ravine marker
                   </span>
                 )}
-                {cand.spawnDistance != null && (
+                {(
                   <span
                     className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold flex items-center gap-0.5 ${
-                      cand.spawnDistance <= 50
+                      spawnWithinRadius(cand, 50) === true
                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                        : cand.spawnDistance <= 100
+                        : spawnWithinRadius(cand, 100) === true
                         ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                        : 'bg-red-500/20 text-red-300 border border-red-500/30'
+                        : spawnWithinRadius(cand, 100) === false
+                        ? 'bg-red-500/20 text-red-300 border border-red-500/30'
+                        : 'bg-slate-800 text-slate-400 border border-slate-700'
                     }`}
-                    title={cand.spawnPoint ? `Spawn coordinates: (${cand.spawnPoint[0]}, ${cand.spawnPoint[1]})` : 'Spawn distance supplied; coordinates pending'}
+                    title={`${spawnEvidenceLabel(cand)}; distance from evaluation hub. Target: 100 horizontal blocks. Unknown is not a pass.`}
                   >
-                    🧭 {cand.spawnDistance} {cand.spawnDistanceUnits ?? 'blocks'} spawn
+                    🧭 {cand.spawnDistance == null ? 'Spawn ≤100: unknown' : `${cand.spawnDistance} blocks · ${spawnEvidenceLabel(cand)}`}
+                    {cand.spawnDistance != null && (spawnWithinRadius(cand, 100) ? ' · ≤100' : ' · >100')}
                   </span>
                 )}
-                {cand.bdsVerified === true && (
+                {cand.surfaceVerification?.status === 'PARTIAL' && (
                   <span className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-500/30">
-                    ✓ BDS Evidence
+                    BDS surface points
                   </span>
                 )}
               </div>
@@ -655,39 +529,7 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
 
         {filtered.length === 0 && (
           <div className="p-8 text-center text-slate-500 text-xs space-y-2">
-            <div>
-              {leaderboardTab === 'continent'
-                ? 'No Ocean Continent candidates yet matching current filters.'
-                : leaderboardTab === 'baseline'
-                ? 'No Baseline candidates matching current filters.'
-                : 'No candidates matching current filters.'}
-            </div>
-            {leaderboardTab === 'continent' && continentCount === 0 && baselineCount > 0 && (
-              <button
-                onClick={() => setLeaderboardTab('baseline')}
-                className="px-3 py-1.5 rounded bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 text-[11px] font-medium"
-              >
-                Switch to Baseline Leaderboard ({baselineCount} seeds)
-              </button>
-            )}
-            {leaderboardTab === 'baseline' && baselineCount === 0 && continentCount > 0 && (
-              <button
-                onClick={() => setLeaderboardTab('continent')}
-                className="px-3 py-1.5 rounded bg-cyan-600/30 hover:bg-cyan-600/50 text-cyan-300 border border-cyan-500/40 text-[11px] font-medium"
-              >
-                Switch to Ocean Continent Leaderboard ({continentCount} seeds)
-              </button>
-            )}
-            {leaderboardTab !== 'both' && bothCount > 0 && (
-              <div>
-                <button
-                  onClick={() => setLeaderboardTab('both')}
-                  className="px-3 py-1 rounded bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30 text-[10px] font-medium"
-                >
-                  View Both ({bothCount} total seeds)
-                </button>
-              </div>
-            )}
+            <div>No baseline candidates matching current filters.</div>
           </div>
         )}
       </div>

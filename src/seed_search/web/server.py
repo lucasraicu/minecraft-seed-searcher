@@ -28,14 +28,14 @@ from urllib.parse import urlparse, parse_qs
 
 import yaml
 
-from seed_search.realm.config import two_group_blueprint_config, validate_config
+from seed_search.realm.config import dynamic_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, validate_config
 from seed_search.realm.runner import process_tree_resources
 
 # Base paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
-DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'cpu-completion-2026-10-13' / 'final-portable')))
+DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native')))
 
 
 class SweepManager:
@@ -67,17 +67,6 @@ class SweepManager:
         self.effective_config: dict | None = None
         self._runs_cache: dict[str, tuple[tuple[float, float], dict, int, dict]] = {}
         self._biome_grid_cache: dict = {}
-        self.terrain_process: subprocess.Popen | None = None
-        self.terrain_status: str = "idle"  # idle | running | completed | error
-        self.terrain_progress: dict = {
-            "completed": 0,
-            "total": 0,
-            "pct": 0.0,
-            "elapsedSeconds": 0.0,
-            "etaSeconds": None,
-            "currentSeed": None,
-        }
-        self.terrain_monitor_thread: threading.Thread | None = None
         self._bind_latest_run()
 
     def _view_run(self, run_id):
@@ -110,8 +99,7 @@ class SweepManager:
 
     def select_run(self, run_id: str) -> dict:
         with self.lock:
-            if ((self.process is not None and self.process.poll() is None) or self.status == 'stopping'
-                    or (self.terrain_process is not None and self.terrain_process.poll() is None)):
+            if ((self.process is not None and self.process.poll() is None) or self.status == 'stopping'):
                 return {'ok': False, 'error': 'Stop active processing before switching runs'}
             try:
                 directory, identity, completed = self._view_run(run_id)
@@ -139,6 +127,7 @@ class SweepManager:
         max_misses: int = 2,
         counts: dict | None = None,
         start_index: int | str = 0,
+        profile: str = 'dynamic1664',
     ) -> dict:
         try:
             if any(type(v) is not int for v in (count,threads,batch_size,max_misses)):
@@ -150,7 +139,9 @@ class SweepManager:
                 raise ValueError('Sweep controls outside supported bounded ranges')
             if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
                 raise ValueError('counts must map structure names to integer ideals')
-            cfg=two_group_blueprint_config()
+            profiles={'dynamic1664':dynamic_blueprint_config,'marine2048':marine_baseline_blueprint_config,'twoGroup2048':two_group_blueprint_config}
+            if profile not in profiles:raise ValueError('Unknown search profile')
+            cfg=profiles[profile]()
             cfg['search']['max_misses']=max_misses
             allowed=set(cfg['structures']['minimum_counts'])|set(cfg['structures']['nether_minimum_counts'])
             if counts and set(counts)-allowed:raise ValueError('Unsupported structure count key')
@@ -158,7 +149,7 @@ class SweepManager:
                 group='nether_minimum_counts' if key in cfg['structures']['nether_minimum_counts'] else 'minimum_counts'
                 cfg['structures'][group][key]=value
             validate_config(cfg)
-            if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native v2 build is unavailable')
+            if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native search build is unavailable; rebuild the active engine')
             from seed_search.realm.native_batch import Prototype
             Prototype(DEFAULT_NATIVE_BUILD,cfg)
             from seed_search.realm.resources import disk_policy
@@ -170,7 +161,7 @@ class SweepManager:
         except (ValueError,KeyError,TypeError,OSError,ImportError,RuntimeError) as exc:
             return {'ok':False,'error':str(exc)}
         with self.lock:
-            if (self.process is not None and self.process.poll() is None) or self.status == "stopping" or (self.terrain_process is not None and self.terrain_process.poll() is None):
+            if (self.process is not None and self.process.poll() is None) or self.status == "stopping":
                 return {
                     "ok": False,
                     "error": "A sweep is already actively running" if self.status != "stopping" else "A sweep is currently stopping",
@@ -337,7 +328,7 @@ class SweepManager:
         with self.lock:
             if not run_id:
                 return {'ok': False, 'error': 'No run specified to continue'}
-            if (self.process is not None and self.process.poll() is None) or self.status == 'stopping' or (self.terrain_process is not None and self.terrain_process.poll() is None):
+            if (self.process is not None and self.process.poll() is None) or self.status == 'stopping':
                 return {'ok':False,'error':'A sweep is already actively running' if self.status != 'stopping' else 'A sweep is currently stopping','runId':self.run_id}
             try:
                 directory,identity,completed,pipeline=self._saved_run(run_id)
@@ -457,17 +448,6 @@ class SweepManager:
             row = cur.fetchone()
             if row and row[0]:
                 self.scanned_count = int(row[0])
-            cur.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='variants'")
-            if cur.fetchone()[0]:
-                cur.execute("SELECT count(DISTINCT v.candidate_id) FROM variants v JOIN candidates c ON c.id=v.candidate_id WHERE v.variant='v1' AND c.qualification IN ('PREDICTED','VERIFIED')")
-                v_count = cur.fetchone()[0]
-                cur.execute("SELECT count(*) FROM candidates WHERE qualification IN ('PREDICTED','VERIFIED')")
-                c_count = cur.fetchone()[0]
-                self.terrain_progress["completed"] = v_count
-                self.terrain_progress["total"] = c_count
-                self.terrain_progress["pct"] = round((v_count / max(1, c_count)) * 100, 1)
-                remaining = max(0, c_count - v_count)
-                self.terrain_progress["etaSeconds"] = None
             conn.close()
         except Exception:
             pass
@@ -485,10 +465,16 @@ class SweepManager:
                 return {'ok': True, 'status': 'stopped'}
             if proc is None or proc.poll() is not None or self.status in ("stopped", "stopping"):
                 return {"ok": False, "error": "No active sweep to stop"}
+            verifying=self.status=='bds_verifying'
             self.status = "stopping"
-            self.logs.insert(0, "Sweep stopped by user.")
+            self.logs.insert(0, "Stopping owned verification job." if verifying else "Sweep stopped by user.")
             try:
-                proc.kill()
+                if verifying:
+                    import signal
+                    proc.send_signal(signal.SIGINT)
+                    try:proc.wait(timeout=30)
+                    except subprocess.TimeoutExpired:proc.kill()
+                else:proc.kill()
                 try:
                     proc.wait(timeout=2.0)
                 except subprocess.TimeoutExpired:
@@ -505,112 +491,6 @@ class SweepManager:
             self.status = 'stopped'
             self.process = None
             return {'ok': True, 'status': 'stopped'}
-
-    def start_terrain(self) -> dict:
-        with self.lock:
-            if self.status in ("running", "stopping"):
-                return {"ok": False, "error": "Pause or stop the baseline sweep before terrain filtering"}
-            if not self.run_dir or not (self.run_dir / "realm.sqlite").is_file():
-                return {"ok": False, "error": "No valid active run checkpoint to filter terrain"}
-            if self.terrain_process is not None and self.terrain_process.poll() is None:
-                return {"ok": False, "error": "Terrain filtering is already actively running"}
-
-            python = PROJECT_ROOT / ".venv" / "bin" / "python"
-            cmd = [
-                str(python) if python.exists() else sys.executable,
-                "-m",
-                "seed_search",
-                "terrain",
-                "--run",
-                str(self.run_dir),
-                "--variant",
-                "v1",
-            ]
-            env = os.environ.copy()
-            src_path = str(PROJECT_ROOT / "src")
-            env["PYTHONPATH"] = f"{src_path}:{env.get('PYTHONPATH', '')}" if "PYTHONPATH" in env else src_path
-
-            try:
-                self.terrain_process = subprocess.Popen(
-                    cmd,
-                    cwd=str(PROJECT_ROOT),
-                    env=env,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                )
-                self.terrain_status = "running"
-                self.logs.insert(0, f"Started Coastal Continent terrain filtering on run {self.run_id}...")
-
-                def monitor(proc, run_dir):
-                    errors = []
-                    def drain_errors():
-                        for line in proc.stderr:
-                            errors.append(line)
-                            if len(errors) > 100: del errors[:-100]
-                    reader = threading.Thread(target=drain_errors, daemon=True)
-                    reader.start()
-                    t0 = time.time()
-                    for line in proc.stdout:
-                        try:
-                            data = json.loads(line)
-                            prog = data.get("progress", {})
-                            if prog:
-                                with self.lock:
-                                    self.terrain_progress["currentSeed"] = prog.get("seed")
-                                    self.terrain_progress["elapsedSeconds"] = round(time.time() - t0, 1)
-                                    self._query_sqlite_progress()
-                                    self._query_sqlite_candidates()
-                        except Exception:
-                            pass
-                    proc.wait()
-                    reader.join()
-                    with self.lock:
-                        if self.terrain_process is not proc or self.run_dir != run_dir:
-                            return
-                        self._query_sqlite_progress()
-                        self._query_sqlite_candidates()
-                        if proc.returncode == 0:
-                            self.terrain_status = "completed"
-                            self.logs.insert(0, "Terrain request completed; inspect recorded evidence and pending states.")
-                        elif self.terrain_status == "running":
-                            self.terrain_status = "error"
-                            self.logs.insert(0, f"Terrain filtering process exited with code {proc.returncode}: {"".join(errors)[-1000:]}")
-                        self.terrain_process = None
-
-                self.terrain_monitor_thread = threading.Thread(target=monitor, args=(self.terrain_process, self.run_dir), daemon=True)
-                self.terrain_monitor_thread.start()
-                return {"ok": True, "status": "running"}
-            except Exception as e:
-                self.terrain_status = "error"
-                self.terrain_process = None
-                return {"ok": False, "error": str(e)}
-
-    def stop_terrain(self) -> dict:
-        with self.lock:
-            proc = self.terrain_process
-            if proc is None or proc.poll() is not None:
-                return {"ok": False, "error": "No terrain filtering actively running"}
-            try:
-                import signal
-                proc.send_signal(signal.SIGINT)
-                try:
-                    proc.wait(timeout=4.0)
-                except subprocess.TimeoutExpired:
-                    proc.kill()
-                    proc.wait()
-            except Exception as e:
-                self.terrain_status = 'error'
-                return {'ok': False, 'error': f'Failed to stop terrain process: {e}'}
-            if proc.poll() is None:
-                self.terrain_status = 'error'
-                return {'ok': False, 'error': 'Owned terrain process has not exited'}
-            self.terrain_status = 'idle'
-            self.terrain_process = None
-            self._query_sqlite_progress()
-            self._query_sqlite_candidates()
-            self.logs.insert(0, 'Terrain filtering stopped; checkpoint retained')
-            return {'ok': True, 'status': 'idle'}
 
     def _query_sqlite_candidates(self):
         """Extracts candidates from the active or latest run's SQLite file."""
@@ -660,34 +540,20 @@ class SweepManager:
                         'mainland_fraction': m_frac
                     }
 
+                from seed_search.realm.leaderboard import order_for
+                order=order_for(conn)
                 # Query top candidates from candidate_leaderboard_view
-                cur.execute("""
+                cur.execute(f"""
                     SELECT id, seed, smart_score, result,
                            ranking_tier, unmet_requirements
                     FROM candidate_leaderboard_view
-                    ORDER BY ranking_tier, unmet_requirements, smart_score DESC, id LIMIT 250
+                    ORDER BY {order} LIMIT 250
                 """)
                 top_rows = cur.fetchall()
 
-                # Also fetch all evaluated candidate rows that aren't already in top_rows
-                seen_ids = {r[0] for r in top_rows}
-                extra_ids = [cid for cid in v_map if cid not in seen_ids]
-                extra_rows = []
-                if extra_ids:
-                    # SQLite supports up to 999 parameters; chunk if necessary
-                    for i in range(0, len(extra_ids), 500):
-                        chunk = extra_ids[i:i+500]
-                        placeholders = ','.join('?' for _ in chunk)
-                        cur.execute(f"""
-                            SELECT id, seed, smart_score, result,
-                                   ranking_tier, unmet_requirements
-                            FROM candidate_leaderboard_view
-                            WHERE id IN ({placeholders})
-                        """, chunk)
-                        extra_rows.extend(cur.fetchall())
-
-                all_rows = top_rows + extra_rows
-                for cid, seed, score, raw_res, ranking_tier, unmet_reqs in all_rows:
+                # Historical terrain evidence can annotate a baseline candidate,
+                # but it never adds rows to or changes the canonical baseline pool.
+                for cid, seed, score, raw_res, ranking_tier, unmet_reqs in top_rows:
                     v_info = v_map.get(cid, {})
                     cand = parse_candidate_row(
                         seed, score, raw_res,
@@ -701,11 +567,13 @@ class SweepManager:
                     if cand:
                         parsed.append(cand)
             else:
-                cur.execute("""
+                from seed_search.realm.leaderboard import order_for
+                order=order_for(conn)
+                cur.execute(f"""
                     SELECT id, seed, smart_score, result,
                            ranking_tier, unmet_requirements
                     FROM candidate_leaderboard_view
-                    ORDER BY ranking_tier, unmet_requirements, smart_score DESC, id LIMIT 250
+                    ORDER BY {order} LIMIT 250
                 """)
                 rows = cur.fetchall()
                 for cid, seed, score, raw_res, ranking_tier, unmet_reqs in rows:
@@ -726,7 +594,7 @@ class SweepManager:
     def get_status(self) -> dict:
         with self.lock:
             now = time.time()
-            if self.status == "running" or self.terrain_status == "running":
+            if self.status == "running":
                 elapsed = max(0, now - self.start_time)
                 self._query_sqlite_progress()
                 self._query_sqlite_candidates()
@@ -756,8 +624,6 @@ class SweepManager:
 
             return {
                 "status": self.status,
-                "terrainStatus": self.terrain_status,
-                "terrainProgress": self.terrain_progress,
                 "error": self.error_message,
                 "runId": self.run_id,
                 "totalScanned": self.scanned_count,
@@ -767,7 +633,7 @@ class SweepManager:
                 "seedsPerSec": self.seeds_per_sec,
                 "elapsedSeconds": round(elapsed, 1),
                 "candidatesFound": len(self.candidates),
-                "candidateScope": "bounded displayed pool: up to 250 baseline plus 250 terrain records",
+                "candidateScope": "bounded displayed pool: top 250 baseline records",
                 "sweepProgress": min(100.0, progress_pct),
                 "memoryRssGib": rss_gib,
                 "activeThreads": self.threads if self.status == "running" else 0,
@@ -777,6 +643,77 @@ class SweepManager:
                 "logs": self.logs[:30],
                 "candidates": self.candidates,
             }
+
+    def verify_bds_candidate(self, seed: str | int | None = None, candidate_id: str | None = None) -> dict:
+        """Start an owned real surface-point job; never promote Realm eligibility."""
+        with self.lock:
+            point_path=None
+            if (self.process is not None and self.process.poll() is None) or self.status in ('stopping','bds_verifying'):
+                return {'ok':False,'error':'Pause active processing before verifying a candidate'}
+            try:
+                if not self.run_dir or not (self.run_dir/'realm.sqlite').is_file():
+                    raise ValueError('Select a saved run first')
+                if not isinstance(candidate_id,str) or not candidate_id:
+                    raise ValueError('An exact candidateId is required')
+                from seed_search.seeds import parse_seed
+                with sqlite3.connect(f'file:{self.run_dir / "realm.sqlite"}?mode=ro',uri=True) as conn:
+                    row=conn.execute('SELECT result FROM candidates WHERE id=?',(candidate_id,)).fetchone()
+                if not row:raise ValueError('Candidate does not belong to the selected run')
+                candidate=json.loads(row[0])
+                if seed is not None and parse_seed(seed)!=parse_seed(candidate['seed']):
+                    raise ValueError('Seed and candidate identity differ')
+                if candidate.get('qualification') not in ('PREDICTED','VERIFIED'):
+                    raise ValueError('Candidate must pass the predictor baseline first')
+                witnesses=(candidate.get('biomes') or {}).get('witnesses') or {}
+                points=sorted({(p[0],p[2]) for w in witnesses.values()
+                               if isinstance(w,dict) and isinstance(p:=w.get('coordinate'),list)
+                               and len(p)==3 and p[1]==63 and all(type(v) is int for v in p)})[:16]
+                if not points:raise ValueError('Candidate has no explicit Y=63 witness points to verify')
+                # The CLI revalidates containment, image/tooling identity, attempt budget,
+                # provider locking and cache identity before publishing observations.
+                point_path=self.run_dir/f'web-surface-points-{uuid.uuid4().hex}.json'
+                point_path.write_text(json.dumps(points)+'\n')
+                python=PROJECT_ROOT/'.venv'/'bin'/'python'
+                cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search',
+                     'verify-biomes','--run',str(self.run_dir),'--candidate',candidate_id,'--points',str(point_path)]
+                env=os.environ.copy();env['PYTHONPATH']=str(PROJECT_ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
+                previous=self.status
+                self.generation+=1
+                proc=subprocess.Popen(cmd,cwd=str(PROJECT_ROOT),env=env,stdout=subprocess.PIPE,
+                                      stderr=subprocess.STDOUT,text=True)
+                self.process=proc;self.status='bds_verifying';self.error_message=None
+                self.logs.insert(0,f'BDS surface job started for {candidate_id}: {len(points)} explicit points')
+                self.monitor_thread=threading.Thread(target=self._monitor_verification,
+                    args=(proc,self.run_dir,self.generation,previous,point_path),daemon=True)
+                self.monitor_thread.start()
+                return {'ok':True,'status':'bds_verifying','candidateId':candidate_id,'points':len(points),
+                        'scope':'Surface point observations only; structures, loot, portal room and player spawn remain unverified'}
+            except (ValueError,TypeError,KeyError,OSError,sqlite3.Error) as exc:
+                if point_path is not None:point_path.unlink(missing_ok=True)
+                return {'ok':False,'error':str(exc)}
+
+    def _monitor_verification(self,proc,run_dir,generation,previous,point_path):
+        # Drain continuously with bounded memory so a verbose Docker failure cannot
+        # block the worker or exhaust the web process. The provider owns timeouts.
+        output=[]
+        try:
+            if proc.stdout:
+                for line in proc.stdout:
+                    output.append(line[-2000:])
+                    if len(output)>40:del output[:-40]
+            code=proc.wait()
+            with self.lock:
+                if generation!=self.generation or run_dir!=self.run_dir or self.process is not proc:return
+                self.process=None
+                if self.status=='bds_verifying':self.status=previous
+                self._query_sqlite_candidates()
+                if code:
+                    self.error_message=''.join(output)[-2000:] or f'BDS surface job exited {code}'
+                    self.logs.insert(0,'BDS surface job failed; no Realm certification was issued: '+self.error_message[-300:])
+                else:
+                    self.logs.insert(0,'BDS surface job finished; inspect measured point evidence. Full Realm verification remains pending.')
+        finally:
+            point_path.unlink(missing_ok=True)
 
 
 def parse_candidate_row(
@@ -826,8 +763,9 @@ def parse_candidate_row(
 
     spawn_evidence = data.get('spawn_stage') or {}
     point = spawn_evidence.get('coordinates') if isinstance(spawn_evidence, dict) else None
-    spawn_point = [point[0], point[2]] if isinstance(point, list) and len(point) == 3 and all(type(v) in (int, float) for v in point) else None
-    spawn_dist = round(math.hypot(spawn_point[0] - center[0], spawn_point[1] - center[1]), 1) if spawn_point else None
+    spawn_point = [point[0], point[2]] if isinstance(point, list) and len(point) == 3 and all(type(v) in (int, float) and math.isfinite(v) for v in point) else None
+    spawn_distance_exact = math.hypot(spawn_point[0] - center[0], spawn_point[1] - center[1]) if spawn_point else None
+    spawn_dist = round(spawn_distance_exact, 1) if spawn_distance_exact is not None else None
     spawn_dist_origin = round(math.hypot(spawn_point[0], spawn_point[1]), 1) if spawn_point else None
 
     structures = []
@@ -897,8 +835,15 @@ def parse_candidate_row(
     terrain = data.get('terrain_status') or {}
     terrain_source = terrain.get('source') if isinstance(terrain, dict) else None
     terrain_metrics = terrain.get('metrics') if isinstance(terrain_source, dict) and terrain_source.get('kind') == 'actual_generation' else None
-    actual_source = verified.get('source') if isinstance(verified, dict) else None
-    actual_verified = verified.get('status') == 'VERIFIED' and isinstance(actual_source, dict) and actual_source.get('kind') == 'actual_generation'
+    actual_verified = False  # No supported provider currently certifies a whole Realm.
+    surface_evidence=data.get('surface_biome_verification') or {}
+    classification=surface_evidence.get('classification') or {}
+    observation=surface_evidence.get('observation') or {}
+    observed_names=classification.get('raw_names') or []
+    has_surface_evidence=(observation.get('source')=='actual' and observation.get('actual') is True and
+        observation.get('operation')=='surface_points_v1' and observation.get('status')=='PARTIAL' and
+        (classification.get('uncertainty') or {}).get('domain')=='actual_generated_surface' and
+        bool(observed_names))
 
     # Terrain evidence: 'passed', 'near_miss', 'failed', 'pending'
     if isinstance(has_terrain_pass, str):
@@ -941,16 +886,21 @@ def parse_candidate_row(
         terrain_metrics["mainlandFraction"] = round(float(terrain_mainland_fraction), 3)
 
     return {
-        "id": f"cand-{seed}",
+        "id": str(data.get('id') or f'cand-{seed}'),
         "seed": str(seed),
         "score": round(float(score), 1) if score is not None else None,
         "rankingTier": ranking_tier,
         "unmetRequirements": unmet_requirements,
+        "weightedRadialDistance": data.get("weighted_radial_dist"),
+        "originDistance": data.get("origin_distance"),
         "strongholdAnchor": stronghold,
         "evaluationCenter": center,
+        "playableBounds": data.get("bounds"),
         "predictedStrongholds": actual_strongholds,
         "spawnPoint": spawn_point,
         "spawnDistance": spawn_dist,
+        "spawnWithin100": spawn_distance_exact <= 100 if spawn_distance_exact is not None else None,
+        "spawnDistanceUnits": "horizontal blocks from hub",
         "spawnDistanceToOrigin": spawn_dist_origin,
         "spawnEvidence": spawn_evidence if isinstance(spawn_evidence, dict) else None,
         "spawnStatus": spawn_evidence.get('status', 'PENDING') if isinstance(spawn_evidence, dict) else 'PENDING',
@@ -967,12 +917,17 @@ def parse_candidate_row(
         "caveClusters": data.get('cave_clusters', []) if (data.get('cave_evidence') or {}).get('kind') == 'actual_generation' else [],
         "biomes": biomes.get('raw_names', []) if isinstance(biomes, dict) else [],
         "biomeWitnesses": biomes.get('witnesses') if isinstance(biomes, dict) else None,
+        "netherBiomeWitnesses": (data.get("nether_biomes") or {}).get("witnesses"),
         "biomeSamples": [s for s in (biomes.get('sampling') or {}).get('samples', []) if isinstance(s, dict)][:300] if isinstance(biomes, dict) else [],
         "bdsVerified": actual_verified,
         "bdsAccuracy": verified.get('metrics') if actual_verified else None,
         "baselineStatus": data.get('baseline_qualification', data.get('qualification', 'PENDING')),
         "marineStatus": marine_status,
-        "actualGenerationStatus": verified.get('status', 'PENDING'),
+        "actualGenerationStatus": "PARTIAL" if has_surface_evidence else "PENDING",
+        "surfaceVerification": {'status':'PARTIAL' if has_surface_evidence else 'PENDING',
+            'observedBiomes':observed_names if has_surface_evidence else [],
+            'observationId':surface_evidence.get('observation_id'),
+            'scope':'Surface point presence only; whole Realm remains unverified'} if surface_evidence else None,
         "screeningRevision": data.get('screening_revision'),
         "discoveredAt": time.strftime("%H:%M:%S"),
         "provenance": "live",
@@ -1049,20 +1004,21 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 from seed_search.seeds import parse_seed
                 from seed_search.backend import Backend, biome_name
                 seed_int = parse_seed(seed_param)
-                cache_key = (seed_int, dim_param)
+                if dim_param not in ('overworld','nether'):raise ValueError('dimension must be overworld or nether')
+                cx=float(params.get('centerX',['0'])[0]);cz=float(params.get('centerZ',['0'])[0])
+                side=int(params.get('side',['2048'])[0])
+                if not all(math.isfinite(value) and abs(value)<=1000000 for value in (cx,cz)):
+                    raise ValueError('Invalid map center')
+                if side not in (832,896,1024,1536,1664,2048):raise ValueError('Unsupported map side')
+                x0=math.ceil(cx-side/2);z0=math.ceil(cz-side/2);n=side//32+1
+                cache_key = (seed_int, dim_param, cx, cz, side)
                 cached = MANAGER._biome_grid_cache.get(cache_key)
                 if cached is None:
                     if dim_param not in ('overworld', 'nether'):
                         raise ValueError('dimension must be overworld or nether')
                     with Backend(seed_int) as backend:
-                        if dim_param == 'overworld':
-                            res = backend.grid(x0=-1024, z0=-1024, nx=65, nz=65, step=32, y=63)
-                            biomes_arr = res['biomes']
-                            heights_arr = res['approx_height']
-                        else:
-                            points = [(x, 63, z) for z in range(-1024, 1025, 32) for x in range(-1024, 1025, 32)]
-                            biomes_arr = backend.biome_points(points, dimension=-1).reshape(65, 65)
-                            heights_arr = None
+                        points = [(x0+x*32,63,z0+z*32) for z in range(n) for x in range(n)]
+                        biomes_arr = backend.biome_points(points, dimension=0 if dim_param == 'overworld' else -1).reshape(n, n)
                     unique_ids = list(set(int(x) for x in biomes_arr.flatten()))
                     names_map = {str(uid): biome_name(uid) for uid in unique_ids}
                     cached = {
@@ -1070,9 +1026,10 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                         "seed": str(seed_param),
                         "dimension": dim_param,
                         "evidence": "PREDICTED",
-                        "bounds": {"x0": -1024, "z0": -1024, "nx": 65, "nz": 65, "step": 32},
+                        "center": [cx,cz],
+                        "bounds": {"x0": x0, "z0": z0, "nx": n, "nz": n, "step": 32},
                         "grid": biomes_arr.tolist(),
-                        "approx_height": [[round(float(v), 1) for v in row] for row in heights_arr] if heights_arr is not None else None,
+                        "approx_height": None,
                         "names": names_map,
                     }
                     if len(MANAGER._biome_grid_cache) > 20:
@@ -1152,19 +1109,19 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 reject("Referer is not allowed", 403)
                 return
 
-        if path not in ('/api/sweep/start', '/api/sweep/stop', '/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/pause', '/api/sweep/continue', '/api/terrain/start', '/api/terrain/stop'):
+        if path not in ('/api/sweep/start', '/api/sweep/stop', '/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/pause', '/api/sweep/continue', '/api/bds/verify'):
             reject('Unknown endpoint', 404)
             return
 
         cl_header = self.headers.get('Content-Length')
-        if path in ('/api/sweep/stop', '/api/sweep/pause', '/api/sweep/continue', '/api/terrain/start', '/api/terrain/stop') and (cl_header is None or cl_header.strip() in ('', '0')):
+        if path in ('/api/sweep/stop', '/api/sweep/pause', '/api/sweep/continue') and (cl_header is None or cl_header.strip() in ('', '0')):
             req_data = {}
         else:
             try:
                 if cl_header is None or not cl_header.strip().isdigit():
                     raise ValueError('Missing or invalid Content-Length header')
                 content_length = int(cl_header.strip())
-                if content_length == 0 and path in ('/api/sweep/stop', '/api/sweep/pause', '/api/sweep/continue', '/api/terrain/start', '/api/terrain/stop'):
+                if content_length == 0 and path in ('/api/sweep/stop', '/api/sweep/pause', '/api/sweep/continue'):
                     req_data = {}
                 else:
                     if content_length < 2 or content_length > 16384:
@@ -1172,7 +1129,15 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                     req_data = json.loads(self.rfile.read(content_length).decode('utf-8'))
                 if not isinstance(req_data, dict):
                     raise ValueError('JSON body must be an object')
-                allowed = {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts'} if path == '/api/sweep/start' else {'runId'} if path in ('/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/continue') else set()
+                allowed = (
+                    {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts', 'profile'}
+                    if path == '/api/sweep/start'
+                    else {'runId'}
+                    if path in ('/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/continue')
+                    else {'seed', 'candidateId'}
+                    if path == '/api/bds/verify'
+                    else set()
+                )
                 if set(req_data) - allowed:
                     raise ValueError('Unsupported request field')
             except (ValueError, UnicodeError, json.JSONDecodeError) as exc:
@@ -1192,6 +1157,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 max_misses=max_misses,
                 counts=req_data.get('counts'),
                 start_index=req_data.get('startIndex',0),
+                profile=req_data.get('profile','dynamic1664'),
             )
             self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")
@@ -1223,25 +1189,20 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode("utf-8"))
             return
 
+        elif path == "/api/bds/verify":
+            result = MANAGER.verify_bds_candidate(
+                seed=req_data.get("seed"),
+                candidate_id=req_data.get("candidateId"),
+            )
+            self.send_response(200 if result.get("ok") else 400)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(result).encode("utf-8"))
+            return
+
         elif path == "/api/sweep/stop":
             result = MANAGER.stop_sweep()
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps(result).encode("utf-8"))
-            return
-
-        elif path == "/api/terrain/start":
-            result = MANAGER.start_terrain()
-            self.send_response(200 if result.get("ok") else 400)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps(result).encode("utf-8"))
-            return
-
-        elif path == "/api/terrain/stop":
-            result = MANAGER.stop_terrain()
-            self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(result).encode("utf-8"))
@@ -1251,7 +1212,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
 
-def run_server(port: int = 3000, host: str = '127.0.0.1', auto_continue: bool = False, auto_terrain: bool = False):
+def run_server(port: int = 3000, host: str = '127.0.0.1', auto_continue: bool = False):
     server_address = (host, port)
     httpd = http.server.ThreadingHTTPServer(server_address, WebSearchHandler)
     print(f"Seed Searcher Web Server running at http://{host}:{port}/")
@@ -1261,10 +1222,6 @@ def run_server(port: int = 3000, host: str = '127.0.0.1', auto_continue: bool = 
         print("Auto-continuing latest sweep run to finish...")
         res = MANAGER.resume_sweep(MANAGER.run_id)
         print(f"Sweep resume status: {res}")
-    if auto_terrain or os.environ.get('SEED_SEARCH_AUTO_TERRAIN') == '1' or '--terrain' in sys.argv:
-        print("Auto-starting terrain filtering across candidate pool...")
-        t_res = MANAGER.start_terrain()
-        print(f"Terrain filtering start status: {t_res}")
     import signal
     previous_handler = None
     if threading.current_thread() is threading.main_thread():
@@ -1278,7 +1235,6 @@ def run_server(port: int = 3000, host: str = '127.0.0.1', auto_continue: bool = 
         print("\nShutting down server...")
     finally:
         MANAGER.stop_sweep()
-        MANAGER.stop_terrain()
         httpd.server_close()
         if previous_handler is not None:
             signal.signal(signal.SIGTERM, previous_handler)
@@ -1290,5 +1246,4 @@ if __name__ == "__main__":
         if arg.isdigit():
             port = int(arg)
     auto_cont = "--continue" in sys.argv or os.environ.get("SEED_SEARCH_AUTO_CONTINUE") == "1"
-    auto_terr = "--terrain" in sys.argv or os.environ.get("SEED_SEARCH_AUTO_TERRAIN") == "1"
-    run_server(port, os.environ.get('SEED_SEARCH_WEB_HOST', '127.0.0.1'), auto_continue=auto_cont, auto_terrain=auto_terr)
+    run_server(port, os.environ.get('SEED_SEARCH_WEB_HOST', '127.0.0.1'), auto_continue=auto_cont)

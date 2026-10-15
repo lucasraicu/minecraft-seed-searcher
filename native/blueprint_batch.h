@@ -14,6 +14,9 @@ typedef struct NBAnchor {
     NBObservation observations[13];
     int *biome_xyz, *biome_ids;
     int first_witness[13];
+    int nether_biome_n, *nether_biome_xyz, *nether_biome_ids;
+    int hub_bonus;
+    NBObservation optional[5];
     unsigned int fatal_missing;
 } NBAnchor;
 typedef struct NBResult {
@@ -36,6 +39,8 @@ typedef struct NBPolicy {
     int fixture_surface[10], fixture_caves[3];
     int two_group, floors[13];
     unsigned int flexible_mask;
+    int marine_baseline;
+    int dynamic, density_weights[6], nether_ids[5], optional_types[5];
 } NBPolicy;
 /* Zero-initialized fixed-width decision receipts are hashed without building
  * per-input Python records. They are not persisted as individual rows. */
@@ -56,3 +61,5 @@ int nb_stronghold_after(void);
 
 int ss_openmp_enabled(void);
 const char *ss_openmp_library(void);
+
+int nb_dynamic_raw_bounds(const int *fort, int nf, const int *bast, int nb, int fort_goal, int bast_goal, int *feasible);

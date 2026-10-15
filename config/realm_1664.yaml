@@ -1,0 +1,209 @@
+schema_version: 5
+game:
+  edition: bedrock
+  target_version: '26.52'
+  backend_model: MC_26_50
+  backend_commit: 294c72ab0392dd818a91d293dbd5774d4874d64b
+  bds_version: 1.26.52.3
+deployment:
+  overworld_side_blocks: 1664
+  nether_side_blocks: 832
+discovery:
+  overworld_bounds:
+  - -2000
+  - -2000
+  - 2000
+  - 2000
+  nether_bounds:
+  - -562
+  - -562
+  - 562
+  - 562
+search:
+  mode: prediction
+  sequence: permutation
+  run_key: '0'
+  workers: 30
+  max_workers: 36
+  numeric_threads_per_worker: 1
+  native_threads_per_worker: 1
+  batch_size: 32
+  pilot_limit: 1000
+  inventory_mode: eligibility
+  memory_target_gib: 25
+  memory_ceiling_gib: 30
+  docker_reserve_gib: 8
+  run_disk_limit_bytes: 137438953472
+  free_disk_reserve_bytes: 17179869184
+  projected_bytes_per_seed: 65536
+  structure_order:
+  - outpost
+  - desert_pyramid
+  - jungle_temple
+  - ruined_portal
+  - trial_chamber
+  - mansion
+  - ancient_city
+  - village
+  - mineshaft
+  max_misses: 2
+  density_weights:
+    village: 3
+    trial_chamber: 2
+    ancient_city: 2
+    desert_pyramid: 1
+    jungle_temple: 1
+    outpost: 1
+  centroid_weights:
+    village: 3
+    trial_chamber: 2
+    ruined_portal: 2
+    ancient_city: 2
+    outpost: 1
+    desert_pyramid: 1
+    jungle_temple: 1
+    mansion: 1
+    monument: 1
+    stronghold: 1
+    shipwreck: 1
+structures:
+  required:
+  - stronghold
+  - mansion
+  - village
+  - trial_chamber
+  - ancient_city
+  - desert_pyramid
+  - jungle_temple
+  - monument
+  - ruined_portal
+  - shipwreck
+  - mineshaft
+  - outpost
+  minimum_counts:
+    stronghold: 1
+    mansion: 1
+    village: 9
+    trial_chamber: 8
+    ancient_city: 4
+    desert_pyramid: 3
+    jungle_temple: 3
+    monument: 1
+    ruined_portal: 7
+    shipwreck: 6
+    mineshaft: 15
+    outpost: 2
+  nether_required:
+  - fortress
+  - bastion
+  nether_minimum_counts:
+    fortress: 2
+    bastion: 2
+  optional_bonuses: {}
+  deferred_until_coastal_terrain: []
+  hard_floors:
+    stronghold: 1
+    mansion: 1
+    village: 8
+    trial_chamber: 7
+    ancient_city: 3
+    desert_pyramid: 2
+    jungle_temple: 2
+    monument: 1
+    ruined_portal: 5
+    shipwreck: 4
+    mineshaft: 12
+    outpost: 2
+    fortress: 2
+    bastion: 2
+biomes:
+  spacing: 64
+  sample_y: 63
+  lattice: world
+  gate_batch_size: 16
+  refinement_budget: 128
+  wooded_minimum_families: 2
+  family_bonuses: {}
+  variant_bonuses: {}
+  sample_y_levels:
+  - 63
+  - -48
+  - 0
+  - 160
+  required_families:
+  - plains
+  - desert
+  - forest
+  - taiga
+  - jungle
+  - swamp
+  - snowy_ice
+  - dark_forest
+  - peaks
+  - stony_shore
+  - lush_caves
+  - dripstone_caves
+  - deep_dark
+  include_frozen_peaks: true
+  nether_required:
+  - nether_wastes
+  - crimson_forest
+  - warped_forest
+  - soul_sand_valley
+  - basalt_deltas
+scoring:
+  geometry_weight: 0.8
+  biome_fit_weight: 0.1
+  baseline_weight: 0.1
+  baseline_quality_cap: 60
+terrain:
+  variants:
+  - v1
+  native_threads: 1
+  scheduler: rotation
+  resolutions:
+  - 128
+  - 64
+  - 32
+  - 16
+  - 8
+  - 4
+  center_spacing: 64
+  refine_center_spacing: 16
+  rays: 32
+  maximum_refinements_per_anchor: 8
+  v1:
+    mode: coastal_continent
+    coastal_continent:
+      land_fraction_min: 0.7
+      land_fraction_max: 0.8
+      ocean_edge_min_width_blocks: 200
+      ocean_edge_preferred_max_width_blocks: 300
+      ocean_edge_fraction_min: 0.5
+      monument_envelope_half_size_blocks: 80
+      land_connectivity: 8
+      bridge_inland_freshwater: true
+    square_side_blocks: 1664
+bds:
+  enabled: true
+  version: 1.26.52.3
+  docker_cli: /Applications/Docker.app/Contents/Resources/bin/docker
+  image: bedrock-verification-poc:1.26.52.3
+  image_id: sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8
+  cpus: 4
+  memory_gib: 6
+  verification_budget: 20
+  persist_snapshot: false
+  compare_reference: true
+  maximum_region_side: 256
+caves:
+  automatic: false
+  y_levels:
+  - 0
+  - -16
+  - -32
+  - -48
+  spacing: 64
+  maximum_samples: 10000
+contract: master_seed_blueprint_v1
+screening_revision: dynamic-envelope-1664-v1

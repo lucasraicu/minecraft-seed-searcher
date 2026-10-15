@@ -134,7 +134,8 @@ static int nb_pair(NBWorker *w,int slot,const int *b,NBObservation *o) {
     int n;
     if(w->fixture) {
         n=nb_fixture_count(w,slot);
-        for(int i=0;i<n;i++){w->scratch[2*i]=b[0]+800+i*16;w->scratch[2*i+1]=b[1]+800;}
+        for(int i=0;i<n;i++){w->scratch[2*i]=b[0]+800+i*16+(w->p->dynamic?w->fixture->x:0);
+            w->scratch[2*i+1]=b[1]+800+(w->p->dynamic?w->fixture->z:0);}
     } else n=ss_scan(w->ctx,w->p->types[slot],b[0],b[1],b[2],b[3],0,w->scratch,w->cap);
     nb_clear_full(o);
     code=nb_copy(w,&o->raw,w->scratch,n);if(code)return code;
@@ -222,14 +223,14 @@ static int nb_palette(NBWorker *w,const int *b,NBAnchor *a) {
     for(int f=0;f<13;f++)a->first_witness[f]=-1;
     int batch=w->p->batch_size*4;
     for(int offset=0;offset<n*4;offset+=batch) {
-        if(a->biome_mask==8191&&!w->p->complete&&!w->p->origin)break;
+        if(a->biome_mask==8191&&!w->p->complete&&!w->p->origin&&!w->p->dynamic)break;
         int end=offset+batch;if(end>n*4)end=n*4;
         for(int i=offset;i<end;i++) {
             int index=(int)(((int64_t)(i/4)*stride)%n),layer=i%4;
             int x=x0+(index%nx)*step,z=z0+(index/nx)*step,y=w->p->y[layer];
             int id=nb_point(w,x,y,z),k=a->biome_n++;
             a->biome_xyz[3*k]=x;a->biome_xyz[3*k+1]=y;a->biome_xyz[3*k+2]=z;a->biome_ids[k]=id;
-            if(w->p->origin&&y==63&&id>=0&&id<256)a->bonus_biomes|=(unsigned int)w->p->bonus_biome_members[id];
+            if((w->p->origin||w->p->dynamic)&&y==63&&id>=0&&id<256)a->bonus_biomes|=(unsigned int)w->p->bonus_biome_members[id];
             unsigned int mask=(id>=0&&id<256)?w->p->biome_members[id]:0;
             mask&=(y==-48||y==0)?7168:1023;
             for(int f=0;f<13;f++)if((mask&(1u<<f))&&!(a->biome_mask&(1u<<f)))a->first_witness[f]=k;
@@ -238,7 +239,26 @@ static int nb_palette(NBWorker *w,const int *b,NBAnchor *a) {
     }
     a->biome_evaluated=1;return 0;
 }
+static int nb_dynamic_score_values(const int *n,int strong,unsigned int bonus,int hub) {
+    int score=(n[0]>=2?50:0)+(strong>=2?50:0)+
+        (n[5]>8?(n[5]-8)*25:0)+(n[6]>7?(n[6]-7)*10:0)+
+        (n[4]>=4?25:0)+(n[2]>=3?20:0)+
+        (n[1]>=3?20:0)+(n[12]>=3?20:0)+
+        (n[10]>=3?20:0)+(n[11]>=3?20:0)+
+        (n[3]>=2?35:0)+(n[8]>6?(n[8]-6)*5:0)+
+        (n[7]>7?(n[7]-7)*5:0)+(n[9]>15?n[9]-15:0)+hub;
+    const int points[10]={30,20,25,30,25,10,10,15,15,15};
+    for(int i=0;i<10;i++)if(bonus&(1u<<i))score+=points[i];
+    return score;
+}
 static int nb_score(NBWorker *w,NBAnchor *a) {
+    if(w->p->dynamic) {
+        int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
+        int score=nb_dynamic_score_values(n,a->stronghold_count,a->bonus_biomes,a->hub_bonus);
+        const int points[5]={20,15,15,10,10};
+        for(int k=0;k<5;k++)score+=a->optional[k].viable.n*points[k];
+        return score;
+    }
     if(w->p->locked) {
         int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
         if(w->p->origin) {
@@ -252,6 +272,7 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
                     (n[7]>7?(n[7]-7)*5:0)+
                     (n[9]>20?n[9]-20:0)+
                     (n[12]>1?(n[12]-1)*10:0)+
+                    (w->p->marine_baseline&&n[8]>5?(n[8]-5)*5:0)+
                     (n[2]>=2?10:0)+(n[1]>=2?10:0);
                 for(int i=0;i<3;i++)if(a->bonus_biomes&(1u<<i))score+=15;
                 return score;
@@ -291,6 +312,8 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
 }
 static void nb_clear_anchor(NBAnchor *a) {
     for(int k=0;k<13;k++){nb_clear_full(a->observations+k);nb_clear_points(&a->observations[k].floor);}
+    for(int k=0;k<5;k++)nb_clear_full(a->optional+k);
+    free(a->nether_biome_xyz);free(a->nether_biome_ids);
     free(a->biome_xyz);free(a->biome_ids);memset(a,0,sizeof(*a));
 }
 static void nb_clear_result(NBResult *r) {
@@ -309,7 +332,9 @@ static int nb_keep(const NBWorker *w,const NBAnchor *a) {
         return a->stronghold_count>=1 && nb_budget_ok(w,a) && a->biome_evaluated && a->biome_mask==8191;
     return (!w->p->origin||a->stronghold_count>=1) && a->biome_evaluated && nb_bits((unsigned int)a->count_missing)+13-nb_bits(a->biome_mask)<=w->p->max_misses;
 }
+#include "blueprint_dynamic.inc"
 static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
+    if(w->p->dynamic)return nb_eval_dynamic(w,seed,r);
     double start=nb_time();r->seed=seed;
     NB_PROFILE_SEED(w,seed);
 #ifndef NB_DISABLE_MANSION_CACHE
@@ -410,9 +435,23 @@ static int nb_eval(NBWorker *w,uint64_t seed,NBResult *r) {
             t=nb_time();code=nb_palette(w,b,a);double elapsed=nb_time()-t;r->stage_seconds[12]+=elapsed;
             NB_PROFILE_STAGE(w,12,elapsed,a->x,a->z);if(code)return code;
         }
+        /* Marine starts are strict baseline counts in v3. Query them only after
+         * the cheap structure and biome gates, before retaining a survivor. */
+        if(w->p->marine_baseline && (w->p->complete ||
+            (nb_budget_ok(w,a)&&a->biome_evaluated&&a->biome_mask==8191))) {
+            for(int slot=3;slot<=8;slot+=5) {
+                t=nb_time();code=nb_floor(w,slot,b,a->observations+slot);
+                double elapsed=nb_time()-t;r->stage_seconds[slot+1]+=elapsed;
+                NB_PROFILE_STAGE(w,slot+1,elapsed,a->x,a->z);if(code)return code;
+                int observed=nb_observed_count(w,a->observations+slot,slot);
+                if(observed<w->p->goals[slot])a->count_missing|=1<<slot;
+                if(observed<w->p->floors[slot])a->fatal_missing|=1u<<slot;
+                if(!w->p->complete && a->fatal_missing)break;
+            }
+        }
         if((nb_budget_ok(w,a)&&a->biome_mask==8191)||(w->p->retention&&nb_keep(w,a))) {
             t=nb_time();
-            for(int slot=0;slot<10;slot++)if(!(w->p->locked&&(slot==3||slot==8))&&!a->observations[slot].full){
+            for(int slot=0;slot<10;slot++)if(!(w->p->locked&&!w->p->marine_baseline&&(slot==3||slot==8))&&!a->observations[slot].full){
                 NB_PROFILE_INVENTORY_BEGIN(w);
                 code=nb_pair(w,slot,b,a->observations+slot);
                 NB_PROFILE_INVENTORY_END(w,slot,a->x,a->z);if(code)return code;
@@ -443,7 +482,27 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     const unsigned int group_flexible=(1u<<0)|(1u<<4)|(1u<<5)|(1u<<6)|(1u<<7)|(1u<<9)|(1u<<10)|(1u<<11);
     const int y[4]={63,-48,0,160};
     for(int i=0;i<13;i++)if(p->types[i]!=types[i])return NULL;
-    if((p->locked!=0&&p->locked!=1)||(p->river!=0&&p->river!=1)||(p->river&&!p->locked)||(p->origin!=0&&p->origin!=1)||(p->two_group!=0&&p->two_group!=1)||(p->two_group&&!p->origin)||(p->origin&&(!p->locked||!p->river||p->outpost_goal!=(p->two_group?1:2))))return NULL;
+    if(p->dynamic) {
+        const int floors[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
+        const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
+            (1u<<6)|(1u<<7)|(1u<<8)|(1u<<9);
+        if(p->dynamic!=1||!p->locked||!p->two_group||p->origin||p->marine_baseline||p->river||
+           p->overworld_half!=832||p->nether_half!=416||p->max_misses>2||
+           p->discovery[0]!=-2000||p->discovery[1]!=-2000||
+           p->discovery[2]!=1999||p->discovery[3]!=1999||
+           p->outpost_goal<2||p->outpost_goal>64||
+           p->nether_goal<2||p->nether_goal>64||p->bastion_goal<2||p->bastion_goal>64||
+           p->flexible_mask!=flexible)return NULL;
+        for(int i=0;i<13;i++)if(p->floors[i]!=floors[i])return NULL;
+        for(int i=0;i<10;i++)if(p->goals[i]<floors[i]||p->goals[i]>64)return NULL;
+        int positive_weights=0;
+        for(int i=0;i<6;i++){
+            if(p->density_weights[i]<0||p->density_weights[i]>1000)return NULL;
+            positive_weights+=p->density_weights[i];
+        }
+        if(!positive_weights)return NULL;
+    } else {
+    if((p->locked!=0&&p->locked!=1)||(p->river!=0&&p->river!=1)||(p->river&&!p->locked)||(p->origin!=0&&p->origin!=1)||(p->two_group!=0&&p->two_group!=1)||(p->two_group&&!p->origin)||(p->marine_baseline!=0&&p->marine_baseline!=1)||(p->marine_baseline&&!p->two_group)||(p->origin&&(!p->locked||!p->river||p->outpost_goal!=(p->two_group?1:2))))return NULL;
     if(p->origin&&(p->discovery[0]!=-1024||p->discovery[1]!=-1024||p->discovery[2]!=1023||p->discovery[3]!=1023))return NULL;
     if(p->bastion_goal!=(p->river?3:p->locked?2:1) && !(p->two_group&&p->bastion_goal>=2&&p->bastion_goal<=100))return NULL;
     if(p->outpost_goal!=0&&p->outpost_goal!=2&&!(p->two_group&&p->outpost_goal==1))return NULL;
@@ -462,16 +521,19 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     for(int i=0;i<10;i++) {
         if(p->two_group) {
             if(p->goals[i]<group_floors[i]||p->goals[i]>100||
-               ((i==1||i==2)&&p->goals[i]!=1))return NULL;
+               ((i==1||i==2)&&p->goals[i]!=1)||
+               (p->marine_baseline&&i==3&&p->goals[i]!=1)||
+               (p->marine_baseline&&i==8&&p->goals[i]!=3))return NULL;
         } else if(p->goals[i]!=(p->river&&i==8?5:p->locked?new_goals[i]:old_goals[i]))return NULL;
     }
     if(p->two_group) {
         if(p->flexible_mask!=group_flexible||p->max_misses>8)return NULL;
-        for(int i=0;i<13;i++)if(p->floors[i]!=group_floors[i])return NULL;
+        for(int i=0;i<13;i++)if(p->floors[i]!=(p->marine_baseline&&i==3?1:p->marine_baseline&&i==8?3:group_floors[i]))return NULL;
+    }
     }
     for(int i=0;i<4;i++)if(p->y[i]!=y[i])return NULL;
     if(fixtures)for(int i=0;i<count;i++)if(fixtures[i].x<-1000000||fixtures[i].x>1000000||fixtures[i].z<-1000000||fixtures[i].z>1000000||
-        fixtures[i].missing<-1||fixtures[i].missing>28||fixtures[i].deficit_depth<1||fixtures[i].deficit_depth>32)return NULL;
+        fixtures[i].missing<-1||fixtures[i].missing>(p->dynamic?33:28)||fixtures[i].deficit_depth<1||fixtures[i].deficit_depth>32)return NULL;
     uint64_t allocated_bytes=sizeof(NBBatch)+(uint64_t)count*(sizeof(NBResult)+(p->retention?sizeof(NBVerdict):0));
     if(p->max_buffer_bytes<allocated_bytes || p->max_buffer_bytes>((uint64_t)4<<30))return NULL;
     NBBatch *batch=calloc(1,sizeof(*batch));if(!batch)return NULL;

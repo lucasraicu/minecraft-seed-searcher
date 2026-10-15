@@ -116,9 +116,9 @@ int ss_structure_count(SeedContext *ctx,int type,int x0,int z0,int x1,int z1,int
         }
     return n;
 }
-int ss_nether_pair(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xzt,int *viable,int cap) {
+int ss_nether_raw_pair(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xzt,int cap) {
     StructureConfig cfg;
-    if(!ctx || !xzt || !viable || x0>x1 || z0>z1 || cap<1 || !getStructureConfig(Fortress,MC_26_50,&cfg) ||
+    if(!ctx || !xzt || x0>x1 || z0>z1 || cap<1 || !getStructureConfig(Fortress,MC_26_50,&cfg) ||
        x0<-(1<<30) || z0<-(1<<30) || x1>=(1<<30) || z1>=(1<<30) ||
        (int64_t)x1-x0>14000 || (int64_t)z1-z0>14000)return -1;
     int n=0,size=cfg.regionSize*16;
@@ -127,12 +127,21 @@ int ss_nether_pair(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xzt,int *vi
             Pos p;int fortress=getStructurePos(Fortress,MC_26_50,ctx->seed,rx,rz,&p);
             if(!inside(p,x0,z0,x1,z1))continue;
             if(n>=cap)return -2;
-            int type=fortress?Fortress:Bastion;
-            xzt[3*n]=p.x;xzt[3*n+1]=p.z;xzt[3*n+2]=fortress;
-            viable[n]=!!isViableStructurePos(type,&ctx->nether,p.x,p.z,0);n++;
+            xzt[3*n]=p.x;xzt[3*n+1]=p.z;xzt[3*n+2]=fortress;n++;
         }
     return n;
 }
+int ss_nether_pair(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xzt,int *viable,int cap) {
+    if(!viable)return -1;
+    int n=ss_nether_raw_pair(ctx,x0,z0,x1,z1,xzt,cap);
+    if(n<0)return n;
+    for(int i=0;i<n;i++) {
+        int type=xzt[3*i+2]?Fortress:Bastion;
+        viable[i]=!!isViableStructurePos(type,&ctx->nether,xzt[3*i],xzt[3*i+1],0);
+    }
+    return n;
+}
+
 static int ss_guaranteed(int type,const int *b) {
     if(type!=Village && type!=Ancient_City)return 0;
     StructureConfig cfg;if(!getStructureConfig(type,MC_26_50,&cfg))return 0;

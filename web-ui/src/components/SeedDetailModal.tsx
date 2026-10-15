@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { SeedCandidate } from '../types';
+import { spawnWithinRadius, spawnEvidenceLabel } from '../utils/spawn';
 
 interface SeedDetailModalProps {
   candidate: SeedCandidate | null;
   onClose: () => void;
   onCopyNotice: (msg: string) => void;
+  onVerifyBDS?: (candidate: SeedCandidate) => void;
+  isVerifyingBDS?: boolean;
 }
 
 export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
   candidate,
   onClose,
   onCopyNotice,
+  onVerifyBDS,
+  isVerifyingBDS,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'structures' | 'biomes' | 'terrain' | 'underground'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'structures' | 'biomes' | 'underground'>('overview');
   const [structureDimFilter, setStructureDimFilter] = useState<'all' | 'overworld' | 'nether'>('all');
 
   useEffect(() => {
@@ -65,142 +69,11 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
     };
   }, [onClose]);
 
-  useEffect(() => {
-    if (!candidate || candidate.provenance !== 'reference' || !canvasRef.current) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    // Cross-section 3D terrain profile of Coastal Continent
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(0, 0, w, h);
-
-    // Sky gradient
-    const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.7);
-    skyGrad.addColorStop(0, '#020617');
-    skyGrad.addColorStop(1, '#1e293b');
-    ctx.fillStyle = skyGrad;
-    ctx.fillRect(0, 0, w, h * 0.65);
-
-    // Sea Level reference line (Y=63)
-    const seaY = h * 0.58;
-    ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
-    ctx.setLineDash([4, 4]);
-    ctx.beginPath();
-    ctx.moveTo(40, seaY);
-    ctx.lineTo(w - 40, seaY);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = '#38bdf8';
-    ctx.font = '10px monospace';
-    ctx.fillText('Sea Level (Y=63)', w - 130, seaY - 6);
-
-    // Water fill below sea level
-    ctx.fillStyle = 'rgba(14, 116, 144, 0.35)';
-    ctx.fillRect(40, seaY, w - 80, h * 0.35);
-
-    // Draw Coastal Continent cross-section curve
-    ctx.beginPath();
-    ctx.moveTo(40, seaY);
-
-    const points = 80;
-    const xStep = (w - 80) / points;
-
-    for (let i = 0; i <= points; i++) {
-      const x = 40 + i * xStep;
-      const normalized = i / points; // 0 (West Ocean) to 1 (East Continent)
-
-      let elevation: number;
-      if (normalized < 0.28) {
-        // West 320m Open Ocean trench
-        elevation = seaY + 28 - Math.sin(normalized * Math.PI * 3) * 6;
-      } else if (normalized < 0.35) {
-        // Coastal Shore beach shelf (rising through sea level)
-        const t = (normalized - 0.28) / 0.07;
-        elevation = seaY + 28 - t * 38;
-      } else if (normalized < 0.72) {
-        // Mainland continental plate (~70-80% plateau, elevation Y=68 to 82)
-        const t = (normalized - 0.35) / 0.37;
-        elevation = seaY - 10 - Math.sin(t * Math.PI) * 14;
-      } else if (normalized < 0.88) {
-        // Mountain Ridge Barrier (+45m relief up to Y=125)
-        const t = (normalized - 0.72) / 0.16;
-        elevation = seaY - 24 - Math.sin(t * Math.PI) * 42;
-      } else {
-        // East drop-off
-        const t = (normalized - 0.88) / 0.12;
-        elevation = seaY - 24 + t * 32;
-      }
-
-      ctx.lineTo(x, elevation);
-    }
-
-    ctx.lineTo(w - 40, h);
-    ctx.lineTo(40, h);
-    ctx.closePath();
-
-    // Fill cross section ground
-    const groundGrad = ctx.createLinearGradient(0, seaY - 40, 0, h);
-    groundGrad.addColorStop(0, '#15803d'); // Grass surface
-    groundGrad.addColorStop(0.12, '#854d0e'); // Dirt
-    groundGrad.addColorStop(0.35, '#334155'); // Stone
-    groundGrad.addColorStop(0.7, '#1e293b'); // Deepslate
-    groundGrad.addColorStop(1, '#020617'); // Bedrock
-    ctx.fillStyle = groundGrad;
-    ctx.fill();
-
-    ctx.strokeStyle = '#22c55e';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // Ancient City at Y=-52 indicator
-    ctx.fillStyle = '#06b6d4';
-    ctx.beginPath();
-    ctx.arc(w * 0.62, h * 0.82, 6, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '10px monospace';
-    ctx.fillText('Ancient City (Y=-52)', w * 0.62 + 10, h * 0.82 + 3);
-
-    // Ravine Fissure indicator in cross-section
-    ctx.strokeStyle = '#ea580c';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(w * 0.48, seaY - 14);
-    ctx.lineTo(w * 0.48, seaY + 28);
-    ctx.stroke();
-    ctx.fillStyle = '#f97316';
-    ctx.font = '9px monospace';
-    ctx.fillText('🌋 Ravine (Y=44)', w * 0.48 + 5, seaY + 14);
-
-    // Lush Cave Cavern at Y=-48
-    ctx.fillStyle = '#10b981';
-    ctx.beginPath();
-    ctx.arc(w * 0.52, h * 0.82, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#a7f3d0';
-    ctx.font = '9px monospace';
-    ctx.fillText('🌿 Lush Cavern (Y=-48)', w * 0.52 + 8, h * 0.82 + 3);
-
-    // River Highway channel label
-    ctx.fillStyle = '#38bdf8';
-    ctx.fillText('River Channel (Y=62)', w * 0.38, seaY + 16);
-
-    // West ocean shelf label
-    ctx.fillStyle = '#94a3b8';
-    ctx.fillText('320m Ocean Trench', 50, seaY + 40);
-  }, [candidate, activeTab]);
-
   if (!candidate) return null;
 
   const chunkbaseUrl = candidate.chunkbaseUrl;
   const spawn = candidate.spawnPoint;
   const spawnDist = candidate.spawnDistance;
-  const terrainMetrics = candidate.terrainMetrics;
   const isDemo = candidate.provenance === 'reference';
   const stronghold = candidate.strongholdAnchor;
   const center = candidate.evaluationCenter ?? [0, 0];
@@ -208,7 +81,6 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
 
   const overworldStructures = candidate.structures.filter((s) => s.dimension === 'overworld');
   const netherStructures = candidate.structures.filter((s) => s.dimension === 'nether');
-  const marineStructures = candidate.structures.filter((s) => s.type === 'monument' || s.type === 'shipwreck');
 
   const displayedStructures = candidate.structures.filter((s) => {
     if (structureDimFilter === 'overworld') return s.dimension === 'overworld';
@@ -273,7 +145,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
               </span>
               {candidate.rankingTier != null && (
                 <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 font-mono text-[10px] border border-amber-500/30">
-                  Ranking Tier #{candidate.rankingTier}
+                  {candidate.screeningRevision === 'dynamic-envelope-1664-v1' ? 'Deficit Tier' : 'Ranking Tier'} #{candidate.rankingTier}
                 </span>
               )}
             </div>
@@ -331,17 +203,6 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
             <span>Biomes &amp; Witnesses ({candidate.biomes?.length || Object.keys(candidate.biomeWitnesses || {}).length || 0})</span>
           </button>
           <button
-            onClick={() => setActiveTab('terrain')}
-            className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
-              activeTab === 'terrain'
-                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 font-bold'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-            }`}
-          >
-            <span>🌊</span>
-            <span>Terrain &amp; Continents</span>
-          </button>
-          <button
             onClick={() => setActiveTab('underground')}
             className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
               activeTab === 'underground'
@@ -383,27 +244,25 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                 <div className="p-3 bg-slate-950/80 border border-slate-800 rounded-xl space-y-1">
                   <div className="flex items-center justify-between text-[11px] text-slate-400">
                     <span className="font-semibold uppercase tracking-wider flex items-center gap-1">
-                      <span>🧭</span> Player Spawn
+                      <span>🧭</span> Spawn · 100-block target
                     </span>
                     <span
                       className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-bold ${
-                        spawnDist != null && spawnDist <= 50
+                        spawnWithinRadius(candidate, 50) === true
                           ? 'bg-emerald-500/20 text-emerald-300'
-                          : spawnDist != null && spawnDist <= 100
+                          : spawnWithinRadius(candidate, 100) === true
                           ? 'bg-cyan-500/20 text-cyan-300'
                           : 'bg-amber-500/20 text-amber-300'
                       }`}
                     >
-                      {spawnDist != null ? `${spawnDist} blocks` : 'Pending'}
+                      {spawnDist != null ? `${spawnDist} blocks · ${spawnWithinRadius(candidate, 100) ? 'within 100' : 'outside 100'}` : 'Unknown'}
                     </span>
                   </div>
                   <div className="text-sm font-bold font-mono text-cyan-400">
                     {spawn ? `X: ${spawn[0]}, Z: ${spawn[1]}` : 'Coordinates pending'}
                   </div>
                   <p className="text-[10px] text-slate-500">
-                    {candidate.spawnEvidence?.source?.kind
-                      ? `Bedrock spawn calculation (${candidate.spawnEvidence.source.kind})`
-                      : 'Authentic Bedrock player spawn position'}
+                    {spawnEvidenceLabel(candidate)}. Horizontal distance from the evaluation hub. This metric does not filter the native sweep; initial-player placement needs its own evidence.
                   </p>
                 </div>
 
@@ -421,47 +280,20 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                     X: {center[0]}, Z: {center[1]}
                   </div>
                   <p className="text-[10px] text-slate-500">
-                    Center origin for 2048-block Continental search footprint
+                    {candidate.screeningRevision === 'dynamic-envelope-1664-v1' ? 'Selected density center for the 1664-block playable window' : 'Evaluation center of this historical search'}
                   </p>
                 </div>
 
-                {/* 4. Qualification & Terrain Status */}
+                {/* Baseline qualification is independent of historical terrain records. */}
                 <div className="p-3 bg-slate-950/80 border border-slate-800 rounded-xl space-y-1">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400">
-                    <span className="font-semibold uppercase tracking-wider flex items-center gap-1">
-                      <span>🌊</span> Terrain Pass
-                    </span>
-                    <span
-                      className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-bold ${
-                        candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                          : candidate.terrainStatus === 'near_miss'
-                          ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50'
-                          : candidate.terrainPassed === false || candidate.terrainStatus === 'failed'
-                          ? 'bg-red-500/20 text-red-300 border border-red-500/40'
-                          : 'bg-slate-800 text-slate-400'
-                      }`}
-                    >
-                      {candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                        ? 'PASSED'
-                        : candidate.terrainStatus === 'near_miss'
-                        ? 'NEAR MISS'
-                        : candidate.terrainPassed === false || candidate.terrainStatus === 'failed'
-                        ? 'FAILED'
-                        : 'PENDING'}
-                    </span>
-                  </div>
-                  <div className="text-sm font-bold font-mono text-white truncate">
-                    {candidate.terrainType ?? (candidate.terrainPassed ? 'Ocean Continent' : 'Baseline Survivor')}
-                  </div>
+                  <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">🏰 Baseline qualification</span>
+                  <div className="text-sm font-bold font-mono text-white">{candidate.baselineStatus ?? 'PREDICTED'}</div>
                   <p className="text-[10px] text-slate-500">
-                    {candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                      ? 'Promoted to Ocean Continent finalist'
-                      : candidate.terrainStatus === 'near_miss'
-                      ? `Near Miss: ${candidate.terrainGeometryScore ? Math.round(candidate.terrainGeometryScore) + ' pts' : 'High'} geometry score`
-                      : candidate.terrainStatus === 'failed'
-                      ? 'Did not meet strict continental geometry thresholds'
-                      : 'Baseline Stage 1 survivor awaiting terrain verification'}
+                    {candidate.screeningRevision === 'dynamic-envelope-1664-v1'
+                      ? 'Mandatory Mansion, Stronghold, Monument, Outposts, Fortresses and Bastions, bounded category deficits and biome witnesses inside the selected window; actual generation remains unverified.'
+                      : candidate.screeningRevision === 'origin-fixed-2048-two-group-marine-v3'
+                      ? 'Predicted structure starts, including one Monument and three Shipwrecks, and biome families; terrain geometry and actual generation remain unverified.'
+                      : 'Historical baseline structure and biome screening; marine structures and terrain geometry were deferred.'}
                   </p>
                 </div>
               </div>
@@ -539,48 +371,24 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                 </div>
               )}
 
-              {/* BDS Ground Truth Audit Panel */}
-              <div className="p-3.5 bg-slate-950 border border-blue-900/40 rounded-xl space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-blue-300 flex items-center gap-1.5">
-                    <span>🛡️</span> Bedrock Dedicated Server (BDS) Certification
-                  </span>
-                  <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold ${
-                      candidate.bdsVerified === true
-                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                        : 'bg-slate-800 text-slate-400'
-                    }`}
-                  >
-                    {candidate.bdsVerified === true ? 'VERIFIED' : 'Pending Verification'}
-                  </span>
+              <div className="p-3.5 bg-slate-950 border border-blue-900/40 rounded-xl space-y-2.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-blue-300">BDS Surface Point Observations</span>
+                  <span className="text-[10px] text-slate-400">{candidate.surfaceVerification?.status ?? 'PENDING'}</span>
                 </div>
-                {candidate.bdsVerified === true && candidate.bdsAccuracy ? (
-                  <div className="grid grid-cols-3 gap-2 text-xs text-slate-300 pt-1 font-mono">
-                    <div className="p-2 bg-slate-900/80 rounded border border-slate-800">
-                      <span className="text-slate-500 block text-[10px]">Palette Agreement</span>
-                      <span className="text-emerald-400 font-bold text-sm">
-                        {candidate.bdsAccuracy.paletteAgreement ?? 'Unavailable'}
-                      </span>
-                    </div>
-                    <div className="p-2 bg-slate-900/80 rounded border border-slate-800">
-                      <span className="text-slate-500 block text-[10px]">Height MAE</span>
-                      <span className="text-cyan-400 font-bold text-sm">
-                        {candidate.bdsAccuracy.heightMae != null ? `${candidate.bdsAccuracy.heightMae} blocks` : 'Unavailable'}
-                      </span>
-                    </div>
-                    <div className="p-2 bg-slate-900/80 rounded border border-slate-800">
-                      <span className="text-slate-500 block text-[10px]">Settled Columns</span>
-                      <span className="text-white font-bold text-sm">
-                        {candidate.bdsAccuracy.settledColumns != null ? `${candidate.bdsAccuracy.settledColumns}` : 'N/A'}
-                      </span>
-                    </div>
+                <p className="text-xs text-slate-400">
+                  Samples explicit surface witness points with the pinned Bedrock server. Sparse observations do not verify structures, loot, portal rooms or initial player spawn.
+                </p>
+                {candidate.surfaceVerification && (
+                  <div className="text-xs text-slate-300 space-y-1">
+                    <p>{candidate.surfaceVerification.observedBiomes.length ? `Observed biomes: ${candidate.surfaceVerification.observedBiomes.join(', ')}` : 'No confirmed surface biome observations.'}</p>
+                    {candidate.surfaceVerification.observationId && <p className="text-[10px] text-slate-500 break-all">Observation: {candidate.surfaceVerification.observationId}</p>}
                   </div>
-                ) : (
-                  <p className="text-xs text-slate-400">
-                    BDS ground-truth verification audit confirms runtime voxel blocks against official Mojang bedrock server binary when activated.
-                  </p>
                 )}
+                {onVerifyBDS && <button onClick={() => onVerifyBDS(candidate)} disabled={isVerifyingBDS}
+                  className="w-full py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold disabled:opacity-50">
+                  {isVerifyingBDS ? 'Sampling surface points…' : 'Sample Surface with BDS'}
+                </button>}
               </div>
             </div>
           )}
@@ -699,7 +507,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                             )}
                             <td className="py-2 px-3 text-center">
                               <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">
-                                {s.evidenceStatus ?? 'VERIFIED'}
+                                {s.evidenceStatus ?? 'UNKNOWN'}
                               </span>
                             </td>
                             <td className="py-2 px-3 text-center">
@@ -732,13 +540,19 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                     <span>Bedrock World-Lattice Biome Evidence</span>
                   </h4>
                   <span className="text-[10px] font-mono text-cyan-400">
-                    Lattice: World • Sample Height: Y=63 • Spacing: 64 blocks
+                    Overworld: Y=63, −48, 0, 160 • Nether: Y=64 • Spacing: 64 blocks
                   </span>
                 </div>
                 <p className="text-xs text-slate-400 leading-relaxed">
                   Screened through native C11 OpenMP Bedrock generator sampling. Biome witnesses record exact coordinates where the predictor detected required families during screening.
                 </p>
               </div>
+
+              {candidate.netherBiomeWitnesses && <div className="p-3 bg-slate-950 rounded-xl border border-red-900/40 space-y-2">
+                <h5 className="text-xs font-semibold text-red-300">Nether Biome Witnesses · Predicted</h5>
+                {Object.entries(candidate.netherBiomeWitnesses).map(([name, witness]) =>
+                  <p key={name} className="text-xs text-slate-300 font-mono">{name.replaceAll('_', ' ')} · {witness.coordinate.join(', ')}</p>)}
+              </div>}
 
               {/* Biome Witness Coordinate Table */}
               {candidate.biomeWitnesses && Object.keys(candidate.biomeWitnesses).length > 0 && (
@@ -775,7 +589,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
               {/* Detected Biomes Catalog */}
               <div className="space-y-2">
                 <h5 className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                  Detected Continental Biomes ({candidate.biomes?.length || 0})
+                  Predicted Biomes ({candidate.biomes?.length || 0})
                 </h5>
                 {candidate.biomes && candidate.biomes.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
@@ -791,131 +605,14 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                   </div>
                 ) : (
                   <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-xl text-center text-xs text-slate-400">
-                    Full biome lattice sampled dynamically via <code className="text-emerald-400 font-mono">/api/candidate/biome-grid</code> on map canvas.
+                    Predicted biome grid sampled dynamically via <code className="text-emerald-400 font-mono">/api/candidate/biome-grid</code> on map canvas.
                   </div>
                 )}
               </div>
             </div>
           )}
 
-          {/* TAB 4: TERRAIN & CONTINENTS */}
-          {activeTab === 'terrain' && (
-            <div className="space-y-4">
-              {/* 3D Elevation Cross-Section Canvas */}
-              <div>
-                <div className="flex justify-between items-center text-xs mb-1.5 text-slate-400">
-                  <span className="font-semibold uppercase tracking-wider">Coastal Continent Cross-Section Elevation (Y=-64 to Y=128)</span>
-                  <span className="font-semibold text-slate-400">
-                    {candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                      ? '✓ Terrain Passed'
-                      : candidate.terrainStatus === 'near_miss'
-                      ? `🎯 Near Miss (${candidate.terrainGeometryScore ? Math.round(candidate.terrainGeometryScore) + ' pts' : '50+ pts'})`
-                      : candidate.terrainPassed === false || candidate.terrainStatus === 'failed'
-                      ? '✕ Terrain Failed'
-                      : 'Unknown / pending evidence'}
-                  </span>
-                </div>
-                <div className="border border-slate-800 rounded-xl overflow-hidden shadow-inner bg-slate-950">
-                  {isDemo ? (
-                    <>
-                      <canvas ref={canvasRef} width={750} height={220} className="w-full h-52 block" />
-                      <p className="px-3 py-1.5 bg-purple-950/40 text-[10px] text-purple-300 border-t border-purple-900/40">
-                        Reference baseline profile illustrating 320m ocean trench, mainland plateau, and mountain ridge barrier.
-                      </p>
-                    </>
-                  ) : (
-                    <div className="h-52 flex flex-col items-center justify-center text-xs text-slate-400 p-4 text-center space-y-1.5">
-                      <span className="text-2xl">
-                        {candidate.terrainPassed === true || candidate.terrainStatus === 'passed' ? '🌊' : candidate.terrainStatus === 'near_miss' ? '🎯' : '🏔️'}
-                      </span>
-                      <span className="font-bold text-white">
-                        {candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                          ? 'V1 Coastal Continent Screened'
-                          : candidate.terrainStatus === 'near_miss'
-                          ? `Near Miss Formation (${candidate.terrainGeometryScore ? Math.round(candidate.terrainGeometryScore) + ' pts' : '50+ pts'})`
-                          : candidate.terrainStatus === 'failed'
-                          ? 'Geometry Requirements Not Met'
-                          : 'Live Measured Terrain Verification'}
-                      </span>
-                      <span className="text-[11px] text-slate-400 max-w-md">
-                        {candidate.terrainPassed === true || candidate.terrainStatus === 'passed'
-                          ? 'V1 Coastal Continent passed geometry screening with 32 adaptive rays, sampled mainland fraction, and ocean trench.'
-                          : candidate.terrainStatus === 'near_miss'
-                          ? 'This candidate achieved a high-scoring continental formation with extensive contiguous mainland and ocean proximity, falling just shy of strict requirements.'
-                          : candidate.terrainStatus === 'failed'
-                          ? 'Did not meet strict geometry screening thresholds.'
-                          : 'Baseline candidate verified in Stages 1 & 2 screening. Full terrain raycast evaluation is pending or scheduled.'}
-                      </span>
-                      {candidate.terrainReasons && candidate.terrainReasons.length > 0 && (
-                        <div className="p-2 bg-amber-950/40 border border-amber-800/40 rounded-lg max-w-lg text-[10px] text-amber-300 font-mono text-left">
-                          <span className="font-bold uppercase tracking-wider block text-amber-400 mb-0.5">Unmet Thresholds:</span>
-                          <ul className="list-disc list-inside space-y-0.5">
-                            {candidate.terrainReasons.map((r, i) => (
-                              <li key={i}>{r}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Metric Details Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold block">Mainland Share</span>
-                  <div className="text-base font-bold text-emerald-400 font-mono mt-0.5">
-                    {terrainMetrics?.mainlandFraction == null
-                      ? 'Pending'
-                      : `${(terrainMetrics.mainlandFraction * 100).toFixed(1)}%`}
-                  </div>
-                  <span className="text-[9px] text-slate-500">Target: 70% – 80% contiguous land</span>
-                </div>
-
-                <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold block">Ocean Trench</span>
-                  <div className="text-base font-bold text-blue-400 font-mono mt-0.5 truncate">
-                    {terrainMetrics?.oceanEdge ?? 'Pending'}
-                  </div>
-                  <span className="text-[9px] text-slate-500">Western ocean boundary buffer</span>
-                </div>
-
-                <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold block">Flat Build Land</span>
-                  <div className="text-base font-bold text-amber-400 font-mono mt-0.5">
-                    {terrainMetrics?.flatAreaBlocks == null
-                      ? 'Pending'
-                      : `${(terrainMetrics.flatAreaBlocks / 1000).toFixed(0)}k m²`}
-                  </div>
-                  <span className="text-[9px] text-slate-500">Low-slope building territory</span>
-                </div>
-
-                <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold block">River Highway</span>
-                  <div className="text-base font-bold text-cyan-400 font-mono mt-0.5 truncate">
-                    {terrainMetrics?.riverCorridor ?? 'Pending'}
-                  </div>
-                  <span className="text-[9px] text-slate-500">≥400m continuous navigable channel</span>
-                </div>
-              </div>
-
-              {/* Marine Structure Section */}
-              <div className="p-3.5 bg-slate-950/80 border border-slate-800 rounded-xl space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>⛵</span> Marine Structures ({marineStructures.length} Recorded)
-                  </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">
-                    Status: {candidate.marineStatus ?? 'DEFERRED'}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Ocean Monuments and Shipwrecks are deferred from Stage 1 Baseline screening to avoid premature pruning. Marine predictions are evaluated after coastal geometry screening; actual verification remains a separate evidence stage.
-                </p>
-              </div>
-            </div>
-          )}
+          <p className="text-xs text-slate-400 px-1">River and frozen river colors on the map are sampled biome predictions. Width, depth, navigability, and ocean connection are unverified.</p>
 
           {/* TAB 5: UNDERGROUND CAVES & RAVINES */}
           {activeTab === 'underground' && (

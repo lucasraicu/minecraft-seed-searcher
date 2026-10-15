@@ -315,19 +315,40 @@ def _export_generation(store,root):
 
 def _candidate_rescore(candidate,policy,revision_id):
     if candidate.get('contract')=='master_seed_blueprint_v1':
+        from .config import dynamic_policy
+        if dynamic_policy(candidate):
+            from .blueprint import dynamic_score,score_uncertainty
+            from .dynamic import hub_bonus,weighted_radial
+            import math
+            center=candidate['evaluation_center']
+            required=candidate['required_structures']
+            structures={name:ob['predicted_viable'] for name,ob in required.items()}
+            observations={**required,**candidate['required_nether_structures'],**candidate['optional_structures']}
+            counts={name:len(ob['predicted_viable']) for name,ob in observations.items()}
+            names=[s['biome'] for s in candidate['biomes']['sampling']['samples'] if s['coordinate'][1]==63]
+            hub=hub_bonus(structures,center);score=dynamic_score(counts,names,hub)
+            radial=weighted_radial(structures,center);origin=math.hypot(*center)
+            candidate.update(baseline_score_observed=score,baseline_score=score,
+                baseline_score_uncertainty=score_uncertainty(score,[],True),score_revision=revision_id,
+                weighted_radial_dist=radial,origin_distance=origin)
+            candidate['ranking']={**candidate.get('ranking',{}),'score':score,
+                'deficit_tier':len(candidate['deficit_categories']),'weighted_radial_dist':radial,'origin_distance':origin,
+                'components':{**candidate.get('ranking',{}).get('components',{}),'hub_bonus':hub}}
+            return candidate
         from .blueprint import smart_score,score_uncertainty
-        from .config import river_policy,origin_policy,two_group_policy
+        from .config import river_policy,origin_policy,two_group_policy,marine_baseline_policy
         v2=two_group_policy(candidate)
+        marine_baseline=marine_baseline_policy(candidate)
         names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63)
         required=candidate['required_structures']
         optional=candidate['optional_structures']
-        # Stage 3 may have appended marine inventories. Re-score the durable
-        # Stage 1/2 baseline independently, then publish the combined score.
-        baseline_required={k:v for k,v in required.items() if k not in ('monument','shipwreck')} if v2 else required
-        baseline_optional={k:v for k,v in optional.items() if k not in ('monument','shipwreck')} if v2 else optional
+        # Historical v2 terrain work may append marine inventories; v3 already
+        # includes them in its baseline. Keep baseline and combined scores distinct.
+        baseline_required={k:v for k,v in required.items() if k not in ('monument','shipwreck')} if v2 and not marine_baseline else required
+        baseline_optional={k:v for k,v in optional.items() if k not in ('monument','shipwreck')} if v2 and not marine_baseline else optional
         ranking=smart_score(baseline_required,candidate['required_nether_structures'],baseline_optional,
                             locked=bool(candidate.get('screening_revision')),river=river_policy(candidate),
-                            origin=origin_policy(candidate),two_group=v2,biome_names=names,
+                            origin=origin_policy(candidate),two_group=v2,biome_names=names,river_bonus=not marine_baseline,
                             metrics=None if v2 else candidate.get('terrain_score_metrics'))
         candidate.update(baseline_score_observed=ranking['score'],
                          baseline_score=ranking['score'] if candidate['baseline_score_complete'] else None,
@@ -339,7 +360,7 @@ def _candidate_rescore(candidate,policy,revision_id):
             actual=isinstance(source,dict) and source.get('kind')=='actual_generation'
             prior_ranking=candidate.get('ranking') or {}
             combined=smart_score(required,candidate['required_nether_structures'],optional,
-                                 locked=True,river=river_policy(candidate),origin=True,two_group=True,
+                                 locked=True,river=river_policy(candidate),origin=True,two_group=True,river_bonus=not marine_baseline,
                                  biome_names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63),
                                  metrics=candidate.get('terrain_score_metrics') if actual else None,
                                  coastal_footprint_verified=actual and prior_ranking.get('coastal_footprint_bonus_status')=='VERIFIED')

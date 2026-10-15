@@ -10,22 +10,34 @@ def field(path):
 
 
 CLASS = field('retention.classification')
-TIER = f"CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 WHEN 'FAILED' THEN 4 ELSE CASE WHEN {CLASS}='NEAR_MISS' THEN 2 ELSE 3 END END"
+DYNAMIC = f"{field('screening_revision')}='dynamic-envelope-1664-v1'"
+DEFICITS = f"COALESCE(json_array_length({field('deficit_categories')}),0)"
+TIER = f"CASE WHEN {DYNAMIC} THEN {DEFICITS} ELSE CASE qualification WHEN 'VERIFIED' THEN 0 WHEN 'PREDICTED' THEN 1 WHEN 'FAILED' THEN 4 ELSE CASE WHEN {CLASS}='NEAR_MISS' THEN 2 ELSE 3 END END END"
 MISSES = f"CASE WHEN {CLASS}='NEAR_MISS' THEN CAST({field('retention.unmet_requirements')} AS INTEGER) ELSE 0 END"
 MIDPOINT = f"(CAST({field('baseline_score_uncertainty.prediction_score_interval[0]')} AS REAL)+CAST({field('baseline_score_uncertainty.prediction_score_interval[1]')} AS REAL))/2"
 SCORE = f"CASE WHEN {CLASS}='NEAR_MISS' THEN CAST({field('baseline_score_observed')} AS REAL) ELSE COALESCE(CAST({field('baseline_score')} AS REAL),{MIDPOINT},CAST({field('baseline_score_observed')} AS REAL)) END"
-ORDER = "ranking_tier,unmet_requirements,smart_score DESC,id"
+RADIAL = f"CASE WHEN {DYNAMIC} THEN COALESCE(CAST({field('weighted_radial_dist')} AS REAL),1e30) ELSE 0 END"
+ORIGIN = f"CASE WHEN {DYNAMIC} THEN COALESCE(CAST({field('origin_distance')} AS REAL),1e30) ELSE 0 END"
+ORDER = "ranking_tier,unmet_requirements,smart_score DESC,weighted_radial_dist,origin_distance,id"
+
+
+def order_for(db):
+    """Read old run views without mutating checkpoints merely to display them."""
+    columns={row[1] for row in db.execute('PRAGMA table_info(candidate_leaderboard_view)')}
+    return ORDER if {'weighted_radial_dist','origin_distance'}<=columns else "ranking_tier,unmet_requirements,smart_score DESC,id"
+
 
 
 def install(db):
     """An additive, transactionally installed view/index; valid for legacy runs too."""
     view=f"""CREATE VIEW candidate_leaderboard_view AS
             SELECT id,idx,seed,qualification,result,{CLASS} AS retention_classification,
-                   {TIER} AS ranking_tier,{MISSES} AS unmet_requirements,{SCORE} AS smart_score
+                   {TIER} AS ranking_tier,{MISSES} AS unmet_requirements,{SCORE} AS smart_score,
+                   {RADIAL} AS weighted_radial_dist,{ORIGIN} AS origin_distance
             FROM candidates WHERE NOT EXISTS (SELECT 1 FROM meta
               WHERE key='rescore_revision' AND json_type(value)!='null'
                 AND COALESCE(json_extract(value,'$.status'),'')!='complete')"""
-    index=f"CREATE INDEX candidate_leaderboard ON candidates(({TIER}),({MISSES}),({SCORE}) DESC,id)"
+    index=f"CREATE INDEX candidate_leaderboard ON candidates(({TIER}),({MISSES}),({SCORE}) DESC,({RADIAL}),({ORIGIN}),id)"
     if db.in_transaction:raise ValueError('Finish caller transaction before installing leaderboard')
     installed_index=db.execute("SELECT sql FROM sqlite_master WHERE type='index' AND name='candidate_leaderboard'").fetchone()
     installed_view=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name='candidate_leaderboard_view'").fetchone()
@@ -45,4 +57,4 @@ def install(db):
 def rows(db, limit):
     if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 10000:
         raise ValueError('Leaderboard limit must be 1–10,000')
-    return db.execute(f"SELECT result,smart_score,ranking_tier,unmet_requirements FROM candidate_leaderboard_view ORDER BY {ORDER} LIMIT ?", (limit,))
+    return db.execute(f"SELECT result,smart_score,ranking_tier,unmet_requirements FROM candidate_leaderboard_view ORDER BY {order_for(db)} LIMIT ?", (limit,))

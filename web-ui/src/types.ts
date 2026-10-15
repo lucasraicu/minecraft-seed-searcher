@@ -1,3 +1,5 @@
+import type { SearchProfileName } from './constants/baselinePolicy';
+
 export type Dimension = 'overworld' | 'nether';
 export type MapLabelMode = 'smart' | 'all' | 'minimal';
 export type MapElevationFilter = 'all' | 'surface' | 'underground';
@@ -69,12 +71,16 @@ export interface SeedCandidate {
   seed: string;
   score: number | null;
   rankingTier?: number | null;
+  weightedRadialDistance?: number | null;
+  originDistance?: number | null;
   unmetRequirements?: number | null;
   strongholdAnchor?: [number, number] | null;
   evaluationCenter?: [number, number] | null;
+  playableBounds?: { overworld?: [number, number, number, number]; final_nether?: [number, number, number, number]; final_nether_exact?: [number, number][] } | null;
   predictedStrongholds?: [number, number][];
   spawnPoint?: [number, number] | null;
   spawnDistance?: number | null;
+  spawnWithin100?: boolean | null;
   spawnDistanceToOrigin?: number | null;
   spawnDistanceUnits?: string;
   spawnEvidence?: {
@@ -105,6 +111,7 @@ export interface SeedCandidate {
   caveClusters?: CaveClusterMarker[];
   biomes?: string[] | null;
   biomeWitnesses?: Record<string, any> | null;
+  netherBiomeWitnesses?: Record<string, { coordinate: number[]; biome: string; id: number }> | null;
   biomeSamples?: Array<{ biome: string; coordinate?: number[]; x?: number; y?: number; z?: number; id?: number }> | null;
   bdsVerified?: boolean | null;
   bdsAccuracy?: {
@@ -116,6 +123,7 @@ export interface SeedCandidate {
   baselineStatus?: string | null;
   marineStatus?: string | null;
   actualGenerationStatus?: string | null;
+  surfaceVerification?: { status: string; observedBiomes: string[]; observationId?: string | null; scope: string } | null;
   screeningRevision?: string | null;
   discoveredAt: string;
   provenance?: 'reference' | 'live' | 'unknown';
@@ -134,29 +142,16 @@ export interface TelemetryState {
   sweepProgress: number; // 0 to 100
   history: number[]; // Last 20 data points for sparkline
   runId?: string;
-  terrainStatus?: 'idle' | 'running' | 'completed' | 'error';
-  terrainProgress?: {
-    completed: number;
-    total: number;
-    pct: number;
-    elapsedSeconds: number;
-    etaSeconds: number | null;
-    currentSeed?: string | null;
-  };
+
 }
 
 export interface SearchConfig {
+  profile: SearchProfileName;
   requiredStructures: string[];
   structureFloorCounts: Record<string, number>;
   mandatoryFortressAndBastion: boolean;
   requireNetherOverlap: boolean;
   selectedBiomes: string[];
-  terrainMode: 'coastal_continent' | 'all_baseline';
-  mainlandTargetPct: number; // 70 to 80%
-  oceanEdgeWidthM: number; // 320m
-  riverHighwayLengthM: number; // >= 400m
-  enforceSpawnGate: boolean;
-  maxSpawnDistance: number;
   playableRadiusOverworld: number;
   playableRadiusNether: number;
   sweepSeedCount: number;

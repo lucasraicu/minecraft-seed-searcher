@@ -7,7 +7,7 @@ from scipy import ndimage
 
 from ..backend import Backend, biome_name
 from .blueprint import count_observation, smart_score, score_uncertainty
-from .config import river_policy, two_group_policy
+from .config import river_policy, two_group_policy, marine_baseline_policy
 from .bounds import contains
 from .coastal import _ocean_mask, _overlap, evaluate_coastal
 
@@ -76,13 +76,13 @@ def evaluate_marine_stage(candidate, cfg, raster, precheck, *, backend_factory=B
     actual=source.get('kind')=='actual_generation' if isinstance(source,dict) else False
     v2=two_group_policy(cfg)
     ranking=smart_score(required,candidate['required_nether_structures'],optional,locked=True,river=river_policy(cfg),
-                        origin=origin_policy(cfg),two_group=v2,
+                        origin=origin_policy(cfg),two_group=v2,river_bonus=not marine_baseline_policy(cfg),
                         biome_names=(s['biome'] for s in ((candidate.get('biomes') or {}).get('sampling') or {}).get('samples',()) if s['coordinate'][1]==63),
                         metrics=terrain['metrics'] if not v2 or actual else None,
                         coastal_footprint_verified=actual and len(qualified_monuments)>=2)
     patch={'id':candidate['id'],'required_structures':required,'optional_structures':optional,'ranking':ranking,
            **({'combined_score':ranking['score']} if two_group_policy(cfg) else {'baseline_score_observed':ranking['score']}),
-           **({'terrain_score_metrics':{k:terrain['metrics'][k] for k in ('river_highway_connected','river_evidence','river_navigability_verified')}} if river_policy(cfg) else {}),
+           **({'terrain_score_metrics':{k:terrain['metrics'][k] for k in ('river_highway_connected','river_evidence','river_navigability_verified')}} if river_policy(cfg) and not marine_baseline_policy(cfg) else {}),
            **({} if two_group_policy(cfg) else {
                'baseline_score_uncertainty':score_uncertainty(ranking['score'],candidate['pending_reasons'],candidate.get('baseline_score_complete',False)),
                'baseline_score':ranking['score'] if candidate.get('baseline_score_complete') else None}),
