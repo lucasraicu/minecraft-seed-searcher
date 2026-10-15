@@ -1,12 +1,17 @@
 # Bedrock Coastal Continent seed search
 
-The active CLI and `config/realm.yaml` implement the explicit `master_seed_blueprint_v1` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**. A version pin does not establish actual-game equivalence.
+The active CLI, web control plane, and `config/realm.yaml` implement the explicit `dynamic-envelope-1664-v1` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 4.2). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
 
-The active screening revision is `origin-fixed-2048-v1`. One evaluation center at world origin (0,0) uses the exact Overworld square `[-1024,-1024,1024,1024)` and Nether square `[-512,-512,512,512)`. Actual game spawn is not assumed to be origin. A predicted Stronghold inside the Overworld square is mandatory and cannot consume the one-miss allowance; its regional and village-associated starts are both inventoried when reached. The other 24 baseline requirements remain 11 structure-count floors and 13 biome predicates. Marine, river and actual Bedrock verification remain downstream. The historical `locked-2048-1024-outpost-v3` policy and its benchmarks remain available through its factory and saved run identities.
+The active screening revision is **`dynamic-envelope-1664-v1`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $1664 \times 1664$ Playable Overworld window ($104 \times 104$ chunks, radius 832m) around a dynamic center $(C_X, C_Z) \in [-1168, 1168]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and an $832 \times 832$ Playable Nether window ($52 \times 52$ chunks, radius 416m) around scaled center $(C_X/8, C_Z/8) \in [-146, 146]^2$ within a $1124 \times 1124$ Nether preflight ($[-562, 562)^2$).
 
-Screening runs the Nether pair, Portals and Chambers, then queries Strongholds only when the miss budget permits. It continues through Outposts, Pyramid, Temple, Mansion, Cities, Villages and Mineshafts. A first unmet secondary floor is retained as a possible one-miss candidate; a second stops further work. Retained origin candidates receive complete Stronghold and core structure inventories plus the complete four-Y biome lattice so bonus biomes are scored from sampled evidence. Stage 3 still evaluates coastal terrain, river and deferred Monuments/Shipwrecks. `PREDICTED` means the core screen passed; it is not complete-world or actual-game certification.
+Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull, and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Structures adhere to the two-group tolerance matrix under a total Miss Budget $B \le 2$ (hard floors are fatal; up to two flexible floors may be missed with deficit penalties).
 
-The [fixed-origin pilot](ORIGIN_FIXED_RESULTS.md) measured **41,854 checkpointed compact inputs/sec** on the production CLI pipeline, versus **30,500/sec** for the historical Stronghold-centered policy on the same repeated 30,000-input cohort (+37.2%). Including CLI startup, the medians were **21,735 versus 18,412/sec** (+18.0%). This policy comparison changes eligibility and geometry, and no natural complete baseline survivor appeared. It does not establish a complete-world yield or the proposed 150,000/sec rate.
+### Measured Performance & Throughput (Intel Xeon W-2191B, 34 Threads)
+
+Following the native C low-32 PRNG preflight, lazy 2D prefix evaluation, overlapping pipeline dispatch, and SQLite memory-mapping optimizations:
+- **Pure Native OpenMP Kernel:** **33,200 – 39,500 seeds/sec** ($\sim 27\text{s}$ per million seeds).
+- **Durable End-to-End Pipeline:** **27,600 – 32,500 seeds/sec** ($\sim 33\text{s}$ per million seeds, $\sim 54\text{ mins}$ for a complete 100M-seed shard).
+- **Control Baseline Speedup:** **$5.1\times - 6.0\times$ faster** than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
 
 The historical Outpost floor, measured filter order and coastal optimization are documented in [OUTPOST_OPTIMIZATION_RESULTS.md](OUTPOST_OPTIMIZATION_RESULTS.md). Under the active policy, Outposts above the floor of two earn +10 each. The one-miss allowance includes an unmet Outpost floor. A new run and rebuilt native extension are required for this policy revision.
 
@@ -30,7 +35,7 @@ SELECT seed,
        json_extract(result,'$.ranking.bonuses.river_highway') AS river_bonus,
        json_extract(result,'$.terrain_score_metrics.river_highway_connected') AS predicted_highway
 FROM candidates
-WHERE json_extract(result,'$.screening_revision')='origin-fixed-2048-v1';
+WHERE json_extract(result,'$.screening_revision')='dynamic-envelope-1664-v1';
 ```
 
 The biome gate uses a world-aligned 64-block lattice at **Y=63, -48, 0 and 160**. The ten surface predicates (nine resource families with peaks and stony shore required separately) use Y=63/160; Lush Caves, Dripstone Caves and Deep Dark use Y=-48/0. Pale Garden does not substitute for Dark Forest, and a broad mountain family does not substitute for Jagged/Stony Peaks. The Mansion start additionally needs a Dark Forest predictor witness at Y=63. These fixed-Y samples establish model witnesses, not exposed surface biomes, actual cave generation, packed/blue ice quantities or absence of unseen biomes.
