@@ -501,7 +501,6 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             while len(pending)<inflight and submit(store):pass
             while pending:
                 first,end,attempt,future,queued,native_future=pending.popleft()
-                while len(pending)<inflight and submit(store):pass
                 before=time.perf_counter()
                 if future is None:
                     native_future.result()
@@ -520,6 +519,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 batches+=1;committed+=end-first;latencies.append(time.perf_counter()-queued)
                 del prepared
                 native_futures.discard(native_future)
+                while len(pending)<inflight and submit(store):pass
                 now=time.perf_counter()
                 if now-last_monitor>=1:
                     resources=process_tree_resources() or {}

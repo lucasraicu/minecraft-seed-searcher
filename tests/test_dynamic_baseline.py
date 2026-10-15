@@ -192,3 +192,17 @@ def test_dynamic_rescore_preserves_score_and_rank(native):
     assert updated['baseline_score']==original['baseline_score']
     assert updated['weighted_radial_dist']==original['weighted_radial_dist']
     assert updated['ranking']==original['ranking']
+
+
+def test_optional_recount_after_snapping():
+    from seed_search.realm.blueprint import evaluate_dynamic_seed
+    class OptionalBoundaryBackend(DynamicFixtureBackend):
+        def structure_pair(self, name, bounds):
+            if name == 'swamp_hut': return [(56, -800)], [(56, -800)]
+            return super().structure_pair(name, bounds)
+    res = evaluate_dynamic_seed(0, 123, dynamic_blueprint_config(),
+                                backend_factory=lambda _: OptionalBoundaryBackend())['anchors'][0]
+    assert res['evaluation_center'] == [-752, -816]
+    assert res['baseline_score'] == 434
+    assert res['optional_structures']['swamp_hut']['predicted_viable'] == [[56, -800]]
+

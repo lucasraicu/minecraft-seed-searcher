@@ -75,11 +75,11 @@ static int nb_dynamic_subset(NBWorker *w,const NBObservation *src,NBObservation 
 static int nb_dynamic_palette_prefix(NBWorker *w,int **out) {
     const int side=64;
     if(!w->dyn_prefix) {
-        w->dyn_prefix=malloc(23*side*side*sizeof(int));
+        w->dyn_prefix=nb_alloc(w,23*side*side*sizeof(int),0);
         if(!w->dyn_prefix)return -3;
     }
     if(!w->dyn_biome_grid) {
-        w->dyn_biome_grid=malloc(4*side*side*sizeof(int));
+        w->dyn_biome_grid=nb_alloc(w,4*side*side*sizeof(int),0);
         if(!w->dyn_biome_grid)return -3;
     }
     int *prefix=w->dyn_prefix;
@@ -120,11 +120,11 @@ static int nb_dynamic_nether_point(NBWorker *w,int x,int z) {
 }
 static int nb_dynamic_nether_prefix(NBWorker *w,int **out) {
     if(!w->dyn_nether_prefix) {
-        w->dyn_nether_prefix=malloc(5*18*18*sizeof(int));
+        w->dyn_nether_prefix=nb_alloc(w,5*18*18*sizeof(int),0);
         if(!w->dyn_nether_prefix)return -3;
     }
     if(!w->dyn_nether_grid) {
-        w->dyn_nether_grid=malloc(18*18*sizeof(int));
+        w->dyn_nether_grid=nb_alloc(w,18*18*sizeof(int),0);
         if(!w->dyn_nether_grid)return -3;
     }
     int *p=w->dyn_nether_prefix;
@@ -311,6 +311,20 @@ static int nb_dynamic_discovery(NBWorker *w,NBResult *r,const int *ow) {
     code=nb_copy(w,&r->discovery,w->scratch,n);
     r->stage_seconds[0]+=nb_time()-start;return code;
 }
+/* Necessary Y=63 witness only; positive seeds retain full inventories. */
+static int nb_audit_dark_possible(NBWorker *w,const int *b) {
+    if(w->fixture)return 1;
+    StructureConfig cfg;if(!getStructureConfig(Mansion,MC_26_50,&cfg))return -1;
+    int size=cfg.regionSize*16,n=0;
+    for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
+      for(int rz=floordiv(b[1],size);rz<=floordiv(b[3],size);rz++) {
+        Pos p;
+        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
+           inside(p,b[0],b[1],b[2],b[3])&&
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
+      }
+    return 0;
+}
 static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     double start=nb_time();r->seed=seed;
     NB_PROFILE_SEED(w,seed);
@@ -318,8 +332,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     w->mansion_cache_n=0;
 #endif
     if(!w->ctx)return -3;
-    w->ctx->seed=seed;applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
-    applySeed(&w->ctx->nether,DIM_NETHER,seed);
+    w->ctx->seed=seed;
     int code=0;const int ow[4]={-2000,-2000,1999,1999};
     const int nw[4]={-562,-562,561,561};
     double stage=nb_time();
@@ -338,6 +351,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
      * need no discarded discovery row, so defer village/Stronghold biome work
      * until the mandatory Mansion predicate has passed. */
     if(!w->p->retention) {
+        applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         code=nb_dynamic_discovery(w,r,ow);if(code)goto done;
         if(!r->discovery.n)goto done;
     }
@@ -346,8 +360,11 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
     }
+    if(w->p->retention)applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
     /* One inexpensive macro Mansion preflight before all other structure inventories. */
     stage=nb_time();
+    possible=nb_audit_dark_possible(w,feasible);
+    if(possible<0){code=possible;goto done;}if(!possible)goto done;
     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
     r->stage_seconds[1]+=nb_time()-stage;
     if(nb_dynamic_count(&macro[0].viable,0,0,2000,0,macro[0].mansion_ids,w->p->dark_id)<w->p->goals[0])goto done;
@@ -360,6 +377,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     r->stage_seconds[14]+=nb_time()-stage;
     if(macro[12].viable.n<w->p->outpost_goal)goto done;
     stage=nb_time();
+    applySeed(&w->ctx->nether,DIM_NETHER,seed);
     code=nb_nether(w,nw,&nether_macro);if(code)goto done;
     r->stage_seconds[11]+=nb_time()-stage;
     macro[10]=nether_macro.observations[10];macro[11]=nether_macro.observations[11];
@@ -376,10 +394,15 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     total+=r->discovery.n*2;
     size_t ex_need=(size_t)(total*2+2048)*sizeof(int);
     if(w->dyn_ex_cap<ex_need) {
+        int *new_ex=(int*)nb_alloc(w,ex_need,0);
+        int *new_ez=(int*)nb_alloc(w,ex_need,0);
+        if(!new_ex||!new_ez) {
+            free(new_ex);free(new_ez);
+            code=-3;goto done;
+        }
         free(w->dyn_ex);free(w->dyn_ez);
-        w->dyn_ex=malloc(ex_need);w->dyn_ez=malloc(ex_need);
+        w->dyn_ex=new_ex;w->dyn_ez=new_ez;
         w->dyn_ex_cap=ex_need;
-        if(!w->dyn_ex||!w->dyn_ez){code=-3;goto done;}
     }
     ex=w->dyn_ex; ez=w->dyn_ez;
     ex[nx++]=-1168;ex[nx++]=1169;ez[nz++]=-1168;ez[nz++]=1169;
@@ -407,10 +430,12 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     size_t maxcells=(size_t)(nx-1)*(size_t)(nz-1);
     if(maxcells>10000000){code=-3;goto done;}
     if(w->dyn_cells_cap<maxcells) {
+        size_t need=maxcells+1024;
+        void *new_cells=nb_alloc(w,need*sizeof(NBDynamicCell),0);
+        if(!new_cells){code=-3;goto done;}
         free(w->dyn_cells);
-        w->dyn_cells_cap=maxcells+1024;
-        w->dyn_cells=malloc(w->dyn_cells_cap*sizeof(NBDynamicCell));
-        if(!w->dyn_cells){code=-3;goto done;}
+        w->dyn_cells=new_cells;
+        w->dyn_cells_cap=need;
     }
     cells=(NBDynamicCell*)w->dyn_cells;
     for(int ix=0;ix<nx-1;ix++)for(int iz=0;iz<nz-1;iz++) {

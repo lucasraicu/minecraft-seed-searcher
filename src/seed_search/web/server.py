@@ -9,6 +9,7 @@ Endpoints:
   GET  /api/system/info   - Hardware and engine specs
 """
 
+import contextlib
 import http.server
 import json
 import math
@@ -77,7 +78,7 @@ class SweepManager:
         db = directory / 'realm.sqlite'
         if directory.is_symlink() or directory.resolve().parent != RUNS_DIR.resolve() or db.is_symlink() or not db.is_file():
             raise ValueError('Saved checkpoint must be a direct run directory')
-        with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as conn:
+        with contextlib.closing(sqlite3.connect(f'file:{db}?mode=ro', uri=True)) as conn:
             values = {key: json.loads(value) for key, value in conn.execute(
                 "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds')")}
         identity = values.get('identity')
@@ -276,7 +277,7 @@ class SweepManager:
             raise ValueError("Saved run must be a direct run directory")
         db=directory/'realm.sqlite'
         if not db.is_file() or db.is_symlink():raise ValueError("Saved checkpoint is unavailable")
-        with sqlite3.connect(f"file:{db}?mode=ro",uri=True) as conn:
+        with contextlib.closing(sqlite3.connect(f"file:{db}?mode=ro",uri=True)) as conn:
             values={key:json.loads(value) for key,value in conn.execute(
                 "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds','native_pipeline')")}
         identity=values.get('identity')
@@ -369,22 +370,28 @@ class SweepManager:
                 return {"ok": False, "error": "No active sweep to pause"}
             self.status = "paused"
             self.logs.insert(0, "Pausing sweep: waiting for current seed/batch to complete cleanly...")
+            gen = self.generation
+        try:
+            import signal
+            proc.send_signal(signal.SIGINT)
             try:
-                import signal
-                proc.send_signal(signal.SIGINT)
+                proc.wait(timeout=6.0)
+            except subprocess.TimeoutExpired:
+                proc.terminate()
                 try:
-                    proc.wait(timeout=6.0)
+                    proc.wait(timeout=2.0)
                 except subprocess.TimeoutExpired:
-                    proc.terminate()
-                    try:
-                        proc.wait(timeout=2.0)
-                    except subprocess.TimeoutExpired:
-                        proc.kill()
-                        proc.wait()
-            except Exception as exc:
-                self.status = 'error'
-                self.error_message = f'Failed to pause owned process: {exc}'
-                return {'ok': False, 'error': self.error_message}
+                    proc.kill()
+                    proc.wait()
+        except Exception as exc:
+            with self.lock:
+                if self.generation == gen and self.process is proc:
+                    self.status = 'error'
+                    self.error_message = f'Failed to pause owned process: {exc}'
+                return {'ok': False, 'error': f'Failed to pause owned process: {exc}'}
+        with self.lock:
+            if self.generation != gen or self.process is not proc:
+                return {'ok': False, 'error': 'Process generation changed during pause'}
             if proc.poll() is None:
                 self.status = 'error'
                 return {'ok': False, 'error': 'Owned scan has not exited'}
@@ -475,22 +482,28 @@ class SweepManager:
             verifying=self.status=='bds_verifying'
             self.status = "stopping"
             self.logs.insert(0, "Stopping owned verification job." if verifying else "Sweep stopped by user.")
+            gen = self.generation
+        try:
+            if verifying:
+                import signal
+                proc.send_signal(signal.SIGINT)
+                try:proc.wait(timeout=30)
+                except subprocess.TimeoutExpired:proc.kill()
+            else:proc.kill()
             try:
-                if verifying:
-                    import signal
-                    proc.send_signal(signal.SIGINT)
-                    try:proc.wait(timeout=30)
-                    except subprocess.TimeoutExpired:proc.kill()
-                else:proc.kill()
-                try:
-                    proc.wait(timeout=2.0)
-                except subprocess.TimeoutExpired:
-                    pass
-            except Exception as exc:
-                self.status = 'error'
-                self.error_message = f'Failed to stop owned process: {exc}'
-                self.logs.insert(0, self.error_message)
-                return {'ok': False, 'error': self.error_message}
+                proc.wait(timeout=2.0)
+            except subprocess.TimeoutExpired:
+                pass
+        except Exception as exc:
+            with self.lock:
+                if self.generation == gen and self.process is proc:
+                    self.status = 'error'
+                    self.error_message = f'Failed to stop owned process: {exc}'
+                    self.logs.insert(0, self.error_message)
+                return {'ok': False, 'error': f'Failed to stop owned process: {exc}'}
+        with self.lock:
+            if self.generation != gen or self.process is not proc:
+                return {'ok': False, 'error': 'Process generation changed during stop'}
             if proc.poll() is None:
                 self.status = 'error'
                 self.error_message = 'Owned process has not exited; retry stop before starting another run'
@@ -512,9 +525,20 @@ class SweepManager:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
             cur = conn.cursor()
 
+            wal_path = self.run_dir / "realm.sqlite-wal"
+            wal_stat = (wal_path.stat().st_mtime_ns if wal_path.exists() else 0,
+                        wal_path.stat().st_size if wal_path.exists() else 0)
+            db_mtime = db_path.stat().st_mtime_ns
+
+            cur.execute("PRAGMA data_version")
+            data_ver = cur.fetchone()[0]
+
             # Dirtiness check before re-parsing
             cur.execute("SELECT count(*), max(rowid) FROM candidates")
             cand_sig = cur.fetchone()
+            cur.execute("SELECT name FROM sqlite_master WHERE type='view' AND name='candidate_leaderboard_view'")
+            has_view = bool(cur.fetchone())
+            score_sig = cur.execute("SELECT total(smart_score) FROM candidate_leaderboard_view").fetchone() if has_view else None
             cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='variants'")
             has_variants = bool(cur.fetchone())
             var_sig = None
@@ -528,7 +552,7 @@ class SweepManager:
                 cur.execute("SELECT count(*), max(rowid) FROM observations")
                 obs_sig = cur.fetchone()
 
-            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig)
+            sig = (str(self.run_dir), cand_sig, score_sig, var_sig, obs_sig, db_mtime, wal_stat, data_ver)
             if getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
                 return
             self._last_candidates_sig = sig
@@ -683,7 +707,7 @@ class SweepManager:
                 if not isinstance(candidate_id,str) or not candidate_id:
                     raise ValueError('An exact candidateId is required')
                 from seed_search.seeds import parse_seed
-                with sqlite3.connect(f'file:{self.run_dir / "realm.sqlite"}?mode=ro',uri=True) as conn:
+                with contextlib.closing(sqlite3.connect(f'file:{self.run_dir / "realm.sqlite"}?mode=ro',uri=True)) as conn:
                     row=conn.execute('SELECT result FROM candidates WHERE id=?',(candidate_id,)).fetchone()
                 if not row:raise ValueError('Candidate does not belong to the selected run')
                 candidate=json.loads(row[0])
