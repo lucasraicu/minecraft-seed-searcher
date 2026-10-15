@@ -21,7 +21,7 @@ def test_scores_named_ordinals_and_repeating_scalers():
     assert dynamic_score(counts,[])==301
     higher={**counts,**{n:20 for n in ('mansion','stronghold','monument','ancient_city','desert_pyramid','jungle_temple','outpost','fortress','bastion')}}
     assert dynamic_score(higher,[])==301
-    assert dynamic_score({'swamp_hut':2,'igloo':1,'trail_ruins':1,'ocean_ruin':1,'buried_treasure':1},[])==58
+    assert dynamic_score({'swamp_hut':2,'igloo':1,'trail_ruins':1,'ocean_ruin':1,'buried_treasure':1},[])==90
     assert dynamic_score({},['warm_ocean','ice_spikes','windswept_savanna','shattered_savanna'])==45
 
 

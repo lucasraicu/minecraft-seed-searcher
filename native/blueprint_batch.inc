@@ -270,10 +270,8 @@ static int nb_score(NBWorker *w,NBAnchor *a) {
     if(w->p->dynamic) {
         int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
         int score=nb_dynamic_score_values(n,a->stronghold_count,a->bonus_biomes,a->hub_bonus);
-        for(int k=0;k<5;k++) {
-            int count=a->optional[k].viable.n;
-            if(count>0)score+=(k==0?15:10)+(count-1)*3;
-        }
+        const int points[5]={20,15,15,10,10};
+        for(int k=0;k<5;k++)score+=a->optional[k].viable.n*points[k];
         return score;
     }
     if(w->p->locked) {

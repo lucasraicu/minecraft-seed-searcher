@@ -316,3 +316,4 @@ In `src/seed_search/realm/blueprint.py`:
 1. **Mathematical Accuracy:** **100% Certified** across discrete coordinate intervals, half-open integer boundaries, and lattice invariance.
 2. **Memory Safety & Durability:** Certified once Diffs 3, 5, and 6 are applied.
 3. **Throughput Expectation:** Scales from **46.2k seeds/s** to **$\mathbf{\sim 215,000}$ seeds/s** on 34 OpenMP threads with Clang source-matched PGO+LTO.
+

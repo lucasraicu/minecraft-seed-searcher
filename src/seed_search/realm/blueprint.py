@@ -449,8 +449,7 @@ def dynamic_score(counts,biome_names,hub=0):
     score+=sum(20*(n(name)>=3) for name in ('desert_pyramid','jungle_temple','outpost','fortress','bastion'))
     score+=max(0,n('shipwreck')-6)*5+max(0,n('ruined_portal')-7)*5
     score+=max(0,n('mineshaft')-15)+min(40,max(0,hub))
-    for name,first_pts in (('swamp_hut',15),('igloo',10),('trail_ruins',10),('ocean_ruin',10),('buried_treasure',10)):
-        cnt=n(name);score+=(first_pts+(cnt-1)*3 if cnt>0 else 0)
+    score+=sum(n(name)*points for name,points in zip(('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure'),(20,15,15,10,10)))
     names=set(biome_names)
     for points,members in DYNAMIC_LUXURIES:
         if names.intersection(members):score+=points
@@ -543,7 +542,6 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                 viable=[p for p in source['predicted_viable'] if contains(p,bounds)]
                 ob={**source,'bounds':json_bounds(bounds),'raw':raw,
                     'predicted_viable':viable,'coordinates':viable,
-                    'data_status':'PREDICTED' if viable else 'PARTIAL',
                     'inventory_status':'COMPLETE','count_is_complete':True}
                 if name=='mansion':
                     ob['unfiltered_predicted_viable']=[p for p in source.get('unfiltered_predicted_viable',[]) if contains(p,bounds)]
