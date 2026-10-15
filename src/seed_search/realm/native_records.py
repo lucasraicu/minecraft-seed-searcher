@@ -110,6 +110,17 @@ def build_record(native,index,seed,cfg):
             (record['anchors'][0]['evaluation_center']!=[native.anchors[0].x,native.anchors[0].z] or
              record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score)):
             raise RuntimeError('Native/direct dynamic record parity failure')
+        from .config import dynamic_v2_policy
+        if native.nanchors and dynamic_v2_policy(cfg):
+            a=record['anchors'][0];na=native.anchors[0]
+            if (a['radial_key']!=na.radial_key or
+                a['origin_distance_squared']!=na.origin_distance_squared or
+                a['scenic_bonus']!=na.scenic_bonus or
+                a['village_spread_bonus']!=na.village_spread_bonus or
+                a['treasure_bastion']!=na.treasure_bastion or
+                a['deficit_penalty']!=na.deficit_penalty or
+                a['bonus_total']!=na.bonus_total):
+                raise RuntimeError('Native/direct dynamic v2 component parity failure')
         return record
     wall=time.perf_counter();cpu=time.process_time();seed=str(seed)
     discovery_bounds=list(cfg['discovery']['overworld_bounds'])

@@ -36,5 +36,6 @@ int ss_sweep_raw_mode(uint64_t start, uint64_t count, const int *types, const in
 int ss_density_points(SeedContext *ctx, const int *xyz, int n, double *out);
 
 int ss_igloo_basement(SeedContext *ctx, int x, int z);
+int ss_bastion_variant(SeedContext *ctx, int x, int z);
 
 int ss_nether_raw_pair(SeedContext *ctx, int x0, int z0, int x1, int z1, int *xzt, int capacity);

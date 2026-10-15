@@ -18,7 +18,7 @@ from seed_search.backend import biome_catalog, structure_type
 from seed_search.realm.blueprint import PALETTE, evaluate_seed, evaluate_dynamic_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, marine_baseline_policy, dynamic_policy, stronghold_after, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, marine_baseline_policy, dynamic_policy, dynamic_v2_policy, stronghold_after, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -104,20 +104,38 @@ class Prototype:
         self.policy.batch_size=cfg['biomes']['gate_batch_size']
         catalog=biome_catalog();ids={row['name']:row['id'] for row in catalog}
         self.families=cfg['biomes']['required_families']
+        is_v2=dynamic_v2_policy(cfg)
         for row in catalog:
             self.policy.biome_members[row['id']]=sum(1<<i for i,f in enumerate(self.families) if canonical(row['name']) in (PALETTE[f]|({'frozen_peaks'} if dynamic_policy(cfg) and f=='peaks' else set())))
             name=canonical(row['name'])
             if hasattr(self.policy,'bonus_biome_members'):
-                self.policy.bonus_biome_members[row['id']]=(int(name=='cherry_grove')|
-                    int(name in ('badlands','wooded_badlands','eroded_badlands'))<<1|
-                    int(name=='mushroom_fields')<<2|
-                    int(name=='pale_garden')<<3|
-                    int(name=='mangrove_swamp')<<4|
-                    int(name=='flower_forest')<<5|
-                    int(name=='bamboo_jungle')<<6|
-                    ((int(name=='warm_ocean')<<7|int(name=='ice_spikes')<<8|int(name in ('windswept_savanna','shattered_savanna'))<<9) if dynamic_policy(cfg) else 0))
+                if is_v2:
+                    self.policy.bonus_biome_members[row['id']]=(int(name=='cherry_grove')|
+                        int(name in ('badlands','wooded_badlands','eroded_badlands'))<<1|
+                        int(name=='mushroom_fields')<<2|
+                        int(name=='pale_garden')<<3|
+                        int(name in ('old_growth_pine_taiga','old_growth_spruce_taiga'))<<4|
+                        int(name=='flower_forest')<<5|
+                        int(name=='bamboo_jungle')<<6|
+                        int(name=='warm_ocean')<<7|
+                        int(name=='ice_spikes')<<8|
+                        int(name in ('savanna','savanna_plateau','windswept_savanna','shattered_savanna'))<<9)
+                else:
+                    self.policy.bonus_biome_members[row['id']]=(int(name=='cherry_grove')|
+                        int(name in ('badlands','wooded_badlands','eroded_badlands'))<<1|
+                        int(name=='mushroom_fields')<<2|
+                        int(name=='pale_garden')<<3|
+                        int(name=='mangrove_swamp')<<4|
+                        int(name=='flower_forest')<<5|
+                        int(name=='bamboo_jungle')<<6|
+                        ((int(name=='warm_ocean')<<7|int(name=='ice_spikes')<<8|int(name in ('windswept_savanna','shattered_savanna'))<<9) if dynamic_policy(cfg) else 0))
         if dynamic_policy(cfg):self.policy.nether_ids=[ids[name] for name in cfg['biomes']['nether_required']]
         if dynamic_policy(cfg):self.policy.optional_types=[structure_type(n) for n in ('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')]
+        if is_v2:
+            self.policy.dynamic_v2=1
+            self.policy.river_id=ids['river']
+            for sname in ('plains','sunflower_plains','meadow','cherry_grove'):
+                self.policy.is_scenic[ids[sname]]=1
         self.policy.dark_id=ids['dark_forest'];self.policy.pale_id=ids['pale_garden']
         self.policy.fixture_surface=[ids[n] for n in ('plains','desert','forest','taiga','jungle',
                                                      'swamp','snowy_plains','dark_forest','jagged_peaks','stony_shore')]
@@ -353,6 +371,19 @@ class ReplayProvider:
                     if name=='igloo':self.igloo_basements.update(self.points(o.viable))
                 for q in range(a.nether_biome_n):
                     self.nether_ids[tuple(int(a.nether_biome_xyz[3*q+t]) for t in range(3))]=int(a.nether_biome_ids[q])
+                if hasattr(a,'bastion_count'):
+                    self.bastion_variants={(int(a.bastion_coords[2*b_idx]),int(a.bastion_coords[2*b_idx+1])):int(a.bastion_variants[b_idx])
+                                           for b_idx in range(a.bastion_count)}
+                else:self.bastion_variants={}
+                if hasattr(a,'scenic_bonus'):
+                    self.scenic_bonus=int(a.scenic_bonus)
+                    self.scenic_witness=(int(a.scenic_witness[0]),int(a.scenic_witness[1])) if a.scenic_bonus else None
+                    self.river_witness=(int(a.river_witness[0]),int(a.river_witness[1])) if a.scenic_bonus else None
+                if hasattr(a,'village_spread_bonus'):
+                    self.village_spread_bonus=int(a.village_spread_bonus)
+                    self.village_triple=tuple((int(a.village_triple[2*i]),int(a.village_triple[2*i+1])) for i in range(3)) if a.village_spread_bonus else None
+                if hasattr(a,'treasure_bastion'):
+                    self.treasure_bastion=int(a.treasure_bastion)
         self.discovery_bounds=native_bounds(prototype.cfg['discovery']['overworld_bounds'])
 
     @staticmethod
@@ -370,6 +401,7 @@ class ReplayProvider:
         q=self.queries[(name,tuple(bounds))]
         return q['floor']
     def igloo_basement(self,x,z):return (x,z) in self.igloo_basements
+    def bastion_variant(self,x,z):return self.bastion_variants.get((x,z),-1)
     def nether_structure_pairs(self,bounds):return self.pairs[tuple(bounds)]
     def biome_points(self,points,dimension=0):
         source=self.nether_ids if dimension==-1 else self.ids

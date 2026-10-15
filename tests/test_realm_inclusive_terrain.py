@@ -60,11 +60,10 @@ def test_default_and_explicit_active_profiles_have_same_terrain_preferences():
     from seed_search.realm.cli import load
     cfg = load(None)
     explicit = yaml.safe_load((Path(__file__).parents[1] / 'config/realm.yaml').read_text())
-    assert cfg['terrain']['v1'] == explicit['terrain']['v1']
+    assert cfg['terrain']['variants'] == explicit['terrain']['variants'] == []
     for profile in (cfg, explicit):
         validate_config(profile)
-        assert profile['terrain']['variants'] == ['v1']
-        assert profile['terrain']['v1']['mode'] == 'coastal_continent'
+        assert 'v1' not in profile['terrain']
         assert 'v2' not in profile['terrain']
 
 

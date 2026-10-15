@@ -22,6 +22,7 @@ OVERWORLD_NAMES=('stronghold','mansion','village','trial_chamber','ancient_city'
 NETHER_NAMES=('fortress','bastion')
 OPTIONAL_NAMES=('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')
 CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':2,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':1}
+DYNAMIC_V2_CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':0}
 NETHER_BIOMES=('nether_wastes','crimson_forest','warped_forest','soul_sand_valley','basalt_deltas')
 
 
@@ -69,7 +70,7 @@ class Candidate:
     radial:float=0.
 
 
-def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
+def candidate_centers(inventories, floors, ideals, weights, max_misses=2, centroid_weights=None):
     """Yield all floor/budget-eligible equivalence cells in exact density order.
 
     ``inventories`` are complete, viable macro-envelope coordinates. The
@@ -77,6 +78,7 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
     Biome lattice events are included here; a palette check on the returned
     representative therefore applies to the entire event rectangle.
     """
+    cw = centroid_weights if centroid_weights is not None else CENTROID_WEIGHTS
     xs=[];zs=[];nether_x=[];nether_z=[]
     for name,points in inventories.items():
         if name in OPTIONAL_NAMES:continue
@@ -95,7 +97,7 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2):
             if any(counts.get(name,0)<floor for name,floor in floors.items()):continue
             deficits=tuple(name for name,ideal in ideals.items() if counts.get(name,0)<ideal)
             if len(deficits)>max_misses:continue
-            captured=[(x,z,CENTROID_WEIGHTS[name]) for name,points in inventories.items() if name in CENTROID_WEIGHTS
+            captured=[(x,z,cw[name]) for name,points in inventories.items() if name in cw and cw[name]>0
                       for x,z in points if contains((x,z),ow)]
             weight=sum(row[2] for row in captured)
             sx=sum(x*w for x,z,w in captured);sz=sum(z*w for x,z,w in captured)
@@ -143,21 +145,118 @@ def hub_bonus(structures,center):
                       if (x-center[0])**2+(z-center[1])**2<=512**2))
 
 
+def hub_bonus_v2(structures,center):
+    villages=structures.get('village',())
+    d2=lambda p:(p[0]-center[0])**2+(p[1]-center[1])**2
+    v_hub=10 if any(d2(p)<=256**2 for p in villages) else 6 if any(d2(p)<=512**2 for p in villages) else 0
+    other_pts={'desert_pyramid':6,'jungle_temple':6,'outpost':6}
+    other_hub=sum(6 for name in other_pts for p in structures.get(name,()) if d2(p)<=512**2)
+    other_hub+=sum(4 for p in structures.get('ruined_portal',()) if d2(p)<=512**2)
+    return v_hub+min(30,other_hub)
+
+
+def hub_village_v2(structures,center):
+    villages=structures.get('village',())
+    d2=lambda p:(p[0]-center[0])**2+(p[1]-center[1])**2
+    nearby=[(d2(p),p[0],p[1]) for p in villages if d2(p)<=512**2]
+    if not nearby:return None
+    nearby.sort()
+    return (nearby[0][1],nearby[0][2])
+
+
 def weighted_radial(structures,center):
     total=sum(weight*len(structures.get(name,())) for name,weight in CENTROID_WEIGHTS.items())
     return sum(weight*math.hypot(x-center[0],z-center[1]) for name,weight in CENTROID_WEIGHTS.items()
                for x,z in structures.get(name,()))/total if total else 0.
 
 
+def weighted_radial_v2(structures,center):
+    weights=DYNAMIC_V2_CENTROID_WEIGHTS
+    total=sum(weight*len(structures.get(name,())) for name,weight in weights.items() if weight>0)
+    return sum(weight*math.hypot(x-center[0],z-center[1]) for name,weight in weights.items() if weight>0
+               for x,z in structures.get(name,()))/total if total else 0.
+
+
+SCENIC_BIOMES=frozenset(('plains','sunflower_plains','meadow','cherry_grove'))
+RIVER_OFFSETS=sorted([(dix,diz) for dix in range(-2,3) for diz in range(-2,3) if dix*dix+diz*diz<=4],
+                     key=lambda o:(o[0],o[1]))
+
+
+def scenic_pair_bonus_v2(surface_grid,center):
+    """Exact scenic river pairing on the 64-block grid; surface_grid is 63x63 names at Y=63."""
+    cx,cz=center
+    ow=overworld_bounds(center)
+    c_ix=(cx+1984)//64
+    c_iz=(cz+1984)//64
+    min_ix=max(0,c_ix-3);max_ix=min(62,c_ix+4)
+    min_iz=max(0,c_iz-3);max_iz=min(62,c_iz+4)
+    scenic_candidates=[]
+    for ix in range(min_ix,max_ix+1):
+        for iz in range(min_iz,max_iz+1):
+            sx=-1984+ix*64
+            sz=-1984+iz*64
+            if (sx-cx)**2+(sz-cz)**2<=192**2 and contains((sx,sz),ow):
+                if surface_grid[iz,ix] in SCENIC_BIOMES:
+                    scenic_candidates.append((sx,sz,ix,iz))
+    scenic_candidates.sort(key=lambda c:(c[0],c[1]))
+    for sx,sz,ix,iz in scenic_candidates:
+        for dix,diz in RIVER_OFFSETS:
+            rix=ix+dix;riz=iz+diz
+            if 0<=rix<63 and 0<=riz<63:
+                rx=-1984+rix*64;rz=-1984+riz*64
+                if contains((rx,rz),ow) and surface_grid[riz,rix]=='river':
+                    return 20,(sx,sz),(rx,rz)
+    return 0,None,None
+
+
+def village_spread_bonus_v2(villages,center):
+    cx,cz=center
+    ow=overworld_bounds(center)
+    captured=[tuple(p) for p in villages if contains(p,ow)]
+    q_villages=[[] for _ in range(4)]
+    for x,z in captured:
+        if x>=cx:q=0 if z>=cz else 3
+        else:q=1 if z>=cz else 2
+        q_villages[q].append((x,z))
+    occupied=[q for q in range(4) if q_villages[q]]
+    if len(occupied)<3:return 0,None
+    quad_combos=[(0,1,2),(0,1,3),(0,2,3),(1,2,3)]
+    qualifying=[]
+    for qa,qb,qc in quad_combos:
+        if not (q_villages[qa] and q_villages[qb] and q_villages[qc]):continue
+        for va in q_villages[qa]:
+            for vb in q_villages[qb]:
+                if (va[0]-vb[0])**2+(va[1]-vb[1])**2<256**2:continue
+                for vc in q_villages[qc]:
+                    if ((va[0]-vc[0])**2+(va[1]-vc[1])**2>=256**2 and
+                        (vb[0]-vc[0])**2+(vb[1]-vc[1])**2>=256**2):
+                        qualifying.append(tuple(sorted([va,vb,vc])))
+    if not qualifying:return 0,None
+    qualifying.sort()
+    return 15,qualifying[0]
+
+
+def treasure_bastion_bonus_v2(bastions,center,get_variant_fn):
+    nb=nether_bounds(center)
+    captured=[tuple(p) for p in bastions if contains(p,nb)]
+    treasure=[]
+    for p in captured:
+        var=get_variant_fn(p[0],p[1])
+        if var==2:treasure.append(p)
+    return (15 if treasure else 0),treasure
+
+
 class PaletteIndex:
     """Independent prefix counts over the fixed macro lattice for cheap windows."""
-    def __init__(self,sampler,policy):
+    def __init__(self,sampler,policy,v2=False):
         import numpy as np
         from ..backend import biome_name
         from .biomes import canonical
-        from .blueprint import PALETTE,CAVE_FAMILIES,DYNAMIC_LUXURIES
+        from .blueprint import PALETTE,CAVE_FAMILIES,DYNAMIC_LUXURIES,DYNAMIC_V2_LUXURIES
         from .sampling import grid_points
         self.np=np
+        self.v2=v2
+        luxuries_table=DYNAMIC_V2_LUXURIES if v2 else DYNAMIC_LUXURIES
         masks=np.zeros((23,63,63),dtype=np.int32)
         for y in policy['sample_y_levels']:
             points=grid_points((-2000,-2000,2000,2000),64,y,'world')
@@ -169,7 +268,7 @@ class PaletteIndex:
                     masks[i]|=np.isin(names,list(members))
             if y==63:
                 self.surface=names
-                for i,(_,members) in enumerate(DYNAMIC_LUXURIES):masks[13+i]=np.isin(names,members)
+                for i,(_,members) in enumerate(luxuries_table):masks[13+i]=np.isin(names,members)
         self.prefix=np.pad(masks,((0,0),(1,0),(1,0))).cumsum(1).cumsum(2)
         points=grid_points((-512,-512,513,513),64,64,'world')
         values=sampler.sample(points,dimension=-1)
@@ -193,5 +292,9 @@ class PaletteIndex:
             -(-(x+3328+4096)//512),-(-(z+3328+4096)//512))>0))
 
     def luxuries(self,center):
-        from .blueprint import DYNAMIC_LUXURIES
-        return [members[0] for count,(_,members) in zip(self.window(center)[13:],DYNAMIC_LUXURIES) if count]
+        from .blueprint import DYNAMIC_LUXURIES,DYNAMIC_V2_LUXURIES
+        table=DYNAMIC_V2_LUXURIES if self.v2 else DYNAMIC_LUXURIES
+        return [members[0] for count,(_,members) in zip(self.window(center)[13:],table) if count]
+
+    def scenic_pair(self,center):
+        return scenic_pair_bonus_v2(self.surface,center)

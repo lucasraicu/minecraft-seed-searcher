@@ -476,3 +476,9 @@ int ss_igloo_basement(SeedContext *ctx,int x,int z) {
     if(!ctx||!getVariant(&variant,Igloo,MC_26_50,ctx->seed,x,z,-1))return -1;
     return !!variant.basement;
 }
+
+int ss_bastion_variant(SeedContext *ctx,int x,int z) {
+    StructureVariant variant={0};
+    if(!ctx||!getVariant(&variant,Bastion,MC_26_50,ctx->seed,x,z,-1))return -1;
+    return variant.start;
+}

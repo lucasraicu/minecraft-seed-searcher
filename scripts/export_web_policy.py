@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from seed_search.realm.config import (
-    dynamic_blueprint_config, marine_baseline_blueprint_config,
+    dynamic_v2_blueprint_config, marine_baseline_blueprint_config,
     two_group_blueprint_config, validate_config,
 )
 
@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def profiles():
     result={}
     for key,name,factory in (
-        ('dynamic1664','1664 sliding center',dynamic_blueprint_config),
+        ('dynamic1664','1664 sliding center',dynamic_v2_blueprint_config),
         ('marine2048','2048 marine baseline',marine_baseline_blueprint_config),
         ('twoGroup2048','2048 historical baseline',two_group_blueprint_config),
     ):
@@ -26,7 +26,7 @@ def profiles():
                      'flexible':[item for item in counts if item not in strict and item in floors],
                      'overworldSide':cfg['deployment']['overworld_side_blocks'],
                      'netherSide':cfg['deployment']['nether_side_blocks'],
-                     'maxMisses':2 if key=='dynamic1664' else 8,
+                     'maxMisses':3 if key=='dynamic1664' else 8,
                      'deferredMarine':bool(cfg['structures']['deferred_until_coastal_terrain'])}
     return result
 

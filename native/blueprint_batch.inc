@@ -58,6 +58,12 @@ typedef struct NBWorker {
     size_t dyn_cells_cap;
     int *dyn_biome_grid;
     int *dyn_nether_grid;
+    int *dyn_scenic_river;
+    size_t dyn_scenic_river_cap;
+    unsigned char *dyn_village_sep;
+    size_t dyn_village_sep_cap;
+    int dyn_bastion_variants[32];
+    int dyn_bastion_n;
 } NBWorker;
 
 /* A call-wide allocation reservation bounds owned outputs and scratch even for
@@ -268,6 +274,7 @@ static int nb_dynamic_score_values(const int *n,int strong,unsigned int bonus,in
 }
 static int nb_score(NBWorker *w,NBAnchor *a) {
     if(w->p->dynamic) {
+        if(w->p->dynamic_v2)return a->score;
         int n[13];for(int i=0;i<13;i++)n[i]=nb_observed_count(w,a->observations+i,i);
         int score=nb_dynamic_score_values(n,a->stronghold_count,a->bonus_biomes,a->hub_bonus);
         const int points[5]={20,15,15,10,10};
@@ -502,7 +509,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
         const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
             (1u<<6)|(1u<<7)|(1u<<8)|(1u<<9);
         if(p->dynamic!=1||!p->locked||!p->two_group||p->origin||p->marine_baseline||p->river||
-           p->overworld_half!=832||p->nether_half!=416||p->max_misses>2||
+           p->overworld_half!=832||p->nether_half!=416||p->max_misses>(p->dynamic_v2?3:2)||
            p->discovery[0]!=-2000||p->discovery[1]!=-2000||
            p->discovery[2]!=1999||p->discovery[3]!=1999||
            p->outpost_goal<2||p->outpost_goal>64||
@@ -599,6 +606,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
         ss_destroy(w.ctx);free(w.scratch);free(w.flags);
         free(w.dyn_prefix);free(w.dyn_nether_prefix);free(w.dyn_ex);free(w.dyn_ez);
         free(w.dyn_cells);free(w.dyn_biome_grid);free(w.dyn_nether_grid);
+        free(w.dyn_scenic_river);free(w.dyn_village_sep);
     }
     batch->result_count=count;
     if(p->retention) {

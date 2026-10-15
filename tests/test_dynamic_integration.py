@@ -8,7 +8,7 @@ from fractions import Fraction
 import pytest
 
 from seed_search.realm.blueprint import dynamic_score
-from seed_search.realm.config import dynamic_blueprint_config
+from seed_search.realm.config import dynamic_blueprint_config, dynamic_v2_blueprint_config
 from seed_search.realm.dynamic import candidate_centers, nether_bounds, hub_bonus
 from seed_search.realm import leaderboard
 from seed_search.web import server
@@ -34,7 +34,8 @@ def test_default_yaml_and_web_metadata_are_generated_from_policy():
     import yaml
     from scripts.export_web_policy import profiles
     cfg=dynamic_blueprint_config()
-    assert yaml.safe_load(Path('config/realm.yaml').read_text())==cfg
+    cfg_v2=dynamic_v2_blueprint_config()
+    assert yaml.safe_load(Path('config/realm.yaml').read_text())==cfg_v2
     assert yaml.safe_load(Path('config/realm_1664.yaml').read_text())==cfg
     assert json.loads(Path('web-ui/src/constants/searchProfiles.json').read_text())==profiles()
 

@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 from scripts.build_blueprint_batch import build
-from seed_search.realm.config import dynamic_blueprint_config
+from seed_search.realm.config import dynamic_v2_blueprint_config
 from seed_search.realm.native_batch import Prototype
 from seed_search.seeds import seed_from_index
 
@@ -37,10 +37,10 @@ def main():
     env["LLVM_PROFILE_FILE"] = str(PROF_DIR / "train-%p.profraw")
     code = """
 from seed_search.realm.native_batch import Prototype
-from seed_search.realm.config import dynamic_blueprint_config
+from seed_search.realm.config import dynamic_v2_blueprint_config
 from seed_search.seeds import seed_from_index
 import sys
-p = Prototype(sys.argv[1], dynamic_blueprint_config())
+p = Prototype(sys.argv[1], dynamic_v2_blueprint_config())
 with p.sweep([seed_from_index(i, 2026101402) for i in range(10000)], 4, retention='survivors'): pass
 with p.sweep([1], fixtures=[(0, 0, -1)], retention='survivors'): pass
 """
@@ -62,12 +62,19 @@ with p.sweep([1], fixtures=[(0, 0, -1)], retention='survivors'): pass
         shutil.rmtree(OUTPUT)
     build(OUTPUT, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, lto=True, pgo_use=profile)
 
+    # Copy to src/seed_search production location
+    so_files = list(OUTPUT.glob("*.so"))
+    if so_files:
+        dest = ROOT / "src/seed_search/_blueprint_batch.abi3.so"
+        shutil.copy2(so_files[0], dest)
+        print(f"  Copied production binary to {dest}")
+
     # Cleanup temporary training dirs
     shutil.rmtree(TRAIN_DIR, ignore_errors=True)
     shutil.rmtree(PROF_DIR, ignore_errors=True)
 
     print("[5/5] Measuring kernel throughput on 34 threads with batch sizes 8192 & 16384...")
-    p = Prototype(OUTPUT, dynamic_blueprint_config())
+    p = Prototype(OUTPUT, dynamic_v2_blueprint_config())
     seeds = [seed_from_index(i, 2026101401) for i in range(50000)]
     for batch_size in (8192, 16384):
         total_time = 0.0

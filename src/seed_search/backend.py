@@ -323,6 +323,12 @@ class Backend:
         if value<0:raise RuntimeError('Igloo variant prediction is unavailable')
         return bool(value)
 
+    def bastion_variant(self,x,z):
+        with _LOCK:
+            value=lib.ss_bastion_variant(self._handle(),_int(x),_int(z))
+        if value<0:raise RuntimeError('Bastion variant prediction is unavailable')
+        return int(value)
+
 
 def model_metadata():
     return {"model": ffi.string(lib.ss_model_name()).decode(),

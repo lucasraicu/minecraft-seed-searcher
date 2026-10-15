@@ -200,6 +200,7 @@ ORIGIN_REVISION='origin-fixed-2048-v1'
 TWO_GROUP_REVISION='origin-fixed-2048-two-group-v2'
 TWO_GROUP_MARINE_REVISION='origin-fixed-2048-two-group-marine-v3'
 DYNAMIC_REVISION='dynamic-envelope-1664-v1'
+DYNAMIC_V2_REVISION='dynamic-envelope-1664-v2'
 ORIGIN_ORDER=['ruined_portal','trial_chamber','outpost','desert_pyramid','jungle_temple',
               'mansion','ancient_city','village','mineshaft']
 TWO_GROUP_ORDER=['outpost','desert_pyramid','jungle_temple','ruined_portal',
@@ -231,7 +232,7 @@ def locked_blueprint_config():
 
 
 def locked_policy(cfg):
-    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION)
+    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
 
 
 def river_policy(cfg):
@@ -239,7 +240,7 @@ def river_policy(cfg):
 
 
 def outpost_policy(cfg):
-    return cfg.get('screening_revision') in (OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION)
+    return cfg.get('screening_revision') in (OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
 
 
 def origin_policy(cfg):
@@ -318,7 +319,15 @@ def marine_baseline_policy(cfg):
 
 
 def dynamic_policy(cfg):
-    return cfg.get('screening_revision')==DYNAMIC_REVISION
+    return cfg.get('screening_revision') in (DYNAMIC_REVISION, DYNAMIC_V2_REVISION)
+
+
+def dynamic_v1_policy(cfg):
+    return cfg.get('screening_revision') == DYNAMIC_REVISION
+
+
+def dynamic_v2_policy(cfg):
+    return cfg.get('screening_revision') == DYNAMIC_V2_REVISION
 
 
 def dynamic_blueprint_config():
@@ -349,14 +358,37 @@ def dynamic_blueprint_config():
     return cfg
 
 
+def dynamic_v2_blueprint_config():
+    """Active player-envelope policy (v2), with the historical v1 preserved."""
+    cfg=dynamic_blueprint_config()
+    cfg['screening_revision']=DYNAMIC_V2_REVISION
+    cfg['search']['max_misses']=3
+    cfg['search']['centroid_weights']={
+        'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,
+        'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,
+        'monument':1,'stronghold':1,'shipwreck':0
+    }
+    cfg['terrain']['variants']=[]
+    cfg['terrain'].pop('v1',None)
+    return cfg
+
+
 def two_group_policy(cfg):
-    return cfg.get('screening_revision') in (TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION)
+    return cfg.get('screening_revision') in (TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
 
 
 def validate_blueprint_config(cfg):
     """Validate common pins through legacy validation, then the explicit contract."""
-    expected=dynamic_blueprint_config() if dynamic_policy(cfg) else marine_baseline_blueprint_config() if marine_baseline_policy(cfg) else two_group_blueprint_config() if two_group_policy(cfg) else origin_blueprint_config() if origin_policy(cfg) else outpost_blueprint_config() if outpost_policy(cfg) else river_blueprint_config() if river_policy(cfg) else locked_blueprint_config() if locked_policy(cfg) else blueprint_config()
-    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION):raise ValueError('Unknown blueprint screening revision')
+    expected=(dynamic_v2_blueprint_config() if dynamic_v2_policy(cfg) else
+              dynamic_blueprint_config() if dynamic_policy(cfg) else
+              marine_baseline_blueprint_config() if marine_baseline_policy(cfg) else
+              two_group_blueprint_config() if two_group_policy(cfg) else
+              origin_blueprint_config() if origin_policy(cfg) else
+              outpost_blueprint_config() if outpost_policy(cfg) else
+              river_blueprint_config() if river_policy(cfg) else
+              locked_blueprint_config() if locked_policy(cfg) else
+              blueprint_config())
+    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION):raise ValueError('Unknown blueprint screening revision')
     if cfg['deployment']!=expected['deployment']:raise ValueError('Blueprint geometry differs from its revision')
     if cfg['discovery']!=expected['discovery']:raise ValueError('Blueprint discovery bounds differ from its revision')
     legacy=copy.deepcopy(cfg)
@@ -377,7 +409,8 @@ def validate_blueprint_config(cfg):
         if stronghold_after(cfg)!=expected_after:
             raise ValueError('Stronghold placement differs from the resolved filter order')
     if dynamic_policy(cfg):
-        _integer(cfg['search'].get('max_misses'),0,2,'max_misses')
+        max_misses_limit=3 if dynamic_v2_policy(cfg) else 2
+        _integer(cfg['search'].get('max_misses'),0,max_misses_limit,'max_misses')
         weights=cfg['search'].get('density_weights')
         if not isinstance(weights,dict) or set(weights)!=set(expected['search']['density_weights']):
             raise ValueError('Dynamic density weights must name all six supported structures')
@@ -410,6 +443,10 @@ def validate_blueprint_config(cfg):
     for key in ('spacing','sample_y','sample_y_levels','lattice','required_families','family_bonuses','variant_bonuses'):
         if cfg['biomes'].get(key)!=expected['biomes'][key]:
             raise ValueError(f'Blueprint biome policy differs: {key}')
-    if cfg['terrain'].get('variants')!=['v1'] or cfg['terrain'].get('v1')!=expected['terrain']['v1'] or 'v2' in cfg['terrain']:
-        raise ValueError('Blueprint requires only V1 Coastal Continent with its declared thresholds')
+    if dynamic_v2_policy(cfg):
+        if cfg['terrain'].get('variants')!=[]:
+            raise ValueError('Dynamic V2 requires empty terrain active variants')
+    else:
+        if cfg['terrain'].get('variants')!=['v1'] or cfg['terrain'].get('v1')!=expected['terrain']['v1'] or 'v2' in cfg['terrain']:
+            raise ValueError('Blueprint requires only V1 Coastal Continent with its declared thresholds')
     return cfg

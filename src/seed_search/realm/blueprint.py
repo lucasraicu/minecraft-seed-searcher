@@ -461,13 +461,113 @@ DYNAMIC_LUXURIES=((30,('cherry_grove',)),(20,('badlands','wooded_badlands','erod
     (10,('flower_forest',)),(10,('bamboo_jungle',)),(15,('warm_ocean',)),
     (15,('ice_spikes',)),(15,('windswept_savanna','shattered_savanna')))
 
+DYNAMIC_V2_LUXURIES=(
+    (25,('cherry_grove',)),
+    (20,('badlands','wooded_badlands','eroded_badlands')),
+    (25,('mushroom_fields',)),
+    (25,('pale_garden',)),
+    (15,('old_growth_pine_taiga','old_growth_spruce_taiga')),
+    (10,('flower_forest',)),
+    (10,('bamboo_jungle',)),
+    (15,('warm_ocean',)),
+    (15,('ice_spikes',)),
+    (15,('savanna','savanna_plateau','windswept_savanna','shattered_savanna')),
+)
+
+
+def dynamic_v2_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treasure_bastion=0,optional_counts=None):
+    """Authoritative Section 8.3 dynamic-envelope-1664-v2 player scoring."""
+    n=lambda name:counts.get(name,0)
+    opt=(lambda name:(optional_counts or {}).get(name,0)) if optional_counts is not None else n
+
+    core=0
+    core+=50 if n('mansion')>=2 else 0
+    core+=35 if n('stronghold')>=2 else 0
+    core+=35 if n('monument')>=2 else 0
+    v=n('village')
+    core+=(25 if v>=10 else 0)+(10 if v>=11 else 0)+(5 if v>=12 else 0)
+    tc=n('trial_chamber')
+    core+=(10 if tc>=9 else 0)+(10 if tc>=10 else 0)+(10 if tc>=11 else 0)
+    core+=25 if n('ancient_city')>=5 else 0
+    core+=20 if n('desert_pyramid')>=4 else 0
+    core+=20 if n('jungle_temple')>=4 else 0
+    core+=20 if n('outpost')>=3 else 0
+    core+=20 if n('fortress')>=3 else 0
+    core+=20 if n('bastion')>=3 else 0
+    rp=n('ruined_portal')
+    core+=(5 if rp>=8 else 0)+(5 if rp>=9 else 0)
+    sw=n('shipwreck')
+    core+=(5 if sw>=7 else 0)+(5 if sw>=8 else 0)
+    ms=n('mineshaft')
+    core+=min(5,max(0,ms-15))
+
+    optional=0
+    sh=opt('swamp_hut')
+    optional+=(20 if sh>=1 else 0)+(10 if sh>=2 else 0)
+    tr=opt('trail_ruins')
+    optional+=(15 if tr>=1 else 0)+(10 if tr>=2 else 0)
+    oru=opt('ocean_ruin')
+    optional+=(10 if oru>=1 else 0)+(10 if oru>=2 else 0)
+    bt=opt('buried_treasure')
+    optional+=min(24,6*max(0,bt))
+    ig=opt('igloo')
+    optional+=(10 if ig>=1 else 0)+(5 if ig>=2 else 0)
+    optional+=15 if treasure_bastion else 0
+
+    luxury=0
+    names=set(biome_names)
+    for points,members in DYNAMIC_V2_LUXURIES:
+        if names.intersection(members):luxury+=points
+
+    hub_pts=min(40,max(0,hub))
+    scenic_pts=20 if scenic else 0
+    spread_pts=15 if village_spread else 0
+    bonus_total=core+optional+luxury+hub_pts+scenic_pts+spread_pts
+
+    deficits=[]
+    penalty=0
+    if n('ruined_portal')<7:penalty+=5;deficits.append('ruined_portal')
+    if n('shipwreck')<6:penalty+=5;deficits.append('shipwreck')
+    if n('village')<9:penalty+=10;deficits.append('village')
+    if n('trial_chamber')<8:penalty+=10;deficits.append('trial_chamber')
+    if n('ancient_city')<4:penalty+=10;deficits.append('ancient_city')
+    if n('desert_pyramid')<3:penalty+=10;deficits.append('desert_pyramid')
+    if n('jungle_temple')<3:penalty+=10;deficits.append('jungle_temple')
+    if n('mineshaft')<15:penalty+=10;deficits.append('mineshaft')
+    if n('mansion')<1:penalty+=10;deficits.append('mansion')
+    if n('stronghold')<1:penalty+=10;deficits.append('stronghold')
+    if n('monument')<1:penalty+=10;deficits.append('monument')
+    if n('outpost')<2:penalty+=10;deficits.append('outpost')
+    if n('fortress')<2:penalty+=10;deficits.append('fortress')
+    if n('bastion')<2:penalty+=10;deficits.append('bastion')
+
+    final_score=bonus_total-penalty
+    components={
+        'score_revision':'dynamic-envelope-1664-v2',
+        'final_score':final_score,
+        'bonus_total':bonus_total,
+        'deficit_penalty':penalty,
+        'core_surplus':core,
+        'optional_bonus':optional,
+        'luxury_biomes':luxury,
+        'hub_bonus':hub_pts,
+        'scenic_bonus':scenic_pts,
+        'village_spread_bonus':spread_pts,
+        'treasure_bastion_bonus':(15 if treasure_bastion else 0),
+    }
+    return final_score,components,deficits
+
 
 def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_circuit=True):
     """Independent complete-inventory oracle for the exact dynamic center."""
+    import math
     from .baseline import structure_observation
     from .dynamic import (candidate_centers,OVERWORLD_NAMES,NETHER_NAMES,OPTIONAL_NAMES,
-                          overworld_bounds,nether_bounds,nether_palette,hub_bonus,weighted_radial,PaletteIndex)
-    from .config import baseline_requirements
+                          overworld_bounds,nether_bounds,nether_palette,hub_bonus,weighted_radial,PaletteIndex,
+                          DYNAMIC_V2_CENTROID_WEIGHTS,hub_bonus_v2,hub_village_v2,weighted_radial_v2,
+                          scenic_pair_bonus_v2,village_spread_bonus_v2,treasure_bastion_bonus_v2)
+    from .config import baseline_requirements,dynamic_v2_policy
+    is_v2=dynamic_v2_policy(cfg)
     seed=parse_seed(seed);started=time.perf_counter();cpu=time.process_time()
     timings={};anchors=[];counts={}
     def timed(name,fn):
@@ -510,22 +610,42 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                 all_ideals={**cfg['structures']['minimum_counts'],**cfg['structures']['nether_minimum_counts']}
                 strict={'stronghold','mansion','monument','outpost','fortress','bastion'}
                 ideals={name:all_ideals[name] for name in all_ideals if name not in strict}
+                cw=DYNAMIC_V2_CENTROID_WEIGHTS if is_v2 else None
                 eligible=candidate_centers(all_points,cfg['structures']['hard_floors'],
-                    ideals,cfg['search']['density_weights'],cfg['search']['max_misses'])
+                    ideals,cfg['search']['density_weights'],cfg['search']['max_misses'],centroid_weights=cw)
                 # Strict categories reject below their configurable targets.
                 eligible=[item for item in eligible if all(item.counts[name]>=all_ideals[name] for name in strict)]
             else:eligible=[]
         else:eligible=[type('Selected',(),{'center':tuple(replay_center)})()]
         selected=None;biomes=None;nether_biomes=None
         if replay_center is None and eligible:
-            palette_index=timed('biome_palette_4y',lambda:PaletteIndex(sampler,cfg['biomes']))
-            def center_key(item):
-                center=item.center
-                structures={name:[p for p in points if contains(p,overworld_bounds(center))]
-                            for name,points in all_points.items() if name in OVERWORLD_NAMES}
-                score=dynamic_score(item.counts,palette_index.luxuries(center),hub_bonus(structures,center))
-                return (len(item.deficits),-score,round(item.radial,6),center[0]**2+center[1]**2,*center)
-            eligible=sorted((item for item in eligible if palette_index.valid(item.center)),key=center_key)
+            palette_index=timed('biome_palette_4y',lambda:PaletteIndex(sampler,cfg['biomes'],v2=is_v2))
+            if is_v2:
+                def center_key_v2(item):
+                    center=item.center
+                    structures={name:[p for p in points if contains(p,overworld_bounds(center))]
+                                for name,points in all_points.items() if name in OVERWORLD_NAMES}
+                    opt_counts={name:sum(contains(p,overworld_bounds(center)) for p in all_points[name])
+                                for name in OPTIONAL_NAMES}
+                    get_var=getattr(backend,'bastion_variant',lambda x,z:-1)
+                    tb_points,_=treasure_bastion_bonus_v2(all_points.get('bastion',[]),center,get_var)
+                    scenic_pts,_,_=palette_index.scenic_pair(center)
+                    spread_pts,_=village_spread_bonus_v2(structures.get('village',[]),center)
+                    hub=hub_bonus_v2(structures,center)
+                    score,_,defs=dynamic_v2_score(item.counts,palette_index.luxuries(center),hub,scenic_pts,spread_pts,tb_points,opt_counts)
+                    radial=weighted_radial_v2(structures,center)
+                    radial_key=int(math.floor(radial*1_000_000.0+0.5))
+                    orig_dist_sq=center[0]**2+center[1]**2
+                    return (-score,len(defs),radial_key,orig_dist_sq,center[0],center[1])
+                eligible=sorted((item for item in eligible if palette_index.valid(item.center)),key=center_key_v2)
+            else:
+                def center_key(item):
+                    center=item.center
+                    structures={name:[p for p in points if contains(p,overworld_bounds(center))]
+                                for name,points in all_points.items() if name in OVERWORLD_NAMES}
+                    score=dynamic_score(item.counts,palette_index.luxuries(center),hub_bonus(structures,center))
+                    return (len(item.deficits),-score,round(item.radial,6),center[0]**2+center[1]**2,*center)
+                eligible=sorted((item for item in eligible if palette_index.valid(item.center)),key=center_key)
         for item in eligible:
             center=item.center;bounds=overworld_bounds(center)
             palette=timed('biome_palette_4y',lambda:biome_palette(sampler,bounds,cfg['biomes'],complete=True))
@@ -567,11 +687,43 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             actual=required['stronghold']['predicted_viable']
             surface=[row['biome'] for row in biomes['sampling']['samples'] if row['coordinate'][1]==63]
             structures={name:ob['predicted_viable'] for name,ob in required.items()}
-            hub=hub_bonus(structures,selected)
-            radial=weighted_radial(structures,selected)
-            score=dynamic_score({name:len(ob['predicted_viable']) for name,ob in {**all_observations,**optional}.items()},surface,hub)
             density=sum(cfg['search']['density_weights'][name]*len(required[name]['predicted_viable'])
                         for name in cfg['search']['density_weights'])
+            if is_v2:
+                hub=hub_bonus_v2(structures,selected)
+                hub_village=hub_village_v2(structures,selected)
+                radial=weighted_radial_v2(structures,selected)
+                radial_key=int(math.floor(radial*1_000_000.0+0.5))
+                orig_dist_sq=selected[0]**2+selected[1]**2
+                if hasattr(backend,'scenic_bonus'):
+                    scenic_pts=getattr(backend,'scenic_bonus')
+                    scenic_wit=getattr(backend,'scenic_witness',None)
+                    river_wit=getattr(backend,'river_witness',None)
+                elif 'palette_index' in locals():
+                    scenic_pts,scenic_wit,river_wit=palette_index.scenic_pair(selected)
+                else:
+                    surface_grid=np.array([canonical(biome_name(int(v))) for v in sampler.sample(grid_points((-2000,-2000,2000,2000),64,63,'world'))]).reshape(63,63)
+                    scenic_pts,scenic_wit,river_wit=scenic_pair_bonus_v2(surface_grid,selected)
+                if hasattr(backend,'village_spread_bonus'):
+                    spread_pts=getattr(backend,'village_spread_bonus')
+                    v_triple=getattr(backend,'village_triple',None)
+                else:
+                    spread_pts,v_triple=village_spread_bonus_v2(structures.get('village',[]),selected)
+                if hasattr(backend,'treasure_bastion'):
+                    tb_points=15 if getattr(backend,'treasure_bastion') else 0
+                    tb_list=[]
+                else:
+                    get_var=getattr(backend,'bastion_variant',lambda x,z:-1)
+                    tb_points,tb_list=treasure_bastion_bonus_v2(nether['bastion']['predicted_viable'],selected,get_var)
+                score,components,score_defs=dynamic_v2_score(
+                    {name:len(ob['predicted_viable']) for name,ob in {**all_observations,**optional}.items()},
+                    surface,hub,scenic_pts,spread_pts,tb_points,
+                    {name:len(ob['predicted_viable']) for name,ob in optional.items()}
+                )
+            else:
+                hub=hub_bonus(structures,selected)
+                radial=weighted_radial(structures,selected)
+                score=dynamic_score({name:len(ob['predicted_viable']) for name,ob in {**all_observations,**optional}.items()},surface,hub)
             qualified=not fatal and len(deficits)<=cfg['search']['max_misses'] and not biomes['missing_families']
             if qualified:
                 anchor={'id':f'{seed}:{selected[0]}:{selected[1]}','index':index,'seed':str(seed),
@@ -589,10 +741,6 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     'required_structures':required,'required_nether_structures':nether,
                     'optional_structures':optional,'initial_fortress':{'type':'fortress','data_status':'NOT_REQUESTED'},
                     'biomes':biomes,'nether_biomes':nether_biomes,
-                    'ranking':{'score':score,'deficit_tier':len(deficits),
-                               'weighted_radial_dist':radial,'origin_distance':float(np.hypot(*selected)),
-                               'components':{'dynamic_density':density,'hub_bonus':hub}},
-                    'weighted_radial_dist':radial,'origin_distance':float(np.hypot(*selected)),
                     'final_nether_prediction':{'required':['fortress','bastion'],'status':'PREDICTED',
                                                'bounds':json_bounds(nw),'actual_generation_verified':False},
                     'marine_stage':{'status':'PREDICTED','required_counts':{n:all_ideals[n] for n in ('monument','shipwreck')},
@@ -601,14 +749,48 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     'deferred_requirements':[],'baseline_score':score,'baseline_score_observed':score,
                     'baseline_score_complete':True,'baseline_score_status':'PREDICTED count and palette bonuses',
                     'baseline_score_uncertainty':score_uncertainty(score,[],True),
-                    'inventory':{'version':'dynamic-1664-count-inventory-v1','status':'COMPLETE','tasks':[],
+                    'inventory':{'version':'dynamic-1664-count-inventory-v2' if is_v2 else 'dynamic-1664-count-inventory-v1','status':'COMPLETE','tasks':[],
                                  'completion_scope':'complete predictor counts at selected center; actual generation unverified'},
                     'qualification':'PREDICTED','data_status':'PREDICTED','pending_reasons':[],
                     'deficit_categories':deficits,'fatal_reasons':[],'biome_failures':[],
                     'deficit_budget':cfg['search']['max_misses'],'baseline_qualification':'PREDICTED',
                     'processing_status':'baseline_complete','final_nether_status':'UNVERIFIED',
-                    'terrain_status':{'v1':'not_evaluated'},
+                    'terrain_status':{'v1':'not_applicable' if is_v2 else 'not_evaluated'},
                     'density_score':density}
+                if is_v2:
+                    anchor['scenic_bonus']=scenic_pts
+                    anchor['scenic_witness']=list(scenic_wit) if scenic_wit else None
+                    anchor['river_witness']=list(river_wit) if river_wit else None
+                    anchor['village_spread_bonus']=spread_pts
+                    anchor['village_triple']=[list(p) for p in v_triple] if v_triple else None
+                    anchor['treasure_bastion']=1 if tb_points else 0
+                    anchor['starter_hub_village']=list(hub_village) if hub_village else None
+                    anchor['deficit_penalty']=components['deficit_penalty']
+                    anchor['bonus_total']=components['bonus_total']
+                    anchor['radial_key']=radial_key
+                    anchor['origin_distance_squared']=orig_dist_sq
+                    anchor['ranking']={'score':score,'final_score':score,'deficit_tier':len(deficits),
+                                       'weighted_radial_dist':radial,'radial_key':radial_key,
+                                       'origin_distance_squared':orig_dist_sq,'origin_distance':float(np.hypot(*selected)),
+                                       'components':components}
+                    anchor['weighted_radial_dist']=radial
+                    anchor['origin_distance']=float(np.hypot(*selected))
+                    scenic_names={'plains','sunflower_plains','meadow','cherry_grove'}
+                    cx,cz=selected
+                    spawn_cands=[((row['coordinate'][0]-cx)**2+(row['coordinate'][2]-cz)**2,row['coordinate'][0],row['coordinate'][2],row['coordinate'][1],row['biome'])
+                                 for row in biomes['sampling']['samples'] if row['coordinate'][1]==63 and row['biome'] in scenic_names and (row['coordinate'][0]-cx)**2+(row['coordinate'][2]-cz)**2<=256**2]
+                    if spawn_cands:
+                        spawn_cands.sort()
+                        best_sp=spawn_cands[0]
+                        anchor['suggested_spawn']={'status':'PREDICTED_SCENIC_SUGGESTION','coordinates':[best_sp[1],best_sp[3],best_sp[2]],'biome':best_sp[4],'distance':math.sqrt(best_sp[0])}
+                    else:
+                        anchor['suggested_spawn']={'status':'UNAVAILABLE','coordinates':None,'reason':'no scenic witness within 256 blocks'}
+                else:
+                    anchor['ranking']={'score':score,'deficit_tier':len(deficits),
+                                       'weighted_radial_dist':radial,'origin_distance':float(np.hypot(*selected)),
+                                       'components':{'dynamic_density':density,'hub_bonus':hub}}
+                    anchor['weighted_radial_dist']=radial
+                    anchor['origin_distance']=float(np.hypot(*selected))
                 anchors=[anchor]
                 from .spawn import classify_spawn
                 anchor['spawn_stage']=classify_spawn(anchor,cfg)

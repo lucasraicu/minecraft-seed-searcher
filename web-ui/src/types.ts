@@ -73,6 +73,18 @@ export interface SeedCandidate {
   rankingTier?: number | null;
   weightedRadialDistance?: number | null;
   originDistance?: number | null;
+  radialKey?: number | null;
+  originDistanceSquared?: number | null;
+  scoreComponents?: Record<string, any> | null;
+  scenicBonus?: number | null;
+  scenicWitness?: [number, number] | null;
+  riverWitness?: [number, number] | null;
+  villageSpreadBonus?: number | null;
+  villageTriple?: [number, number][] | null;
+  treasureBastion?: number | null;
+  starterHubVillage?: [number, number] | null;
+  deficitPenalty?: number | null;
+  bonusTotal?: number | null;
   unmetRequirements?: number | null;
   strongholdAnchor?: [number, number] | null;
   evaluationCenter?: [number, number] | null;
@@ -92,7 +104,7 @@ export interface SeedCandidate {
   chunkbaseUrl?: string | null;
   terrainType?: 'Coastal Continent' | 'Coastal Continent (River Highway)' | 'Coastal Continent (Near-Miss)' | 'Baseline (Structures Only)' | string | null;
   terrainPassed?: boolean | null;
-  terrainStatus?: 'passed' | 'near_miss' | 'failed' | 'pending' | null;
+  terrainStatus?: 'passed' | 'near_miss' | 'failed' | 'pending' | 'not_applicable' | null;
   terrainGeometryScore?: number | null;
   terrainReasons?: string[] | null;
   terrainMetrics?: {

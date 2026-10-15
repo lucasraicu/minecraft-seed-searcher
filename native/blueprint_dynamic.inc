@@ -15,6 +15,18 @@ static int nb_dynamic_cellcmp(const void *av,const void *bv) {
     if(a->x!=b->x)return a->x<b->x?-1:1;
     return a->z<b->z?-1:a->z>b->z;
 }
+static int nb_dynamic_cellcmp_v2(const void *av,const void *bv) {
+    const NBDynamicCell *a=av,*b=bv;
+    if(a->score!=b->score)return a->score>b->score?-1:1;
+    if(a->deficits!=b->deficits)return a->deficits<b->deficits?-1:1;
+    int64_t ar=llround(a->radial*1e6),br=llround(b->radial*1e6);
+    if(ar!=br)return ar<br?-1:1;
+    int64_t da=(int64_t)a->x*a->x+(int64_t)a->z*a->z;
+    int64_t db=(int64_t)b->x*b->x+(int64_t)b->z*b->z;
+    if(da!=db)return da<db?-1:1;
+    if(a->x!=b->x)return a->x<b->x?-1:1;
+    return a->z<b->z?-1:a->z>b->z;
+}
 static int nb_dynamic_nearest(int lo,int hi) {
     return lo<=0&&hi>=0?0:hi<0?hi:lo;
 }
@@ -176,14 +188,15 @@ static int nb_dynamic_snap(int lo,int hi,int64_t sum,int weight,int step,int *va
     *value=rounded<lower?lower:rounded>upper?upper:rounded;return 1;
 }
 static const int nb_centroid_weights[13]={1,1,1,1,2,3,2,2,1,0,0,0,1};
+static const int nb_centroid_weights_v2[13]={1,1,1,1,2,3,2,0,0,0,0,0,1};
 static int nb_dynamic_captured(int px,int pz,int x,int z) {
     return x-832<=px&&px<x+832&&z-832<=pz&&pz<z+832;
 }
 static void nb_dynamic_centroid(const NBObservation *macro,const NBPoints *strong,int x,int z,
-                                int64_t *sx,int64_t *sz,int *weight,int dark_id) {
+                                int64_t *sx,int64_t *sz,int *weight,int dark_id,const int *weights) {
     *sx=*sz=0;*weight=0;
     for(int k=-1;k<13;k++) {
-        int w=k<0?1:nb_centroid_weights[k];if(!w)continue;
+        int w=k<0?1:weights[k];if(!w)continue;
         const NBPoints *p=k<0?strong:&macro[k].viable;
         for(int i=0;i<p->n;i++) {
             int px=p->xz[2*i],pz=p->xz[2*i+1];
@@ -192,10 +205,10 @@ static void nb_dynamic_centroid(const NBObservation *macro,const NBPoints *stron
         }
     }
 }
-static double nb_dynamic_radial(const NBObservation *macro,const NBPoints *strong,int x,int z,int weight,int dark_id) {
+static double nb_dynamic_radial(const NBObservation *macro,const NBPoints *strong,int x,int z,int weight,int dark_id,const int *weights) {
     double distance=0;
     for(int k=-1;k<13;k++) {
-        int w=k<0?1:nb_centroid_weights[k];if(!w)continue;
+        int w=k<0?1:weights[k];if(!w)continue;
         const NBPoints *p=k<0?strong:&macro[k].viable;
         for(int i=0;i<p->n;i++) {
             int px=p->xz[2*i],pz=p->xz[2*i+1];
@@ -215,6 +228,273 @@ static int nb_dynamic_hub(const NBObservation *macro,int x,int z) {
         }
     }
     return bonus>40?40:bonus;
+}
+
+static int nb_dynamic_v2_core_bonus(const int *counts,int strong) {
+    int core=(counts[0]>=2?50:0)+(strong>=2?35:0)+(counts[3]>=2?35:0);
+    int v=counts[5];
+    core+=(v>=10?25:0)+(v>=11?10:0)+(v>=12?5:0);
+    int tc=counts[6];
+    core+=(tc>=9?10:0)+(tc>=10?10:0)+(tc>=11?10:0);
+    core+=(counts[4]>=5?25:0);
+    core+=(counts[2]>=4?20:0);
+    core+=(counts[1]>=4?20:0);
+    core+=(counts[12]>=3?20:0);
+    core+=(counts[10]>=3?20:0);
+    core+=(counts[11]>=3?20:0);
+    int rp=counts[7];
+    core+=(rp>=8?5:0)+(rp>=9?5:0);
+    int sw=counts[8];
+    core+=(sw>=7?5:0)+(sw>=8?5:0);
+    int ms=counts[9];
+    core+=(ms>15?(ms>=20?5:ms-15):0);
+    return core;
+}
+
+static int nb_dynamic_v2_deficit_penalty(const int *counts,const int *goals,int outpost_goal,int *deficits_out) {
+    int penalty=0,defs=0;
+    if(counts[7]<goals[7]){penalty+=5;defs++;}
+    if(counts[8]<goals[8]){penalty+=5;defs++;}
+    if(counts[5]<goals[5]){penalty+=10;defs++;}
+    if(counts[6]<goals[6]){penalty+=10;defs++;}
+    if(counts[4]<goals[4]){penalty+=10;defs++;}
+    if(counts[2]<goals[2]){penalty+=10;defs++;}
+    if(counts[1]<goals[1]){penalty+=10;defs++;}
+    if(counts[9]<goals[9]){penalty+=10;defs++;}
+    if(counts[0]<goals[0]){penalty+=10;defs++;}
+    if(counts[3]<goals[3]){penalty+=10;defs++;}
+    if(counts[12]<outpost_goal){penalty+=10;defs++;}
+    if(deficits_out)*deficits_out=defs;
+    return penalty;
+}
+
+static int nb_dynamic_v2_optional(const int *opt_counts,int treasure_bastion) {
+    int opt=(opt_counts[0]>=1?20:0)+(opt_counts[0]>=2?10:0);
+    opt+=(opt_counts[1]>=1?10:0)+(opt_counts[1]>=2?5:0);
+    opt+=(opt_counts[2]>=1?15:0)+(opt_counts[2]>=2?10:0);
+    opt+=(opt_counts[3]>=1?10:0)+(opt_counts[3]>=2?10:0);
+    opt+=(opt_counts[4]>=4?24:opt_counts[4]*6);
+    opt+=(treasure_bastion?15:0);
+    return opt;
+}
+
+static int nb_dynamic_v2_biome_bonus(unsigned int bonus) {
+    const int points[10]={25,20,25,25,15,10,10,15,15,15};
+    int score=0;
+    for(int i=0;i<10;i++)if(bonus&(1u<<i))score+=points[i];
+    return score;
+}
+
+static int nb_dynamic_v2_hub(const NBObservation *macro,int x,int z,int *nearest_village) {
+    int v_hub=0;
+    int best_d2=512*512+1;
+    int best_vx=0,best_vz=0;
+    const NBPoints *vp=&macro[5].viable;
+    for(int i=0;i<vp->n;i++) {
+        int px=vp->xz[2*i],pz=vp->xz[2*i+1];
+        if(nb_dynamic_captured(px,pz,x,z)) {
+            int64_t dx=px-x,dz=pz-z;
+            int64_t d2=dx*dx+dz*dz;
+            if(d2<=256*256)v_hub=10;
+            else if(d2<=512*512&&v_hub<6)v_hub=6;
+            if(d2<=512*512) {
+                if((int)d2<best_d2||((int)d2==best_d2&&(px<best_vx||(px==best_vx&&pz<best_vz)))) {
+                    best_d2=(int)d2;best_vx=px;best_vz=pz;
+                }
+            }
+        }
+    }
+    if(nearest_village) {
+        if(best_d2<=512*512){nearest_village[0]=best_vx;nearest_village[1]=best_vz;}
+        else{nearest_village[0]=0;nearest_village[1]=0;}
+    }
+    int other=0;
+    const int other_slots[3]={2,1,12};
+    for(int j=0;j<3;j++) {
+        const NBPoints *p=&macro[other_slots[j]].viable;
+        for(int i=0;i<p->n;i++) {
+            int px=p->xz[2*i],pz=p->xz[2*i+1];
+            if(nb_dynamic_captured(px,pz,x,z)) {
+                int64_t dx=px-x,dz=pz-z;
+                if(dx*dx+dz*dz<=512*512){other+=6;if(other>=30){other=30;goto done_other;}}
+            }
+        }
+    }
+    {
+        const NBPoints *p=&macro[7].viable;
+        for(int i=0;i<p->n;i++) {
+            int px=p->xz[2*i],pz=p->xz[2*i+1];
+            if(nb_dynamic_captured(px,pz,x,z)) {
+                int64_t dx=px-x,dz=pz-z;
+                if(dx*dx+dz*dz<=512*512){other+=4;if(other>=30){other=30;goto done_other;}}
+            }
+        }
+    }
+done_other:
+    return v_hub+(other>30?30:other);
+}
+
+static const int nb_river_offsets[13][2]={
+    {-2,0},{-1,-1},{-1,0},{-1,1},
+    {0,-2},{0,-1},{0,0},{0,1},{0,2},
+    {1,-1},{1,0},{1,1},{2,0}
+};
+
+static int nb_dynamic_build_scenic_cache(NBWorker *w) {
+    if(!w->dyn_scenic_river) {
+        w->dyn_scenic_river=(int*)nb_alloc(w,64*64*sizeof(int),1);
+        if(!w->dyn_scenic_river)return -3;
+        w->dyn_scenic_river_cap=64*64*sizeof(int);
+    }
+    int *cache=w->dyn_scenic_river;
+    memset(cache,0,64*64*sizeof(int));
+    for(int ix=1;ix<=63;ix++)for(int iz=1;iz<=63;iz++) {
+        int id=w->dyn_biome_grid[2*64*64+ix*64+iz];
+        if(id>=0&&id<256&&w->p->is_scenic[id]) {
+            int best_rx=9999,best_rz=9999;
+            for(int t=0;t<13;t++) {
+                int rix=ix+nb_river_offsets[t][0],riz=iz+nb_river_offsets[t][1];
+                if(rix>=1&&rix<=63&&riz>=1&&riz<=63) {
+                    int rid=w->dyn_biome_grid[2*64*64+rix*64+riz];
+                    if(rid==w->p->river_id) {
+                        int rx=-1984+(rix-1)*64,rz=-1984+(riz-1)*64;
+                        if(rx<best_rx||(rx==best_rx&&rz<best_rz)){best_rx=rx;best_rz=rz;}
+                    }
+                }
+            }
+            if(best_rx!=9999) {
+                int rix=(best_rx+1984)/64+1,riz=(best_rz+1984)/64+1;
+                cache[ix*64+iz]=0x10000|(rix<<8)|riz;
+            }
+        }
+    }
+    return 0;
+}
+
+static int nb_dynamic_check_scenic_pair(NBWorker *w,int cx,int cz,int *scenic_wit,int *river_wit) {
+    if(!w->dyn_scenic_river)return 0;
+    int min_ix=floordiv(cx-192+1984,64)+1,max_ix=floordiv(cx+192+1984,64)+1;
+    int min_iz=floordiv(cz-192+1984,64)+1,max_iz=floordiv(cz+192+1984,64)+1;
+    if(min_ix<1)min_ix=1;if(max_ix>63)max_ix=63;
+    if(min_iz<1)min_iz=1;if(max_iz>63)max_iz=63;
+    int best_sx=9999,best_sz=9999,best_rx=9999,best_rz=9999;
+    for(int ix=min_ix;ix<=max_ix;ix++) {
+        int sx=-1984+(ix-1)*64;
+        for(int iz=min_iz;iz<=max_iz;iz++) {
+            int sz=-1984+(iz-1)*64;
+            int64_t dx=sx-cx,dz=sz-cz;
+            if(dx*dx+dz*dz<=192*192&&nb_dynamic_captured(sx,sz,cx,cz)) {
+                int entry=w->dyn_scenic_river[ix*64+iz];
+                if(entry&0x10000) {
+                    int rix=(entry>>8)&0xff,riz=entry&0xff;
+                    int rx=-1984+(rix-1)*64,rz=-1984+(riz-1)*64;
+                    if(nb_dynamic_captured(rx,rz,cx,cz)) {
+                        if(sx<best_sx||(sx==best_sx&&sz<best_sz)){
+                            best_sx=sx;best_sz=sz;best_rx=rx;best_rz=rz;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(best_sx!=9999) {
+        if(scenic_wit){scenic_wit[0]=best_sx;scenic_wit[1]=best_sz;}
+        if(river_wit){river_wit[0]=best_rx;river_wit[1]=best_rz;}
+        return 1;
+    }
+    return 0;
+}
+
+static int nb_dynamic_build_village_cache(NBWorker *w,const NBPoints *villages) {
+    int n=villages->n;if(n<=0)return 0;
+    size_t need=(size_t)n*(size_t)n;
+    if(w->dyn_village_sep_cap<need) {
+        unsigned char *new_sep=(unsigned char*)nb_alloc(w,need,0);
+        if(!new_sep)return -3;
+        free(w->dyn_village_sep);
+        w->dyn_village_sep=new_sep;
+        w->dyn_village_sep_cap=need;
+    }
+    for(int i=0;i<n;i++) {
+        int ix=villages->xz[2*i],iz=villages->xz[2*i+1];
+        for(int j=0;j<n;j++) {
+            int64_t dx=ix-villages->xz[2*j],dz=iz-villages->xz[2*j+1];
+            w->dyn_village_sep[i*n+j]=(dx*dx+dz*dz>=256*256);
+        }
+    }
+    return 0;
+}
+
+static int nb_dynamic_check_village_spread(NBWorker *w,const NBPoints *villages,int cx,int cz,int *triple_out) {
+    int n=villages->n;if(n<3||!w->dyn_village_sep)return 0;
+    int q_indices[4][64];int q_count[4]={0,0,0,0};
+    for(int i=0;i<n;i++) {
+        int px=villages->xz[2*i],pz=villages->xz[2*i+1];
+        if(nb_dynamic_captured(px,pz,cx,cz)) {
+            int q=(px>=cx?(pz>=cz?0:3):(pz>=cz?1:2));
+            if(q_count[q]<64)q_indices[q][q_count[q]++]=i;
+        }
+    }
+    int occupied=(q_count[0]>0)+(q_count[1]>0)+(q_count[2]>0)+(q_count[3]>0);
+    if(occupied<3)return 0;
+    static const int quad_combos[4][3]={{0,1,2},{0,1,3},{0,2,3},{1,2,3}};
+    int found=0;int best_triple[6];
+    for(int c=0;c<4;c++) {
+        int qa=quad_combos[c][0],qb=quad_combos[c][1],qc=quad_combos[c][2];
+        if(!q_count[qa]||!q_count[qb]||!q_count[qc])continue;
+        for(int ia=0;ia<q_count[qa];ia++) {
+            int idx_a=q_indices[qa][ia];
+            for(int ib=0;ib<q_count[qb];ib++) {
+                int idx_b=q_indices[qb][ib];
+                if(!w->dyn_village_sep[idx_a*n+idx_b])continue;
+                for(int ic=0;ic<q_count[qc];ic++) {
+                    int idx_c=q_indices[qc][ic];
+                    if(w->dyn_village_sep[idx_a*n+idx_c]&&w->dyn_village_sep[idx_b*n+idx_c]) {
+                        int cur[3][2]={{villages->xz[2*idx_a],villages->xz[2*idx_a+1]},
+                                       {villages->xz[2*idx_b],villages->xz[2*idx_b+1]},
+                                       {villages->xz[2*idx_c],villages->xz[2*idx_c+1]}};
+                        for(int i=0;i<2;i++)for(int j=i+1;j<3;j++) {
+                            if(cur[i][0]>cur[j][0]||(cur[i][0]==cur[j][0]&&cur[i][1]>cur[j][1])) {
+                                int tx=cur[i][0],tz=cur[i][1];
+                                cur[i][0]=cur[j][0];cur[i][1]=cur[j][1];
+                                cur[j][0]=tx;cur[j][1]=tz;
+                            }
+                        }
+                        int flat[6]={cur[0][0],cur[0][1],cur[1][0],cur[1][1],cur[2][0],cur[2][1]};
+                        if(!found){memcpy(best_triple,flat,6*sizeof(int));found=1;}
+                        else {
+                            for(int k=0;k<6;k++) {
+                                if(flat[k]<best_triple[k]){memcpy(best_triple,flat,6*sizeof(int));break;}
+                                else if(flat[k]>best_triple[k])break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(found) {
+        if(triple_out)memcpy(triple_out,best_triple,6*sizeof(int));
+        return 1;
+    }
+    return 0;
+}
+
+static int nb_dynamic_build_bastion_cache(NBWorker *w,const NBPoints *bastions) {
+    int n=bastions->n;if(n>32)n=32;w->dyn_bastion_n=n;
+    for(int i=0;i<n;i++)w->dyn_bastion_variants[i]=ss_bastion_variant(w->ctx,bastions->xz[2*i],bastions->xz[2*i+1]);
+    return 0;
+}
+
+static int nb_dynamic_check_treasure_bastion(NBWorker *w,const NBPoints *bastions,int cx,int cz) {
+    int n=w->dyn_bastion_n;
+    for(int i=0;i<n;i++) {
+        int bx=bastions->xz[2*i],bz=bastions->xz[2*i+1];
+        if(8*(bx-416)<cx&&cx<=8*(bx+416)&&8*(bz-416)<cz&&cz<=8*(bz+416)) {
+            if(w->dyn_bastion_variants[i]==2)return 1;
+        }
+    }
+    return 0;
 }
 static int nb_dynamic_optional(NBWorker *w,const int *bounds,int slot,NBObservation *o) {
     o->full=o->evaluated=1;
@@ -338,6 +618,8 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     double stage=nb_time();
     NBObservation macro[13]={0},optional[5]={0};NBAnchor nether_macro={0};int *ex=NULL,*ez=NULL,*prefix=NULL,*nether_prefix=NULL;
     NBDynamicCell *cells=NULL;int nx=0,nz=0,ncells=0,optional_evaluated=0;
+    int scenic_cached=0,village_cached=0,bastion_cached=0;
+    const int *weights=w->p->dynamic_v2?nb_centroid_weights_v2:nb_centroid_weights;
     int feasible[4]={-2000,-2000,1999,1999},possible=1;
     /* Compact rejects carry a range decision, not an invented discovery row.
      * Defer Stronghold's expensive village path until raw floors can succeed. */
@@ -456,7 +738,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         }
         if(fatal||deficit>w->p->max_misses)continue;
         int64_t sx,sz;int weight;
-        nb_dynamic_centroid(macro,&r->discovery,x,z,&sx,&sz,&weight,w->p->dark_id);
+        nb_dynamic_centroid(macro,&r->discovery,x,z,&sx,&sz,&weight,w->p->dark_id,weights);
         int xx,zz;
         if(!(nb_dynamic_snap(ex[ix],ex[ix+1]-1,sx,weight,16,&xx)||
              nb_dynamic_snap(ex[ix],ex[ix+1]-1,sx,weight,8,&xx)))continue;
@@ -471,18 +753,56 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             code=nb_dynamic_palette_prefix(w,&prefix);if(code)goto done;
             code=nb_dynamic_nether_prefix(w,&nether_prefix);if(code)goto done;
         }
+        if(w->p->dynamic_v2) {
+            if(!scenic_cached) {
+                code=nb_dynamic_build_scenic_cache(w);if(code)goto done;
+                scenic_cached=1;
+            }
+            if(!village_cached) {
+                code=nb_dynamic_build_village_cache(w,&macro[5].viable);if(code)goto done;
+                village_cached=1;
+            }
+            if(!bastion_cached) {
+                code=nb_dynamic_build_bastion_cache(w,&macro[11].viable);if(code)goto done;
+                bastion_cached=1;
+            }
+        }
         unsigned int mask=nb_dynamic_palette_mask(prefix,x,z);
         if((mask&8191u)!=8191u||!nb_dynamic_nether_ok(nether_prefix,x,z))continue;
-        int hub=nb_dynamic_hub(macro,x,z);
-        int score=nb_dynamic_score_values(counts,strong,mask>>13,hub);
-        const int optional_points[5]={20,15,15,10,10};
-        for(int k=0;k<5;k++)score+=optional_points[k]*nb_dynamic_count(&optional[k].viable,x,z,832,0,NULL,0);
-        cells[ncells++]=(NBDynamicCell){x,z,deficit,score,
-            nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id)};
+        if(w->p->dynamic_v2) {
+            int scenic=nb_dynamic_check_scenic_pair(w,x,z,NULL,NULL);
+            int spread=nb_dynamic_check_village_spread(w,&macro[5].viable,x,z,NULL);
+            int treasure=nb_dynamic_check_treasure_bastion(w,&macro[11].viable,x,z);
+            int hub=nb_dynamic_v2_hub(macro,x,z,NULL);
+            int core=nb_dynamic_v2_core_bonus(counts,strong);
+            int opt_counts[5];
+            for(int k=0;k<5;k++)opt_counts[k]=nb_dynamic_count(&optional[k].viable,x,z,832,0,NULL,0);
+            int opt=nb_dynamic_v2_optional(opt_counts,treasure);
+            int lux=nb_dynamic_v2_biome_bonus(mask>>13);
+            int goals[13];
+            for(int k=0;k<10;k++)goals[k]=w->p->goals[k];
+            goals[10]=w->p->nether_goal;goals[11]=w->p->bastion_goal;goals[12]=w->p->outpost_goal;
+            int def_count=0;
+            int penalty=nb_dynamic_v2_deficit_penalty(counts,goals,w->p->outpost_goal,&def_count);
+            int total_score=core+opt+lux+hub+(scenic?20:0)+(spread?15:0)-penalty;
+            cells[ncells++]=(NBDynamicCell){x,z,def_count,total_score,
+                nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id,weights)};
+        } else {
+            int hub=nb_dynamic_hub(macro,x,z);
+            int score=nb_dynamic_score_values(counts,strong,mask>>13,hub);
+            const int optional_points[5]={20,15,15,10,10};
+            for(int k=0;k<5;k++)score+=optional_points[k]*nb_dynamic_count(&optional[k].viable,x,z,832,0,NULL,0);
+            cells[ncells++]=(NBDynamicCell){x,z,deficit,score,
+                nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id,weights)};
+        }
     }
     if(!ncells){r->stage_seconds[13]+=nb_time()-stage;goto done;}
     int best=0;
-    for(int i=1;i<ncells;i++) if(nb_dynamic_cellcmp(&cells[i],&cells[best])<0) best=i;
+    if(w->p->dynamic_v2) {
+        for(int i=1;i<ncells;i++) if(nb_dynamic_cellcmp_v2(&cells[i],&cells[best])<0) best=i;
+    } else {
+        for(int i=1;i<ncells;i++) if(nb_dynamic_cellcmp(&cells[i],&cells[best])<0) best=i;
+    }
     r->stage_seconds[13]+=nb_time()-stage;
     stage=nb_time();
     int chosen=best;
@@ -509,7 +829,52 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     int bounds[4]={a->x-832,a->z-832,a->x+831,a->z+831};
     code=nb_palette(w,bounds,a);if(code)goto done;
     code=nb_dynamic_nether_evidence(w,a);if(code)goto done;
-    a->hub_bonus=nb_dynamic_hub(macro,a->x,a->z);
+    if(w->p->dynamic_v2) {
+        int opt_counts[5];
+        for(int k=0;k<5;k++)opt_counts[k]=a->optional[k].viable.n;
+        int nearest_v[2]={0,0};
+        a->hub_bonus=nb_dynamic_v2_hub(macro,a->x,a->z,nearest_v);
+        a->starter_hub_village[0]=nearest_v[0];
+        a->starter_hub_village[1]=nearest_v[1];
+        int scenic_wit[2]={0,0},river_wit[2]={0,0};
+        int has_scenic=nb_dynamic_check_scenic_pair(w,a->x,a->z,scenic_wit,river_wit);
+        a->scenic_bonus=has_scenic?20:0;
+        a->scenic_witness[0]=scenic_wit[0];a->scenic_witness[1]=scenic_wit[1];
+        a->river_witness[0]=river_wit[0];a->river_witness[1]=river_wit[1];
+        int triple[6]={0};
+        int has_spread=nb_dynamic_check_village_spread(w,&macro[5].viable,a->x,a->z,triple);
+        a->village_spread_bonus=has_spread?15:0;
+        memcpy(a->village_triple,triple,6*sizeof(int));
+        int has_treasure=nb_dynamic_check_treasure_bastion(w,&macro[11].viable,a->x,a->z);
+        a->treasure_bastion=has_treasure?1:0;
+        int defs=0;
+        int goals[13];
+        for(int k=0;k<10;k++)goals[k]=w->p->goals[k];
+        goals[10]=w->p->nether_goal;goals[11]=w->p->bastion_goal;goals[12]=w->p->outpost_goal;
+        int counts[13];
+        for(int k=0;k<13;k++)counts[k]=nb_observed_count(w,a->observations+k,k);
+        a->deficit_penalty=nb_dynamic_v2_deficit_penalty(counts,goals,w->p->outpost_goal,&defs);
+        int core=nb_dynamic_v2_core_bonus(counts,a->stronghold_count);
+        int opt=nb_dynamic_v2_optional(opt_counts,has_treasure);
+        int lux=nb_dynamic_v2_biome_bonus(a->bonus_biomes);
+        a->bonus_total=core+opt+lux+a->hub_bonus+a->scenic_bonus+a->village_spread_bonus;
+        a->score=a->bonus_total-a->deficit_penalty;
+        a->radial_key=(int)llround(cells[chosen].radial*1e6);
+        a->origin_distance_squared=(int64_t)a->x*a->x+(int64_t)a->z*a->z;
+        int bcount=0;
+        for(int i=0;i<w->dyn_bastion_n&&bcount<8;i++) {
+            int bx=macro[11].viable.xz[2*i],bz=macro[11].viable.xz[2*i+1];
+            if(8*(bx-416)<a->x&&a->x<=8*(bx+416)&&8*(bz-416)<a->z&&a->z<=8*(bz+416)) {
+                a->bastion_coords[2*bcount]=bx;
+                a->bastion_coords[2*bcount+1]=bz;
+                a->bastion_variants[bcount]=w->dyn_bastion_variants[i];
+                bcount++;
+            }
+        }
+        a->bastion_count=bcount;
+    } else {
+        a->hub_bonus=nb_dynamic_hub(macro,a->x,a->z);
+    }
     if(a->biome_mask!=8191||!nb_keep(w,a)){code=-4;goto done;}
     r->stage_seconds[12]+=nb_time()-stage;
     a->score=nb_score(w,a);

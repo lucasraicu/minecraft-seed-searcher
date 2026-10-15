@@ -1,19 +1,27 @@
 # Bedrock Coastal Continent seed search
 
-The active CLI, web control plane, and `config/realm.yaml` implement the explicit `dynamic-envelope-1664-v1` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 4.3). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
+The active CLI, web control plane, and `config/realm.yaml` implement the explicit `dynamic-envelope-1664-v2` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 5.0). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
 
-The active screening revision is **`dynamic-envelope-1664-v1`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $1664 \times 1664$ Playable Overworld window ($104 \times 104$ chunks, radius 832m) around a dynamic center $(C_X, C_Z) \in [-1168, 1168]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and an $832 \times 832$ Playable Nether window ($52 \times 52$ chunks, radius 416m) around scaled center $(C_X/8, C_Z/8) \in [-146, 146]^2$ within a $1124 \times 1124$ Nether preflight ($[-562, 562)^2$).
+The active screening revision is **`dynamic-envelope-1664-v2`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $1664 \times 1664$ Playable Overworld window ($104 \times 104$ chunks, radius 832m) around a dynamic center $(C_X, C_Z) \in [-1168, 1168]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and an $832 \times 832$ Playable Nether window ($52 \times 52$ chunks, radius 416m) around scaled center $(C_X/8, C_Z/8) \in [-146, 146]^2$ within a $1124 \times 1124$ Nether preflight ($[-562, 562)^2$).
 
-Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull, and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Structures adhere to the two-group tolerance matrix under a total Miss Budget $B \le 2$ (hard floors are fatal; up to two flexible floors may be missed with deficit penalties).
+Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the flexible deficit tolerance matrix under a total Miss Budget $B \le 3$ (hard floors are fatal; up to three flexible floors may be missed with deficit deductions of 30, 75, and 135 points). Automatic terrain and coastal screening are retired for v2.
 
-### Measured Performance & Throughput (Intel Xeon W-2191B, 34 Threads)
+### Measured Performance & Throughput (Intel Xeon W-2191B, 30–34 Threads)
 
 Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict equivalence cell lattice invariance, single-pass argmin selection, Clang Profile-Guided Optimization (PGO), and Link-Time Optimization (LTO):
-- **Pure Native OpenMP Kernel:** **46,100 – 47,860 seeds/sec** ($\sim 20.9\text{s}$ per million seeds).
-- **Durable End-to-End Pipeline:** **32,500 – 38,000 seeds/sec** ($\sim 26\text{s}$ per million seeds, $\sim 44\text{ mins}$ for a complete 100M-seed shard).
-- **Control Baseline Speedup:** **$8.8\times$ faster** than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
+- **Pure Native OpenMP Kernel (PGO+LTO, 34 Threads):** **~210,000 seeds/sec** ($\sim 4.8\text{s}$ per million seeds).
+- **Durable Compact Pipeline (`retention='survivors'`, 30–34 Threads):** **137,500 – 140,000 seeds/sec** ($\sim 7.2\text{s}$ per million seeds, $\sim 12\text{ mins}$ for a complete 100M-seed shard).
+- **Durable Full Pipeline (`retention='full'`):** **32,500 – 38,000 seeds/sec** ($\sim 26\text{s}$ per million seeds, $\sim 44\text{ mins}$ for a complete 100M-seed shard).
+- **Control Baseline Speedup:** **$25\times$ faster** in compact mode ($8.8\times$ in full mode) than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
 
-The active score awards **50 points each for a second Mansion and a second distinct predicted Stronghold**, **30 for a second qualifying Monument**, **20 per Bastion above three**, and **5 per qualifying Shipwreck above five**. River evidence and its score commit with finest-resolution marine/terrain completion and survive rescoring. Historical configurations retain their original thresholds and formulas. New source/configuration identities require a fresh run and rebuilt batch extension. The current operational mainland range remains 75–85%; the authored blueprint's newer 70–80% wording is a separate unresolved policy difference.
+The active v2 score operates on a **719-point arithmetic ceiling**:
+- **Core Structure Schedule (340 max):** Village surplus (up to 12 @ +10/ea), Trial Chambers (up to 4 @ +15/ea), Ancient Cities (up to 3 @ +20/ea), Strongholds (up to 2 @ +50/ea), Mansions (up to 2 @ +50/ea).
+- **Optional Structure Schedule (129 max):** Outposts (up to 2 @ +12/ea), Ocean Monuments (up to 2 @ +15/ea), Desert Pyramids (up to 3 @ +10/ea), Jungle Temples (up to 2 @ +15/ea), Nether Fortresses (up to 2 @ +15/ea), Bastion Remnants (up to 3 @ +15/ea, with +15 for Treasure variant).
+- **Luxury Biomes (175 max across 10 categories):** Cherry Grove (+25), Pale Garden (+25), Mushroom Island (+25), Badlands (+20), Warm Ocean (+15), Ice Spikes (+15), Savanna (+15), Old Growth Taiga (+15), Flower Forest (+10), Bamboo Jungle (+10).
+- **Starter Hub Bonus (+40 max):** Up to +20 within 300m of dynamic center, plus +20 if a Village is within 300m.
+- **Scenic Pairing Bonus (+20 max):** Cherry Grove, Pale Garden, Meadow, or Snowy Slopes mutually adjacent within 128m.
+- **Village Spread Bonus (+15 max):** 3+ distinct villages separated by $\ge 400\text{m}$ pairwise.
+Historical configurations retain their original v1 thresholds and formulas.
 
 ## System Architecture & Engineering Framework
 

@@ -18,6 +18,20 @@ typedef struct NBAnchor {
     int hub_bonus;
     NBObservation optional[5];
     unsigned int fatal_missing;
+    int scenic_bonus;
+    int scenic_witness[2];
+    int river_witness[2];
+    int village_spread_bonus;
+    int village_triple[6];
+    int treasure_bastion;
+    int bastion_count;
+    int bastion_coords[16];
+    int bastion_variants[8];
+    int starter_hub_village[2];
+    int deficit_penalty;
+    int bonus_total;
+    int radial_key;
+    int64_t origin_distance_squared;
 } NBAnchor;
 typedef struct NBResult {
     uint64_t seed;
@@ -41,6 +55,8 @@ typedef struct NBPolicy {
     unsigned int flexible_mask;
     int marine_baseline;
     int dynamic, density_weights[6], nether_ids[5], optional_types[5];
+    int dynamic_v2, river_id;
+    unsigned char is_scenic[256];
 } NBPolicy;
 /* Zero-initialized fixed-width decision receipts are hashed without building
  * per-input Python records. They are not persisted as individual rows. */

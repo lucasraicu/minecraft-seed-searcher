@@ -934,8 +934,11 @@ def parse_candidate_row(
         (classification.get('uncertainty') or {}).get('domain')=='actual_generated_surface' and
         bool(observed_names))
 
-    # Terrain evidence: 'passed', 'near_miss', 'failed', 'pending'
-    if isinstance(has_terrain_pass, str):
+    # Terrain evidence: 'passed', 'near_miss', 'failed', 'pending', 'not_applicable'
+    if data.get('screening_revision') == 'dynamic-envelope-1664-v2':
+        terrain_passed = None
+        terrain_status_str = 'not_applicable'
+    elif isinstance(has_terrain_pass, str):
         st = has_terrain_pass.strip().lower()
         if st == 'passed':
             terrain_passed = True
@@ -946,6 +949,9 @@ def parse_candidate_row(
         elif st == 'failed':
             terrain_passed = False
             terrain_status_str = 'failed'
+        elif st == 'not_applicable':
+            terrain_passed = None
+            terrain_status_str = 'not_applicable'
         else:
             terrain_passed = None
             terrain_status_str = 'pending'
@@ -959,7 +965,9 @@ def parse_candidate_row(
         terrain_passed = None
         terrain_status_str = 'pending'
 
-    if terrain_status_str == 'passed':
+    if terrain_status_str == 'not_applicable':
+        terrain_type = "Not Applicable (V2 Dynamic)"
+    elif terrain_status_str == 'passed':
         terrain_type = "Ocean Continent"
     elif terrain_status_str == 'near_miss':
         terrain_type = "Coastal Continent (Near-Miss)"
@@ -982,6 +990,18 @@ def parse_candidate_row(
         "unmetRequirements": unmet_requirements,
         "weightedRadialDistance": data.get("weighted_radial_dist"),
         "originDistance": data.get("origin_distance"),
+        "radialKey": data.get("radial_key", (data.get("ranking") or {}).get("radial_key")),
+        "originDistanceSquared": data.get("origin_distance_squared", (data.get("ranking") or {}).get("origin_distance_squared")),
+        "scoreComponents": (data.get("ranking") or {}).get("components"),
+        "scenicBonus": data.get("scenic_bonus"),
+        "scenicWitness": data.get("scenic_witness"),
+        "riverWitness": data.get("river_witness"),
+        "villageSpreadBonus": data.get("village_spread_bonus"),
+        "villageTriple": data.get("village_triple"),
+        "treasureBastion": data.get("treasure_bastion"),
+        "starterHubVillage": data.get("starter_hub_village"),
+        "deficitPenalty": data.get("deficit_penalty"),
+        "bonusTotal": data.get("bonus_total"),
         "strongholdAnchor": stronghold,
         "evaluationCenter": center,
         "playableBounds": data.get("bounds"),

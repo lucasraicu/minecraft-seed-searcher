@@ -317,6 +317,37 @@ def _candidate_rescore(candidate,policy,revision_id):
     if candidate.get('contract')=='master_seed_blueprint_v1':
         from .config import dynamic_policy
         if dynamic_policy(candidate):
+            from .config import dynamic_v2_policy
+            if dynamic_v2_policy(candidate):
+                from .blueprint import dynamic_v2_score,score_uncertainty
+                from .dynamic import hub_bonus_v2,weighted_radial_v2
+                import math
+                center=candidate['evaluation_center']
+                required=candidate['required_structures']
+                structures={name:ob['predicted_viable'] for name,ob in required.items()}
+                observations={**required,**candidate['required_nether_structures'],**candidate['optional_structures']}
+                counts={name:len(ob['predicted_viable']) for name,ob in observations.items()}
+                names=[s['biome'] for s in candidate['biomes']['sampling']['samples'] if s['coordinate'][1]==63]
+                hub=hub_bonus_v2(structures,center)
+                scenic=candidate.get('scenic_bonus',0)
+                spread=candidate.get('village_spread_bonus',0)
+                tb=candidate.get('treasure_bastion',0)
+                opt_counts={name:len(ob['predicted_viable']) for name,ob in candidate['optional_structures'].items()}
+                score,components,deficits=dynamic_v2_score(counts,names,hub,scenic,spread,tb,opt_counts)
+                radial=weighted_radial_v2(structures,center)
+                radial_key=int(math.floor(radial*1e6+0.5))
+                orig_dist_sq=center[0]**2+center[1]**2
+                origin=math.hypot(*center)
+                candidate.update(baseline_score_observed=score,baseline_score=score,
+                    baseline_score_uncertainty=score_uncertainty(score,[],True),score_revision=revision_id,
+                    weighted_radial_dist=radial,origin_distance=origin,radial_key=radial_key,
+                    origin_distance_squared=orig_dist_sq,deficit_penalty=components['deficit_penalty'],
+                    bonus_total=components['bonus_total'])
+                candidate['ranking']={**candidate.get('ranking',{}),'score':score,'final_score':score,
+                    'deficit_tier':len(candidate['deficit_categories']),'weighted_radial_dist':radial,
+                    'radial_key':radial_key,'origin_distance_squared':orig_dist_sq,'origin_distance':origin,
+                    'components':components}
+                return candidate
             from .blueprint import dynamic_score,score_uncertainty
             from .dynamic import hub_bonus,weighted_radial
             import math

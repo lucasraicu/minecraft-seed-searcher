@@ -10,7 +10,7 @@ import sys
 import time
 from pathlib import Path
 import yaml
-from .config import dynamic_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
+from .config import dynamic_blueprint_config, dynamic_v2_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
 from .capabilities import report, identity as provider_identity
 from .store import RealmStore, canonical
 from .reports import ranked, export, rescore
@@ -46,7 +46,7 @@ def handles(argv=None):
 
 
 def load(path=None):
-    cfg=yaml.safe_load(Path(path).read_text()) if path else dynamic_blueprint_config()
+    cfg=yaml.safe_load(Path(path).read_text()) if path else dynamic_v2_blueprint_config()
     validate_config(cfg)
     return cfg
 
@@ -361,6 +361,9 @@ def main(argv=None):
             from .calibration import summarize_store
             result=summarize_store(store)
         elif args.command=='terrain':
+            from .config import dynamic_v2_policy
+            if dynamic_v2_policy(cfg):
+                raise ValueError("Terrain workflow is not applicable to dynamic-envelope-1664-v2 (no active terrain variants)")
             from .terrain import run_terrain
             policy=store.get_state('score_policy')
             if policy:
@@ -411,6 +414,9 @@ def main(argv=None):
             with store.db:store.db.execute('UPDATE candidates SET result=? WHERE id=?',(canonical(candidate),candidate['id']))
             store.upsert_observation(candidate['id'],{'kind':'final_nether','candidate_id':candidate['id'],**result})
         else:
+            from .config import dynamic_v2_policy
+            if dynamic_v2_policy(cfg):
+                raise ValueError("Terrain verification is not applicable to dynamic-envelope-1664-v2 (no active terrain variants)")
             from .verification import VerificationAdapter,calibrate_prediction
             from .terrain import evaluate_v1,evaluate_v2,apply_score_policy,attach_actual_evaluation
             from .raster import Raster
