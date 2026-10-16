@@ -961,6 +961,14 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     #pragma omp atomic
 #endif
     g_diag_pass_outpost_macro++;
+    /* Evaluate rarest Overworld structures before Nether to skip Nether on doomed seeds */
+    static const int rare_ow_order[4] = {2, 4, 1, 3};
+    for(int i=0;i<4;i++) {
+        int k=rare_ow_order[i];
+        stage=nb_time();code=nb_pair(w,k,feasible,&macro[k]);if(code)goto done;
+        r->stage_seconds[k+1]+=nb_time()-stage;
+        if(macro[k].viable.n<w->p->floors[k])goto done;
+    }
     stage=nb_time();
     applySeed(&w->ctx->nether,DIM_NETHER,seed);
     code=nb_nether(w,nw,&nether_macro);if(code)goto done;
@@ -972,9 +980,10 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     #pragma omp atomic
 #endif
     g_diag_pass_nether_macro++;
-    static const int macro_overworld_order[9] = {2, 4, 1, 3, 5, 8, 6, 7, 9};
-    for(int i=0;i<9;i++) {
-        int k=macro_overworld_order[i];
+    /* Remaining Overworld structures: Village, Shipwreck, Trial Chamber, Ruined Portal, Mineshaft */
+    static const int remaining_ow_order[5] = {5, 8, 6, 7, 9};
+    for(int i=0;i<5;i++) {
+        int k=remaining_ow_order[i];
         stage=nb_time();code=nb_pair(w,k,feasible,&macro[k]);if(code)goto done;
         r->stage_seconds[k+1]+=nb_time()-stage;
         if(macro[k].viable.n<w->p->floors[k])goto done;
