@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-10-15T18:08:19.344841+00:00",
+  "base_commit": "233fad76fddc5667e77c27ab7e5cc83d3669a7a2",
+  "note": "Working-tree snapshot; source entries include pre-existing edits in shared files. No commit or push performed.",
+  "source_sha256": {
+    "README.md": "2f639034553809891f26c1af986ea72a6029d5f1b52d95b9bcdc316a71abd1a8",
+    "reviews/MASTER_5_MODEL_AUDIT_AGGREGATION.md": "509fe822f1a13cedf57f011bacb68b5823c5573aeb79f819e026c0f8c19db110",
+    "src/seed_search/web/server.py": "3f6f3c592135cf38f69d4feb5a284e96a6b86463b06d8ebf0a76943b2ed3a977",
+    "scripts/export_web_policy.py": "0ef6714c19df7c1150085752e6681c25fde54217733fef6faebbf672c0d21aab",
+    "web-ui/src/App.tsx": "bcf62383ff01d9b94b1db17555d5e6b689abeaf2f7501c57fbe151654cde58be",
+    "web-ui/src/components/FilterSidebar.tsx": "14aa0aec97eddcf56a4a972a51ad72a7c5a3fed3c48d8718f0131c8fa1cebd79",
+    "web-ui/src/components/TelemetryBar.tsx": "42c46702397bc9d92343e610b0e41237c03ad2e25729a6f55ccd6f42366be35e",
+    "web-ui/src/constants/baselinePolicy.ts": "16a77cc10aca25abaf4485fd0e5184b0aa4ff88b01b1bf478b6ea2f0e15091aa",
+    "web-ui/src/constants/searchProfiles.json": "6f5f353db21e92a3ae9bad72c6a7507024d5b9ab3f54ad7487fc60bdc117a369",
+    "web-ui/src/types.ts": "add6aa48963061952c58ed564d0c524967a2bde0e9a3a0836c10708fc5ef26ea",
+    "web-ui/src/utils/sweep.ts": "5eed3de2e67c417bebdf9b009b24df3e45b62bfa4b028f84f84a972d8a79e941",
+    "tests/test_web_machine_contract.py": "6cf420d584a61030aefb7534c8a3bc2620e2e87178e67585544bca7b5142feaa",
+    "tests/web_structure_policy.cjs": "fd5ea32afbf4b91e5897c30d643d783ae44bff045addd17e4457537e48058451",
+    "tests/web_test_loader.cjs": "742afe3e40cdd13b5f7f2f1b44e3ec34168189b6855c55deb29ee94311994e2b"
+  },
+  "evidence_sha256": {
+    "reviews/ui-machine-parity-2026-10-15/IMPLEMENTATION.md": "c5d67786961d7a06aa917a29a5f4f764519f6a4b7094c3395ba0ade2b10d4453",
+    "reviews/ui-machine-parity-2026-10-15/pytest.log": "9e72e498ad0d1ed6cf865120e43d38cd83f6ea8943552ba9c77fd2d53bab1f5a",
+    "reviews/ui-machine-parity-2026-10-15/ui-handlers.log": "f0d7cd39798714e31db1477a3c897438126b7c4c17178fd5ea62364c729e2a4e",
+    "reviews/ui-machine-parity-2026-10-15/web-build.log": "861db267d82819649d31286f8affbb71db27fb6219fe0c0ab244c1d04997b301",
+    "reviews/ui-machine-parity-2026-10-15/web-lint.log": "b7b0033bd3297356e0497dfda3cf2c2e00aee0f4337fd3abf8eff4b2b9181844"
+  }
+}

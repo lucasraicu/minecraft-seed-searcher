@@ -1,0 +1,39 @@
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:1860:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1860 | L_jigsaw:
+      | ^~~~~~~~~
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:1765:9: warning: code will never be executed [-Wunreachable-code]
+ 1765 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:2420:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2420 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:2520:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2520 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:3420:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3420 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/finders.c:5113:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5113 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/tmp/final-audit-233fad7-diagnostic/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+ld: warning: building for macOS-10.13, but linking with dylib '@rpath/libomp.dylib' which was built for newer version 15.8
+Built isolated attribution hooks; no PGO, not a throughput comparison.

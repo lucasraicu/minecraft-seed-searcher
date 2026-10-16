@@ -201,7 +201,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
                 <button
                   key={v}
                   onClick={() => onChangeTargetVolume(v)}
-                  disabled={telemetry.status === 'running'}
+                  disabled={telemetry.status === 'running' || telemetry.status === 'paused' || telemetry.status === 'bds_verifying'}
                   className={`px-1.5 py-0.5 rounded transition-all ${
                     active
                       ? 'bg-emerald-600 text-white font-bold shadow'

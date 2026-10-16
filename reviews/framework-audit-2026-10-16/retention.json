@@ -1,0 +1,33 @@
+{
+  "default": {
+    "full_equals_compact": true,
+    "accepted_missing_slots": [
+      -1
+    ]
+  },
+  "empty": {
+    "full_equals_compact": true,
+    "accepted_missing_slots": [
+      -1,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  "natural4096": {
+    "full_equals_compact": true,
+    "survivors": 0,
+    "limitations": "Mostly rejection-path coverage; not proof of zero false rejects"
+  }
+}

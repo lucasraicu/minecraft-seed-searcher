@@ -136,6 +136,33 @@ void applySeed(Generator *g, int dim, uint64_t seed)
     }
 }
 
+void applySeedPhase1(Generator *g, int dim, uint64_t seed)
+{
+    g->dim = dim;
+    g->seed = seed;
+    g->sha = 0;
+
+    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
+    {
+        setBiomeSeedPhase1(&g->bn, seed, g->flags & LARGE_BIOMES);
+    }
+    else
+    {
+        applySeed(g, dim, seed);
+        return;
+    }
+    if (g->mc >= MC_1_14)
+        g->sha = getVoronoiSHA(seed);
+}
+
+void applySeedPhase2(Generator *g, int dim, uint64_t seed)
+{
+    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
+    {
+        setBiomeSeedPhase2(&g->bn, seed, g->flags & LARGE_BIOMES);
+    }
+}
+
 
 size_t getMinCacheSize(const Generator *g, int scale, int sx, int sy, int sz)
 {
@@ -237,14 +264,14 @@ int genBiomes(const Generator *g, int *cache, Range r)
 
 int getBiomeAt(const Generator *g, int scale, int x, int y, int z)
 {
+    int stack_ids[64];
     Range r = {scale, x, z, 1, 1, y, 1};
-    int *ids = allocCache(g, r);
-    int id = genBiomes(g, ids, r);
-    if (id == 0)
-        id = ids[0];
-    else
-        id = none;
-    free(ids);
+    size_t len = getMinCacheSize(g, r.scale, r.sx, r.sy, r.sz);
+    int *ids = (len > 0 && len <= 64) ? stack_ids : allocCache(g, r);
+    if (!ids) return none;
+    if (ids == stack_ids) memset(stack_ids, 0, len * sizeof(int));
+    int id = (genBiomes(g, ids, r) == 0) ? ids[0] : none;
+    if (ids != stack_ids) free(ids);
     return id;
 }
 

@@ -8,7 +8,7 @@ ffibuilder = FFI()
 header = (ROOT / "native/bridge.h").read_text()
 ffibuilder.cdef("\n".join(line for line in header.splitlines() if not line.startswith("#")))
 units = ["noise", "biomes", "layers", "biomenoise", "cave", "generator", "finders", "util", "quadbase", "mt"]
-compile_args = ["-O3", "-std=c11", "-fwrapv"]
+compile_args = ["-O3", "-std=c11", "-fwrapv", "-fno-inline-functions"]
 include_dirs = [str(ROOT / "native"), str(ROOT / "vendor/cubiomes-bedrock")]
 libraries = ["m"]
 library_dirs, link_args = [], []

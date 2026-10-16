@@ -1,0 +1,41 @@
+baseline 0 218262
+reuse 0 232472
+reuse 1 230225
+baseline 1 236287
+baseline 2 237054
+reuse 2 239462
+heldout baseline 0 228504
+heldout reuse 0 230125
+heldout reuse 1 230572
+heldout baseline 1 227449
+heldout baseline 2 228042
+heldout reuse 2 228015
+{
+  "tuning_medians": {
+    "baseline": 236286.5096759085,
+    "reuse": 232472.041978792
+  },
+  "winner": "reuse",
+  "heldout_medians": {
+    "baseline": 228042.2338501493,
+    "reuse": 230125.4164171273
+  },
+  "parity": "all decision fingerprints, full records (256 real inputs per revision), and positive synthetic fixtures match",
+  "flags": [
+    "-O3",
+    "-std=c11",
+    "-fwrapv",
+    "-DNB_WORK_CHUNK=16",
+    "-DNB_EXPERIMENT_ORDER=0",
+    "-DNB_STRONGHOLD_AFTER=4",
+    "-DNB_DYNAMIC_PREFLIGHT=1",
+    "-march=native",
+    "-mavx2",
+    "-mfma",
+    "-flto",
+    "-Xpreprocessor",
+    "-fopenmp",
+    "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+  ],
+  "scope": "private native kernel builds; CPU-native + LTO, no PGO; 34 threads, batch 16384; not durable pipeline throughput"
+}

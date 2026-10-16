@@ -1,0 +1,7 @@
+vendor/cubiomes-bedrock/finders.c:2420:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2420 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+vendor/cubiomes-bedrock/finders.c:2520:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2520 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+2 warnings generated.

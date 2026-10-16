@@ -207,10 +207,13 @@ def test_nominal_ocean_strip_cannot_be_fabricated_from_missing_box_coverage():
 def test_cli_default_and_all_use_blueprint_active_variants(tmp_path,monkeypatch,capsys):
     from seed_search.realm.cli import load,main
     from seed_search.realm.store import RealmStore
+    from seed_search.realm.config import dynamic_blueprint_config
     cfg=load()
-    assert cfg['terrain']['variants']==['v1']
-    assert cfg['terrain']['v1']['mode']=='coastal_continent'
-    store=RealmStore(tmp_path,{'config':cfg});store.close()
+    assert cfg['terrain']['variants']==[]
+    v1_cfg=dynamic_blueprint_config()
+    assert v1_cfg['terrain']['variants']==['v1']
+    assert v1_cfg['terrain']['v1']['mode']=='coastal_continent'
+    store=RealmStore(tmp_path,{'config':v1_cfg});store.close()
     calls=[]
     monkeypatch.setattr('seed_search.realm.terrain.run_terrain',lambda *args,**kwargs:calls.append(args) or {})
     main(['terrain','--run',str(tmp_path),'--variant','all'])

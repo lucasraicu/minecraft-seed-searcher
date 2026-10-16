@@ -1,0 +1,24 @@
+==============================================================================
+DIAGNOSING V3 FILTER FUNNEL ON 2 SEEDS (single-seed detailed probe)
+==============================================================================
+
+--- MACRO-ENVELOPE PASS RATES (Structures existing anywhere in 4000x4000) ---
+  stronghold      : floor= 1 | passed:     0/    2 (  0.00%)
+  mansion         : floor= 1 | passed:     0/    2 (  0.00%)
+  village         : floor= 6 | passed:     0/    2 (  0.00%)
+  trial_chamber   : floor= 8 | passed:     0/    2 (  0.00%)
+  ancient_city    : floor= 2 | passed:     0/    2 (  0.00%)
+  desert_pyramid  : floor= 1 | passed:     0/    2 (  0.00%)
+  jungle_temple   : floor= 1 | passed:     0/    2 (  0.00%)
+  monument        : floor= 1 | passed:     0/    2 (  0.00%)
+  ruined_portal   : floor= 8 | passed:     0/    2 (  0.00%)
+  shipwreck       : floor= 4 | passed:     0/    2 (  0.00%)
+  mineshaft       : floor=10 | passed:     0/    2 (  0.00%)
+  outpost         : floor= 2 | passed:     0/    2 (  0.00%)
+  fortress        : floor= 1 | passed:     0/    2 (  0.00%)
+  bastion         : floor= 2 | passed:     0/    2 (  0.00%)
+
+--- JOINT PASS RATES ---
+  All 14 floors present in 4000x4000 macro-envelope: 0/2 (0.000%)
+  Final realm survivors (all 14 floors + all biomes in ONE 2048x2048 realm): 0/2 (0.0000%)
+Elapsed: 4.60s (0.4 seeds/sec)

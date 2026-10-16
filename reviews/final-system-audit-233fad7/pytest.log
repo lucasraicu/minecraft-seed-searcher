@@ -1,0 +1,99 @@
+........................................................................ [  6%]
+..................F..................................................... [ 13%]
+........................................................................ [ 19%]
+........................................................................ [ 26%]
+........................................................................ [ 33%]
+........................................................................ [ 39%]
+........................................................................ [ 46%]
+........................................................................ [ 53%]
+........................................................................ [ 59%]
+........................................................................ [ 66%]
+........................................................................ [ 72%]
+........................................................................ [ 79%]
+........................................................................ [ 86%]
+........................................................................ [ 92%]
+................................................................F....... [ 99%]
+.....                                                                    [100%]
+=================================== FAILURES ===================================
+____________ test_cli_default_and_all_use_blueprint_active_variants ____________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-120/test_cli_default_and_all_use_b0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11efcce20>
+capsys = <_pytest.capture.CaptureFixture object at 0x11ee57230>
+
+    def test_cli_default_and_all_use_blueprint_active_variants(tmp_path,monkeypatch,capsys):
+        from seed_search.realm.cli import load,main
+        from seed_search.realm.store import RealmStore
+        cfg=load()
+>       assert cfg['terrain']['variants']==['v1']
+E       AssertionError: assert [] == ['v1']
+E         
+E         Right contains one more item: 'v1'
+E         Use -v to get more diff
+
+tests/test_blueprint_coastal.py:211: AssertionError
+____________ test_candidate_canonical_ranking_and_tristate_terrain _____________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-120/test_candidate_canonical_ranki0')
+
+    def test_candidate_canonical_ranking_and_tristate_terrain(tmp_path):
+        manager = server.SweepManager()
+        run_dir = tmp_path / "web-sweep-canonical"
+        run_dir.mkdir()
+        manager.run_dir = run_dir
+    
+        db_path = run_dir / "realm.sqlite"
+        with sqlite3.connect(db_path) as conn:
+            conn.execute("CREATE TABLE candidates (id TEXT PRIMARY KEY, idx TEXT, seed TEXT, qualification TEXT, result TEXT)")
+            conn.execute("CREATE TABLE variants (candidate_id TEXT, variant TEXT, center TEXT, result TEXT, PRIMARY KEY(candidate_id, variant, center))")
+            conn.execute("""
+                CREATE VIEW candidate_leaderboard_view AS
+                SELECT id, idx, seed, qualification, result,
+                       CAST(json_extract(result, '$.retention.classification') AS TEXT) AS retention_classification,
+                       CAST(json_extract(result, '$.ranking_tier') AS INTEGER) AS ranking_tier,
+                       CAST(json_extract(result, '$.unmet_requirements') AS INTEGER) AS unmet_requirements,
+                       CAST(json_extract(result, '$.smart_score') AS REAL) AS smart_score
+                FROM candidates
+            """)
+    
+            # Insert 3 candidates with different ranking tiers and unmet requirements
+            # Candidate 1: Tier 1, unmet 1, score 80
+            cand1_result = {
+                "ranking_tier": 1, "unmet_requirements": 1, "smart_score": 80.0,
+                "marine_stage": {"status": "DEFERRED"}
+            }
+            # Candidate 2: Tier 0, unmet 0, score 95
+            cand2_result = {
+                "ranking_tier": 0, "unmet_requirements": 0, "smart_score": 95.0,
+                "marine_stage": {"status": "PREDICTED"}
+            }
+            # Candidate 3: Tier 1, unmet 0, score 70
+            cand3_result = {
+                "ranking_tier": 1, "unmet_requirements": 0, "smart_score": 70.0,
+                "marine_stage": {"status": "DEFERRED"}
+            }
+    
+            conn.execute("INSERT INTO candidates VALUES ('c1', '0', '1001', 'PREDICTED', ?)", (json.dumps(cand1_result),))
+            conn.execute("INSERT INTO candidates VALUES ('c2', '1', '1002', 'VERIFIED', ?)", (json.dumps(cand2_result),))
+            conn.execute("INSERT INTO candidates VALUES ('c3', '2', '1003', 'PREDICTED', ?)", (json.dumps(cand3_result),))
+    
+            # Variants:
+            # c2 has passed terrain (geometry_pass = 1)
+            conn.execute("INSERT INTO variants VALUES ('c2', 'v1', '[0,0]', ?)",
+                         (json.dumps({"result": {"geometry_pass": 1}}),))
+            # c1 has failed terrain (geometry_pass = 0)
+            conn.execute("INSERT INTO variants VALUES ('c1', 'v1', '[0,0]', ?)",
+                         (json.dumps({"result": {"geometry_pass": 0}}),))
+            # c3 has no variant row -> pending
+    
+        manager._query_sqlite_candidates()
+        cands = manager.candidates
+>       assert len(cands) == 3
+E       assert 0 == 3
+E        +  where 0 = len([])
+
+tests/test_web_server_hardening.py:170: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_blueprint_coastal.py::test_cli_default_and_all_use_blueprint_active_variants
+FAILED tests/test_web_server_hardening.py::test_candidate_canonical_ranking_and_tristate_terrain
+2 failed, 1083 passed in 289.49s (0:04:49)

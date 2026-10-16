@@ -57,6 +57,8 @@ typedef struct NBPolicy {
     int dynamic, density_weights[6], nether_ids[5], optional_types[5];
     int dynamic_v2, river_id;
     unsigned char is_scenic[256];
+    unsigned int required_biome_mask; /* Stable 13-family bit positions; v2 only. */
+    int cutoff_score;
 } NBPolicy;
 /* Zero-initialized fixed-width decision receipts are hashed without building
  * per-input Python records. They are not persisted as individual rows. */
@@ -77,5 +79,7 @@ int nb_stronghold_after(void);
 
 int ss_openmp_enabled(void);
 const char *ss_openmp_library(void);
-
 int nb_dynamic_raw_bounds(const int *fort, int nf, const int *bast, int nb, int fort_goal, int bast_goal, int *feasible);
+
+void nb_diag_reset(void);
+void nb_diag_get(uint64_t *out);

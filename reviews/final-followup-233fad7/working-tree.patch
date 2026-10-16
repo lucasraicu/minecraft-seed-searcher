@@ -1,0 +1,1351 @@
+diff --git a/MASTER_SEED_BLUEPRINT.md b/MASTER_SEED_BLUEPRINT.md
+index 1003435..5cbe780 100644
+--- a/MASTER_SEED_BLUEPRINT.md
++++ b/MASTER_SEED_BLUEPRINT.md
+@@ -77,14 +77,14 @@ To ensure seamless integration with the server's [Bedrock World Border Addon](ht
+ 
+ ---
+ 
+-## 3. Structure Inventory, Tolerance Matrix & Miss Budget ($B \le 2$)
++## 3. Structure Inventory, Tolerance Matrix & Miss Budget ($B \le 3$)
+ 
+-Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a total Miss Budget $B \le 2$**.
++Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a total Miss Budget $B \le 3$ (v2) or $B \le 2$ (historical v1)**.
+ 
+-### The Miss Budget Rule ($B \le 2$)
+-1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening.
++### The Miss Budget Rule ($B \le 3$)
++1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening. Hard floors are fatal.
+ 2. **Deficit Consumption:** If a structure meets its Hard Floor but falls below its **Ideal Target**, it consumes **1 Miss** from the seed's budget.
+-3. **Budget Limit:** A seed may possess at most **2 categories in deficit** across the entire realm ($\text{Total Misses} \le 2$). Any seed with $\ge 3$ deficits is disqualified.
++3. **Budget Limit:** In active v2, a seed may possess at most **3 categories in deficit** across the entire realm ($\text{Total Misses} \le 3$). Any seed with $\ge 4$ deficits is disqualified. (Historical v1 permitted at most 2 deficits). Deficits incur penalty deductions (-5 pts for Ruined Portal and Shipwreck; -10 pts for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft).
+ 
+ ### Structure Tolerance Matrix ($1664 \times 1664$ Overworld / $832 \times 832$ Nether)
+ 
+@@ -157,21 +157,32 @@ To minimize sampling overhead, Stage 2 evaluates vertical planes with aggressive
+ Under the active `dynamic-envelope-1664-v2` specification, scoring operates on a strict **719-point arithmetic ceiling** without unverified terrain gating:
+ 
+ #### A. Core Structure Schedule (340 Max Points)
+-Hard floors are fatal; deficits incur quadratic penalties. Surplus beyond target adds linear points up to individual caps:
+-- 🏘️ **Villages:** Hard floor 6, target 8. +10 pts each surplus above 8 up to cap of 12 (+40 pts max). Deficit below 8: 1 deficit.
+-- ⚔️ **Trial Chambers:** Hard floor 4, target 6. +15 pts each surplus above 6 up to cap of 8 (+30 pts max). Deficit below 6: 1 deficit.
+-- 🌌 **Ancient Cities:** Hard floor 1, target 2. +20 pts surplus for 3rd (+20 pts max). Deficit below 2: 1 deficit.
+-- 🏰 **Strongholds:** Hard floor 1, target 1. +50 pts jackpot for 2nd distinct predicted Stronghold (+50 pts max).
++Hard floors are fatal; deficits incur fixed category penalties. Surplus beyond target adds milestone and tier points up to individual caps:
+ - 🏛️ **Woodland Mansions:** Hard floor 1, target 1. +50 pts jackpot for 2nd distinct predicted Mansion (+50 pts max).
++- 🏰 **Strongholds:** Hard floor 1, target 1. +35 pts jackpot for 2nd distinct predicted Stronghold (+35 pts max).
++- 🗿 **Ocean Monuments:** Hard floor 1, target 1. +35 pts jackpot for 2nd distinct predicted Monument (+35 pts max).
++- 🏘️ **Villages:** Hard floor 8, target 9. Surplus above target: 10th (+25), 11th (+10), 12th (+5) (+40 pts max). Deficit if 8 (-10 pts).
++- ⚔️ **Trial Chambers:** Hard floor 7, target 8. Surplus above target: 9th (+10), 10th (+10), 11th (+10) (+30 pts max). Deficit if 7 (-10 pts).
++- 🌌 **Ancient Cities:** Hard floor 3, target 4. Surplus: 5th (+25 pts max). Deficit if 3 (-10 pts).
++- 🏺 **Desert Pyramids:** Hard floor 2, target 3. Surplus: 4th (+20 pts max). Deficit if 2 (-10 pts).
++- 🌿 **Jungle Temples:** Hard floor 2, target 3. Surplus: 4th (+20 pts max). Deficit if 2 (-10 pts).
++- 🏴‍☠️ **Pillager Outposts:** Hard floor 2, target 2. Surplus: 3rd (+20 pts max).
++- 🔥 **Nether Fortresses:** Hard floor 2, target 2. Surplus: 3rd (+20 pts max).
++- 🐷 **Bastion Remnants:** Hard floor 2, target 2. Surplus: 3rd (+20 pts max).
++- 🌀 **Ruined Portals:** Hard floor 5, target 7. Surplus: 8th (+5), 9th (+5) (+10 pts max). Deficit if 5–6 (-5 pts).
++- ⛵ **Shipwrecks:** Hard floor 4, target 6. Surplus: 7th (+5), 8th (+5) (+10 pts max). Deficit if 4–5 (-5 pts).
++- ⛏️ **Mineshafts:** Hard floor 12, target 15. Surplus: >15 (+1/ea up to 20; +5 pts max). Deficit if 12–14 (-10 pts).
++*(Sum of all core surplus milestones: $50 + 35 + 35 + 40 + 30 + 25 + 20 + 20 + 20 + 20 + 20 + 10 + 10 + 5 = \mathbf{340\text{ pts}}$).*
+ 
+ #### B. Optional Structure Schedule (129 Max Points)
+ No hard floors. Discovered qualifying structures award bonuses up to individual category caps:
+-- 🏴‍☠️ **Pillager Outposts:** 1st = +12 pts, 2nd = +12 pts (cap: 2 structures, +24 pts max).
+-- 🗿 **Ocean Monuments:** 1st = +15 pts, 2nd = +15 pts (cap: 2 structures, +30 pts max).
+-- 🏺 **Desert Pyramids:** 1st–3rd = +10 pts each (cap: 3 structures, +30 pts max).
+-- 🌿 **Jungle Temples:** 1st–2nd = +15 pts each (cap: 2 structures, +30 pts max).
+-- 🏰 **Nether Fortresses:** 1st–2nd = +15 pts each (cap: 2 structures, +30 pts max).
+-- 🐷 **Bastion Remnants:** 1st–3rd = +15 pts each (cap: 3 structures, +45 pts max), plus **+15 pts** one-time bonus for Housing/Stables/Bridge/Treasure if a **Treasure Bastion variant** is verified.
++- 🧙 **Swamp Huts:** 1st = +20 pts, 2nd = +10 pts (+30 pts max).
++- 🏺 **Trail Ruins:** 1st = +15 pts, 2nd = +10 pts (+25 pts max).
++- 🌊 **Ocean Ruins:** 1st = +10 pts, 2nd = +10 pts (+20 pts max).
++- 💎 **Buried Treasure:** +6 pts each up to 4 (+24 pts max).
++- 🛖 **Igloo (with Basement):** 1st = +10 pts, 2nd = +5 pts (+15 pts max).
++- 🐖 **Treasure Bastion variant:** +15 pts if a verified Treasure Bastion variant is captured inside the Nether window.
++*(Sum of all optional bonuses: $30 + 25 + 20 + 24 + 15 + 15 = \mathbf{129\text{ pts}}$).*
+ 
+ #### C. Luxury Biomes (175 Max Points across 10 Categories)
+ Evaluated on the 64-block world lattice at $Y=63$:
+@@ -189,21 +200,26 @@ Evaluated on the 64-block world lattice at $Y=63$:
+ 
+ #### D. Spatial & Layout Bonuses (75 Max Points)
+ - 📍 **Starter Hub Proximity (+40 pts max):**
+-  - Up to **+20 pts** for non-village structures within 300m of the dynamic center $(C_X, C_Z)$ (Outpost +8, Pyramid +6, Temple +6, Portal +4, capped at 20).
+-  - **+20 pts** if at least one Village is within 300m of $(C_X, C_Z)$.
++  - Village within 256m (+10 pts) or 512m (+6 pts).
++  - Other hub structures within 512m (Desert Pyramid, Jungle Temple, Outpost at +6 pts each, up to +30 pts max).
+ - 🏞️ **Scenic Pairing Bonus (+20 pts max):**
+-  - **+20 pts** if two distinct scenic biomes (Cherry Grove, Pale Garden, Meadow, Snowy Slopes) occur within 128m of each other.
++  - **+20 pts** if a surface scenic biome at $Y=63$ (Plains, Sunflower Plains, Meadow, Cherry Grove) within 192m of dynamic center $(C_X, C_Z)$ is paired with a River within 128m.
+ - 🏘️ **Village Spread Bonus (+15 pts max):**
+-  - **+15 pts** if 3 or more distinct Villages are spaced $\ge 400\text{m}$ apart pairwise, ensuring distributed homestead districts without overcrowding.
++  - **+15 pts** if 3 distinct captured Villages occupy 3 separate quadrants of the window and are spaced $\ge 256\text{m}$ apart pairwise.
+ 
+ #### Total Arithmetic Ceiling:
+ $$\text{Max Score} = 340 \text{ (core)} + 129 \text{ (optional)} + 175 \text{ (luxury)} + 40 \text{ (hub)} + 20 \text{ (scenic)} + 15 \text{ (spread)} = \mathbf{719\text{ points}}$$
+ 
+-#### Deficit Budget & Quadratic Deductions:
+-A maximum Miss Budget of $B \le 3$ flexible deficits is permitted (hard floors remain fatal):
+-- 1 deficit: **$-30\text{ pts}$**
+-- 2 deficits: **$-75\text{ pts}$**
+-- 3 deficits: **$-135\text{ pts}$**
++#### Deficit Penalties:
++A maximum Miss Budget of $B \le 3$ flexible categories in deficit is permitted (hard floors remain fatal):
++- Ruined Portal deficit: **$-5\text{ pts}$**
++- Shipwreck deficit: **$-5\text{ pts}$**
++- Village deficit: **$-10\text{ pts}$**
++- Trial Chamber deficit: **$-10\text{ pts}$**
++- Ancient City deficit: **$-10\text{ pts}$**
++- Desert Pyramid deficit: **$-10\text{ pts}$**
++- Jungle Temple deficit: **$-10\text{ pts}$**
++- Mineshaft deficit: **$-10\text{ pts}$**
+ 
+ ---
+ 
+diff --git a/README.md b/README.md
+index 3653223..5c0fd6f 100644
+--- a/README.md
++++ b/README.md
+@@ -4,7 +4,7 @@ The active CLI, web control plane, and `config/realm.yaml` implement the explici
+ 
+ The active screening revision is **`dynamic-envelope-1664-v2`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $1664 \times 1664$ Playable Overworld window ($104 \times 104$ chunks, radius 832m) around a dynamic center $(C_X, C_Z) \in [-1168, 1168]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and an $832 \times 832$ Playable Nether window ($52 \times 52$ chunks, radius 416m) around scaled center $(C_X/8, C_Z/8) \in [-146, 146]^2$ within a $1124 \times 1124$ Nether preflight ($[-562, 562)^2$).
+ 
+-Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the flexible deficit tolerance matrix under a total Miss Budget $B \le 3$ (hard floors are fatal; up to three flexible floors may be missed with deficit deductions of 30, 75, and 135 points). Automatic terrain and coastal screening are retired for v2.
++Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the flexible deficit tolerance matrix under a total Miss Budget $B \le 3$ (hard floors are fatal; up to three flexible categories may be in deficit, with deductions of 5 points for Ruined Portal and Shipwreck, and 10 points for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft). Automatic terrain and coastal screening are retired for v2.
+ 
+ ### Measured Performance & Throughput (Intel Xeon W-2191B, 30–34 Threads)
+ 
+@@ -15,12 +15,13 @@ Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict
+ - **Control Baseline Speedup:** **$40\times$ faster** in compact mode ($8.8\times$ in full mode) than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
+ 
+ The active v2 score operates on a **719-point arithmetic ceiling**:
+-- **Core Structure Schedule (340 max):** Village surplus (up to 12 @ +10/ea), Trial Chambers (up to 4 @ +15/ea), Ancient Cities (up to 3 @ +20/ea), Strongholds (up to 2 @ +50/ea), Mansions (up to 2 @ +50/ea).
+-- **Optional Structure Schedule (129 max):** Outposts (up to 2 @ +12/ea), Ocean Monuments (up to 2 @ +15/ea), Desert Pyramids (up to 3 @ +10/ea), Jungle Temples (up to 2 @ +15/ea), Nether Fortresses (up to 2 @ +15/ea), Bastion Remnants (up to 3 @ +15/ea, with +15 for Treasure variant).
++- **Core Surplus Schedule (340 max):** 2nd Mansion (+50), 2nd Stronghold (+35), 2nd Monument (+35), Village surplus (10th: +25, 11th: +10, 12th: +5; max +40), Trial Chamber surplus (9th: +10, 10th: +10, 11th: +10; max +30), 5th Ancient City (+25), 4th Desert Pyramid (+20), 4th Jungle Temple (+20), 3rd Outpost (+20), 3rd Fortress (+20), 3rd Bastion (+20), Ruined Portal surplus (8th: +5, 9th: +5; max +10), Shipwreck surplus (7th: +5, 8th: +5; max +10), Mineshafts (>15: +1/ea up to 20; max +5).
++- **Optional Structure Schedule (129 max):** Swamp Hut (1st: +20, 2nd: +10; max +30), Trail Ruins (1st: +15, 2nd: +10; max +25), Ocean Ruin (1st: +10, 2nd: +10; max +20), Buried Treasure (+6/ea up to 4; max +24), Igloo with Basement (1st: +10, 2nd: +5; max +15), Treasure Bastion variant (+15).
+ - **Luxury Biomes (175 max across 10 categories):** Cherry Grove (+25), Pale Garden (+25), Mushroom Island (+25), Badlands (+20), Warm Ocean (+15), Ice Spikes (+15), Savanna (+15), Old Growth Taiga (+15), Flower Forest (+10), Bamboo Jungle (+10).
+-- **Starter Hub Bonus (+40 max):** Up to +20 within 300m of dynamic center, plus +20 if a Village is within 300m.
+-- **Scenic Pairing Bonus (+20 max):** Cherry Grove, Pale Garden, Meadow, or Snowy Slopes mutually adjacent within 128m.
+-- **Village Spread Bonus (+15 max):** 3+ distinct villages separated by $\ge 400\text{m}$ pairwise.
++- **Starter Hub Bonus (+40 max):** Village within 256m (+10) or 512m (+6), plus other hub structures (Desert Pyramid, Jungle Temple, Outpost within 512m at +6/ea up to +30 max).
++- **Scenic Pairing Bonus (+20 max):** Y=63 surface scenic biome (Plains, Sunflower Plains, Meadow, Cherry Grove) within 192m paired with River within 128m.
++- **Village Spread Bonus (+15 max):** 3 distinct captured villages located in 3 separate quadrants of the window, separated pairwise by $\ge 256\text{m}$.
++- **Deficit Deductions:** -5 pts each for Ruined Portal and Shipwreck deficits; -10 pts each for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft deficits. Hard floors remain fatal.
+ Historical configurations retain their original v1 thresholds and formulas.
+ 
+ ## System Architecture & Engineering Framework
+diff --git a/native/blueprint_dynamic.inc b/native/blueprint_dynamic.inc
+index 035385a..3668c6c 100644
+--- a/native/blueprint_dynamic.inc
++++ b/native/blueprint_dynamic.inc
+@@ -349,13 +349,13 @@ static int nb_dynamic_build_scenic_cache(NBWorker *w) {
+     int *cache=w->dyn_scenic_river;
+     memset(cache,0,64*64*sizeof(int));
+     for(int ix=1;ix<=63;ix++)for(int iz=1;iz<=63;iz++) {
+-        int id=w->dyn_biome_grid[2*64*64+ix*64+iz];
++        int id=w->dyn_biome_grid[0*64*64+ix*64+iz];
+         if(id>=0&&id<256&&w->p->is_scenic[id]) {
+             int best_rx=9999,best_rz=9999;
+             for(int t=0;t<13;t++) {
+                 int rix=ix+nb_river_offsets[t][0],riz=iz+nb_river_offsets[t][1];
+                 if(rix>=1&&rix<=63&&riz>=1&&riz<=63) {
+-                    int rid=w->dyn_biome_grid[2*64*64+rix*64+riz];
++                    int rid=w->dyn_biome_grid[0*64*64+rix*64+riz];
+                     if(rid==w->p->river_id) {
+                         int rx=-1984+(rix-1)*64,rz=-1984+(riz-1)*64;
+                         if(rx<best_rx||(rx==best_rx&&rz<best_rz)){best_rx=rx;best_rz=rz;}
+@@ -481,8 +481,12 @@ static int nb_dynamic_check_village_spread(NBWorker *w,const NBPoints *villages,
+ }
+ 
+ static int nb_dynamic_build_bastion_cache(NBWorker *w,const NBPoints *bastions) {
+-    int n=bastions->n;if(n>32)n=32;w->dyn_bastion_n=n;
+-    for(int i=0;i<n;i++)w->dyn_bastion_variants[i]=ss_bastion_variant(w->ctx,bastions->xz[2*i],bastions->xz[2*i+1]);
++    int n=bastions->n;if(n>32)return -3;w->dyn_bastion_n=n;
++    for(int i=0;i<n;i++) {
++        int v=ss_bastion_variant(w->ctx,bastions->xz[2*i],bastions->xz[2*i+1]);
++        if(v<0)return -4;
++        w->dyn_bastion_variants[i]=v;
++    }
+     return 0;
+ }
+ 
+@@ -518,7 +522,9 @@ static int nb_dynamic_optional(NBWorker *w,const int *bounds,int slot,NBObservat
+ /* Raw starts are a superset of viable starts. Explore ALL raw co-window cells,
+  * then use only their enclosing union bounds as an OW scan upper bound. A
+  * single arbitrarily chosen pair would incorrectly discard valid alternatives. */
+-int nb_dynamic_raw_bounds(const int *fort,int nf,const int *bast,int nb,int fort_goal,int bast_goal,int *feasible) {
++static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int nb,
++                                      int fort_goal,int bast_goal,int *feasible,
++                                      const Pos *mansions,int nm,int *overlap_out) {
+     if(!fort||!bast||!feasible||nf<0||nb<0||nf>256||nb>256||fort_goal<1||bast_goal<1)return -1;
+     if(nf<fort_goal||nb<bast_goal)return 0;
+     int xs[1030],zs[1030],nx=2,nz=2;
+@@ -534,6 +540,7 @@ int nb_dynamic_raw_bounds(const int *fort,int nf,const int *bast,int nb,int fort
+     }
+     nx=nb_dynamic_unique(xs,nx);nz=nb_dynamic_unique(zs,nz);
+     NBPoints fp={nf,(int*)fort},bp={nb,(int*)bast};int xmin=1169,zmin=1169,xmax=-1169,zmax=-1169;
++    int mansion_overlap=0;
+     for(int ix=0;ix<nx-1;ix++)for(int iz=0;iz<nz-1;iz++) {
+         int x=-floordiv(-xs[ix],8)*8,z=-floordiv(-zs[iz],8)*8;
+         if(x>=xs[ix+1]||z>=zs[iz+1])continue;
+@@ -541,11 +548,24 @@ int nb_dynamic_raw_bounds(const int *fort,int nf,const int *bast,int nb,int fort
+            nb_dynamic_count(&bp,x,z,416,1,NULL,0)<bast_goal)continue;
+         int hx=floordiv(xs[ix+1]-1,8)*8,hz=floordiv(zs[iz+1]-1,8)*8;
+         if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
++        if(mansions && nm>0 && !mansion_overlap) {
++            for(int m=0;m<nm;m++) {
++                if(mansions[m].x+832>=x && mansions[m].x-831<=hx &&
++                   mansions[m].z+832>=z && mansions[m].z-831<=hz) {
++                    mansion_overlap=1;
++                    break;
++                }
++            }
++        }
+     }
++    if(overlap_out)*overlap_out=mansion_overlap;
+     if(xmin>xmax||zmin>zmax)return 0;
+     feasible[0]=xmin-832;feasible[1]=zmin-832;feasible[2]=xmax+831;feasible[3]=zmax+831;
+     return 1;
+ }
++int nb_dynamic_raw_bounds(const int *fort,int nf,const int *bast,int nb,int fort_goal,int bast_goal,int *feasible) {
++    return nb_dynamic_raw_bounds_core(fort,nf,bast,nb,fort_goal,bast_goal,feasible,NULL,0,NULL);
++}
+ #ifndef NB_DYNAMIC_PREFLIGHT
+ #define NB_DYNAMIC_PREFLIGHT 1
+ #endif
+@@ -568,8 +588,26 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
+         int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
+         points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
+     }
+-    int possible=nb_dynamic_raw_bounds(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible);
++    Pos mansions[64];int nm=0;
++    int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
++    if(mansion_goal>0) {
++        StructureConfig mcfg;
++        if(!getStructureConfig(Mansion,MC_26_50,&mcfg))return -1;
++        int msize=mcfg.regionSize*16;
++        for(int rx=floordiv(-2000,msize);rx<=floordiv(1999,msize);rx++)
++          for(int rz=floordiv(-2000,msize);rz<=floordiv(1999,msize);rz++){
++            Pos p;
++            if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,-2000,-2000,1999,1999)){
++                if(nm<64)mansions[nm++]=p;
++            }
++          }
++        if(nm<mansion_goal)return 0;
++    }
++    int mansion_overlap=0;
++    int possible=nb_dynamic_raw_bounds_core(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible,
++                                           mansion_goal>0?mansions:NULL,nm,&mansion_overlap);
+     if(possible<=0)return possible;
++    if(mansion_goal>0 && !mansion_overlap)return 0;
+     const int slots[5]={12,0,6,4,5};
+     for(int j=0;j<5;j++) {
+         int slot=slots[j];
+@@ -601,10 +639,13 @@ static int nb_audit_dark_possible(NBWorker *w,const int *b) {
+         Pos p;
+         if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
+            inside(p,b[0],b[1],b[2],b[3])&&
++           isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)&&
+            nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
+       }
+     return 0;
+ }
++void applySeedPhase1(Generator *g, int dim, uint64_t seed);
++void applySeedPhase2(Generator *g, int dim, uint64_t seed);
+ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
+     double start=nb_time();r->seed=seed;
+     NB_PROFILE_SEED(w,seed);
+@@ -642,7 +683,33 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
+         r->stage_seconds[11]+=nb_time()-stage;
+         if(possible<0){code=possible;goto done;}if(!possible)goto done;
+     }
+-    if(w->p->retention)applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
++    if(w->p->retention) {
++        if(!w->fixture) {
++            applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
++            int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
++            if(mansion_goal>0) {
++                StructureConfig mcfg;
++                if(!getStructureConfig(Mansion,MC_26_50,&mcfg)){code=-1;goto done;}
++                int msize=mcfg.regionSize*16;
++                int dark_ok=0;
++                for(int rx=floordiv(feasible[0],msize);rx<=floordiv(feasible[2],msize);rx++) {
++                    for(int rz=floordiv(feasible[1],msize);rz<=floordiv(feasible[3],msize);rz++) {
++                        Pos p;
++                        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,feasible[0],feasible[1],feasible[2],feasible[3])) {
++                            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)) {
++                                dark_ok=1;break;
++                            }
++                        }
++                    }
++                    if(dark_ok)break;
++                }
++                if(!dark_ok)goto done;
++            }
++            applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
++        } else {
++            applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
++        }
++    }
+     /* One inexpensive macro Mansion preflight before all other structure inventories. */
+     stage=nb_time();
+     possible=nb_audit_dark_possible(w,feasible);
+diff --git a/scripts/build_blueprint_batch.py b/scripts/build_blueprint_batch.py
+index 4c06d4f..63dca50 100644
+--- a/scripts/build_blueprint_batch.py
++++ b/scripts/build_blueprint_batch.py
+@@ -18,7 +18,8 @@ UNITS=['noise','biomes','layers','biomenoise','cave','generator','finders','util
+ 
+ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,work_chunk=16,
+           cpu_native=False,lto=False,pgo_generate=False,pgo_use=None,
+-          experiment_order=0,stronghold_after=4,dynamic_preflight=True):
++          experiment_order=0,stronghold_after=4,dynamic_preflight=True,
++          avx2=False,vectorize=False):
+     if type(work_chunk) is not int or work_chunk not in (16,64,128):
+         raise ValueError('Work chunk must be 16, 64 or 128')
+     if experiment_order not in (0,1,2) or stronghold_after not in range(1,6):
+@@ -33,7 +34,13 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
+     source='#include "bridge.c"\n#include "'+('blueprint_profile.inc' if profile else 'blueprint_batch.inc')+'"\n'
+     flags=['-O3','-std=c11','-fwrapv',f'-DNB_WORK_CHUNK={work_chunk}',
+            f'-DNB_EXPERIMENT_ORDER={experiment_order}',f'-DNB_STRONGHOLD_AFTER={stronghold_after}',f'-DNB_DYNAMIC_PREFLIGHT={int(dynamic_preflight)}'];includes=[str(ROOT/'native'),str(ROOT/'vendor/cubiomes-bedrock')]
+-    if cpu_native:flags.append('-march=native')
++    is_x86=platform.machine().lower() in ('x86_64','amd64')
++    enable_avx2=avx2 or vectorize or (cpu_native and is_x86)
++    if cpu_native:
++        if '-march=native' not in flags:flags.append('-march=native')
++    if enable_avx2:
++        for f in ('-mavx2','-mfma'):
++            if f not in flags:flags.append(f)
+     if lto:flags.append('-flto')
+     if pgo_generate:flags.append('-fprofile-instr-generate')
+     if disable_mansion_cache:flags.append('-DNB_DISABLE_MANSION_CACHE=1')
+@@ -61,6 +68,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
+         meta=json.loads(manifest.read_text())
+         if (meta.get('source_digest')!=source_digest or meta.get('work_chunk')!=work_chunk or
+             meta.get('cpu_native')!=cpu_native or meta.get('lto')!=lto or
++            (meta.get('avx2') is not None and meta.get('avx2')!=enable_avx2) or
+             meta.get('experiment_order',0)!=experiment_order or meta.get('stronghold_after',2)!=stronghold_after):
+             raise ValueError('Stale or incompatible PGO profile')
+         profile_digest=hashlib.sha256(pgo_use.read_bytes()).hexdigest()
+@@ -96,7 +104,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
+         'links':links,'compiler':compiler,'configured_cc':sysconfig.get_config_var('CC'),
+         'configured_ldshared':sysconfig.get_config_var('LDSHARED'),'environment_flags':{k:os.environ.get(k) for k in ('CC','CFLAGS','LDFLAGS','ARCHFLAGS','MACOSX_DEPLOYMENT_TARGET')},
+         'linker':linker,'python':sys.version,'arch':platform.machine(),
+-        'cpu_native':cpu_native,'lto':lto,'pgo_generate':pgo_generate,'pgo_profile_sha256':profile_digest,
++        'cpu_native':cpu_native,'avx2':enable_avx2,'lto':lto,'pgo_generate':pgo_generate,'pgo_profile_sha256':profile_digest,
+         'production_extension_replaced':False,'profiling':profile,'mansion_cache':not disable_mansion_cache,'work_chunk':work_chunk,
+         'experiment_order':experiment_order,'stronghold_after':stronghold_after,'dynamic_preflight':dynamic_preflight,
+         'scope':'private complete blueprint baseline prototype'}
+@@ -112,6 +120,7 @@ def main():
+     p.add_argument('--disable-mansion-cache',action='store_true',help='Retain an uncached control for measured comparisons')
+     p.add_argument('--disable-dynamic-preflight',action='store_true',help='Exact complete-inventory control for dynamic preflight validation')
+     p.add_argument('--cpu-native',action='store_true',help='Opt-in host CPU instructions')
++    p.add_argument('--avx2',action='store_true',help='Opt-in AVX2 and FMA vector instructions')
+     p.add_argument('--lto',action='store_true',help='Opt-in link time optimization')
+     p.add_argument('--pgo-generate',action='store_true',help='Instrument a training build')
+     p.add_argument('--pgo-use',type=Path,help='Use profdata with matching source manifest')
+@@ -119,7 +128,8 @@ def main():
+     p.add_argument('--stronghold-after',type=int,choices=(1,2,3,4,5),default=4)
+     a=p.parse_args();identity=build(a.output,a.openmp_prefix,profile=a.profile,disable_mansion_cache=a.disable_mansion_cache,work_chunk=a.work_chunk,
+                                     cpu_native=a.cpu_native,lto=a.lto,pgo_generate=a.pgo_generate,pgo_use=a.pgo_use,
+-                                    experiment_order=a.experiment_order,stronghold_after=a.stronghold_after,dynamic_preflight=not a.disable_dynamic_preflight)
++                                    experiment_order=a.experiment_order,stronghold_after=a.stronghold_after,dynamic_preflight=not a.disable_dynamic_preflight,
++                                    avx2=a.avx2)
+     print(json.dumps({'extension':identity['extension'],'openmp':identity['openmp']}))
+ 
+ 
+diff --git a/scripts/rebuild_pgo.py b/scripts/rebuild_pgo.py
+index c64c6eb..976c49c 100644
+--- a/scripts/rebuild_pgo.py
++++ b/scripts/rebuild_pgo.py
+@@ -23,14 +23,15 @@ TRAIN_DIR = ROOT / "runs/dynamic-baseline-1664/pgo-training"
+ PROF_DIR = ROOT / "runs/dynamic-baseline-1664/prof"
+ 
+ def main():
+-    print("[1/5] Building instrumented PGO training binary...")
++    print("[1/5] Building instrumented PGO training binary with AVX2 + FMA + native...")
+     if TRAIN_DIR.exists():
+         shutil.rmtree(TRAIN_DIR)
+     if PROF_DIR.exists():
+         shutil.rmtree(PROF_DIR)
+     PROF_DIR.mkdir(parents=True, exist_ok=True)
+ 
+-    build(TRAIN_DIR, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, lto=True, pgo_generate=True)
++    train_id = build(TRAIN_DIR, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, avx2=True, lto=True, pgo_generate=True)
++    assert all(flag in train_id['flags'] for flag in ('-mavx2', '-mfma', '-march=native')), f"Missing required flags: {train_id['flags']}"
+ 
+     print("[2/5] Running training workload on 10,000 seeds + synthetic fixtures...")
+     env = os.environ.copy()
+@@ -57,10 +58,11 @@ with p.sweep([1], fixtures=[(0, 0, -1)], retention='survivors'): pass
+     meta["profile_sha256"] = hashlib.sha256(profile.read_bytes()).hexdigest()
+     profile.with_suffix(".json").write_text(json.dumps(meta, indent=2) + "\n")
+ 
+-    print("[4/5] Compiling final optimized PGO + LTO production binary...")
++    print("[4/5] Compiling final optimized PGO + LTO production binary with AVX2 + FMA + native...")
+     if OUTPUT.exists():
+         shutil.rmtree(OUTPUT)
+-    build(OUTPUT, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, lto=True, pgo_use=profile)
++    prod_id = build(OUTPUT, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, avx2=True, lto=True, pgo_use=profile)
++    assert all(flag in prod_id['flags'] for flag in ('-mavx2', '-mfma', '-march=native')), f"Missing required flags: {prod_id['flags']}"
+ 
+     # Copy to src/seed_search production location
+     so_files = list(OUTPUT.glob("*.so"))
+diff --git a/src/seed_search/realm/blueprint.py b/src/seed_search/realm/blueprint.py
+index 1915047..f00f922 100644
+--- a/src/seed_search/realm/blueprint.py
++++ b/src/seed_search/realm/blueprint.py
+@@ -475,10 +475,29 @@ DYNAMIC_V2_LUXURIES=(
+ )
+ 
+ 
+-def dynamic_v2_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treasure_bastion=0,optional_counts=None):
++DEFAULT_V2_TARGETS = {
++    'ruined_portal': 7,
++    'shipwreck': 6,
++    'village': 9,
++    'trial_chamber': 8,
++    'ancient_city': 4,
++    'desert_pyramid': 3,
++    'jungle_temple': 3,
++    'mineshaft': 15,
++    'mansion': 1,
++    'stronghold': 1,
++    'monument': 1,
++    'outpost': 2,
++    'fortress': 2,
++    'bastion': 2,
++}
++
++
++def dynamic_v2_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treasure_bastion=0,optional_counts=None,*,targets=None):
+     """Authoritative Section 8.3 dynamic-envelope-1664-v2 player scoring."""
+     n=lambda name:counts.get(name,0)
+     opt=(lambda name:(optional_counts or {}).get(name,0)) if optional_counts is not None else n
++    tgt=lambda name:targets.get(name,DEFAULT_V2_TARGETS[name]) if targets else DEFAULT_V2_TARGETS[name]
+ 
+     core=0
+     core+=50 if n('mansion')>=2 else 0
+@@ -526,20 +545,20 @@ def dynamic_v2_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treas
+ 
+     deficits=[]
+     penalty=0
+-    if n('ruined_portal')<7:penalty+=5;deficits.append('ruined_portal')
+-    if n('shipwreck')<6:penalty+=5;deficits.append('shipwreck')
+-    if n('village')<9:penalty+=10;deficits.append('village')
+-    if n('trial_chamber')<8:penalty+=10;deficits.append('trial_chamber')
+-    if n('ancient_city')<4:penalty+=10;deficits.append('ancient_city')
+-    if n('desert_pyramid')<3:penalty+=10;deficits.append('desert_pyramid')
+-    if n('jungle_temple')<3:penalty+=10;deficits.append('jungle_temple')
+-    if n('mineshaft')<15:penalty+=10;deficits.append('mineshaft')
+-    if n('mansion')<1:penalty+=10;deficits.append('mansion')
+-    if n('stronghold')<1:penalty+=10;deficits.append('stronghold')
+-    if n('monument')<1:penalty+=10;deficits.append('monument')
+-    if n('outpost')<2:penalty+=10;deficits.append('outpost')
+-    if n('fortress')<2:penalty+=10;deficits.append('fortress')
+-    if n('bastion')<2:penalty+=10;deficits.append('bastion')
++    if n('ruined_portal')<tgt('ruined_portal'):penalty+=5;deficits.append('ruined_portal')
++    if n('shipwreck')<tgt('shipwreck'):penalty+=5;deficits.append('shipwreck')
++    if n('village')<tgt('village'):penalty+=10;deficits.append('village')
++    if n('trial_chamber')<tgt('trial_chamber'):penalty+=10;deficits.append('trial_chamber')
++    if n('ancient_city')<tgt('ancient_city'):penalty+=10;deficits.append('ancient_city')
++    if n('desert_pyramid')<tgt('desert_pyramid'):penalty+=10;deficits.append('desert_pyramid')
++    if n('jungle_temple')<tgt('jungle_temple'):penalty+=10;deficits.append('jungle_temple')
++    if n('mineshaft')<tgt('mineshaft'):penalty+=10;deficits.append('mineshaft')
++    if n('mansion')<tgt('mansion'):penalty+=10;deficits.append('mansion')
++    if n('stronghold')<tgt('stronghold'):penalty+=10;deficits.append('stronghold')
++    if n('monument')<tgt('monument'):penalty+=10;deficits.append('monument')
++    if n('outpost')<tgt('outpost'):penalty+=10;deficits.append('outpost')
++    if n('fortress')<tgt('fortress'):penalty+=10;deficits.append('fortress')
++    if n('bastion')<tgt('bastion'):penalty+=10;deficits.append('bastion')
+ 
+     final_score=bonus_total-penalty
+     components={
+@@ -632,7 +651,7 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
+                     scenic_pts,_,_=palette_index.scenic_pair(center)
+                     spread_pts,_=village_spread_bonus_v2(structures.get('village',[]),center)
+                     hub=hub_bonus_v2(structures,center)
+-                    score,_,defs=dynamic_v2_score(item.counts,palette_index.luxuries(center),hub,scenic_pts,spread_pts,tb_points,opt_counts)
++                    score,_,defs=dynamic_v2_score(item.counts,palette_index.luxuries(center),hub,scenic_pts,spread_pts,tb_points,opt_counts,targets=all_ideals)
+                     radial=weighted_radial_v2(structures,center)
+                     radial_key=int(math.floor(radial*1_000_000.0+0.5))
+                     orig_dist_sq=center[0]**2+center[1]**2
+@@ -711,14 +730,15 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
+                     spread_pts,v_triple=village_spread_bonus_v2(structures.get('village',[]),selected)
+                 if hasattr(backend,'treasure_bastion'):
+                     tb_points=15 if getattr(backend,'treasure_bastion') else 0
+-                    tb_list=[]
++                    tb_list=[[x, z, var] for (x, z), var in getattr(backend, 'bastion_variants', {}).items()]
+                 else:
+                     get_var=getattr(backend,'bastion_variant',lambda x,z:-1)
+                     tb_points,tb_list=treasure_bastion_bonus_v2(nether['bastion']['predicted_viable'],selected,get_var)
+                 score,components,score_defs=dynamic_v2_score(
+                     {name:len(ob['predicted_viable']) for name,ob in {**all_observations,**optional}.items()},
+                     surface,hub,scenic_pts,spread_pts,tb_points,
+-                    {name:len(ob['predicted_viable']) for name,ob in optional.items()}
++                    {name:len(ob['predicted_viable']) for name,ob in optional.items()},
++                    targets=all_ideals
+                 )
+             else:
+                 hub=hub_bonus(structures,selected)
+@@ -764,6 +784,8 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
+                     anchor['village_spread_bonus']=spread_pts
+                     anchor['village_triple']=[list(p) for p in v_triple] if v_triple else None
+                     anchor['treasure_bastion']=1 if tb_points else 0
++                    anchor['bastion_variants']=[list(item) for item in tb_list] if tb_list else []
++                    anchor['configured_targets']=dict(all_ideals)
+                     anchor['starter_hub_village']=list(hub_village) if hub_village else None
+                     anchor['deficit_penalty']=components['deficit_penalty']
+                     anchor['bonus_total']=components['bonus_total']
+diff --git a/src/seed_search/realm/cli.py b/src/seed_search/realm/cli.py
+index cf19bcb..52d306d 100644
+--- a/src/seed_search/realm/cli.py
++++ b/src/seed_search/realm/cli.py
+@@ -470,3 +470,7 @@ def main(argv=None):
+     except (ValueError,KeyError,FileNotFoundError) as exc:parser.error(str(exc))
+     finally:
+         if store:store.close()
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/src/seed_search/realm/dynamic.py b/src/seed_search/realm/dynamic.py
+index 5a3ee72..e67bd18 100644
+--- a/src/seed_search/realm/dynamic.py
++++ b/src/seed_search/realm/dynamic.py
+@@ -170,11 +170,34 @@ def weighted_radial(structures,center):
+                for x,z in structures.get(name,()))/total if total else 0.
+ 
+ 
+-def weighted_radial_v2(structures,center):
+-    weights=DYNAMIC_V2_CENTROID_WEIGHTS
+-    total=sum(weight*len(structures.get(name,())) for name,weight in weights.items() if weight>0)
+-    return sum(weight*math.hypot(x-center[0],z-center[1]) for name,weight in weights.items() if weight>0
+-               for x,z in structures.get(name,()))/total if total else 0.
++ORDER_V2_RADIAL = (
++    ('stronghold', 1),
++    ('mansion', 1),
++    ('jungle_temple', 1),
++    ('desert_pyramid', 1),
++    ('monument', 1),
++    ('ancient_city', 2),
++    ('village', 3),
++    ('trial_chamber', 2),
++    ('outpost', 1),
++)
++
++
++def weighted_radial_v2(structures, center, dark_forest_mansions=None):
++    cx, cz = center
++    ow = overworld_bounds(center)
++    total_weight = 0
++    distance = 0.0
++    for name, weight in ORDER_V2_RADIAL:
++        pts = structures.get(name, ())
++        for p in pts:
++            x, z = p[0], p[1]
++            if name == 'mansion' and dark_forest_mansions is not None and (x, z) not in dark_forest_mansions:
++                continue
++            if contains((x, z), ow):
++                total_weight += weight
++                distance += weight * math.hypot(x - cx, z - cz)
++    return distance / total_weight if total_weight else 0.0
+ 
+ 
+ SCENIC_BIOMES=frozenset(('plains','sunflower_plains','meadow','cherry_grove'))
+@@ -239,11 +262,14 @@ def village_spread_bonus_v2(villages,center):
+ def treasure_bastion_bonus_v2(bastions,center,get_variant_fn):
+     nb=nether_bounds(center)
+     captured=[tuple(p) for p in bastions if contains(p,nb)]
+-    treasure=[]
++    variants=[]
+     for p in captured:
+         var=get_variant_fn(p[0],p[1])
+-        if var==2:treasure.append(p)
+-    return (15 if treasure else 0),treasure
++        if var<0:
++            raise RuntimeError(f'Bastion variant prediction failed at {p}: code {var}')
++        variants.append((p[0],p[1],var))
++    has_treasure=any(var==2 for _,_,var in variants)
++    return (15 if has_treasure else 0),variants
+ 
+ 
+ class PaletteIndex:
+diff --git a/src/seed_search/realm/leaderboard.py b/src/seed_search/realm/leaderboard.py
+index e90db24..25aa090 100644
+--- a/src/seed_search/realm/leaderboard.py
++++ b/src/seed_search/realm/leaderboard.py
+@@ -43,13 +43,22 @@ ORDER_V2 = "ranking_tier,smart_score DESC,unmet_requirements,radial_key,origin_d
+ 
+ def order_for(db):
+     """Read old run views without mutating checkpoints merely to display them."""
+-    row = db.execute(f"SELECT 1 FROM candidates WHERE {DYNAMIC_V2} LIMIT 1").fetchone()
+-    if row:
+-        return ORDER_V2
+-    meta_id = db.execute("SELECT value FROM meta WHERE key='identity'").fetchone()
+-    if meta_id and 'dynamic-envelope-1664-v2' in meta_id[0]:
+-        return ORDER_V2
+-    columns={row[1] for row in db.execute('PRAGMA table_info(candidate_leaderboard_view)')}
++    try:
++        row = db.execute(f"SELECT 1 FROM candidates WHERE {DYNAMIC_V2} LIMIT 1").fetchone()
++        if row:
++            return ORDER_V2
++    except Exception:
++        pass
++    try:
++        meta_id = db.execute("SELECT value FROM meta WHERE key='identity'").fetchone()
++        if meta_id and 'dynamic-envelope-1664-v2' in meta_id[0]:
++            return ORDER_V2
++    except Exception:
++        pass
++    try:
++        columns={row[1] for row in db.execute('PRAGMA table_info(candidate_leaderboard_view)')}
++    except Exception:
++        columns=set()
+     return ORDER if {'weighted_radial_dist','origin_distance'}<=columns else "ranking_tier,unmet_requirements,smart_score DESC,id"
+ 
+ 
+diff --git a/src/seed_search/realm/native_batch.py b/src/seed_search/realm/native_batch.py
+index 89ef3e6..8d36810 100644
+--- a/src/seed_search/realm/native_batch.py
++++ b/src/seed_search/realm/native_batch.py
+@@ -12,6 +12,7 @@ import statistics
+ import time
+ from pathlib import Path
+ import os
++import sys
+ import numpy as np
+ 
+ from seed_search.backend import biome_catalog, structure_type
+@@ -157,8 +158,27 @@ class Prototype:
+             'record_computation_identity':production_identity()}
+ 
+     def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None):
+-        is_np = hasattr(seeds, '__array_interface__')
+-        if not is_np:
++        is_np = hasattr(seeds, '__array_interface__') or isinstance(seeds, np.ndarray)
++        if is_np:
++            try:
++                buf = memoryview(seeds)
++            except (TypeError, ValueError) as exc:
++                raise ValueError(f'Invalid buffer object: {exc}')
++            if buf.ndim != 1:
++                raise ValueError('NumPy seed array must be 1-dimensional')
++            if not buf.c_contiguous:
++                raise ValueError('NumPy seed array must be C-contiguous')
++            if buf.itemsize != 8:
++                raise TypeError('NumPy seed array must be int64 or uint64')
++            dtype = getattr(seeds, 'dtype', None)
++            if dtype is not None:
++                if dtype.name not in ('int64', 'uint64'):
++                    raise TypeError('NumPy seed array must be int64 or uint64')
++                if dtype.byteorder not in ('=', '|', '<' if sys.byteorder == 'little' else '>'):
++                    raise ValueError('NumPy seed array must have native byte order')
++            if len(buf) != len(seeds) or buf.nbytes != len(seeds) * 8:
++                raise ValueError('NumPy seed array buffer length does not match seeds count')
++        else:
+             seeds=[parse_seed(s) for s in seeds]
+         if max_misses is None:max_misses=self.cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(self.cfg) else 0
+         if not 1<=len(seeds)<=16384:raise ValueError('Native batches must contain 1–16,384 inputs')
+@@ -177,7 +197,12 @@ class Prototype:
+         # a policy while CFFI releases the GIL for another call.
+         policy=self.ffi.new('NBPolicy *');self.ffi.memmove(policy,self.policy,self.ffi.sizeof('NBPolicy'))
+         policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses)
+-        values = self.ffi.from_buffer('uint64_t[]', seeds) if is_np else self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
++        if is_np:
++            values = self.ffi.from_buffer('uint64_t[]', seeds)
++            if len(values) != len(seeds):
++                raise ValueError('NumPy seed array buffer length does not match seeds count')
++        else:
++            values = self.ffi.new('uint64_t[]', [s & MASK64 for s in seeds])
+         fixture_values=None
+         if fixtures is not None:
+             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
+diff --git a/src/seed_search/realm/native_records.py b/src/seed_search/realm/native_records.py
+index ead294e..5b80a60 100644
+--- a/src/seed_search/realm/native_records.py
++++ b/src/seed_search/realm/native_records.py
+@@ -106,21 +106,23 @@ def build_record(native,index,seed,cfg):
+                                nether_half=cfg['deployment']['nether_side_blocks']//2)
+         provider=ReplayProvider(native,SimpleNamespace(policy=policy,cfg=cfg))
+         record=evaluate_dynamic_seed(index,seed,cfg,backend_factory=lambda _:provider)
+-        if len(record['anchors'])!=native.nanchors or (native.nanchors and
+-            (record['anchors'][0]['evaluation_center']!=[native.anchors[0].x,native.anchors[0].z] or
+-             record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score)):
++        if len(record['anchors'])!=native.nanchors:
+             raise RuntimeError('Native/direct dynamic record parity failure')
+         from .config import dynamic_v2_policy
+-        if native.nanchors and dynamic_v2_policy(cfg):
+-            a=record['anchors'][0];na=native.anchors[0]
+-            if (a['radial_key']!=na.radial_key or
+-                a['origin_distance_squared']!=na.origin_distance_squared or
+-                a['scenic_bonus']!=na.scenic_bonus or
+-                a['village_spread_bonus']!=na.village_spread_bonus or
+-                a['treasure_bastion']!=na.treasure_bastion or
+-                a['deficit_penalty']!=na.deficit_penalty or
+-                a['bonus_total']!=na.bonus_total):
+-                raise RuntimeError('Native/direct dynamic v2 component parity failure')
++        is_v2=dynamic_v2_policy(cfg)
++        for idx in range(native.nanchors):
++            a=record['anchors'][idx];na=native.anchors[idx]
++            if a['evaluation_center']!=[na.x,na.z] or a['baseline_score_observed']!=na.score:
++                raise RuntimeError(f'Native/direct dynamic record parity failure at anchor {idx}')
++            if is_v2:
++                if (a['radial_key']!=na.radial_key or
++                    a['origin_distance_squared']!=na.origin_distance_squared or
++                    a['scenic_bonus']!=na.scenic_bonus or
++                    a['village_spread_bonus']!=na.village_spread_bonus or
++                    a['treasure_bastion']!=na.treasure_bastion or
++                    a['deficit_penalty']!=na.deficit_penalty or
++                    a['bonus_total']!=na.bonus_total):
++                    raise RuntimeError(f'Native/direct dynamic v2 component parity failure at anchor {idx}')
+         return record
+     wall=time.perf_counter();cpu=time.process_time();seed=str(seed)
+     discovery_bounds=list(cfg['discovery']['overworld_bounds'])
+diff --git a/src/seed_search/realm/reports.py b/src/seed_search/realm/reports.py
+index df82cfc..ee76be0 100644
+--- a/src/seed_search/realm/reports.py
++++ b/src/seed_search/realm/reports.py
+@@ -320,7 +320,7 @@ def _candidate_rescore(candidate,policy,revision_id):
+             from .config import dynamic_v2_policy
+             if dynamic_v2_policy(candidate):
+                 from .blueprint import dynamic_v2_score,score_uncertainty
+-                from .dynamic import hub_bonus_v2,weighted_radial_v2
++                from .dynamic import hub_bonus_v2,weighted_radial_v2,village_spread_bonus_v2
+                 import math
+                 center=candidate['evaluation_center']
+                 required=candidate['required_structures']
+@@ -331,9 +331,15 @@ def _candidate_rescore(candidate,policy,revision_id):
+                 hub=hub_bonus_v2(structures,center)
+                 scenic=candidate.get('scenic_bonus',0)
+                 spread=candidate.get('village_spread_bonus',0)
++                if 'village' in structures:
++                    recomputed_spread,_=village_spread_bonus_v2(structures['village'],center)
++                    spread=recomputed_spread
+                 tb=candidate.get('treasure_bastion',0)
++                if candidate.get('bastion_variants'):
++                    tb=15 if any(item[2]==2 for item in candidate['bastion_variants']) else 0
++                targets=candidate.get('configured_targets') or (policy.get('structures',{}).get('minimum_counts') if policy else None)
+                 opt_counts={name:len(ob['predicted_viable']) for name,ob in candidate['optional_structures'].items()}
+-                score,components,deficits=dynamic_v2_score(counts,names,hub,scenic,spread,tb,opt_counts)
++                score,components,deficits=dynamic_v2_score(counts,names,hub,scenic,spread,tb,opt_counts,targets=targets)
+                 radial=weighted_radial_v2(structures,center)
+                 radial_key=int(math.floor(radial*1e6+0.5))
+                 orig_dist_sq=center[0]**2+center[1]**2
+diff --git a/src/seed_search/realm/store.py b/src/seed_search/realm/store.py
+index 79f326a..5321b72 100644
+--- a/src/seed_search/realm/store.py
++++ b/src/seed_search/realm/store.py
+@@ -113,6 +113,8 @@ class RealmStore:
+             yield
+             self.db.commit()
+         except BaseException:
++            self._cached_completed_seeds = None
++            self._cached_counts = None
+             self.db.rollback()
+             raise
+ 
+@@ -189,6 +191,8 @@ class RealmStore:
+                 attempts INTEGER NOT NULL DEFAULT 0, result TEXT, digest TEXT);
+             CREATE INDEX IF NOT EXISTS inventory_work_pending ON inventory_work(status,candidate_id,kind);
+         """)
++        self._cached_completed_seeds = None
++        self._cached_counts = None
+         if not resume:
+             with self.db:
+                 self._set("schema", SCHEMA)
+@@ -216,11 +220,36 @@ class RealmStore:
+         install(self.db)
+ 
+     def _set(self, key, value):
++        if key == 'completed_seeds':
++            self._cached_completed_seeds = value
++        elif key == 'counts':
++            self._cached_counts = dict(value) if isinstance(value, dict) else value
+         self.db.execute("INSERT INTO meta VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value", (key, canonical(value)))
+ 
+     def get_state(self, key):
++        if key == 'completed_seeds' and self._cached_completed_seeds is not None:
++            return self._cached_completed_seeds
++        if key == 'counts' and self._cached_counts is not None:
++            return dict(self._cached_counts)
+         row = self.db.execute("SELECT value FROM meta WHERE key=?", (key,)).fetchone()
+-        return json.loads(row[0]) if row else None
++        val = json.loads(row[0]) if row else None
++        if key == 'completed_seeds' and val is not None:
++            self._cached_completed_seeds = val
++        elif key == 'counts' and val is not None:
++            self._cached_counts = dict(val)
++        return val
++
++    def _get_completed_seeds(self):
++        if self._cached_completed_seeds is None:
++            val = self.get_state('completed_seeds')
++            self._cached_completed_seeds = val if val is not None else 0
++        return self._cached_completed_seeds
++
++    def _get_counts(self):
++        if self._cached_counts is None:
++            val = self.get_state('counts')
++            self._cached_counts = dict(val) if val is not None else {}
++        return self._cached_counts
+ 
+     def set_state(self, key, value):
+         with self.db:
+@@ -432,21 +461,44 @@ class RealmStore:
+             raise ValueError('Prepared near-miss allowance differs from checkpoint')
+         if capacity_check is not None:capacity_check(3*prepared.payload_bytes)
+         timings=dict(prepared.timings);sql_started=time.perf_counter()
+-        with self.db:
+-            self.db.executemany('INSERT INTO seeds VALUES (?,?,?)',prepared.seed_rows)
+-            self.db.executemany('INSERT INTO candidates VALUES (?,?,?,?,?)',prepared.candidate_rows)
+-            self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",prepared.inventory_rows)
+-            self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",prepared.discovery_rows)
+-            self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')",prepared.variant_rows)
+-            if prepared.receipt is not None:
+-                self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
+-            self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
+-            self._set('completed_seeds',self.get_state('completed_seeds')+prepared.end-prepared.start)
+-            counts=self.get_state('counts')
+-            for key,value in prepared.counts:counts[key]=counts.get(key,0)+value
+-            self._set('counts',counts)
+-            timings['sql_seconds']=time.perf_counter()-sql_started
+-            commit_started=time.perf_counter()
++        try:
++            with self.db:
++                if self.retention.get('mode') == 'survivors' and not prepared.candidate_rows and not prepared.seed_rows:
++                    if prepared.receipt is not None:
++                        self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
++                    self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
++                    new_completed = self._get_completed_seeds() + prepared.end - prepared.start
++                    self._set('completed_seeds', new_completed)
++                    counts = dict(self._get_counts())
++                    for key, value in prepared.counts:
++                        counts[key] = counts.get(key, 0) + value
++                    self._set('counts', counts)
++                else:
++                    if prepared.seed_rows:
++                        self.db.executemany('INSERT INTO seeds VALUES (?,?,?)',prepared.seed_rows)
++                    if prepared.candidate_rows:
++                        self.db.executemany('INSERT INTO candidates VALUES (?,?,?,?,?)',prepared.candidate_rows)
++                    if prepared.inventory_rows:
++                        self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",prepared.inventory_rows)
++                    if prepared.discovery_rows:
++                        self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",prepared.discovery_rows)
++                    if prepared.variant_rows:
++                        self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')",prepared.variant_rows)
++                    if prepared.receipt is not None:
++                        self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
++                    self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
++                    new_completed = self._get_completed_seeds() + prepared.end - prepared.start
++                    self._set('completed_seeds', new_completed)
++                    counts = dict(self._get_counts())
++                    for key, value in prepared.counts:
++                        counts[key] = counts.get(key, 0) + value
++                    self._set('counts', counts)
++                timings['sql_seconds']=time.perf_counter()-sql_started
++                commit_started=time.perf_counter()
++        except BaseException:
++            self._cached_completed_seeds = None
++            self._cached_counts = None
++            raise
+         timings['commit_seconds']=time.perf_counter()-commit_started
+         self.last_range_timings=timings
+         return True
+diff --git a/src/seed_search/web/server.py b/src/seed_search/web/server.py
+index 5a29166..11a3319 100644
+--- a/src/seed_search/web/server.py
++++ b/src/seed_search/web/server.py
+@@ -29,7 +29,7 @@ from urllib.parse import urlparse, parse_qs
+ 
+ import yaml
+ 
+-from seed_search.realm.config import dynamic_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, validate_config
++from seed_search.realm.config import dynamic_blueprint_config, dynamic_v2_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, validate_config
+ from seed_search.realm.runner import process_tree_resources
+ 
+ # Base paths
+@@ -127,7 +127,7 @@ class SweepManager:
+         count: int = 10000000,
+         threads: int = 34,
+         batch_size: int = 16384,
+-        max_misses: int = 2,
++        max_misses: int = 3,
+         counts: dict | None = None,
+         start_index: int | str = 0,
+         profile: str = 'dynamic1664',
+@@ -142,7 +142,12 @@ class SweepManager:
+                 raise ValueError('Sweep controls outside supported bounded ranges')
+             if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
+                 raise ValueError('counts must map structure names to integer ideals')
+-            profiles={'dynamic1664':dynamic_blueprint_config,'marine2048':marine_baseline_blueprint_config,'twoGroup2048':two_group_blueprint_config}
++            profiles = {
++                'dynamic1664': dynamic_v2_blueprint_config,
++                'dynamic1664_v1': dynamic_blueprint_config,
++                'marine2048': marine_baseline_blueprint_config,
++                'twoGroup2048': two_group_blueprint_config,
++            }
+             if profile not in profiles:raise ValueError('Unknown search profile')
+             cfg=profiles[profile]()
+             cfg['search']['max_misses']=max_misses
+@@ -558,12 +563,15 @@ class SweepManager:
+             self._last_candidates_sig = sig
+ 
+             from seed_search.realm.leaderboard import order_for
+-            order = order_for(conn)
++            try:
++                order = order_for(conn)
++            except Exception:
++                order = "ranking_tier,unmet_requirements,smart_score DESC,id"
+             cur.execute(f"""
+                 SELECT id, seed, smart_score, result,
+                        ranking_tier, unmet_requirements
+                 FROM candidate_leaderboard_view
+-                ORDER BY {order} LIMIT 250
++                ORDER BY {order} LIMIT 5000
+             """)
+             top_rows = cur.fetchall()
+ 
+@@ -1093,10 +1101,27 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
+             return
+ 
+         elif path == "/api/candidates":
++            params = parse_qs(url.query)
++            limit_param = params.get('limit', [None])[0]
++            offset_param = params.get('offset', ['0'])[0]
++            try:
++                limit = int(limit_param) if limit_param is not None else None
++                offset = int(offset_param)
++            except ValueError:
++                limit = None
++                offset = 0
++            all_cands = MANAGER.candidates
++            total = len(all_cands)
++            cands = all_cands[offset:offset+limit] if limit is not None else all_cands[offset:]
+             self.send_response(200)
+             self.send_header("Content-Type", "application/json")
+             self.end_headers()
+-            self.wfile.write(json.dumps({"candidates": MANAGER.candidates}).encode("utf-8"))
++            self.wfile.write(json.dumps({
++                "candidates": cands,
++                "total": total,
++                "offset": offset,
++                "limit": limit if limit is not None else total
++            }).encode("utf-8"))
+             return
+ 
+         elif path == "/api/candidate/biome-grid":
+@@ -1168,7 +1193,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
+                 "nativeBuildReady": DEFAULT_NATIVE_BUILD.exists(),
+                 "defaultBatchSize": 16384,
+                 "defaultThreads": 34,
+-                "defaultMaxMisses": 2,
++                "defaultMaxMisses": 3,
+             }
+             self.wfile.write(json.dumps(info).encode("utf-8"))
+             return
+@@ -1259,7 +1284,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
+             count = req_data.get("count", 10000000)
+             threads = req_data.get("threads", 34)
+             batch_size = req_data.get("batchSize", 16384)
+-            max_misses = req_data.get("maxMisses", 2)
++            max_misses = req_data.get("maxMisses", 3)
+ 
+             result = MANAGER.start_sweep(
+                 count=count,
+diff --git a/tests/test_blueprint_coastal.py b/tests/test_blueprint_coastal.py
+index 7b78582..2a3a401 100644
+--- a/tests/test_blueprint_coastal.py
++++ b/tests/test_blueprint_coastal.py
+@@ -207,10 +207,13 @@ def test_nominal_ocean_strip_cannot_be_fabricated_from_missing_box_coverage():
+ def test_cli_default_and_all_use_blueprint_active_variants(tmp_path,monkeypatch,capsys):
+     from seed_search.realm.cli import load,main
+     from seed_search.realm.store import RealmStore
++    from seed_search.realm.config import dynamic_blueprint_config
+     cfg=load()
+-    assert cfg['terrain']['variants']==['v1']
+-    assert cfg['terrain']['v1']['mode']=='coastal_continent'
+-    store=RealmStore(tmp_path,{'config':cfg});store.close()
++    assert cfg['terrain']['variants']==[]
++    v1_cfg=dynamic_blueprint_config()
++    assert v1_cfg['terrain']['variants']==['v1']
++    assert v1_cfg['terrain']['v1']['mode']=='coastal_continent'
++    store=RealmStore(tmp_path,{'config':v1_cfg});store.close()
+     calls=[]
+     monkeypatch.setattr('seed_search.realm.terrain.run_terrain',lambda *args,**kwargs:calls.append(args) or {})
+     main(['terrain','--run',str(tmp_path),'--variant','all'])
+diff --git a/tests/test_web_server_evidence.py b/tests/test_web_server_evidence.py
+index aff44df..fd05e8b 100644
+--- a/tests/test_web_server_evidence.py
++++ b/tests/test_web_server_evidence.py
+@@ -56,7 +56,7 @@ def test_live_defaults_use_heldout_selected_scheduling(monkeypatch,tmp_path):
+     command=calls[0]
+     assert command[command.index('--native-threads')+1]=='34'
+     assert command[command.index('--native-batch-size')+1]=='16384'
+-    assert command[command.index('--max-misses')+1]=='2'
++    assert command[command.index('--max-misses')+1]=='3'
+ 
+ 
+ def test_candidate_serialization_does_not_invent_evidence():
+diff --git a/vendor/backend.json b/vendor/backend.json
+index 19a0c49..a1e6a40 100644
+--- a/vendor/backend.json
++++ b/vendor/backend.json
+@@ -4,15 +4,15 @@
+   "source_archive_sha256": "289f3407e32a0fa980a296d057f3b54ba3c56b684f72ade2e5efbe487a8d3e99",
+   "files": {
+     "LICENSE": "894d391566a3bb235b1df6c278960b2083769076b0199a0a367c771b05a74120",
+-    "biomenoise.c": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
+-    "biomenoise.h": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
++    "biomenoise.c": "8ff7ef13c53f3b05917a1cd64bdab8fabc7cfd703e61a6e35cdccf92e9ac2eff",
++    "biomenoise.h": "c969e4e84e34aca9ed32724a8d376929fd5992b6d15e8c3a006fec8241f05099",
+     "biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+     "biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+     "cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+     "cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+     "finders.c": "3ffe69c3f5f5d6adb23f202c06ea6a0f0f5f616896423c394c912f52e178169d",
+     "finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+-    "generator.c": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
++    "generator.c": "890a2a245eda0a0a3b9e6bc543fff2819f1baebebc981e9291bb7d30e27b5360",
+     "generator.h": "963a919e0baf33af9acc5f944f935bd0c025985a64d31a5e11b2736752353517",
+     "layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+     "layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+@@ -51,6 +51,30 @@
+           "patched_sha256": "60e5e79ab513d7ead3f040b90a42df4d1d0e46478bdd9c5c383baeb8c2d7d25e"
+         }
+       }
++    },
++    {
++      "id": "generator-stack-getbiomeat-v1",
++      "reason": "Stack-allocated biome array in getBiomeAt with zero-initialization to eliminate heap churn.",
++      "files": {
++        "generator.c": {
++          "upstream_sha256": "3720b172733b36f2fb3fb707e620a491bac1da6d7c682c520a0a549f853f3ca0",
++          "patched_sha256": "890a2a245eda0a0a3b9e6bc543fff2819f1baebebc981e9291bb7d30e27b5360"
++        }
++      }
++    },
++    {
++      "id": "biomenoise-twophase-split-v1",
++      "reason": "Two-phase setBiomeSeed split and Dark Forest climate boundary early rejection.",
++      "files": {
++        "biomenoise.h": {
++          "upstream_sha256": "7122e30c86d18b0873e29017b44fb22746143b69cb6baa1b6e0ada07cd26f88e",
++          "patched_sha256": "c969e4e84e34aca9ed32724a8d376929fd5992b6d15e8c3a006fec8241f05099"
++        },
++        "biomenoise.c": {
++          "upstream_sha256": "b93ab7df07c913c9fdaa3e7ee7a7e8294708caf05003c50b29b094259f235a96",
++          "patched_sha256": "8ff7ef13c53f3b05917a1cd64bdab8fabc7cfd703e61a6e35cdccf92e9ac2eff"
++        }
++      }
+     }
+   ]
+ }
+diff --git a/vendor/cubiomes-bedrock/biomenoise.c b/vendor/cubiomes-bedrock/biomenoise.c
+index 1252641..e54c2f2 100644
+--- a/vendor/cubiomes-bedrock/biomenoise.c
++++ b/vendor/cubiomes-bedrock/biomenoise.c
+@@ -890,16 +890,31 @@ static int init_climate_seed(
+     return n;
+ }
+ 
+-void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
++void setBiomeSeedPhase1(BiomeNoise *bn, uint64_t seed, int large)
++{
++    Xoroshiro pxr;
++    xSetSeed(&pxr, seed);
++    uint64_t xlo = xNextLong(&pxr);
++    uint64_t xhi = xNextLong(&pxr);
++
++    int n = 0;
++    n += init_climate_seed(&bn->climate[NP_SHIFT], bn->oct + n, xlo, xhi, large, NP_SHIFT, -1);
++    n += init_climate_seed(&bn->climate[NP_TEMPERATURE], bn->oct + n, xlo, xhi, large, NP_TEMPERATURE, -1);
++    n += init_climate_seed(&bn->climate[NP_HUMIDITY], bn->oct + n, xlo, xhi, large, NP_HUMIDITY, -1);
++    bn->nptype = -1;
++}
++
++void setBiomeSeedPhase2(BiomeNoise *bn, uint64_t seed, int large)
+ {
+     Xoroshiro pxr;
+     xSetSeed(&pxr, seed);
+     uint64_t xlo = xNextLong(&pxr);
+     uint64_t xhi = xNextLong(&pxr);
+ 
+-    int n = 0, i = 0;
+-    for (; i < NP_MAX; i++)
+-        n += init_climate_seed(&bn->climate[i], bn->oct+n, xlo, xhi, large, i, -1);
++    int n = 14;
++    n += init_climate_seed(&bn->climate[NP_CONTINENTALNESS], bn->oct + n, xlo, xhi, large, NP_CONTINENTALNESS, -1);
++    n += init_climate_seed(&bn->climate[NP_EROSION], bn->oct + n, xlo, xhi, large, NP_EROSION, -1);
++    n += init_climate_seed(&bn->climate[NP_WEIRDNESS], bn->oct + n, xlo, xhi, large, NP_WEIRDNESS, -1);
+ 
+     if ((size_t)n > sizeof(bn->oct) / sizeof(*bn->oct))
+     {
+@@ -909,6 +924,36 @@ void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
+     bn->nptype = -1;
+ }
+ 
++void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
++{
++    setBiomeSeedPhase1(bn, seed, large);
++    setBiomeSeedPhase2(bn, seed, large);
++}
++
++int isDarkForestPossible(const BiomeNoise *bn, int x, int z)
++{
++    double px = x, pz = z;
++    px += sampleDoublePerlin(&bn->climate[NP_SHIFT], x, 0, z) * 4.0;
++    pz += sampleDoublePerlin(&bn->climate[NP_SHIFT], z, x, 0) * 4.0;
++
++    float t = sampleDoublePerlin(&bn->climate[NP_TEMPERATURE], px, 0, pz);
++    float h = sampleDoublePerlin(&bn->climate[NP_HUMIDITY], px, 0, pz);
++
++    int64_t T = (int64_t)(10000.0F * t);
++    int64_t H = (int64_t)(10000.0F * h);
++
++    if (T < -1500 || T > 2000 || H < 3000)
++        return 0;
++    return 1;
++}
++
++int isMansionDarkForestPossible(const BiomeNoise *bn, uint64_t sha, int blockX, int blockZ)
++{
++    int x4, y4, z4;
++    voronoiAccess3D(sha, blockX, 63, blockZ, &x4, &y4, &z4);
++    return isDarkForestPossible(bn, x4, z4);
++}
++
+ void setBetaBiomeSeed(BiomeNoiseBeta *bnb, uint64_t seed)
+ {
+     uint64_t seedScratch;
+diff --git a/vendor/cubiomes-bedrock/biomenoise.h b/vendor/cubiomes-bedrock/biomenoise.h
+index ca98818..5a17db9 100644
+--- a/vendor/cubiomes-bedrock/biomenoise.h
++++ b/vendor/cubiomes-bedrock/biomenoise.h
+@@ -243,6 +243,13 @@ enum {
+ };
+ void initBiomeNoise(BiomeNoise *bn, int mc);
+ void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large);
++void setBiomeSeedPhase1(BiomeNoise *bn, uint64_t seed, int large);
++void setBiomeSeedPhase2(BiomeNoise *bn, uint64_t seed, int large);
++int isDarkForestPossible(const BiomeNoise *bn, int x, int z);
++int isMansionDarkForestPossible(const BiomeNoise *bn, uint64_t sha, int blockX, int blockZ);
++struct Generator;
++void applySeedPhase1(struct Generator *g, int dim, uint64_t seed);
++void applySeedPhase2(struct Generator *g, int dim, uint64_t seed);
+ void setBetaBiomeSeed(BiomeNoiseBeta *bnb, uint64_t seed);
+ int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
+     uint64_t *dat, uint32_t sample_flags);
+diff --git a/vendor/cubiomes-bedrock/generator.c b/vendor/cubiomes-bedrock/generator.c
+index 031183f..0aa9b8c 100644
+--- a/vendor/cubiomes-bedrock/generator.c
++++ b/vendor/cubiomes-bedrock/generator.c
+@@ -136,6 +136,33 @@ void applySeed(Generator *g, int dim, uint64_t seed)
+     }
+ }
+ 
++void applySeedPhase1(Generator *g, int dim, uint64_t seed)
++{
++    g->dim = dim;
++    g->seed = seed;
++    g->sha = 0;
++
++    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
++    {
++        setBiomeSeedPhase1(&g->bn, seed, g->flags & LARGE_BIOMES);
++    }
++    else
++    {
++        applySeed(g, dim, seed);
++        return;
++    }
++    if (g->mc >= MC_1_14)
++        g->sha = getVoronoiSHA(seed);
++}
++
++void applySeedPhase2(Generator *g, int dim, uint64_t seed)
++{
++    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
++    {
++        setBiomeSeedPhase2(&g->bn, seed, g->flags & LARGE_BIOMES);
++    }
++}
++
+ 
+ size_t getMinCacheSize(const Generator *g, int scale, int sx, int sy, int sz)
+ {
+@@ -237,14 +264,14 @@ int genBiomes(const Generator *g, int *cache, Range r)
+ 
+ int getBiomeAt(const Generator *g, int scale, int x, int y, int z)
+ {
++    int stack_ids[64];
+     Range r = {scale, x, z, 1, 1, y, 1};
+-    int *ids = allocCache(g, r);
+-    int id = genBiomes(g, ids, r);
+-    if (id == 0)
+-        id = ids[0];
+-    else
+-        id = none;
+-    free(ids);
++    size_t len = getMinCacheSize(g, r.scale, r.sx, r.sy, r.sz);
++    int *ids = (len > 0 && len <= 64) ? stack_ids : allocCache(g, r);
++    if (!ids) return none;
++    if (ids == stack_ids) memset(stack_ids, 0, len * sizeof(int));
++    int id = (genBiomes(g, ids, r) == 0) ? ids[0] : none;
++    if (ids != stack_ids) free(ids);
+     return id;
+ }
+ 
+diff --git a/web-ui/src/components/FilterSidebar.tsx b/web-ui/src/components/FilterSidebar.tsx
+index 3f65909..97a343a 100644
+--- a/web-ui/src/components/FilterSidebar.tsx
++++ b/web-ui/src/components/FilterSidebar.tsx
+@@ -684,11 +684,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
+                 B = {config.maxMisses}
+               </span>
+             </div>
+-            <div className="grid grid-cols-3 gap-1">
++            <div className="grid grid-cols-4 gap-1">
+               {[
+                 { val: 0, label: 'B = 0', desc: 'No deficit categories' },
+                 { val: 1, label: 'B = 1', desc: 'One category below ideal' },
+                 { val: 2, label: 'B = 2', desc: 'Two categories below ideal' },
++                { val: 3, label: 'B = 3', desc: 'Three categories below ideal' },
+               ].map((m) => (
+                 <button
+                   key={m.val}
+diff --git a/web-ui/src/components/SeedDetailModal.tsx b/web-ui/src/components/SeedDetailModal.tsx
+index 662c6c5..a931f71 100644
+--- a/web-ui/src/components/SeedDetailModal.tsx
++++ b/web-ui/src/components/SeedDetailModal.tsx
+@@ -298,6 +298,79 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
+                 </div>
+               </div>
+ 
++              {/* V2 Player Scoring Breakdown (when available) */}
++              {(candidate.scoreComponents || candidate.bonusTotal != null) && (
++                <div className="p-4 bg-slate-950/80 border border-indigo-900/40 rounded-xl space-y-3">
++                  <div className="flex items-center justify-between">
++                    <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-300 flex items-center gap-1.5">
++                      <span>💎</span>
++                      <span>Player Quality Score Breakdown (dynamic-v2)</span>
++                    </h4>
++                    <span className="text-xs font-mono font-bold text-emerald-400">
++                      Score: {candidate.score} / Bonus: {candidate.bonusTotal ?? candidate.scoreComponents?.bonus_total ?? 0}
++                      {(candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty ?? 0) > 0 && (
++                        <span className="text-rose-400 ml-1.5">
++                          (-{candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty} deficit penalty)
++                        </span>
++                      )}
++                    </span>
++                  </div>
++                  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-center text-xs font-mono">
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Core Surplus</span>
++                      <span className="text-white font-bold text-sm">+{candidate.scoreComponents?.core_surplus ?? 0}</span>
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Optional &amp; Treasure</span>
++                      <span className="text-white font-bold text-sm">+{candidate.scoreComponents?.optional_bonus ?? 0}</span>
++                      {candidate.treasureBastion ? (
++                        <span className="text-[9px] text-amber-400 block font-sans">incl. Treasure (+15)</span>
++                      ) : null}
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Luxury Biomes</span>
++                      <span className="text-white font-bold text-sm">+{candidate.scoreComponents?.luxury_biomes ?? 0}</span>
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Starter Hub</span>
++                      <span className="text-white font-bold text-sm">+{candidate.scoreComponents?.hub_bonus ?? 0}</span>
++                      {candidate.starterHubVillage ? (
++                        <span className="text-[9px] text-slate-400 block font-sans">Village ({candidate.starterHubVillage[0]}, {candidate.starterHubVillage[1]})</span>
++                      ) : null}
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Scenic River</span>
++                      <span className="text-white font-bold text-sm">
++                        {candidate.scenicBonus ? `+${candidate.scenicBonus}` : candidate.scoreComponents?.scenic_bonus ? `+${candidate.scoreComponents.scenic_bonus}` : '0'}
++                      </span>
++                      {candidate.scenicWitness ? (
++                        <span className="text-[9px] text-cyan-400 block font-sans">Pair ({candidate.scenicWitness[0]}, {candidate.scenicWitness[1]})</span>
++                      ) : null}
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Village Spread</span>
++                      <span className="text-white font-bold text-sm">
++                        {candidate.villageSpreadBonus ? `+${candidate.villageSpreadBonus}` : candidate.scoreComponents?.village_spread_bonus ? `+${candidate.scoreComponents.village_spread_bonus}` : '0'}
++                      </span>
++                      {candidate.villageTriple ? (
++                        <span className="text-[9px] text-emerald-400 block font-sans">Tri-Quadrant (3)</span>
++                      ) : null}
++                    </div>
++                    <div className="p-2 bg-slate-900/90 rounded-lg border border-slate-800">
++                      <span className="text-rose-400 text-[10px] block font-semibold uppercase">Deficits</span>
++                      <span className="text-rose-400 font-bold text-sm">
++                        {(candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty ?? 0) > 0
++                          ? `-${candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty}`
++                          : '0'}
++                      </span>
++                      <span className="text-[9px] text-slate-500 block font-sans">
++                        {candidate.unmetRequirements ? `${candidate.unmetRequirements} missing` : '0 missing'}
++                      </span>
++                    </div>
++                  </div>
++                </div>
++              )}
++
+               {/* Quick Summary Counts Cards */}
+               <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-3">
+                 <div className="flex items-center justify-between">
+diff --git a/web-ui/src/mockData.ts b/web-ui/src/mockData.ts
+index bcdbd6d..db1ba4e 100644
+--- a/web-ui/src/mockData.ts
++++ b/web-ui/src/mockData.ts
+@@ -32,7 +32,7 @@ export const INITIAL_CONFIG: SearchConfig = {
+   playableRadiusNether: 832,
+   sweepSeedCount: 10000000,
+   startIndex: '0',
+-  maxMisses: 2,
++  maxMisses: 3,
+   openmpThreads: 34,
+   batchSize: 16384,
+ };
+diff --git a/web-ui/src/utils/ranking.ts b/web-ui/src/utils/ranking.ts
+index 6b4f9c9..fdfa6a3 100644
+--- a/web-ui/src/utils/ranking.ts
++++ b/web-ui/src/utils/ranking.ts
+@@ -1,10 +1,12 @@
+ import type { SeedCandidate } from '../types';
+ 
++const cmpId = (x: string, y: string) => (x < y ? -1 : x > y ? 1 : 0);
++
+ /** Match the saved-run leaderboard; user-selected alternate sorts remain separate. */
+ export function compareCandidateRank(a: SeedCandidate, b: SeedCandidate): number {
+   if (a.screeningRevision === 'dynamic-envelope-1664-v2' && b.screeningRevision === a.screeningRevision) {
+     const primary = (a.rankingTier ?? 99) - (b.rankingTier ?? 99)
+-      || (b.score ?? -1) - (a.score ?? -1)
++      || (b.score ?? -Infinity) - (a.score ?? -Infinity)
+       || (a.unmetRequirements ?? 0) - (b.unmetRequirements ?? 0)
+       || (a.radialKey ?? (a.weightedRadialDistance != null ? Math.round(a.weightedRadialDistance * 1e6) : Infinity))
+        - (b.radialKey ?? (b.weightedRadialDistance != null ? Math.round(b.weightedRadialDistance * 1e6) : Infinity))
+@@ -12,17 +14,17 @@ export function compareCandidateRank(a: SeedCandidate, b: SeedCandidate): number
+        - (b.originDistanceSquared ?? (b.originDistance != null ? Math.round(b.originDistance ** 2) : Infinity))
+       || (a.evaluationCenter?.[0] ?? 0) - (b.evaluationCenter?.[0] ?? 0)
+       || (a.evaluationCenter?.[1] ?? 0) - (b.evaluationCenter?.[1] ?? 0)
+-      || a.id.localeCompare(b.id);
++      || cmpId(a.id, b.id);
+     return primary;
+   }
+   const primary = (a.rankingTier ?? 99) - (b.rankingTier ?? 99)
+     || (a.unmetRequirements ?? 0) - (b.unmetRequirements ?? 0)
+-    || (b.score ?? -1) - (a.score ?? -1);
++    || (b.score ?? -Infinity) - (a.score ?? -Infinity);
+   if (primary) return primary;
+   if (a.screeningRevision === 'dynamic-envelope-1664-v1' && b.screeningRevision === a.screeningRevision) {
+     const distance = (a.weightedRadialDistance ?? Infinity) - (b.weightedRadialDistance ?? Infinity)
+       || (a.originDistance ?? Infinity) - (b.originDistance ?? Infinity);
+     if (distance) return distance;
+   }
+-  return a.id.localeCompare(b.id);
++  return cmpId(a.id, b.id);
+ }

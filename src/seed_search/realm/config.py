@@ -201,6 +201,7 @@ TWO_GROUP_REVISION='origin-fixed-2048-two-group-v2'
 TWO_GROUP_MARINE_REVISION='origin-fixed-2048-two-group-marine-v3'
 DYNAMIC_REVISION='dynamic-envelope-1664-v1'
 DYNAMIC_V2_REVISION='dynamic-envelope-1664-v2'
+DYNAMIC_V3_REVISION='dynamic-envelope-2048-v3'
 ORIGIN_ORDER=['ruined_portal','trial_chamber','outpost','desert_pyramid','jungle_temple',
               'mansion','ancient_city','village','mineshaft']
 TWO_GROUP_ORDER=['outpost','desert_pyramid','jungle_temple','ruined_portal',
@@ -232,7 +233,7 @@ def locked_blueprint_config():
 
 
 def locked_policy(cfg):
-    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
+    return cfg.get('screening_revision') in (LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION,DYNAMIC_V3_REVISION)
 
 
 def river_policy(cfg):
@@ -240,7 +241,7 @@ def river_policy(cfg):
 
 
 def outpost_policy(cfg):
-    return cfg.get('screening_revision') in (OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
+    return cfg.get('screening_revision') in (OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION,DYNAMIC_V3_REVISION)
 
 
 def origin_policy(cfg):
@@ -248,6 +249,7 @@ def origin_policy(cfg):
 
 
 def baseline_requirements(cfg):
+    if dynamic_v2_policy(cfg):return 19+len(cfg['biomes']['required_families'])
     return 32 if dynamic_policy(cfg) else 26 if marine_baseline_policy(cfg) else 24 if outpost_policy(cfg) else 23 if locked_policy(cfg) else 25
 
 
@@ -319,7 +321,7 @@ def marine_baseline_policy(cfg):
 
 
 def dynamic_policy(cfg):
-    return cfg.get('screening_revision') in (DYNAMIC_REVISION, DYNAMIC_V2_REVISION)
+    return cfg.get('screening_revision') in (DYNAMIC_REVISION, DYNAMIC_V2_REVISION, DYNAMIC_V3_REVISION)
 
 
 def dynamic_v1_policy(cfg):
@@ -327,11 +329,15 @@ def dynamic_v1_policy(cfg):
 
 
 def dynamic_v2_policy(cfg):
-    return cfg.get('screening_revision') == DYNAMIC_V2_REVISION
+    return cfg.get('screening_revision') in (DYNAMIC_V2_REVISION, DYNAMIC_V3_REVISION)
+
+
+def dynamic_v3_policy(cfg):
+    return cfg.get('screening_revision') == DYNAMIC_V3_REVISION
 
 
 def dynamic_blueprint_config():
-    """Active sliding-center policy, with the historical revisions preserved."""
+    """Historical sliding-center policy (v1, 1664x1664)."""
     cfg=marine_baseline_blueprint_config()
     cfg['screening_revision']=DYNAMIC_REVISION
     cfg['deployment']={'overworld_side_blocks':1664,'nether_side_blocks':832}
@@ -359,7 +365,7 @@ def dynamic_blueprint_config():
 
 
 def dynamic_v2_blueprint_config():
-    """Active player-envelope policy (v2), with the historical v1 preserved."""
+    """Historical player-envelope policy (v2, 1664x1664)."""
     cfg=dynamic_blueprint_config()
     cfg['screening_revision']=DYNAMIC_V2_REVISION
     cfg['search']['max_misses']=3
@@ -373,13 +379,42 @@ def dynamic_v2_blueprint_config():
     return cfg
 
 
+def dynamic_v3_blueprint_config():
+    """Active player-envelope policy (v3, 2048x2048 overworld, 1024x1024 nether)."""
+    cfg=dynamic_v2_blueprint_config()
+    cfg['screening_revision']=DYNAMIC_V3_REVISION
+    cfg['deployment']={'overworld_side_blocks':2048,'nether_side_blocks':1024}
+    cfg['discovery']={'overworld_bounds':[-2000,-2000,2000,2000],
+                      'nether_bounds':[-634,-634,634,634]}
+    cfg['structures']['minimum_counts'].update(
+        village=6,trial_chamber=8,ancient_city=2,desert_pyramid=1,
+        jungle_temple=1,monument=1,ruined_portal=8,shipwreck=4,
+        mineshaft=10,outpost=1,mansion=1
+    )
+    cfg['structures']['nether_minimum_counts']={'fortress':1,'bastion':2}
+    cfg['structures']['hard_floors']={
+        'stronghold':1,'mansion':1,'village':6,'trial_chamber':8,
+        'ancient_city':2,'desert_pyramid':1,'jungle_temple':1,
+        'monument':1,'ruined_portal':8,'shipwreck':4,'mineshaft':10,
+        'outpost':1,'fortress':1,'bastion':2
+    }
+    cfg['search']['centroid_weights']={
+        'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,
+        'outpost':1,'desert_pyramid':2,'jungle_temple':2,'mansion':2,
+        'monument':1,'stronghold':1,'shipwreck':0
+    }
+    cfg['search']['max_misses']=0
+    return cfg
+
+
 def two_group_policy(cfg):
-    return cfg.get('screening_revision') in (TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION)
+    return cfg.get('screening_revision') in (TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION,DYNAMIC_V3_REVISION)
 
 
 def validate_blueprint_config(cfg):
     """Validate common pins through legacy validation, then the explicit contract."""
-    expected=(dynamic_v2_blueprint_config() if dynamic_v2_policy(cfg) else
+    expected=(dynamic_v3_blueprint_config() if dynamic_v3_policy(cfg) else
+              dynamic_v2_blueprint_config() if dynamic_v2_policy(cfg) else
               dynamic_blueprint_config() if dynamic_policy(cfg) else
               marine_baseline_blueprint_config() if marine_baseline_policy(cfg) else
               two_group_blueprint_config() if two_group_policy(cfg) else
@@ -388,7 +423,7 @@ def validate_blueprint_config(cfg):
               river_blueprint_config() if river_policy(cfg) else
               locked_blueprint_config() if locked_policy(cfg) else
               blueprint_config())
-    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION):raise ValueError('Unknown blueprint screening revision')
+    if cfg.get('screening_revision') not in (None,LOCKED_REVISION,RIVER_REVISION,OUTPOST_REVISION,ORIGIN_REVISION,TWO_GROUP_REVISION,TWO_GROUP_MARINE_REVISION,DYNAMIC_REVISION,DYNAMIC_V2_REVISION,DYNAMIC_V3_REVISION):raise ValueError('Unknown blueprint screening revision')
     if cfg['deployment']!=expected['deployment']:raise ValueError('Blueprint geometry differs from its revision')
     if cfg['discovery']!=expected['discovery']:raise ValueError('Blueprint discovery bounds differ from its revision')
     legacy=copy.deepcopy(cfg)
@@ -409,7 +444,7 @@ def validate_blueprint_config(cfg):
         if stronghold_after(cfg)!=expected_after:
             raise ValueError('Stronghold placement differs from the resolved filter order')
     if dynamic_policy(cfg):
-        max_misses_limit=3 if dynamic_v2_policy(cfg) else 2
+        max_misses_limit=0 if dynamic_v3_policy(cfg) else (3 if dynamic_v2_policy(cfg) else 2)
         _integer(cfg['search'].get('max_misses'),0,max_misses_limit,'max_misses')
         weights=cfg['search'].get('density_weights')
         if not isinstance(weights,dict) or set(weights)!=set(expected['search']['density_weights']):
@@ -441,6 +476,13 @@ def validate_blueprint_config(cfg):
     if len(order)!=len(expected['search']['structure_order']) or set(order)!=set(expected['search']['structure_order']):
         raise ValueError('Blueprint must check every required non-anchor structure')
     for key in ('spacing','sample_y','sample_y_levels','lattice','required_families','family_bonuses','variant_bonuses'):
+        if key=='required_families' and dynamic_v2_policy(cfg):
+            selected=cfg['biomes'].get(key)
+            allowed=expected['biomes'][key]
+            if (not isinstance(selected,list) or not all(isinstance(f,str) for f in selected) or
+                len(set(selected))!=len(selected) or not set(selected)<=set(allowed)):
+                raise ValueError('Required biome families must be a unique subset of the supported v2 families')
+            continue
         if cfg['biomes'].get(key)!=expected['biomes'][key]:
             raise ValueError(f'Blueprint biome policy differs: {key}')
     if dynamic_v2_policy(cfg):

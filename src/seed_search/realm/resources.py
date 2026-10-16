@@ -25,6 +25,35 @@ def disk_policy(search, retention='full'):
     return values
 
 
+def check_projected_capacity(policy, *, used, free, remaining_seeds, estimate):
+    """Full evidence reserves the entire shard; compact mode checks actual storage.
+
+    Compact output depends on survivors, not total input count. Its whole-run
+    extrapolation is telemetry only; disk_status checks each prepared write.
+    """
+    if policy.get('retention') == 'survivors':
+        if used >= policy['run_disk_limit_bytes'] or free <= policy['free_disk_reserve_bytes']:
+            raise WorkspaceCapacityError('Workspace disk cap or free-space reserve reached; checkpoint retained')
+        return
+    projected = used + remaining_seeds * estimate
+    available = max(0, min(policy['run_disk_limit_bytes'] - used,
+                           free - policy['free_disk_reserve_bytes']))
+    if projected > policy['run_disk_limit_bytes'] or remaining_seeds * estimate > max(0, free - policy['free_disk_reserve_bytes']):
+        maximum = int(available // estimate)
+        gib = 1 << 30
+        reason = ('per-run budget' if projected > policy['run_disk_limit_bytes']
+                  else 'available disk space after the reserve')
+        raise WorkspaceCapacityError(
+            f'Projected finite shard exceeds disk budget ({reason}): {remaining_seeds:,} remaining seeds '
+            f'at {estimate:,} bytes/seed project {projected / gib:.2f} GiB total. '
+            f'Run budget: {policy["run_disk_limit_bytes"] / gib:.2f} GiB; '
+            f'free disk: {free / gib:.2f} GiB; '
+            f'required reserve: {policy["free_disk_reserve_bytes"] / gib:.2f} GiB. '
+            f'Current estimated capacity: {maximum:,} additional seeds. '
+            'Use a smaller shard with room for database overhead; '
+            'continue at the next starting index for subsequent shards.')
+
+
 def workspace_usage(root):
     """No symlink traversal or deletion. Hard links are counted once per inode."""
     total = 0
@@ -83,12 +112,13 @@ def disk_status(root,policy,*,additional_bytes=0,remaining_seeds=0,completed_see
     required_free=policy['free_disk_reserve_bytes']+additional_bytes
     result={**policy,'run_bytes':used,'free_bytes':free,'additional_bytes':additional_bytes,
             'projected_run_bytes':projected,'bytes_per_seed_estimate':estimate,
+            'projection_enforced':policy.get('retention') != 'survivors',
             'scope':'run-owned files including database/WAL/exports/evidence; external Docker storage excluded',
             'sampled_at':time.time()}
     if used+additional_bytes>policy['run_disk_limit_bytes'] or free<required_free:
         raise WorkspaceCapacityError('Workspace disk cap or free-space reserve reached; checkpoint retained')
-    if projected>policy['run_disk_limit_bytes'] or free<policy['free_disk_reserve_bytes']+max(0,projected-used):
-        raise WorkspaceCapacityError('Projected finite shard exceeds disk budget; use a smaller shard')
+    check_projected_capacity(policy, used=used, free=free,
+                             remaining_seeds=remaining_seeds, estimate=estimate)
     return result
 
 

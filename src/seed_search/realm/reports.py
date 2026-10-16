@@ -54,7 +54,7 @@ def _export_files(store, root, output):
         rows=store.iter_candidates(include_score=True) if variant=='baseline' else store.iter_variants(variant=variant)
         # JSONL preserves all nested evidence; CSV contains independently useful summaries.
         fields=['candidate_id','seed','stronghold','evaluation_center','predicted_strongholds','screening_revision',
-                'deficit_categories','fatal_reasons','marine_status','spawn_status','actual_generation_status',
+                'deficit_categories','fatal_reasons','marine_status','spawn_status','suggested_spawn','player_inspections','actual_generation_status',
                 'variant','center','qualification','data_status',
                 'smart_score',
                 'retention_classification','unmet_requirements','pending_reasons','score','score_status','inventory_status','predicted_score','actual_partial_score','verified_score','geometry_score','border_fit','final_nether_status',
@@ -83,6 +83,8 @@ def _export_files(store, root, output):
                                  'fatal_reasons':json.dumps(candidate.get('fatal_reasons',[])),
                                  'marine_status':(candidate.get('marine_stage') or {}).get('status','DEFERRED'),
                                  'spawn_status':(candidate.get('spawn_stage') or {}).get('status','PENDING'),
+                                 'suggested_spawn':json.dumps(candidate.get('suggested_spawn')),
+                                 'player_inspections':json.dumps(candidate.get('player_inspections')),
                                  'actual_generation_status':(candidate.get('actual_generation_verification') or {}).get('status','PENDING'),
                                  'variant':variant,'center':json.dumps(record.get('center')),
                                  'qualification':record.get('qualification'),'data_status':record.get('evidence',record.get('data_status')),
@@ -139,6 +141,11 @@ def _export_files(store, root, output):
         for row in _ranked(store,variant,10):
             r=row.get('ranking_result',row.get('result',row))
             lines.append(f"- {row.get('candidate_id',row.get('id'))}: {r.get('qualification')}; score {row.get('smart_score',r.get('score',r.get('baseline_score')))}; border {r.get('border_fit','not evaluated')}")
+            if variant=='baseline' and row.get('suggested_spawn'):
+                suggestion=row['suggested_spawn']
+                lines.append(f"  Community spawn suggestion: {suggestion.get('coordinates')}; {suggestion['status']}; biome sample Y is not verified ground height or safety.")
+            if variant=='baseline' and row.get('player_inspections'):
+                lines.append('  Optional inspections: '+', '.join(f"{name}: {evidence['status']}" for name,evidence in row['player_inspections'].items()))
             if variant=='baseline' and row.get('surface_biome_verification'):
                 surface=row['surface_biome_verification']
                 lines.append(f"  Actual surface wooded requirement: {surface['wooded_requirement']}; families {', '.join(surface['classification']['wooded_families'])}; point samples cannot establish absence.")
@@ -317,10 +324,15 @@ def _candidate_rescore(candidate,policy,revision_id):
     if candidate.get('contract')=='master_seed_blueprint_v1':
         from .config import dynamic_policy
         if dynamic_policy(candidate):
-            from .config import dynamic_v2_policy
-            if dynamic_v2_policy(candidate):
-                from .blueprint import dynamic_v2_score,score_uncertainty
-                from .dynamic import hub_bonus_v2,weighted_radial_v2
+            from .config import dynamic_v2_policy, dynamic_v3_policy
+            cfg = policy if (policy and dynamic_policy(policy)) else candidate
+            if dynamic_v3_policy(cfg) or dynamic_v2_policy(cfg):
+                is_v3 = dynamic_v3_policy(cfg)
+                from .blueprint import dynamic_v2_score, dynamic_v3_score, score_uncertainty
+                from .dynamic import (hub_bonus_v2, hub_bonus_v3, hub_village_v2,
+                                      weighted_radial_v2, weighted_radial_v3,
+                                      village_spread_bonus_v2, retained_scenic_pair_v2,
+                                      treasure_bastion_bonus_v2, nether_core_bonus_v3)
                 import math
                 center=candidate['evaluation_center']
                 required=candidate['required_structures']
@@ -328,21 +340,55 @@ def _candidate_rescore(candidate,policy,revision_id):
                 observations={**required,**candidate['required_nether_structures'],**candidate['optional_structures']}
                 counts={name:len(ob['predicted_viable']) for name,ob in observations.items()}
                 names=[s['biome'] for s in candidate['biomes']['sampling']['samples'] if s['coordinate'][1]==63]
-                hub=hub_bonus_v2(structures,center)
-                scenic=candidate.get('scenic_bonus',0)
-                spread=candidate.get('village_spread_bonus',0)
-                tb=candidate.get('treasure_bastion',0)
+                ow_half = 1024 if is_v3 else None
+                nether_half = 512 if is_v3 else None
+                hub=hub_bonus_v3(structures,center) if is_v3 else hub_bonus_v2(structures,center)
+                scenic,scenic_witness,river_witness=retained_scenic_pair_v2(
+                    candidate['biomes']['sampling']['samples'],center,overworld_half=ow_half)
+                spread,triple=village_spread_bonus_v2(structures['village'],center,overworld_half=ow_half)
+                variants=candidate.get('bastion_variants')
+                if not isinstance(variants,list):
+                    raise ValueError('Missing retained Bastion variants; re-evaluate this seed before rescoring')
+                by_coordinate={(x,z):variant for x,z,variant in variants}
+                bastions=candidate['required_nether_structures']['bastion']['predicted_viable']
+                if any(tuple(p) not in by_coordinate for p in bastions):
+                    raise ValueError('Incomplete retained Bastion variants; re-evaluate this seed before rescoring')
+                tb,_=treasure_bastion_bonus_v2(bastions,center,lambda x,z:by_coordinate[(x,z)],nether_half=nether_half)
+                targets=candidate.get('configured_targets') or (policy.get('structures',{}).get('minimum_counts') if policy else None)
                 opt_counts={name:len(ob['predicted_viable']) for name,ob in candidate['optional_structures'].items()}
-                score,components,deficits=dynamic_v2_score(counts,names,hub,scenic,spread,tb,opt_counts)
-                radial=weighted_radial_v2(structures,center)
+                if is_v3:
+                    nether_points = {name: ob['predicted_viable'] for name, ob in candidate['required_nether_structures'].items()}
+                    nether_core = nether_core_bonus_v3(nether_points, center)
+                    score,components,deficits=dynamic_v3_score(
+                        counts,
+                        biome_names=names,
+                        hub=hub,
+                        scenic=scenic,
+                        village_spread=spread,
+                        treasure_bastion=tb,
+                        optional_counts=opt_counts,
+                        nether_core=nether_core,
+                    )
+                else:
+                    score,components,deficits=dynamic_v2_score(counts,names,hub,scenic,spread,tb,opt_counts,targets=targets)
+                radial=weighted_radial_v3(structures,center,overworld_half=ow_half) if is_v3 else weighted_radial_v2(structures,center)
                 radial_key=int(math.floor(radial*1e6+0.5))
                 orig_dist_sq=center[0]**2+center[1]**2
                 origin=math.hypot(*center)
-                candidate.update(baseline_score_observed=score,baseline_score=score,
+                update_fields=dict(baseline_score_observed=score,baseline_score=score,
                     baseline_score_uncertainty=score_uncertainty(score,[],True),score_revision=revision_id,
                     weighted_radial_dist=radial,origin_distance=origin,radial_key=radial_key,
                     origin_distance_squared=orig_dist_sq,deficit_penalty=components['deficit_penalty'],
-                    bonus_total=components['bonus_total'])
+                    bonus_total=components['bonus_total'],
+                    hub_bonus=components.get('hub_bonus', 0),
+                    scenic_bonus=scenic,scenic_witness=list(scenic_witness) if scenic_witness else None,
+                    river_witness=list(river_witness) if river_witness else None,
+                    village_spread_bonus=spread,village_triple=[list(p) for p in triple] if triple else None,
+                    treasure_bastion=int(bool(tb)),
+                    starter_hub_village=hub_village_v2(structures,center),deficit_categories=deficits)
+                if is_v3:
+                    update_fields['nether_core_bonus']=components.get('nether_core_bonus', 0)
+                candidate.update(update_fields)
                 candidate['ranking']={**candidate.get('ranking',{}),'score':score,'final_score':score,
                     'deficit_tier':len(candidate['deficit_categories']),'weighted_radial_dist':radial,
                     'radial_key':radial_key,'origin_distance_squared':orig_dist_sq,'origin_distance':origin,

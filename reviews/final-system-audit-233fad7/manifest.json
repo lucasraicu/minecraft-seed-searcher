@@ -1,0 +1,29 @@
+{
+  "commit": "233fad76fddc5667e77c27ab7e5cc83d3669a7a2",
+  "scope": "Audit artifacts only. Concurrent generator edit and extension replacement are outside measured build; see report.",
+  "files": {
+    "REPORT.md": "41cfe5c0c51d2e9815504f0db6691e785b5a87df7178a9e876b4b5ec63b2e957",
+    "build_diagnostic.py": "37c1c875a0e83eabe57fa330996afdbe22b188fdba05af6e6f003f348ea24488",
+    "concurrent-generator-change.patch": "9c7431a394004270e190ef106ac8115e95a9fb996891ecc124cf1f221de792ef",
+    "diagnostic-build.json": "4eb6988a41d14df5f81df85279961c954a9d82dea644b3ce39ea1342418f9c6d",
+    "diagnostic-build.log": "0c103098e780e35fee1e0bd8bb2d0e8e074a469e13dbba0b0c1dbe2fbd9551f8",
+    "measure.log": "727d973f129bf215d66a6085dd022f9cfe0051312a81456b1a1286375ccf7910",
+    "measure.py": "b825bc1d83f89daad09a0bf735496fd08f113822f36d7415930cda3525cc6180",
+    "measurements.json": "f83bea0d07764e701352f4c97e986be5a565f9366d035ed5c8cca9389b7b2265",
+    "native-build.log": "8abef4c59861e91b2ad67d64e6415c967748a8e327539eb30bb12c6b27fd1dee",
+    "native-probe.json": "1e389ff0b2e547dbd2a73220294af4634cbaa323caa01e5217f78a4f02efba4c",
+    "native_probe.c": "f3c0cfbea30a9721265dfa0370e32fa56e3f86f0a842fa72523ed297d782a85f",
+    "positive-fixture.json": "8f33ab796c8f204734b5d66b31e8e9b6155a1fd76af2fa9d4f79061d3d30e680",
+    "probe-results.json": "027fa641770d0d8b5f4d8bc0162637f228104b7707e99b414f5982480864d80f",
+    "probe.log": "3ad0d3cf8661ac9121262fa95f48d861c4fcb1dc689e43aef178657b7f5a66a6",
+    "probe.py": "172549ec1aa3009e654f231a87e4c05a3408eccb8e3707d01132b4eb98d293e0",
+    "profile-results.json": "cd1ba4386d701161884ffd3823ea908738cf04c966113bc9f3c2f1a783fd697a",
+    "profile.log": "0c31a5cb61ad00e3045bcd659d29c0fbc03674e046360f9049f9b284207fb06e",
+    "profile.py": "78b9d0648539c7415c7672efeeda82c4a39c159ba73e00c009f4c92d5428c8c5",
+    "pytest.log": "74c172f025e606417f3d03f308ee3b6b58aabb2e893261209499739ab5c474a2",
+    "ranking-probe.json": "b0d75b3c8534fcf7fd48facfebcf07a01c132ab53e19baa5077ad5e79554e1e1",
+    "ranking_probe.cjs": "033124bf050421fdd745f3db2cc5f0392da91b55e498546ef6aeed598f195241",
+    "web-build.log": "c9e517c82da0312f188a3c522af849316045f131dacce37d813eb5cdaf386fc2",
+    "web-lint.log": "b7b0033bd3297356e0497dfda3cf2c2e00aee0f4337fd3abf8eff4b2b9181844"
+  }
+}

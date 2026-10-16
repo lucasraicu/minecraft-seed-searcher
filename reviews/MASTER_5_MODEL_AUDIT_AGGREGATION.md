@@ -2,7 +2,7 @@
 
 | Item | Contract |
 |---|---|
-| Status | Completed and verified (Workstream A & Workstream B); production PGO+LTO native kernel and compact durable pipeline measured and verified. |
+| Status | Workstreams A/B implemented. Current acceptance and remaining-finding remediation are tracked in the [2026-10-15 implementation/verification ledger](remaining-fixes-2026-10-15/IMPLEMENTATION.md), with the subsequent [UI-to-machine parity verification](ui-machine-parity-2026-10-15/IMPLEMENTATION.md). Benchmark claims retain their recorded build/cohort scope. |
 | Project | `minecraft-seed-searcher` |
 | Historical audit baseline | Commit `54b7d631b8bdb481894980a31be16aaa02901b18`, policy `dynamic-envelope-1664-v1` |
 | New policy | `dynamic-envelope-1664-v2` |

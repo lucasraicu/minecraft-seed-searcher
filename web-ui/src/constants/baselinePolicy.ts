@@ -7,6 +7,10 @@ export interface SearchProfile {
   counts: Record<string, number>;
   floors: Record<string, number>;
   flexible: string[];
+  editableCounts: string[];
+  requiredBiomes: string[];
+  netherBiomes: string[];
+  defaultMisses: number;
   overworldSide: number;
   netherSide: number;
   maxMisses: number;

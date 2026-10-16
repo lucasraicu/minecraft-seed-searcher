@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-from seed_search.realm.leaderboard import install, ORDER
+from seed_search.realm.leaderboard import install, order_for
 from seed_search.realm.store import LIMIT, canonical, semantic_identity
 
 CONTRACT = 'aggregate-leaderboard-v1'
@@ -160,7 +160,7 @@ def merge_runs(sources, destination, *, strict=True):
             coverage = compute_interval_coverage(all_intervals)
             dest.execute("INSERT OR REPLACE INTO meta VALUES ('completed_seeds',?)", (str(coverage),))
         install(dest)
-        top = dest.execute(f'SELECT seed,smart_score,ranking_tier,unmet_requirements FROM candidate_leaderboard_view ORDER BY {ORDER} LIMIT 5').fetchall()
+        top = dest.execute(f'SELECT seed,smart_score,ranking_tier,unmet_requirements FROM candidate_leaderboard_view ORDER BY {order_for(dest)} LIMIT 5').fetchall()
         return {'destination': str(target), 'contract': CONTRACT, 'resumable': False,
                 'merged_sources': len({r[2] for r in snapshots}), 'total_seeds_scanned': coverage,
                 'total_candidates': dest.execute('SELECT count(*) FROM candidates').fetchone()[0],

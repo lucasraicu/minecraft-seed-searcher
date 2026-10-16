@@ -890,16 +890,31 @@ static int init_climate_seed(
     return n;
 }
 
-void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
+void setBiomeSeedPhase1(BiomeNoise *bn, uint64_t seed, int large)
 {
     Xoroshiro pxr;
     xSetSeed(&pxr, seed);
     uint64_t xlo = xNextLong(&pxr);
     uint64_t xhi = xNextLong(&pxr);
 
-    int n = 0, i = 0;
-    for (; i < NP_MAX; i++)
-        n += init_climate_seed(&bn->climate[i], bn->oct+n, xlo, xhi, large, i, -1);
+    int n = 0;
+    n += init_climate_seed(&bn->climate[NP_SHIFT], bn->oct + n, xlo, xhi, large, NP_SHIFT, -1);
+    n += init_climate_seed(&bn->climate[NP_TEMPERATURE], bn->oct + n, xlo, xhi, large, NP_TEMPERATURE, -1);
+    n += init_climate_seed(&bn->climate[NP_HUMIDITY], bn->oct + n, xlo, xhi, large, NP_HUMIDITY, -1);
+    bn->nptype = -1;
+}
+
+void setBiomeSeedPhase2(BiomeNoise *bn, uint64_t seed, int large)
+{
+    Xoroshiro pxr;
+    xSetSeed(&pxr, seed);
+    uint64_t xlo = xNextLong(&pxr);
+    uint64_t xhi = xNextLong(&pxr);
+
+    int n = 14;
+    n += init_climate_seed(&bn->climate[NP_CONTINENTALNESS], bn->oct + n, xlo, xhi, large, NP_CONTINENTALNESS, -1);
+    n += init_climate_seed(&bn->climate[NP_EROSION], bn->oct + n, xlo, xhi, large, NP_EROSION, -1);
+    n += init_climate_seed(&bn->climate[NP_WEIRDNESS], bn->oct + n, xlo, xhi, large, NP_WEIRDNESS, -1);
 
     if ((size_t)n > sizeof(bn->oct) / sizeof(*bn->oct))
     {
@@ -907,6 +922,36 @@ void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
         exit(1);
     }
     bn->nptype = -1;
+}
+
+void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large)
+{
+    setBiomeSeedPhase1(bn, seed, large);
+    setBiomeSeedPhase2(bn, seed, large);
+}
+
+int isDarkForestPossible(const BiomeNoise *bn, int x, int z)
+{
+    double px = x, pz = z;
+    px += sampleDoublePerlin(&bn->climate[NP_SHIFT], x, 0, z) * 4.0;
+    pz += sampleDoublePerlin(&bn->climate[NP_SHIFT], z, x, 0) * 4.0;
+
+    float t = (float)sampleDoublePerlin(&bn->climate[NP_TEMPERATURE], px, 0, pz);
+    float h = (float)sampleDoublePerlin(&bn->climate[NP_HUMIDITY], px, 0, pz);
+
+    int64_t T = (int64_t)(10000.0F * t);
+    int64_t H = (int64_t)(10000.0F * h);
+
+    if (T < -1500 || T > 2000 || H < 3000)
+        return 0;
+    return 1;
+}
+
+int isMansionDarkForestPossible(const BiomeNoise *bn, uint64_t sha, int blockX, int blockZ)
+{
+    int x4, y4, z4;
+    voronoiAccess3D(sha, blockX, 63, blockZ, &x4, &y4, &z4);
+    return isDarkForestPossible(bn, x4, z4);
 }
 
 void setBetaBiomeSeed(BiomeNoiseBeta *bnb, uint64_t seed)

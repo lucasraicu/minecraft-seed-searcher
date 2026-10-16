@@ -82,6 +82,8 @@ export interface SeedCandidate {
   villageSpreadBonus?: number | null;
   villageTriple?: [number, number][] | null;
   treasureBastion?: number | null;
+  treasureBastionBonus?: number | null;
+  netherCoreBonus?: number | null;
   starterHubVillage?: [number, number] | null;
   deficitPenalty?: number | null;
   bonusTotal?: number | null;
@@ -91,6 +93,8 @@ export interface SeedCandidate {
   playableBounds?: { overworld?: [number, number, number, number]; final_nether?: [number, number, number, number]; final_nether_exact?: [number, number][] } | null;
   predictedStrongholds?: [number, number][];
   spawnPoint?: [number, number] | null;
+  suggestedSpawn?: { status: string; coordinates: number[] | null; biome?: string; distance?: number; reason?: string } | null;
+  playerInspections?: Record<string, { status: string; reason?: string; source?: { kind?: string; provider?: string; version?: string } | null }>;
   spawnDistance?: number | null;
   spawnWithin100?: boolean | null;
   spawnDistanceToOrigin?: number | null;
@@ -171,4 +175,13 @@ export interface SearchConfig {
   maxMisses: number; // 0 = exact match, 1 = allow 1 miss, 2 = allow 2 misses
   openmpThreads: number;
   batchSize: number;
+}
+
+export interface LaunchReceipt {
+  kind: 'preview' | 'scan' | 'resume';
+  command: string[];
+  shellCommand: string;
+  cwd: string;
+  policyYaml: string;
+  controls: { count: number; start_index: string; threads: number; batch_size: number | null; max_misses: number; profile?: string };
 }

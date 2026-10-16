@@ -349,9 +349,15 @@ static int nb_budget_ok(const NBWorker *w,const NBAnchor *a) {
         return !a->fatal_missing && nb_bits((unsigned int)a->count_missing&w->p->flexible_mask)<=w->p->max_misses;
     return w->p->retention ? nb_bits((unsigned int)a->count_missing)<=w->p->max_misses : !a->count_missing;
 }
+static unsigned int nb_required_biomes(const NBWorker *w) {
+    return w->p->dynamic_v2?w->p->required_biome_mask:8191u;
+}
+static int nb_biomes_ok(const NBWorker *w,unsigned int mask) {
+    unsigned int required=nb_required_biomes(w);return (mask&required)==required;
+}
 static int nb_keep(const NBWorker *w,const NBAnchor *a) {
     if(w->p->two_group)
-        return a->stronghold_count>=1 && nb_budget_ok(w,a) && a->biome_evaluated && a->biome_mask==8191;
+        return a->stronghold_count>=1 && nb_budget_ok(w,a) && a->biome_evaluated && nb_biomes_ok(w,a->biome_mask);
     return (!w->p->origin||a->stronghold_count>=1) && a->biome_evaluated && nb_bits((unsigned int)a->count_missing)+13-nb_bits(a->biome_mask)<=w->p->max_misses;
 }
 #include "blueprint_dynamic.inc"
@@ -505,18 +511,25 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     const int y[4]={63,-48,0,160};
     for(int i=0;i<13;i++)if(p->types[i]!=types[i])return NULL;
     if(p->dynamic) {
-        const int floors[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
+        if(p->dynamic_v2 && (p->required_biome_mask & ~8191u))return NULL;
+        int is_v3 = (p->overworld_half == 1024);
+        const int floors_v2[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
+        const int floors_v3[13]={1,1,1,1,2,6,8,8,4,10,1,2,1};
         const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
             (1u<<6)|(1u<<7)|(1u<<8)|(1u<<9);
+        const int *expected_floors = is_v3 ? floors_v3 : floors_v2;
+        const unsigned int expected_flexible = is_v3 ? 0 : flexible;
+        int min_goal = is_v3 ? 1 : 2;
+        int max_misses_limit = is_v3 ? 0 : (p->dynamic_v2 ? 3 : 2);
         if(p->dynamic!=1||!p->locked||!p->two_group||p->origin||p->marine_baseline||p->river||
-           p->overworld_half!=832||p->nether_half!=416||p->max_misses>(p->dynamic_v2?3:2)||
+           (p->overworld_half!=832&&p->overworld_half!=1024)||(p->nether_half!=416&&p->nether_half!=512)||p->max_misses>max_misses_limit||
            p->discovery[0]!=-2000||p->discovery[1]!=-2000||
            p->discovery[2]!=1999||p->discovery[3]!=1999||
-           p->outpost_goal<2||p->outpost_goal>64||
-           p->nether_goal<2||p->nether_goal>64||p->bastion_goal<2||p->bastion_goal>64||
-           p->flexible_mask!=flexible)return NULL;
-        for(int i=0;i<13;i++)if(p->floors[i]!=floors[i])return NULL;
-        for(int i=0;i<10;i++)if(p->goals[i]<floors[i]||p->goals[i]>64)return NULL;
+           p->outpost_goal<min_goal||p->outpost_goal>64||
+           p->nether_goal<min_goal||p->nether_goal>64||p->bastion_goal<min_goal||p->bastion_goal>64||
+           p->flexible_mask!=expected_flexible||p->cutoff_score<0)return NULL;
+        for(int i=0;i<13;i++)if(p->floors[i]!=expected_floors[i])return NULL;
+        for(int i=0;i<10;i++)if(p->goals[i]<expected_floors[i]||p->goals[i]>64)return NULL;
         int positive_weights=0;
         for(int i=0;i<6;i++){
             if(p->density_weights[i]<0||p->density_weights[i]>1000)return NULL;

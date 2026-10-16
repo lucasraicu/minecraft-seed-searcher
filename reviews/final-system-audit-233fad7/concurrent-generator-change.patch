@@ -1,0 +1,25 @@
+diff --git a/vendor/cubiomes-bedrock/generator.c b/vendor/cubiomes-bedrock/generator.c
+index 031183f..2b7abda 100644
+--- a/vendor/cubiomes-bedrock/generator.c
++++ b/vendor/cubiomes-bedrock/generator.c
+@@ -237,14 +237,13 @@ int genBiomes(const Generator *g, int *cache, Range r)
+ 
+ int getBiomeAt(const Generator *g, int scale, int x, int y, int z)
+ {
++    int stack_ids[64];
+     Range r = {scale, x, z, 1, 1, y, 1};
+-    int *ids = allocCache(g, r);
+-    int id = genBiomes(g, ids, r);
+-    if (id == 0)
+-        id = ids[0];
+-    else
+-        id = none;
+-    free(ids);
++    size_t len = getMinCacheSize(g, r.scale, r.sx, r.sy, r.sz);
++    int *ids = (len > 0 && len <= 64) ? stack_ids : allocCache(g, r);
++    if (!ids) return none;
++    int id = (genBiomes(g, ids, r) == 0) ? ids[0] : none;
++    if (ids != stack_ids) free(ids);
+     return id;
+ }
+ 

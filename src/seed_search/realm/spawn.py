@@ -11,12 +11,29 @@ OCEAN={'ocean','deep_ocean','cold_ocean','deep_cold_ocean','frozen_ocean',
        'deep_frozen_ocean','lukewarm_ocean','deep_lukewarm_ocean','warm_ocean'}
 
 
+def player_inspection_statuses(candidate):
+    """Report optional inspections independently of predictive eligibility."""
+    reasons = {
+        'end_access': 'Predicted Stronghold starts do not establish a reachable, intact portal room.',
+        'portal_links': 'Nether arrival safety and return links have not been inspected.',
+        'snow_ice_resources': 'Snow/ice biome witnesses do not establish packed ice, blue ice, or powder snow quantities.',
+    }
+    supplied = candidate.get('player_inspections') or {}
+    return {name: (supplied[name] if isinstance(supplied.get(name), dict) and supplied[name].get('source')
+                   else {'status': 'UNVERIFIED', 'reason': reason, 'source': None})
+            for name, reason in reasons.items()}
+
+
 def classify_spawn(candidate,cfg,evidence=None):
     if not two_group_policy(cfg):raise ValueError('Spawn policy requires the v2 blueprint')
     center=candidate.get('evaluation_center')
     dynamic=dynamic_policy(cfg)
     if dynamic:
-        if not isinstance(center,list) or len(center)!=2 or any(type(v) is not int or not -1168<=v<=1168 for v in center):
+        ow_half=cfg['deployment']['overworld_side_blocks']//2
+        ow_bounds=cfg['discovery']['overworld_bounds']
+        min_c=ow_bounds[0]+ow_half
+        max_c=ow_bounds[2]-ow_half
+        if not isinstance(center,list) or len(center)!=2 or any(type(v) is not int or not min_c<=v<=max_c for v in center):
             raise ValueError('Dynamic spawn metric requires a selected center inside the envelope')
     elif center!=[0,0]:raise ValueError('V2 spawn policy requires the fixed origin center')
     base={'policy':'dynamic-initial-player-spawn-radius100-y63-dry-solid-v1' if dynamic else POLICY,'status':'PENDING','baseline_qualification':candidate.get('baseline_qualification',candidate.get('qualification')),

@@ -18,6 +18,7 @@ import platform
 import re
 import resource
 import shutil
+import shlex
 import sqlite3
 import subprocess
 import sys
@@ -29,14 +30,15 @@ from urllib.parse import urlparse, parse_qs
 
 import yaml
 
-from seed_search.realm.config import dynamic_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, validate_config
+from seed_search.realm.config import dynamic_blueprint_config, dynamic_v2_blueprint_config, dynamic_v3_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, validate_config
 from seed_search.realm.runner import process_tree_resources
+from seed_search.realm.spawn import player_inspection_statuses
 
 # Base paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
-DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native')))
+DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native' if (PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native').exists() else (PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native'))))
 
 
 class SweepManager:
@@ -61,11 +63,13 @@ class SweepManager:
             f"Host: {platform.processor() or platform.machine()} • target Bedrock 26.52 predictor",
         ]
         self.candidates: list[dict] = []
+        self.candidate_total = 0
         self.history: list[int] = [0] * 12
         self.monitor_thread: threading.Thread | None = None
         self.generation = 0
         self.threads = 0
         self.effective_config: dict | None = None
+        self.launch_receipt: dict | None = None
         self._runs_cache: dict[str, tuple[tuple[float, float], dict, int, dict]] = {}
         self._biome_grid_cache: dict = {}
         self._grid_lock = threading.Lock()
@@ -111,56 +115,138 @@ class SweepManager:
             self.target_count, self.start_index = identity['count'], identity['start_index']
             self.scanned_count = completed
             self.effective_config = identity.get('config')
+            try:
+                self.launch_receipt = json.loads((directory/'launch.json').read_text())
+            except (OSError, ValueError):
+                self.launch_receipt = None
             self.status = 'completed' if completed == self.target_count else 'paused'
             self.start_time = self.end_time = self.seeds_per_sec = 0
             self.error_message = None
             self.generation += 1
             self.candidates = []
+            self.candidate_total = 0
             self._last_candidates_sig = None
             self._query_sqlite_progress()
             self._query_sqlite_candidates()
             self.logs.insert(0, f'Viewing {run_id}: {completed:,} durable inputs')
             return {'ok': True, 'runId': run_id, 'status': self.status, 'scannedCount': completed}
 
+    @staticmethod
+    def _resolve_sweep(
+        count: int = 10000000,
+        threads: int = 34,
+        batch_size: int = 16384,
+        max_misses: int | None = None,
+        counts: dict | None = None,
+        start_index: int | str = 0,
+        profile: str = 'dynamic2048',
+        biomes: list | None = None,
+    ):
+        if max_misses is None:
+            max_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
+        if any(type(v) is not int for v in (count,threads,batch_size,max_misses)):
+            raise ValueError('Sweep controls must be integers')
+        if isinstance(start_index,str) and re.fullmatch(r'[0-9]{1,20}',start_index):start_index=int(start_index)
+        if type(start_index) is not int or not 0<=start_index<2**64 or start_index+count>2**64:
+            raise ValueError('Invalid full64 starting index or range')
+        if not 1<=count<=2**53-1 or not 1<=threads<=34 or not 1<=batch_size<=16384 or not 0<=max_misses<=8:
+            raise ValueError('Sweep controls outside supported bounded ranges')
+        if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
+            raise ValueError('counts must map structure names to integer ideals')
+        profiles = {
+            'dynamic2048': dynamic_v3_blueprint_config,
+            'dynamic1664': dynamic_v2_blueprint_config,
+            'dynamic1664_v1': dynamic_blueprint_config,
+            'marine2048': marine_baseline_blueprint_config,
+            'twoGroup2048': two_group_blueprint_config,
+        }
+        if profile not in profiles:raise ValueError('Unknown search profile')
+        cfg=profiles[profile]()
+        cfg['search']['max_misses']=max_misses
+        if biomes is not None:
+            if not isinstance(biomes,list) or not all(isinstance(f,str) for f in biomes):
+                raise ValueError('biomes must be a list of supported biome families')
+            cfg['biomes']['required_families']=biomes
+        allowed=set(cfg['structures']['minimum_counts'])|set(cfg['structures']['nether_minimum_counts'])
+        if counts and set(counts)-allowed:raise ValueError('Unsupported structure count key')
+        for key,value in (counts or {}).items():
+            group='nether_minimum_counts' if key in cfg['structures']['nether_minimum_counts'] else 'minimum_counts'
+            cfg['structures'][group][key]=value
+        validate_config(cfg)
+        return cfg,start_index
+
+    @staticmethod
+    def _scan_command(policy_path, run_dir, count, start_index, threads, batch_size, max_misses):
+        python = PROJECT_ROOT / '.venv' / 'bin' / 'python'
+        return [str(python) if python.exists() else sys.executable, '-m', 'seed_search',
+                '--config', str(policy_path), 'scan', '--count', str(count),
+                '--start-index', str(start_index), '--output', str(run_dir), '--executor', 'native',
+                '--native-build', str(DEFAULT_NATIVE_BUILD), '--native-threads', str(threads),
+                '--native-batch-size', str(batch_size), '--retention', 'survivors',
+                '--max-misses', str(max_misses), '--prediction-scale']
+
+    @staticmethod
+    def _launch_environment():
+        env = os.environ.copy()
+        env['PYTHONPATH'] = str(PROJECT_ROOT/'src') + (os.pathsep + env['PYTHONPATH'] if env.get('PYTHONPATH') else '')
+        return env
+
+    @staticmethod
+    def _launch_receipt(command, cfg, controls, kind):
+        pythonpath = SweepManager._launch_environment()['PYTHONPATH']
+        shell_command = 'cd ' + shlex.quote(str(PROJECT_ROOT)) + ' && ' + shlex.join(['env', 'PYTHONPATH='+pythonpath, *command])
+        return {'kind': kind, 'command': command, 'shellCommand': shell_command,
+                'environment': {'PYTHONPATH': pythonpath},
+                'cwd': str(PROJECT_ROOT), 'controls': controls,
+                'policyYaml': yaml.safe_dump(cfg, sort_keys=False)}
+
+    @staticmethod
+    def _check_sweep_disk(cfg, count):
+        from seed_search.realm.resources import disk_policy, check_projected_capacity
+        limits = disk_policy(cfg['search'], retention='survivors')
+        free = shutil.disk_usage(RUNS_DIR if RUNS_DIR.exists() else PROJECT_ROOT).free
+        check_projected_capacity(limits, used=0, free=free,
+                                 remaining_seeds=count, estimate=limits['projected_bytes_per_seed'])
+
+    def preview_sweep(self, **kwargs):
+        try:
+            profile = kwargs.get('profile', 'dynamic2048')
+            default_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
+            if kwargs.get('max_misses') is None:
+                kwargs['max_misses'] = default_misses
+            kwargs['profile'] = profile
+            cfg, first = self._resolve_sweep(**kwargs)
+            controls = {**dict(count=10000000, threads=34, batch_size=16384, max_misses=default_misses,
+                              profile='dynamic2048'), **kwargs, 'start_index': str(first)}
+            self._check_sweep_disk(cfg, controls['count'])
+            directory = RUNS_DIR / '<new-run>'
+            cmd = self._scan_command(directory/'policy.yaml', directory, controls['count'], first,
+                                     controls['threads'], controls['batch_size'], controls['max_misses'])
+            return {'ok': True, 'effectiveConfig': cfg,
+                    'launch': self._launch_receipt(cmd, cfg, controls, 'preview')}
+        except (ValueError, KeyError, TypeError, OSError, RuntimeError) as exc:
+            return {'ok': False, 'error': str(exc)}
+
     def start_sweep(
         self,
         count: int = 10000000,
         threads: int = 34,
         batch_size: int = 16384,
-        max_misses: int = 2,
+        max_misses: int | None = None,
         counts: dict | None = None,
         start_index: int | str = 0,
-        profile: str = 'dynamic1664',
+        profile: str = 'dynamic2048',
+        biomes: list | None = None,
     ) -> dict:
+        default_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
+        if max_misses is None:
+            max_misses = default_misses
         try:
-            if any(type(v) is not int for v in (count,threads,batch_size,max_misses)):
-                raise ValueError('Sweep controls must be integers')
-            if isinstance(start_index,str) and re.fullmatch(r'[0-9]{1,20}',start_index):start_index=int(start_index)
-            if type(start_index) is not int or not 0<=start_index<2**64 or start_index+count>2**64:
-                raise ValueError('Invalid full64 starting index or range')
-            if not 1<=count<=2**53-1 or not 1<=threads<=34 or not 1<=batch_size<=16384 or not 0<=max_misses<=8:
-                raise ValueError('Sweep controls outside supported bounded ranges')
-            if counts is not None and (not isinstance(counts,dict) or not all(isinstance(k,str) and type(v) is int for k,v in counts.items())):
-                raise ValueError('counts must map structure names to integer ideals')
-            profiles={'dynamic1664':dynamic_blueprint_config,'marine2048':marine_baseline_blueprint_config,'twoGroup2048':two_group_blueprint_config}
-            if profile not in profiles:raise ValueError('Unknown search profile')
-            cfg=profiles[profile]()
-            cfg['search']['max_misses']=max_misses
-            allowed=set(cfg['structures']['minimum_counts'])|set(cfg['structures']['nether_minimum_counts'])
-            if counts and set(counts)-allowed:raise ValueError('Unsupported structure count key')
-            for key,value in (counts or {}).items():
-                group='nether_minimum_counts' if key in cfg['structures']['nether_minimum_counts'] else 'minimum_counts'
-                cfg['structures'][group][key]=value
-            validate_config(cfg)
+            cfg,start_index=self._resolve_sweep(count,threads,batch_size,max_misses,counts,start_index,profile,biomes)
             if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native search build is unavailable; rebuild the active engine')
             from seed_search.realm.native_batch import Prototype
             Prototype(DEFAULT_NATIVE_BUILD,cfg)
-            from seed_search.realm.resources import disk_policy
-            limits=disk_policy(cfg['search'],retention='survivors')
-            projected=count*limits['projected_bytes_per_seed']
-            free=shutil.disk_usage(RUNS_DIR if RUNS_DIR.exists() else PROJECT_ROOT).free
-            if projected>limits['run_disk_limit_bytes'] or free<limits['free_disk_reserve_bytes']+projected:
-                raise ValueError('Projected finite shard exceeds disk budget; use a smaller shard')
+            self._check_sweep_disk(cfg, count)
         except (ValueError,KeyError,TypeError,OSError,ImportError,RuntimeError) as exc:
             return {'ok':False,'error':str(exc)}
         with self.lock:
@@ -195,46 +281,17 @@ class SweepManager:
                 self.start_time = time.time()
                 self.end_time = 0.0
                 self.candidates = []
+                self.candidate_total = 0
 
-                # Choose python executable
-                venv_python = PROJECT_ROOT / ".venv" / "bin" / "python"
-                python_bin = str(venv_python) if venv_python.exists() else sys.executable
+                cmd = self._scan_command(policy_path, self.run_dir, count, start_index, threads, batch_size, max_misses)
+                receipt = self._launch_receipt(cmd, cfg, {
+                    'count': count, 'start_index': str(start_index), 'threads': threads,
+                    'batch_size': batch_size, 'max_misses': max_misses, 'profile': profile,
+                    'biomes': cfg['biomes']['required_families'],
+                }, 'scan')
+                (self.run_dir/'launch.json').write_text(json.dumps(receipt, indent=2)+'\n')
 
-                cmd = [
-                    python_bin,
-                    "-m",
-                    "seed_search",
-                    "--config",
-                    str(policy_path),
-                    "scan",
-                    "--count",
-                    str(count),
-                    "--start-index",
-                    str(start_index),
-                    "--output",
-                    str(self.run_dir),
-                    "--executor",
-                    "native",
-                    "--native-build",
-                    str(DEFAULT_NATIVE_BUILD),
-                    "--native-threads",
-                    str(threads),
-                    "--native-batch-size",
-                    str(batch_size),
-                    "--retention",
-                    "survivors",
-                    "--max-misses",
-                    str(max_misses),
-                    "--prediction-scale",
-                ]
-
-                env = os.environ.copy()
-                src_path = str(PROJECT_ROOT / "src")
-                env["PYTHONPATH"] = (
-                    f"{src_path}:{env.get('PYTHONPATH', '')}"
-                    if "PYTHONPATH" in env
-                    else src_path
-                )
+                env = self._launch_environment()
 
                 msg = f"Spawning native sweep: {count:,} seeds across {threads} OpenMP threads (batch={batch_size})"
                 self.logs.insert(0, msg)
@@ -248,6 +305,7 @@ class SweepManager:
                     text=True,
                 )
 
+                self.launch_receipt = receipt
                 self.monitor_thread = threading.Thread(
                     target=self._monitor_process, args=(self.process, self.run_dir, generation), daemon=True
                 )
@@ -259,11 +317,13 @@ class SweepManager:
                     "status": "running",
                     "effectiveConfig": cfg,
                     "command": cmd,
+                    "launch": receipt,
                 }
             except Exception as e:
                 self.status = "error"
                 self.error_message = str(e)
                 self.process = None
+                self.launch_receipt = None
                 self.logs.insert(0, f"Failed to start sweep: {e}")
                 if dir_created and self.run_dir and self.run_dir.exists():
                     shutil.rmtree(self.run_dir, ignore_errors=True)
@@ -350,14 +410,21 @@ class SweepManager:
                 python=PROJECT_ROOT/'.venv'/'bin'/'python'
                 cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search','resume',
                      '--run',str(directory),'--native-build',str(DEFAULT_NATIVE_BUILD),'--prediction-scale']
-                env=os.environ.copy();env['PYTHONPATH']=str(PROJECT_ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
+                receipt=self._launch_receipt(cmd,self.effective_config,{
+                    'count':identity['count'],'start_index':str(identity['start_index']),
+                    'threads':threads,'batch_size':pipeline.get('batch_size'),
+                    'max_misses':identity.get('retention',{}).get('max_misses',self.effective_config['search']['max_misses']),
+                },'resume')
+                (directory/'launch.json').write_text(json.dumps(receipt,indent=2)+'\n')
+                env=self._launch_environment()
                 self.process=subprocess.Popen(cmd,cwd=str(PROJECT_ROOT),env=env,stdout=subprocess.PIPE,
                                               stderr=subprocess.PIPE,text=True)
+                self.launch_receipt=receipt
                 self.logs.insert(0,f'Continuing sweep {run_id} from seed {completed:,}...')
                 self.monitor_thread=threading.Thread(target=self._monitor_process,
                     args=(self.process,directory,self.generation),daemon=True)
                 self.monitor_thread.start()
-                return {'ok':True,'runId':run_id,'status':'running','effectiveConfig':self.effective_config,'command':cmd}
+                return {'ok':True,'runId':run_id,'status':'running','effectiveConfig':self.effective_config,'command':cmd,'launch':receipt}
             except (ValueError,KeyError,TypeError,OSError,ImportError,sqlite3.Error,RuntimeError) as exc:
                 if self.status=='running':self.status='error';self.error_message=str(exc)
                 return {'ok':False,'error':str(exc)}
@@ -512,17 +579,26 @@ class SweepManager:
             self.process = None
             return {'ok': True, 'status': 'stopped'}
 
-    def _query_sqlite_candidates(self):
-        """Extracts candidates from the active or latest run's SQLite file."""
+    def candidate_page(self, limit=100, offset=0):
+        if type(limit) is not int or not 1 <= limit <= 250 or type(offset) is not int or not 0 <= offset <= 2**53-1:
+            raise ValueError('Candidate pages require limit 1–250 and a nonnegative safe integer offset')
+        with self.lock:
+            return self._query_sqlite_candidates(limit, offset, publish=False)
+
+    def _query_sqlite_candidates(self, limit=250, offset=0, *, publish=True):
+        """Read one bounded, canonically ordered page from the durable leaderboard."""
+        empty = {'candidates': [], 'total': 0, 'offset': offset, 'limit': limit,
+                 'runId': getattr(self, 'run_id', None)}
         if not self.run_dir:
-            return
+            return empty
         db_path = self.run_dir / "realm.sqlite"
         if not db_path.exists():
-            return
+            return empty
 
         conn = None
         try:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+            conn.execute("BEGIN")  # Count and page share one WAL read snapshot.
             cur = conn.cursor()
 
             wal_path = self.run_dir / "realm.sqlite-wal"
@@ -534,11 +610,8 @@ class SweepManager:
             data_ver = cur.fetchone()[0]
 
             # Dirtiness check before re-parsing
-            cur.execute("SELECT count(*), max(rowid) FROM candidates")
+            cur.execute("SELECT count(*) FROM candidates")
             cand_sig = cur.fetchone()
-            cur.execute("SELECT name FROM sqlite_master WHERE type='view' AND name='candidate_leaderboard_view'")
-            has_view = bool(cur.fetchone())
-            score_sig = cur.execute("SELECT total(smart_score) FROM candidate_leaderboard_view").fetchone() if has_view else None
             cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='variants'")
             has_variants = bool(cur.fetchone())
             var_sig = None
@@ -552,19 +625,23 @@ class SweepManager:
                 cur.execute("SELECT count(*), max(rowid) FROM observations")
                 obs_sig = cur.fetchone()
 
-            sig = (str(self.run_dir), cand_sig, score_sig, var_sig, obs_sig, db_mtime, wal_stat, data_ver)
-            if getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
+            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig, db_mtime, wal_stat, data_ver)
+            if publish and getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
                 return
-            self._last_candidates_sig = sig
+            if publish:
+                self._last_candidates_sig = sig
 
             from seed_search.realm.leaderboard import order_for
-            order = order_for(conn)
+            try:
+                order = order_for(conn)
+            except Exception:
+                order = "ranking_tier,unmet_requirements,smart_score DESC,id"
             cur.execute(f"""
                 SELECT id, seed, smart_score, result,
                        ranking_tier, unmet_requirements
                 FROM candidate_leaderboard_view
-                ORDER BY {order} LIMIT 250
-            """)
+                ORDER BY {order} LIMIT ? OFFSET ?
+            """, (limit, offset))
             top_rows = cur.fetchall()
 
             v_map = {}
@@ -634,8 +711,13 @@ class SweepManager:
                 if cand:
                     parsed.append(cand)
 
-            self.candidates = parsed
+            if publish:
+                self.candidates = parsed
+                self.candidate_total = cand_sig[0]
+            return {**empty, 'candidates': parsed, 'total': cand_sig[0]}
         except Exception as e:
+            if not publish:
+                raise
             self.logs.insert(0, f"Error reading candidates DB: {e}")
         finally:
             if conn:
@@ -683,13 +765,14 @@ class SweepManager:
                 "resumedFrom": self.resume_baseline,
                 "seedsPerSec": self.seeds_per_sec,
                 "elapsedSeconds": round(elapsed, 1),
-                "candidatesFound": len(self.candidates),
-                "candidateScope": "bounded displayed pool: top 250 baseline records",
+                "candidatesFound": self.candidate_total,
+                "candidateScope": "all durable candidates; list pages use canonical baseline order",
                 "sweepProgress": min(100.0, progress_pct),
                 "memoryRssGib": rss_gib,
                 "activeThreads": self.threads if self.status == "running" else 0,
                 "throughputScope":"new durable SQLite completed inputs / current invocation wall seconds",
                 "effectiveConfig":self.effective_config,
+                "launch":self.launch_receipt,
                 "history": list(self.history),
                 "logs": self.logs[:30],
                 "candidates": self.candidates,
@@ -727,7 +810,7 @@ class SweepManager:
                 python=PROJECT_ROOT/'.venv'/'bin'/'python'
                 cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search',
                      'verify-biomes','--run',str(self.run_dir),'--candidate',candidate_id,'--points',str(point_path)]
-                env=os.environ.copy();env['PYTHONPATH']=str(PROJECT_ROOT/'src')+os.pathsep+env.get('PYTHONPATH','')
+                env=self._launch_environment()
                 previous=self.status
                 self.generation+=1
                 proc=subprocess.Popen(cmd,cwd=str(PROJECT_ROOT),env=env,stdout=subprocess.PIPE,
@@ -798,7 +881,7 @@ def parse_candidate_row(
         center = [0, 0]
 
     STRUCTURE_METAS = {
-        "stronghold": {"name": "Stronghold Portal", "icon": "🏰", "color": "#10b981", "dim": "overworld"},
+        "stronghold": {"name": "Stronghold", "icon": "🏰", "color": "#10b981", "dim": "overworld"},
         "mansion": {"name": "Woodland Mansion", "icon": "🏛️", "color": "#8b5cf6", "dim": "overworld"},
         "village": {"name": "Village", "icon": "🏡", "color": "#f59e0b", "dim": "overworld"},
         "trial_chamber": {"name": "Trial Chamber", "icon": "⚔️", "color": "#eab308", "dim": "overworld"},
@@ -935,7 +1018,7 @@ def parse_candidate_row(
         bool(observed_names))
 
     # Terrain evidence: 'passed', 'near_miss', 'failed', 'pending', 'not_applicable'
-    if data.get('screening_revision') == 'dynamic-envelope-1664-v2':
+    if data.get('screening_revision') in ('dynamic-envelope-1664-v2', 'dynamic-envelope-2048-v3'):
         terrain_passed = None
         terrain_status_str = 'not_applicable'
     elif isinstance(has_terrain_pass, str):
@@ -966,7 +1049,7 @@ def parse_candidate_row(
         terrain_status_str = 'pending'
 
     if terrain_status_str == 'not_applicable':
-        terrain_type = "Not Applicable (V2 Dynamic)"
+        terrain_type = "Not Applicable (V3 Dynamic)" if data.get('screening_revision') == 'dynamic-envelope-2048-v3' else "Not Applicable (V2 Dynamic)"
     elif terrain_status_str == 'passed':
         terrain_type = "Ocean Continent"
     elif terrain_status_str == 'near_miss':
@@ -982,6 +1065,22 @@ def parse_candidate_row(
     elif isinstance(terrain_metrics, dict) and terrain_mainland_fraction is not None:
         terrain_metrics["mainlandFraction"] = round(float(terrain_mainland_fraction), 3)
 
+    score_components = (data.get("ranking") or {}).get("components") or {}
+    if isinstance(score_components, dict):
+        score_components = {
+            **score_components,
+            "coreSurplus": score_components.get("core_surplus"),
+            "optionalBonus": score_components.get("optional_bonus"),
+            "deficitPenalty": score_components.get("deficit_penalty"),
+            "bonusTotal": score_components.get("bonus_total"),
+            "luxuryBiomes": score_components.get("luxury_biomes"),
+            "hubBonus": score_components.get("hub_bonus"),
+            "netherCoreBonus": score_components.get("nether_core_bonus"),
+            "scenicBonus": score_components.get("scenic_bonus"),
+            "villageSpreadBonus": score_components.get("village_spread_bonus"),
+            "treasureBastionBonus": score_components.get("treasure_bastion_bonus"),
+        }
+
     return {
         "id": str(data.get('id') or f'cand-{seed}'),
         "seed": str(seed),
@@ -992,20 +1091,24 @@ def parse_candidate_row(
         "originDistance": data.get("origin_distance"),
         "radialKey": data.get("radial_key", (data.get("ranking") or {}).get("radial_key")),
         "originDistanceSquared": data.get("origin_distance_squared", (data.get("ranking") or {}).get("origin_distance_squared")),
-        "scoreComponents": (data.get("ranking") or {}).get("components"),
-        "scenicBonus": data.get("scenic_bonus"),
+        "scoreComponents": score_components,
+        "netherCoreBonus": data.get("nether_core_bonus", (score_components or {}).get("nether_core_bonus")),
+        "scenicBonus": data.get("scenic_bonus", (score_components or {}).get("scenic_bonus")),
         "scenicWitness": data.get("scenic_witness"),
         "riverWitness": data.get("river_witness"),
-        "villageSpreadBonus": data.get("village_spread_bonus"),
+        "villageSpreadBonus": data.get("village_spread_bonus", (score_components or {}).get("village_spread_bonus")),
         "villageTriple": data.get("village_triple"),
-        "treasureBastion": data.get("treasure_bastion"),
+        "treasureBastion": data.get("treasure_bastion", 1 if (score_components or {}).get("treasure_bastion_bonus") else 0),
+        "treasureBastionBonus": data.get("treasure_bastion_bonus", (score_components or {}).get("treasure_bastion_bonus")),
         "starterHubVillage": data.get("starter_hub_village"),
-        "deficitPenalty": data.get("deficit_penalty"),
-        "bonusTotal": data.get("bonus_total"),
+        "deficitPenalty": data.get("deficit_penalty", (score_components or {}).get("deficit_penalty")),
+        "bonusTotal": data.get("bonus_total", (score_components or {}).get("bonus_total")),
         "strongholdAnchor": stronghold,
         "evaluationCenter": center,
         "playableBounds": data.get("bounds"),
         "predictedStrongholds": actual_strongholds,
+        "suggestedSpawn": data.get('suggested_spawn'),
+        "playerInspections": player_inspection_statuses(data),
         "spawnPoint": spawn_point,
         "spawnDistance": spawn_dist,
         "spawnWithin100": spawn_distance_exact <= 100 if spawn_distance_exact is not None else None,
@@ -1093,10 +1196,27 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         elif path == "/api/candidates":
+            params = parse_qs(url.query)
+            try:
+                limit = int(params.get('limit', ['100'])[0])
+                offset = int(params.get('offset', ['0'])[0])
+                page = MANAGER.candidate_page(limit, offset)
+            except ValueError as exc:
+                self.send_response(400)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': str(exc)}).encode('utf-8'))
+                return
+            except (sqlite3.Error, OSError) as exc:
+                self.send_response(503)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': str(exc)}).encode('utf-8'))
+                return
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({"candidates": MANAGER.candidates}).encode("utf-8"))
+            self.wfile.write(json.dumps(page).encode("utf-8"))
             return
 
         elif path == "/api/candidate/biome-grid":
@@ -1168,7 +1288,8 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 "nativeBuildReady": DEFAULT_NATIVE_BUILD.exists(),
                 "defaultBatchSize": 16384,
                 "defaultThreads": 34,
-                "defaultMaxMisses": 2,
+                "defaultMaxMisses": 0,
+                "defaultProfile": "dynamic2048",
             }
             self.wfile.write(json.dumps(info).encode("utf-8"))
             return
@@ -1220,7 +1341,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 reject("Referer is not allowed", 403)
                 return
 
-        if path not in ('/api/sweep/start', '/api/sweep/stop', '/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/pause', '/api/sweep/continue', '/api/bds/verify'):
+        if path not in ('/api/sweep/start', '/api/sweep/preview', '/api/sweep/stop', '/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/pause', '/api/sweep/continue', '/api/bds/verify'):
             reject('Unknown endpoint', 404)
             return
 
@@ -1241,8 +1362,8 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 if not isinstance(req_data, dict):
                     raise ValueError('JSON body must be an object')
                 allowed = (
-                    {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts', 'profile'}
-                    if path == '/api/sweep/start'
+                    {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts', 'profile', 'biomes'}
+                    if path in ('/api/sweep/start','/api/sweep/preview')
                     else {'runId'}
                     if path in ('/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/continue')
                     else {'seed', 'candidateId'}
@@ -1255,20 +1376,26 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 reject(str(exc))
                 return
 
-        if path == "/api/sweep/start":
+        if path in ("/api/sweep/start", "/api/sweep/preview"):
             count = req_data.get("count", 10000000)
             threads = req_data.get("threads", 34)
             batch_size = req_data.get("batchSize", 16384)
-            max_misses = req_data.get("maxMisses", 2)
+            profile = req_data.get('profile', 'dynamic2048')
+            default_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
+            max_misses = req_data.get("maxMisses")
+            if max_misses is None:
+                max_misses = default_misses
 
-            result = MANAGER.start_sweep(
+            action = MANAGER.preview_sweep if path == "/api/sweep/preview" else MANAGER.start_sweep
+            result = action(
                 count=count,
                 threads=threads,
                 batch_size=batch_size,
                 max_misses=max_misses,
                 counts=req_data.get('counts'),
                 start_index=req_data.get('startIndex',0),
-                profile=req_data.get('profile','dynamic1664'),
+                profile=profile,
+                biomes=req_data.get('biomes'),
             )
             self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")

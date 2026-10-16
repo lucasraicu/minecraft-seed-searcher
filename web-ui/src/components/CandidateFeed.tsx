@@ -5,6 +5,7 @@ import { spawnWithinRadius, spawnEvidenceLabel } from '../utils/spawn';
 
 interface CandidateFeedProps {
   candidates: SeedCandidate[];
+  pagination?: { offset: number; total: number; limit: number; onChangeOffset: (offset: number) => void };
   selectedCandidate: SeedCandidate | null;
   onSelectCandidate: (candidate: SeedCandidate) => void;
   onInspectCandidate: (candidate: SeedCandidate) => void;
@@ -16,6 +17,7 @@ interface CandidateFeedProps {
 
 export const CandidateFeed: React.FC<CandidateFeedProps> = ({
   candidates,
+  pagination,
   selectedCandidate,
   onSelectCandidate,
   onInspectCandidate,
@@ -24,13 +26,14 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
   onVerifyBDS,
   isVerifyingBDS,
 }) => {
-  const [minScore, setMinScore] = useState<number>(0);
+  const [minScore, setMinScore] = useState<number | null>(null);
+  const scoreFloor = Math.min(0, ...candidates.map((c) => Math.floor(c.score ?? 0)));
   const [secondaryFilter, setSecondaryFilter] = useState<'all' | 'spawn50' | 'spawn100' | 'bds'>('all');
   const [sortBy, setSortBy] = useState<'rank' | 'score' | 'spawn' | 'structures'>('rank');
 
   const filtered = candidates
     .filter((c) => {
-      if (c.score !== null && c.score < minScore) return false;
+      if (minScore !== null && c.score !== null && c.score < minScore) return false;
       if (secondaryFilter === 'spawn50' && spawnWithinRadius(c, 50) !== true) return false;
       if (secondaryFilter === 'spawn100' && spawnWithinRadius(c, 100) !== true) return false;
       if (secondaryFilter === 'bds' && c.surfaceVerification?.status !== 'PARTIAL') return false;
@@ -110,6 +113,21 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
 
         <p className="text-[10px] text-slate-400">Canonical baseline order from structure and biome screening. Historical terrain results do not affect this list.</p>
 
+        {pagination && (
+          <div className="space-y-1 text-[10px] text-slate-400">
+            <div className="flex items-center justify-between gap-2">
+              <button aria-label="Previous candidate page" disabled={pagination.offset === 0}
+                onClick={() => pagination.onChangeOffset(Math.max(0, pagination.offset - pagination.limit))}
+                className="px-2 py-1 rounded bg-slate-800 disabled:opacity-30">Previous</button>
+              <span>{pagination.total === 0 ? '0 results' : `${pagination.offset + 1}–${Math.min(pagination.offset + pagination.limit, pagination.total)} of ${pagination.total.toLocaleString()}`}</span>
+              <button aria-label="Next candidate page" disabled={pagination.offset + pagination.limit >= pagination.total}
+                onClick={() => pagination.onChangeOffset(pagination.offset + pagination.limit)}
+                className="px-2 py-1 rounded bg-slate-800 disabled:opacity-30">Next</button>
+            </div>
+            <p>Filters and alternate sorts apply to this page.</p>
+          </div>
+        )}
+
         {/* Marine Timing Notice Banner */}
         <div className="p-2 rounded bg-slate-950/70 border border-slate-800 text-[10px] leading-relaxed text-slate-300">
           <div className="flex items-center gap-1 text-cyan-300 font-semibold mb-0.5">
@@ -125,14 +143,14 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
         <div className="space-y-2 text-xs">
           <div className="flex justify-between items-center text-slate-400">
             <span>Score Threshold:</span>
-            <span className="font-mono text-emerald-400 font-bold">{minScore}+</span>
+            <span className="font-mono text-emerald-400 font-bold">{minScore === null ? 'All' : `${minScore}+`}</span>
           </div>
           <input
             type="range"
-            min="0"
+            min={scoreFloor}
             max={Math.max(100, ...candidates.map((candidate) => Math.ceil(candidate.score ?? 0)))}
-            value={minScore}
-            onChange={(e) => setMinScore(Number(e.target.value))}
+            value={minScore ?? scoreFloor}
+            onChange={(e) => setMinScore(Number(e.target.value) === scoreFloor ? null : Number(e.target.value))}
             className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
           />
 

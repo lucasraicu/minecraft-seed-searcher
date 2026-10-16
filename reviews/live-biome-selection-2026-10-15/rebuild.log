@@ -1,0 +1,84 @@
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1860:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1860 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1765:9: warning: code will never be executed [-Wunreachable-code]
+ 1765 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2420:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2420 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2520:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2520 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3420:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3420 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5113:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5113 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+ld: warning: building for macOS-10.13, but linking with dylib '@rpath/libomp.dylib' which was built for newer version 15.8
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1860:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1860 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1765:9: warning: code will never be executed [-Wunreachable-code]
+ 1765 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2420:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2420 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2520:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2520 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3420:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3420 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5113:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5113 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+ld: warning: building for macOS-10.13, but linking with dylib '@rpath/libomp.dylib' which was built for newer version 15.8
+[1/5] Building instrumented PGO training binary with AVX2 + FMA + native...
+[2/5] Running training workload on 10,000 seeds + synthetic fixtures...
+[3/5] Merging llvm profile data...
+[4/5] Compiling final optimized PGO + LTO production binary with AVX2 + FMA + native...
+  Copied production binary to /Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/_blueprint_batch.abi3.so
+[5/5] Measuring kernel throughput on 34 threads with batch sizes 8192 & 16384...
+  34 threads | Batch 8192   | 50,000 seeds in 0.234s -> 213,747.0 seeds/sec
+  34 threads | Batch 16384  | 50,000 seeds in 0.214s -> 234,127.5 seeds/sec

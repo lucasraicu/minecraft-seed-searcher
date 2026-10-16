@@ -23,14 +23,15 @@ TRAIN_DIR = ROOT / "runs/dynamic-baseline-1664/pgo-training"
 PROF_DIR = ROOT / "runs/dynamic-baseline-1664/prof"
 
 def main():
-    print("[1/5] Building instrumented PGO training binary...")
+    print("[1/5] Building instrumented PGO training binary with AVX2 + FMA + native...")
     if TRAIN_DIR.exists():
         shutil.rmtree(TRAIN_DIR)
     if PROF_DIR.exists():
         shutil.rmtree(PROF_DIR)
     PROF_DIR.mkdir(parents=True, exist_ok=True)
 
-    build(TRAIN_DIR, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, lto=True, pgo_generate=True)
+    train_id = build(TRAIN_DIR, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, avx2=True, lto=True, pgo_generate=True)
+    assert all(flag in train_id['flags'] for flag in ('-mavx2', '-mfma', '-march=native')), f"Missing required flags: {train_id['flags']}"
 
     print("[2/5] Running training workload on 10,000 seeds + synthetic fixtures...")
     env = os.environ.copy()
@@ -57,10 +58,11 @@ with p.sweep([1], fixtures=[(0, 0, -1)], retention='survivors'): pass
     meta["profile_sha256"] = hashlib.sha256(profile.read_bytes()).hexdigest()
     profile.with_suffix(".json").write_text(json.dumps(meta, indent=2) + "\n")
 
-    print("[4/5] Compiling final optimized PGO + LTO production binary...")
+    print("[4/5] Compiling final optimized PGO + LTO production binary with AVX2 + FMA + native...")
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
-    build(OUTPUT, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, lto=True, pgo_use=profile)
+    prod_id = build(OUTPUT, openmp_prefix=str(OPENMP), work_chunk=16, cpu_native=True, avx2=True, lto=True, pgo_use=profile)
+    assert all(flag in prod_id['flags'] for flag in ('-mavx2', '-mfma', '-march=native')), f"Missing required flags: {prod_id['flags']}"
 
     # Copy to src/seed_search production location
     so_files = list(OUTPUT.glob("*.so"))

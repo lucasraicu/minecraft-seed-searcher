@@ -1,0 +1,55 @@
+baseline 0 232299
+tight 0 231605
+city-first 0 237295
+tight 1 236889
+city-first 1 238011
+baseline 1 236382
+city-first 2 237702
+baseline 2 236393
+tight 2 236411
+baseline 3 236679
+tight 3 230697
+city-first 3 238702
+tight 4 233520
+city-first 4 215827
+baseline 4 218788
+heldout baseline 0 212230
+heldout city-first 0 216295
+heldout city-first 1 225387
+heldout baseline 1 227526
+heldout baseline 2 223167
+heldout city-first 2 225469
+heldout city-first 3 227572
+heldout baseline 3 225250
+heldout baseline 4 217064
+heldout city-first 4 226753
+{
+  "tuning_medians": {
+    "baseline": 236381.82611993508,
+    "tight": 233519.78487450455,
+    "city-first": 237702.06002711534
+  },
+  "winner": "city-first",
+  "heldout_medians": {
+    "baseline": 223166.80838808863,
+    "city-first": 225468.59530405438
+  },
+  "parity": "all decision fingerprints, full records (256 real inputs per revision), and positive synthetic fixtures match",
+  "flags": [
+    "-O3",
+    "-std=c11",
+    "-fwrapv",
+    "-DNB_WORK_CHUNK=16",
+    "-DNB_EXPERIMENT_ORDER=0",
+    "-DNB_STRONGHOLD_AFTER=4",
+    "-DNB_DYNAMIC_PREFLIGHT=1",
+    "-march=native",
+    "-mavx2",
+    "-mfma",
+    "-flto",
+    "-Xpreprocessor",
+    "-fopenmp",
+    "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+  ],
+  "scope": "private native kernel builds; CPU-native + LTO, no PGO; 34 threads, batch 16384; not durable pipeline throughput"
+}

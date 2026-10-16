@@ -1,0 +1,89 @@
+{
+  "float64": "NumPy seed array must be int64 or uint64",
+  "int32": "NumPy seed array must be int64 or uint64",
+  "custom_village": {
+    "score": 299,
+    "penalty": 10,
+    "saved_target": 10
+  },
+  "custom_ruined_portal": {
+    "score": 321,
+    "penalty": 5,
+    "saved_target": 8
+  },
+  "custom_trial_chamber": {
+    "score": 314,
+    "penalty": 10,
+    "saved_target": 9
+  },
+  "variant_evidence": [
+    [
+      238,
+      238,
+      1
+    ],
+    [
+      254,
+      238,
+      1
+    ],
+    [
+      270,
+      238,
+      1
+    ],
+    [
+      286,
+      238,
+      1
+    ]
+  ],
+  "same_evidence_scenic_rescore": {
+    "flag0": 344,
+    "flag20": 364,
+    "difference": 20
+  },
+  "web_configuration": {
+    "revision": "dynamic-envelope-1664-v2",
+    "budget": 3,
+    "terrain": []
+  },
+  "shard_defaults": {
+    "config": "config/realm_1664.yaml",
+    "revision": "dynamic-envelope-1664-v1",
+    "budget": 2,
+    "count": 9000000000,
+    "command": "python -m seed_search --config config/realm_1664.yaml scan \\\n  --executor native \\\n  --native-threads 34 \\\n  --native-batch-size 4096 \\\n  --retention survivors \\\n  --max-misses 2 \\\n  --prediction-scale \\\n  --start-index 0 \\\n  --count 9000000000 \\\n  --output runs/campaign_shard_0"
+  },
+  "cached_reader": {
+    "before": 0,
+    "after": 0,
+    "database": 1
+  },
+  "merge_rank": {
+    "reported": [
+      {
+        "seed": "1",
+        "smart_score": 50.0,
+        "tier": 0,
+        "unmet": 0
+      },
+      {
+        "seed": "0",
+        "smart_score": 100.0,
+        "tier": 0,
+        "unmet": 1
+      }
+    ],
+    "canonical": [
+      [
+        "0",
+        100.0
+      ],
+      [
+        "1",
+        50.0
+      ]
+    ]
+  }
+}

@@ -12,13 +12,14 @@ import statistics
 import time
 from pathlib import Path
 import os
+import sys
 import numpy as np
 
 from seed_search.backend import biome_catalog, structure_type
 from seed_search.realm.blueprint import PALETTE, evaluate_seed, evaluate_dynamic_seed
 from seed_search.realm.biomes import canonical
 from seed_search.realm.bounds import native_bounds
-from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, marine_baseline_policy, dynamic_policy, dynamic_v2_policy, stronghold_after, baseline_requirements
+from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked_policy, river_policy, LOCKED_ORDER, outpost_policy, origin_policy, two_group_policy, marine_baseline_policy, dynamic_policy, dynamic_v2_policy, dynamic_v3_policy, stronghold_after, baseline_requirements
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
@@ -91,9 +92,10 @@ class Prototype:
             self.policy.two_group=1
             self.policy.floors=[cfg['structures']['hard_floors'].get(n,0) for n in NAMES]
             self.policy.flexible_mask=sum(1<<NAMES.index(n) for n in
-                (('trial_chamber','village','ruined_portal','mineshaft','ancient_city',
-                  'desert_pyramid','jungle_temple','shipwreck') if dynamic_policy(cfg) else
-                 ('mansion','trial_chamber','village','ruined_portal','mineshaft','ancient_city','fortress','bastion')))
+                (() if dynamic_v3_policy(cfg) else
+                 (('trial_chamber','village','ruined_portal','mineshaft','ancient_city',
+                   'desert_pyramid','jungle_temple','shipwreck') if dynamic_policy(cfg) else
+                  ('mansion','trial_chamber','village','ruined_portal','mineshaft','ancient_city','fortress','bastion'))))
         if dynamic_policy(cfg):
             self.policy.dynamic=1
             self.policy.density_weights=[cfg['search']['density_weights'][n] for n in
@@ -112,8 +114,15 @@ class Prototype:
         self.policy.goals=[cfg['structures']['minimum_counts'][n] for n in NAMES[:10]]
         self.policy.y=cfg['biomes']['sample_y_levels'];self.policy.spacing=64
         self.policy.batch_size=cfg['biomes']['gate_batch_size']
+        if hasattr(self.policy, 'cutoff_score'):
+            self.policy.cutoff_score = int(cfg.get('search', {}).get('cutoff_score', 0))
         catalog=biome_catalog();ids={row['name']:row['id'] for row in catalog}
-        self.families=cfg['biomes']['required_families']
+        self.families=list(PALETTE)  # Native surface/cave bits must never shift with selection.
+        self.required_biome_mask=sum(1<<i for i,f in enumerate(self.families) if f in cfg['biomes']['required_families'])
+        if dynamic_v2_policy(cfg):
+            if not hasattr(self.policy,'required_biome_mask'):
+                raise ValueError('Biome selection requires a rebuilt native extension')
+            self.policy.required_biome_mask=self.required_biome_mask
         is_v2=dynamic_v2_policy(cfg)
         for row in catalog:
             self.policy.biome_members[row['id']]=sum(1<<i for i,f in enumerate(self.families) if canonical(row['name']) in (PALETTE[f]|({'frozen_peaks'} if dynamic_policy(cfg) and f=='peaks' else set())))
@@ -156,9 +165,28 @@ class Prototype:
             'policy_sha256':hashlib.sha256(bytes(self.ffi.buffer(self.policy))).hexdigest(),
             'record_computation_identity':production_identity()}
 
-    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None):
-        is_np = hasattr(seeds, '__array_interface__')
-        if not is_np:
+    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None,cutoff_score=None):
+        is_np = hasattr(seeds, '__array_interface__') or isinstance(seeds, np.ndarray)
+        if is_np:
+            try:
+                buf = memoryview(seeds)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f'Invalid buffer object: {exc}')
+            if buf.ndim != 1:
+                raise ValueError('NumPy seed array must be 1-dimensional')
+            if not buf.c_contiguous:
+                raise ValueError('NumPy seed array must be C-contiguous')
+            if buf.itemsize != 8:
+                raise TypeError('NumPy seed array must be int64 or uint64')
+            dtype = getattr(seeds, 'dtype', None)
+            if dtype is not None:
+                if dtype.name not in ('int64', 'uint64'):
+                    raise TypeError('NumPy seed array must be int64 or uint64')
+                if dtype.byteorder not in ('=', '|', '<' if sys.byteorder == 'little' else '>'):
+                    raise ValueError('NumPy seed array must have native byte order')
+            if len(buf) != len(seeds) or buf.nbytes != len(seeds) * 8:
+                raise ValueError('NumPy seed array buffer length does not match seeds count')
+        else:
             seeds=[parse_seed(s) for s in seeds]
         if max_misses is None:max_misses=self.cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(self.cfg) else 0
         if not 1<=len(seeds)<=16384:raise ValueError('Native batches must contain 1–16,384 inputs')
@@ -177,7 +205,17 @@ class Prototype:
         # a policy while CFFI releases the GIL for another call.
         policy=self.ffi.new('NBPolicy *');self.ffi.memmove(policy,self.policy,self.ffi.sizeof('NBPolicy'))
         policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses)
-        values = self.ffi.from_buffer('uint64_t[]', seeds) if is_np else self.ffi.new('uint64_t[]',[s&MASK64 for s in seeds])
+        if cutoff_score is not None:
+            if isinstance(cutoff_score, bool) or not isinstance(cutoff_score, int) or cutoff_score < 0:
+                raise ValueError('cutoff_score must be non-negative int')
+            if hasattr(policy, 'cutoff_score'):
+                policy.cutoff_score = cutoff_score
+        if is_np:
+            values = self.ffi.from_buffer('uint64_t[]', seeds)
+            if len(values) != len(seeds):
+                raise ValueError('NumPy seed array buffer length does not match seeds count')
+        else:
+            values = self.ffi.new('uint64_t[]', [s & MASK64 for s in seeds])
         fixture_values=None
         if fixtures is not None:
             if len(fixtures)!=len(seeds):raise ValueError('One explicit fixture per input required')
@@ -226,9 +264,9 @@ class Batch:
                 {'stronghold':[a.x,a.z],'count_missing':a.count_missing,
                  'biome_evaluated':bool(a.biome_evaluated),'biome_mask':a.biome_mask,
                  'biome_n':a.biome_n,'score':a.score,
-                 'qualification':('PREDICTED' if not a.fatal_missing and a.stronghold_count>=1 and a.biome_mask==8191 and
+                 'qualification':('PREDICTED' if not a.fatal_missing and a.stronghold_count>=1 and (a.biome_mask & self.prototype.required_biome_mask)==self.prototype.required_biome_mask and
                      int(a.count_missing & self.prototype.policy.flexible_mask).bit_count()<=self.prototype.cfg['search']['max_misses'] else 'PENDING') if two_group_policy(self.prototype.cfg) else
-                     ('PREDICTED' if not a.count_missing and a.biome_mask==8191 else 'PENDING')}
+                     ('PREDICTED' if not a.count_missing and (a.biome_mask & self.prototype.required_biome_mask)==self.prototype.required_biome_mask else 'PENDING')}
                 for a in [r.anchors[j] for j in range(r.nanchors)]]})
         return rows
 
@@ -273,8 +311,8 @@ class Batch:
             if len(record['anchors'])!=native.nanchors:raise RuntimeError('Native/reconstructed anchor count mismatch')
             for j,a in enumerate(record['anchors']):
                 c=native.anchors[j]
-                expected=(not c.fatal_missing and c.stronghold_count>=1 and c.biome_mask==8191 and
-                          (int(c.count_missing & self.prototype.policy.flexible_mask).bit_count()<=cfg['search']['max_misses'])) if two_group_policy(cfg) else (not origin_policy(cfg) or c.stronghold_count>=1) and not c.count_missing and c.biome_mask==8191
+                expected=(not c.fatal_missing and c.stronghold_count>=1 and (c.biome_mask & self.prototype.required_biome_mask)==self.prototype.required_biome_mask and
+                          (int(c.count_missing & self.prototype.policy.flexible_mask).bit_count()<=cfg['search']['max_misses'])) if two_group_policy(cfg) else (not origin_policy(cfg) or c.stronghold_count>=1) and not c.count_missing and (c.biome_mask & self.prototype.required_biome_mask)==self.prototype.required_biome_mask
                 order=[10,11,*[NAMES.index(n) for n in cfg['search']['structure_order']]] if locked_policy(cfg) else range(12)
                 pending=['count_'+NAMES[k] for k in order if c.count_missing&(1<<k)]
                 if origin_policy(cfg) and c.stronghold_evaluated and c.stronghold_count<1:
@@ -328,7 +366,7 @@ class Batch:
                 c=native.anchors[j]
                 misses=int(c.count_missing & self.prototype.policy.flexible_mask).bit_count() if two_group_policy(cfg) else int(c.count_missing).bit_count()+13-int(c.biome_mask).bit_count()
                 if (not c.biome_evaluated or misses>self.max_misses or
-                    (two_group_policy(cfg) and (c.fatal_missing or c.biome_mask!=8191)) or
+                    (two_group_policy(cfg) and (c.fatal_missing or (c.biome_mask & self.prototype.required_biome_mask)!=self.prototype.required_biome_mask)) or
                     (not two_group_policy(cfg) and misses!=len(a['pending_reasons'])) or
                     (origin_policy(cfg) and c.stronghold_count<1)):
                     raise RuntimeError('Native retention decision parity failure')
@@ -367,7 +405,7 @@ class ReplayProvider:
             bounds=(a.x-h,a.z-h,a.x+h-1,a.z+h-1)
             if dynamic_policy(prototype.cfg):
                 from seed_search.realm.dynamic import nether_bounds
-                bb=nether_bounds((a.x,a.z));nb=native_bounds(bb)
+                bb=nether_bounds((a.x,a.z),nh);nb=native_bounds(bb)
             else:
                 nx=-((-a.x)//8);nz=-((-a.z)//8);nb=(nx-nh,nz-nh,nx+nh-1,nz+nh-1)
             for k,name in enumerate(NAMES):

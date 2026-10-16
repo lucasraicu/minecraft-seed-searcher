@@ -1,0 +1,235 @@
+{
+  "tuning_medians": {
+    "baseline": 236286.5096759085,
+    "reuse": 232472.041978792
+  },
+  "winner": "reuse",
+  "rows": [
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.3744925210048677,
+      "wall_seconds": 1.4018623150041094,
+      "kernel_inputs_per_second": 218262.37350544124,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 0,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.2904777600197122,
+      "wall_seconds": 1.3183583909994923,
+      "kernel_inputs_per_second": 232472.041978792,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 0,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.3030708690057509,
+      "wall_seconds": 1.3299180259928107,
+      "kernel_inputs_per_second": 230225.3907562997,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 1,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.269645061038318,
+      "wall_seconds": 1.2962329069996485,
+      "kernel_inputs_per_second": 236286.5096759085,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 1,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.2655328949476825,
+      "wall_seconds": 1.2911802960006753,
+      "kernel_inputs_per_second": 237054.28851171987,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 2,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 300000,
+      "native_seconds": 1.2528108919796068,
+      "wall_seconds": 1.2784917630051496,
+      "kernel_inputs_per_second": 239461.51962804247,
+      "fingerprint": [
+        "2a12f46c081b2f892e45a95c9e8530cea4915f6afe53723a87a112c4d8694ce6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 2,
+      "cohort": "tuning"
+    },
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.6257793600379955,
+      "wall_seconds": 2.678521309993812,
+      "kernel_inputs_per_second": 228503.58607103908,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 0,
+      "cohort": "heldout"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.607273934976547,
+      "wall_seconds": 2.6599229629937327,
+      "kernel_inputs_per_second": 230125.4164171273,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 0,
+      "cohort": "heldout"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.6022257489094045,
+      "wall_seconds": 2.654377968996414,
+      "kernel_inputs_per_second": 230571.8480617835,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 1,
+      "cohort": "heldout"
+    },
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.637957341998117,
+      "wall_seconds": 2.6912520400073845,
+      "kernel_inputs_per_second": 227448.71209537104,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 1,
+      "cohort": "heldout"
+    },
+    {
+      "phase": "kernel",
+      "arm": "baseline",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.6310915740032215,
+      "wall_seconds": 2.6843904060078785,
+      "kernel_inputs_per_second": 228042.2338501493,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 2,
+      "cohort": "heldout"
+    },
+    {
+      "phase": "kernel",
+      "arm": "reuse",
+      "threads": 34,
+      "batch_size": 16384,
+      "inputs": 600000,
+      "native_seconds": 2.631408286950318,
+      "wall_seconds": 2.6860590599972056,
+      "kernel_inputs_per_second": 228014.7869775741,
+      "fingerprint": [
+        "eef69fcccc5ab61faf32b8b39d63f5631014d8bb7d242f13e9aa31b8b6b65de3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        0
+      ],
+      "trial": 2,
+      "cohort": "heldout"
+    }
+  ],
+  "heldout_medians": {
+    "baseline": 228042.2338501493,
+    "reuse": 230125.4164171273
+  },
+  "parity": "all decision fingerprints, full records (256 real inputs per revision), and positive synthetic fixtures match",
+  "flags": [
+    "-O3",
+    "-std=c11",
+    "-fwrapv",
+    "-DNB_WORK_CHUNK=16",
+    "-DNB_EXPERIMENT_ORDER=0",
+    "-DNB_STRONGHOLD_AFTER=4",
+    "-DNB_DYNAMIC_PREFLIGHT=1",
+    "-march=native",
+    "-mavx2",
+    "-mfma",
+    "-flto",
+    "-Xpreprocessor",
+    "-fopenmp",
+    "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+  ],
+  "scope": "private native kernel builds; CPU-native + LTO, no PGO; 34 threads, batch 16384; not durable pipeline throughput"
+}

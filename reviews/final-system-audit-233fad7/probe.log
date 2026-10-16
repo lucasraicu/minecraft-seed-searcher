@@ -1,0 +1,232 @@
+{
+  "commit": "233fad76fddc5667e77c27ab7e5cc83d3669a7a2",
+  "vectorized_seed_parity": [
+    {
+      "first": "0",
+      "end": "8",
+      "run_key": "0",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "0",
+      "end": "8",
+      "run_key": "123",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "0",
+      "end": "8",
+      "run_key": "-1",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "0",
+      "end": "8",
+      "run_key": "18446744073709551621",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9007199254740990",
+      "end": "9007199254740998",
+      "run_key": "0",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9007199254740990",
+      "end": "9007199254740998",
+      "run_key": "123",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9007199254740990",
+      "end": "9007199254740998",
+      "run_key": "-1",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9007199254740990",
+      "end": "9007199254740998",
+      "run_key": "18446744073709551621",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9223372036854775806",
+      "end": "9223372036854775814",
+      "run_key": "0",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9223372036854775806",
+      "end": "9223372036854775814",
+      "run_key": "123",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9223372036854775806",
+      "end": "9223372036854775814",
+      "run_key": "-1",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "9223372036854775806",
+      "end": "9223372036854775814",
+      "run_key": "18446744073709551621",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "18446744073709551608",
+      "end": "18446744073709551616",
+      "run_key": "0",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "18446744073709551608",
+      "end": "18446744073709551616",
+      "run_key": "123",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "18446744073709551608",
+      "end": "18446744073709551616",
+      "run_key": "-1",
+      "equal": true,
+      "length": 8
+    },
+    {
+      "first": "18446744073709551608",
+      "end": "18446744073709551616",
+      "run_key": "18446744073709551621",
+      "equal": true,
+      "length": 8
+    }
+  ],
+  "float_input": {
+    "input": 1.0,
+    "native_seed": "4607182418800017408",
+    "returned_without_error": true,
+    "retained": 0
+  },
+  "short_numpy_buffer": {
+    "dtype": "int32",
+    "buffer_uint64_elements": 1,
+    "native_count": 2
+  },
+  "custom_target_village": {
+    "configuration_accepted": true,
+    "native_anchors": 1,
+    "native_score": 299,
+    "native_penalty": 10,
+    "record_error": "RuntimeError('Native/direct dynamic record parity failure')"
+  },
+  "custom_target_ruined_portal": {
+    "configuration_accepted": true,
+    "native_anchors": 1,
+    "native_score": 321,
+    "native_penalty": 5,
+    "record_error": "RuntimeError('Native/direct dynamic record parity failure')"
+  },
+  "custom_target_trial_chamber": {
+    "configuration_accepted": true,
+    "native_anchors": 1,
+    "native_score": 314,
+    "native_penalty": 10,
+    "record_error": "RuntimeError('Native/direct dynamic record parity failure')"
+  },
+  "saved_evidence": {
+    "center": [
+      -784,
+      -816
+    ],
+    "bastion_inventory_keys": [
+      "type",
+      "bounds",
+      "raw",
+      "predicted_viable",
+      "coordinates",
+      "data_status",
+      "verification",
+      "confirmed_absent",
+      "complete",
+      "inventory_status",
+      "detection_method",
+      "evidence_scope",
+      "negative_meaning",
+      "minimum_count",
+      "predicted_count",
+      "count_is_complete",
+      "floor_status"
+    ],
+    "treasure_keys": [
+      "treasure_bastion"
+    ],
+    "inspection_keys": [],
+    "suggested_spawn": {
+      "status": "PREDICTED_SCENIC_SUGGESTION",
+      "coordinates": [
+        -960,
+        63,
+        -960
+      ],
+      "biome": "plains",
+      "distance": 227.40272645683032
+    }
+  },
+  "rescore_uses_flag": {
+    "same_retained_surface_pair": [
+      [
+        -768,
+        63,
+        -832
+      ],
+      [
+        -704,
+        63,
+        -832
+      ]
+    ],
+    "with_zero_flag": 344,
+    "with_twenty_flag": 364,
+    "difference": 20
+  },
+  "web_start_default": {
+    "revision": "dynamic-envelope-1664-v1",
+    "budget": 2,
+    "terrain_variants": [
+      "v1"
+    ]
+  },
+  "variant_error_as_absence": [
+    0,
+    []
+  ],
+  "treasure_component_overlap": {
+    "score": 15,
+    "components": {
+      "score_revision": "dynamic-envelope-1664-v2",
+      "final_score": 15,
+      "bonus_total": 15,
+      "deficit_penalty": 0,
+      "core_surplus": 0,
+      "optional_bonus": 15,
+      "luxury_biomes": 0,
+      "hub_bonus": 0,
+      "scenic_bonus": 0,
+      "village_spread_bonus": 0,
+      "treasure_bastion_bonus": 15
+    }
+  }
+}

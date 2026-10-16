@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import type { SeedCandidate, TelemetryState, SearchConfig, Dimension } from './types';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import type { SeedCandidate, TelemetryState, SearchConfig, Dimension, LaunchReceipt } from './types';
 import { INITIAL_CONFIG } from './mockData';
-import { SEARCH_PROFILES, getSearchProfile, normalizeStructureCounts, normalizeStructureKeys } from './constants/baselinePolicy';
+import { SEARCH_PROFILES, normalizeStructureCounts } from './constants/baselinePolicy';
 import type { SearchProfileName } from './constants/baselinePolicy';
 import { MapCanvas } from './components/MapCanvas';
 import { CandidateFeed } from './components/CandidateFeed';
@@ -9,6 +9,7 @@ import { TelemetryBar } from './components/TelemetryBar';
 import { FilterSidebar } from './components/FilterSidebar';
 import { SeedDetailModal } from './components/SeedDetailModal';
 import { FunnelModal } from './components/FunnelModal';
+import { buildSweepRequest } from './utils/sweep';
 
 const VALID_TELEMETRY_STATUSES: TelemetryState['status'][] = [
   'idle',
@@ -21,7 +22,33 @@ const VALID_TELEMETRY_STATUSES: TelemetryState['status'][] = [
 
 function App() {
   const [config, setConfig] = useState<SearchConfig>(INITIAL_CONFIG);
+  const [lastLaunch, setLastLaunch] = useState<LaunchReceipt | null>(null);
+  const [preview, setPreview] = useState<{ key: string; receipt: LaunchReceipt | null; error: string }>({ key: '', receipt: null, error: '' });
+  const request = useMemo(() => {
+    try { return { body: buildSweepRequest(config), error: '' }; }
+    catch (error) { return { body: null, error: error instanceof Error ? error.message : String(error) }; }
+  }, [config]);
+  const previewKey = JSON.stringify(request.body);
+  useEffect(() => {
+    if (!request.body) return;
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      try {
+        const response = await fetch('/api/sweep/preview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request.body), signal: controller.signal });
+        const data = await response.json();
+        if (controller.signal.aborted) return;
+        setPreview({ key: previewKey, receipt: data.ok ? data.launch : null, error: data.ok ? '' : data.error });
+      } catch (error) {
+        if (!controller.signal.aborted) setPreview({ key: previewKey, receipt: null, error: error instanceof Error ? error.message : String(error) });
+      }
+    }, 300);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [request, previewKey]);
   const [candidates, setCandidates] = useState<SeedCandidate[]>([]);
+  const [candidateOffset, setCandidateOffset] = useState(0);
+  const [candidateTotal, setCandidateTotal] = useState(0);
+  const candidatePageSize = 100;
+  const candidateRunId = useRef<string | null | undefined>(undefined);
   const [selectedCandidate, setSelectedCandidate] = useState<SeedCandidate | null>(null);
   const [inspectedCandidate, setInspectedCandidate] = useState<SeedCandidate | null>(null);
   const [isFunnelOpen, setIsFunnelOpen] = useState<boolean>(false);
@@ -96,37 +123,40 @@ function App() {
       apiGeneration.current += 1;
     }
   }, []);
-  const applyEffectiveConfig = useCallback((effective: any) => {
+  const applyEffectiveConfig = useCallback((effective: any, controls?: LaunchReceipt['controls']) => {
     if (!effective?.structures) return;
-    const counts = normalizeStructureCounts({ ...effective.structures.minimum_counts, ...effective.structures.nether_minimum_counts });
     const profile = (Object.keys(SEARCH_PROFILES) as SearchProfileName[]).find((name) => SEARCH_PROFILES[name].revision === effective.screening_revision);
-    setConfig((previous) => ({ ...previous, ...(profile ? { profile } : {}),
-      playableRadiusOverworld: effective.deployment?.overworld_side_blocks ?? previous.playableRadiusOverworld,
-      playableRadiusNether: effective.deployment?.nether_side_blocks ?? previous.playableRadiusNether,
-      requiredStructures: normalizeStructureKeys(previous.requiredStructures),
-      structureFloorCounts: { ...normalizeStructureCounts(previous.structureFloorCounts), ...counts } }));
+    if (!profile) return;
+    const counts = normalizeStructureCounts({ ...effective.structures.minimum_counts, ...effective.structures.nether_minimum_counts });
+    setConfig((previous) => ({ ...previous, profile,
+      playableRadiusOverworld: effective.deployment.overworld_side_blocks,
+      playableRadiusNether: effective.deployment.nether_side_blocks,
+      requiredStructures: Object.keys(counts), selectedBiomes: effective.biomes.required_families,
+      maxMisses: effective.search.max_misses,
+      ...(controls ? { sweepSeedCount: controls.count, startIndex: controls.start_index,
+        openmpThreads: controls.threads, ...(controls.batch_size != null ? { batchSize: controls.batch_size } : {}) } : {}),
+      structureFloorCounts: counts }));
   }, []);
+  const lastCommandKey = useRef('');
+  const applyLaunch = useCallback((data: any, force = false) => {
+    if (!data.launch) return;
+    if (force || lastCommandKey.current !== data.launch.shellCommand) {
+      lastCommandKey.current = data.launch.shellCommand;
+      setLastLaunch(data.launch);
+      applyEffectiveConfig(data.effectiveConfig, data.launch.controls);
+    }
+  }, [applyEffectiveConfig]);
 
   // On mount, load any existing candidate database from backend
   useEffect(() => {
     let active = true;
     const generation = apiGeneration.current;
-    fetch('/api/candidates')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (active && generation === apiGeneration.current && data && data.candidates && data.candidates.length > 0) {
-          setCandidates(data.candidates);
-          setSelectedCandidate(data.candidates[0]);
-          setDataMode('live');
-        }
-      })
-      .catch(() => {});
-
     // Check system status
     fetch('/api/sweep/status')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (!active || generation !== apiGeneration.current || !data) return;
+        applyLaunch(data);
         const resolvedStatus = VALID_TELEMETRY_STATUSES.includes(data.status)
           ? (data.status as TelemetryState['status'])
           : (data.status === 'running' ? 'running' : 'idle');
@@ -149,7 +179,40 @@ function App() {
       })
       .catch(() => {});
     return () => { active = false; };
-  }, []);
+  }, [applyLaunch]);
+
+  useEffect(() => {
+    let active = true;
+    let loading = false;
+    const loadPage = async () => {
+      if (loading || commandInFlight.current) return;
+      loading = true;
+      const generation = apiGeneration.current;
+      try {
+        const response = await fetch(`/api/candidates?limit=${candidatePageSize}&offset=${candidateOffset}`);
+        if (!response.ok) throw new Error('Could not load candidate page');
+        const data = await response.json();
+        if (!active || generation !== apiGeneration.current) return;
+        if (candidateRunId.current !== data.runId) {
+          candidateRunId.current = data.runId;
+          if (candidateOffset !== 0) { setCandidateOffset(0); return; }
+        }
+        setCandidateTotal(data.total);
+        if (data.total > 0 && candidateOffset >= data.total) {
+          setCandidateOffset(Math.floor((data.total - 1) / candidatePageSize) * candidatePageSize);
+          return;
+        }
+        setCandidates(data.candidates);
+        setDataMode('live');
+        setSelectedCandidate((current) => data.candidates.find((c: SeedCandidate) => c.id === current?.id) ?? data.candidates[0] ?? null);
+      } catch (error) {
+        if (active && generation === apiGeneration.current) showToast(error instanceof Error ? error.message : String(error));
+      } finally { loading = false; }
+    };
+    void loadPage();
+    const timer = setInterval(loadPage, 3000);
+    return () => { active = false; clearInterval(timer); };
+  }, [candidateOffset, telemetry.runId, showToast]);
 
   const prevStatusRef = useRef<string>(telemetry.status);
 
@@ -168,6 +231,7 @@ function App() {
         .then((data) => {
           if (!active || generation !== apiGeneration.current || !data) return;
 
+          applyLaunch(data);
           // Detect completion
           if (prevStatusRef.current === 'running' && data.status === 'completed') {
             showToast(
@@ -196,16 +260,6 @@ function App() {
             runId: data.runId,
           }));
 
-          if (Array.isArray(data.candidates)) {
-            setCandidates(data.candidates);
-            setDataMode('live');
-            setSelectedCandidate((current) =>
-              data.candidates.find((candidate: SeedCandidate) => candidate.id === current?.id) ??
-              data.candidates[0] ??
-              null
-            );
-          }
-
           if (data.logs && data.logs.length > 0) {
             setLogs((prev) => {
               const combined = [...data.logs, ...prev];
@@ -218,7 +272,7 @@ function App() {
     }, pollInterval);
 
     return () => { active = false; clearInterval(timer); };
-  }, [telemetry.status, config.sweepSeedCount, config.openmpThreads, showToast]);
+  }, [telemetry.status, config.sweepSeedCount, config.openmpThreads, showToast, applyLaunch]);
 
   const handleToggleSweep = useCallback(async () => {
     try {
@@ -228,39 +282,21 @@ function App() {
         showToast('Sweep stopped; checkpoint retained');
         return;
       }
-      if (!Number.isSafeInteger(config.sweepSeedCount) || config.sweepSeedCount < 1 || !/^\d+$/.test(config.startIndex) ||
-          BigInt(config.startIndex) + BigInt(config.sweepSeedCount) > (1n << 64n)) {
-        throw new Error('Enter a positive whole seed count and a valid full64 starting index');
-      }
-      const policy = getSearchProfile(config.profile);
-      const floorCounts = normalizeStructureCounts(config.structureFloorCounts);
-      const counts: Record<string, number> = {};
-      for (const [key, defaultIdeal] of Object.entries(policy.counts)) {
-        const ideal = floorCounts[key];
-        if (!Number.isInteger(ideal) || ideal < 0 || ideal > 64) throw new Error(`${key}: enter a whole count from 0 to 64`);
-        const floor = config.profile === 'dynamic1664' && key !== 'stronghold' ? policy.floors[key] : policy.flexible.includes(key) ? policy.floors[key] : undefined;
-        if (floor == null && ideal !== defaultIdeal) throw new Error(`${key}: the selected policy fixes this target at ${defaultIdeal}`);
-        if (floor != null && ideal < floor) throw new Error(`${key}: the active policy requires at least ${floor}`);
-        if (ideal !== defaultIdeal) counts[key] = ideal;
-      }
-      const data = await postCommand('/api/sweep/start', {
-        count: config.sweepSeedCount, startIndex: config.startIndex, threads: config.openmpThreads,
-        batchSize: config.batchSize, maxMisses: config.maxMisses, counts, profile: config.profile,
-      });
-      applyEffectiveConfig(data.effectiveConfig);
+      const data = await postCommand('/api/sweep/start', buildSweepRequest(config));
+      applyLaunch(data, true);
       setTelemetry((prev) => ({ ...prev, status: 'running', runId: data.runId, totalScanned: 0,
         targetCount: config.sweepSeedCount, elapsedSeconds: 0, sweepProgress: 0 }));
-      setDataMode('live'); setCandidates([]); setSelectedCandidate(null);
+      setDataMode('live'); setCandidates([]); setSelectedCandidate(null); setCandidateOffset(0); setCandidateTotal(0);
       showToast(`Native sweep started (${config.sweepSeedCount.toLocaleString()} seeds)`);
     } catch (error) {
       showToast(`Sweep command failed: ${error instanceof Error ? error.message : String(error)}`);
     }
-  }, [telemetry.status, config, showToast, postCommand, applyEffectiveConfig]);
+  }, [telemetry.status, config, showToast, postCommand, applyLaunch]);
 
   const handleResumeSweep = useCallback(async (runId: string) => {
     try {
       const data = await postCommand('/api/sweep/resume', { runId });
-      applyEffectiveConfig(data.effectiveConfig);
+      applyLaunch(data, true);
       setDataMode('live');
       setTelemetry((prev) => ({ ...prev, status: 'running' }));
       setLogs((prev) => [`Resuming saved sweep ${runId}`, ...prev]);
@@ -268,7 +304,7 @@ function App() {
     } catch (error) {
       showToast(`Resume failed: ${error instanceof Error ? error.message : String(error)}`);
     }
-  }, [showToast, postCommand, applyEffectiveConfig]);
+  }, [showToast, postCommand, applyLaunch]);
 
   const handlePauseSweep = useCallback(async () => {
     try {
@@ -286,7 +322,7 @@ function App() {
     try {
       showToast('Resuming sweep...');
       const data = await postCommand('/api/sweep/continue', { runId: telemetry.runId });
-      applyEffectiveConfig(data.effectiveConfig);
+      applyLaunch(data, true);
       setDataMode('live');
       setTelemetry((prev) => ({ ...prev, status: 'running' }));
       setLogs((prev) => [`Continuing sweep from seed ${data.scannedCount ? data.scannedCount.toLocaleString() : telemetry.totalScanned.toLocaleString()}...`, ...prev]);
@@ -294,7 +330,7 @@ function App() {
     } catch (error) {
       showToast(`Continue failed: ${error instanceof Error ? error.message : String(error)}`);
     }
-  }, [telemetry.runId, telemetry.totalScanned, showToast, postCommand, applyEffectiveConfig]);
+  }, [telemetry.runId, telemetry.totalScanned, showToast, postCommand, applyLaunch]);
 
   const [verificationPending, setVerificationPending] = useState(false);
   const isVerifyingBDS = verificationPending || telemetry.status === 'bds_verifying';
@@ -411,7 +447,11 @@ function App() {
           logs={logs}
           onClearLogs={() => setLogs([])}
           onResumeSweep={handleResumeSweep}
-          sweepRunning={telemetry.status === 'running'}
+          sweepRunning={telemetry.status === 'running' || telemetry.status === 'paused' || telemetry.status === 'bds_verifying'}
+          preview={preview.key === previewKey && !request.error ? preview.receipt : null}
+          previewError={request.error || (preview.key === previewKey ? preview.error : '')}
+          lastLaunch={lastLaunch}
+          onCopyNotice={showToast}
         />
 
         {/* Center: Interactive Pan/Zoom Map Canvas */}
@@ -437,6 +477,7 @@ function App() {
         {/* Right: Candidate Feed & Drawer */}
         <CandidateFeed
           candidates={candidates}
+          pagination={{ offset: candidateOffset, total: candidateTotal, limit: candidatePageSize, onChangeOffset: setCandidateOffset }}
           selectedCandidate={selectedCandidate}
           onSelectCandidate={setSelectedCandidate}
           onInspectCandidate={setInspectedCandidate}

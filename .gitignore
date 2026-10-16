@@ -17,6 +17,14 @@ runs/*/*
 !runs/**/*.json
 !runs/**/*.yaml
 !runs/**/*.txt
+runs/web-sweep-*
+runs/pilot_*
+runs/v3_pilot_*
+runs/candidate_seed_*.json
+archive/
+reviews/**/no-diag-*
+reviews/**/durable-*
+reviews/**/durable-measured-*
 
 .DS_Store
 

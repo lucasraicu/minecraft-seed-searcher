@@ -1,0 +1,33 @@
+{
+  "commit": "233fad7",
+  "inputs_per_trial": 100000,
+  "start_index": 50000000,
+  "run_key": 2026101401,
+  "threads": 34,
+  "batch_size": 16384,
+  "runtime_limit_seconds": 120,
+  "median": {
+    "wall_seconds": 0.5252161770040402,
+    "native_seconds": 0.5056661930284463,
+    "input_seeds_per_second": 190397.79119223656,
+    "seed_preparation_seconds": 0.0030276959878392518,
+    "commit_seconds": 0.003399705034098588,
+    "record_seconds": 0.00014061899855732918,
+    "prepare_seconds": 0.00045327297993935645,
+    "sql_seconds": 0.0011896089854417369,
+    "shutdown_seconds": 0.00021412799833342433
+  },
+  "median_native_service_over_wall": 0.9622695277856418,
+  "positive_resume": {
+    "provenance": "synthetic coordinate/biome fixture, actual native code and durable pipeline",
+    "first_completed": 3,
+    "resume_completed": 5,
+    "total": 8,
+    "saved_candidates": 8,
+    "terrain_tasks": 0,
+    "native_seconds": 0.01813408700400032,
+    "record_seconds": 0.2811519370006863,
+    "prepare_seconds": 0.046409966991632245,
+    "commit_seconds": 0.014644320006482303
+  }
+}

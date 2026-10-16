@@ -10,7 +10,7 @@ import sys
 import time
 from pathlib import Path
 import yaml
-from .config import dynamic_blueprint_config, dynamic_v2_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
+from .config import dynamic_blueprint_config, dynamic_v2_blueprint_config, dynamic_v3_blueprint_config, marine_baseline_blueprint_config, two_group_blueprint_config, two_group_policy, origin_blueprint_config, outpost_blueprint_config, river_blueprint_config, locked_blueprint_config, default_config, blueprint_config, validate_config
 from .capabilities import report, identity as provider_identity
 from .store import RealmStore, canonical
 from .reports import ranked, export, rescore
@@ -24,8 +24,8 @@ def handles(argv=None):
     offset=0
     while offset<len(args):
         value=args[offset]
-        if value=='--config':offset+=2;continue
-        if value.startswith('--config='):offset+=1;continue
+        if value in ('--config', '--profile'):offset+=2;continue
+        if value.startswith('--config=') or value.startswith('--profile='):offset+=1;continue
         command=value;break
     if command in COMMANDS:return True
     if '--run' in args:
@@ -40,13 +40,36 @@ def handles(argv=None):
     if path and Path(path).is_file():
         cfg=yaml.safe_load(Path(path).read_text())
         return isinstance(cfg,dict) and cfg.get('schema_version')==5
+    if '--profile' in args or any(a.startswith('--profile=') for a in args):
+        return True
     if path is None and command in (None,'-h','--help','search','doctor','benchmark'):
         return True
     return False
 
 
-def load(path=None):
-    cfg=yaml.safe_load(Path(path).read_text()) if path else dynamic_v2_blueprint_config()
+def resolve_profile(name):
+    if not name or name in ('dynamic2048', 'v3', 'dynamic-envelope-2048-v3'):
+        return dynamic_v3_blueprint_config()
+    if name in ('dynamic1664', 'v2', 'dynamic-envelope-1664-v2'):
+        return dynamic_v2_blueprint_config()
+    if name in ('dynamic1664_v1', 'v1', 'dynamic-envelope-1664-v1'):
+        return dynamic_blueprint_config()
+    if name in ('marine2048', 'marine'):
+        return marine_baseline_blueprint_config()
+    if name in ('twoGroup2048', 'two_group', 'origin'):
+        return two_group_blueprint_config()
+    raise ValueError(f'Unknown profile: {name}')
+
+
+def load(path=None, profile=None):
+    if profile:
+        cfg = resolve_profile(profile)
+    elif path and path in ('dynamic2048', 'v3', 'dynamic-envelope-2048-v3', 'dynamic1664', 'v2', 'dynamic-envelope-1664-v2', 'dynamic1664_v1', 'v1', 'marine2048', 'marine', 'twoGroup2048', 'two_group'):
+        cfg = resolve_profile(path)
+    elif path:
+        cfg = yaml.safe_load(Path(path).read_text())
+    else:
+        cfg = dynamic_v3_blueprint_config()
     validate_config(cfg)
     return cfg
 
@@ -223,16 +246,18 @@ def main(argv=None):
     from ..seeds import parse_seed
     parser=argparse.ArgumentParser(description='Stronghold-anchored Bedrock Realm predictions and explicit verification')
     parser.add_argument('--config')
+    parser.add_argument('--profile', help='Blueprint configuration profile (e.g. dynamic2048, v3, dynamic1664)')
     sub=parser.add_subparsers(dest='command',required=True)
-    p=sub.add_parser('compatibility');p.add_argument('--output')
-    p=sub.add_parser('doctor');p.add_argument('--output')
-    p=sub.add_parser('benchmark');p.add_argument('--count',type=int,default=1000);p.add_argument('--workers',type=int,nargs='+',default=[1,12,16,18,24,30,36]);p.add_argument('--output',default='runs/realm-benchmark')
+    p=sub.add_parser('compatibility');p.add_argument('--output');p.add_argument('--profile')
+    p=sub.add_parser('doctor');p.add_argument('--output');p.add_argument('--profile')
+    p=sub.add_parser('benchmark');p.add_argument('--count',type=int,default=1000);p.add_argument('--workers',type=int,nargs='+',default=[1,12,16,18,24,30,36]);p.add_argument('--output',default='runs/realm-benchmark');p.add_argument('--profile')
     for name in ('baseline','search','scan'):
         p=sub.add_parser(name);p.add_argument('--count',type=int,required=True);p.add_argument('--start-index',type=int,default=0)
         p.add_argument('--output',required=True);p.add_argument('--workers',type=int);p.add_argument('--stop-after',type=int)
         p.add_argument('--dry-run',action='store_true')
         p.add_argument('--prediction-scale',action='store_true',help='Explicitly run larger prediction-only ranges after compatibility report; never certifies generation')
-    p=sub.add_parser('resume');p.add_argument('--run',required=True);p.add_argument('--workers',type=int);p.add_argument('--stop-after',type=int);p.add_argument('--prediction-scale',action='store_true')
+        p.add_argument('--profile')
+    p=sub.add_parser('resume');p.add_argument('--run',required=True);p.add_argument('--workers',type=int);p.add_argument('--stop-after',type=int);p.add_argument('--prediction-scale',action='store_true');p.add_argument('--profile')
     for command in ('baseline','search','scan','resume'):
         native=sub.choices[command]
         native.add_argument('--executor',choices=['python','native'],default=None)
@@ -279,15 +304,16 @@ def main(argv=None):
     args=parser.parse_args(argv)
     store=None
     try:
+        profile_arg = getattr(args, 'profile', None)
         if hasattr(args,'run'):
             store=RealmStore(args.run,resume=True)
             cfg=store.identity['config']
-            if args.config:
-                explicit=load(args.config)
+            if args.config or profile_arg:
+                explicit=load(args.config, profile_arg)
                 from .store import semantic_identity
                 if semantic_identity({'config':cfg})!=semantic_identity({'config':explicit}):raise ValueError('Run configuration differs from supplied Realm profile')
                 cfg=explicit
-        else:cfg=load(args.config)
+        else:cfg=load(args.config, profile_arg)
         if store and args.command in ('resume','terrain','verify-terrain','verify-biomes','verify-realm'):
             from .reports import ensure_score_revision_complete
             ensure_score_revision_complete(store)
@@ -305,10 +331,8 @@ def main(argv=None):
             resume=args.command=='resume'
             run=Path(args.run if resume else args.output)
             run.mkdir(parents=True,exist_ok=True)
-            (run/'compatibility.json').write_text(json.dumps(report(cfg),indent=2)+'\n')
             count=store.identity['count'] if resume else args.count
             first=store.identity['start_index'] if resume else args.start_index
-            ident=make_identity(cfg,count,first)
             execution=args.executor or ((store.identity or {}).get('execution','python') if store else 'python')
             native_build=args.native_build or ((store.identity or {}).get('native_build') if store and execution=='native' else None)
             native_threads=args.native_threads if args.native_threads is not None else ((store.get_state('native_pipeline') or {}).get('threads',16) if store else 16)
@@ -316,6 +340,12 @@ def main(argv=None):
             saved_retention=(store.identity or {}).get('retention',{}) if store else {}
             retention=args.retention or saved_retention.get('mode','survivors' if execution=='native' else 'full')
             misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(cfg['search']['max_misses'] if two_group_policy(cfg) else 1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
+            if not resume and execution=='native' and retention=='survivors' and two_group_policy(cfg):
+                cfg=copy.deepcopy(cfg)
+                cfg['search']['max_misses']=misses
+                validate_config(cfg)
+            ident=make_identity(cfg,count,first)
+            (run/'compatibility.json').write_text(json.dumps(report(cfg),indent=2)+'\n')
             if execution=='python' and (retention!='full' or misses):raise ValueError('Compact retention requires --executor native')
             if execution=='python' and any(v is not None for v in (args.native_build,args.native_threads,args.native_batch_size)):
                 raise ValueError('Native options require --executor native')
@@ -470,3 +500,7 @@ def main(argv=None):
     except (ValueError,KeyError,FileNotFoundError) as exc:parser.error(str(exc))
     finally:
         if store:store.close()
+
+
+if __name__ == '__main__':
+    main()

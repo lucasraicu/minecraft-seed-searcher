@@ -1,7 +1,8 @@
-# Master Seed Blueprint: Bedrock 15–20 Player Server (1664 × 1664)
+# Master Seed Blueprint: Bedrock 15–20 Player Server (2048 × 2048)
 
-> **Specification Status:** Approved Engineering Blueprint Specification (Revision 5.0 - Dynamic Envelope v2 Player/Scoring Revision, High-Throughput Compact Survivor Pipeline & PGO+LTO Acceleration - October 2026).
-> **Pipeline Policy:** `dynamic-envelope-1664-v2` with sliding optimal cluster center $(C_X, C_Z)$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)$) and $1124 \times 1124$ Nether preflight envelope ($[-562, 562)$). Historical `dynamic-envelope-1664-v1` remains fully readable and supported.
+> **Specification Status:** Approved Engineering Blueprint Specification (Revision 6.0 - Dynamic Envelope v3 2048x2048 Realm Scale - October 2026).
+> **Pipeline Policy:** `dynamic-envelope-2048-v3` with sliding optimal cluster center $(C_X, C_Z)$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)$) and $1268 \times 1268$ Nether preflight envelope ($[-634, 634)$).
+> **Historical Archive Notice:** The previous $1664 \times 1664$ Overworld / $832 \times 832$ Nether specification is preserved as historical reference at [`MASTER_SEED_BLUEPRINT_1664_V2.md`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/MASTER_SEED_BLUEPRINT_1664_V2.md) and [`docs/historical_reports/MASTER_SEED_BLUEPRINT_1664_V2.md`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/docs/historical_reports/MASTER_SEED_BLUEPRINT_1664_V2.md), alongside `dynamic-envelope-1664-v1`. Both remain fully readable and valid for historical database replay.
 > **Target Game Version:** Minecraft Bedrock Edition 1.21+ (pinned `MC_26_50`; live BDS target 1.26.52.3).
 > **Target Community:** 15–20 Players (High-density active server; shared central starter hub; distributed homestead districts; zero resource depletion).
 > **Certification Decoupling:** Defines approved architectural targets, hard floors, and scoring models. In-engine verification (End Portal rooms, loot, cave carver entrances, initial player spawn) requires additional evidence. The current headless provider establishes bounded surface observations; it does not establish those other features.
@@ -15,20 +16,20 @@ The realm operates on a sliding-window coordinate system that decouples world sp
 | Dimension / Region | Exact Dimensions | Center Coordinate | Chunk Extent | Distance to Edge | Mathematical Definition & Role |
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | **Overworld Macro Envelope** | **4000 × 4000** | Origin `(0, 0)` | $250 \times 250$ chunks | Radius 2,000m | Search bounds for Stage 1A preflight ($X, Z \in [-2000, 2000)$). |
-| **Nether Preflight Envelope** | **1124 × 1124** | Origin `(0, 0)` | $70.25 \times 70.25$ chunks | Radius 562m | Fast chunk-grid PRNG search bounds for Stage 1A Nether checks ($X_N, Z_N \in [-562, 562)$). Exactly covers all possible Nether centers ($\pm 146\text{m}$) plus 416m half-width. |
-| **Playable Overworld** | **1664 × 1664** | **Dynamic Center $(C_X, C_Z)$** | $104 \times 104$ chunks | Radius 832m | Bounded within the half-open window $[C_X - 832, C_X + 832) \times [C_Z - 832, C_Z + 832)$, where $(C_X, C_Z) \in [-1168, 1168]^2$. Exactly 1664 blocks = 104 chunks. Border inclusions: West ($X = C_X - 832$) and North ($Z = C_Z - 832$) included; East ($X = C_X + 832$) and South ($Z = C_Z + 832$) excluded. Snapped to the nearest valid multiple of 16 per axis, falling back to 8 without leaving the safe cell $\mathcal{S}_{\text{safe}}$. |
-| **Playable Nether** | **832 × 832** | **Scaled Center $(C_X/8, C_Z/8)$** | $52 \times 52$ chunks | Radius 416m | Bounded within the half-open window $[C_X/8 - 416, C_X/8 + 416) \times [C_Z/8 - 416, C_Z/8 + 416)$, where $(C_X/8, C_Z/8) \in [-146, 146]^2$. West and North included; East and South excluded. Guaranteed exact integer block coordinate for `/scriptevent worldborder:center nether <X> <Z>`. Radius 416m provides a $4\times$ area buffer relative to the 208-block portal-scaled Overworld footprint; geometry alone does not certify portal behavior. |
+| **Nether Preflight Envelope** | **1268 × 1268** | Origin `(0, 0)` | $79.25 \times 79.25$ chunks | Radius 634m | Fast chunk-grid PRNG search bounds for Stage 1A Nether checks ($X_N, Z_N \in [-634, 634)$). Exactly covers all possible Nether centers ($\pm 122\text{m}$) plus 512m half-width. |
+| **Playable Overworld** | **2048 × 2048** | **Dynamic Center $(C_X, C_Z)$** | $128 \times 128$ chunks | Radius 1024m | Bounded within the half-open window $[C_X - 1024, C_X + 1024) \times [C_Z - 1024, C_Z + 1024)$, where $(C_X, C_Z) \in [-976, 976]^2$. Exactly 2048 blocks = 128 chunks. Border inclusions: West ($X = C_X - 1024$) and North ($Z = C_Z - 1024$) included; East ($X = C_X + 1024$) and South ($Z = C_Z + 1024$) excluded. Snapped to the nearest valid multiple of 16 per axis, falling back to 8 without leaving the safe cell $\mathcal{S}_{\text{safe}}$. |
+| **Playable Nether** | **1024 × 1024** | **Scaled Center $(C_X/8, C_Z/8)$** | $64 \times 64$ chunks | Radius 512m | Bounded within the half-open window $[C_X/8 - 512, C_X/8 + 512) \times [C_Z/8 - 512, C_Z/8 + 512)$, where $(C_X/8, C_Z/8) \in [-122, 122]^2$. West and North included; East and South excluded. Guaranteed exact integer block coordinate for `/scriptevent worldborder:center nether <X> <Z>`. Radius 512m provides a $4\times$ area buffer relative to the 256-block portal-scaled Overworld footprint; geometry alone does not certify portal behavior. |
 
 ---
 
 ## 2. Dynamic Sliding Window: Three-Defense Geometric & Alignment Architecture
 
-In a $1664 \times 1664$ bounding box, the outer boundary shell accounts for **75% of the total surface area**. Without spatial safeguards, unconstrained sliding windows place key structures at the border perimeter. The blueprint guarantees dense interior clustering and flawless world border alignment via a three-defense geometric architecture:
+In a $2048 \times 2048$ bounding box, the outer boundary shell accounts for **75% of the total surface area**. Without spatial safeguards, unconstrained sliding windows place key structures at the border perimeter. The blueprint guarantees dense interior clustering and flawless world border alignment via a three-defense geometric architecture:
 
 ### Defense 1: 2D Event-Slab Interior Solver
 - Projects every discovered structure coordinate into entry/exit slab events on half-open intervals:
-  - Overworld structures at $(X_i, Z_i)$ are captured when $C_X - 832 \le X_i < C_X + 832$. For integer centers $C_X$, this yields entry at $X_i - 831$ and exit past $X_i + 832$ (candidate safe interval $[X_i - 831, X_i + 832]$ of width 1664). This produces an exact $+1$ entry-event asymmetry relative to continuous-space models ($[X_i - 832, X_i + 832]$).
-  - Nether structures at $(X_{N,j}, Z_{N,j})$ are projected into Overworld center space via the 8:1 dimensional scale ($C_X/8 - 416 \le X_{N,j} < C_X/8 + 416 \iff C_X - 3328 \le 8X_{N,j} < C_X + 3328$). For integer centers $C_X$, this yields entry at $8X_{N,j} - 3327$ and exit past $8X_{N,j} + 3328$ (candidate safe interval $[8X_{N,j} - 3327, 8X_{N,j} + 3328]$ of width 6656).
+  - Overworld structures at $(X_i, Z_i)$ are captured when $C_X - 1024 \le X_i < C_X + 1024$. For integer centers $C_X$, this yields entry at $X_i - 1023$ and exit past $X_i + 1024$ (candidate safe interval $[X_i - 1023, X_i + 1024]$ of width 2048). This produces an exact $+1$ entry-event asymmetry relative to continuous-space models ($[X_i - 1024, X_i + 1024]$).
+  - Nether structures at $(X_{N,j}, Z_{N,j})$ are projected into Overworld center space via the 8:1 dimensional scale ($C_X/8 - 512 \le X_{N,j} < C_X/8 + 512 \iff C_X - 4096 \le 8X_{N,j} < C_X + 4096$). For integer centers $C_X$, this yields entry at $8X_{N,j} - 4095$ and exit past $8X_{N,j} + 4096$ (candidate safe interval $[8X_{N,j} - 4095, 8X_{N,j} + 4096]$ of width 8192).
 - Solves 2D equivalence cells formed by the Cartesian product of event intervals where structure counts and lattice samples are strictly invariant, selecting the cell representative that minimizes distance to the coordinate midpoint.
 
 ### Defense 2: Centroid Magnet Pull with Feasible Safe-Zone Clamping
@@ -51,9 +52,9 @@ To prevent massive structures from disproportionately dragging the center away f
 
 #### Feasible Safe-Zone Clamping ($\mathcal{S}_{\text{safe}} = \mathcal{S}_{\text{OW}} \cap \mathcal{S}_{\text{Nether}}$)
 The centroid pull is strictly constrained to the Feasible Safe Zone to guarantee that no floor-qualifying structure is ever displaced across the border. Incorporating the half-open window boundary logic:
-- **Overworld Safe Interval:** For every required Overworld structure $i$, $C_X \in [X_i - 831, X_i + 832]$ and $C_Z \in [Z_i - 831, Z_i + 832]$ (exact width 1664 integer coordinates per axis).
-- **Nether Safe Interval:** For every required Nether Fortress and Bastion $j$, projected as $C_X \in [8X_{N,j} - 3327, 8X_{N,j} + 3328]$ and $C_Z \in [8Z_{N,j} - 3327, 8Z_{N,j} + 3328]$ (exact width 6656 integer coordinates per axis in Overworld scale).
-- Clamping: $(C_X^*, C_Z^*) = \text{clamp}\big((C_X^*, C_Z^*),\; \mathcal{S}_{\text{safe}}\big)$, where $\mathcal{S}_{\text{safe}} = \mathcal{S}_{\text{OW}} \cap \mathcal{S}_{\text{Nether}} \cap [-1168, 1168]^2$. This projection guarantees that required Overworld and Nether structures can never be lost.
+- **Overworld Safe Interval:** For every required Overworld structure $i$, $C_X \in [X_i - 1023, X_i + 1024]$ and $C_Z \in [Z_i - 1023, Z_i + 1024]$ (exact width 2048 integer coordinates per axis).
+- **Nether Safe Interval:** For every required Nether Fortress and Bastion $j$, projected as $C_X \in [8X_{N,j} - 4095, 8X_{N,j} + 4096]$ and $C_Z \in [8Z_{N,j} - 4095, 8Z_{N,j} + 4096]$ (exact width 8192 integer coordinates per axis in Overworld scale).
+- Clamping: $(C_X^*, C_Z^*) = \text{clamp}\big((C_X^*, C_Z^*),\; \mathcal{S}_{\text{safe}}\big)$, where $\mathcal{S}_{\text{safe}} = \mathcal{S}_{\text{OW}} \cap \mathcal{S}_{\text{Nether}} \cap [-976, 976]^2$. This projection guarantees that required Overworld and Nether structures can never be lost.
 
 ### Defense 3: Chunk-Grid & Addon-Safe Center Snapping Protocol
 To ensure seamless integration with the server's [Bedrock World Border Addon](https://www.curseforge.com/minecraft-bedrock/addons/bedrock-world-border) while strictly maintaining structure retention, $(C_X^*, C_Z^*)$ is snapped per axis within $\mathcal{S}_{\text{safe}}$:
@@ -70,43 +71,47 @@ To ensure seamless integration with the server's [Bedrock World Border Addon](ht
        Round the centroid coordinate to the nearest multiple of 8 ($8 \times \lfloor (C^* + 4)/8 \rfloor$) and clamp to $[\text{lower}_8, \text{upper}_8]$. Snapping never leaves the safe cell $\mathcal{S}_{\text{safe}}$.
 
 2. **Distinguishing Block Dimensions from Chunk Alignment:**
-   - **Block Dimensions vs. Chunk Borders:** The Overworld window is fixed at exactly $1664 \times 1664$ blocks ($104 \times 104$ chunks, radius 832m), and the Nether window is fixed at $832 \times 832$ blocks ($52 \times 52$ chunks, radius 416m).
-   - **When Snapping to 16:** Because the Overworld half-width is $832 = 52 \times 16$, snapping $C_X, C_Z$ to a multiple of 16 guarantees that both borders $[C \pm 832]$ land exactly on chunk boundaries ($16k \pm 52 \times 16 = 16(k \pm 52) \equiv 0 \pmod{16}$). No chunk is split in half by the world border particle wall, and the scaled Nether center $(C_X/8, C_Z/8)$ is an even integer ($2k$).
-   - **When Snapping to Fallback-8 (Odd Multiples of 8):** If $C$ is an odd multiple of 8 ($C = 16k + 8$), the outer boundary lands at $16k + 8 \pm 52 \times 16 \equiv 8 \pmod{16}$. **A fallback-8 border will cut a chunk in half** at block offset 8. Fallback-8 Overworld centers and integer Nether centers do *not* guarantee chunk-aligned borders.
+   - **Block Dimensions vs. Chunk Borders:** The Overworld window is fixed at exactly $2048 \times 2048$ blocks ($128 \times 128$ chunks, radius 1024m), and the Nether window is fixed at $1024 \times 1024$ blocks ($64 \times 64$ chunks, radius 512m).
+   - **When Snapping to 16:** Because the Overworld half-width is $1024 = 64 \times 16$, snapping $C_X, C_Z$ to a multiple of 16 guarantees that both borders $[C \pm 1024]$ land exactly on chunk boundaries ($16k \pm 64 \times 16 = 16(k \pm 64) \equiv 0 \pmod{16}$). No chunk is split in half by the world border particle wall, and the scaled Nether center $(C_X/8, C_Z/8)$ is an even integer ($2k$).
+   - **When Snapping to Fallback-8 (Odd Multiples of 8):** If $C$ is an odd multiple of 8 ($C = 16k + 8$), the outer boundary lands at $16k + 8 \pm 64 \times 16 \equiv 8 \pmod{16}$. **A fallback-8 border will cut a chunk in half** at block offset 8. Fallback-8 Overworld centers and integer Nether centers do *not* guarantee chunk-aligned borders.
    - **Addon Integer Command Requirement:** What fallback-8 *does* strictly guarantee is that $(C_X/8, C_Z/8)$ is an exact integer block coordinate ($(16k + 8)/8 = 2k + 1 \in \mathbb{Z}$). The deployment command target `/scriptevent worldborder:center nether <X> <Z>` is expressed using integer coordinates; addon behavior and portal safety still require runtime verification. Snapping to 8 prevents fractional Nether centers (which would occur if centers were not snapped) and preserves the selected starts within $\mathcal{S}_{\text{safe}}$.
 
 ---
 
-## 3. Structure Inventory, Tolerance Matrix & Miss Budget ($B \le 2$)
+## 3. Structure Inventory, Tolerance Matrix & Miss Budget ($B \le 3$)
 
-Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a total Miss Budget $B \le 2$**.
+Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a total Miss Budget $B \le 3$ (v2/v3) or $B \le 2$ (historical v1)**.
 
-### The Miss Budget Rule ($B \le 2$)
-1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening.
+### The Miss Budget Rule ($B \le 3$)
+1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening. Hard floors are fatal.
 2. **Deficit Consumption:** If a structure meets its Hard Floor but falls below its **Ideal Target**, it consumes **1 Miss** from the seed's budget.
-3. **Budget Limit:** A seed may possess at most **2 categories in deficit** across the entire realm ($\text{Total Misses} \le 2$). Any seed with $\ge 3$ deficits is disqualified.
+3. **Budget Limit:** In active v3, a seed may possess at most **3 categories in deficit** across the entire realm ($\text{Total Misses} \le 3$). Any seed with $\ge 4$ deficits is disqualified. (Historical v1 permitted at most 2 deficits). Deficits incur penalty deductions (-5 pts for Ruined Portal and Shipwreck; -10 pts for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft).
 
-### Structure Tolerance Matrix ($1664 \times 1664$ Overworld / $832 \times 832$ Nether)
+> **Custom palette searches:** The UI may explicitly select a subset (including none) of the 13 supported Overworld biome families for a v2/v3 search. The selection is saved in `biomes.required_families` and enforced by native and reference evaluation. These custom results satisfy the selected palette, not necessarily the full default blueprint palette. The default remains all 13; Nether requirements and structure viability are unchanged.
 
-| Structure Category | Dimension | Ideal Target | Tolerance | Guaranteed Hard Floor | Stage Evaluated | Scoring & Realm Role |
-| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| 🏰 **Stronghold** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Non-negotiable.** End portal access. **+50 pts** for 2nd Stronghold. |
-| 🏛️ **Woodland Mansion** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. **+50 pts** for 2nd Mansion. |
-| 🗿 **Ocean Monument** | Overworld | **1** | **0** | **$\ge 1$** | Stage 1A | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. **+30 pts** for 2nd Monument. |
-| 🏴‍☠️ **Pillager Outpost** | Overworld | **2** | **0** | **$\ge 2$** | Stage 1A | **Mandatory $\ge 2$.** Infinite Bad Omen & raid farming. **+20 pts** one-time milestone for 3rd (not linear). |
-| 🔥 **Nether Fortress** | Nether | **2** | **0** | **$\ge 2$** | Stage 1A (1st) | **Mandatory $\ge 2$** inside $832 \times 832$ Nether. Blaze rods & skulls. **+20 pts** one-time milestone for 3rd (not linear). |
-| 🐷 **Bastion Remnant** | Nether | **2** | **0** | **$\ge 2$** | Stage 1A (1st) | **Mandatory $\ge 2$** inside $832 \times 832$ Nether. Piglin bartering & upgrade trims. **+20 pts** one-time milestone for 3rd (not linear). |
-| 🏘️ **Villages** | Overworld | **9** | **$-1$** | **$\ge 8$** | Stage 1B | Guaranteed $\ge 8$. 8 villages = 1 deficit. **+25 pts** each for 9th+ (linear surplus). |
-| ⚔️ **Trial Chambers** | Overworld | **8** | **$-1$** | **$\ge 7$** | Stage 1B | Guaranteed $\ge 7$. 7 chambers = 1 deficit. **+10 pts** each for 8th+ (linear surplus). |
-| 🌌 **Ancient City** | Overworld | **4** | **$-1$** | **$\ge 3$** | Stage 1B | Guaranteed $\ge 3$. 3 cities = 1 deficit. **+25 pts** one-time milestone for 4th (not linear). |
-| 🏺 **Desert Pyramid** | Overworld | **3** | **$-1$** | **$\ge 2$** | Stage 1B | Guaranteed $\ge 2$. 2 pyramids = 1 deficit. **+20 pts** one-time milestone for 3rd (not linear). |
-| 🌿 **Jungle Temple** | Overworld | **3** | **$-1$** | **$\ge 2$** | Stage 1B | Guaranteed $\ge 2$. 2 temples = 1 deficit. **+20 pts** one-time milestone for 3rd (not linear). |
-| ⛵ **Shipwrecks** | Overworld | **6** | **$-2$** | **$\ge 4$** | Stage 1B | Guaranteed $\ge 4$. 4–5 wrecks = 1 deficit. **+5 pts** each above 6 (linear surplus). |
-| 🌀 **Ruined Portals** | Overworld | **7** | **$-2$** | **$\ge 5$** | Stage 1B | Guaranteed $\ge 5$. 5–6 portals = 1 deficit. **+5 pts** each above 7 (linear surplus). |
-| ⛏️ **Mineshafts** | Overworld | **15** | **$-3$** | **$\ge 12$** | Stage 1B | Guaranteed $\ge 12$. 12–14 shafts = 1 deficit. **+1 pt** each above 15 (linear surplus). |
-| 🧙 **Swamp Hut (Witch Hut)** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Automated witch/redstone farm; **+20 pts** (predicted placement). |
-| 🛖 **Igloo (with Basement)**| Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Starter brewing stand, golden apple & zombie curing; **+15 pts** (predicted via PRNG). |
-| 🏺 **Trail Ruins** | Overworld | 1 | — | $\ge 0$ | Stage 4 Bonus | Archaeology trims & relic discs; **+15 pts** (predicted placement). |
+### Active v3 Structure Tolerance Matrix ($2048 \times 2048$ Overworld / $1024 \times 1024$ Nether)
+
+Counts are complete predictor counts within the selected window. Hard floors constrain predictions; actual generation remains unverified. Bonuses below use the capped v2/v3 schedule in Section 5.1. Explicit historical v1 configurations retain their original scoring.
+
+| Structure Category | Dimension | Guaranteed Hard Floor | Progressive Surplus Points Schedule (+) | Scoring & Realm Role |
+| :--- | :---: | :---: | :--- | :--- |
+| 🏰 **Stronghold** | Overworld | **$\ge 1$** | 2nd = **+40 pts**, 3rd = **+20 pts** (**+60 max**) | **Non-negotiable.** Predicted End-access start; portal room unverified. |
+| 🏛️ **Woodland Mansion** | Overworld | **$\ge 1$** | 2nd = **+50 pts** | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. |
+| 🗿 **Ocean Monument** | Overworld | **$\ge 1$** | 2nd = **+40 pts**, 3rd = **+20 pts** (**+60 max**) | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. |
+| 🏴‍☠️ **Pillager Outpost** | Overworld | **$\ge 1$** | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** (**+40 max**) | **Mandatory $\ge 1$.** Infinite Bad Omen & raid farming. |
+| 🔥 **Nether Fortress** | Nether | **$\ge 1$** | 2nd+ = **+20 pts each** | **Mandatory $\ge 1$** inside $1024 \times 1024$ Nether. Blaze rods & skulls. |
+| 🐷 **Bastion Remnant** | Nether | **$\ge 2$** | 3rd+ = **+20 pts each** (+**15 pts** Treasure variant) | **Mandatory $\ge 2$** inside $1024 \times 1024$ Nether. Piglin bartering & upgrade trims. |
+| 🏘️ **Villages** | Overworld | **$\ge 6$** | 7th..11th+ = **+10 each** (**+50 max**) | Guaranteed baseline $\ge 6$. Rewards mega-settlements. |
+| ⚔️ **Trial Chambers** | Overworld | **$\ge 8$** | 9th+ = **+10 pts each** | Guaranteed baseline $\ge 8$. Heavy Cores, maces, Ominous Vaults. |
+| 🌌 **Ancient City** | Overworld | **$\ge 2$** | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** (**+65 max**) | Guaranteed baseline $\ge 2$. Swift Sneak, Silence Trim, Wardens. |
+| 🏺 **Desert Pyramid** | Overworld | **$\ge 1$** | 2nd = **+10**, 3rd = **+10**, 4th+ = **+15 each** | Guaranteed baseline $\ge 1$. Desert archaeology & enchanted apples. |
+| 🌿 **Jungle Temple** | Overworld | **$\ge 1$** | 2nd = **+10**, 3rd = **+10**, 4th+ = **+15 each** | Guaranteed baseline $\ge 1$. Redstone puzzle & jungle exploration. |
+| ⛵ **Shipwrecks** | Overworld | **$\ge 4$** | 5th = **+5**, 6th = **+5**, 7th+ = **+10 each** | Guaranteed baseline $\ge 4$. Early iron, emeralds, treasure maps. |
+| 🌀 **Ruined Portals** | Overworld | **$\ge 8$** | 9th+ = **+10 each** | Guaranteed baseline $\ge 8$. Fast Nether transit & crying obsidian. |
+| ⛏️ **Mineshafts** | Overworld | **$\ge 10$** | +**2 pts each** over 10 (**+20 pts max**) | Guaranteed baseline $\ge 10$. Rails, mob spawners, chest minecarts. |
+| 🧙 **Swamp Hut (Witch Hut)** | Overworld | $\ge 0$ | 1st = **+20 pts**, 2nd = **+10 pts** (**+30 max**) | Optional Stage 4 bonus. Predicted witch-farm start. |
+| 🛖 **Igloo (with Basement)**| Overworld | $\ge 0$ | 1st = **+10 pts**, 2nd = **+5 pts** (**+15 max**) | Optional Stage 4 bonus. Pinned MC_26_50 basement prediction. |
+| 🏺 **Trail Ruins** | Overworld | $\ge 0$ | 1st = **+15 pts**, 2nd = **+10 pts** (**+25 max**) | Optional Stage 4 bonus. Archaeology pottery sherds & armor trims. |
 
 > [!IMPORTANT]
 > **Implementation Capabilities vs. Approved Blueprint Design (Group D Audit Reconciliation):**
@@ -134,8 +139,8 @@ Evaluated across four vertical reference planes ($Y = 63, -48, 0, 160$) using 2D
 12. 💧 **Dripstone Caves:** Pointed dripstone, infinite lava cauldrons ($Y = 0$ to $-48$).
 13. 🌌 **Deep Dark:** Sculk catalysts, shriekers, Ancient City foundation zone ($Y \le -10$).
 
-### Complete 5-Biome Nether Palette (Inside 832 × 832 Playable Nether)
-Because players cannot travel or mine outside the $832 \times 832$ Nether border, Stage 2 enforces that all **5 Nether biomes** exist within $[C_X/8 \pm 416, C_Z/8 \pm 416]$ via a fast $13 \times 13$ lattice check ($169$ sample points at $Y = 64$, taking $<0.2\text{ ms}$):
+### Complete 5-Biome Nether Palette (Inside 1024 × 1024 Playable Nether)
+Because players cannot travel or mine outside the $1024 \times 1024$ Nether border, Stage 2 enforces that all **5 Nether biomes** exist within the half-open window $[C_X/8 - 512, C_X/8 + 512) \times [C_Z/8 - 512, C_Z/8 + 512)$ via a fast half-open $16 \times 16$ lattice check ($256$ interior sample points at $Y = 64$ with 64-block spacing, taking $<0.3\text{ ms}$, preventing boundary overflow):
 1. 🔥 **Nether Wastes:** Quartz, glowstone, zombie piglins.
 2. 🌲 **Crimson Forest:** Crimson wood/fungus, shroomlights, weeping vines, hoglins (essential renewable food/leather).
 3. 🍄 **Warped Forest:** Warped wood/fungus, twisting vines, safe haven from piglins/hoglins, enderman pearl farming.
@@ -152,58 +157,92 @@ To minimize sampling overhead, Stage 2 evaluates vertical planes with aggressive
 
 ## 5. Stage 3/4: Dynamic Starter Hub & Comprehensive Scoring
 
-### 5.1 Active `dynamic-envelope-1664-v2` Player Scoring Architecture (719-Point Ceiling)
+### 5.1 Active `dynamic-envelope-2048-v3` Player Scoring Architecture (1,250-Point Pure Additive System)
 
-Under the active `dynamic-envelope-1664-v2` specification, scoring operates on a strict **719-point arithmetic ceiling** without unverified terrain gating:
+Under the active `dynamic-envelope-2048-v3` specification, scoring operates on a **pure additive dynamic system** with **zero deficit penalties** and a **1,250-Point Master Architecture** (`Core Surplus: 650 max` + `Optional Structures: 200 max` + `Luxury Biomes: 265 max` + `Spatial & Nether Core: 135 max`). Every candidate that satisfies all 14 Guaranteed Hard Floors qualifies for the candidate pool. Beyond the guaranteed baseline, every extra structure, optional feature, luxury biome, and spatial amenity progressively adds stacking points. A baseline qualifying seed meeting hard floors receives exactly **0 surplus points**.
 
-#### A. Core Structure Schedule (340 Max Points)
-Hard floors are fatal; deficits incur quadratic penalties. Surplus beyond target adds linear points up to individual caps:
-- 🏘️ **Villages:** Hard floor 6, target 8. +10 pts each surplus above 8 up to cap of 12 (+40 pts max). Deficit below 8: 1 deficit.
-- ⚔️ **Trial Chambers:** Hard floor 4, target 6. +15 pts each surplus above 6 up to cap of 8 (+30 pts max). Deficit below 6: 1 deficit.
-- 🌌 **Ancient Cities:** Hard floor 1, target 2. +20 pts surplus for 3rd (+20 pts max). Deficit below 2: 1 deficit.
-- 🏰 **Strongholds:** Hard floor 1, target 1. +50 pts jackpot for 2nd distinct predicted Stronghold (+50 pts max).
-- 🏛️ **Woodland Mansions:** Hard floor 1, target 1. +50 pts jackpot for 2nd distinct predicted Mansion (+50 pts max).
+$$\mathbf{Total\ Smart\ Score} = \text{Core Surplus (650)} + \text{Optional Structures (200)} + \text{Luxury Biomes (265)} + \text{Spatial Layout \& Nether Core (135)} = \mathbf{1,250\ Pts\ Max}$$
 
-#### B. Optional Structure Schedule (129 Max Points)
+- **No Deficit Minuses (-):** You never subtract points. The deficit penalty is strictly $0$, and Miss Budget is $B = 0$ (`max_misses = 0`).
+- **Hard Floor = Baseline Entry Ticket:** Meeting every hard floor guarantees baseline qualification. A seed below any floor is fatal.
+- **Top-50 Ratchet Cutoff Bar ($S_{50}$):** The in-memory Top-50 Tracker maintains a size-50 min-heap. Once 50 candidates are found, the 50th score ($S_{50}$) automatically acts as an upper-bound cutoff to prune non-competitive seeds in C before allocation.
+
+#### A. Core Structure Surplus Schedule (14 Categories | $F = 0\text{ pts}$ | 650 Pts Max)
+Structure points start accumulating the moment a structure exceeds its Guaranteed Hard Floor ($F$). All categories have concave diminishing returns and hard caps:
+
+| Category | Dim | Hard Floor ($F$) | Pts at $F$ | Surplus Schedule ($F+1$ onward) | Category Cap | Lookup Array (`LUT`) |
+| :--- | :---: | :---: | :---: | :--- | :---: | :--- |
+| 🏛️ **Woodland Mansion** | OW | **1** | 0 pts | 2nd = **+55**, 3rd+ = **+30** | **+85 pts** *(at 3+)* | `{0, 55, 85}` |
+| 🏺 **Desert Pyramid** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
+| 🌿 **Jungle Temple** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
+| 🌌 **Ancient City** | OW | **2** | 0 pts | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** | **+65 pts** *(at 6+)* | `{0, 20, 40, 55, 65}` |
+| 🏰 **Stronghold** | OW | **1** | 0 pts | 2nd = **+20**, 3rd+ = **+30** | **+50 pts** *(at 3+)* | `{0, 20, 50}` |
+| 🗿 **Ocean Monument** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+15**, 4th+ = **+10** | **+50 pts** *(at 4+)* | `{0, 25, 40, 50}` |
+| 🐷 **Bastion Remnant** | Nether | **2** | 0 pts | 3rd = **+20**, 4th = **+15**, 5th+ = **+15** | **+50 pts** *(at 5+)* | `{0, 20, 35, 50}` |
+| 🔥 **Nether Fortress** | Nether | **1** | 0 pts | 2nd = **+20**, 3rd = **+15**, 4th+ = **+15** | **+50 pts** *(at 4+)* | `{0, 20, 35, 50}` |
+| 🏘️ **Village** | OW | **6** | 0 pts | 7th..11th+ = **+10 each** | **+50 pts** *(at 11+)* | `{0, 10, 20, 30, 40, 50}` |
+| 🏴‍☠️ **Pillager Outpost** | OW | **1** | 0 pts | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** | **+40 pts** *(at 4+)* | `{0, 15, 30, 40}` |
+| ⚔️ **Trial Chamber** | OW | **8** | 0 pts | 9th = **+10**, 10th = **+8**, 11th = **+7**, 12th+ = **+5** | **+30 pts** *(at 12+)* | `{0, 10, 18, 25, 30}` |
+| 🌀 **Ruined Portal** | OW | **8** | 0 pts | 9th..12th+ = **+5 each** | **+20 pts** *(at 12+)* | `{0, 5, 10, 15, 20}` |
+| ⛵ **Shipwreck** | OW | **4** | 0 pts | 5th..8th+ = **+5 each** | **+20 pts** *(at 8+)* | `{0, 5, 10, 15, 20}` |
+| ⛏️ **Mineshaft** | OW | **10** | 0 pts | 11th..20th+ = **+2 each** | **+20 pts** *(at 20+)* | `min(20, max(0, count - 10) * 2)` |
+
+*(Sum of all core surplus caps: $85 + 60 + 60 + 65 + 50 + 50 + 50 + 50 + 50 + 40 + 30 + 20 + 20 + 20 = \mathbf{650\text{ pts}}$).*
+
+#### B. Optional Structure Schedule (5 OW Categories | $F = 0$ | 200 Pts Max)
 No hard floors. Discovered qualifying structures award bonuses up to individual category caps:
-- 🏴‍☠️ **Pillager Outposts:** 1st = +12 pts, 2nd = +12 pts (cap: 2 structures, +24 pts max).
-- 🗿 **Ocean Monuments:** 1st = +15 pts, 2nd = +15 pts (cap: 2 structures, +30 pts max).
-- 🏺 **Desert Pyramids:** 1st–3rd = +10 pts each (cap: 3 structures, +30 pts max).
-- 🌿 **Jungle Temples:** 1st–2nd = +15 pts each (cap: 2 structures, +30 pts max).
-- 🏰 **Nether Fortresses:** 1st–2nd = +15 pts each (cap: 2 structures, +30 pts max).
-- 🐷 **Bastion Remnants:** 1st–3rd = +15 pts each (cap: 3 structures, +45 pts max), plus **+15 pts** one-time bonus for Housing/Stables/Bridge/Treasure if a **Treasure Bastion variant** is verified.
+- 🧙 **Swamp Huts:** 1st = **+30 pts**, 2nd = **+20 pts**, 3rd+ = **+10 pts** (**+60 pts max** at 3+).
+- 🏺 **Trail Ruins:** 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
+- 🛖 **Basement Igloos:** 1st = **+25 pts**, 2nd+ = **+15 pts** (**+40 pts max** at 2+).
+- 💎 **Buried Treasure:** 1st = **+10 pts**, 2nd = **+10 pts**, 3rd = **+5 pts**, 4th+ = **+5 pts** (**+30 pts max** at 4+).
+- 🌊 **Ocean Ruins:** 1st = **+10 pts**, 2nd+ = **+10 pts** (**+20 pts max** at 2+).
 
-#### C. Luxury Biomes (175 Max Points across 10 Categories)
+*(Sum of all optional bonuses: $60 + 50 + 40 + 30 + 20 = \mathbf{200\text{ pts}}$).*
+
+#### C. Luxury Biomes (10 Categories + Tiered Diversity Jackpot | 265 Pts Max)
 Evaluated on the 64-block world lattice at $Y=63$:
+- 🍄 **Mushroom Fields (Mooshroom Island):** **+40 pts**
+- 👻 **Pale Garden:** **+35 pts**
+- 🏜️ **Badlands / Mesa / Eroded Badlands:** **+35 pts**
 - 🌸 **Cherry Grove:** **+25 pts**
-- 👻 **Pale Garden:** **+25 pts**
-- 🍄 **Mushroom Fields (Mooshroom Island):** **+25 pts**
-- 🏜️ **Badlands / Mesa:** **+20 pts**
-- 🪸 **Warm Ocean / Coral Reef:** **+15 pts**
-- 🧊 **Ice Spikes:** **+15 pts**
-- 🌾 **Savanna (Windswept/Plateau):** **+15 pts**
-- 🌲 **Old Growth Taiga:** **+15 pts**
-- 🌺 **Flower Forest:** **+10 pts**
+- 🧊 **Ice Spikes:** **+25 pts**
+- 🪸 **Warm Ocean / Coral Reef:** **+20 pts**
+- 🌲 **Old Growth Taiga:** **+20 pts**
+- 🌺 **Flower Forest:** **+15 pts**
+- 🌾 **Windswept Savanna / Plateau (including ordinary Savanna):** **+15 pts** (matches `savanna`, `savanna_plateau`, `windswept_savanna`, and `shattered_savanna`)
 - 🎋 **Bamboo Jungle:** **+10 pts**
-*(Sum of all 10 categories: $25 + 25 + 25 + 20 + 15 + 15 + 15 + 15 + 10 + 10 = \mathbf{175\text{ pts}}$).*
+- 💎 **Tiered Diversity Jackpot:**
+  - Presence of $\ge 5$ distinct luxury biomes inside window: **+10 pts**
+  - Presence of $\ge 7$ distinct luxury biomes inside window: **+25 pts** *(extra +15 pts)*
 
-#### D. Spatial & Layout Bonuses (75 Max Points)
-- 📍 **Starter Hub Proximity (+40 pts max):**
-  - Up to **+20 pts** for non-village structures within 300m of the dynamic center $(C_X, C_Z)$ (Outpost +8, Pyramid +6, Temple +6, Portal +4, capped at 20).
-  - **+20 pts** if at least one Village is within 300m of $(C_X, C_Z)$.
-- 🏞️ **Scenic Pairing Bonus (+20 pts max):**
-  - **+20 pts** if two distinct scenic biomes (Cherry Grove, Pale Garden, Meadow, Snowy Slopes) occur within 128m of each other.
-- 🏘️ **Village Spread Bonus (+15 pts max):**
-  - **+15 pts** if 3 or more distinct Villages are spaced $\ge 400\text{m}$ apart pairwise, ensuring distributed homestead districts without overcrowding.
+*(Sum of 10 individual luxury biomes: $40 + 35 + 35 + 25 + 25 + 20 + 20 + 15 + 15 + 10 = 240\text{ pts}$ + Jackpot $25\text{ pts} = \mathbf{265\text{ pts max}}$).*
 
-#### Total Arithmetic Ceiling:
-$$\text{Max Score} = 340 \text{ (core)} + 129 \text{ (optional)} + 175 \text{ (luxury)} + 40 \text{ (hub)} + 20 \text{ (scenic)} + 15 \text{ (spread)} = \mathbf{719\text{ points}}$$
+#### D. Spatial, Layout & Nether Core Bonuses (135 Pts Max)
+- 📍 **Starter Hub Proximity (+45 pts max):**
+  - Village within 256m (**+15 pts**) or 512m (**+10 pts**).
+  - Hub structures within 512m of $(C_X, C_Z)$: Desert Pyramid, Jungle Temple, Outpost, and Ancient City at **+6 pts each**; Ruined Portal at **+4 pts each** (matching C `nb_dynamic_v3_hub` and Python `hub_bonus_v3`, combined non-village cap **+30 pts max**).
+- 🔥 **Nether 256m Portal Core & Treasure Bastion (+40 pts max):**
+  - **Treasure Bastion Variant:** **+20 pts** if a viable Treasure Bastion is captured inside the Nether window.
+  - **Nether Fortress Core:** **+10 pts** if a Fortress is within $\le 256\text{m}$ of the scaled Nether portal $(C_X/8, C_Z/8)$.
+  - **Bastion Remnant Core:** **+10 pts** if a Bastion is within $\le 256\text{m}$ of the scaled Nether portal $(C_X/8, C_Z/8)$.
+- 🏞️ **Scenic River Pairing Bonus (+25 pts max):**
+  - **+25 pts** if a surface scenic biome at $Y=63$ (Plains, Sunflower Plains, Meadow, Cherry Grove) within 192m of dynamic center $(C_X, C_Z)$ is paired with a River within 128m.
+- 🏘️ **Village Quadrant Spread Bonus (+25 pts max):**
+  - **+25 pts** if $\ge 3$ distinct captured Villages occupy $\ge 3$ separate quadrants of the window and are spaced $\ge 256\text{m}$ apart pairwise.
 
-#### Deficit Budget & Quadratic Deductions:
-A maximum Miss Budget of $B \le 3$ flexible deficits is permitted (hard floors remain fatal):
-- 1 deficit: **$-30\text{ pts}$**
-- 2 deficits: **$-75\text{ pts}$**
-- 3 deficits: **$-135\text{ pts}$**
+*(Sum of spatial and layout bonuses: $45 + 40 + 25 + 25 = \mathbf{135\text{ pts}}$).*
+
+#### E. Centroid Magnet ($\omega_i$) Weights
+To prevent flat plains villages from monopolizing the sliding window center $(C_X, C_Z)$, rare temple structures exert strong centroid pull:
+- Village: $\omega = 3$
+- Trial Chamber, Ancient City, Woodland Mansion, Desert Pyramid, Jungle Temple: $\omega = 2$
+- Pillager Outpost, Ocean Monument, Stronghold: $\omega = 1$
+- Ruined Portal, Shipwreck, Mineshaft: $\omega = 0$
+
+#### F. In-Memory Top-50 Tracker & Persistence
+- **Zero Disk Overhead:** An in-memory min-heap (`Top50Tracker`) tracks the top 50 candidates in RAM, completely eliminating per-seed database write locks during high-throughput search.
+- **Dynamic Cutoff:** When 50 qualified candidates exist, incoming candidates with scores below the 50th-best are instantly discarded with $O(1)$ complexity.
+- **Atomic Persistence:** Periodic checkpointing flushes the current Top 50 to JSON or SQLite transactionally without interrupting search workers.
 
 ---
 
@@ -219,9 +258,11 @@ A maximum Miss Budget of $B \le 3$ flexible deficits is permitted (hard floors r
 
 ## 6. Leaderboard Sort Order
 
-### 6.1 Active v2 Sort Order (Score-First Ranking)
-Under `dynamic-envelope-1664-v2`, leaderboard sorting prioritizes overall feature wealth:
-$$\text{Rank Order}_{\text{v2}} = \Big( \text{smart\_score DESC},\; \text{deficit\_count ASC},\; \text{Origin Dist ASC} \Big)$$
+### 6.1 Active v3 Sort Order (Score-First Ranking)
+Under `dynamic-envelope-2048-v3`, leaderboard sorting prioritizes overall feature wealth:
+$$\text{Rank Order}_{\text{v2}} = \Big( \text{smart\_score DESC},\; \text{deficit\_count ASC},\; \text{radial\_key ASC},\; \text{origin\_distance\_squared ASC},\; C_X\text{ ASC},\; C_Z\text{ ASC},\; \text{candidate ID ASC} \Big)$$
+
+The ID tie-breaker uses binary lexical order. `radial_key` is weighted radial distance multiplied by 1,000,000, rounded to nearest with exact halves away from zero. The squared origin distance and center coordinates are exact integers. Only eligible results participate in this score comparison; inspection status does not promote an eligible result ahead of a better score.
 
 Supported by the optimized SQLite index `candidate_leaderboard_v2` with zero temporary B-trees.
 
@@ -272,11 +313,11 @@ Supported by the SQLite index `candidate_leaderboard`.
 
 | Optimization | What Changes in the Pipeline | Why It's Safe (Zero False Rejects) | Throughput & Speedup Impact |
 | :--- | :--- | :--- | :--- |
-| **1. Enforce $832 \times 832$ Nether Co-Window Compatibility in Step 1** | Stage 1A Step 1 checks if $\ge 2$ Fortresses and $\ge 2$ Bastions exist in $[-562, 562]$. Add a `50 ns` bounding-box check requiring that at least 2 Fortresses and 2 Bastions fit inside a single $832 \times 832$ sub-window ($\Delta X_N \le 832, \Delta Z_N \le 832$) and calculate the valid Overworld center interval $[C_{X,\min}^{\text{Nether}}, C_{X,\max}^{\text{Nether}}]$. | If two Fortresses are $>832\text{m}$ apart in $[-562, 562]$, they can never be co-captured in an $832 \times 832$ Nether box in Stage 1B. | **Cuts seeds entering Mansion biome checks by ~45–55%** (`~1.8×` speedup). |
-| **2. Clamp Overworld Preflight Bounds to the Nether Safe Interval** | Instead of scanning the full $[-2000, 2000]$ box for Mansions, Monuments, and Outposts, only test regions within $[C_{X,\min}^{\text{Nether}} - 832,\; C_{X,\max}^{\text{Nether}} + 832]$. | Any Overworld structure outside $[C_{\min}^{\text{Nether}} - 832,\; C_{\max}^{\text{Nether}} + 832]$ cannot be captured without losing a mandatory Nether structure. | **Skips ~40% of Mansion & Monument noise lookups** (`~1.3×` speedup). |
-| **3. Move Pure-PRNG Outpost & Trial Chamber Grid Counts *Before* Mansion Biome Noise** | Pillager Outposts roll a pure-PRNG region spawn check *before* biome viability, and Trial Chambers ($\ge 7$ required) use pure chunk-grid PRNG. Verify that $\ge 2$ Outpost PRNG rolls and $\ge 7$ Trial Chamber PRNG slots fall inside the feasible box **before** initializing Overworld climate noise for the Mansion. | Pure PRNG coordinate generation takes $<0.5\,\mu\text{s}$ in C; seeds lacking enough raw PRNG slots can never satisfy floors regardless of biomes. | **Rejects ~70% of remaining seeds before any biome noise runs** (`~1.5×` speedup). |
+| **1. Enforce $1024 \times 1024$ Nether Co-Window Compatibility in Step 1** | Stage 1A Step 1 checks if $\ge 2$ Fortresses and $\ge 2$ Bastions exist in $[-634, 634]$. Add a `50 ns` bounding-box check requiring that at least 2 Fortresses and 2 Bastions fit inside a single $1024 \times 1024$ sub-window ($\Delta X_N \le 1024, \Delta Z_N \le 1024$) and calculate the valid Overworld center interval $[C_{X,\min}^{\text{Nether}}, C_{X,\max}^{\text{Nether}}]$. | If two Fortresses are $>1024\text{m}$ apart in $[-634, 634]$, they can never be co-captured in an $1024 \times 1024$ Nether box in Stage 1B. | **Cuts seeds entering Mansion biome checks by ~45–55%** (`~1.8×` speedup). |
+| **2. Clamp Overworld Preflight Bounds to the Nether Safe Interval** | Instead of scanning the full $[-2000, 2000]$ box for Mansions, Monuments, and Outposts, only test regions within $[C_{X,\min}^{\text{Nether}} - 1024,\; C_{X,\max}^{\text{Nether}} + 1024]$. | Any Overworld structure outside $[C_{\min}^{\text{Nether}} - 1024,\; C_{\max}^{\text{Nether}} + 1024]$ cannot be captured without losing a mandatory Nether structure. | **Skips ~40% of Mansion & Monument noise lookups** (`~1.3×` speedup). |
+| **3. Move Pure-PRNG Outpost & Trial Chamber Grid Counts *Before* Mansion Biome Noise** | Pillager Outposts roll a pure-PRNG region spawn check *before* biome viability, and Trial Chambers ($\ge 8$ required) use pure chunk-grid PRNG. Verify that $\ge 1$ Outpost PRNG roll and $\ge 8$ Trial Chamber PRNG slots fall inside the feasible box **before** initializing Overworld climate noise for the Mansion. | Pure PRNG coordinate generation takes $<0.5\,\mu\text{s}$ in C; seeds lacking enough raw PRNG slots can never satisfy floors regardless of biomes. | **Rejects ~70% of remaining seeds before any biome noise runs** (`~1.5×` speedup). |
 | **4. Short-Circuit 6D Climate Noise on Mansion Checks** | A Dark Forest requires specific Continentalness ($C > -0.11$, inland), Temperature (temperate), and Humidity ($H > 0.1$). Evaluate noise parameters one octave at a time (`Humidity` $\to$ `Continentalness` $\to$ `Temperature`) and abort immediately on the first miss. | Evaluating 1 Perlin octave tree instead of all 6 on non-matching points is mathematically identical to a full biome lookup. | **Cuts Mansion & Bastion biome check CPU time by ~65–75%**. |
-| **5. Skip Redundant Biomes, Multi-Plane Short-Circuit & 5-Biome Nether** | Seeds reaching Stage 2 already certified Dark Forest, Desert, Jungle, and Deep Dark via Stage 1B structures. Short-circuit $Y = 160$ on first `*_peaks` cell (`jagged_peaks | frozen_peaks | stony_peaks`), short-circuit $Y = 0, -48$ on first `lush_caves` & `dripstone_caves`, and verify all 5 Nether biomes exist in $[C_X/8 \pm 416, C_Z/8 \pm 416]$. | Structure placement in Stage 1B certifies those 4 Overworld biomes; early-exit on boolean witnesses avoids full rasterization; Nether check takes $<0.2\text{ ms}$. | **Cuts Stage 2 sampling time by ~60%** while guaranteeing zero Nether resource lock-outs. |
+| **5. Skip Redundant Biomes, Multi-Plane Short-Circuit & 5-Biome Nether** | Seeds reaching Stage 2 already certified Dark Forest, Desert, Jungle, and Deep Dark via Stage 1B structures. Short-circuit $Y = 160$ on first `*_peaks` cell (`jagged_peaks | frozen_peaks | stony_peaks`), short-circuit $Y = 0, -48$ on first `lush_caves` & `dripstone_caves`, and verify all 5 Nether biomes exist in $[C_X/8 \pm 512, C_Z/8 \pm 512)$. | Structure placement in Stage 1B certifies those 4 Overworld biomes; early-exit on boolean witnesses avoids full rasterization; Nether check takes $<0.3\text{ ms}$. | **Cuts Stage 2 sampling time by ~60%** while guaranteeing zero Nether resource lock-outs. |
 
 ---
 
@@ -288,8 +329,8 @@ Supported by the SQLite index `candidate_leaderboard`.
                                           ▼
       ┌────────────────────────────────────────────────────────────────────────┐
       │ STAGE 1A, STEP 1: Nether PRNG + Co-Window Check (~1.6 µs, Pure PRNG)   │
-      │ • Find Fortresses & Bastions in [-562, 562].                           │
-      │ • Verify ≥ 2 of each fit inside a single 832 × 832 co-window.          │
+      │ • Find Fortresses & Bastions in [-634, 634].                           │
+      │ • Verify ≥ 2 of each fit inside a single 1024 × 1024 co-window.        │
       │ • Output exact Overworld feasible center range [C_min^N, C_max^N].     │
       │ • Rejects ~91% of all seeds with zero climate noise.                   │
       └────────────────────────────────────────────────────────────────────────┘
@@ -297,8 +338,8 @@ Supported by the SQLite index `candidate_leaderboard`.
                                           ▼
       ┌────────────────────────────────────────────────────────────────────────┐
       │ STAGE 1A, STEP 2: Outpost & Trial Chamber PRNG Slots (~0.6 µs, PRNG)   │
-      │ • Verify ≥ 2 Outpost rolls & ≥ 7 Trial Chamber PRNG chunk slots fall   │
-      │   inside [C_min^N - 832, C_max^N + 832].                               │
+      │ • Verify ≥ 1 Outpost roll & ≥ 8 Trial Chamber PRNG chunk slots fall   │
+      │   inside [C_min^N - 1024, C_max^N + 1024].                             │
       │ • Rejects ~70% of survivors. Only ~2.7% of raw seeds reach Step 3.     │
       └────────────────────────────────────────────────────────────────────────┘
                                           │ (2.7% of seeds survive)
@@ -319,10 +360,10 @@ Supported by the SQLite index `candidate_leaderboard`.
                                           │
                                           ▼
       ┌────────────────────────────────────────────────────────────────────────┐
-      │ STAGE 1B: Exact 2D Event-Slab Solver & Centroid Magnet ($1664 \times 1664$)│
-      │ • Half-open Overworld safe interval [X_i - 831, X_i + 832] (width 1664).│
-      │ • Nether safe interval [8X_N,j - 3327, 8X_N,j + 3328] (width 6656).    │
-      │ • Enforce Guaranteed Hard Floors and Miss Budget ($B \le 2$).          │
+      │ STAGE 1B: Exact 2D Event-Slab Solver & Centroid Magnet ($2048 \times 2048$)│
+      │ • Half-open Overworld safe interval [X_i - 1023, X_i + 1024] (width 2048).│
+      │ • Nether safe interval [8X_N,j - 4095, 8X_N,j + 4096] (width 8192).    │
+      │ • Enforce Guaranteed Hard Floors and Miss Budget ($B \le 3$).          │
       │ • Pull $(C_X, C_Z)$ toward centroid; clamp to Safe Zone S_safe.        │
       │ • Snap to nearest 16 per axis, fallback to 8 without leaving S_safe.   │
       └────────────────────────────────────────────────────────────────────────┘
@@ -333,7 +374,7 @@ Supported by the SQLite index `candidate_leaderboard`.
       │ • Overworld: Short-circuit Y = 160 on first peak (*_peaks), short-     │
       │   circuit Y = 0, -48 on Lush/Dripstone witnesses. Skip 4 certified     │
       │   families (Dark Forest, Desert, Jungle, Deep Dark).                   │
-      │ • Nether: Verify all 5 Nether biomes exist inside 832 × 832 box.       │
+      │ • Nether: Verify all 5 Nether biomes exist inside 1024 × 1024 box.     │
       │ • Seeds passing Stages 1 & 2 are saved as BASELINE SURVIVORS.          │
       └────────────────────────────────────────────────────────────────────────┘
                                           │
@@ -377,7 +418,13 @@ Supported by the SQLite index `candidate_leaderboard`.
 
 ### 7.4 Empirical Host Benchmarks & Production Validation (October 2026)
 
-Following the implementation of Revision 5.0 optimizations across the native C11 kernel and Python runtime, empirical benchmarks were executed directly on an **Intel Xeon W-2191B (18 physical cores / 36 threads @ 2.30 GHz)** with 30–34 OpenMP worker threads:
+#### Active Revision 6.0 (`dynamic-envelope-2048-v3`) Host Throughput
+Under the expanded active $2048 \times 2048$ Overworld envelope and $1024 \times 1024$ Nether window with all 14 hard floors, 4-plane Overworld biome validation, 5-biome Nether lattice check, and pure additive 1,250-point scoring:
+- **Active v3 Native Pipeline Throughput (34 OpenMP Threads):** **~55,000–58,000 seeds/sec** ($\sim 1.75\text{s}$ per 100K seeds, $\sim 17.5\text{s}$ per 1M seeds, $\sim 29.5\text{ mins}$ per 100M-seed shard). The throughput shift from historical ~215k seeds/sec (v2 1664×1664) to ~55k–58k seeds/sec in v3 reflects the substantially expanded $2048 \times 2048$ window area ($1.51\times$ larger block footprint), full 14-category hard floor preflight, 4-plane vertical biome sampling, and full $1024 \times 1024$ 5-biome Nether evaluation.
+- **Analytical Projections vs. Empirical Host Benchmarks:** The theoretical cluster scaling figures in Section 7.3 (e.g. 230k–280k seeds/sec across hypothetical 210-core clusters) are analytical projections; the **~55k–58k seeds/sec** figure represents the verified empirical single-host throughput measured on the 34 OpenMP worker thread hardware configuration.
+
+#### Historical Revision 5.0 (`dynamic-envelope-1664-v2`) Benchmark Archive
+For historical reference, benchmarks executed on the $1664 \times 1664$ configuration directly on an **Intel Xeon W-2191B (18 physical cores / 36 threads @ 2.30 GHz)** with 30–34 OpenMP worker threads yielded:
 
 | Execution Arm | Measured Speed | Time per 100K Seeds | Time per 1M Seeds | Time per 100M Seeds (Shard) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -388,11 +435,11 @@ Following the implementation of Revision 5.0 optimizations across the native C11
 
 #### Implemented Performance Architectures
 1. **Low-32 PRNG Structure Preflight:** Evaluates pure PRNG positions for Woodland Mansion, Ancient City, Outpost, Trial Chamber, and Village against universal fatal floors. Rejects $\approx 70\%$ of candidate seeds in $\sim 50\text{ns}$ before climate noise generation.
-2. **Lazy Deferred 2D Prefix Sums:** Skips 15,876 Overworld 3D noise evaluations and 289 Nether queries per rejected seed by calculating prefix sums only when candidate sliding-window cells pass structure floors.
+2. **Lazy Deferred 2D Prefix Sums:** Skips 15,876 Overworld 3D noise evaluations and 256 Nether queries (half-open $16 \times 16$ lattice) per rejected seed by calculating prefix sums only when candidate sliding-window cells pass structure floors.
 3. **Overlapping Pipeline Dispatch:** Queue depth raised to 4 with immediate background dispatch upon `pending.popleft()`, keeping OpenMP compute 100% saturated during SQLite range writes.
 4. **Iterative `os.scandir` Accounting:** Replaced recursive `os.walk` to eliminate $>40\text{s}$ of redundant `stat()` syscalls per 100k seeds during continuous workspace capacity monitoring.
-5. **Clang PGO + LTO Native Compilation:** Profile-Guided Optimization training on representative seed batches merged with Link-Time Optimization (`-fprofile-instr-use`, `-flto=thin`) unlocks **~215,000 seeds/sec** raw kernel throughput.
-6. **Zero-Copy Vectorized Batching & Pruned Kernel Teardown:** Vectorized SplitMix64 batch generation (`seeds_np`) directly into contiguous uint64 CFFI buffers completely eliminates serial Python loops between C calls, while pruned `nb_free` skips 16,384 cleared `NBResult` struct traversals. This closes the gap between native compute and pipeline persistence, raising durable compact throughput from ~138k seeds/sec to **~225,000 seeds/sec** with full crash-safe SQLite WAL durability.
+5. **Clang PGO + LTO Native Compilation:** Profile-Guided Optimization training on representative seed batches merged with Link-Time Optimization (`-fprofile-instr-use`, `-flto=thin`) unlocks high-throughput native kernel execution.
+6. **Zero-Copy Vectorized Batching & Pruned Kernel Teardown:** Vectorized SplitMix64 batch generation (`seeds_np`) directly into contiguous uint64 CFFI buffers completely eliminates serial Python loops between C calls, while pruned `nb_free` skips 16,384 cleared `NBResult` struct traversals. This closes the gap between native compute and pipeline persistence with full crash-safe SQLite WAL durability.
 
 ---
 

@@ -1,0 +1,60 @@
+TAP version 13
+# Subtest: legacy alias displays, estimates and edits the same count that App launches
+ok 1 - legacy alias displays, estimates and edits the same count that App launches
+  ---
+  duration_ms: 24.653782
+  ...
+# Subtest: canonical value takes precedence over a stale alias, including zero
+ok 2 - canonical value takes precedence over a stale alias, including zero
+  ---
+  duration_ms: 10.110067
+  ...
+# Subtest: all profile defaults, steppers, reset and profile changes stay canonical
+ok 3 - all profile defaults, steppers, reset and profile changes stay canonical
+  ---
+  duration_ms: 6.282861
+  ...
+# Subtest: candidate page controls can reach results beyond the former pool cap
+ok 4 - candidate page controls can reach results beyond the former pool cap
+  ---
+  duration_ms: 1.51646
+  ...
+# Subtest: negative eligible scores are visible before the user applies a score filter
+ok 5 - negative eligible scores are visible before the user applies a score filter
+  ---
+  duration_ms: 1.309096
+  ...
+# Subtest: player detail shows predictive suggestion separately from unverified inspections
+ok 6 - player detail shows predictive suggestion separately from unverified inspections
+  ---
+  duration_ms: 2.340263
+  ...
+# Subtest: every editable run setting is included in the shared preview/launch request
+ok 7 - every editable run setting is included in the shared preview/launch request
+  ---
+  duration_ms: 3.169577
+  ...
+# Subtest: fixed policy controls cannot drift and running settings are locked
+ok 8 - fixed policy controls cannot drift and running settings are locked
+  ---
+  duration_ms: 5.004912
+  ...
+# Subtest: command card includes the resolved target policy and last executed command
+ok 9 - command card includes the resolved target policy and last executed command
+  ---
+  duration_ms: 3.291457
+  ...
+# Subtest: live biome toggles reach the request without changing run controls
+ok 10 - live biome toggles reach the request without changing run controls
+  ---
+  duration_ms: 7.536851
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 646.394779

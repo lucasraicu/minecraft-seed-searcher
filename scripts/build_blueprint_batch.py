@@ -18,7 +18,8 @@ UNITS=['noise','biomes','layers','biomenoise','cave','generator','finders','util
 
 def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,work_chunk=16,
           cpu_native=False,lto=False,pgo_generate=False,pgo_use=None,
-          experiment_order=0,stronghold_after=4,dynamic_preflight=True):
+          experiment_order=0,stronghold_after=4,dynamic_preflight=True,
+          avx2=False,vectorize=False):
     if type(work_chunk) is not int or work_chunk not in (16,64,128):
         raise ValueError('Work chunk must be 16, 64 or 128')
     if experiment_order not in (0,1,2) or stronghold_after not in range(1,6):
@@ -33,7 +34,13 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
     source='#include "bridge.c"\n#include "'+('blueprint_profile.inc' if profile else 'blueprint_batch.inc')+'"\n'
     flags=['-O3','-std=c11','-fwrapv',f'-DNB_WORK_CHUNK={work_chunk}',
            f'-DNB_EXPERIMENT_ORDER={experiment_order}',f'-DNB_STRONGHOLD_AFTER={stronghold_after}',f'-DNB_DYNAMIC_PREFLIGHT={int(dynamic_preflight)}'];includes=[str(ROOT/'native'),str(ROOT/'vendor/cubiomes-bedrock')]
-    if cpu_native:flags.append('-march=native')
+    is_x86=platform.machine().lower() in ('x86_64','amd64')
+    enable_avx2=avx2 or vectorize or (cpu_native and is_x86)
+    if cpu_native:
+        if '-march=native' not in flags:flags.append('-march=native')
+    if enable_avx2:
+        for f in ('-mavx2','-mfma'):
+            if f not in flags:flags.append(f)
     if lto:flags.append('-flto')
     if pgo_generate:flags.append('-fprofile-instr-generate')
     if disable_mansion_cache:flags.append('-DNB_DISABLE_MANSION_CACHE=1')
@@ -61,6 +68,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
         meta=json.loads(manifest.read_text())
         if (meta.get('source_digest')!=source_digest or meta.get('work_chunk')!=work_chunk or
             meta.get('cpu_native')!=cpu_native or meta.get('lto')!=lto or
+            (meta.get('avx2') is not None and meta.get('avx2')!=enable_avx2) or
             meta.get('experiment_order',0)!=experiment_order or meta.get('stronghold_after',2)!=stronghold_after):
             raise ValueError('Stale or incompatible PGO profile')
         profile_digest=hashlib.sha256(pgo_use.read_bytes()).hexdigest()
@@ -96,7 +104,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
         'links':links,'compiler':compiler,'configured_cc':sysconfig.get_config_var('CC'),
         'configured_ldshared':sysconfig.get_config_var('LDSHARED'),'environment_flags':{k:os.environ.get(k) for k in ('CC','CFLAGS','LDFLAGS','ARCHFLAGS','MACOSX_DEPLOYMENT_TARGET')},
         'linker':linker,'python':sys.version,'arch':platform.machine(),
-        'cpu_native':cpu_native,'lto':lto,'pgo_generate':pgo_generate,'pgo_profile_sha256':profile_digest,
+        'cpu_native':cpu_native,'avx2':enable_avx2,'lto':lto,'pgo_generate':pgo_generate,'pgo_profile_sha256':profile_digest,
         'production_extension_replaced':False,'profiling':profile,'mansion_cache':not disable_mansion_cache,'work_chunk':work_chunk,
         'experiment_order':experiment_order,'stronghold_after':stronghold_after,'dynamic_preflight':dynamic_preflight,
         'scope':'private complete blueprint baseline prototype'}
@@ -112,6 +120,7 @@ def main():
     p.add_argument('--disable-mansion-cache',action='store_true',help='Retain an uncached control for measured comparisons')
     p.add_argument('--disable-dynamic-preflight',action='store_true',help='Exact complete-inventory control for dynamic preflight validation')
     p.add_argument('--cpu-native',action='store_true',help='Opt-in host CPU instructions')
+    p.add_argument('--avx2',action='store_true',help='Opt-in AVX2 and FMA vector instructions')
     p.add_argument('--lto',action='store_true',help='Opt-in link time optimization')
     p.add_argument('--pgo-generate',action='store_true',help='Instrument a training build')
     p.add_argument('--pgo-use',type=Path,help='Use profdata with matching source manifest')
@@ -119,7 +128,8 @@ def main():
     p.add_argument('--stronghold-after',type=int,choices=(1,2,3,4,5),default=4)
     a=p.parse_args();identity=build(a.output,a.openmp_prefix,profile=a.profile,disable_mansion_cache=a.disable_mansion_cache,work_chunk=a.work_chunk,
                                     cpu_native=a.cpu_native,lto=a.lto,pgo_generate=a.pgo_generate,pgo_use=a.pgo_use,
-                                    experiment_order=a.experiment_order,stronghold_after=a.stronghold_after,dynamic_preflight=not a.disable_dynamic_preflight)
+                                    experiment_order=a.experiment_order,stronghold_after=a.stronghold_after,dynamic_preflight=not a.disable_dynamic_preflight,
+                                    avx2=a.avx2)
     print(json.dumps({'extension':identity['extension'],'openmp':identity['openmp']}))
 
 

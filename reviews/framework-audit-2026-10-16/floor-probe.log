@@ -1,0 +1,17 @@
+==============================================================================
+STAGE-BY-STAGE FUNNEL PROBE ON 50,000 SEEDS (34 threads)
+==============================================================================
+Traceback (most recent call last):
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/measure_v3_floors.py", line 66, in <module>
+    test_configurations()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/measure_v3_floors.py", line 55, in test_configurations
+    p = Prototype(None, cfg)
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/native_batch.py", line 50, in __init__
+    validate_config(cfg)
+    ~~~~~~~~~~~~~~~^^^^^
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/config.py", line 105, in validate_config
+    return validate_blueprint_config(cfg)
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/config.py", line 460, in validate_blueprint_config
+    raise ValueError('Blueprint structure floors and allowed bonuses cannot be relaxed')
+ValueError: Blueprint structure floors and allowed bonuses cannot be relaxed

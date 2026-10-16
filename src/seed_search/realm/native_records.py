@@ -106,21 +106,23 @@ def build_record(native,index,seed,cfg):
                                nether_half=cfg['deployment']['nether_side_blocks']//2)
         provider=ReplayProvider(native,SimpleNamespace(policy=policy,cfg=cfg))
         record=evaluate_dynamic_seed(index,seed,cfg,backend_factory=lambda _:provider)
-        if len(record['anchors'])!=native.nanchors or (native.nanchors and
-            (record['anchors'][0]['evaluation_center']!=[native.anchors[0].x,native.anchors[0].z] or
-             record['anchors'][0]['baseline_score_observed']!=native.anchors[0].score)):
+        if len(record['anchors'])!=native.nanchors:
             raise RuntimeError('Native/direct dynamic record parity failure')
         from .config import dynamic_v2_policy
-        if native.nanchors and dynamic_v2_policy(cfg):
-            a=record['anchors'][0];na=native.anchors[0]
-            if (a['radial_key']!=na.radial_key or
-                a['origin_distance_squared']!=na.origin_distance_squared or
-                a['scenic_bonus']!=na.scenic_bonus or
-                a['village_spread_bonus']!=na.village_spread_bonus or
-                a['treasure_bastion']!=na.treasure_bastion or
-                a['deficit_penalty']!=na.deficit_penalty or
-                a['bonus_total']!=na.bonus_total):
-                raise RuntimeError('Native/direct dynamic v2 component parity failure')
+        is_v2=dynamic_v2_policy(cfg)
+        for idx in range(native.nanchors):
+            a=record['anchors'][idx];na=native.anchors[idx]
+            if a['evaluation_center']!=[na.x,na.z] or a['baseline_score_observed']!=na.score:
+                raise RuntimeError(f'Native/direct dynamic record parity failure at anchor {idx}')
+            if is_v2:
+                if (a['radial_key']!=na.radial_key or
+                    a['origin_distance_squared']!=na.origin_distance_squared or
+                    a['scenic_bonus']!=na.scenic_bonus or
+                    a['village_spread_bonus']!=na.village_spread_bonus or
+                    a['treasure_bastion']!=na.treasure_bastion or
+                    a['deficit_penalty']!=na.deficit_penalty or
+                    a['bonus_total']!=na.bonus_total):
+                    raise RuntimeError(f'Native/direct dynamic v2 component parity failure at anchor {idx}')
         return record
     wall=time.perf_counter();cpu=time.process_time();seed=str(seed)
     discovery_bounds=list(cfg['discovery']['overworld_bounds'])

@@ -1,0 +1,98 @@
+{
+  "inputs": 100000,
+  "start_index": 50000000,
+  "run_key": 2026101401,
+  "threads": 34,
+  "retained": 0,
+  "control_retention_equal": true,
+  "wall_native_calls_seconds": 0.5627997580450028,
+  "sum_worker_eval_seconds": 13.180591000200366,
+  "unattributed_worker_seconds": 0.1388189999415772,
+  "stages": [
+    {
+      "stage": "raw_preflight",
+      "inputs": 100000,
+      "calls": 100000,
+      "worker_elapsed_seconds": 3.0810950016602874,
+      "percent_input": 100.0,
+      "percent_worker_elapsed": 23.376000375199034
+    },
+    {
+      "stage": "overworld_apply_seed",
+      "inputs": 39682,
+      "calls": 39682,
+      "worker_elapsed_seconds": 2.40438500160235,
+      "percent_input": 39.682,
+      "percent_worker_elapsed": 18.24186033513823
+    },
+    {
+      "stage": "raw_dark_gate",
+      "inputs": 39682,
+      "calls": 39682,
+      "worker_elapsed_seconds": 3.117739997105673,
+      "percent_input": 39.682,
+      "percent_worker_elapsed": 23.65402277529345
+    },
+    {
+      "stage": "mansion_inventory",
+      "inputs": 3941,
+      "calls": 3941,
+      "worker_elapsed_seconds": 2.963730999355903,
+      "percent_input": 3.941,
+      "percent_worker_elapsed": 22.48556987551506
+    },
+    {
+      "stage": "stronghold_discovery",
+      "inputs": 1097,
+      "calls": 1097,
+      "worker_elapsed_seconds": 0.5183380000089528,
+      "percent_input": 1.097,
+      "percent_worker_elapsed": 3.9325854204949784
+    },
+    {
+      "stage": "outpost_inventory",
+      "inputs": 943,
+      "calls": 943,
+      "worker_elapsed_seconds": 0.08397600051830523,
+      "percent_input": 0.943,
+      "percent_worker_elapsed": 0.6371186278144028
+    },
+    {
+      "stage": "nether_initialization_inventory",
+      "inputs": 481,
+      "calls": 481,
+      "worker_elapsed_seconds": 0.036778000023332424,
+      "percent_input": 0.481,
+      "percent_worker_elapsed": 0.27903149428408286
+    },
+    {
+      "stage": "remaining_overworld_inventories",
+      "inputs": 403,
+      "calls": 601,
+      "worker_elapsed_seconds": 0.8254550000128802,
+      "percent_input": 0.403,
+      "percent_worker_elapsed": 6.262655445422227
+    },
+    {
+      "stage": "center_search",
+      "inputs": 11,
+      "calls": 11,
+      "worker_elapsed_seconds": 0.010273999971104786,
+      "percent_input": 0.011,
+      "percent_worker_elapsed": 0.07794794611978025
+    },
+    {
+      "stage": "winning_evidence",
+      "inputs": 0,
+      "calls": 0,
+      "worker_elapsed_seconds": 0.0,
+      "percent_input": 0.0,
+      "percent_worker_elapsed": 0.0
+    }
+  ],
+  "caveats": [
+    "Instrumented build has no PGO; stage timers perturb timing.",
+    "Worker elapsed time includes descheduling; it is not wall-time attribution or hardware CPU cycles.",
+    "Natural all-reject cohort cannot establish scoring or retained-candidate throughput."
+  ]
+}

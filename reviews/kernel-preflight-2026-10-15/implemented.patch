@@ -1,0 +1,19 @@
+--- before/native/blueprint_dynamic.inc
++++ after/native/blueprint_dynamic.inc
+@@ -613,7 +613,15 @@
+         int slot=slots[j];
+         int goal=(w->p->flexible_mask&(1u<<slot))?w->p->floors[slot]:(slot==12?w->p->outpost_goal:w->p->goals[slot]);
+         if(goal<=0)continue;
+-        int ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
++        int ok;
++        if(slot==0) {
++            /* Reuse the complete macro-envelope enumeration above. These
++             * bounds are a subset, so another placement RNG scan is redundant. */
++            int count=0;
++            for(int m=0;m<nm;m++)
++                if(inside(mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
++            ok=count>=goal;
++        } else ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
+         if(ok<0)return -3;if(!ok)return 0;
+     }
+     return 1;

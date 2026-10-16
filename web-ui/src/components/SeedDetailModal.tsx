@@ -298,6 +298,160 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                 </div>
               </div>
 
+              {candidate.suggestedSpawn && (
+                <div className="p-4 bg-slate-950/80 border border-emerald-900/40 rounded-xl space-y-2 text-xs">
+                  <h4 className="font-bold text-emerald-300">Suggested community spawn</h4>
+                  {candidate.suggestedSpawn.coordinates ? (
+                    <p>X: {candidate.suggestedSpawn.coordinates[0]}, Z: {candidate.suggestedSpawn.coordinates[2]} · {candidate.suggestedSpawn.biome} · {Math.round(candidate.suggestedSpawn.distance ?? 0)} blocks from hub</p>
+                  ) : <p>{candidate.suggestedSpawn.reason ?? 'No suggestion available'}</p>}
+                  <p className="text-slate-400">Biome-based prediction sampled at Y=63. Actual ground height and safety remain unverified.</p>
+                </div>
+              )}
+              {candidate.playerInspections && (
+                <div className="p-4 bg-slate-950/80 border border-slate-800 rounded-xl space-y-2 text-xs">
+                  <h4 className="font-bold text-slate-200">Optional player inspections</h4>
+                  {Object.entries(candidate.playerInspections).map(([name, inspection]) => (
+                    <div key={name} className="space-y-1">
+                      <p className="text-slate-300">{({ end_access: 'End access', portal_links: 'Portal arrival and return links', snow_ice_resources: 'Snow and ice resources' } as Record<string, string>)[name] ?? name}: <span className="font-mono">{inspection.status}</span></p>
+                      <p className="text-slate-400">{inspection.reason}</p>
+                      {inspection.source && <p className="text-slate-500">Source: {[inspection.source.kind, inspection.source.provider, inspection.source.version].filter(Boolean).join(' · ')}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* V3 Player Scoring Breakdown (when available) */}
+              {(candidate.scoreComponents || candidate.bonusTotal != null) && (() => {
+                const center = candidate.evaluationCenter ?? [0, 0];
+                const pnx = Math.floor(center[0] / 8);
+                const pnz = Math.floor(center[1] / 8);
+                const fortresses = candidate.structures.filter((s) => s.type === 'fortress');
+                const bastions = candidate.structures.filter((s) => s.type === 'bastion');
+                const hasCloseFortress = fortresses.some((s) => (s.x - pnx) ** 2 + (s.z - pnz) ** 2 <= 256 ** 2);
+                const hasCloseBastion = bastions.some((s) => (s.x - pnx) ** 2 + (s.z - pnz) ** 2 <= 256 ** 2);
+                const computedNetherCore = (hasCloseFortress ? 10 : 0) + (hasCloseBastion ? 10 : 0);
+                const netherCoreBonus = candidate.netherCoreBonus ?? candidate.scoreComponents?.nether_core_bonus ?? computedNetherCore;
+                const isFortressClose = hasCloseFortress || netherCoreBonus === 20 || (netherCoreBonus === 10 && !hasCloseBastion);
+                const isBastionClose = hasCloseBastion || netherCoreBonus === 20 || (netherCoreBonus === 10 && !hasCloseFortress);
+
+                const coreSurplus = candidate.scoreComponents?.core_surplus ?? 0;
+                const optionalBonus = candidate.scoreComponents?.optional_bonus ?? 0;
+                const luxuryBiomes = candidate.scoreComponents?.luxury_biomes ?? 0;
+                const hubBonus = candidate.scoreComponents?.hub_bonus ?? 0;
+                const scenicBonus = candidate.scenicBonus ?? candidate.scoreComponents?.scenic_bonus ?? 0;
+                const villageSpreadBonus = candidate.villageSpreadBonus ?? candidate.scoreComponents?.village_spread_bonus ?? 0;
+                const treasureBastionBonus = candidate.scoreComponents?.treasure_bastion_bonus ?? (candidate.treasureBastion ? 20 : 0);
+                const spatialNetherBonus = hubBonus + netherCoreBonus + scenicBonus + villageSpreadBonus + treasureBastionBonus;
+
+                const deficitPenalty = candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty ?? 0;
+                const unmet = candidate.unmetRequirements ?? 0;
+                const hasDeficits = deficitPenalty > 0 || unmet > 0;
+
+                return (
+                  <div className="p-4 bg-slate-950/80 border border-indigo-900/40 rounded-xl space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-300 flex items-center gap-1.5">
+                        <span>💎</span>
+                        <span>Player Quality Score Breakdown (dynamic-v3: 1,250 Pts Max)</span>
+                      </h4>
+                      <span className="text-xs font-mono font-bold text-emerald-400">
+                        Score: {candidate.score} / Bonus: {candidate.bonusTotal ?? candidate.scoreComponents?.bonus_total ?? 0}
+                        {deficitPenalty > 0 && (
+                          <span className="text-rose-400 ml-1.5">
+                            (-{deficitPenalty} deficit penalty)
+                          </span>
+                        )}
+                      </span>
+                    </div>
+
+                    {/* 4 Primary Categories Breakdown */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono">
+                      <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
+                        <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Core Surplus</span>
+                        <span className="text-white font-bold text-base">+{coreSurplus}</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">+650 max</span>
+                      </div>
+                      <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
+                        <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Optional Structures</span>
+                        <span className="text-white font-bold text-base">+{optionalBonus}</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">+200 max</span>
+                      </div>
+                      <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
+                        <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Luxury Biomes</span>
+                        <span className="text-white font-bold text-base">+{luxuryBiomes}</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">+265 max</span>
+                      </div>
+                      <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
+                        <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Spatial &amp; Nether</span>
+                        <span className="text-emerald-400 font-bold text-base">+{spatialNetherBonus}</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">+135 max</span>
+                      </div>
+                    </div>
+
+                    {/* Spatial & Nether Details & Badges */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-center text-xs font-mono">
+                      <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
+                        <span className="text-slate-400 text-[10px] block font-semibold uppercase">Starter Hub</span>
+                        <span className="text-white font-bold text-sm">+{hubBonus}</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">+45 max</span>
+                        {candidate.starterHubVillage ? (
+                          <span className="text-[9px] text-cyan-400 block font-sans truncate">Village ({candidate.starterHubVillage[0]}, {candidate.starterHubVillage[1]})</span>
+                        ) : null}
+                      </div>
+                      <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
+                        <span className="text-slate-400 text-[10px] block font-semibold uppercase">Nether Portal Core</span>
+                        <span className="text-white font-bold text-sm">+{netherCoreBonus}</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">+20 max</span>
+                        <div className="flex flex-col gap-0.5 text-[8.5px] mt-0.5 font-sans">
+                          <span className={isFortressClose ? 'text-emerald-400 font-semibold' : 'text-slate-400'}>
+                            Fortress ≤256m (+10)
+                          </span>
+                          <span className={isBastionClose ? 'text-emerald-400 font-semibold' : 'text-slate-400'}>
+                            Bastion ≤256m (+10)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
+                        <span className="text-slate-400 text-[10px] block font-semibold uppercase">Scenic River</span>
+                        <span className="text-white font-bold text-sm">+{scenicBonus}</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">+25 max</span>
+                        {candidate.scenicWitness ? (
+                          <span className="text-[9px] text-cyan-400 block font-sans truncate">Pair ({candidate.scenicWitness[0]}, {candidate.scenicWitness[1]})</span>
+                        ) : null}
+                      </div>
+                      <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
+                        <span className="text-slate-400 text-[10px] block font-semibold uppercase">Village Spread</span>
+                        <span className="text-white font-bold text-sm">+{villageSpreadBonus}</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">+25 max</span>
+                        {candidate.villageTriple ? (
+                          <span className="text-[9px] text-emerald-400 block font-sans">Tri-Quadrant (3)</span>
+                        ) : null}
+                      </div>
+                      <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
+                        <span className="text-slate-400 text-[10px] block font-semibold uppercase">Treasure Bastion</span>
+                        <span className="text-white font-bold text-sm">+{treasureBastionBonus}</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">+20 max (v3)</span>
+                        {candidate.treasureBastion ? (
+                          <span className="text-[9px] text-amber-400 block font-sans">Treasure Bastion (+20)</span>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    {/* Deficits card: conditionally rendered only when deficits exist */}
+                    {hasDeficits && (
+                      <div className="p-2.5 bg-rose-950/40 rounded-lg border border-rose-900/60 flex items-center justify-between text-xs font-mono px-3">
+                        <span className="text-rose-400 font-semibold uppercase text-[11px] flex items-center gap-1.5">
+                          <span>⚠️</span> Deficits Penalty
+                        </span>
+                        <span className="text-rose-400 font-bold">
+                          -{deficitPenalty} pts ({unmet} missing requirement{unmet === 1 ? '' : 's'})
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
               {/* Quick Summary Counts Cards */}
               <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-3">
                 <div className="flex items-center justify-between">

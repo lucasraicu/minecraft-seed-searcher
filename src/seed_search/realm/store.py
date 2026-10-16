@@ -113,6 +113,8 @@ class RealmStore:
             yield
             self.db.commit()
         except BaseException:
+            self._cached_completed_seeds = None
+            self._cached_counts = None
             self.db.rollback()
             raise
 
@@ -189,6 +191,8 @@ class RealmStore:
                 attempts INTEGER NOT NULL DEFAULT 0, result TEXT, digest TEXT);
             CREATE INDEX IF NOT EXISTS inventory_work_pending ON inventory_work(status,candidate_id,kind);
         """)
+        self._cached_completed_seeds = None
+        self._cached_counts = None
         if not resume:
             with self.db:
                 self._set("schema", SCHEMA)
@@ -216,11 +220,34 @@ class RealmStore:
         install(self.db)
 
     def _set(self, key, value):
+        if key == 'completed_seeds':
+            self._cached_completed_seeds = value
+        elif key == 'counts':
+            self._cached_counts = dict(value) if isinstance(value, dict) else value
         self.db.execute("INSERT INTO meta VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value", (key, canonical(value)))
 
     def get_state(self, key):
+        # Public reads observe external commits. Only the single writer's
+        # private counter helpers reuse cached values in the commit hot path.
         row = self.db.execute("SELECT value FROM meta WHERE key=?", (key,)).fetchone()
-        return json.loads(row[0]) if row else None
+        val = json.loads(row[0]) if row else None
+        if key == 'completed_seeds' and val is not None:
+            self._cached_completed_seeds = val
+        elif key == 'counts' and val is not None:
+            self._cached_counts = dict(val)
+        return val
+
+    def _get_completed_seeds(self):
+        if self._cached_completed_seeds is None:
+            val = self.get_state('completed_seeds')
+            self._cached_completed_seeds = val if val is not None else 0
+        return self._cached_completed_seeds
+
+    def _get_counts(self):
+        if self._cached_counts is None:
+            val = self.get_state('counts')
+            self._cached_counts = dict(val) if val is not None else {}
+        return self._cached_counts
 
     def set_state(self, key, value):
         with self.db:
@@ -432,21 +459,44 @@ class RealmStore:
             raise ValueError('Prepared near-miss allowance differs from checkpoint')
         if capacity_check is not None:capacity_check(3*prepared.payload_bytes)
         timings=dict(prepared.timings);sql_started=time.perf_counter()
-        with self.db:
-            self.db.executemany('INSERT INTO seeds VALUES (?,?,?)',prepared.seed_rows)
-            self.db.executemany('INSERT INTO candidates VALUES (?,?,?,?,?)',prepared.candidate_rows)
-            self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",prepared.inventory_rows)
-            self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",prepared.discovery_rows)
-            self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')",prepared.variant_rows)
-            if prepared.receipt is not None:
-                self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
-            self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
-            self._set('completed_seeds',self.get_state('completed_seeds')+prepared.end-prepared.start)
-            counts=self.get_state('counts')
-            for key,value in prepared.counts:counts[key]=counts.get(key,0)+value
-            self._set('counts',counts)
-            timings['sql_seconds']=time.perf_counter()-sql_started
-            commit_started=time.perf_counter()
+        try:
+            with self.db:
+                if self.retention.get('mode') == 'survivors' and not prepared.candidate_rows and not prepared.seed_rows:
+                    if prepared.receipt is not None:
+                        self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
+                    self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
+                    new_completed = self._get_completed_seeds() + prepared.end - prepared.start
+                    self._set('completed_seeds', new_completed)
+                    counts = dict(self._get_counts())
+                    for key, value in prepared.counts:
+                        counts[key] = counts.get(key, 0) + value
+                    self._set('counts', counts)
+                else:
+                    if prepared.seed_rows:
+                        self.db.executemany('INSERT INTO seeds VALUES (?,?,?)',prepared.seed_rows)
+                    if prepared.candidate_rows:
+                        self.db.executemany('INSERT INTO candidates VALUES (?,?,?,?,?)',prepared.candidate_rows)
+                    if prepared.inventory_rows:
+                        self.db.executemany("INSERT OR IGNORE INTO inventory_work(unit_id,candidate_id,kind,identity,status) VALUES (?,?,?,?,'pending')",prepared.inventory_rows)
+                    if prepared.discovery_rows:
+                        self.db.executemany("INSERT INTO discovery_tasks(idx,structure,status) VALUES (?,?,'pending')",prepared.discovery_rows)
+                    if prepared.variant_rows:
+                        self.db.executemany("INSERT INTO variant_tasks VALUES (?,?,'pending')",prepared.variant_rows)
+                    if prepared.receipt is not None:
+                        self.db.execute('INSERT INTO retention_receipts VALUES (?,?,?,?)',(start_key,end_key,prepared.receipt,prepared.digest))
+                    self.db.execute("UPDATE ranges SET status='complete',worker=NULL,digest=? WHERE start=?",(prepared.digest,start_key))
+                    new_completed = self._get_completed_seeds() + prepared.end - prepared.start
+                    self._set('completed_seeds', new_completed)
+                    counts = dict(self._get_counts())
+                    for key, value in prepared.counts:
+                        counts[key] = counts.get(key, 0) + value
+                    self._set('counts', counts)
+                timings['sql_seconds']=time.perf_counter()-sql_started
+                commit_started=time.perf_counter()
+        except BaseException:
+            self._cached_completed_seeds = None
+            self._cached_counts = None
+            raise
         timings['commit_seconds']=time.perf_counter()-commit_started
         self.last_range_timings=timings
         return True

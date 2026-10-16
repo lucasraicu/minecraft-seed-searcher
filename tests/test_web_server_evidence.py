@@ -27,7 +27,8 @@ def test_start_binds_validated_counts_and_budget(monkeypatch,tmp_path):
     monkeypatch.setattr(server.subprocess,'Popen',lambda cmd,**kwargs:(captured.append(cmd),FakeProcess())[1])
     manager=server.SweepManager()
     result=manager.start_sweep(count=3,threads=2,batch_size=16,max_misses=2,
-                               counts={'trial_chamber':8,'fortress':2})
+                               counts={'trial_chamber':8,'fortress':2},
+                               profile='dynamic1664')
     assert result['ok']
     manager.monitor_thread.join(timeout=5)
     assert manager.status=='completed'
@@ -41,7 +42,7 @@ def test_start_binds_validated_counts_and_budget(monkeypatch,tmp_path):
     for invalid in ({'counts':{'outpost':0}}, {'counts':{'trial_chamber':6}},
                     {'counts':{'unknown':1}}, {'count':True}, {'threads':0}):
         before=len(list(tmp_path.iterdir()))
-        assert not manager.start_sweep(**invalid)['ok']
+        assert not manager.start_sweep(**invalid, profile='dynamic1664')['ok']
         assert len(list(tmp_path.iterdir()))==before
 
 
@@ -56,7 +57,7 @@ def test_live_defaults_use_heldout_selected_scheduling(monkeypatch,tmp_path):
     command=calls[0]
     assert command[command.index('--native-threads')+1]=='34'
     assert command[command.index('--native-batch-size')+1]=='16384'
-    assert command[command.index('--max-misses')+1]=='2'
+    assert command[command.index('--max-misses')+1]=='0'
 
 
 def test_candidate_serialization_does_not_invent_evidence():
@@ -192,11 +193,13 @@ def test_resume_refuses_running_process(monkeypatch,tmp_path):
     assert not result['ok'] and result['runId']=='active'
 
 
-def test_start_disk_gate_rejects_projected_oversize_without_spawning(monkeypatch,tmp_path):
+def test_start_disk_gate_rejects_low_free_space_without_spawning(monkeypatch,tmp_path):
     monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
     calls=[]
     monkeypatch.setattr(server.subprocess,'Popen',lambda *args,**kwargs:calls.append(args))
     manager=server.SweepManager()
+    from types import SimpleNamespace
+    monkeypatch.setattr(server.shutil,'disk_usage',lambda _:SimpleNamespace(free=1))
     result=manager.start_sweep(count=2**53-1)
-    assert not result['ok'] and 'disk budget' in result['error']
+    assert not result['ok'] and 'reserve' in result['error']
     assert not calls and not list(tmp_path.iterdir())

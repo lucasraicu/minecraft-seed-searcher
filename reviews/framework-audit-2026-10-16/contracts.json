@@ -1,0 +1,114 @@
+{
+  "maximum_score": {
+    "score": 1250,
+    "components": {
+      "score_revision": "dynamic-envelope-2048-v3",
+      "final_score": 1250,
+      "bonus_total": 1250,
+      "deficit_penalty": 0,
+      "core_surplus": 650,
+      "optional_bonus": 200,
+      "luxury_biomes": 265,
+      "hub_bonus": 45,
+      "nether_core_bonus": 20,
+      "scenic_bonus": 25,
+      "village_spread_bonus": 25,
+      "treasure_bastion_bonus": 20
+    }
+  },
+  "hub_one_portal": 4,
+  "ordinary_savanna_bonus": 15,
+  "village_spread_boundary": {
+    "default_half": 0,
+    "v3_half": 15
+  },
+  "treasure_boundary": {
+    "default_half": 0,
+    "v3_half": 15
+  },
+  "tracker_tie_order": [
+    "2:0:0",
+    "10:0:0"
+  ],
+  "expected_binary_id_order": [
+    "10:0:0",
+    "2:0:0"
+  ],
+  "nested_sqlite_scores": [
+    [
+      "2",
+      0
+    ],
+    [
+      "1",
+      0
+    ]
+  ],
+  "duplicate_count": 2,
+  "new_server_default": "dynamic-envelope-1664-v2",
+  "new_server_v3_default_misses": {
+    "ok": false,
+    "error": "max_misses must be an integer in 0\u20130"
+  },
+  "new_server_v3_explicit_zero": true,
+  "web_native_build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-1664/native",
+  "web_profiles": [
+    "dynamic1664",
+    "marine2048",
+    "twoGroup2048"
+  ],
+  "running_server_v3_preview": {
+    "http": 400,
+    "body": {
+      "ok": false,
+      "error": "Unknown search profile"
+    }
+  },
+  "dynamic-baseline-1664": {
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-DNB_WORK_CHUNK=16",
+      "-DNB_EXPERIMENT_ORDER=0",
+      "-DNB_STRONGHOLD_AFTER=4",
+      "-DNB_DYNAMIC_PREFLIGHT=1",
+      "-march=native",
+      "-mavx2",
+      "-mfma",
+      "-flto",
+      "-Xpreprocessor",
+      "-fopenmp",
+      "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\"",
+      "-fprofile-instr-use=/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-1664/prof/trained.profdata"
+    ],
+    "pgo": "5734f0d810c39202b9df8d096dbd19a25fd8327747ead385489fd9977006275f",
+    "binary_sha": "0d6ff3955d1f18416ade447398288946ae0541c43988fbc0f32358ad492d5ee8",
+    "changed_sources": [
+      "native/blueprint_batch.h",
+      "native/blueprint_batch.inc",
+      "native/blueprint_dynamic.inc"
+    ]
+  },
+  "dynamic-baseline-2048": {
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-DNB_WORK_CHUNK=16",
+      "-DNB_EXPERIMENT_ORDER=0",
+      "-DNB_STRONGHOLD_AFTER=4",
+      "-DNB_DYNAMIC_PREFLIGHT=1",
+      "-march=native",
+      "-mavx2",
+      "-mfma",
+      "-flto",
+      "-Xpreprocessor",
+      "-fopenmp",
+      "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+    ],
+    "pgo": null,
+    "binary_sha": "a400c9727f1788a642cd705fa5f8a6e1798eb839672154fec97a372b0f6e392c",
+    "changed_sources": []
+  }
+}
