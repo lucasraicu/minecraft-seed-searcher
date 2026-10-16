@@ -1,0 +1,92 @@
+{
+  "packaged": {
+    "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/_blueprint_batch.abi3.so",
+    "extension_sha256": "07eea0db2c013b804e0882ccc64228a1ad93a4385cdf6a064bb727cb742892eb",
+    "openmp": true,
+    "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+    "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+    "scope": "packaged complete native blueprint baseline",
+    "production_extension_replaced": false,
+    "stronghold_after": 4,
+    "record_adapter_sha256": "cf3c7b51c9a582281ce00ebbe4787dbade28f352f9211e082bee8dbd9e3ed4a5",
+    "record_sources_sha256": {
+      "native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49",
+      "native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+    },
+    "policy_sha256": "4e538caf1d447a7efb80963846ef8a849a96ce9584660f41ecb904bcf104f4bb",
+    "record_computation_identity": {
+      "model": {
+        "model": "26.50",
+        "structure_rng": {
+          "trial_chamber": 1,
+          "stronghold": 0,
+          "mineshaft": 0,
+          "ancient_city": 0,
+          "village": 0,
+          "ruined_portal": 0,
+          "shipwreck": 0,
+          "monument": 0,
+          "outpost": 0,
+          "fortress": 0,
+          "bastion": 0,
+          "desert_pyramid": 0,
+          "jungle_temple": 0,
+          "swamp_hut": 0,
+          "igloo": 0,
+          "ocean_ruin": 0,
+          "mansion": 0,
+          "buried_treasure": 0,
+          "trail_ruins": 1,
+          "abandoned_camp": 1,
+          "ruined_portal_nether": 0,
+          "end_city": 0
+        }
+      },
+      "native_runtime": {
+        "openmp": false,
+        "runtime_sha256": null,
+        "policy": "outer-columns-static-min256-v1"
+      },
+      "sha256": {
+        "src/seed_search/_native.abi3.so": "b763fdd874664136d3bb274aa87cb58ebe0e7205259458678d75e3d9729a60c7",
+        "vendor/backend.json": "8bc6c107534484986b62a95926b01fb039322c97eb4312198678408f5809ee36",
+        "native/bridge.c": "9f371c3ede6d6725e4c2dadb7a107f8f2ca4128ba2caae781a68d18882826c6c",
+        "native/bridge.h": "fe75d49b015c2da1c7a9fb5547aa0ca69dcea70a04524619bfa117fcf913369c",
+        "native/filters.inc": "78a2951aa7cd2521a48d37d4433055078aa67f5fa5432736def4dd81e09b0abe",
+        "native/blueprint_batch.h": "f246e02f3a9e195edec79069e0053aa9189d21827c6429fda577d0bb6508690d",
+        "native/blueprint_batch.inc": "a5add3540a64fe85677c3eeb929a896b295c2c4d0d738e1bf5f3a2e7240f88d8",
+        "native/blueprint_dynamic.inc": "c1d92ca6af4e2ac49502af9b40e617616121a1faa8cd1599f8effa3c0bc91bb5",
+        "src/seed_search/backend.py": "66a5894e6ed5929c0efcfccecd7562b5c2e6c316b514abcb9e30e0ec6184e13d",
+        "src/seed_search/seeds.py": "7730bc5b7a6fb932212693c68940b9ccb76a9638d6753bc02130561e4caa9bf5",
+        "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+        "src/seed_search/realm/blueprint.py": "403880086d8a8585c50d4282acb99eb48e3fd1ac285b8592f97b6f23b515a92d",
+        "src/seed_search/realm/dynamic.py": "40abaa1a9044892f68e6f1a0cf49de4c987d1d3d420a9553ad775ae70229b70f",
+        "src/seed_search/realm/coastal.py": "f416ffbf5b4966d42066cb555b6385a9350808b08cefffc4c86e2b9d4d7ea511",
+        "src/seed_search/realm/marine.py": "a1b273d3d397a46b9f2fbdaa7aa8bacb451d0f7c14445142995d1b3b87f6fff3",
+        "src/seed_search/realm/spawn.py": "4f2a2b8b7397cd3a5b4919416f272c240a20cb121ba92d3a044b6d582418a792",
+        "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+        "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+        "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+        "src/seed_search/realm/inventory.py": "b7d00ab4777b8b2b3e1bfabfba830ac42e619de31945bcc548a5b8337264cfbd",
+        "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+        "src/seed_search/realm/siblings.py": "90f5e4607f26dd0f7fe415705f1aecfb821bd24b365242d8c794d5155b6dc77b",
+        "src/seed_search/realm/config.py": "c8a49521e8fca37dc815494ea265b38be2e3dea45250afbb4726f0f3b5cc874f",
+        "src/seed_search/realm/runner.py": "22c232e9998ddacff89d193efa483f8aed5d0b94e15233a9f820626714421e50",
+        "src/seed_search/realm/store.py": "18416825de7df05055f4a803da7fc0b5ccdad9c880758ca7a8309f981da0428c",
+        "src/seed_search/realm/resources.py": "bdb54d6afde9b592b2e7b3b72cc1d223a476f3ba4bd24a0d357995b82921ed89",
+        "src/seed_search/realm/native_batch.py": "cf3c7b51c9a582281ce00ebbe4787dbade28f352f9211e082bee8dbd9e3ed4a5",
+        "src/seed_search/realm/native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49",
+        "src/seed_search/realm/native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+      }
+    }
+  },
+  "private": [
+    {
+      "path": "runs/dynamic-baseline-2048/native/identity.json",
+      "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+      "pgo": null,
+      "sha": "2855b313ca7f3e1aebcf08d86520ab9fff2c318a1ebaa74fa884f37a7fac1141",
+      "mismatched_inputs": []
+    }
+  ]
+}

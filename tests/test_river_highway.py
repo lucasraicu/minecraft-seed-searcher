@@ -37,8 +37,8 @@ def test_river_revision_active_floors_and_old_revision_are_distinct():
     from seed_search.realm.cli import load
     cfg=river_blueprint_config();validate_config(cfg);old=locked_blueprint_config();validate_config(old)
     explicit=yaml.safe_load((ROOT/'config/realm.yaml').read_text());validate_config(explicit)
-    from seed_search.realm.config import dynamic_v2_blueprint_config
-    assert load(None)['screening_revision']==dynamic_v2_blueprint_config()['screening_revision']
+    from seed_search.realm.config import dynamic_v2_blueprint_config, dynamic_v3_blueprint_config
+    assert load(None)['screening_revision']==dynamic_v3_blueprint_config()['screening_revision']
     assert origin_blueprint_config()['screening_revision']=='origin-fixed-2048-v1'
     assert explicit['structures']==dynamic_v2_blueprint_config()['structures']
     assert explicit['screening_revision']==dynamic_v2_blueprint_config()['screening_revision']

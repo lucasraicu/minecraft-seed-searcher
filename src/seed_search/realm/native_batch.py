@@ -497,7 +497,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                      resume=False,encoded=True,max_prepared_bytes=256<<20,
                      stop_after=None,progress=None,start_index=0,identity=None,
                      allow_prediction_scale=False,production=False,inflight=3,retention="full",max_misses=0,
-                     prepare_on_writer=False):
+                     prepare_on_writer=False,top_k=0):
     """Bounded native producer, record preparer and connection-owning writer.
 
     CFFI releases the GIL during generation. Record preparation runs on its own thread; SQLite stays on
@@ -544,12 +544,26 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     run_key_val=cfg['search'].get('run_key', 0)
     try:run_key_int=int(run_key_val)
     except (ValueError,TypeError):run_key_int=int.from_bytes(hashlib.sha256(str(run_key_val).encode()).digest()[:8], 'big')
+    tracker=None;top50_path=None
+    if top_k>0:
+        from seed_search.realm.top_tracker import Top50Tracker
+        tracker=Top50Tracker(capacity=top_k)
+        top50_path=Path(run)/'top50.json'
+    def observe_committed(rows):
+        for seed_payload,candidate_payload in rows:
+            record=json.loads(seed_payload)
+            record.pop('anchor_ids',None)
+            record['anchors']=[json.loads(candidate_payload)]
+            tracker.observe(record)
     use_np_permutation=(cfg['search'].get('sequence', 'permutation') == 'permutation')
     def compute(first,end):
         before=time.perf_counter()
         seeds=seeds_np(first,end,run_key_int) if use_np_permutation else [_seed(i,cfg['search']) for i in range(first,end)]
         seed_seconds=time.perf_counter()-before
-        return prototype.sweep(seeds,threads,**({'retention':retention,'max_misses':max_misses} if retention=='survivors' else {})),seed_seconds
+        cutoff=tracker.cutoff_score() if tracker is not None else None
+        sweep_kw={'retention':retention,'max_misses':max_misses} if retention=='survivors' else {}
+        if cutoff is not None:sweep_kw['cutoff_score']=cutoff
+        return prototype.sweep(seeds,threads,**sweep_kw),seed_seconds
     def prepare(native_future,first,end,store):
         batch,seed_seconds=native_future.result()
         with batch:
@@ -581,6 +595,13 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         dispatched+=end-first;max_pending=max(max_pending,len(pending));return True
     with _scan_lock(run),_numerical_threads(),RealmStore(run,identity=identity,resume=resume) as store:
         store.configure_range(start_index,start_index+count,batch_size);store.recover_assignments()
+        if tracker is not None and resume:
+            # The candidate table and range receipts commit together. JSON is only
+            # a presentation cache and may be stale, absent, or corrupt at restart.
+            cursor=store.db.execute(
+                'SELECT s.result,c.result FROM candidates c JOIN seeds s ON s.idx=c.idx ORDER BY c.id')
+            while rows:=cursor.fetchmany(256):
+                observe_committed(rows)
         completed=store.get_state('completed_seeds')
         initial_disk=disk_status(store.run,limits,remaining_seeds=count-completed,
             completed_seeds=completed,previous_sample=store.get_state('workspace_disk'))
@@ -608,6 +629,10 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 before=time.perf_counter()
                 store.complete_prepared(prepared,lease=('native-pipeline',attempt),
                     capacity_check=check_capacity)
+                if tracker is not None and prepared.candidate_rows:
+                    wanted={row[1] for row in prepared.candidate_rows}
+                    seed_payloads={row[0]:row[2] for row in prepared.seed_rows if row[0] in wanted}
+                    observe_committed((seed_payloads[row[1]],row[4]) for row in prepared.candidate_rows)
                 service['writer_wall_seconds']+=time.perf_counter()-before
                 service.update(store.last_range_timings)
                 batches+=1;committed+=end-first;latencies.append(time.perf_counter()-queued)
@@ -617,11 +642,14 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 now=time.perf_counter()
                 if now-last_monitor>=1:
                     resources=process_tree_resources() or {}
-                    if not resources.get('available'):raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
+                    if not resources.get('available') and not resources.get('fallback'):raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
                     peak=max(peak,resources['rss_bytes']);last_monitor=now
                     if resources['rss_bytes']+reserve*(1<<30)>ceiling*(1<<30):
                         raise RuntimeError('Process-tree RSS plus reserve exceeded memory ceiling')
                 if progress is not None and now-last_progress>=10:
+                    if tracker is not None:
+                        tracker.save_to_json(str(top50_path))
+                        tracker.flush(store.db)
                     progress(store.status());last_progress=now
                 while len(pending)<inflight and submit(store):pass
         except KeyboardInterrupt:
@@ -641,6 +669,11 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 if not native_future.cancelled():
                     try:native_future.result()[0].close()
                     except BaseException:pass
+            if tracker is not None:
+                try:
+                    tracker.save_to_json(str(top50_path))
+                    tracker.flush(store.db)
+                except Exception:pass
             service['shutdown_seconds']=time.perf_counter()-before
             store.recover_assignments()
             store.set_state('native_pipeline',{'threads':threads,'cpu_slots':threads+2,'batch_size':batch_size,
@@ -660,13 +693,15 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             'max_outstanding_batches':max_pending,
             'max_prepared_owned_estimate_bytes':max_payload,'peak_process_tree_rss_bytes':peak,
             'status':status,'interrupted':interrupted,'encoded':encoded,'retention':retention,'max_misses':max_misses,
+            'top_k':top_k,'top_tracker':tracker,
+            'cutoff_score':tracker.cutoff_score() if tracker is not None else None,
             'scope':('complete baseline evidence and FULL SQLite' if retention=='full' else 'C-filtered survivor/near-miss evidence and FULL SQLite range checkpoints')+', startup/drain/close included; no terrain/BDS'}
 
 
 
 def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
                     native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
-                    allow_prediction_scale=False,retention="full",max_misses=None):
+                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=0):
     """Production opt-in; unsupported profiles fail before any input publication."""
     validate_config(cfg)
     if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
@@ -689,10 +724,16 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
     ident.update(execution='native',native=prototype.identity,
                  native_build=str(Path(native_build).resolve()) if native_build is not None else None,
                  evaluator='seed_search.realm.native_batch:run_native_scan')
+    if top_k is None or top_k==0:top_k=search.get('top_k',0)
     result=persist_pipeline(prototype,output,count,run_key=search['run_key'],threads=native_threads,
         batch_size=native_batch_size,resume=resume,stop_after=stop_after,progress=progress,
-        start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses)
+        start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses,
+        top_k=top_k)
     status=result['status'];status['interrupted']=result['interrupted']
+    if top_k>0:
+        status['top_k']=top_k
+        status['cutoff_score']=result['cutoff_score']
+        status['top_candidates_count']=len(result['top_tracker']) if result['top_tracker'] is not None else 0
     status['execution']={'kind':'native','threads':native_threads,'batch_size':native_batch_size,
                          'newly_committed':result['newly_committed'],'wall_seconds':result['wall_seconds'],
                          'batch_latency_sample_scope':result['batch_latency_sample_scope'],

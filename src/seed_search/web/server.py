@@ -38,7 +38,12 @@ from seed_search.realm.spawn import player_inspection_statuses
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
-DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native' if (PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native').exists() else (PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native'))))
+OPTIMIZED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-mansion-bound-2026-10-16'
+DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(
+    OPTIMIZED_NATIVE_BUILD if (OPTIMIZED_NATIVE_BUILD / 'identity.json').is_file()
+    else PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native'
+    if (PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native').exists()
+    else PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native')))
 
 
 class SweepManager:
@@ -352,13 +357,17 @@ class SweepManager:
         from seed_search.realm.cli import make_identity
         from seed_search.realm.store import semantic_identity
         build=identity.get('native_build')
-        if not build or Path(build).resolve()!=DEFAULT_NATIVE_BUILD.resolve():
+        build_path=Path(build).resolve() if build else None
+        historical_roots=(PROJECT_ROOT/'runs'/'dynamic-baseline-2048',
+                          PROJECT_ROOT/'runs'/'dynamic-baseline-1664')
+        if build_path is None or not (build_path==DEFAULT_NATIVE_BUILD.resolve() or
+                any(build_path.is_relative_to(root.resolve()) for root in historical_roots)):
             raise ValueError("Saved sweep uses a different native build")
-        prototype=Prototype(DEFAULT_NATIVE_BUILD,cfg)
+        prototype=Prototype(build_path,cfg)
         current=make_identity(cfg,count,first)
-        current.update(execution='native',native=prototype.identity,native_build=str(DEFAULT_NATIVE_BUILD.resolve()),
+        current.update(execution='native',native=prototype.identity,native_build=str(build_path),
                        evaluator='seed_search.realm.native_batch:run_native_scan',retention=identity.get('retention'))
-        if semantic_identity(current)!=semantic_identity(identity):
+        if semantic_identity(current)!=semantic_identity(identity) and completed<count:
             raise ValueError("Saved sweep configuration or computation identity changed")
         return directory,identity,completed,values.get('native_pipeline') or {}
 
@@ -409,7 +418,7 @@ class SweepManager:
                 self._query_sqlite_candidates()
                 python=PROJECT_ROOT/'.venv'/'bin'/'python'
                 cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search','resume',
-                     '--run',str(directory),'--native-build',str(DEFAULT_NATIVE_BUILD),'--prediction-scale']
+                     '--run',str(directory),'--native-build',str(identity['native_build']),'--prediction-scale']
                 receipt=self._launch_receipt(cmd,self.effective_config,{
                     'count':identity['count'],'start_index':str(identity['start_index']),
                     'threads':threads,'batch_size':pipeline.get('batch_size'),

@@ -256,7 +256,7 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
         def sample_memory():
             nonlocal peak_rss, latest_memory, stopping, failure
             sample = process_tree_resources()
-            if sample.get("available"):
+            if sample.get("available") or sample.get("fallback"):
                 peak_rss = max(peak_rss, sample["rss_bytes"])
                 combined = sample["rss_bytes"] + docker_reserve
                 sample.update({"combined_budget_estimate_bytes": combined, "above_target": combined > target})

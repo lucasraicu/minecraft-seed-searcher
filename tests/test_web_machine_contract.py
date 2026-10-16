@@ -112,7 +112,7 @@ console.log(JSON.stringify(buildSweepRequest(cfg)));
 
 
 @pytest.mark.parametrize('changes', [
-    {'counts': {'stronghold': 2}}, {'counts': {'village': 7}},
+    {'counts': {'stronghold': 2}}, {'counts': {'village': 5}},
     {'threads': 35}, {'batchSize': 16385}, {'startIndex': str(2**64)},
 ])
 def test_preview_and_launch_reject_the_same_invalid_settings(tmp_path, monkeypatch, changes):

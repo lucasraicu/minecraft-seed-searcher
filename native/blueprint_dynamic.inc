@@ -742,16 +742,21 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
         if(nb_dynamic_count(&fp,x,z,nether_half,1,NULL,0)<fort_goal ||
            nb_dynamic_count(&bp,x,z,nether_half,1,NULL,0)<bast_goal)continue;
         int hx=floordiv(xs[ix+1]-1,8)*8,hz=floordiv(zs[iz+1]-1,8)*8;
-        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
-        if(mansion_goal>0 && mansions && nm>0 && !mansion_overlap) {
+        if(mansion_goal>0 && mansions && nm>0) {
             for(int m=0;m<nm;m++) {
-                if(mansions[m].x+ow_half>=x && mansions[m].x-(ow_half-1)<=hx &&
-                   mansions[m].z+ow_half>=z && mansions[m].z-(ow_half-1)<=hz) {
-                    mansion_overlap=1;
-                    break;
-                }
+                int lx=mansions[m].x-(ow_half-1),lz=mansions[m].z-(ow_half-1);
+                int ux=mansions[m].x+ow_half,uz=mansions[m].z+ow_half;
+                if(lx<x)lx=x;if(lz<z)lz=z;if(ux>hx)ux=hx;if(uz>hz)uz=hz;
+                lx=-floordiv(-lx,8)*8;lz=-floordiv(-lz,8)*8;
+                ux=floordiv(ux,8)*8;uz=floordiv(uz,8)*8;
+                if(lx>ux||lz>uz)continue;
+                mansion_overlap=1;
+                if(lx<xmin)xmin=lx;if(lz<zmin)zmin=lz;
+                if(ux>xmax)xmax=ux;if(uz>zmax)zmax=uz;
             }
+            continue;
         }
+        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
     }
     if(overlap_out)*overlap_out=mansion_overlap;
     if(xmin>xmax||zmin>zmax)return 0;
@@ -776,17 +781,9 @@ static int nb_raw_atleast(NBWorker *w,int type,const int *b,int goal){
 }
 static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
     if(w->fixture||!NB_DYNAMIC_PREFLIGHT)return 1;
-    int fort[512],bast[512],pairs[768],nf=0,nb=0;
-    int max_c = 2000 - w->p->overworld_half;
-    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
-    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
-    if(n<0)return n;
-    for(int i=0;i<n;i++) {
-        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
-        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
-    }
     Pos mansions[64];int nm=0;
     int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    Pos dark_mansions[64];int nm_dark=0;
     if(mansion_goal>0) {
         StructureConfig mcfg;
         if(!getStructureConfig(Mansion,MC_26_50,&mcfg))return -1;
@@ -799,10 +796,26 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
             }
           }
         if(nm<mansion_goal)return 0;
+        applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        for(int m=0;m<nm;m++) {
+            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,mansions[m].x,mansions[m].z)) {
+                dark_mansions[nm_dark++]=mansions[m];
+            }
+        }
+        if(nm_dark<mansion_goal)return 0;
+    }
+    int fort[512],bast[512],pairs[768],nf=0,nb=0;
+    int max_c = 2000 - w->p->overworld_half;
+    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
+    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
+    if(n<0)return n;
+    for(int i=0;i<n;i++) {
+        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
+        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
     }
     int mansion_overlap=0;
     int possible=nb_dynamic_raw_bounds_core(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible,
-                                           mansion_goal>0?mansions:NULL,nm,mansion_goal,&mansion_overlap,
+                                           mansion_goal>0?dark_mansions:NULL,nm_dark,mansion_goal,&mansion_overlap,
                                            w->p->overworld_half,w->p->nether_half);
     if(possible<=0)return possible;
     if(mansion_goal>0 && !mansion_overlap)return 0;
@@ -813,11 +826,9 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
         if(goal<=0)continue;
         int ok;
         if(slot==0) {
-            /* Reuse the complete macro-envelope enumeration above. These
-             * bounds are a subset, so another placement RNG scan is redundant. */
             int count=0;
-            for(int m=0;m<nm;m++)
-                if(inside(mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
+            for(int m=0;m<nm_dark;m++)
+                if(inside(dark_mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
             ok=count>=goal;
         } else ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
         if(ok<0)return -3;if(!ok)return 0;
@@ -905,30 +916,13 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     }
     if(w->p->retention) {
         if(!w->fixture) {
-            applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
-            int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
-            if(mansion_goal>0) {
-                StructureConfig mcfg;
-                if(!getStructureConfig(Mansion,MC_26_50,&mcfg)){code=-1;goto done;}
-                int msize=mcfg.regionSize*16;
-                int dark_ok=0;
-                for(int rx=floordiv(feasible[0],msize);rx<=floordiv(feasible[2],msize);rx++) {
-                    for(int rz=floordiv(feasible[1],msize);rz<=floordiv(feasible[3],msize);rz++) {
-                        Pos p;
-                        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,feasible[0],feasible[1],feasible[2],feasible[3])) {
-                            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)) {
-                                dark_ok=1;break;
-                            }
-                        }
-                    }
-                    if(dark_ok)break;
-                }
-                if(!dark_ok)goto done;
 #ifdef _OPENMP
-                #pragma omp atomic
+            #pragma omp atomic
 #endif
-                g_diag_pass_mansion_dark++;
-            }
+            g_diag_pass_mansion_dark++;
+            if(!NB_DYNAMIC_PREFLIGHT ||
+               ((w->p->flexible_mask&1u)?w->p->floors[0]:w->p->goals[0])<=0)
+                applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
             applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
         } else {
             applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);

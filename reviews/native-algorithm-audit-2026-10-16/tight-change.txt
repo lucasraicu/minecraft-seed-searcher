@@ -1,0 +1,13 @@
+        if(mansion_goal>0 && mansions && nm>0) {
+            for(int m=0;m<nm;m++) {
+                int lx=mansions[m].x-(ow_half-1),lz=mansions[m].z-(ow_half-1);
+                int ux=mansions[m].x+ow_half,uz=mansions[m].z+ow_half;
+                if(lx<x)lx=x;if(lz<z)lz=z;if(ux>hx)ux=hx;if(uz>hz)uz=hz;
+                lx=-floordiv(-lx,8)*8;lz=-floordiv(-lz,8)*8;ux=floordiv(ux,8)*8;uz=floordiv(uz,8)*8;
+                if(lx>ux||lz>uz)continue;
+                mansion_overlap=1;
+                if(lx<xmin)xmin=lx;if(lz<zmin)zmin=lz;if(ux>xmax)xmax=ux;if(uz>zmax)zmax=uz;
+            }
+            continue;
+        }
+        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
