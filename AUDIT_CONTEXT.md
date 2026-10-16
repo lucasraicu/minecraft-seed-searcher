@@ -1,7 +1,7 @@
 # Minecraft Seed Searcher (`dynamic-envelope-2048-v3`) — Full-Depth Repository Audit Context
 
 > **Auditor Instructions for Claude:**
-> This document is a complete, self-contained architectural dossier of the `minecraft-seed-searcher` codebase as of commit `886e9cc` on `main`. It contains the full system architecture, mathematical specifications, C11 kernel mechanics, Python runtime bindings, Web UI contracts, historical audit remediations, benchmark figures, and known open architectural questions. Use this context to conduct a rigorous, zero-assumption, full-depth repository audit covering correctness, mathematical parity, memory safety, concurrency, throughput headroom, and product integration.
+> This document is a complete, self-contained architectural and mathematical dossier of the `minecraft-seed-searcher` codebase as of commit `886e9cc` on `main`. It contains the full system architecture, mathematical specifications, verbatim C11 kernel functions, Python reference oracle code, Web UI contracts, historical audit remediations, benchmark figures, and known open architectural questions. Use this context to conduct a rigorous, zero-assumption, full-depth repository audit covering correctness, mathematical parity, memory safety, concurrency, throughput headroom, and product integration.
 
 ---
 
@@ -25,7 +25,60 @@ A **"Master Seed"** is an extraordinary seed where all essential progression, ra
 
 ---
 
-## 2. Mathematical Scoring Architecture (1,250 Points Max)
+## 1.1 Architectural Rationale: Why We Compare Python with C11
+
+The searcher employs a **Dual-Engine / Differential Oracle pattern**:
+
+| Dimension | C11 Native Kernel (`native/`) | Python Reference Oracle (`src/seed_search/`) |
+| :--- | :--- | :--- |
+| **Role** | Sprint engine (raw speed) | Reference Oracle & Ground Truth (veracity) |
+| **Throughput** | **~60,000 seeds/sec** (34 threads) | **~50 seeds/sec** (single thread) |
+| **Primary Tasks** | Evaluates millions of seeds; discards 99.75% via macro filters; computes candidate cells. | Validates candidates, computes final report, powers Web UI, seeds SQLite, verifies BDS. |
+| **Implementation** | Pointer math, bitmasks, Clang AVX2/FMA vectorization, early-abort pruning. | High-level set operations, coordinate dictionaries, auditable math. |
+
+### The Parity Invariant
+Because C11 relies on aggressive early-abort pruning and sliding-window event grids, **differential testing against Python is mandatory**:
+1. **Zero False Negatives:** C11 must never prune a seed that Python's reference mathematical specification would qualify.
+2. **Zero Phantom Candidates:** Every candidate retained by C11 must produce the **exact same score, exact same structure counts, exact same biomes, and exact same coordinate center** when independently rescored in Python or verified via Bedrock Dedicated Server (BDS) world generation.
+
+---
+
+## 2. Specification Configuration: `dynamic_v3_blueprint_config()`
+
+Source: [`src/seed_search/realm/config.py`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/config.py#L382-L408)
+
+```python
+def dynamic_v3_blueprint_config():
+    """Active player-envelope policy (v3, 2048x2048 overworld, 1024x1024 nether)."""
+    cfg = dynamic_v2_blueprint_config()
+    cfg['screening_revision'] = 'dynamic-envelope-2048-v3'
+    cfg['deployment'] = {'overworld_side_blocks': 2048, 'nether_side_blocks': 1024}
+    cfg['discovery'] = {'overworld_bounds': [-2000, -2000, 2000, 2000],
+                        'nether_bounds': [-634, -634, 634, 634]}
+    cfg['structures']['minimum_counts'].update(
+        village=6, trial_chamber=8, ancient_city=2, desert_pyramid=1,
+        jungle_temple=1, monument=1, ruined_portal=8, shipwreck=4,
+        mineshaft=10, outpost=1, mansion=1
+    )
+    cfg['structures']['nether_minimum_counts'] = {'fortress': 1, 'bastion': 2}
+    cfg['structures']['hard_floors'] = {
+        'stronghold': 1, 'mansion': 1, 'village': 6, 'trial_chamber': 8,
+        'ancient_city': 2, 'desert_pyramid': 1, 'jungle_temple': 1,
+        'monument': 1, 'ruined_portal': 8, 'shipwreck': 4, 'mineshaft': 10,
+        'outpost': 1, 'fortress': 1, 'bastion': 2
+    }
+    cfg['search']['centroid_weights'] = {
+        'village': 3, 'trial_chamber': 2, 'ruined_portal': 0, 'ancient_city': 2,
+        'outpost': 1, 'desert_pyramid': 2, 'jungle_temple': 2, 'mansion': 2,
+        'monument': 1, 'stronghold': 1, 'shipwreck': 0
+    }
+    cfg['search']['max_misses'] = 0
+    return cfg
+```
+
+---
+
+## 3. Mathematical Scoring Architecture (1,250 Points Max)
 
 The scoring architecture is strictly additive with zero negative deficit penalties under $B = 0$:
 
@@ -67,22 +120,17 @@ All 14 required structure categories must meet their **Hard Floor**. Counts stri
 *Note on Outpost Floor:* Audit fix F9 explicitly calibrated Outpost floor to $1$ (ladder: $c=1 \to 0$, $c=2 \to +15$, $c=3 \to +30$, $c \ge 4 \to +40$).
 
 ### Component B: Optional Structures (200 Points Maximum)
-Five optional structure types provide +40 pts each when $\ge 1$ is present within the Overworld window:
-1. **Witch Hut** (+40 pts)
-2. **Igloo** (+40 pts)
-3. **Warm Ocean Ruin** (+40 pts)
-4. **Cold Ocean Ruin** (+40 pts)
-5. **Buried Treasure** (+40 pts)
-$$\text{Max Optional} = 5 \times 40 = \mathbf{200\text{ pts}}$$
+Five optional structure types provide points when present within the Overworld window (Swamp Hut max 60, Trail Ruins max 50, Igloo max 40, Ocean Ruins max 20, Buried Treasure max 30):
+$$\text{Max Optional} = 60 + 50 + 40 + 20 + 30 = \mathbf{200\text{ pts}}$$
 
 ### Component C: Luxury Biomes (265 Points Maximum)
-Awarded for luxury biome families present in the Overworld palette:
-* **16 Standard Luxury Biomes:** Badlands, Bamboo Jungle, Cherry Grove, Deep Dark, Desert, Dripstone Caves, Eroded Badlands, Flower Forest, Ice Spikes, Jagged Peaks, Jungle, Lush Caves, Mangrove Swamp, Mushroom Fields, Old Growth Taiga, Snowy Slopes (+15 pts each = 240 pts).
-* **Pale Garden:** +25 pts.
+Awarded for luxury biome families present in the Overworld palette at $Y=63$:
+* 10 distinct luxury scoring buckets totaling 240 pts + threshold bonuses:
+  * $\ge 5$ distinct luxury biomes: +10 pts
+  * $\ge 7$ distinct luxury biomes: +25 pts
 $$\text{Max Luxury Biomes} = 240 + 25 = \mathbf{265\text{ pts}}$$
 
 ### Component D: Spatial, Hub & Nether Bonuses (135 Points Maximum)
-Verified in [`src/seed_search/realm/blueprint.py`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/blueprint.py#L669) and [`native/blueprint_dynamic.inc`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/native/blueprint_dynamic.inc#L1132-L1152):
 1. **Hub Structures Bonus (max 45 pts):**
    * Starter Hub Village $\le 256\text{m}$ of center: +15 pts.
    * Other core structures $\le 512\text{m}$ of center: +5 pts each (capped at +30 pts).
@@ -100,7 +148,228 @@ $$\mathbf{Total = 650 + 200 + 265 + 135 = 1,250\text{ pts}}$$
 
 ---
 
-## 3. High-Performance C11 Kernel Pipeline
+## 4. Verbatim C11 Kernel Scoring Functions
+
+Source: [`native/blueprint_dynamic.inc`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/native/blueprint_dynamic.inc#L316-L525)
+
+```c
+static inline int nb_clamp_i32(int val, int lo, int hi) {
+    return val < lo ? lo : (val > hi ? hi : val);
+}
+
+static int nb_dynamic_v3_core_bonus(const int *counts, int strong) {
+    static const int temple_lut[4] = {0, 25, 45, 60};
+    static const int wm_lut[3]     = {0, 55, 85};
+    static const int ac_lut[5]     = {0, 20, 40, 55, 65};
+    static const int sh_lut[3]     = {0, 20, 50};
+    static const int om_lut[4]     = {0, 25, 40, 50};
+    static const int ba_lut[4]     = {0, 20, 35, 50};
+    static const int ft_lut[4]     = {0, 20, 35, 50};
+    static const int vi_lut[6]     = {0, 10, 20, 30, 40, 50};
+    static const int op_lut[4]     = {0, 15, 30, 40};
+    static const int tc_lut[5]     = {0, 10, 18, 25, 30};
+
+    int score = 0;
+    score += wm_lut[nb_clamp_i32(counts[0] - 1, 0, 2)];
+    score += temple_lut[nb_clamp_i32(counts[1] - 1, 0, 3)];
+    score += temple_lut[nb_clamp_i32(counts[2] - 1, 0, 3)];
+    score += om_lut[nb_clamp_i32(counts[3] - 1, 0, 3)];
+    score += ac_lut[nb_clamp_i32(counts[4] - 2, 0, 4)];
+    score += vi_lut[nb_clamp_i32(counts[5] - 6, 0, 5)];
+    score += tc_lut[nb_clamp_i32(counts[6] - 8, 0, 4)];
+    score += nb_clamp_i32(counts[7] - 8, 0, 4) * 5;
+    score += nb_clamp_i32(counts[8] - 4, 0, 4) * 5;
+    score += nb_clamp_i32(counts[9] - 10, 0, 10) * 2;
+    score += ft_lut[nb_clamp_i32(counts[10] - 1, 0, 3)];
+    score += ba_lut[nb_clamp_i32(counts[11] - 2, 0, 3)];
+    score += op_lut[nb_clamp_i32(counts[12] - 1, 0, 3)];
+    score += sh_lut[nb_clamp_i32(strong - 1, 0, 2)];
+    return score;
+}
+
+static int nb_dynamic_v3_optional(const int *opt_counts) {
+    static const int hut_lut[4]   = {0, 30, 50, 60};
+    static const int trail_lut[4] = {0, 25, 40, 50};
+    static const int igloo_lut[3] = {0, 25, 40};
+    static const int or_lut[3]    = {0, 10, 20};
+    static const int bt_lut[5]    = {0, 10, 20, 25, 30};
+
+    int score = hut_lut[nb_clamp_i32(opt_counts[0], 0, 3)]
+              + igloo_lut[nb_clamp_i32(opt_counts[1], 0, 2)]
+              + trail_lut[nb_clamp_i32(opt_counts[2], 0, 3)]
+              + or_lut[nb_clamp_i32(opt_counts[3], 0, 2)]
+              + bt_lut[nb_clamp_i32(opt_counts[4], 0, 4)];
+    return score;
+}
+
+static int nb_dynamic_v3_biome_bonus(unsigned int bonus) {
+    static const int points[10] = {25, 35, 40, 35, 20, 15, 10, 20, 25, 15};
+    int score = 0, n_lux = 0;
+    for(int i = 0; i < 10; i++) {
+        if(bonus & (1u << i)) {
+            score += points[i];
+            n_lux++;
+        }
+    }
+    if(n_lux >= 7) score += 25;
+    else if(n_lux >= 5) score += 10;
+    return score;
+}
+
+static int nb_dynamic_v3_hub(const NBObservation *macro, int x, int z, int *nearest_village, int ow_half) {
+    int v_hub = 0;
+    int best_d2 = 512*512 + 1, best_vx = 0, best_vz = 0;
+    const NBPoints *vp = &macro[5].viable;
+    for(int i = 0; i < vp->n; i++) {
+        int px = vp->xz[2*i], pz = vp->xz[2*i+1];
+        if(nb_dynamic_captured(px, pz, x, z, ow_half)) {
+            int64_t dx = px - x, dz = pz - z;
+            int64_t d2 = dx*dx + dz*dz;
+            if(d2 <= 256*256) v_hub = 15;
+            else if(d2 <= 512*512 && v_hub < 10) v_hub = 10;
+            if(d2 <= 512*512 && ((int)d2 < best_d2 || ((int)d2 == best_d2 && (px < best_vx || (px == best_vx && pz < best_vz))))) {
+                best_d2 = (int)d2; best_vx = px; best_vz = pz;
+            }
+        }
+    }
+    if(nearest_village) {
+        if(best_d2 <= 512*512) { nearest_village[0] = best_vx; nearest_village[1] = best_vz; }
+        else { nearest_village[0] = 0; nearest_village[1] = 0; }
+    }
+    int other = 0;
+    const int other_slots[4] = {2, 1, 12, 4};
+    for(int j = 0; j < 4; j++) {
+        const NBPoints *p = &macro[other_slots[j]].viable;
+        for(int i = 0; i < p->n; i++) {
+            int px = p->xz[2*i], pz = p->xz[2*i+1];
+            if(nb_dynamic_captured(px, pz, x, z, ow_half)) {
+                int64_t dx = px - x, dz = pz - z;
+                if(dx*dx + dz*dz <= 512*512) {
+                    other += 6;
+                    if(other >= 30) { other = 30; goto done_v3_hub; }
+                }
+            }
+        }
+    }
+    {
+        const NBPoints *p = &macro[7].viable;
+        for(int i = 0; i < p->n; i++) {
+            int px = p->xz[2*i], pz = p->xz[2*i+1];
+            if(nb_dynamic_captured(px, pz, x, z, ow_half)) {
+                int64_t dx = px - x, dz = pz - z;
+                if(dx*dx + dz*dz <= 512*512) {
+                    other += 4;
+                    if(other >= 30) { other = 30; goto done_v3_hub; }
+                }
+            }
+        }
+    }
+done_v3_hub:
+    return v_hub + (other > 30 ? 30 : other);
+}
+
+static int nb_dynamic_v3_nether_core(const NBObservation *macro, int x, int z) {
+    int pnx = floordiv(x, 8), pnz = floordiv(z, 8);
+    int bonus = 0;
+    const NBPoints *fort = &macro[10].viable;
+    for(int i = 0; i < fort->n; i++) {
+        int64_t dx = fort->xz[2*i] - pnx, dz = fort->xz[2*i+1] - pnz;
+        if(dx*dx + dz*dz <= 256*256) { bonus += 10; break; }
+    }
+    const NBPoints *bast = &macro[11].viable;
+    for(int i = 0; i < bast->n; i++) {
+        int64_t dx = bast->xz[2*i] - pnx, dz = bast->xz[2*i+1] - pnz;
+        if(dx*dx + dz*dz <= 256*256) { bonus += 10; break; }
+    }
+    return bonus;
+}
+```
+
+---
+
+## 5. Verbatim Python Reference Oracle Code
+
+Source: [`src/seed_search/realm/blueprint.py`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/blueprint.py#L588-L695)
+
+```python
+def dynamic_v3_score(counts, biome_names=(), hub=0, scenic=False, village_spread=False,
+                     treasure_bastion=False, optional_counts=None, nether_core=0):
+    """Pure additive scoring model for dynamic-envelope-2048-v3.
+    
+    Maximum achievable score = 1,250 points:
+      - Core Surplus: 650 points
+      - Optional Structures: 200 points
+      - Luxury Biomes: 265 points
+      - Spatial / Hub / Nether Core: 135 points
+    """
+    def c(k): return counts.get(k, 0)
+    def opt(k): return (optional_counts or {}).get(k, 0)
+
+    # Core Surplus (650 Max)
+    core = 0
+    wm = c('mansion'); core += (55 if wm >= 2 else 0) + (30 if wm >= 3 else 0)
+    jt = c('jungle_temple'); core += (25 if jt >= 2 else 0) + (20 if jt >= 3 else 0) + (15 if jt >= 4 else 0)
+    dp = c('desert_pyramid'); core += (25 if dp >= 2 else 0) + (20 if dp >= 3 else 0) + (15 if dp >= 4 else 0)
+    om = c('monument'); core += (25 if om >= 2 else 0) + (15 if om >= 3 else 0) + (10 if om >= 4 else 0)
+    ac = c('ancient_city'); core += (20 if ac >= 3 else 0) + (20 if ac >= 4 else 0) + (15 if ac >= 5 else 0) + (10 if ac >= 6 else 0)
+    sh = c('stronghold'); core += (20 if sh >= 2 else 0) + (30 if sh >= 3 else 0)
+    ft = c('fortress'); core += (20 if ft >= 2 else 0) + (15 if ft >= 3 else 0) + (15 if ft >= 4 else 0)
+    ba = c('bastion'); core += (20 if ba >= 3 else 0) + (15 if ba >= 4 else 0) + (15 if ba >= 5 else 0)
+    vil = c('village'); core += 10 * min(5, max(0, vil - 6))
+    op = c('outpost'); core += (15 if op >= 2 else 0) + (15 if op >= 3 else 0) + (10 if op >= 4 else 0)
+    tc = c('trial_chamber'); core += (10 if tc >= 9 else 0) + (8 if tc >= 10 else 0) + (7 if tc >= 11 else 0) + (5 if tc >= 12 else 0)
+    rp = c('ruined_portal'); core += 5 * min(4, max(0, rp - 8))
+    sw = c('shipwreck'); core += 5 * min(4, max(0, sw - 4))
+    ms = c('mineshaft'); core += 2 * min(10, max(0, ms - 10))
+
+    # Optional Structures (200 Max)
+    optional = 0
+    sh_opt = opt('swamp_hut'); optional += (30 if sh_opt >= 1 else 0) + (20 if sh_opt >= 2 else 0) + (10 if sh_opt >= 3 else 0)
+    tr = opt('trail_ruins'); optional += (25 if tr >= 1 else 0) + (15 if tr >= 2 else 0) + (10 if tr >= 3 else 0)
+    ig = opt('igloo'); optional += (25 if ig >= 1 else 0) + (15 if ig >= 2 else 0)
+    oru = opt('ocean_ruin'); optional += (10 if oru >= 1 else 0) + (10 if oru >= 2 else 0)
+    bt = opt('buried_treasure'); optional += (10 if bt >= 1 else 0) + (10 if bt >= 2 else 0) + (5 if bt >= 3 else 0) + (5 if bt >= 4 else 0)
+
+    # Luxury Biomes (265 Max)
+    luxury = 0
+    names = set(biome_names)
+    distinct_lux = 0
+    for points, members in DYNAMIC_V3_LUXURIES:
+        if names.intersection(members):
+            luxury += points
+            distinct_lux += 1
+    if distinct_lux >= 7: luxury += 25
+    elif distinct_lux >= 5: luxury += 10
+
+    # Spatial & Nether Core (135 Max)
+    hub_pts = min(45, max(0, hub))
+    scenic_pts = 25 if scenic else 0
+    spread_pts = 25 if village_spread else 0
+    tbast_pts = 20 if treasure_bastion else 0
+    nether_core_pts = min(20, max(0, nether_core))
+    bonus_total = core + optional + luxury + hub_pts + nether_core_pts + scenic_pts + spread_pts + tbast_pts
+
+    final_score = bonus_total
+    components = {
+        'score_revision': 'dynamic-envelope-2048-v3',
+        'final_score': final_score,
+        'bonus_total': bonus_total,
+        'deficit_penalty': 0,
+        'core_surplus': core,
+        'optional_bonus': optional,
+        'luxury_biomes': luxury,
+        'hub_bonus': hub_pts,
+        'nether_core_bonus': nether_core_pts,
+        'scenic_bonus': scenic_pts,
+        'village_spread_bonus': spread_pts,
+        'treasure_bastion_bonus': tbast_pts,
+    }
+    return final_score, components, []
+```
+
+---
+
+## 6. High-Performance C11 Kernel Pipeline
 
 The native sweep evaluates seeds through a progressive multi-stage rejection pipeline (`native/blueprint_dynamic.inc`):
 
@@ -143,33 +412,45 @@ flowchart TD
 
 ---
 
-## 4. Repository Structure & Key File Map
+## 7. In-Memory Top-50 Tracker & Tie-Breaking Invariants
 
-| Path | Purpose & Key Details |
-| :--- | :--- |
-| **`native/blueprint_dynamic.inc`** | Core C11 dynamic sweep kernel. Implements Stage 1A/1B/2, coordinate snapping, sliding window candidate cell generation, and multi-stage cutoff pruning. |
-| **`native/blueprint_batch.inc`** | Native OpenMP parallel batch runner (`nb_sweep`), worker memory management (`NBWorker`), and CFFI export wrappers. |
-| **`native/blueprint_batch.h`** | Header defining `NBPolicy`, `NBCandidate`, `NBDynamicCell`, and engine flags. |
-| **`native/build.py`** | Clang build script compiling the native extension (`_blueprint_batch.abi3.so`). |
-| **`src/seed_search/realm/config.py`** | Specification source of truth: `dynamic_v3_blueprint_config()` defines the 14 hard floors, goals, optional targets, and geometry. |
-| **`src/seed_search/realm/native_batch.py`** | Python CFFI wrapper class `Prototype`, buffer decoding (`retained_records`), and production SQLite persistence runner (`persist_pipeline`). |
-| **`src/seed_search/realm/top_tracker.py`** | `Top50Tracker`: bounded min-heap priority queue with `RevStr(raw_id)` lexical tie-breaking and nested anchor score extraction. |
-| **`src/seed_search/realm/blueprint.py`** | Exact Python reference scoring oracle (`evaluate_dynamic_seed`). Implements the identical 1,250-point additive model for differential testing. |
-| **`src/seed_search/realm/reports.py`** | Implements `_candidate_rescore()` with revision dispatch ensuring idempotent score preservation for v3 candidates. |
-| **`src/seed_search/realm/dynamic.py`** | Python spatial helpers: 256-point Nether lattice sampler, centroid calculation, scenic Mountain-Ocean pair inspection, and village spread testing. |
-| **`src/seed_search/web/server.py`** | Web backend server (`/api/sweep/start`, `/api/sweep/status`, `/api/sweep/stop`, `/api/bds/verify`). |
-| **`web-ui/src/constants/searchProfiles.json`** | Web profiles; contains canonical `dynamic2048` profile. |
-| **`web-ui/src/components/SeedDetailModal.tsx`** | Seed inspection UI: displays 1,250 Pts Max breakdown, Nether Core badge (+20), and hides deficit labels when deficits are zero. |
-| **`web-ui/src/utils/ranking.ts`** | Score-first sorting comparator (`compareCandidateRank`). |
-| **`scripts/pilot_v3_2048.py`** | High-throughput sweep driver with dynamic Top-50 min-heap feedback and rich funnel analytics. |
-| **`scripts/rebuild_pgo_v3.py`** | Clang PGO training, llvm-profdata merging, and production LTO compilation harness. |
-| **`scripts/measure_v3_floors.py`** | Diagnostic script measuring step-by-step pass rates across 10,000 seeds. |
+Source: [`src/seed_search/realm/top_tracker.py`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/top_tracker.py#L61-L220)
+
+```python
+class RevStr:
+    """Helper wrapper that inverts string comparison for min-heap tie-breaking."""
+    def __init__(self, s: str): self.s = str(s)
+    def __lt__(self, other): return self.s > str(other)
+    def __le__(self, other): return self.s >= str(other)
+    def __gt__(self, other): return self.s < str(other)
+    def __ge__(self, other): return self.s <= str(other)
+    def __eq__(self, other): return self.s == str(other)
+
+class Top50Tracker:
+    """Bounded in-memory priority queue maintaining the top N candidates."""
+    def __init__(self, capacity: int = 50):
+        self.capacity = capacity
+        self._heap = []
+        self._seed_map = {}
+        self._counter = 0
+
+    def _extract_key(self, record):
+        anchor = record.get('anchors', [{}])[0] if record.get('anchors') else {}
+        score = int(record.get('score') or anchor.get('baseline_score_observed') or 0)
+        tier = int(record.get('tier') or anchor.get('tier') or 1)
+        misses = int(record.get('deficits') or len(anchor.get('deficit_categories', [])))
+        radial_key = int(anchor.get('radial_key') or 0)
+        orig_dist_sq = int(anchor.get('origin_distance_squared') or 0)
+        center = record.get('evaluation_center') or anchor.get('evaluation_center') or [0, 0]
+        cx, cz = int(center[0]), int(center[1])
+        raw_id = str(record.get('id') or anchor.get('id') or record.get('seed') or '')
+        # Returns tuple where larger key is better. Worst entry is at heap root.
+        return (-tier, score, -misses, -radial_key, -orig_dist_sq, -cx, -cz, RevStr(raw_id))
+```
 
 ---
 
-## 5. Summary of Audit Remediations (Commits `83ae680` to `886e9cc`)
-
-The following critical issues were identified during audits and have been completely remediated and verified:
+## 8. Summary of Audit Remediations (Commits `83ae680` to `886e9cc`)
 
 | Finding | Defect / Vulnerability | Remediation Landed | Status |
 | :---: | :--- | :--- | :---: |
@@ -185,7 +466,7 @@ The following critical issues were identified during audits and have been comple
 
 ---
 
-## 6. Throughput & Funnel Benchmarks
+## 9. Throughput & Funnel Benchmarks
 
 ### Measured Throughput on 34 Threads (Clang PGO + LTO + AVX2 + FMA):
 * **Initial baseline:** $\sim 24,000\text{ seeds/sec}$
@@ -209,7 +490,7 @@ The following critical issues were identified during audits and have been comple
 
 ---
 
-## 7. Open Architectural Invariants & Questions for the Audit
+## 10. Open Architectural Invariants & Questions for the Audit
 
 When auditing this repository, please evaluate the following core architectural dimensions:
 
@@ -233,7 +514,7 @@ When auditing this repository, please evaluate the following core architectural 
 
 ---
 
-## 8. Verification Commands
+## 11. Verification Commands
 
 To verify the repository locally, execute the following test suites:
 
