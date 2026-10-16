@@ -23,7 +23,7 @@ from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
-from seed_search.seeds import MASK64, parse_seed, seed_from_index
+from seed_search.seeds import MASK64, parse_seed, seed_from_index, seed_strided, seeds_strided
 
 NAMES=('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
        'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -42,6 +42,14 @@ def seeds_np(first: int, end: int, run_key: int):
     z = ((z ^ (z >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)) & np.uint64(MASK64)
     z = ((z ^ (z >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)) & np.uint64(MASK64)
     z ^= (z >> np.uint64(31))
+    return z.astype(np.int64)
+
+
+def seeds_strided_np(first: int, end: int, low32: int):
+    import numpy as np
+    indices = np.arange(first, end, dtype=np.uint64)
+    low = np.uint64(int(low32) & 0xFFFFFFFF)
+    z = low | ((indices & np.uint64(0xFFFFFFFF)) << np.uint64(32))
     return z.astype(np.int64)
 
 
@@ -555,10 +563,20 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             record.pop('anchor_ids',None)
             record['anchors']=[json.loads(candidate_payload)]
             tracker.observe(record)
-    use_np_permutation=(cfg['search'].get('sequence', 'permutation') == 'permutation')
+    seq_name = cfg['search'].get('sequence', 'permutation')
+    low32_val = cfg['search'].get('low32', 0)
+    try:
+        low32_int = int(low32_val)
+    except (ValueError, TypeError):
+        low32_int = 0
     def compute(first,end):
         before=time.perf_counter()
-        seeds=seeds_np(first,end,run_key_int) if use_np_permutation else [_seed(i,cfg['search']) for i in range(first,end)]
+        if seq_name == 'permutation':
+            seeds = seeds_np(first, end, run_key_int)
+        elif seq_name == 'strided':
+            seeds = seeds_strided_np(first, end, low32_int)
+        else:
+            seeds = [_seed(i, cfg['search']) for i in range(first, end)]
         seed_seconds=time.perf_counter()-before
         cutoff=tracker.cutoff_score() if tracker is not None else None
         sweep_kw={'retention':retention,'max_misses':max_misses} if retention=='survivors' else {}
@@ -602,6 +620,8 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 'SELECT s.result,c.result FROM candidates c JOIN seeds s ON s.idx=c.idx ORDER BY c.id')
             while rows:=cursor.fetchmany(256):
                 observe_committed(rows)
+        if tracker is not None and not top50_path.is_file():
+            tracker.save_to_json(str(top50_path))
         completed=store.get_state('completed_seeds')
         initial_disk=disk_status(store.run,limits,remaining_seeds=count-completed,
             completed_seeds=completed,previous_sample=store.get_state('workspace_disk'))
@@ -669,7 +689,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 if not native_future.cancelled():
                     try:native_future.result()[0].close()
                     except BaseException:pass
-            if tracker is not None:
+            if tracker is not None and failure is None:
                 try:
                     tracker.save_to_json(str(top50_path))
                     tracker.flush(store.db)

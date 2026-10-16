@@ -257,6 +257,8 @@ def main(argv=None):
         p.add_argument('--dry-run',action='store_true')
         p.add_argument('--prediction-scale',action='store_true',help='Explicitly run larger prediction-only ranges after compatibility report; never certifies generation')
         p.add_argument('--profile')
+        p.add_argument('--sequence', choices=['permutation', 'sequential', 'manifest', 'strided'], default=None, help='Seed sequence generator')
+        p.add_argument('--low32', type=int, default=None, help='Lower 32-bit seed for strided sequence')
     p=sub.add_parser('resume');p.add_argument('--run',required=True);p.add_argument('--workers',type=int);p.add_argument('--stop-after',type=int);p.add_argument('--prediction-scale',action='store_true');p.add_argument('--profile')
     for command in ('baseline','search','scan','resume'):
         native=sub.choices[command]
@@ -340,9 +342,14 @@ def main(argv=None):
             saved_retention=(store.identity or {}).get('retention',{}) if store else {}
             retention=args.retention or saved_retention.get('mode','survivors' if execution=='native' else 'full')
             misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(cfg['search']['max_misses'] if two_group_policy(cfg) else 1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
-            if not resume and execution=='native' and retention=='survivors' and two_group_policy(cfg):
+            if not resume and (execution=='native' and retention=='survivors' and two_group_policy(cfg) or getattr(args, 'sequence', None) is not None or getattr(args, 'low32', None) is not None):
                 cfg=copy.deepcopy(cfg)
-                cfg['search']['max_misses']=misses
+                if execution=='native' and retention=='survivors' and two_group_policy(cfg):
+                    cfg['search']['max_misses']=misses
+                if getattr(args, 'sequence', None) is not None:
+                    cfg['search']['sequence']=args.sequence
+                if getattr(args, 'low32', None) is not None:
+                    cfg['search']['low32']=args.low32
                 validate_config(cfg)
             ident=make_identity(cfg,count,first)
             (run/'compatibility.json').write_text(json.dumps(report(cfg),indent=2)+'\n')

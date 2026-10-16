@@ -12,6 +12,7 @@ extern "C"
 
 uint32_t mt_next();
 void mt_seed(uint32_t seed_value);
+void mt_seed_short(uint32_t seed_value);
 
 typedef struct MTRngState
 {
@@ -97,7 +98,7 @@ static inline uint32_t setPopulationSeed(uint64_t worldSeed, int chunkX, int chu
 {
     if (!mt_initialized || mt_ws != worldSeed)
     {
-        setSeed(worldSeed);
+        mt_seed_short(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
@@ -112,7 +113,7 @@ static inline uint32_t setDecorationSeed(uint64_t worldSeed, int chunkX, int chu
 {
     if (!mt_initialized || mt_ws != worldSeed)
     {
-        setSeed(worldSeed);
+        mt_seed_short(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
@@ -128,7 +129,7 @@ static inline uint32_t setCarverSeed(uint64_t worldSeed, int chunkX, int chunkZ)
 {
     if (!mt_initialized || mt_ws != worldSeed)
     {
-        setSeed(worldSeed);
+        mt_seed_short(worldSeed);
         mt_a = next();
         mt_b = next();
         mt_ws = worldSeed;
@@ -142,21 +143,21 @@ static inline uint32_t setCarverSeed(uint64_t worldSeed, int chunkX, int chunkZ)
 static inline uint32_t setRegionSeed(uint64_t worldSeed, int regX, int regZ, int salt)
 {
     uint32_t seed = (regX * REGION_A) + (regZ * REGION_B) + worldSeed + salt;
-    setSeed(seed);
+    mt_seed_short(seed);
     return seed;
 }
 
 static inline uint32_t setFortressSeed(uint64_t worldSeed, int chunkX, int chunkZ)
 {
     uint32_t seed = ((chunkX >> 4) ^ ((chunkZ >> 4) << 4)) ^ worldSeed;
-    setSeed(seed);
+    mt_seed_short(seed);
     return seed;
 }
 
 static inline uint32_t seedSlimeChunk(int chunkX, int chunkZ)
 {
     uint32_t seed = (chunkX * 522133279U) ^ chunkZ;
-    setSeed(seed);
+    mt_seed_short(seed);
     return seed;
 }
 

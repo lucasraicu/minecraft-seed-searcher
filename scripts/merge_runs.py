@@ -65,7 +65,8 @@ def compatibility(identity):
         native_id = identity.get('native_build', identity.get('backend'))
     return {'policy': policy, 'native': native_id,
             'sequence': (cfg or {}).get('search', {}).get('sequence', 'permutation'),
-            'run_key': str((cfg or {}).get('search', {}).get('run_key', '0'))}
+            'run_key': str((cfg or {}).get('search', {}).get('run_key', '0')),
+            'low32': (cfg or {}).get('search', {}).get('low32', 0)}
 
 
 def _equal_rows(existing, incoming):
@@ -105,12 +106,13 @@ def merge_runs(sources, destination, *, strict=True):
             signature = compatibility(identity)
             if expected is None:
                 expected = signature
-            if signature['policy'] != expected['policy'] or signature['run_key'] != expected['run_key'] or signature['sequence'] != expected['sequence']:
+            if (signature['policy'] != expected['policy'] or signature['run_key'] != expected['run_key'] or
+                signature['sequence'] != expected['sequence'] or signature.get('low32') != expected.get('low32')):
                 raise ValueError(f'Policy hash mismatch or seed-domain mismatch: {db}')
             if signature['native'] != expected['native']:
                 raise ValueError(f'Native build identity mismatch: {db}')
-            if signature['sequence'] != 'permutation':
-                raise ValueError('Aggregate coverage requires the shared permutation index domain')
+            if signature['sequence'] not in ('permutation', 'strided'):
+                raise ValueError(f"Aggregate coverage requires permutation or strided index domain, got '{signature['sequence']}'")
             intervals = [(int(a), int(b)) for a, b in conn.execute("SELECT start,end FROM ranges WHERE status='complete'")]
             union_intervals(intervals)
             # Durable identity + configured interval distinguishes shards, even if their directory names match.

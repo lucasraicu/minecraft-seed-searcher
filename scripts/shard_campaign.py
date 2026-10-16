@@ -21,18 +21,28 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 LIMIT64: int = 1 << 64
+LIMIT32: int = 1 << 32
 DEFAULT_TOTAL_SEEDS: int = 36_000_000_000
+DEFAULT_32BIT_SEEDS: int = 1 << 32
 DEFAULT_CHUNK_SIZE: int = 100_000_000
 DEFAULT_THREADS: int = 34
 DEFAULT_NODES: int = 4
 DEFAULT_OUTPUT_DIR: str = "runs/campaign_shard_{node_id}"
 DEFAULT_CONFIG: str = "config/realm.yaml"
+DEFAULT_PRESET: Optional[str] = None
+DEFAULT_SEQUENCE: str = "permutation"
+DEFAULT_LOW32: int = 0
 
 
-def campaign_budget(config: str, override: Optional[int] = None) -> int:
+def campaign_budget(config: Optional[str] = None, preset: Optional[str] = None, override: Optional[int] = None) -> int:
     from seed_search.realm.cli import load
     from seed_search.realm.config import validate_config
-    cfg = load(config)
+    if preset:
+        cfg = load(profile=preset)
+    elif config:
+        cfg = load(path=config)
+    else:
+        cfg = load(profile='dynamic2048')
     budget = cfg['search']['max_misses'] if override is None else override
     cfg['search']['max_misses'] = budget
     validate_config(cfg)
@@ -49,35 +59,54 @@ class ShardSpec:
     chunks: int
     output_dir: str
     threads: int
-    config: str
+    config: Optional[str] = None
     batch_size: int = 4096
     max_misses: Optional[int] = None
+    preset: Optional[str] = None
+    sequence: str = "permutation"
+    low32: int = 0
 
     def __post_init__(self):
         if self.max_misses is None:
-            object.__setattr__(self, 'max_misses', campaign_budget(self.config))
+            object.__setattr__(self, 'max_misses', campaign_budget(self.config, self.preset))
 
     @property
     def cli_command(self) -> str:
+        policy_arg = f"--config {shlex.quote(self.config)}" if self.config else f"--profile {shlex.quote(self.preset or DEFAULT_PRESET)}"
+        seq_args = ""
+        if self.sequence != "permutation":
+            seq_args = f" \\\n  --sequence {shlex.quote(self.sequence)}"
+            if self.sequence == "strided":
+                seq_args += f" \\\n  --low32 {self.low32}"
         return (
-            f"python -m seed_search --config {shlex.quote(self.config)} scan \\\n"
+            f"python -m seed_search {policy_arg} scan \\\n"
             f"  --executor native \\\n"
             f"  --native-threads {self.threads} \\\n"
             f"  --native-batch-size {self.batch_size} \\\n"
             f"  --retention survivors \\\n"
             f"  --max-misses {self.max_misses} \\\n"
-            f"  --prediction-scale \\\n"
+            f"  --prediction-scale{seq_args} \\\n"
             f"  --start-index {self.start_index} \\\n"
             f"  --count {self.count} \\\n"
             f"  --output {shlex.quote(self.output_dir)}"
         )
 
     def render_script(self) -> str:
+        policy_arg = f"--config {shlex.quote(self.config)}" if self.config else f"--profile {shlex.quote(self.preset or DEFAULT_PRESET)}"
+        seq_args = ""
+        seq_comment = ""
+        if self.sequence != "permutation":
+            seq_args = f" \\\n  --sequence {shlex.quote(self.sequence)}"
+            if self.sequence == "strided":
+                seq_args += f" \\\n  --low32 {self.low32}"
+                seq_comment = f"\n# Sequence: strided (low32={self.low32})"
+            else:
+                seq_comment = f"\n# Sequence: {self.sequence}"
         return f"""#!/usr/bin/env bash
 # ==============================================================================
 # Minecraft Seed Searcher - Campaign Shard {self.node_id} of {self.nodes}
 # Seed Index Range: [{self.start_index:,}, {self.end_index:,})
-# Total Seeds: {self.count:,} ({self.chunks} chunk{'s' if self.chunks != 1 else ''})
+# Total Seeds: {self.count:,} ({self.chunks} chunk{'s' if self.chunks != 1 else ''}){seq_comment}
 # Output Directory: {self.output_dir}
 # OpenMP Threads: {self.threads}
 # ==============================================================================
@@ -101,13 +130,13 @@ echo "==========================================================================
 
 mkdir -p {shlex.quote(self.output_dir)}
 
-"$PYTHON" -m seed_search --config {shlex.quote(self.config)} scan \\
+"$PYTHON" -m seed_search {policy_arg} scan \\
   --executor native \\
   --native-threads {self.threads} \\
   --native-batch-size {self.batch_size} \\
   --retention survivors \\
   --max-misses {self.max_misses} \\
-  --prediction-scale \\
+  --prediction-scale{seq_args} \\
   --start-index {self.start_index} \\
   --count {self.count} \\
   --output "{self.output_dir}"
@@ -120,25 +149,32 @@ echo "==========================================================================
 
 
 def partition_campaign(
-    total_seeds: int = DEFAULT_TOTAL_SEEDS,
+    total_seeds: Optional[int] = None,
     nodes: int = DEFAULT_NODES,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     threads: int = DEFAULT_THREADS,
     output_dir_pattern: str = DEFAULT_OUTPUT_DIR,
-    config: str = DEFAULT_CONFIG,
+    config: Optional[str] = DEFAULT_CONFIG,
     batch_size: int = 4096,
     max_misses: Optional[int] = None,
     start_offset: int = 0,
+    preset: Optional[str] = DEFAULT_PRESET,
+    sequence: str = DEFAULT_SEQUENCE,
+    low32: int = DEFAULT_LOW32,
 ) -> List[ShardSpec]:
-    max_misses = campaign_budget(config, max_misses)
+    if total_seeds is None:
+        total_seeds = DEFAULT_32BIT_SEEDS if sequence == "strided" else DEFAULT_TOTAL_SEEDS
+    max_misses = campaign_budget(config=config, preset=preset, override=max_misses)
     if nodes <= 0:
         raise ValueError(f"Nodes must be >= 1, got {nodes}")
     if total_seeds < 0:
         raise ValueError(f"total_seeds must be >= 0, got {total_seeds}")
     if chunk_size <= 0:
         raise ValueError(f"chunk_size must be >= 1, got {chunk_size}")
-    if start_offset < 0 or start_offset + total_seeds > LIMIT64:
-        raise ValueError(f"Campaign range [{start_offset}, {start_offset + total_seeds}) exceeds 64-bit bounds [0, 2^64)")
+    limit = LIMIT32 if sequence == "strided" else LIMIT64
+    domain_name = "32-bit" if sequence == "strided" else "64-bit"
+    if start_offset < 0 or start_offset + total_seeds > limit:
+        raise ValueError(f"Campaign range [{start_offset}, {start_offset + total_seeds}) exceeds {domain_name} bounds [0, 2^{32 if sequence == 'strided' else 64})")
 
     if total_seeds == 0:
         shards = []
@@ -147,7 +183,8 @@ def partition_campaign(
             shards.append(ShardSpec(
                 node_id=i, nodes=nodes, start_index=start_offset, end_index=start_offset,
                 count=0, chunks=0, output_dir=out, threads=threads, config=config,
-                batch_size=batch_size, max_misses=max_misses,
+                batch_size=batch_size, max_misses=max_misses, preset=preset,
+                sequence=sequence, low32=low32,
             ))
         return shards
 
@@ -174,7 +211,8 @@ def partition_campaign(
             shards.append(ShardSpec(
                 node_id=i, nodes=nodes, start_index=node_start, end_index=node_end,
                 count=node_count, chunks=num_chunks, output_dir=out, threads=threads,
-                config=config, batch_size=batch_size, max_misses=max_misses,
+                config=config, batch_size=batch_size, max_misses=max_misses, preset=preset,
+                sequence=sequence, low32=low32,
             ))
             current_chunk = chunk_end
     else:
@@ -192,7 +230,8 @@ def partition_campaign(
             shards.append(ShardSpec(
                 node_id=i, nodes=nodes, start_index=node_start, end_index=node_end,
                 count=node_count, chunks=num_chunks, output_dir=out, threads=threads,
-                config=config, batch_size=batch_size, max_misses=max_misses,
+                config=config, batch_size=batch_size, max_misses=max_misses, preset=preset,
+                sequence=sequence, low32=low32,
             ))
             current_seed = node_end
 
@@ -206,12 +245,13 @@ def validate_partition(shards: List[ShardSpec], total_seeds: int, start_offset: 
             errors.append(f"No shards allocated for total_seeds={total_seeds}")
         return len(errors) == 0, errors
 
+    limit = LIMIT32 if (shards and shards[0].sequence == "strided") else LIMIT64
     expected_start = start_offset
     total_coverage = 0
 
     intervals: List[Tuple[int, int]] = []
     for s in shards:
-        if s.start_index < 0 or s.end_index > LIMIT64:
+        if s.start_index < 0 or s.end_index > limit:
             errors.append(f"Shard {s.node_id} range [{s.start_index}, {s.end_index}) out of bounds")
         if s.end_index < s.start_index:
             errors.append(f"Shard {s.node_id} end ({s.end_index}) < start ({s.start_index})")
@@ -264,19 +304,24 @@ def validate_partition(shards: List[ShardSpec], total_seeds: int, start_offset: 
 
 def run_self_tests() -> bool:
     test_cases = [
-        ("Default 36B Campaign (4 nodes, 100M chunks)", 36_000_000_000, 4, 100_000_000),
-        ("8-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 8, 100_000_000),
-        ("16-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 16, 100_000_000),
-        ("32-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 32, 100_000_000),
-        ("64-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 64, 100_000_000),
-        ("360-Node Cluster (1 chunk of 100M seeds each)", 36_000_000_000, 360, 100_000_000),
-        ("Single Node Campaign (36B seeds)", 36_000_000_000, 1, 100_000_000),
-        ("Odd Prime Seed Count (1,000,000,007 seeds, 7 nodes, 10M chunks)", 1_000_000_007, 7, 10_000_000),
-        ("Non-Divisible Seeds (1,234,567 seeds, 3 nodes, 50,000 chunks)", 1_234_567, 3, 50_000),
-        ("Fewer Chunks than Nodes (250 seeds, 5 nodes, 100 chunks)", 250, 5, 100),
-        ("Small Campaign (10 seeds, 3 nodes, 2 chunks)", 10, 3, 2),
-        ("Single Seed Campaign (1 seed, 4 nodes, 1 chunk)", 1, 4, 1),
-        ("Zero Seeds Campaign (0 seeds, 4 nodes, 100M chunks)", 0, 4, 100_000_000),
+        ("Default 36B Campaign (4 nodes, 100M chunks)", 36_000_000_000, 4, 100_000_000, "permutation", 0),
+        ("8-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 8, 100_000_000, "permutation", 0),
+        ("16-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 16, 100_000_000, "permutation", 0),
+        ("32-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 32, 100_000_000, "permutation", 0),
+        ("64-Node Cluster (36B seeds, 100M chunks)", 36_000_000_000, 64, 100_000_000, "permutation", 0),
+        ("360-Node Cluster (1 chunk of 100M seeds each)", 36_000_000_000, 360, 100_000_000, "permutation", 0),
+        ("Single Node Campaign (36B seeds)", 36_000_000_000, 1, 100_000_000, "permutation", 0),
+        ("Odd Prime Seed Count (1,000,000,007 seeds, 7 nodes, 10M chunks)", 1_000_000_007, 7, 10_000_000, "permutation", 0),
+        ("Non-Divisible Seeds (1,234,567 seeds, 3 nodes, 50,000 chunks)", 1_234_567, 3, 50_000, "permutation", 0),
+        ("Fewer Chunks than Nodes (250 seeds, 5 nodes, 100 chunks)", 250, 5, 100, "permutation", 0),
+        ("Small Campaign (10 seeds, 3 nodes, 2 chunks)", 10, 3, 2, "permutation", 0),
+        ("Single Seed Campaign (1 seed, 4 nodes, 1 chunk)", 1, 4, 1, "permutation", 0),
+        ("Zero Seeds Campaign (0 seeds, 4 nodes, 100M chunks)", 0, 4, 100_000_000, "permutation", 0),
+        # 32-Bit Strided Sequence Test Cases
+        ("Full 32-Bit Strided Campaign (4 nodes, 2^32 seeds, 100M chunks)", 4_294_967_296, 4, 100_000_000, "strided", 0x12345678),
+        ("8-Node Strided Campaign (2^32 seeds, 50M chunks)", 4_294_967_296, 8, 50_000_000, "strided", 12345),
+        ("Single Node Strided Sibling Stream (1M seeds, 1 node, 100k chunks)", 1_000_000, 1, 100_000, "strided", -1),
+        ("Odd Prime Strided Campaign (1,000,000,007 seeds, 3 nodes, 10M chunks)", 1_000_000_007, 3, 10_000_000, "strided", 0),
     ]
 
     all_passed = True
@@ -284,11 +329,11 @@ def run_self_tests() -> bool:
     print("RUNNING MATHEMATICAL CLUSTER SHARDING SELF-TESTS")
     print("=" * 80)
 
-    for name, total, nodes, chunk in test_cases:
-        shards = partition_campaign(total_seeds=total, nodes=nodes, chunk_size=chunk)
+    for name, total, nodes, chunk, seq, low in test_cases:
+        shards = partition_campaign(total_seeds=total, nodes=nodes, chunk_size=chunk, sequence=seq, low32=low)
         valid, errors = validate_partition(shards, total)
         if valid:
-            print(f"[PASS] {name:<60} | Coverage: {total:,} | Gaps: 0 | Overlaps: 0")
+            print(f"[PASS] {name:<65} | Coverage: {total:,} | Gaps: 0 | Overlaps: 0")
         else:
             all_passed = False
             print(f"[FAIL] {name}")
@@ -358,10 +403,23 @@ def main():
         help="Specific node ID (0 to N-1) to run or generate for (default: all nodes)",
     )
     parser.add_argument(
+        "--sequence",
+        type=str,
+        default=DEFAULT_SEQUENCE,
+        choices=["permutation", "strided"],
+        help=f"Seed sequence mode: 'permutation' (64-bit space) or 'strided' (32-bit space / upper-bit siblings) (default: '{DEFAULT_SEQUENCE}')",
+    )
+    parser.add_argument(
+        "--low32",
+        type=int,
+        default=DEFAULT_LOW32,
+        help=f"Lower 32-bit seed for strided sequence generation (default: {DEFAULT_LOW32})",
+    )
+    parser.add_argument(
         "--total-seeds",
         type=int,
-        default=DEFAULT_TOTAL_SEEDS,
-        help=f"Total seeds in campaign (default: {DEFAULT_TOTAL_SEEDS:,})",
+        default=None,
+        help=f"Total seeds in campaign (default: {DEFAULT_TOTAL_SEEDS:,} for permutation, {DEFAULT_32BIT_SEEDS:,} for strided)",
     )
     parser.add_argument(
         "--chunk-size",
@@ -397,10 +455,17 @@ def main():
         help="Run built-in mathematical self-tests verifying that the union of all node shards covers [0, total_seeds) with 0 overlap and 0 gaps.",
     )
     parser.add_argument(
+        "--preset",
+        type=str,
+        default=DEFAULT_PRESET,
+        choices=["dynamic2048", "dynamic1664", "dynamic1664_v1", "marine2048", "twoGroup2048"],
+        help=f"Seed search profile preset (default: '{DEFAULT_PRESET}')",
+    )
+    parser.add_argument(
         "--config",
         type=str,
-        default=DEFAULT_CONFIG,
-        help=f"Seed search policy YAML configuration (default: '{DEFAULT_CONFIG}')",
+        default=None,
+        help="Explicit seed search policy YAML configuration (default: 'config/realm.yaml' unless --preset is given)",
     )
     parser.add_argument(
         "--batch-size",
@@ -429,27 +494,42 @@ def main():
 
     args = parser.parse_args()
 
+    total_seeds = args.total_seeds
+    if total_seeds is None:
+        total_seeds = DEFAULT_32BIT_SEEDS if args.sequence == "strided" else DEFAULT_TOTAL_SEEDS
+
+    effective_config = args.config
+    effective_preset = args.preset
+    if not effective_config and not effective_preset:
+        effective_config = DEFAULT_CONFIG
+
+    default_total = DEFAULT_32BIT_SEEDS if args.sequence == "strided" else DEFAULT_TOTAL_SEEDS
+
     if args.validate:
         success = run_self_tests()
         if not success:
             sys.exit(1)
         # If custom parameters were provided, also validate that specific partitioning
         if (args.nodes != DEFAULT_NODES or
-            args.total_seeds != DEFAULT_TOTAL_SEEDS or
-            args.chunk_size != DEFAULT_CHUNK_SIZE):
+            total_seeds != default_total or
+            args.chunk_size != DEFAULT_CHUNK_SIZE or
+            args.sequence != DEFAULT_SEQUENCE):
             custom_shards = partition_campaign(
-                total_seeds=args.total_seeds,
+                total_seeds=total_seeds,
                 nodes=args.nodes,
                 chunk_size=args.chunk_size,
                 threads=args.threads,
                 output_dir_pattern=args.output_dir,
-                config=args.config,
+                config=effective_config,
                 batch_size=args.batch_size,
                 max_misses=args.max_misses,
+                preset=effective_preset,
+                sequence=args.sequence,
+                low32=args.low32,
             )
-            v, errs = validate_partition(custom_shards, args.total_seeds)
+            v, errs = validate_partition(custom_shards, total_seeds)
             if v:
-                print(f"[PASS] Custom CLI configuration: {args.nodes} nodes, {args.total_seeds:,} seeds, chunk {args.chunk_size:,} -> 0 gaps, 0 overlaps")
+                print(f"[PASS] Custom CLI configuration: {args.nodes} nodes, {total_seeds:,} seeds ({args.sequence}), chunk {args.chunk_size:,} -> 0 gaps, 0 overlaps")
             else:
                 print(f"[FAIL] Custom CLI configuration validation failed: {errs}")
                 sys.exit(1)
@@ -461,17 +541,20 @@ def main():
         sys.exit(1)
 
     shards = partition_campaign(
-        total_seeds=args.total_seeds,
+        total_seeds=total_seeds,
         nodes=args.nodes,
         chunk_size=args.chunk_size,
         threads=args.threads,
         output_dir_pattern=args.output_dir,
-        config=args.config,
+        config=effective_config,
         batch_size=args.batch_size,
         max_misses=args.max_misses,
+        preset=effective_preset,
+        sequence=args.sequence,
+        low32=args.low32,
     )
 
-    valid, errors = validate_partition(shards, args.total_seeds)
+    valid, errors = validate_partition(shards, total_seeds)
     if not valid:
         print("Error: Generated partition failed mathematical validation:", file=sys.stderr)
         for err in errors:
@@ -480,12 +563,17 @@ def main():
 
     print("=" * 80)
     print("CLUSTER CAMPAIGN PARTITION SUMMARY")
-    print(f"Total Seeds:     {args.total_seeds:,}")
+    seq_desc = f"{args.sequence} (low32={args.low32})" if args.sequence == "strided" else args.sequence
+    print(f"Sequence:        {seq_desc}")
+    print(f"Total Seeds:     {total_seeds:,}")
     print(f"Cluster Nodes:   {args.nodes}")
     print(f"Chunk Size:      {args.chunk_size:,} seeds")
     print(f"OpenMP Threads:  {args.threads} per node")
-    print(f"Config Policy:   {args.config}")
-    print(f"Coverage:        100.0% ([0, {args.total_seeds:,})) | 0 gaps | 0 overlaps")
+    policy_desc = effective_config if effective_config else f"preset:{effective_preset}"
+    print(f"Config Policy:   {policy_desc}")
+    domain_label = "32-bit [0, 2^32)" if args.sequence == "strided" else "64-bit [0, 2^64)"
+    print(f"Domain:          {domain_label}")
+    print(f"Coverage:        100.0% ([0, {total_seeds:,})) | 0 gaps | 0 overlaps")
     print("=" * 80)
 
     for s in shards:

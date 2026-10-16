@@ -1,7 +1,9 @@
 recursive-include native *.c *.h *.py *.inc
 recursive-include vendor/cubiomes-bedrock *.c *.h LICENSE
 include vendor/backend.json
-include search.example.yaml requirements.lock
-include GOAL.md IMPLEMENTATION_PLAN.md SEARCH_TARGETS.md PREFLIGHT_STATUS.md
+include requirements.lock
+include README.md MASTER_SEED_BLUEPRINT.md MASTER_SEED_BLUEPRINT_1664_V2.md AUDIT_CONTEXT.md
+recursive-include docs *.md
 recursive-include fixtures *.json
 recursive-include tests *.py
+

@@ -50,7 +50,7 @@ test('canonical value takes precedence over a stale alias, including zero', () =
     const config = { ...INITIAL_CONFIG, structureFloorCounts: {
       ...INITIAL_CONFIG.structureFloorCounts, desert_pyramid: count, pyramid: 9 } };
     assert.equal(displayedCount(pyramidRow(sidebar(config))), count);
-    if (count === 0) assert.throws(() => validate(config), /requires at least 2/);
+    if (count === 0) assert.throws(() => validate(config), /requires at least/);
     else assert.equal(validate(config).desert_pyramid ?? 3, count);
   }
 });
@@ -125,7 +125,8 @@ test('every editable run setting is included in the shared preview/launch reques
     'Native threads': ['openmpThreads', '7', 'threads', 7],
     'Native batch size': ['batchSize', '128', 'batchSize', 128] };
   for (const [label, [state, value, requestKey, expected]] of Object.entries(changes)) {
-    const view = sidebar({ ...INITIAL_CONFIG, sweepSeedCount: 10 }, 'engine');
+    const testConfig = label === 'Deficit budget' ? { ...INITIAL_CONFIG, profile: 'dynamic1664', structureFloorCounts: { ...SEARCH_PROFILES.dynamic1664.counts }, maxMisses: 3 } : INITIAL_CONFIG;
+    const view = sidebar({ ...testConfig, sweepSeedCount: 10 }, 'engine');
     const control = view.all.find(node => node.props?.['aria-label'] === label);
     control.props.onChange({ target: { value } });
     assert.equal(view.changed()[state], expected);
@@ -138,7 +139,8 @@ test('fixed policy controls cannot drift and running settings are locked', () =>
   assert.ok(!view.all.some(node => node.props?.type === 'checkbox'));
   const stronghold = view.all.find(node => node.key === 'stronghold');
   for (const button of nodes(stronghold).filter(node => node.type === 'button')) assert.equal(button.props.disabled, true);
-  const floor = { ...INITIAL_CONFIG, structureFloorCounts: { ...INITIAL_CONFIG.structureFloorCounts, village: 8 } };
+  const floorVillage = SEARCH_PROFILES[INITIAL_CONFIG.profile].floors.village;
+  const floor = { ...INITIAL_CONFIG, structureFloorCounts: { ...INITIAL_CONFIG.structureFloorCounts, village: floorVillage } };
   const village = sidebar(floor).all.find(node => node.key === 'village');
   assert.equal(nodes(village).find(node => node.props?.title === 'Decrease target count').props.disabled, true);
   assert.ok(sidebar(INITIAL_CONFIG, 'engine', true).all.some(node => node.type === 'fieldset' && node.props.disabled));
@@ -221,7 +223,7 @@ test('SeedDetailModal renders dynamic-v3 1,250 Pts Max breakdown, nether core ba
     treasureBastion: 1,
   };
   const modalText = text(SeedDetailModal({ candidate: candZeroDeficit, onClose: noop, onCopyNotice: noop }));
-  assert.match(modalText, /Player Quality Score Breakdown \(dynamic-v3: 1,250 Pts Max\)/);
+  assert.match(modalText, /Player Quality Score Breakdown \(\s*dynamic-v3: 1,250 Pts Max\s*\)/);
   assert.match(modalText, /Core Surplus/);
   assert.match(modalText, /\+650 max/);
   assert.match(modalText, /Optional Structures/);

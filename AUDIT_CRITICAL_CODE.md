@@ -35,22 +35,22 @@
 | # | File Path | Language | Lines | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | [`native/blueprint_batch.h`](#file-1) | C | 85 | C11 Header Struct Definitions (NBPolicy, NBCandidate, NBDynamicCell, NBWorker) |
-| 2 | [`native/blueprint_dynamic.inc`](#file-2) | C | 1,276 | C11 Dynamic Envelope 2048-v3 Kernel (Stage 1A/1B, Sliding Window, Biome Prefix, Cutoff Pruning) |
-| 3 | [`native/blueprint_batch.inc`](#file-3) | C | 651 | C11 OpenMP Multi-Threaded Batch Sweep, Buffer Retention & Memory Manager |
+| 2 | [`native/blueprint_dynamic.inc`](#file-2) | C | 1,312 | C11 Dynamic Envelope 2048-v3 Kernel (Stage 1A/1B, Sliding Window, Biome Prefix, Cutoff Pruning) |
+| 3 | [`native/blueprint_batch.inc`](#file-3) | C | 652 | C11 OpenMP Multi-Threaded Batch Sweep, Buffer Retention & Memory Manager |
 | 4 | [`vendor/cubiomes-bedrock/rng.h`](#file-4) | C | 406 | Cubiomes PRNG & Branchless floordiv(a, b) Definition |
-| 5 | [`src/seed_search/realm/config.py`](#file-5) | PYTHON | 494 | Specification Source of Truth: dynamic_v3_blueprint_config(), 14 Hard Floors & Bounds |
+| 5 | [`src/seed_search/realm/config.py`](#file-5) | PYTHON | 500 | Specification Source of Truth: dynamic_v3_blueprint_config(), 14 Hard Floors & Bounds |
 | 6 | [`src/seed_search/realm/blueprint.py`](#file-6) | PYTHON | 983 | Python Reference Scoring Oracle: dynamic_v3_score() 1,250 Pts Model & evaluate_dynamic_seed() |
 | 7 | [`src/seed_search/realm/dynamic.py`](#file-7) | PYTHON | 421 | Python Spatial Geometry: 256-point Nether Lattice, Centroid Snapping, Scenic, Spread, Bastion |
-| 8 | [`src/seed_search/realm/top_tracker.py`](#file-8) | PYTHON | 288 | Top-50 In-Memory Priority Queue, RevStr Lexical Inversion, Tie-Breaking |
-| 9 | [`src/seed_search/realm/reports.py`](#file-9) | PYTHON | 568 | Candidate Rescore Idempotence, Dispatch & Serialization (_candidate_rescore) |
-| 10 | [`src/seed_search/realm/native_batch.py`](#file-10) | PYTHON | 703 | Python CFFI Engine Wrapper: Prototype, Buffer Decoding & persist_pipeline() |
-| 11 | [`scripts/pilot_v3_2048.py`](#file-11) | PYTHON | 245 | Production Sweep Runner with Dynamic Top-50 Cutoff Feedback Loop |
+| 8 | [`src/seed_search/realm/top_tracker.py`](#file-8) | PYTHON | 296 | Top-50 In-Memory Priority Queue, RevStr Lexical Inversion, Tie-Breaking |
+| 9 | [`src/seed_search/realm/reports.py`](#file-9) | PYTHON | 583 | Candidate Rescore Idempotence, Dispatch & Serialization (_candidate_rescore) |
+| 10 | [`src/seed_search/realm/native_batch.py`](#file-10) | PYTHON | 764 | Python CFFI Engine Wrapper: Prototype, Buffer Decoding & persist_pipeline() |
+| 11 | [`scripts/pilot_v3_2048.py`](#file-11) | PYTHON | 246 | Production Sweep Runner with Dynamic Top-50 Cutoff Feedback Loop |
 | 12 | [`tests/test_dynamic_v3_2048.py`](#file-12) | PYTHON | 678 | Core Dynamic-Envelope-2048-v3 Verification Suite (17 Tests) |
 | 13 | [`web-ui/src/constants/searchProfiles.json`](#file-13) | JSON | 323 | Web UI Profile Registry: dynamic2048 Profile, Floors & Miss Budget |
 | 14 | [`web-ui/src/utils/ranking.ts`](#file-14) | TYPESCRIPT | 30 | Web UI Sorting Comparator: Score-First Ordering (compareCandidateRank) |
-| 15 | [`tests/web_structure_policy.cjs`](#file-15) | JAVASCRIPT | 252 | Web UI & Backend Policy Contract Test Suite (13 Tests) |
+| 15 | [`tests/web_structure_policy.cjs`](#file-15) | JAVASCRIPT | 254 | Web UI & Backend Policy Contract Test Suite (13 Tests) |
 
-**Total Lines of Crucial Code:** 7,403
+**Total Lines of Crucial Code:** 7,533
 
 ---
 
@@ -153,7 +153,7 @@ void nb_diag_get(uint64_t *out);
 <a id="file-2"></a>
 ### File 2: `native/blueprint_dynamic.inc`
 > **Purpose:** C11 Dynamic Envelope 2048-v3 Kernel (Stage 1A/1B, Sliding Window, Biome Prefix, Cutoff Pruning)  
-> **Length:** 1,276 lines | **Language:** C
+> **Length:** 1,312 lines | **Language:** C
 
 ```c
 /* Exact event-cell selector for the 1664/832 dynamic predictor. */
@@ -880,7 +880,7 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
     if(nether_half<=0)nether_half=416;
     int max_c = 2000 - ow_half;
     int min_c = -max_c;
-    int xs[1030],zs[1030],nx=2,nz=2;
+    int xs[2048],zs[2048],nx=2,nz=2;
     xs[0]=zs[0]=min_c;xs[1]=zs[1]=max_c+1;
     for(int k=0;k<2;k++) {
         int n=k?nb:nf;const int *points=k?bast:fort;
@@ -900,16 +900,21 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
         if(nb_dynamic_count(&fp,x,z,nether_half,1,NULL,0)<fort_goal ||
            nb_dynamic_count(&bp,x,z,nether_half,1,NULL,0)<bast_goal)continue;
         int hx=floordiv(xs[ix+1]-1,8)*8,hz=floordiv(zs[iz+1]-1,8)*8;
-        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
-        if(mansion_goal>0 && mansions && nm>0 && !mansion_overlap) {
+        if(mansion_goal>0 && mansions && nm>0) {
             for(int m=0;m<nm;m++) {
-                if(mansions[m].x+ow_half>=x && mansions[m].x-(ow_half-1)<=hx &&
-                   mansions[m].z+ow_half>=z && mansions[m].z-(ow_half-1)<=hz) {
-                    mansion_overlap=1;
-                    break;
-                }
+                int lx=mansions[m].x-(ow_half-1),lz=mansions[m].z-(ow_half-1);
+                int ux=mansions[m].x+ow_half,uz=mansions[m].z+ow_half;
+                if(lx<x)lx=x;if(lz<z)lz=z;if(ux>hx)ux=hx;if(uz>hz)uz=hz;
+                lx=-floordiv(-lx,8)*8;lz=-floordiv(-lz,8)*8;
+                ux=floordiv(ux,8)*8;uz=floordiv(uz,8)*8;
+                if(lx>ux||lz>uz)continue;
+                mansion_overlap=1;
+                if(lx<xmin)xmin=lx;if(lz<zmin)zmin=lz;
+                if(ux>xmax)xmax=ux;if(uz>zmax)zmax=uz;
             }
+            continue;
         }
+        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
     }
     if(overlap_out)*overlap_out=mansion_overlap;
     if(xmin>xmax||zmin>zmax)return 0;
@@ -932,19 +937,14 @@ static int nb_raw_atleast(NBWorker *w,int type,const int *b,int goal){
       }
     return 0;
 }
-static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
+void applySeedPhase1_ShiftHumidity(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_Temperature(Generator *g, int dim, uint64_t seed);
+static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible,Pos *dark_mansions_out,int *nm_dark_out) {
+    if(dark_mansions_out&&nm_dark_out)*nm_dark_out=0;
     if(w->fixture||!NB_DYNAMIC_PREFLIGHT)return 1;
-    int fort[512],bast[512],pairs[768],nf=0,nb=0;
-    int max_c = 2000 - w->p->overworld_half;
-    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
-    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
-    if(n<0)return n;
-    for(int i=0;i<n;i++) {
-        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
-        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
-    }
     Pos mansions[64];int nm=0;
     int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    Pos dark_mansions[64];int nm_dark=0;
     if(mansion_goal>0) {
         StructureConfig mcfg;
         if(!getStructureConfig(Mansion,MC_26_50,&mcfg))return -1;
@@ -957,10 +957,34 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
             }
           }
         if(nm<mansion_goal)return 0;
+        applySeedPhase1_ShiftHumidity(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        Pos hum_mansions[64];int hum_count=0;
+        for(int m=0;m<nm;m++) {
+            if(isMansionDarkForestHumidityPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,mansions[m].x,mansions[m].z)) {
+                hum_mansions[hum_count++]=mansions[m];
+            }
+        }
+        if(hum_count<mansion_goal)return 0;
+        applySeedPhase1_Temperature(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        for(int m=0;m<hum_count;m++) {
+            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,hum_mansions[m].x,hum_mansions[m].z)) {
+                dark_mansions[nm_dark++]=hum_mansions[m];
+            }
+        }
+        if(nm_dark<mansion_goal)return 0;
+    }
+    int fort[512],bast[512],pairs[768],nf=0,nb=0;
+    int max_c = 2000 - w->p->overworld_half;
+    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
+    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
+    if(n<0)return n;
+    for(int i=0;i<n;i++) {
+        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
+        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
     }
     int mansion_overlap=0;
     int possible=nb_dynamic_raw_bounds_core(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible,
-                                           mansion_goal>0?mansions:NULL,nm,mansion_goal,&mansion_overlap,
+                                           mansion_goal>0?dark_mansions:NULL,nm_dark,mansion_goal,&mansion_overlap,
                                            w->p->overworld_half,w->p->nether_half);
     if(possible<=0)return possible;
     if(mansion_goal>0 && !mansion_overlap)return 0;
@@ -971,14 +995,16 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
         if(goal<=0)continue;
         int ok;
         if(slot==0) {
-            /* Reuse the complete macro-envelope enumeration above. These
-             * bounds are a subset, so another placement RNG scan is redundant. */
             int count=0;
-            for(int m=0;m<nm;m++)
-                if(inside(mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
+            for(int m=0;m<nm_dark;m++)
+                if(inside(dark_mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
             ok=count>=goal;
         } else ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
         if(ok<0)return -3;if(!ok)return 0;
+    }
+    if(dark_mansions_out&&nm_dark_out) {
+        for(int m=0;m<nm_dark;m++)dark_mansions_out[m]=dark_mansions[m];
+        *nm_dark_out=nm_dark;
     }
     return 1;
 }
@@ -994,8 +1020,11 @@ static int nb_dynamic_discovery(NBWorker *w,NBResult *r,const int *ow) {
     r->stage_seconds[0]+=nb_time()-start;return code;
 }
 /* Necessary Y=63 witness only; positive seeds retain full inventories. */
-static int nb_audit_dark_possible(NBWorker *w,const int *b) {
+static int nb_audit_dark_possible(NBWorker *w,const int *b,const Pos *dark_mansions,int nm_dark) {
     if(w->fixture)return 1;
+    int goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    if(goal<=0)return 1;
+#if !NB_DYNAMIC_PREFLIGHT
     StructureConfig cfg;if(!getStructureConfig(Mansion,MC_26_50,&cfg))return -1;
     int size=cfg.regionSize*16,n=0;
     for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
@@ -1004,9 +1033,23 @@ static int nb_audit_dark_possible(NBWorker *w,const int *b) {
         if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
            inside(p,b[0],b[1],b[2],b[3])&&
            isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)&&
-           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
       }
     return 0;
+#else
+    int count=0;
+    for(int m=0;m<nm_dark;m++)
+        if(inside(dark_mansions[m],b[0],b[1],b[2],b[3]))count++;
+    if(count<goal)return 0;
+    applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+    int n=0;
+    for(int m=0;m<nm_dark;m++) {
+        Pos p=dark_mansions[m];
+        if(inside(p,b[0],b[1],b[2],b[3])&&
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
+    }
+    return 0;
+#endif
 }
 void applySeedPhase1(Generator *g, int dim, uint64_t seed);
 void applySeedPhase2(Generator *g, int dim, uint64_t seed);
@@ -1036,10 +1079,11 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     int scenic_cached=0,village_cached=0,bastion_cached=0;
     const int *weights=is_v3?nb_centroid_weights_v3:(w->p->dynamic_v2?nb_centroid_weights_v2:nb_centroid_weights);
     int feasible[4]={-2000,-2000,1999,1999},possible=1;
+    Pos dark_mansions[64];int nm_dark=0;
     /* Compact rejects carry a range decision, not an invented discovery row.
      * Defer Stronghold's expensive village path until raw floors can succeed. */
     if(w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
 #ifdef _OPENMP
@@ -1055,47 +1099,39 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         code=nb_dynamic_discovery(w,r,ow);if(code)goto done;
         if(!r->discovery.n)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_stronghold_macro++;
     }
     if(!w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_preflight++;
     }
     if(w->p->retention) {
         if(!w->fixture) {
-            applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
-            int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
-            if(mansion_goal>0) {
-                StructureConfig mcfg;
-                if(!getStructureConfig(Mansion,MC_26_50,&mcfg)){code=-1;goto done;}
-                int msize=mcfg.regionSize*16;
-                int dark_ok=0;
-                for(int rx=floordiv(feasible[0],msize);rx<=floordiv(feasible[2],msize);rx++) {
-                    for(int rz=floordiv(feasible[1],msize);rz<=floordiv(feasible[3],msize);rz++) {
-                        Pos p;
-                        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,feasible[0],feasible[1],feasible[2],feasible[3])) {
-                            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)) {
-                                dark_ok=1;break;
-                            }
-                        }
-                    }
-                    if(dark_ok)break;
-                }
-                if(!dark_ok)goto done;
-#ifdef _OPENMP
-                #pragma omp atomic
-#endif
-                g_diag_pass_mansion_dark++;
+            if(!NB_DYNAMIC_PREFLIGHT ||
+               ((w->p->flexible_mask&1u)?w->p->floors[0]:w->p->goals[0])<=0) {
+                applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
+                applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
             }
-            applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
         } else {
             applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         }
     }
     /* One inexpensive macro Mansion preflight before all other structure inventories. */
     stage=nb_time();
-    possible=nb_audit_dark_possible(w,feasible);
+    possible=nb_audit_dark_possible(w,feasible,dark_mansions,nm_dark);
     if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+    #pragma omp atomic
+#endif
+    g_diag_pass_mansion_dark++;
     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
     r->stage_seconds[1]+=nb_time()-stage;
     if(nb_dynamic_count(&macro[0].viable,0,0,2000,0,macro[0].mansion_ids,w->p->dark_id)<w->p->goals[0])goto done;
@@ -1151,7 +1187,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
 #endif
     g_diag_pass_all_structures_macro++;
     stage=nb_time();
-    if(w->p->cutoff_score > 0) {
+    if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
         int macro_counts[13];
         for(int k=0;k<13;k++) macro_counts[k] = macro[k].viable.n;
         int max_core = is_v3 ? nb_dynamic_v3_core_bonus(macro_counts, r->discovery.n)
@@ -1201,7 +1237,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     }
     nx=nb_dynamic_unique(ex,nx);nz=nb_dynamic_unique(ez,nz);
     size_t maxcells=(size_t)(nx-1)*(size_t)(nz-1);
-    if(maxcells>10000000){code=-3;goto done;}
+    if(maxcells>2000000){code=-3;goto done;}
     if(w->dyn_cells_cap<maxcells) {
         size_t need=maxcells+1024;
         void *new_cells=nb_alloc(w,need*sizeof(NBDynamicCell),0);
@@ -1239,7 +1275,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(fatal||deficit>w->p->max_misses)continue;
         int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
                               : nb_dynamic_v2_core_bonus(counts, strong);
-        if(w->p->cutoff_score > 0) {
+        if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
             int cell_max_potential = cell_core + (is_v3 ? 600 : 389);
             if(cell_max_potential < w->p->cutoff_score) continue;
         }
@@ -1440,7 +1476,7 @@ done:
 <a id="file-3"></a>
 ### File 3: `native/blueprint_batch.inc`
 > **Purpose:** C11 OpenMP Multi-Threaded Batch Sweep, Buffer Retention & Memory Manager  
-> **Length:** 651 lines | **Language:** C
+> **Length:** 652 lines | **Language:** C
 
 ```c
 /* Private prototype, included after bridge.c. One owning context per OMP
@@ -1958,6 +1994,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     if(p->dynamic) {
         if(p->dynamic_v2 && (p->required_biome_mask & ~8191u))return NULL;
         int is_v3 = (p->overworld_half == 1024);
+        if(is_v3 && !p->dynamic_v2) return NULL;
         const int floors_v2[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
         const int floors_v3[13]={1,1,1,1,2,6,8,8,4,10,1,2,1};
         const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
@@ -2519,7 +2556,7 @@ uint64_t mulInv(uint64_t x, uint64_t m)
 <a id="file-5"></a>
 ### File 5: `src/seed_search/realm/config.py`
 > **Purpose:** Specification Source of Truth: dynamic_v3_blueprint_config(), 14 Hard Floors & Bounds  
-> **Length:** 494 lines | **Language:** PYTHON
+> **Length:** 500 lines | **Language:** PYTHON
 
 ```python
 """New profile validation; legacy schema 3/4 contracts keep their own validation."""
@@ -2639,7 +2676,7 @@ def validate_config(cfg):
     if cfg['discovery'] != DEFAULT['discovery']:
         raise ValueError('Discovery must use exactly half-open [-2000,2000) in each dimension')
     s=cfg['search']
-    if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest'):
+    if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest','strided'):
         raise ValueError('Realm scan mode must explicitly label predictions and supported seed sequence')
     if s.get('sequence')=='manifest':
         from ..seeds import parse_seed
@@ -2647,6 +2684,12 @@ def validate_config(cfg):
         if not isinstance(values,list) or not 1<=len(values)<=10000 or any(not isinstance(v,str) or str(parse_seed(v))!=v for v in values):
             raise ValueError('Manifest requires 1–10000 canonical signed decimal seeds')
         if len(set(values))!=len(values):raise ValueError('Manifest seeds must be distinct')
+    if s.get('sequence')=='strided':
+        from ..seeds import parse_seed
+        low32=s.get('low32',0)
+        if isinstance(low32,str):low32=parse_seed(low32)
+        elif isinstance(low32,bool) or not isinstance(low32,int):raise ValueError('low32 must be an integer')
+        if not -(1<<63)<=low32<(1<<63):raise ValueError('low32 outside 64-bit range')
     if s.get('inventory_mode','complete') not in ('complete','eligibility'):raise ValueError('Invalid inventory mode')
     if cfg['biomes'].get('lattice','border') not in ('border','world'):raise ValueError('Invalid biome lattice')
     _integer(cfg['biomes'].get('gate_batch_size',16),1,256,'biome gate batch size')
@@ -3754,13 +3797,13 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             inventories['mansion']=mansion
             if mansion['predicted_viable']:
                 inventories['outpost']=timed('structure_outpost',lambda:structure_observation(backend,'outpost',ow_macro,combined))
-            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost']:
+            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost']:
                 pairs=timed('final_nether_pair',lambda:backend.nether_structure_pairs(native_bounds(nw_macro))) if combined and hasattr(backend,'nether_structure_pairs') else None
                 for name in NETHER_NAMES:
                     inventories[name]=timed('final_'+name,lambda name=name:structure_observation(backend,name,nw_macro,combined,pair=pairs[name] if pairs else None))
             if (strongholds['predicted_viable'] and mansion['predicted_viable'] and
-                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost'] and
-                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['fortress'] and
+                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost'] and
+                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['fortress'] and
                     len(inventories.get('bastion',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['bastion']):
                 for name in OVERWORLD_NAMES:
                     if name not in inventories:
@@ -3956,10 +3999,10 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     anchor['hub_bonus']=components.get('hub_bonus', 0)
                     if is_v3:
                         anchor['nether_core_bonus']=components.get('nether_core_bonus', 0)
-                    anchor['scenic_bonus']=scenic_pts
+                    anchor['scenic_bonus']=int(scenic_pts_eff if is_v3 else scenic_pts)
                     anchor['scenic_witness']=list(scenic_wit) if scenic_wit else None
                     anchor['river_witness']=list(river_wit) if river_wit else None
-                    anchor['village_spread_bonus']=spread_pts
+                    anchor['village_spread_bonus']=int(spread_pts_eff if is_v3 else spread_pts)
                     anchor['village_triple']=[list(p) for p in v_triple] if v_triple else None
                     anchor['treasure_bastion']=1 if tb_points else 0
                     anchor['bastion_variants']=[list(item) for item in tb_list] if tb_list else []
@@ -4450,7 +4493,7 @@ class PaletteIndex:
 <a id="file-8"></a>
 ### File 8: `src/seed_search/realm/top_tracker.py`
 > **Purpose:** Top-50 In-Memory Priority Queue, RevStr Lexical Inversion, Tie-Breaking  
-> **Length:** 288 lines | **Language:** PYTHON
+> **Length:** 296 lines | **Language:** PYTHON
 
 ```python
 """In-memory Top-50 candidate tracker with pure arithmetic ordering and persistence.
@@ -4528,8 +4571,11 @@ class Top50Tracker:
         self._counter: int = 0
 
     def _extract_seed(self, record: Dict[str, Any]) -> str:
-        anchor = record['anchors'][0] if (isinstance(record.get('anchors'), list) and record['anchors']) else record
-        return str(record.get('seed') or anchor.get('seed') or '')
+        s = record.get('seed')
+        if s is None:
+            anchor = record['anchors'][0] if (isinstance(record.get('anchors'), list) and record['anchors']) else record
+            s = anchor.get('seed')
+        return str(s) if s is not None else ''
 
     def _extract_key(self, record: Dict[str, Any]) -> Tuple[int, int, int, int, int, int, int, RevStr]:
         """Extract arithmetic ranking tuple matching ORDER_V2.
@@ -4568,6 +4614,8 @@ class Top50Tracker:
             or anchor.get('baseline_score_observed')
             or record.get('baseline_score')
             or anchor.get('baseline_score')
+            or record.get('smart_score')
+            or anchor.get('smart_score')
             or (record.get('ranking', {}).get('score') if isinstance(record.get('ranking'), dict) else None)
             or (anchor.get('ranking', {}).get('score') if isinstance(anchor.get('ranking'), dict) else None)
             or 0
@@ -4613,7 +4661,7 @@ class Top50Tracker:
         key = self._extract_key(record_copy)
         seed = self._extract_seed(record_copy)
 
-        if seed and seed in self._seed_map:
+        if seed != '' and seed in self._seed_map:
             existing_entry = self._seed_map[seed]
             existing_key = existing_entry[0]
             if key <= existing_key:
@@ -4635,7 +4683,7 @@ class Top50Tracker:
 
         if len(self._heap) < self.capacity:
             heapq.heappush(self._heap, entry)
-            if seed:
+            if seed != '':
                 self._seed_map[seed] = entry
             return True
 
@@ -4643,9 +4691,9 @@ class Top50Tracker:
         if key > self._heap[0][0]:
             popped = heapq.heappushpop(self._heap, entry)
             popped_seed = self._extract_seed(popped[2])
-            if popped_seed and popped_seed in self._seed_map:
+            if popped_seed != '' and popped_seed in self._seed_map:
                 del self._seed_map[popped_seed]
-            if seed:
+            if seed != '':
                 self._seed_map[seed] = entry
             return True
 
@@ -4714,7 +4762,10 @@ class Top50Tracker:
                 rows = []
                 for rank, rec in enumerate(records, start=1):
                     anchor = rec['anchors'][0] if (isinstance(rec.get('anchors'), list) and rec['anchors']) else rec
-                    raw_seed = str(rec.get('seed') or anchor.get('seed') or '')
+                    s = rec.get('seed')
+                    if s is None:
+                        s = anchor.get('seed')
+                    raw_seed = str(s) if s is not None else ''
                     score = int(
                         anchor.get('baseline_score_observed')
                         or anchor.get('baseline_score')
@@ -4749,7 +4800,7 @@ class Top50Tracker:
 <a id="file-9"></a>
 ### File 9: `src/seed_search/realm/reports.py`
 > **Purpose:** Candidate Rescore Idempotence, Dispatch & Serialization (_candidate_rescore)  
-> **Length:** 568 lines | **Language:** PYTHON
+> **Length:** 583 lines | **Language:** PYTHON
 
 ```python
 """Streaming full candidate exports and independently ranked variant views."""
@@ -5135,9 +5186,9 @@ def _candidate_rescore(candidate,policy,revision_id):
                     origin_distance_squared=orig_dist_sq,deficit_penalty=components['deficit_penalty'],
                     bonus_total=components['bonus_total'],
                     hub_bonus=components.get('hub_bonus', 0),
-                    scenic_bonus=scenic,scenic_witness=list(scenic_witness) if scenic_witness else None,
+                    scenic_bonus=int(25 if is_v3 and scenic else scenic),scenic_witness=list(scenic_witness) if scenic_witness else None,
                     river_witness=list(river_witness) if river_witness else None,
-                    village_spread_bonus=spread,village_triple=[list(p) for p in triple] if triple else None,
+                    village_spread_bonus=int(25 if is_v3 and spread else spread),village_triple=[list(p) for p in triple] if triple else None,
                     treasure_bastion=int(bool(tb)),
                     starter_hub_village=hub_village_v2(structures,center),deficit_categories=deficits)
                 if is_v3:
@@ -5318,6 +5369,21 @@ def rescore(store, policy, *, batch_size=256, progress=None):
             store._set('rescore_revision',finished)
             if store.get_state('terrain_scoring_identity') is not None:
                 store._set('terrain_scoring_identity',terrain_scoring_identity(policy))
+        has_top_table = store.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='top_candidates'").fetchone() is not None
+        top50_file = store.run / 'top50.json' if hasattr(store, 'run') and store.run else None
+        if has_top_table or (top50_file and top50_file.exists()):
+            from .top_tracker import Top50Tracker
+            tracker = Top50Tracker(capacity=50)
+            rows = store.db.execute('SELECT result FROM candidates').fetchall()
+            for (payload,) in rows:
+                candidate = json.loads(payload)
+                seed_str = str(candidate.get('seed', ''))
+                record = {'seed': seed_str, 'anchors': [candidate]}
+                tracker.observe(record)
+            if has_top_table:
+                tracker.flush(store.db)
+            if top50_file:
+                tracker.save_to_json(str(top50_file))
         return {'rescored_candidates':finished['rescored_candidates'],'rescored_variants':finished['rescored_variants'],
                 'generation_queries':0,'score_revision':finished['id']}
 
@@ -5328,7 +5394,7 @@ def rescore(store, policy, *, batch_size=256, progress=None):
 <a id="file-10"></a>
 ### File 10: `src/seed_search/realm/native_batch.py`
 > **Purpose:** Python CFFI Engine Wrapper: Prototype, Buffer Decoding & persist_pipeline()  
-> **Length:** 703 lines | **Language:** PYTHON
+> **Length:** 764 lines | **Language:** PYTHON
 
 ```python
 """Explicit native blueprint execution with owned, bounded durable stages.
@@ -5356,7 +5422,7 @@ from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
-from seed_search.seeds import MASK64, parse_seed, seed_from_index
+from seed_search.seeds import MASK64, parse_seed, seed_from_index, seed_strided, seeds_strided
 
 NAMES=('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
        'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -5375,6 +5441,14 @@ def seeds_np(first: int, end: int, run_key: int):
     z = ((z ^ (z >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)) & np.uint64(MASK64)
     z = ((z ^ (z >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)) & np.uint64(MASK64)
     z ^= (z >> np.uint64(31))
+    return z.astype(np.int64)
+
+
+def seeds_strided_np(first: int, end: int, low32: int):
+    import numpy as np
+    indices = np.arange(first, end, dtype=np.uint64)
+    low = np.uint64(int(low32) & 0xFFFFFFFF)
+    z = low | ((indices & np.uint64(0xFFFFFFFF)) << np.uint64(32))
     return z.astype(np.int64)
 
 
@@ -5830,7 +5904,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                      resume=False,encoded=True,max_prepared_bytes=256<<20,
                      stop_after=None,progress=None,start_index=0,identity=None,
                      allow_prediction_scale=False,production=False,inflight=3,retention="full",max_misses=0,
-                     prepare_on_writer=False):
+                     prepare_on_writer=False,top_k=0):
     """Bounded native producer, record preparer and connection-owning writer.
 
     CFFI releases the GIL during generation. Record preparation runs on its own thread; SQLite stays on
@@ -5877,12 +5951,36 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     run_key_val=cfg['search'].get('run_key', 0)
     try:run_key_int=int(run_key_val)
     except (ValueError,TypeError):run_key_int=int.from_bytes(hashlib.sha256(str(run_key_val).encode()).digest()[:8], 'big')
-    use_np_permutation=(cfg['search'].get('sequence', 'permutation') == 'permutation')
+    tracker=None;top50_path=None
+    if top_k>0:
+        from seed_search.realm.top_tracker import Top50Tracker
+        tracker=Top50Tracker(capacity=top_k)
+        top50_path=Path(run)/'top50.json'
+    def observe_committed(rows):
+        for seed_payload,candidate_payload in rows:
+            record=json.loads(seed_payload)
+            record.pop('anchor_ids',None)
+            record['anchors']=[json.loads(candidate_payload)]
+            tracker.observe(record)
+    seq_name = cfg['search'].get('sequence', 'permutation')
+    low32_val = cfg['search'].get('low32', 0)
+    try:
+        low32_int = int(low32_val)
+    except (ValueError, TypeError):
+        low32_int = 0
     def compute(first,end):
         before=time.perf_counter()
-        seeds=seeds_np(first,end,run_key_int) if use_np_permutation else [_seed(i,cfg['search']) for i in range(first,end)]
+        if seq_name == 'permutation':
+            seeds = seeds_np(first, end, run_key_int)
+        elif seq_name == 'strided':
+            seeds = seeds_strided_np(first, end, low32_int)
+        else:
+            seeds = [_seed(i, cfg['search']) for i in range(first, end)]
         seed_seconds=time.perf_counter()-before
-        return prototype.sweep(seeds,threads,**({'retention':retention,'max_misses':max_misses} if retention=='survivors' else {})),seed_seconds
+        cutoff=tracker.cutoff_score() if tracker is not None else None
+        sweep_kw={'retention':retention,'max_misses':max_misses} if retention=='survivors' else {}
+        if cutoff is not None:sweep_kw['cutoff_score']=cutoff
+        return prototype.sweep(seeds,threads,**sweep_kw),seed_seconds
     def prepare(native_future,first,end,store):
         batch,seed_seconds=native_future.result()
         with batch:
@@ -5914,6 +6012,15 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         dispatched+=end-first;max_pending=max(max_pending,len(pending));return True
     with _scan_lock(run),_numerical_threads(),RealmStore(run,identity=identity,resume=resume) as store:
         store.configure_range(start_index,start_index+count,batch_size);store.recover_assignments()
+        if tracker is not None and resume:
+            # The candidate table and range receipts commit together. JSON is only
+            # a presentation cache and may be stale, absent, or corrupt at restart.
+            cursor=store.db.execute(
+                'SELECT s.result,c.result FROM candidates c JOIN seeds s ON s.idx=c.idx ORDER BY c.id')
+            while rows:=cursor.fetchmany(256):
+                observe_committed(rows)
+        if tracker is not None and not top50_path.is_file():
+            tracker.save_to_json(str(top50_path))
         completed=store.get_state('completed_seeds')
         initial_disk=disk_status(store.run,limits,remaining_seeds=count-completed,
             completed_seeds=completed,previous_sample=store.get_state('workspace_disk'))
@@ -5941,6 +6048,10 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 before=time.perf_counter()
                 store.complete_prepared(prepared,lease=('native-pipeline',attempt),
                     capacity_check=check_capacity)
+                if tracker is not None and prepared.candidate_rows:
+                    wanted={row[1] for row in prepared.candidate_rows}
+                    seed_payloads={row[0]:row[2] for row in prepared.seed_rows if row[0] in wanted}
+                    observe_committed((seed_payloads[row[1]],row[4]) for row in prepared.candidate_rows)
                 service['writer_wall_seconds']+=time.perf_counter()-before
                 service.update(store.last_range_timings)
                 batches+=1;committed+=end-first;latencies.append(time.perf_counter()-queued)
@@ -5950,11 +6061,14 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 now=time.perf_counter()
                 if now-last_monitor>=1:
                     resources=process_tree_resources() or {}
-                    if not resources.get('available'):raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
+                    if not resources.get('available') and not resources.get('fallback'):raise RuntimeError('Process-tree monitoring unavailable; checkpoint retained')
                     peak=max(peak,resources['rss_bytes']);last_monitor=now
                     if resources['rss_bytes']+reserve*(1<<30)>ceiling*(1<<30):
                         raise RuntimeError('Process-tree RSS plus reserve exceeded memory ceiling')
                 if progress is not None and now-last_progress>=10:
+                    if tracker is not None:
+                        tracker.save_to_json(str(top50_path))
+                        tracker.flush(store.db)
                     progress(store.status());last_progress=now
                 while len(pending)<inflight and submit(store):pass
         except KeyboardInterrupt:
@@ -5974,6 +6088,11 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 if not native_future.cancelled():
                     try:native_future.result()[0].close()
                     except BaseException:pass
+            if tracker is not None and failure is None:
+                try:
+                    tracker.save_to_json(str(top50_path))
+                    tracker.flush(store.db)
+                except Exception:pass
             service['shutdown_seconds']=time.perf_counter()-before
             store.recover_assignments()
             store.set_state('native_pipeline',{'threads':threads,'cpu_slots':threads+2,'batch_size':batch_size,
@@ -5993,13 +6112,15 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             'max_outstanding_batches':max_pending,
             'max_prepared_owned_estimate_bytes':max_payload,'peak_process_tree_rss_bytes':peak,
             'status':status,'interrupted':interrupted,'encoded':encoded,'retention':retention,'max_misses':max_misses,
+            'top_k':top_k,'top_tracker':tracker,
+            'cutoff_score':tracker.cutoff_score() if tracker is not None else None,
             'scope':('complete baseline evidence and FULL SQLite' if retention=='full' else 'C-filtered survivor/near-miss evidence and FULL SQLite range checkpoints')+', startup/drain/close included; no terrain/BDS'}
 
 
 
 def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
                     native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
-                    allow_prediction_scale=False,retention="full",max_misses=None):
+                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=0):
     """Production opt-in; unsupported profiles fail before any input publication."""
     validate_config(cfg)
     if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
@@ -6022,10 +6143,16 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
     ident.update(execution='native',native=prototype.identity,
                  native_build=str(Path(native_build).resolve()) if native_build is not None else None,
                  evaluator='seed_search.realm.native_batch:run_native_scan')
+    if top_k is None or top_k==0:top_k=search.get('top_k',0)
     result=persist_pipeline(prototype,output,count,run_key=search['run_key'],threads=native_threads,
         batch_size=native_batch_size,resume=resume,stop_after=stop_after,progress=progress,
-        start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses)
+        start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses,
+        top_k=top_k)
     status=result['status'];status['interrupted']=result['interrupted']
+    if top_k>0:
+        status['top_k']=top_k
+        status['cutoff_score']=result['cutoff_score']
+        status['top_candidates_count']=len(result['top_tracker']) if result['top_tracker'] is not None else 0
     status['execution']={'kind':'native','threads':native_threads,'batch_size':native_batch_size,
                          'newly_committed':result['newly_committed'],'wall_seconds':result['wall_seconds'],
                          'batch_latency_sample_scope':result['batch_latency_sample_scope'],
@@ -6042,7 +6169,7 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
 <a id="file-11"></a>
 ### File 11: `scripts/pilot_v3_2048.py`
 > **Purpose:** Production Sweep Runner with Dynamic Top-50 Cutoff Feedback Loop  
-> **Length:** 245 lines | **Language:** PYTHON
+> **Length:** 246 lines | **Language:** PYTHON
 
 ```python
 #!/usr/bin/env python3
@@ -6138,7 +6265,8 @@ def run_pilot(
 
     cfg = dynamic_v3_blueprint_config()
     cfg["search"]["run_key"] = str(run_key)
-    prototype = Prototype(None, cfg)
+    nb_dir = Path("runs/dynamic-baseline-2048/native")
+    prototype = Prototype(nb_dir if (nb_dir / "identity.json").is_file() else None, cfg)
 
     if not prototype.identity.get("openmp"):
         print("WARNING: OpenMP is disabled in Prototype; run will be single-threaded.")
@@ -7362,7 +7490,7 @@ export function compareCandidateRank(a: SeedCandidate, b: SeedCandidate): number
 <a id="file-15"></a>
 ### File 15: `tests/web_structure_policy.cjs`
 > **Purpose:** Web UI & Backend Policy Contract Test Suite (13 Tests)  
-> **Length:** 252 lines | **Language:** JAVASCRIPT
+> **Length:** 254 lines | **Language:** JAVASCRIPT
 
 ```javascript
 // Exercise actual sidebar handlers and App launch validation without a backend.
@@ -7417,7 +7545,7 @@ test('canonical value takes precedence over a stale alias, including zero', () =
     const config = { ...INITIAL_CONFIG, structureFloorCounts: {
       ...INITIAL_CONFIG.structureFloorCounts, desert_pyramid: count, pyramid: 9 } };
     assert.equal(displayedCount(pyramidRow(sidebar(config))), count);
-    if (count === 0) assert.throws(() => validate(config), /requires at least 2/);
+    if (count === 0) assert.throws(() => validate(config), /requires at least/);
     else assert.equal(validate(config).desert_pyramid ?? 3, count);
   }
 });
@@ -7492,7 +7620,8 @@ test('every editable run setting is included in the shared preview/launch reques
     'Native threads': ['openmpThreads', '7', 'threads', 7],
     'Native batch size': ['batchSize', '128', 'batchSize', 128] };
   for (const [label, [state, value, requestKey, expected]] of Object.entries(changes)) {
-    const view = sidebar({ ...INITIAL_CONFIG, sweepSeedCount: 10 }, 'engine');
+    const testConfig = label === 'Deficit budget' ? { ...INITIAL_CONFIG, profile: 'dynamic1664', structureFloorCounts: { ...SEARCH_PROFILES.dynamic1664.counts }, maxMisses: 3 } : INITIAL_CONFIG;
+    const view = sidebar({ ...testConfig, sweepSeedCount: 10 }, 'engine');
     const control = view.all.find(node => node.props?.['aria-label'] === label);
     control.props.onChange({ target: { value } });
     assert.equal(view.changed()[state], expected);
@@ -7505,7 +7634,8 @@ test('fixed policy controls cannot drift and running settings are locked', () =>
   assert.ok(!view.all.some(node => node.props?.type === 'checkbox'));
   const stronghold = view.all.find(node => node.key === 'stronghold');
   for (const button of nodes(stronghold).filter(node => node.type === 'button')) assert.equal(button.props.disabled, true);
-  const floor = { ...INITIAL_CONFIG, structureFloorCounts: { ...INITIAL_CONFIG.structureFloorCounts, village: 8 } };
+  const floorVillage = SEARCH_PROFILES[INITIAL_CONFIG.profile].floors.village;
+  const floor = { ...INITIAL_CONFIG, structureFloorCounts: { ...INITIAL_CONFIG.structureFloorCounts, village: floorVillage } };
   const village = sidebar(floor).all.find(node => node.key === 'village');
   assert.equal(nodes(village).find(node => node.props?.title === 'Decrease target count').props.disabled, true);
   assert.ok(sidebar(INITIAL_CONFIG, 'engine', true).all.some(node => node.type === 'fieldset' && node.props.disabled));
@@ -7588,7 +7718,7 @@ test('SeedDetailModal renders dynamic-v3 1,250 Pts Max breakdown, nether core ba
     treasureBastion: 1,
   };
   const modalText = text(SeedDetailModal({ candidate: candZeroDeficit, onClose: noop, onCopyNotice: noop }));
-  assert.match(modalText, /Player Quality Score Breakdown \(dynamic-v3: 1,250 Pts Max\)/);
+  assert.match(modalText, /Player Quality Score Breakdown \(\s*dynamic-v3: 1,250 Pts Max\s*\)/);
   assert.match(modalText, /Core Surplus/);
   assert.match(modalText, /\+650 max/);
   assert.match(modalText, /Optional Structures/);

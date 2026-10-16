@@ -155,6 +155,33 @@ void applySeedPhase1(Generator *g, int dim, uint64_t seed)
         g->sha = getVoronoiSHA(seed);
 }
 
+void applySeedPhase1_ShiftHumidity(Generator *g, int dim, uint64_t seed)
+{
+    g->dim = dim;
+    g->seed = seed;
+    g->sha = 0;
+
+    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
+    {
+        setBiomeSeedPhase1_ShiftHumidity(&g->bn, seed, g->flags & LARGE_BIOMES);
+    }
+    else
+    {
+        applySeed(g, dim, seed);
+        return;
+    }
+    if (g->mc >= MC_1_14)
+        g->sha = getVoronoiSHA(seed);
+}
+
+void applySeedPhase1_Temperature(Generator *g, int dim, uint64_t seed)
+{
+    if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)
+    {
+        setBiomeSeedPhase1_Temperature(&g->bn, seed, g->flags & LARGE_BIOMES);
+    }
+}
+
 void applySeedPhase2(Generator *g, int dim, uint64_t seed)
 {
     if (dim == DIM_OVERWORLD && g->mc >= MC_1_18)

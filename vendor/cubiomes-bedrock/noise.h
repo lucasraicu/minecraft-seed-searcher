@@ -77,6 +77,8 @@ int xDoublePerlinInit(DoublePerlinNoise *noise, Xoroshiro *xr,
 
 double sampleDoublePerlin(const DoublePerlinNoise *noise,
         double x, double y, double z);
+void sampleDoublePerlin_4x(const DoublePerlinNoise *noise,
+        const double x[4], const double y[4], const double z[4], double out[4]);
 
 
 #ifdef __cplusplus

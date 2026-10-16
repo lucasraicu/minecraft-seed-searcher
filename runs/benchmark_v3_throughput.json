@@ -1,0 +1,309 @@
+{
+  "timestamp": "2026-10-16T21:55:55.684897+00:00",
+  "count": 65536,
+  "batch_size": 16384,
+  "run_key": 2026101501,
+  "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+  "openmp": true,
+  "results": [
+    {
+      "threads": 1,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 7.876542037993204,
+      "median_wall_seconds": 7.919135246498627,
+      "best_native_seconds": 7.874595981003949,
+      "median_native_seconds": 7.917276588486857,
+      "wall_throughput": 8320.402491839852,
+      "kernel_throughput": 8322.458721449817,
+      "survivors": 0,
+      "rss_before_mb": 61.71484375,
+      "rss_after_mb": 77.390625,
+      "rss_delta_mb": 15.67578125
+    },
+    {
+      "threads": 4,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 2.178697827999713,
+      "median_wall_seconds": 2.2915825704985764,
+      "best_native_seconds": 2.176668300991878,
+      "median_native_seconds": 2.2894596584810643,
+      "wall_throughput": 30080.353116324233,
+      "kernel_throughput": 30108.400058077816,
+      "survivors": 0,
+      "rss_before_mb": 77.46484375,
+      "rss_after_mb": 91.80078125,
+      "rss_delta_mb": 14.3359375
+    },
+    {
+      "threads": 8,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 1.2206771229975857,
+      "median_wall_seconds": 1.2717626669909805,
+      "best_native_seconds": 1.2185028239910025,
+      "median_native_seconds": 1.2696563829813385,
+      "wall_throughput": 53688.234804519736,
+      "kernel_throughput": 53784.03620382904,
+      "survivors": 0,
+      "rss_before_mb": 91.80078125,
+      "rss_after_mb": 103.6796875,
+      "rss_delta_mb": 11.87890625
+    },
+    {
+      "threads": 12,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 0.8866614830039907,
+      "median_wall_seconds": 0.8944064145034645,
+      "best_native_seconds": 0.8840345710341353,
+      "median_native_seconds": 0.8920198705163784,
+      "wall_throughput": 73913.21406898763,
+      "kernel_throughput": 74132.84745565619,
+      "survivors": 0,
+      "rss_before_mb": 103.6796875,
+      "rss_after_mb": 115.078125,
+      "rss_delta_mb": 11.3984375
+    },
+    {
+      "threads": 16,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 0.7168358549824916,
+      "median_wall_seconds": 0.7236087319906801,
+      "best_native_seconds": 0.7147368989535607,
+      "median_native_seconds": 0.7214775954780634,
+      "wall_throughput": 91423.99831771904,
+      "kernel_throughput": 91692.48166136464,
+      "survivors": 0,
+      "rss_before_mb": 115.078125,
+      "rss_after_mb": 125.94140625,
+      "rss_delta_mb": 10.86328125
+    },
+    {
+      "threads": 34,
+      "seeds_count": 65536,
+      "trials": 2,
+      "best_wall_seconds": 0.5555307239992544,
+      "median_wall_seconds": 0.5740566754975589,
+      "best_native_seconds": 0.5526409010053612,
+      "median_native_seconds": 0.5709311269747559,
+      "wall_throughput": 117970.07288491205,
+      "kernel_throughput": 118586.95199862565,
+      "survivors": 0,
+      "rss_before_mb": 125.94140625,
+      "rss_after_mb": 143.8125,
+      "rss_delta_mb": 17.87109375
+    }
+  ],
+  "stages_breakdown": {
+    "sample_seeds": 2000,
+    "total_stage_time": 0.6730960003042128,
+    "stages": [
+      {
+        "stage_idx": 0,
+        "name": "Stronghold Discovery",
+        "total_seconds": 0.42231900061597116,
+        "percentage": 62.74275889696265,
+        "per_seed_microseconds": 211.15950030798558
+      },
+      {
+        "stage_idx": 1,
+        "name": "Mansion Macro Viable",
+        "total_seconds": 0.08664600009797141,
+        "percentage": 12.872755158077132,
+        "per_seed_microseconds": 43.323000048985705
+      },
+      {
+        "stage_idx": 2,
+        "name": "Jungle Temple Macro",
+        "total_seconds": 0.0010609999881125987,
+        "percentage": 0.1576298161975511,
+        "per_seed_microseconds": 0.5304999940562993
+      },
+      {
+        "stage_idx": 3,
+        "name": "Desert Pyramid Macro",
+        "total_seconds": 0.010200999939115718,
+        "percentage": 1.5155341785577792,
+        "per_seed_microseconds": 5.100499969557859
+      },
+      {
+        "stage_idx": 4,
+        "name": "Ocean Monument Macro",
+        "total_seconds": 0.006804000004194677,
+        "percentage": 1.0108513497509326,
+        "per_seed_microseconds": 3.4020000020973384
+      },
+      {
+        "stage_idx": 5,
+        "name": "Ancient City Macro",
+        "total_seconds": 0.004708000022219494,
+        "percentage": 0.6994544641613772,
+        "per_seed_microseconds": 2.354000011109747
+      },
+      {
+        "stage_idx": 6,
+        "name": "Village Macro",
+        "total_seconds": 0.0016870000108610839,
+        "percentage": 0.25063289784794834,
+        "per_seed_microseconds": 0.8435000054305419
+      },
+      {
+        "stage_idx": 7,
+        "name": "Trial Chamber Macro",
+        "total_seconds": 0.0008760000055190176,
+        "percentage": 0.1301448835118765,
+        "per_seed_microseconds": 0.4380000027595088
+      },
+      {
+        "stage_idx": 8,
+        "name": "Ruined Portal Macro",
+        "total_seconds": 0.00012599999899975955,
+        "percentage": 0.018719469279688563,
+        "per_seed_microseconds": 0.06299999949987978
+      },
+      {
+        "stage_idx": 9,
+        "name": "Shipwreck Macro",
+        "total_seconds": 0.009778000006917864,
+        "percentage": 1.4526902555502623,
+        "per_seed_microseconds": 4.889000003458932
+      },
+      {
+        "stage_idx": 10,
+        "name": "Mineshaft Macro",
+        "total_seconds": 0.06225399998947978,
+        "percentage": 9.24890356818989,
+        "per_seed_microseconds": 31.126999994739887
+      },
+      {
+        "stage_idx": 11,
+        "name": "Nether (Fortress/Bastion)",
+        "total_seconds": 0.06304099957924336,
+        "percentage": 9.365825907560188,
+        "per_seed_microseconds": 31.520499789621677
+      },
+      {
+        "stage_idx": 12,
+        "name": "Biome Palette (4Y planes)",
+        "total_seconds": 0.0,
+        "percentage": 0.0,
+        "per_seed_microseconds": 0.0
+      },
+      {
+        "stage_idx": 13,
+        "name": "Dynamic Grid Cell Ranking",
+        "total_seconds": 0.0011200000008102506,
+        "percentage": 0.16639528392741226,
+        "per_seed_microseconds": 0.5600000004051253
+      },
+      {
+        "stage_idx": 14,
+        "name": "Outpost Macro Viable",
+        "total_seconds": 0.002475000044796616,
+        "percentage": 0.36770387042532027,
+        "per_seed_microseconds": 1.237500022398308
+      }
+    ]
+  },
+  "funnel": [
+    {
+      "stage_idx": 0,
+      "name": "Total Inputs",
+      "description": "Total candidate seeds entering pipeline",
+      "count": 65536,
+      "pct_total": 100.0,
+      "pct_prev": 100.0
+    },
+    {
+      "stage_idx": 1,
+      "name": "Pass Preflight (Nether/Outpost/Mansion)",
+      "description": "Stage 0: Early bounding-box preflight",
+      "count": 18150,
+      "pct_total": 27.6947021484375,
+      "pct_prev": 27.6947021484375
+    },
+    {
+      "stage_idx": 2,
+      "name": "Pass Mansion Dark Forest Phase 1/2",
+      "description": "Stage 1: Dark forest biome availability",
+      "count": 9195,
+      "pct_total": 14.03045654296875,
+      "pct_prev": 50.66115702479339
+    },
+    {
+      "stage_idx": 3,
+      "name": "Pass Mansion Macro Viable (>=1)",
+      "description": "Stage 2: Viable mansion structure start",
+      "count": 2620,
+      "pct_total": 3.997802734375,
+      "pct_prev": 28.49374660141381
+    },
+    {
+      "stage_idx": 4,
+      "name": "Pass Stronghold Discovery (>=1)",
+      "description": "Stage 3: Ring-1 stronghold in overworld bounds",
+      "count": 2210,
+      "pct_total": 3.3721923828125,
+      "pct_prev": 84.35114503816794
+    },
+    {
+      "stage_idx": 5,
+      "name": "Pass Outpost Macro Viable (>=1)",
+      "description": "Stage 4: Viable pillager outpost start",
+      "count": 1717,
+      "pct_total": 2.61993408203125,
+      "pct_prev": 77.6923076923077
+    },
+    {
+      "stage_idx": 6,
+      "name": "Pass Nether Macro (Fortress & Bastion >=1)",
+      "description": "Stage 5: Both nether structures viable in bounds",
+      "count": 60,
+      "pct_total": 0.091552734375,
+      "pct_prev": 3.4944670937682005
+    },
+    {
+      "stage_idx": 7,
+      "name": "Pass All 9 Remaining Structure Macro Floors",
+      "description": "Stage 6: All other overworld structure floors met",
+      "count": 50,
+      "pct_total": 0.0762939453125,
+      "pct_prev": 83.33333333333334
+    },
+    {
+      "stage_idx": 8,
+      "name": "Generated Candidate Grid Cells (>0)",
+      "description": "Stage 7: Cell decomposition of macro-envelope",
+      "count": 50,
+      "pct_total": 0.0762939453125,
+      "pct_prev": 100.0
+    },
+    {
+      "stage_idx": 9,
+      "name": "Had >=1 Cell Meeting ALL 14 Hard Floors",
+      "description": "Stage 8: Joint structure floor qualification",
+      "count": 0,
+      "pct_total": 0.0,
+      "pct_prev": 0.0
+    },
+    {
+      "stage_idx": 10,
+      "name": "Had >=1 Cell Meeting All Floors + Biomes",
+      "description": "Stage 9: Joint 14 structures + 18 biomes qualification",
+      "count": 0,
+      "pct_total": 0.0,
+      "pct_prev": 0.0
+    },
+    {
+      "stage_idx": 11,
+      "name": "Reached Final Anchor Selection",
+      "description": "Stage 10: Retained qualifying anchor",
+      "count": 0,
+      "pct_total": 0.0,
+      "pct_prev": 0.0
+    }
+  ]
+}

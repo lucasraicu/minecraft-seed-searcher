@@ -381,9 +381,9 @@ def _candidate_rescore(candidate,policy,revision_id):
                     origin_distance_squared=orig_dist_sq,deficit_penalty=components['deficit_penalty'],
                     bonus_total=components['bonus_total'],
                     hub_bonus=components.get('hub_bonus', 0),
-                    scenic_bonus=scenic,scenic_witness=list(scenic_witness) if scenic_witness else None,
+                    scenic_bonus=int(25 if is_v3 and scenic else scenic),scenic_witness=list(scenic_witness) if scenic_witness else None,
                     river_witness=list(river_witness) if river_witness else None,
-                    village_spread_bonus=spread,village_triple=[list(p) for p in triple] if triple else None,
+                    village_spread_bonus=int(25 if is_v3 and spread else spread),village_triple=[list(p) for p in triple] if triple else None,
                     treasure_bastion=int(bool(tb)),
                     starter_hub_village=hub_village_v2(structures,center),deficit_categories=deficits)
                 if is_v3:
@@ -564,5 +564,20 @@ def rescore(store, policy, *, batch_size=256, progress=None):
             store._set('rescore_revision',finished)
             if store.get_state('terrain_scoring_identity') is not None:
                 store._set('terrain_scoring_identity',terrain_scoring_identity(policy))
+        has_top_table = store.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='top_candidates'").fetchone() is not None
+        top50_file = store.run / 'top50.json' if hasattr(store, 'run') and store.run else None
+        if has_top_table or (top50_file and top50_file.exists()):
+            from .top_tracker import Top50Tracker
+            tracker = Top50Tracker(capacity=50)
+            rows = store.db.execute('SELECT result FROM candidates').fetchall()
+            for (payload,) in rows:
+                candidate = json.loads(payload)
+                seed_str = str(candidate.get('seed', ''))
+                record = {'seed': seed_str, 'anchors': [candidate]}
+                tracker.observe(record)
+            if has_top_table:
+                tracker.flush(store.db)
+            if top50_file:
+                tracker.save_to_json(str(top50_file))
         return {'rescored_candidates':finished['rescored_candidates'],'rescored_variants':finished['rescored_variants'],
                 'generation_queries':0,'score_revision':finished['id']}

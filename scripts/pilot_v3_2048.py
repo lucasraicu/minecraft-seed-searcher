@@ -91,7 +91,8 @@ def run_pilot(
 
     cfg = dynamic_v3_blueprint_config()
     cfg["search"]["run_key"] = str(run_key)
-    prototype = Prototype(None, cfg)
+    nb_dir = Path("runs/dynamic-baseline-2048/native")
+    prototype = Prototype(nb_dir if (nb_dir / "identity.json").is_file() else None, cfg)
 
     if not prototype.identity.get("openmp"):
         print("WARNING: OpenMP is disabled in Prototype; run will be single-threaded.")

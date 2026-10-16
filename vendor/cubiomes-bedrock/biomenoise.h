@@ -244,11 +244,16 @@ enum {
 void initBiomeNoise(BiomeNoise *bn, int mc);
 void setBiomeSeed(BiomeNoise *bn, uint64_t seed, int large);
 void setBiomeSeedPhase1(BiomeNoise *bn, uint64_t seed, int large);
+void setBiomeSeedPhase1_ShiftHumidity(BiomeNoise *bn, uint64_t seed, int large);
+void setBiomeSeedPhase1_Temperature(BiomeNoise *bn, uint64_t seed, int large);
 void setBiomeSeedPhase2(BiomeNoise *bn, uint64_t seed, int large);
 int isDarkForestPossible(const BiomeNoise *bn, int x, int z);
 int isMansionDarkForestPossible(const BiomeNoise *bn, uint64_t sha, int blockX, int blockZ);
+int isMansionDarkForestHumidityPossible(const BiomeNoise *bn, uint64_t sha, int blockX, int blockZ);
 struct Generator;
 void applySeedPhase1(struct Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_ShiftHumidity(struct Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_Temperature(struct Generator *g, int dim, uint64_t seed);
 void applySeedPhase2(struct Generator *g, int dim, uint64_t seed);
 void setBetaBiomeSeed(BiomeNoiseBeta *bnb, uint64_t seed);
 int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,

@@ -334,14 +334,15 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                 const isFortressClose = hasCloseFortress || netherCoreBonus === 20 || (netherCoreBonus === 10 && !hasCloseBastion);
                 const isBastionClose = hasCloseBastion || netherCoreBonus === 20 || (netherCoreBonus === 10 && !hasCloseFortress);
 
+                const isV3 = candidate.screeningRevision ? candidate.screeningRevision === 'dynamic-envelope-2048-v3' : true;
                 const coreSurplus = candidate.scoreComponents?.core_surplus ?? 0;
                 const optionalBonus = candidate.scoreComponents?.optional_bonus ?? 0;
                 const luxuryBiomes = candidate.scoreComponents?.luxury_biomes ?? 0;
                 const hubBonus = candidate.scoreComponents?.hub_bonus ?? 0;
                 const scenicBonus = candidate.scenicBonus ?? candidate.scoreComponents?.scenic_bonus ?? 0;
                 const villageSpreadBonus = candidate.villageSpreadBonus ?? candidate.scoreComponents?.village_spread_bonus ?? 0;
-                const treasureBastionBonus = candidate.scoreComponents?.treasure_bastion_bonus ?? (candidate.treasureBastion ? 20 : 0);
-                const spatialNetherBonus = hubBonus + netherCoreBonus + scenicBonus + villageSpreadBonus + treasureBastionBonus;
+                const treasureBastionBonus = candidate.scoreComponents?.treasure_bastion_bonus ?? (candidate.treasureBastion ? (isV3 ? 20 : 40) : 0);
+                const spatialNetherBonus = hubBonus + netherCoreBonus + scenicBonus + villageSpreadBonus + (isV3 ? treasureBastionBonus : 0);
 
                 const deficitPenalty = candidate.deficitPenalty ?? candidate.scoreComponents?.deficit_penalty ?? 0;
                 const unmet = candidate.unmetRequirements ?? 0;
@@ -352,7 +353,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                     <div className="flex items-center justify-between">
                       <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-300 flex items-center gap-1.5">
                         <span>💎</span>
-                        <span>Player Quality Score Breakdown (dynamic-v3: 1,250 Pts Max)</span>
+                        <span>Player Quality Score Breakdown ({isV3 ? 'dynamic-v3: 1,250 Pts Max' : 'dynamic-v2: 1,140 Pts Max'})</span>
                       </h4>
                       <span className="text-xs font-mono font-bold text-emerald-400">
                         Score: {candidate.score} / Bonus: {candidate.bonusTotal ?? candidate.scoreComponents?.bonus_total ?? 0}
@@ -369,12 +370,12 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
                         <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Core Surplus</span>
                         <span className="text-white font-bold text-base">+{coreSurplus}</span>
-                        <span className="text-[10px] text-slate-400 block font-sans">+650 max</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">{isV3 ? '+650 max' : '+540 max'}</span>
                       </div>
                       <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
                         <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Optional Structures</span>
                         <span className="text-white font-bold text-base">+{optionalBonus}</span>
-                        <span className="text-[10px] text-slate-400 block font-sans">+200 max</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">{isV3 ? '+200 max' : '+240 max'}</span>
                       </div>
                       <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
                         <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Luxury Biomes</span>
@@ -384,7 +385,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <div className="p-2.5 bg-slate-900/90 rounded-lg border border-slate-800">
                         <span className="text-indigo-400 text-[10px] block font-semibold uppercase">Spatial &amp; Nether</span>
                         <span className="text-emerald-400 font-bold text-base">+{spatialNetherBonus}</span>
-                        <span className="text-[10px] text-slate-400 block font-sans">+135 max</span>
+                        <span className="text-[10px] text-slate-400 block font-sans">{isV3 ? '+135 max' : '+95 max'}</span>
                       </div>
                     </div>
 
@@ -414,7 +415,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
                         <span className="text-slate-400 text-[10px] block font-semibold uppercase">Scenic River</span>
                         <span className="text-white font-bold text-sm">+{scenicBonus}</span>
-                        <span className="text-[9px] text-slate-400 block font-sans">+25 max</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">{isV3 ? '+25 max' : '+20 max'}</span>
                         {candidate.scenicWitness ? (
                           <span className="text-[9px] text-cyan-400 block font-sans truncate">Pair ({candidate.scenicWitness[0]}, {candidate.scenicWitness[1]})</span>
                         ) : null}
@@ -422,7 +423,7 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
                         <span className="text-slate-400 text-[10px] block font-semibold uppercase">Village Spread</span>
                         <span className="text-white font-bold text-sm">+{villageSpreadBonus}</span>
-                        <span className="text-[9px] text-slate-400 block font-sans">+25 max</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">{isV3 ? '+25 max' : '+15 max'}</span>
                         {candidate.villageTriple ? (
                           <span className="text-[9px] text-emerald-400 block font-sans">Tri-Quadrant (3)</span>
                         ) : null}
@@ -430,9 +431,9 @@ export const SeedDetailModal: React.FC<SeedDetailModalProps> = ({
                       <div className="p-2 bg-slate-900/70 rounded-lg border border-slate-800">
                         <span className="text-slate-400 text-[10px] block font-semibold uppercase">Treasure Bastion</span>
                         <span className="text-white font-bold text-sm">+{treasureBastionBonus}</span>
-                        <span className="text-[9px] text-slate-400 block font-sans">+20 max (v3)</span>
+                        <span className="text-[9px] text-slate-400 block font-sans">{isV3 ? '+20 max (v3)' : '+40 max (v2 in optional)'}</span>
                         {candidate.treasureBastion ? (
-                          <span className="text-[9px] text-amber-400 block font-sans">Treasure Bastion (+20)</span>
+                          <span className="text-[9px] text-amber-400 block font-sans">Treasure Bastion (+{isV3 ? 20 : 40})</span>
                         ) : null}
                       </div>
                     </div>

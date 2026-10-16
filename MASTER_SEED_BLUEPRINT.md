@@ -43,8 +43,8 @@ To prevent massive structures from disproportionately dragging the center away f
 - ⚔️ **All Trial Chambers:** $\omega = 2$ each (Primary midgame dungeon anchor)
 - 🌌 **All Ancient Cities:** $\omega = 2$ each (Deep exploration anchor)
 - 🏴‍☠️ **All Pillager Outposts:** $\omega = 1$ each
-- 🏺 **All Desert Pyramids & Jungle Temples:** $\omega = 1$ each
-- 🏛️ **Woodland Mansion:** $\omega = 1$
+- 🏺 **All Desert Pyramids & Jungle Temples:** $\omega = 2$ each (v3 upgrade from 1 in v2)
+- 🏛️ **Woodland Mansion:** $\omega = 2$ (v3 upgrade from 1 in v2)
 - 🗿 **Ocean Monument:** $\omega = 1$
 - 🏰 **Stronghold:** $\omega = 1$
 - 🌀 **All Ruined Portals:** $\omega = 0$ in v2 (was 2 in historical v1; zeroed to prevent pulling center away from human settlements)

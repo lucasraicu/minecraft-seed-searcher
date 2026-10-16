@@ -722,7 +722,7 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
     if(nether_half<=0)nether_half=416;
     int max_c = 2000 - ow_half;
     int min_c = -max_c;
-    int xs[1030],zs[1030],nx=2,nz=2;
+    int xs[2048],zs[2048],nx=2,nz=2;
     xs[0]=zs[0]=min_c;xs[1]=zs[1]=max_c+1;
     for(int k=0;k<2;k++) {
         int n=k?nb:nf;const int *points=k?bast:fort;
@@ -779,7 +779,10 @@ static int nb_raw_atleast(NBWorker *w,int type,const int *b,int goal){
       }
     return 0;
 }
-static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
+void applySeedPhase1_ShiftHumidity(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_Temperature(Generator *g, int dim, uint64_t seed);
+static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible,Pos *dark_mansions_out,int *nm_dark_out) {
+    if(dark_mansions_out&&nm_dark_out)*nm_dark_out=0;
     if(w->fixture||!NB_DYNAMIC_PREFLIGHT)return 1;
     Pos mansions[64];int nm=0;
     int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
@@ -796,10 +799,18 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
             }
           }
         if(nm<mansion_goal)return 0;
-        applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        applySeedPhase1_ShiftHumidity(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        Pos hum_mansions[64];int hum_count=0;
         for(int m=0;m<nm;m++) {
-            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,mansions[m].x,mansions[m].z)) {
-                dark_mansions[nm_dark++]=mansions[m];
+            if(isMansionDarkForestHumidityPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,mansions[m].x,mansions[m].z)) {
+                hum_mansions[hum_count++]=mansions[m];
+            }
+        }
+        if(hum_count<mansion_goal)return 0;
+        applySeedPhase1_Temperature(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        for(int m=0;m<hum_count;m++) {
+            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,hum_mansions[m].x,hum_mansions[m].z)) {
+                dark_mansions[nm_dark++]=hum_mansions[m];
             }
         }
         if(nm_dark<mansion_goal)return 0;
@@ -833,6 +844,10 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
         } else ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
         if(ok<0)return -3;if(!ok)return 0;
     }
+    if(dark_mansions_out&&nm_dark_out) {
+        for(int m=0;m<nm_dark;m++)dark_mansions_out[m]=dark_mansions[m];
+        *nm_dark_out=nm_dark;
+    }
     return 1;
 }
 static int nb_dynamic_discovery(NBWorker *w,NBResult *r,const int *ow) {
@@ -847,8 +862,11 @@ static int nb_dynamic_discovery(NBWorker *w,NBResult *r,const int *ow) {
     r->stage_seconds[0]+=nb_time()-start;return code;
 }
 /* Necessary Y=63 witness only; positive seeds retain full inventories. */
-static int nb_audit_dark_possible(NBWorker *w,const int *b) {
+static int nb_audit_dark_possible(NBWorker *w,const int *b,const Pos *dark_mansions,int nm_dark) {
     if(w->fixture)return 1;
+    int goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    if(goal<=0)return 1;
+#if !NB_DYNAMIC_PREFLIGHT
     StructureConfig cfg;if(!getStructureConfig(Mansion,MC_26_50,&cfg))return -1;
     int size=cfg.regionSize*16,n=0;
     for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
@@ -857,9 +875,23 @@ static int nb_audit_dark_possible(NBWorker *w,const int *b) {
         if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
            inside(p,b[0],b[1],b[2],b[3])&&
            isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)&&
-           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
       }
     return 0;
+#else
+    int count=0;
+    for(int m=0;m<nm_dark;m++)
+        if(inside(dark_mansions[m],b[0],b[1],b[2],b[3]))count++;
+    if(count<goal)return 0;
+    applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+    int n=0;
+    for(int m=0;m<nm_dark;m++) {
+        Pos p=dark_mansions[m];
+        if(inside(p,b[0],b[1],b[2],b[3])&&
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
+    }
+    return 0;
+#endif
 }
 void applySeedPhase1(Generator *g, int dim, uint64_t seed);
 void applySeedPhase2(Generator *g, int dim, uint64_t seed);
@@ -889,10 +921,11 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     int scenic_cached=0,village_cached=0,bastion_cached=0;
     const int *weights=is_v3?nb_centroid_weights_v3:(w->p->dynamic_v2?nb_centroid_weights_v2:nb_centroid_weights);
     int feasible[4]={-2000,-2000,1999,1999},possible=1;
+    Pos dark_mansions[64];int nm_dark=0;
     /* Compact rejects carry a range decision, not an invented discovery row.
      * Defer Stronghold's expensive village path until raw floors can succeed. */
     if(w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
 #ifdef _OPENMP
@@ -908,30 +941,39 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         code=nb_dynamic_discovery(w,r,ow);if(code)goto done;
         if(!r->discovery.n)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_stronghold_macro++;
     }
     if(!w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_preflight++;
     }
     if(w->p->retention) {
         if(!w->fixture) {
-#ifdef _OPENMP
-            #pragma omp atomic
-#endif
-            g_diag_pass_mansion_dark++;
             if(!NB_DYNAMIC_PREFLIGHT ||
-               ((w->p->flexible_mask&1u)?w->p->floors[0]:w->p->goals[0])<=0)
+               ((w->p->flexible_mask&1u)?w->p->floors[0]:w->p->goals[0])<=0) {
                 applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
-            applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
+                applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
+            }
         } else {
             applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         }
     }
     /* One inexpensive macro Mansion preflight before all other structure inventories. */
     stage=nb_time();
-    possible=nb_audit_dark_possible(w,feasible);
+    possible=nb_audit_dark_possible(w,feasible,dark_mansions,nm_dark);
     if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+    #pragma omp atomic
+#endif
+    g_diag_pass_mansion_dark++;
     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
     r->stage_seconds[1]+=nb_time()-stage;
     if(nb_dynamic_count(&macro[0].viable,0,0,2000,0,macro[0].mansion_ids,w->p->dark_id)<w->p->goals[0])goto done;
@@ -987,7 +1029,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
 #endif
     g_diag_pass_all_structures_macro++;
     stage=nb_time();
-    if(w->p->cutoff_score > 0) {
+    if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
         int macro_counts[13];
         for(int k=0;k<13;k++) macro_counts[k] = macro[k].viable.n;
         int max_core = is_v3 ? nb_dynamic_v3_core_bonus(macro_counts, r->discovery.n)
@@ -1037,7 +1079,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     }
     nx=nb_dynamic_unique(ex,nx);nz=nb_dynamic_unique(ez,nz);
     size_t maxcells=(size_t)(nx-1)*(size_t)(nz-1);
-    if(maxcells>10000000){code=-3;goto done;}
+    if(maxcells>2000000){code=-3;goto done;}
     if(w->dyn_cells_cap<maxcells) {
         size_t need=maxcells+1024;
         void *new_cells=nb_alloc(w,need*sizeof(NBDynamicCell),0);
@@ -1075,7 +1117,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(fatal||deficit>w->p->max_misses)continue;
         int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
                               : nb_dynamic_v2_core_bonus(counts, strong);
-        if(w->p->cutoff_score > 0) {
+        if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
             int cell_max_potential = cell_core + (is_v3 ? 600 : 389);
             if(cell_max_potential < w->p->cutoff_score) continue;
         }

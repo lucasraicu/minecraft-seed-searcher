@@ -4,6 +4,30 @@
 #include <math.h>
 #include <stdio.h>
 
+#if (defined(__x86_64__) || defined(_M_X64)) && (defined(__GNUC__) || defined(__clang__))
+#include <immintrin.h>
+#define NOISE_USE_AVX2 1
+#define ATTR_AVX2 __attribute__((target("avx2,fma")))
+#else
+#define ATTR_AVX2
+#endif
+
+#if defined(NOISE_USE_AVX2)
+static const double cEdgeX[16] = { 1.0,-1.0, 1.0,-1.0, 1.0,-1.0, 1.0,-1.0,
+                                   0.0, 0.0, 0.0, 0.0, 1.0, 0.0,-1.0, 0.0 };
+static const double cEdgeY[16] = { 1.0, 1.0,-1.0,-1.0, 0.0, 0.0, 0.0, 0.0,
+                                   1.0,-1.0, 1.0,-1.0, 1.0,-1.0, 1.0,-1.0 };
+static const double cEdgeZ[16] = { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,-1.0,-1.0,
+                                   1.0, 1.0,-1.0,-1.0, 0.0, 1.0, 0.0,-1.0 };
+
+ATTR_AVX2
+static inline double grad_fma(uint8_t idx, double a, double b, double c)
+{
+    idx &= 0xf;
+    return fma(cEdgeX[idx], a, fma(cEdgeY[idx], b, cEdgeZ[idx] * c));
+}
+#endif
+
 // grad()
 #if 0
 static double indexedLerp(int idx, double d1, double d2, double d3)
@@ -106,6 +130,7 @@ void xPerlinInit(PerlinNoise *noise, Xoroshiro *xr)
     noise->t2 = d2*d2*d2 * (d2 * (d2*6.0-15.0) + 10.0);
 }
 
+ATTR_AVX2
 double samplePerlin(const PerlinNoise *noise, double d1, double d2, double d3,
         double yamp, double ymin)
 {
@@ -149,8 +174,6 @@ double samplePerlin(const PerlinNoise *noise, double d1, double d2, double d3,
 
     const uint8_t *idx = noise->d;
 
-#if 1
-    // try to promote optimizations that can utilize the {xh, xl} registers
     typedef struct vec2 { uint8_t a, b; } vec2;
 
     vec2 v1 = { idx[h1], idx[h1+1] };
@@ -169,6 +192,32 @@ double samplePerlin(const PerlinNoise *noise, double d1, double d2, double d3,
     vec2 v6 = { idx[v3.a], idx[v3.a+1] };
     vec2 v7 = { idx[v3.b], idx[v3.b+1] };
 
+#if defined(NOISE_USE_AVX2)
+    double l1 = grad_fma(v4.a, d1,   d2,   d3);
+    double l5 = grad_fma(v4.b, d1,   d2,   d3-1);
+    double l2 = grad_fma(v6.a, d1-1, d2,   d3);
+    double l6 = grad_fma(v6.b, d1-1, d2,   d3-1);
+    double l3 = grad_fma(v5.a, d1,   d2-1, d3);
+    double l7 = grad_fma(v5.b, d1,   d2-1, d3-1);
+    double l4 = grad_fma(v7.a, d1-1, d2-1, d3);
+    double l8 = grad_fma(v7.b, d1-1, d2-1, d3-1);
+
+    __m256d vA = _mm256_setr_pd(l1, l3, l5, l7);
+    __m256d vB = _mm256_setr_pd(l2, l4, l6, l8);
+    __m256d vt1 = _mm256_set1_pd(t1);
+    __m256d vStep1 = _mm256_fmadd_pd(vt1, _mm256_sub_pd(vB, vA), vA);
+
+    __m128d low = _mm256_castpd256_pd128(vStep1);
+    __m128d high = _mm256_extractf128_pd(vStep1, 1);
+    __m128d vFrom2 = _mm_unpacklo_pd(low, high);
+    __m128d vTo2 = _mm_unpackhi_pd(low, high);
+    __m128d vt2 = _mm_set1_pd(t2);
+    __m128d vStep2 = _mm_fmadd_pd(vt2, _mm_sub_pd(vTo2, vFrom2), vFrom2);
+
+    double r1 = _mm_cvtsd_f64(vStep2);
+    double r2 = _mm_cvtsd_f64(_mm_unpackhi_pd(vStep2, vStep2));
+    return fma(t3, r2 - r1, r1);
+#else
     double l1 = indexedLerp(v4.a, d1,   d2,   d3);
     double l5 = indexedLerp(v4.b, d1,   d2,   d3-1);
     double l2 = indexedLerp(v6.a, d1-1, d2,   d3);
@@ -177,24 +226,6 @@ double samplePerlin(const PerlinNoise *noise, double d1, double d2, double d3,
     double l7 = indexedLerp(v5.b, d1,   d2-1, d3-1);
     double l4 = indexedLerp(v7.a, d1-1, d2-1, d3);
     double l8 = indexedLerp(v7.b, d1-1, d2-1, d3-1);
-#else
-    uint8_t a1 = idx[h1]   + h2;
-    uint8_t b1 = idx[h1+1] + h2;
-
-    uint8_t a2 = idx[a1]   + h3;
-    uint8_t b2 = idx[b1]   + h3;
-    uint8_t a3 = idx[a1+1] + h3;
-    uint8_t b3 = idx[b1+1] + h3;
-
-    double l1 = indexedLerp(idx[a2],   d1,   d2,   d3);
-    double l2 = indexedLerp(idx[b2],   d1-1, d2,   d3);
-    double l3 = indexedLerp(idx[a3],   d1,   d2-1, d3);
-    double l4 = indexedLerp(idx[b3],   d1-1, d2-1, d3);
-    double l5 = indexedLerp(idx[a2+1], d1,   d2,   d3-1);
-    double l6 = indexedLerp(idx[b2+1], d1-1, d2,   d3-1);
-    double l7 = indexedLerp(idx[a3+1], d1,   d2-1, d3-1);
-    double l8 = indexedLerp(idx[b3+1], d1-1, d2-1, d3-1);
-#endif
 
     l1 = lerp(t1, l1, l2);
     l3 = lerp(t1, l3, l4);
@@ -205,6 +236,7 @@ double samplePerlin(const PerlinNoise *noise, double d1, double d2, double d3,
     l5 = lerp(t2, l5, l7);
 
     return lerp(t3, l1, l5);
+#endif
 }
 
 static
@@ -445,6 +477,7 @@ int xOctaveInit(OctaveNoise *noise, Xoroshiro *xr, PerlinNoise *octaves,
 }
 
 
+ATTR_AVX2
 double sampleOctaveAmp(const OctaveNoise *noise, double x, double y, double z,
         double yamp, double ymin, int ydefault)
 {
@@ -458,11 +491,16 @@ double sampleOctaveAmp(const OctaveNoise *noise, double x, double y, double z,
         double ay = ydefault ? -p->b : maintainPrecision(y * lf);
         double az = maintainPrecision(z * lf);
         double pv = samplePerlin(p, ax, ay, az, yamp * lf, ymin * lf);
+#if defined(NOISE_USE_AVX2)
+        v = fma(p->amplitude, pv, v);
+#else
         v += p->amplitude * pv;
+#endif
     }
     return v;
 }
 
+ATTR_AVX2
 double sampleOctave(const OctaveNoise *noise, double x, double y, double z)
 {
     double v = 0;
@@ -475,7 +513,11 @@ double sampleOctave(const OctaveNoise *noise, double x, double y, double z)
         double ay = maintainPrecision(y * lf);
         double az = maintainPrecision(z * lf);
         double pv = samplePerlin(p, ax, ay, az, 0, 0);
+#if defined(NOISE_USE_AVX2)
+        v = fma(p->amplitude, pv, v);
+#else
         v += p->amplitude * pv;
+#endif
     }
     return v;
 }
@@ -558,6 +600,7 @@ int xDoublePerlinInit(DoublePerlinNoise *noise, Xoroshiro *xr,
     return n;
 }
 
+ATTR_AVX2
 double sampleDoublePerlin(const DoublePerlinNoise *noise,
         double x, double y, double z)
 {
@@ -568,5 +611,15 @@ double sampleDoublePerlin(const DoublePerlinNoise *noise,
     v += sampleOctave(&noise->octB, x*f, y*f, z*f);
 
     return v * noise->amplitude;
+}
+
+ATTR_AVX2
+void sampleDoublePerlin_4x(const DoublePerlinNoise *noise,
+        const double x[4], const double y[4], const double z[4], double out[4])
+{
+    out[0] = sampleDoublePerlin(noise, x[0], y[0], z[0]);
+    out[1] = sampleDoublePerlin(noise, x[1], y[1], z[1]);
+    out[2] = sampleDoublePerlin(noise, x[2], y[2], z[2]);
+    out[3] = sampleDoublePerlin(noise, x[3], y[3], z[3]);
 }
 

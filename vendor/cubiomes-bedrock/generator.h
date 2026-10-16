@@ -62,6 +62,10 @@ void setupGenerator(Generator *g, int mc, uint32_t flags);
  * dim=+1:  End
  */
 void applySeed(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_ShiftHumidity(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_Temperature(Generator *g, int dim, uint64_t seed);
+void applySeedPhase2(Generator *g, int dim, uint64_t seed);
 
 /**
  * Calculates the buffer size (number of ints) required to generate a cuboidal

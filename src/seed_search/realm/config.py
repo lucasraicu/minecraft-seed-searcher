@@ -115,7 +115,7 @@ def validate_config(cfg):
     if cfg['discovery'] != DEFAULT['discovery']:
         raise ValueError('Discovery must use exactly half-open [-2000,2000) in each dimension')
     s=cfg['search']
-    if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest'):
+    if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest','strided'):
         raise ValueError('Realm scan mode must explicitly label predictions and supported seed sequence')
     if s.get('sequence')=='manifest':
         from ..seeds import parse_seed
@@ -123,6 +123,12 @@ def validate_config(cfg):
         if not isinstance(values,list) or not 1<=len(values)<=10000 or any(not isinstance(v,str) or str(parse_seed(v))!=v for v in values):
             raise ValueError('Manifest requires 1–10000 canonical signed decimal seeds')
         if len(set(values))!=len(values):raise ValueError('Manifest seeds must be distinct')
+    if s.get('sequence')=='strided':
+        from ..seeds import parse_seed
+        low32=s.get('low32',0)
+        if isinstance(low32,str):low32=parse_seed(low32)
+        elif isinstance(low32,bool) or not isinstance(low32,int):raise ValueError('low32 must be an integer')
+        if not -(1<<63)<=low32<(1<<63):raise ValueError('low32 outside 64-bit range')
     if s.get('inventory_mode','complete') not in ('complete','eligibility'):raise ValueError('Invalid inventory mode')
     if cfg['biomes'].get('lattice','border') not in ('border','world'):raise ValueError('Invalid biome lattice')
     _integer(cfg['biomes'].get('gate_batch_size',16),1,256,'biome gate batch size')

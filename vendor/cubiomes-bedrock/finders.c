@@ -1140,7 +1140,6 @@ Pos getSpawn(const Generator *g)
             r.z = 0;
             int err = genBiomes(g, biomeIds, r);
             if (err != 0) {
-                free(biomeIds);
                 break;
             }
 

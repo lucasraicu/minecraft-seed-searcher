@@ -739,7 +739,7 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
     if(nether_half<=0)nether_half=416;
     int max_c = 2000 - ow_half;
     int min_c = -max_c;
-    int xs[1030],zs[1030],nx=2,nz=2;
+    int xs[2048],zs[2048],nx=2,nz=2;
     xs[0]=zs[0]=min_c;xs[1]=zs[1]=max_c+1;
     for(int k=0;k<2;k++) {
         int n=k?nb:nf;const int *points=k?bast:fort;
@@ -759,16 +759,21 @@ static int nb_dynamic_raw_bounds_core(const int *fort,int nf,const int *bast,int
         if(nb_dynamic_count(&fp,x,z,nether_half,1,NULL,0)<fort_goal ||
            nb_dynamic_count(&bp,x,z,nether_half,1,NULL,0)<bast_goal)continue;
         int hx=floordiv(xs[ix+1]-1,8)*8,hz=floordiv(zs[iz+1]-1,8)*8;
-        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
-        if(mansion_goal>0 && mansions && nm>0 && !mansion_overlap) {
+        if(mansion_goal>0 && mansions && nm>0) {
             for(int m=0;m<nm;m++) {
-                if(mansions[m].x+ow_half>=x && mansions[m].x-(ow_half-1)<=hx &&
-                   mansions[m].z+ow_half>=z && mansions[m].z-(ow_half-1)<=hz) {
-                    mansion_overlap=1;
-                    break;
-                }
+                int lx=mansions[m].x-(ow_half-1),lz=mansions[m].z-(ow_half-1);
+                int ux=mansions[m].x+ow_half,uz=mansions[m].z+ow_half;
+                if(lx<x)lx=x;if(lz<z)lz=z;if(ux>hx)ux=hx;if(uz>hz)uz=hz;
+                lx=-floordiv(-lx,8)*8;lz=-floordiv(-lz,8)*8;
+                ux=floordiv(ux,8)*8;uz=floordiv(uz,8)*8;
+                if(lx>ux||lz>uz)continue;
+                mansion_overlap=1;
+                if(lx<xmin)xmin=lx;if(lz<zmin)zmin=lz;
+                if(ux>xmax)xmax=ux;if(uz>zmax)zmax=uz;
             }
+            continue;
         }
+        if(x<xmin)xmin=x;if(z<zmin)zmin=z;if(hx>xmax)xmax=hx;if(hz>zmax)zmax=hz;
     }
     if(overlap_out)*overlap_out=mansion_overlap;
     if(xmin>xmax||zmin>zmax)return 0;
@@ -791,19 +796,14 @@ static int nb_raw_atleast(NBWorker *w,int type,const int *b,int goal){
       }
     return 0;
 }
-static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
+void applySeedPhase1_ShiftHumidity(Generator *g, int dim, uint64_t seed);
+void applySeedPhase1_Temperature(Generator *g, int dim, uint64_t seed);
+static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible,Pos *dark_mansions_out,int *nm_dark_out) {
+    if(dark_mansions_out&&nm_dark_out)*nm_dark_out=0;
     if(w->fixture||!NB_DYNAMIC_PREFLIGHT)return 1;
-    int fort[512],bast[512],pairs[768],nf=0,nb=0;
-    int max_c = 2000 - w->p->overworld_half;
-    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
-    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
-    if(n<0)return n;
-    for(int i=0;i<n;i++) {
-        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
-        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
-    }
     Pos mansions[64];int nm=0;
     int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    Pos dark_mansions[64];int nm_dark=0;
     if(mansion_goal>0) {
         StructureConfig mcfg;
         if(!getStructureConfig(Mansion,MC_26_50,&mcfg))return -1;
@@ -816,10 +816,34 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
             }
           }
         if(nm<mansion_goal)return 0;
+        applySeedPhase1_ShiftHumidity(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        Pos hum_mansions[64];int hum_count=0;
+        for(int m=0;m<nm;m++) {
+            if(isMansionDarkForestHumidityPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,mansions[m].x,mansions[m].z)) {
+                hum_mansions[hum_count++]=mansions[m];
+            }
+        }
+        if(hum_count<mansion_goal)return 0;
+        applySeedPhase1_Temperature(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+        for(int m=0;m<hum_count;m++) {
+            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,hum_mansions[m].x,hum_mansions[m].z)) {
+                dark_mansions[nm_dark++]=hum_mansions[m];
+            }
+        }
+        if(nm_dark<mansion_goal)return 0;
+    }
+    int fort[512],bast[512],pairs[768],nf=0,nb=0;
+    int max_c = 2000 - w->p->overworld_half;
+    int nw_bound = floordiv(max_c, 8) + w->p->nether_half;
+    int n=ss_nether_raw_pair(w->ctx,-nw_bound,-nw_bound,nw_bound-1,nw_bound-1,pairs,256);
+    if(n<0)return n;
+    for(int i=0;i<n;i++) {
+        int *points=pairs[3*i+2]?fort:bast;int at=pairs[3*i+2]?nf++:nb++;
+        points[2*at]=pairs[3*i];points[2*at+1]=pairs[3*i+1];
     }
     int mansion_overlap=0;
     int possible=nb_dynamic_raw_bounds_core(fort,nf,bast,nb,w->p->nether_goal,w->p->bastion_goal,feasible,
-                                           mansion_goal>0?mansions:NULL,nm,mansion_goal,&mansion_overlap,
+                                           mansion_goal>0?dark_mansions:NULL,nm_dark,mansion_goal,&mansion_overlap,
                                            w->p->overworld_half,w->p->nether_half);
     if(possible<=0)return possible;
     if(mansion_goal>0 && !mansion_overlap)return 0;
@@ -830,14 +854,16 @@ static int nb_dynamic_raw_preflight(NBWorker *w,int *feasible) {
         if(goal<=0)continue;
         int ok;
         if(slot==0) {
-            /* Reuse the complete macro-envelope enumeration above. These
-             * bounds are a subset, so another placement RNG scan is redundant. */
             int count=0;
-            for(int m=0;m<nm;m++)
-                if(inside(mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
+            for(int m=0;m<nm_dark;m++)
+                if(inside(dark_mansions[m],feasible[0],feasible[1],feasible[2],feasible[3]))count++;
             ok=count>=goal;
         } else ok=nb_raw_atleast(w,w->p->types[slot],feasible,goal);
         if(ok<0)return -3;if(!ok)return 0;
+    }
+    if(dark_mansions_out&&nm_dark_out) {
+        for(int m=0;m<nm_dark;m++)dark_mansions_out[m]=dark_mansions[m];
+        *nm_dark_out=nm_dark;
     }
     return 1;
 }
@@ -853,8 +879,11 @@ static int nb_dynamic_discovery(NBWorker *w,NBResult *r,const int *ow) {
     r->stage_seconds[0]+=nb_time()-start;return code;
 }
 /* Necessary Y=63 witness only; positive seeds retain full inventories. */
-static int nb_audit_dark_possible(NBWorker *w,const int *b) {
+static int nb_audit_dark_possible(NBWorker *w,const int *b,const Pos *dark_mansions,int nm_dark) {
     if(w->fixture)return 1;
+    int goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
+    if(goal<=0)return 1;
+#if !NB_DYNAMIC_PREFLIGHT
     StructureConfig cfg;if(!getStructureConfig(Mansion,MC_26_50,&cfg))return -1;
     int size=cfg.regionSize*16,n=0;
     for(int rx=floordiv(b[0],size);rx<=floordiv(b[2],size);rx++)
@@ -863,9 +892,23 @@ static int nb_audit_dark_possible(NBWorker *w,const int *b) {
         if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&
            inside(p,b[0],b[1],b[2],b[3])&&
            isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)&&
-           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=w->p->goals[0])return 1;
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
       }
     return 0;
+#else
+    int count=0;
+    for(int m=0;m<nm_dark;m++)
+        if(inside(dark_mansions[m],b[0],b[1],b[2],b[3]))count++;
+    if(count<goal)return 0;
+    applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,w->ctx->seed);
+    int n=0;
+    for(int m=0;m<nm_dark;m++) {
+        Pos p=dark_mansions[m];
+        if(inside(p,b[0],b[1],b[2],b[3])&&
+           nb_point(w,p.x,63,p.z)==w->p->dark_id&&++n>=goal)return 1;
+    }
+    return 0;
+#endif
 }
 void applySeedPhase1(Generator *g, int dim, uint64_t seed);
 void applySeedPhase2(Generator *g, int dim, uint64_t seed);
@@ -895,10 +938,11 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     int scenic_cached=0,village_cached=0,bastion_cached=0;
     const int *weights=is_v3?nb_centroid_weights_v3:(w->p->dynamic_v2?nb_centroid_weights_v2:nb_centroid_weights);
     int feasible[4]={-2000,-2000,1999,1999},possible=1;
+    Pos dark_mansions[64];int nm_dark=0;
     /* Compact rejects carry a range decision, not an invented discovery row.
      * Defer Stronghold's expensive village path until raw floors can succeed. */
     if(w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
 #ifdef _OPENMP
@@ -914,47 +958,39 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         code=nb_dynamic_discovery(w,r,ow);if(code)goto done;
         if(!r->discovery.n)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_stronghold_macro++;
     }
     if(!w->p->retention) {
-        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible);
+        stage=nb_time();possible=nb_dynamic_raw_preflight(w,feasible,dark_mansions,&nm_dark);
         r->stage_seconds[11]+=nb_time()-stage;
         if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+        #pragma omp atomic
+#endif
+        g_diag_pass_preflight++;
     }
     if(w->p->retention) {
         if(!w->fixture) {
-            applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
-            int mansion_goal=(w->p->flexible_mask&(1u<<0))?w->p->floors[0]:w->p->goals[0];
-            if(mansion_goal>0) {
-                StructureConfig mcfg;
-                if(!getStructureConfig(Mansion,MC_26_50,&mcfg)){code=-1;goto done;}
-                int msize=mcfg.regionSize*16;
-                int dark_ok=0;
-                for(int rx=floordiv(feasible[0],msize);rx<=floordiv(feasible[2],msize);rx++) {
-                    for(int rz=floordiv(feasible[1],msize);rz<=floordiv(feasible[3],msize);rz++) {
-                        Pos p;
-                        if(getStructurePos(Mansion,MC_26_50,w->ctx->seed,rx,rz,&p)&&inside(p,feasible[0],feasible[1],feasible[2],feasible[3])) {
-                            if(isMansionDarkForestPossible(&w->ctx->overworld.bn,w->ctx->overworld.sha,p.x,p.z)) {
-                                dark_ok=1;break;
-                            }
-                        }
-                    }
-                    if(dark_ok)break;
-                }
-                if(!dark_ok)goto done;
-#ifdef _OPENMP
-                #pragma omp atomic
-#endif
-                g_diag_pass_mansion_dark++;
+            if(!NB_DYNAMIC_PREFLIGHT ||
+               ((w->p->flexible_mask&1u)?w->p->floors[0]:w->p->goals[0])<=0) {
+                applySeedPhase1(&w->ctx->overworld,DIM_OVERWORLD,seed);
+                applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
             }
-            applySeedPhase2(&w->ctx->overworld,DIM_OVERWORLD,seed);
         } else {
             applySeed(&w->ctx->overworld,DIM_OVERWORLD,seed);
         }
     }
     /* One inexpensive macro Mansion preflight before all other structure inventories. */
     stage=nb_time();
-    possible=nb_audit_dark_possible(w,feasible);
+    possible=nb_audit_dark_possible(w,feasible,dark_mansions,nm_dark);
     if(possible<0){code=possible;goto done;}if(!possible)goto done;
+#ifdef _OPENMP
+    #pragma omp atomic
+#endif
+    g_diag_pass_mansion_dark++;
     code=nb_pair(w,0,feasible,&macro[0]);if(code)goto done;
     r->stage_seconds[1]+=nb_time()-stage;
     if(nb_dynamic_count(&macro[0].viable,0,0,2000,0,macro[0].mansion_ids,w->p->dark_id)<w->p->goals[0])goto done;
@@ -1010,7 +1046,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
 #endif
     g_diag_pass_all_structures_macro++;
     stage=nb_time();
-    if(w->p->cutoff_score > 0) {
+    if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
         int macro_counts[13];
         for(int k=0;k<13;k++) macro_counts[k] = macro[k].viable.n;
         int max_core = is_v3 ? nb_dynamic_v3_core_bonus(macro_counts, r->discovery.n)
@@ -1060,7 +1096,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     }
     nx=nb_dynamic_unique(ex,nx);nz=nb_dynamic_unique(ez,nz);
     size_t maxcells=(size_t)(nx-1)*(size_t)(nz-1);
-    if(maxcells>10000000){code=-3;goto done;}
+    if(maxcells>2000000){code=-3;goto done;}
     if(w->dyn_cells_cap<maxcells) {
         size_t need=maxcells+1024;
         void *new_cells=nb_alloc(w,need*sizeof(NBDynamicCell),0);
@@ -1098,7 +1134,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(fatal||deficit>w->p->max_misses)continue;
         int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
                               : nb_dynamic_v2_core_bonus(counts, strong);
-        if(w->p->cutoff_score > 0) {
+        if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
             int cell_max_potential = cell_core + (is_v3 ? 600 : 389);
             if(cell_max_potential < w->p->cutoff_score) continue;
         }
@@ -1814,6 +1850,7 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
     if(p->dynamic) {
         if(p->dynamic_v2 && (p->required_biome_mask & ~8191u))return NULL;
         int is_v3 = (p->overworld_half == 1024);
+        if(is_v3 && !p->dynamic_v2) return NULL;
         const int floors_v2[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
         const int floors_v3[13]={1,1,1,1,2,6,8,8,4,10,1,2,1};
         const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
@@ -2685,13 +2722,13 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             inventories['mansion']=mansion
             if mansion['predicted_viable']:
                 inventories['outpost']=timed('structure_outpost',lambda:structure_observation(backend,'outpost',ow_macro,combined))
-            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost']:
+            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost']:
                 pairs=timed('final_nether_pair',lambda:backend.nether_structure_pairs(native_bounds(nw_macro))) if combined and hasattr(backend,'nether_structure_pairs') else None
                 for name in NETHER_NAMES:
                     inventories[name]=timed('final_'+name,lambda name=name:structure_observation(backend,name,nw_macro,combined,pair=pairs[name] if pairs else None))
             if (strongholds['predicted_viable'] and mansion['predicted_viable'] and
-                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost'] and
-                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['fortress'] and
+                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost'] and
+                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['fortress'] and
                     len(inventories.get('bastion',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['bastion']):
                 for name in OVERWORLD_NAMES:
                     if name not in inventories:
@@ -2887,10 +2924,10 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     anchor['hub_bonus']=components.get('hub_bonus', 0)
                     if is_v3:
                         anchor['nether_core_bonus']=components.get('nether_core_bonus', 0)
-                    anchor['scenic_bonus']=scenic_pts
+                    anchor['scenic_bonus']=int(scenic_pts_eff if is_v3 else scenic_pts)
                     anchor['scenic_witness']=list(scenic_wit) if scenic_wit else None
                     anchor['river_witness']=list(river_wit) if river_wit else None
-                    anchor['village_spread_bonus']=spread_pts
+                    anchor['village_spread_bonus']=int(spread_pts_eff if is_v3 else spread_pts)
                     anchor['village_triple']=[list(p) for p in v_triple] if v_triple else None
                     anchor['treasure_bastion']=1 if tb_points else 0
                     anchor['bastion_variants']=[list(item) for item in tb_list] if tb_list else []

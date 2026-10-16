@@ -22,6 +22,7 @@ struct MTState_
   uint32_t MT[SIZE];
   size_t index;
   size_t index_fast; /* lazy init progress */
+  int short_unfilled; /* 1 if MT[5..PERIOD-1] was skipped during mt_seed_short */
 };
 
 typedef struct MTState_ MTState;
@@ -45,10 +46,27 @@ __thread int mt_initialized;
 #define MIXBITS(u,v) (M32(u) | L31(v))
 #define TWIST(u,v) ((MIXBITS(u,v) >> 1) ^ ((v & 1) ? MAGIC : 0))
 
+static inline void fill_missing(void)
+{
+  if (state.short_unfilled)
+  {
+    uint32_t prev = state.MT[4];
+    for (uint_fast32_t i = 5; i <= PERIOD; ++i)
+    {
+      prev = 0x6c078965u * (prev ^ (prev >> 30)) + i;
+      state.MT[i] = prev;
+    }
+    state.short_unfilled = 0;
+  }
+}
+
 static inline uint32_t generate()
 {
   size_t idx = state.index;
   if (idx == SIZE) idx = 0;
+
+  if (idx >= 4 && state.short_unfilled)
+    fill_missing();
 
   if (idx >= DIFF)
   {
@@ -85,6 +103,7 @@ static inline uint32_t temper(uint32_t y)
 
 void mt_seed(uint32_t value)
 {
+  state.short_unfilled = 0;
   state.MT[0] = value;
   
   for (uint_fast32_t i = 1; i <= PERIOD; ++i)
@@ -94,10 +113,30 @@ void mt_seed(uint32_t value)
   state.index = SIZE;
 }
 
+void mt_seed_short(uint32_t value)
+{
+  uint32_t buf[PERIOD + 1];
+  buf[0] = value;
+  for (uint_fast32_t i = 1; i <= PERIOD; ++i)
+    buf[i] = 0x6c078965u * (buf[i - 1] ^ (buf[i - 1] >> 30)) + i;
+
+  state.MT[0] = buf[0];
+  state.MT[1] = buf[1];
+  state.MT[2] = buf[2];
+  state.MT[3] = buf[3];
+  state.MT[4] = buf[4];
+  state.MT[397] = buf[397];
+
+  state.index_fast = PERIOD + 1;
+  state.index = SIZE;
+  state.short_unfilled = 1;
+}
+
 uint32_t mt_next()
 {
   if (state.index > SIZE) {
     /* called without mt_seed(): full init with default seed */
+    state.short_unfilled = 0;
     for (uint_fast32_t i = 1; i < SIZE; ++i)
       state.MT[i] = 0x6c078965 * (state.MT[i - 1] ^ (state.MT[i - 1] >> 30)) + i;
     state.index_fast = SIZE;
@@ -109,6 +148,7 @@ uint32_t mt_next()
 
 void mt_get_state(MTRngState *out)
 {
+  fill_missing();
   size_t i;
   for (i = 0; i < SIZE; i++)
     out->MT[i] = state.MT[i];
@@ -127,6 +167,7 @@ void mt_set_state(const MTRngState *in)
     state.MT[i] = in->MT[i];
   state.index = in->index;
   state.index_fast = in->index_fast;
+  state.short_unfilled = 0;
   mt_ws = in->ws;
   mt_a = in->a;
   mt_b = in->b;

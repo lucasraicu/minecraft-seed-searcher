@@ -68,6 +68,10 @@ def _seed(index, search):
         return parse_seed(values[index])
     if search.get("sequence", "permutation") == "sequential":
         return index if index < 1 << 63 else index - LIMIT
+    if search.get("sequence") == "strided":
+        from ..seeds import seed_strided
+        low32 = search.get("low32", 0)
+        return seed_strided(index, low32)
     key = search.get("run_key", "0")
     # Keep numeric historical run keys compatible; textual keys have a stable hash.
     try:
@@ -197,7 +201,7 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
     maximum = search.get("max_workers", 36)
     if isinstance(workers, bool) or not isinstance(workers, int) or not 1 <= workers <= min(maximum, 36):
         raise ValueError("Realm workers must be between 1 and max_workers (at most 36)")
-    if search.get("sequence", "permutation") not in {"sequential", "permutation", "manifest"}:
+    if search.get("sequence", "permutation") not in {"sequential", "permutation", "manifest", "strided"}:
         raise ValueError("Unknown full64 seed sequence")
     if search.get('sequence') == 'manifest':
         from ..seeds import parse_seed

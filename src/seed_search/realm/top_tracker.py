@@ -73,8 +73,11 @@ class Top50Tracker:
         self._counter: int = 0
 
     def _extract_seed(self, record: Dict[str, Any]) -> str:
-        anchor = record['anchors'][0] if (isinstance(record.get('anchors'), list) and record['anchors']) else record
-        return str(record.get('seed') or anchor.get('seed') or '')
+        s = record.get('seed')
+        if s is None:
+            anchor = record['anchors'][0] if (isinstance(record.get('anchors'), list) and record['anchors']) else record
+            s = anchor.get('seed')
+        return str(s) if s is not None else ''
 
     def _extract_key(self, record: Dict[str, Any]) -> Tuple[int, int, int, int, int, int, int, RevStr]:
         """Extract arithmetic ranking tuple matching ORDER_V2.
@@ -113,6 +116,8 @@ class Top50Tracker:
             or anchor.get('baseline_score_observed')
             or record.get('baseline_score')
             or anchor.get('baseline_score')
+            or record.get('smart_score')
+            or anchor.get('smart_score')
             or (record.get('ranking', {}).get('score') if isinstance(record.get('ranking'), dict) else None)
             or (anchor.get('ranking', {}).get('score') if isinstance(anchor.get('ranking'), dict) else None)
             or 0
@@ -158,7 +163,7 @@ class Top50Tracker:
         key = self._extract_key(record_copy)
         seed = self._extract_seed(record_copy)
 
-        if seed and seed in self._seed_map:
+        if seed != '' and seed in self._seed_map:
             existing_entry = self._seed_map[seed]
             existing_key = existing_entry[0]
             if key <= existing_key:
@@ -180,7 +185,7 @@ class Top50Tracker:
 
         if len(self._heap) < self.capacity:
             heapq.heappush(self._heap, entry)
-            if seed:
+            if seed != '':
                 self._seed_map[seed] = entry
             return True
 
@@ -188,9 +193,9 @@ class Top50Tracker:
         if key > self._heap[0][0]:
             popped = heapq.heappushpop(self._heap, entry)
             popped_seed = self._extract_seed(popped[2])
-            if popped_seed and popped_seed in self._seed_map:
+            if popped_seed != '' and popped_seed in self._seed_map:
                 del self._seed_map[popped_seed]
-            if seed:
+            if seed != '':
                 self._seed_map[seed] = entry
             return True
 
@@ -259,7 +264,10 @@ class Top50Tracker:
                 rows = []
                 for rank, rec in enumerate(records, start=1):
                     anchor = rec['anchors'][0] if (isinstance(rec.get('anchors'), list) and rec['anchors']) else rec
-                    raw_seed = str(rec.get('seed') or anchor.get('seed') or '')
+                    s = rec.get('seed')
+                    if s is None:
+                        s = anchor.get('seed')
+                    raw_seed = str(s) if s is not None else ''
                     score = int(
                         anchor.get('baseline_score_observed')
                         or anchor.get('baseline_score')

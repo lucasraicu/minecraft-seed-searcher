@@ -725,13 +725,13 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             inventories['mansion']=mansion
             if mansion['predicted_viable']:
                 inventories['outpost']=timed('structure_outpost',lambda:structure_observation(backend,'outpost',ow_macro,combined))
-            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost']:
+            if mansion['predicted_viable'] and len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost']:
                 pairs=timed('final_nether_pair',lambda:backend.nether_structure_pairs(native_bounds(nw_macro))) if combined and hasattr(backend,'nether_structure_pairs') else None
                 for name in NETHER_NAMES:
                     inventories[name]=timed('final_'+name,lambda name=name:structure_observation(backend,name,nw_macro,combined,pair=pairs[name] if pairs else None))
             if (strongholds['predicted_viable'] and mansion['predicted_viable'] and
-                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['outpost'] and
-                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['hard_floors']['fortress'] and
+                    len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost'] and
+                    len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['fortress'] and
                     len(inventories.get('bastion',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['bastion']):
                 for name in OVERWORLD_NAMES:
                     if name not in inventories:
@@ -927,10 +927,10 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     anchor['hub_bonus']=components.get('hub_bonus', 0)
                     if is_v3:
                         anchor['nether_core_bonus']=components.get('nether_core_bonus', 0)
-                    anchor['scenic_bonus']=scenic_pts
+                    anchor['scenic_bonus']=int(scenic_pts_eff if is_v3 else scenic_pts)
                     anchor['scenic_witness']=list(scenic_wit) if scenic_wit else None
                     anchor['river_witness']=list(river_wit) if river_wit else None
-                    anchor['village_spread_bonus']=spread_pts
+                    anchor['village_spread_bonus']=int(spread_pts_eff if is_v3 else spread_pts)
                     anchor['village_triple']=[list(p) for p in v_triple] if v_triple else None
                     anchor['treasure_bastion']=1 if tb_points else 0
                     anchor['bastion_variants']=[list(item) for item in tb_list] if tb_list else []

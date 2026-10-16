@@ -17,7 +17,7 @@ A **"Master Seed"** is an extraordinary seed where all essential progression, ra
 * **Web UI & Server (`web-ui/`, `src/seed_search/web/`):** React 18 + TypeScript + Vite frontend with Tailwind CSS and Lucide icons; Python `http.server` backend exposing REST endpoints for live sweep orchestration, telemetry, candidate inspection, and Bedrock Dedicated Server (BDS) world generation verification.
 
 ### Active Revision Contract: `dynamic-envelope-2048-v3`
-* **Search Center:** Dynamically placed center $(C_x, C_z)$ satisfying $|C_x| \le 512$, $|C_z| \le 512$.
+* **Search Center:** Dynamically placed center $(C_x, C_z)$ satisfying $|C_x| \le 976$, $|C_z| \le 976$ (in v2 it was $\le 336$ for $1664 \times 1664$).
 * **Overworld Envelope:** Exact $2048 \times 2048$ box $[C_x - 1024, C_x + 1024) \times [C_z - 1024, C_z + 1024)$.
 * **Nether Envelope:** Exact $1024 \times 1024$ box in Nether space $[C_{nx} - 512, C_{nx} + 512) \times [C_{nz} - 512, C_{nz} + 512)$ where $C_n = \lfloor C / 8 \rfloor$, sampled on a 64-block lattice ($16 \times 16 = 256$ interior points).
 * **Miss Budget:** Strict zero miss tolerance ($B = 0$). All 14 structure categories enforce mandatory non-negotiable hard floors (`flexible_mask = 0`).
@@ -101,20 +101,20 @@ All 14 required structure categories must meet their **Hard Floor**. Counts stri
 
 | Index | Structure Category | Hard Floor ($k$) | Surplus Ladder Steps | Max Surplus Pts | Dimension |
 | :---: | :--- | :---: | :--- | :---: | :--- |
-| `0` | **Woodland Mansion** | $\ge 1$ | 2nd (+40), 3rd (+25) | **65 pts** | Overworld |
-| `1` | **Jungle Temple** | $\ge 1$ | 2nd (+20), 3rd (+20), 4th (+10) | **50 pts** | Overworld |
-| `2` | **Desert Pyramid** | $\ge 1$ | 2nd (+20), 3rd (+20), 4th (+10) | **50 pts** | Overworld |
-| `3` | **Ocean Monument** | $\ge 1$ | 2nd (+25), 3rd (+25), 4th (+10) | **60 pts** | Overworld |
-| `4` | **Ancient City** | $\ge 2$ | 3rd (+20), 4th (+20), 5th (+10) | **50 pts** | Overworld |
-| `5` | **Village** | $\ge 6$ | 7th–10th (+15 each), 11th–12th (+10), 13th+ (+5) | **85 pts** | Overworld |
-| `6` | **Trial Chamber** | $\ge 8$ | 9th–12th (+10 each), 13th–14th (+5) | **50 pts** | Overworld |
-| `7` | **Ruined Portal** | $\ge 8$ | 9th–10th (+10 each) | **20 pts** | Overworld |
-| `8` | **Shipwreck** | $\ge 4$ | 5th–7th (+10 each) | **30 pts** | Overworld |
-| `9` | **Mineshaft** | $\ge 10$| 11th–12th (+10 each) | **20 pts** | Overworld |
-| `10`| **Nether Fortress** | $\ge 1$ | 2nd (+30), 3rd (+20), 4th (+10) | **60 pts** | Nether |
-| `11`| **Bastion Remnant** | $\ge 2$ | 3rd (+25), 4th (+15), 5th (+10) | **50 pts** | Nether |
+| `0` | **Woodland Mansion** | $\ge 1$ | 2nd (+55), 3rd+ (+30) | **85 pts** | Overworld |
+| `1` | **Jungle Temple** | $\ge 1$ | 2nd (+25), 3rd (+20), 4th+ (+15) | **60 pts** | Overworld |
+| `2` | **Desert Pyramid** | $\ge 1$ | 2nd (+25), 3rd (+20), 4th+ (+15) | **60 pts** | Overworld |
+| `3` | **Ocean Monument** | $\ge 1$ | 2nd (+25), 3rd (+15), 4th+ (+10) | **50 pts** | Overworld |
+| `4` | **Ancient City** | $\ge 2$ | 3rd (+20), 4th (+20), 5th (+15), 6th+ (+10) | **65 pts** | Overworld |
+| `5` | **Village** | $\ge 6$ | 7th..11th+ (+10 each) | **50 pts** | Overworld |
+| `6` | **Trial Chamber** | $\ge 8$ | 9th (+10), 10th (+8), 11th (+7), 12th+ (+5) | **30 pts** | Overworld |
+| `7` | **Ruined Portal** | $\ge 8$ | 9th..12th+ (+5 each) | **20 pts** | Overworld |
+| `8` | **Shipwreck** | $\ge 4$ | 5th..8th+ (+5 each) | **20 pts** | Overworld |
+| `9` | **Mineshaft** | $\ge 10$| 11th..20th+ (+2 each) | **20 pts** | Overworld |
+| `10`| **Nether Fortress** | $\ge 1$ | 2nd (+20), 3rd (+15), 4th+ (+15) | **50 pts** | Nether |
+| `11`| **Bastion Remnant** | $\ge 2$ | 3rd (+20), 4th (+15), 5th+ (+15) | **50 pts** | Nether |
 | `12`| **Pillager Outpost** | $\ge 1$ | 2nd (+15), 3rd (+15), 4th (+10) | **40 pts** | Overworld |
-| `13`| **Stronghold** | $\ge 1$ | 2nd (+20) | **20 pts** | Overworld |
+| `13`| **Stronghold** | $\ge 1$ | 2nd (+20), 3rd+ (+30) | **50 pts** | Overworld |
 | **SUM**| | | | **650 pts** | |
 
 *Note on Outpost Floor:* Audit fix F9 explicitly calibrated Outpost floor to $1$ (ladder: $c=1 \to 0$, $c=2 \to +15$, $c=3 \to +30$, $c \ge 4 \to +40$).
@@ -136,8 +136,8 @@ $$\text{Max Luxury Biomes} = 240 + 25 = \mathbf{265\text{ pts}}$$
    * Other core structures $\le 512\text{m}$ of center: +5 pts each (capped at +30 pts).
 2. **Nether Portal Core Bonus (20 pts):**
    * Fortress $\le 256\text{m}$ in Nether (+10 pts) AND Bastion $\le 256\text{m}$ in Nether (+10 pts).
-3. **Scenic Mountain-Ocean Pair (25 pts):**
-   * Qualifying high peak (Jagged/Frozen/Stony Peaks) within 384m of a Deep Ocean / Ocean biome.
+3. **Scenic River Pairing (25 pts):**
+   * Qualifying scenic surface biome (Plains, Sunflower Plains, Meadow, Cherry Grove) within 192m of evaluation center paired with a qualifying River within 128m of it.
 4. **Village Radial Spread (25 pts):**
    * Villages distributed across at least 3 distinct directional quadrants relative to center.
 5. **Treasure Bastion Variant (20 pts):**
@@ -504,7 +504,7 @@ When auditing this repository, please evaluate the following core architectural 
    * Check dynamic memory growth, realloc patterns, alignment, and thread safety across OpenMP threads.
 3. **Centroid Snapping & Coordinate Grid Geometry:**
    * Review `nb_dynamic_centroid` and `nb_dynamic_snap` (8m and 16m chunk boundary snapping).
-   * Confirm whether snapped evaluation centers $(C_x, C_z)$ can ever drift outside the legal $[-512, 512]^2$ search box.
+   * Confirm whether snapped evaluation centers $(C_x, C_z)$ can ever drift outside the legal $[-976, 976]^2$ search box.
 4. **Rescoring Idempotence & Cross-Platform Parity:**
    * Review `_candidate_rescore()` in `reports.py` and `evaluate_dynamic_seed()` in `blueprint.py`.
    * Verify that any candidate evaluated natively in C produces identical score, identical component breakdown, and identical rank keys when rescored in Python or verified via BDS world generation.

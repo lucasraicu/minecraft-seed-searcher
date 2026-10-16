@@ -22,7 +22,7 @@ STAGE_NAMES = [
     "4. Passed Mansion macro viability",
     "5. Passed Stronghold macro discovery",
     "6. Passed Outpost macro viability",
-    "7. Passed Nether (Fortress & Bastion)",
+    "7. Passed Rare OW & Nether (Fortress & Bastion)",
     "8. Passed All 14 Structures macro",
     "9. Had candidate sliding cells",
     "10. Had cells satisfying hard floors",
