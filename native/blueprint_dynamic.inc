@@ -972,7 +972,9 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     #pragma omp atomic
 #endif
     g_diag_pass_nether_macro++;
-    for(int k=1;k<10;k++) {
+    static const int macro_overworld_order[9] = {2, 4, 1, 3, 5, 8, 6, 7, 9};
+    for(int i=0;i<9;i++) {
+        int k=macro_overworld_order[i];
         stage=nb_time();code=nb_pair(w,k,feasible,&macro[k]);if(code)goto done;
         r->stage_seconds[k+1]+=nb_time()-stage;
         if(macro[k].viable.n<w->p->floors[k])goto done;
@@ -1055,7 +1057,9 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         int counts[13],strong=nb_dynamic_count(&r->discovery,x,z,ow_half,0,NULL,0);
         if(!strong)continue;
         int fatal=0,deficit=0;
-        for(int k=0;k<13;k++) {
+        static const int cell_rarity_order[13] = {4, 2, 1, 0, 11, 12, 10, 3, 5, 8, 6, 7, 9};
+        for(int oi=0;oi<13;oi++) {
+            int k=cell_rarity_order[oi];
             counts[k]=nb_dynamic_count(&macro[k].viable,x,z,k==10||k==11?nether_half:ow_half,
                 k==10||k==11,k==0?macro[0].mansion_ids:NULL,w->p->dark_id);
             if(counts[k]<w->p->floors[k]){fatal=1;break;}
@@ -1066,9 +1070,9 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             }
         }
         if(fatal||deficit>w->p->max_misses)continue;
+        int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
+                              : nb_dynamic_v2_core_bonus(counts, strong);
         if(w->p->cutoff_score > 0) {
-            int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
-                                  : nb_dynamic_v2_core_bonus(counts, strong);
             int cell_max_potential = cell_core + (is_v3 ? 600 : 389);
             if(cell_max_potential < w->p->cutoff_score) continue;
         }
@@ -1088,11 +1092,22 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         unsigned int mask=nb_dynamic_palette_mask(prefix,x,z,ow_half);
         if(!nb_biomes_ok(w,mask)||!nb_dynamic_nether_ok(nether_prefix,x,z,nether_half))continue;
         seed_had_biome=1;
-        if(!optional_evaluated) {
-            optional_evaluated=1;
-            for(int k=0;k<5;k++){code=nb_dynamic_optional(w,feasible,k,optional+k);if(code)goto done;}
-        }
         if(w->p->dynamic_v2) {
+            int lux=is_v3 ? nb_dynamic_v3_biome_bonus(mask>>13) : nb_dynamic_v2_biome_bonus(mask>>13);
+            if(w->p->cutoff_score > 0) {
+                int max_rem = is_v3 ? 335 : (129 + 95);
+                if(cell_core + lux + max_rem < w->p->cutoff_score) continue;
+            }
+            if(!optional_evaluated) {
+                optional_evaluated=1;
+                for(int k=0;k<5;k++){code=nb_dynamic_optional(w,feasible,k,optional+k);if(code)goto done;}
+            }
+            int opt_counts[5];
+            for(int k=0;k<5;k++)opt_counts[k]=nb_dynamic_count(&optional[k].viable,x,z,ow_half,0,NULL,0);
+            int opt=is_v3 ? nb_dynamic_v3_optional(opt_counts) : 0;
+            if(w->p->cutoff_score > 0 && is_v3) {
+                if(cell_core + lux + opt + 135 < w->p->cutoff_score) continue;
+            }
             if(!scenic_cached) {
                 code=nb_dynamic_build_scenic_cache(w);if(code)goto done;
                 scenic_cached=1;
@@ -1105,18 +1120,15 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
                 code=nb_dynamic_build_bastion_cache(w,&macro[11].viable);if(code)goto done;
                 bastion_cached=1;
             }
-        }
-        if(w->p->dynamic_v2) {
             int scenic=nb_dynamic_check_scenic_pair(w,x,z,NULL,NULL,ow_half);
             int spread=nb_dynamic_check_village_spread(w,&macro[5].viable,x,z,NULL,ow_half);
             int treasure=nb_dynamic_check_treasure_bastion(w,&macro[11].viable,x,z);
+            if(!is_v3) {
+                opt=nb_dynamic_v2_optional(opt_counts,treasure);
+            }
             int hub=is_v3 ? nb_dynamic_v3_hub(macro,x,z,NULL,ow_half) : nb_dynamic_v2_hub(macro,x,z,NULL,ow_half);
             int nether_core=is_v3 ? nb_dynamic_v3_nether_core(macro,x,z) : 0;
-            int core=is_v3 ? nb_dynamic_v3_core_bonus(counts,strong) : nb_dynamic_v2_core_bonus(counts,strong);
-            int opt_counts[5];
-            for(int k=0;k<5;k++)opt_counts[k]=nb_dynamic_count(&optional[k].viable,x,z,ow_half,0,NULL,0);
-            int opt=is_v3 ? nb_dynamic_v3_optional(opt_counts) : nb_dynamic_v2_optional(opt_counts,treasure);
-            int lux=is_v3 ? nb_dynamic_v3_biome_bonus(mask>>13) : nb_dynamic_v2_biome_bonus(mask>>13);
+            int core=cell_core;
             int goals[13];
             for(int k=0;k<10;k++)goals[k]=w->p->goals[k];
             goals[10]=w->p->nether_goal;goals[11]=w->p->bastion_goal;goals[12]=w->p->outpost_goal;
