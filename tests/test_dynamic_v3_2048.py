@@ -413,6 +413,35 @@ def test_v3_cutoff_score_pruning():
         records = batch.records()
         assert len(records) == 1
         assert len(records[0]['anchors']) == 1
+        observed_score = records[0]['anchors'][0]['baseline_score_observed']
+        assert observed_score == 482
+
+    # Exact boundary: cutoff == observed_score must retain
+    with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=observed_score) as batch:
+        records = batch.records()
+        assert len(records[0]['anchors']) == 1
+        assert records[0]['anchors'][0]['baseline_score_observed'] == observed_score
+
+    # Exact boundary: cutoff == observed_score + 1 must prune
+    with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=observed_score + 1) as batch:
+        records = batch.records()
+        assert len(records[0]['anchors']) == 0
+
+    # Top50Tracker integration: cutoff_score feeds back into sweep dynamically
+    from seed_search.realm.top_tracker import Top50Tracker
+    tracker = Top50Tracker(capacity=1)
+    assert tracker.cutoff_score() is None
+
+    # First seed observed fills tracker
+    with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() or 0) as batch:
+        records = batch.records()
+        tracker.observe(records[0])
+    assert tracker.cutoff_score() == 482
+
+    # Next sweep with tracker's cutoff score prunes anything strictly less than 482
+    with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() + 1) as batch:
+        records = batch.records()
+        assert len(records[0]['anchors']) == 0
 
 
 def test_v3_candidate_rescore_idempotence():

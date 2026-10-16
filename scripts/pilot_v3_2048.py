@@ -117,7 +117,8 @@ def run_pilot(
         # Fast numpy seed generator
         seeds_arr = seeds_np(b_start, b_end, run_key)
 
-        with prototype.sweep(seeds_arr, threads=threads, retention="survivors") as batch:
+        cutoff = tracker.cutoff_score() or 0
+        with prototype.sweep(seeds_arr, threads=threads, retention="survivors", cutoff_score=cutoff) as batch:
             total_native_seconds += batch.native_seconds
             t_batch_1 = time.perf_counter()
 
