@@ -129,21 +129,21 @@ def test_v3_dynamic_scoring_pure_additive():
     assert comp['core_surplus'] == 0
     assert defs == []
 
-    # 1. Stronghold: 2nd = +20, 3rd+ = +30 (+50 total)
+    # 1. Stronghold: 2nd = +30, 3rd+ = +20 (+50 total)
     counts = dict(baseline_counts, stronghold=2)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 20
+    assert s == 30
     counts = dict(baseline_counts, stronghold=3)
     s, _, _ = dynamic_v3_score(counts)
     assert s == 50
 
-    # 2. Mansion: 2nd = +55, 3rd+ = +30 (+85 total)
+    # 2. Mansion: 2nd = +45, 3rd+ = +25 (+70 total)
     counts = dict(baseline_counts, mansion=2)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 55
+    assert s == 45
     counts = dict(baseline_counts, mansion=3)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 85
+    assert s == 70
 
     # 3. Ocean Monument: 2nd = +25, 3rd = +15, 4th+ = +10 (+50 total)
     counts = dict(baseline_counts, monument=2)
@@ -204,8 +204,8 @@ def test_v3_dynamic_scoring_pure_additive():
         s, _, _ = dynamic_v3_score(counts)
         assert s == expected_pts, f"Village count {v_cnt} expected {expected_pts}, got {s}"
 
-    # 8. Trial Chamber: 9th=+10, 10th=+8, 11th=+7, 12th+=+5 (floor is 8, 0 at floor, +30 max)
-    tc_ladder = [(8, 0), (9, 10), (10, 18), (11, 25), (12, 30), (13, 30)]
+    # 8. Trial Chamber: 9th=+10, 10th=+10, 11th=+10, 12th=+8, 13th+=+7 (floor is 8, 0 at floor, +45 max)
+    tc_ladder = [(8, 0), (9, 10), (10, 20), (11, 30), (12, 38), (13, 45), (14, 45)]
     for tc_cnt, expected_pts in tc_ladder:
         counts = dict(baseline_counts, trial_chamber=tc_cnt)
         s, _, _ = dynamic_v3_score(counts)
@@ -414,7 +414,7 @@ def test_v3_cutoff_score_pruning():
         assert len(records) == 1
         assert len(records[0]['anchors']) == 1
         observed_score = records[0]['anchors'][0]['baseline_score_observed']
-        assert observed_score == 482
+        assert observed_score == 479
 
     # Exact boundary: cutoff == observed_score must retain
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=observed_score) as batch:
@@ -436,9 +436,9 @@ def test_v3_cutoff_score_pruning():
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() or 0) as batch:
         records = batch.records()
         tracker.observe(records[0])
-    assert tracker.cutoff_score() == 482
+    assert tracker.cutoff_score() == 479
 
-    # Next sweep with tracker's cutoff score prunes anything strictly less than 482
+    # Next sweep with tracker's cutoff score prunes anything strictly less than 479
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() + 1) as batch:
         records = batch.records()
         assert len(records[0]['anchors']) == 0

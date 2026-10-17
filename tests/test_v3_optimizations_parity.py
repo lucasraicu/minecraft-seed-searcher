@@ -190,17 +190,17 @@ def test_v3_scoring_component_ladders_bit_exact():
     assert comp["core_surplus"] == 0
     assert defs == []
 
-    # Test stronghold ladder (+20, +30)
+    # Test stronghold ladder (+30, +20)
     s, c, _ = dynamic_v3_score(dict(baseline_counts, stronghold=2))
-    assert s == 20 and c["core_surplus"] == 20
+    assert s == 30 and c["core_surplus"] == 30
     s, c, _ = dynamic_v3_score(dict(baseline_counts, stronghold=3))
     assert s == 50 and c["core_surplus"] == 50
 
-    # Test mansion ladder (+55, +30)
+    # Test mansion ladder (+45, +25)
     s, c, _ = dynamic_v3_score(dict(baseline_counts, mansion=2))
-    assert s == 55 and c["core_surplus"] == 55
+    assert s == 45 and c["core_surplus"] == 45
     s, c, _ = dynamic_v3_score(dict(baseline_counts, mansion=3))
-    assert s == 85 and c["core_surplus"] == 85
+    assert s == 70 and c["core_surplus"] == 70
 
     # Test outpost ladder (+15, +15, +10, max 40)
     s, c, _ = dynamic_v3_score(dict(baseline_counts, outpost=2))
@@ -238,7 +238,7 @@ def test_v3_cutoff_score_pruning_zero_false_negatives():
     with prototype.sweep([fixture_seed], fixtures=fixture, cutoff_score=0) as batch:
         anchor = batch.records()[0]["anchors"][0]
         unpruned_score = anchor["baseline_score_observed"]
-        assert unpruned_score == 482
+        assert unpruned_score == 479
 
     # Boundary 1: Cutoff exactly equal to score -> MUST be retained
     with prototype.sweep([fixture_seed], fixtures=fixture, cutoff_score=unpruned_score) as batch:

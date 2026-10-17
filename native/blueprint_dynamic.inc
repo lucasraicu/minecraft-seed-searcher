@@ -246,7 +246,7 @@ static int nb_dynamic_snap(int lo,int hi,int64_t sum,int weight,int step,int *va
 }
 static const int nb_centroid_weights[13]={1,1,1,1,2,3,2,2,1,0,0,0,1};
 static const int nb_centroid_weights_v2[13]={1,1,1,1,2,3,2,0,0,0,0,0,1};
-static const int nb_centroid_weights_v3[13]={2,2,2,1,2,3,2,0,0,0,0,0,1};
+static const int nb_centroid_weights_v3[13]={2,2,2,1,2,2,1,0,0,0,0,0,1};
 static int nb_dynamic_captured(int px,int pz,int x,int z,int ow_half) {
     return x-ow_half<=px&&px<x+ow_half&&z-ow_half<=pz&&pz<z+ow_half;
 }
@@ -254,7 +254,7 @@ static void nb_dynamic_centroid(const NBObservation *macro,const NBPoints *stron
                                 int64_t *sx,int64_t *sz,int *weight,int dark_id,const int *weights,int ow_half) {
     *sx=*sz=0;*weight=0;
     for(int k=-1;k<13;k++) {
-        int w=k<0?1:weights[k];if(!w)continue;
+        int w=k<0?(ow_half==1024?3:1):weights[k];if(!w)continue;
         const NBPoints *p=k<0?strong:&macro[k].viable;
         for(int i=0;i<p->n;i++) {
             int px=p->xz[2*i],pz=p->xz[2*i+1];
@@ -266,7 +266,7 @@ static void nb_dynamic_centroid(const NBObservation *macro,const NBPoints *stron
 static double nb_dynamic_radial(const NBObservation *macro,const NBPoints *strong,int x,int z,int weight,int dark_id,const int *weights,int ow_half) {
     double distance=0;
     for(int k=-1;k<13;k++) {
-        int w=k<0?1:weights[k];if(!w)continue;
+        int w=k<0?(ow_half==1024?3:1):weights[k];if(!w)continue;
         const NBPoints *p=k<0?strong:&macro[k].viable;
         for(int i=0;i<p->n;i++) {
             int px=p->xz[2*i],pz=p->xz[2*i+1];
@@ -315,15 +315,15 @@ static inline int nb_clamp_i32(int val,int lo,int hi) {
 
 static int nb_dynamic_v3_core_bonus(const int *counts,int strong) {
     static const int temple_lut[4] = {0, 25, 45, 60};
-    static const int wm_lut[3]     = {0, 55, 85};
+    static const int wm_lut[3]     = {0, 45, 70};
     static const int ac_lut[5]     = {0, 20, 40, 55, 65};
-    static const int sh_lut[3]     = {0, 20, 50};
+    static const int sh_lut[3]     = {0, 30, 50};
     static const int om_lut[4]     = {0, 25, 40, 50};
     static const int ba_lut[4]     = {0, 20, 35, 50};
     static const int ft_lut[4]     = {0, 20, 35, 50};
     static const int vi_lut[6]     = {0, 10, 20, 30, 40, 50};
     static const int op_lut[4]     = {0, 15, 30, 40};
-    static const int tc_lut[5]     = {0, 10, 18, 25, 30};
+    static const int tc_lut[6]     = {0, 10, 20, 30, 38, 45};
 
     int score = 0;
     score += wm_lut[nb_clamp_i32(counts[0] - 1, 0, 2)];
@@ -332,7 +332,7 @@ static int nb_dynamic_v3_core_bonus(const int *counts,int strong) {
     score += om_lut[nb_clamp_i32(counts[3] - 1, 0, 3)];
     score += ac_lut[nb_clamp_i32(counts[4] - 2, 0, 4)];
     score += vi_lut[nb_clamp_i32(counts[5] - 6, 0, 5)];
-    score += tc_lut[nb_clamp_i32(counts[6] - 8, 0, 4)];
+    score += tc_lut[nb_clamp_i32(counts[6] - 8, 0, 5)];
     score += nb_clamp_i32(counts[7] - 8, 0, 4) * 5;
     score += nb_clamp_i32(counts[8] - 4, 0, 4) * 5;
     score += nb_clamp_i32(counts[9] - 10, 0, 10) * 2;
@@ -427,9 +427,9 @@ done_other:
 }
 
 static int nb_dynamic_v3_optional(const int *opt_counts) {
-    static const int hut_lut[4]   = {0, 30, 50, 60};
+    static const int hut_lut[4]   = {0, 25, 40, 50};
     static const int trail_lut[4] = {0, 25, 40, 50};
-    static const int igloo_lut[3] = {0, 25, 40};
+    static const int igloo_lut[3] = {0, 30, 50};
     static const int or_lut[3]    = {0, 10, 20};
     static const int bt_lut[5]    = {0, 10, 20, 25, 30};
 

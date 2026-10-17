@@ -405,9 +405,9 @@ def dynamic_v3_blueprint_config():
         'outpost':1,'fortress':1,'bastion':2
     }
     cfg['search']['centroid_weights']={
-        'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,
+        'village':2,'trial_chamber':1,'ruined_portal':0,'ancient_city':2,
         'outpost':1,'desert_pyramid':2,'jungle_temple':2,'mansion':2,
-        'monument':1,'stronghold':1,'shipwreck':0
+        'monument':1,'stronghold':3,'shipwreck':0
     }
     cfg['search']['max_misses']=0
     return cfg

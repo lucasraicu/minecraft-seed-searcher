@@ -39,16 +39,17 @@ $$C_X^* = \frac{\sum_{i=1}^N \omega_i X_i}{\sum_{i=1}^N \omega_i}, \qquad C_Z^* 
 
 #### Centroid Weight Distribution ($\omega_i$, Capped at 3)
 To prevent massive structures from disproportionately dragging the center away from human settlements, pull weights are strictly capped at 3:
-- 🏘️ **All Villages:** $\omega = 3$ each (Primary settlement anchor)
-- ⚔️ **All Trial Chambers:** $\omega = 2$ each (Primary midgame dungeon anchor)
+- 🏘️ **All Villages:** $\omega = 2$ each (Primary settlement anchor; rebalanced from 3 to prevent over-dominance)
+- ⚔️ **All Trial Chambers:** $\omega = 1$ each (Rebalanced from 2 to prevent underground grid noise)
+- 🏰 **Stronghold:** $\omega = 3$ (Elevated from 1 to prioritize End portal proximity)
 - 🌌 **All Ancient Cities:** $\omega = 2$ each (Deep exploration anchor)
 - 🏴‍☠️ **All Pillager Outposts:** $\omega = 1$ each
 - 🏺 **All Desert Pyramids & Jungle Temples:** $\omega = 2$ each (v3 upgrade from 1 in v2)
 - 🏛️ **Woodland Mansion:** $\omega = 2$ (v3 upgrade from 1 in v2)
 - 🗿 **Ocean Monument:** $\omega = 1$
-- 🏰 **Stronghold:** $\omega = 1$
-- 🌀 **All Ruined Portals:** $\omega = 0$ in v2 (was 2 in historical v1; zeroed to prevent pulling center away from human settlements)
-- ⛵ **All Shipwrecks:** $\omega = 0$ in v2 (was 1 in historical v1; zeroed to prevent pulling center into open ocean)
+- 🌀 **All Ruined Portals:** $\omega = 0$ (zeroed to prevent pulling center away from human settlements)
+- ⛵ **All Shipwrecks:** $\omega = 0$ (zeroed to prevent pulling center into open ocean)
+- ⛏️ **All Mineshafts:** $\omega = 0$ (zeroed to prevent pulling center underground)
 
 #### Feasible Safe-Zone Clamping ($\mathcal{S}_{\text{safe}} = \mathcal{S}_{\text{OW}} \cap \mathcal{S}_{\text{Nether}}$)
 The centroid pull is strictly constrained to the Feasible Safe Zone to guarantee that no floor-qualifying structure is ever displaced across the border. Incorporating the half-open window boundary logic:
@@ -78,14 +79,14 @@ To ensure seamless integration with the server's [Bedrock World Border Addon](ht
 
 ---
 
-## 3. Structure Inventory, Tolerance Matrix & Miss Budget ($B \le 3$)
+## 3. Structure Inventory, Tolerance Matrix & Guaranteed Baseline ($B = 0$ Pure Additive System)
 
-Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a total Miss Budget $B \le 3$ (v2/v3) or $B \le 2$ (historical v1)**.
+Every qualifying candidate **must strictly satisfy the Guaranteed Hard Floors under a Zero Miss Budget $B = 0$ (`max_misses = 0`) pure additive system**.
 
-### The Miss Budget Rule ($B \le 3$)
-1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening. Hard floors are fatal.
-2. **Deficit Consumption:** If a structure meets its Hard Floor but falls below its **Ideal Target**, it consumes **1 Miss** from the seed's budget.
-3. **Budget Limit:** In active v3, a seed may possess at most **3 categories in deficit** across the entire realm ($\text{Total Misses} \le 3$). Any seed with $\ge 4$ deficits is disqualified. (Historical v1 permitted at most 2 deficits). Deficits incur penalty deductions (-5 pts for Ruined Portal and Shipwreck; -10 pts for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft).
+### The Guaranteed Baseline & Zero Miss Budget ($B = 0$)
+1. **Instant Rejection (Hard Floors):** Any seed that drops below the **Hard Floor** for *any* structure category is instantly disqualified in Stage 1 C screening. Hard floors are non-negotiable baseline entry requirements; falling below any floor is fatal.
+2. **Pure Additive Scoring (Zero Deficit Penalties):** Active v3 operates with Miss Budget $B = 0$ (`max_misses = 0`) where hard floors are non-negotiable baseline entry requirements, and deficit penalties are strictly 0. Every candidate meeting all hard floors qualifies for the pool with 0 surplus points, and every structure exceeding baseline adds stacking positive points.
+3. **Historical Comparison:** Historical v2 permitted a miss budget $B \le 3$ with deficit deductions (-5 pts for Ruined Portal and Shipwreck; -10 pts for Village, Trial Chamber, Ancient City, Desert Pyramid, Jungle Temple, and Mineshaft). Historical v1 permitted at most $B \le 2$ deficits. Active v3 eliminates deficit deductions entirely in favor of a guaranteed baseline and pure additive scoring.
 
 > **Custom palette searches:** The UI may explicitly select a subset (including none) of the 13 supported Overworld biome families for a v2/v3 search. The selection is saved in `biomes.required_families` and enforced by native and reference evaluation. These custom results satisfy the selected palette, not necessarily the full default blueprint palette. The default remains all 13; Nether requirements and structure viability are unchanged.
 
@@ -95,23 +96,23 @@ Counts are complete predictor counts within the selected window. Hard floors con
 
 | Structure Category | Dimension | Guaranteed Hard Floor | Progressive Surplus Points Schedule (+) | Scoring & Realm Role |
 | :--- | :---: | :---: | :--- | :--- |
-| 🏰 **Stronghold** | Overworld | **$\ge 1$** | 2nd = **+40 pts**, 3rd = **+20 pts** (**+60 max**) | **Non-negotiable.** Predicted End-access start; portal room unverified. |
-| 🏛️ **Woodland Mansion** | Overworld | **$\ge 1$** | 2nd = **+50 pts** | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. |
-| 🗿 **Ocean Monument** | Overworld | **$\ge 1$** | 2nd = **+40 pts**, 3rd = **+20 pts** (**+60 max**) | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. |
+| 🏰 **Stronghold** | Overworld | **$\ge 1$** | 2nd = **+30 pts**, 3rd = **+20 pts** (**+50 max**) | **Non-negotiable.** Predicted End-access start; portal room unverified. |
+| 🏛️ **Woodland Mansion** | Overworld | **$\ge 1$** | 2nd = **+45 pts**, 3rd+ = **+25 pts** (**+70 max**) | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. |
+| 🗿 **Ocean Monument** | Overworld | **$\ge 1$** | 2nd = **+25 pts**, 3rd = **+15 pts**, 4th+ = **+10 pts** (**+50 max**) | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. |
 | 🏴‍☠️ **Pillager Outpost** | Overworld | **$\ge 1$** | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** (**+40 max**) | **Mandatory $\ge 1$.** Infinite Bad Omen & raid farming. |
-| 🔥 **Nether Fortress** | Nether | **$\ge 1$** | 2nd+ = **+20 pts each** | **Mandatory $\ge 1$** inside $1024 \times 1024$ Nether. Blaze rods & skulls. |
-| 🐷 **Bastion Remnant** | Nether | **$\ge 2$** | 3rd+ = **+20 pts each** (+**15 pts** Treasure variant) | **Mandatory $\ge 2$** inside $1024 \times 1024$ Nether. Piglin bartering & upgrade trims. |
+| 🔥 **Nether Fortress** | Nether | **$\ge 1$** | 2nd = **+20**, 3rd = **+15**, 4th+ = **+15** (**+50 max**) | **Mandatory $\ge 1$** inside $1024 \times 1024$ Nether. Blaze rods & skulls. |
+| 🐷 **Bastion Remnant** | Nether | **$\ge 2$** | 3rd = **+20**, 4th = **+15**, 5th+ = **+15** (**+50 max**; +20 Treasure variant) | **Mandatory $\ge 2$** inside $1024 \times 1024$ Nether. Piglin bartering & upgrade trims. |
 | 🏘️ **Villages** | Overworld | **$\ge 6$** | 7th..11th+ = **+10 each** (**+50 max**) | Guaranteed baseline $\ge 6$. Rewards mega-settlements. |
-| ⚔️ **Trial Chambers** | Overworld | **$\ge 8$** | 9th+ = **+10 pts each** | Guaranteed baseline $\ge 8$. Heavy Cores, maces, Ominous Vaults. |
+| ⚔️ **Trial Chambers** | Overworld | **$\ge 8$** | 9th = **+10**, 10th = **+10**, 11th = **+10**, 12th = **+8**, 13th+ = **+7** (**+45 max**) | Guaranteed baseline $\ge 8$. Heavy Cores, maces, Ominous Vaults. |
 | 🌌 **Ancient City** | Overworld | **$\ge 2$** | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** (**+65 max**) | Guaranteed baseline $\ge 2$. Swift Sneak, Silence Trim, Wardens. |
-| 🏺 **Desert Pyramid** | Overworld | **$\ge 1$** | 2nd = **+10**, 3rd = **+10**, 4th+ = **+15 each** | Guaranteed baseline $\ge 1$. Desert archaeology & enchanted apples. |
-| 🌿 **Jungle Temple** | Overworld | **$\ge 1$** | 2nd = **+10**, 3rd = **+10**, 4th+ = **+15 each** | Guaranteed baseline $\ge 1$. Redstone puzzle & jungle exploration. |
-| ⛵ **Shipwrecks** | Overworld | **$\ge 4$** | 5th = **+5**, 6th = **+5**, 7th+ = **+10 each** | Guaranteed baseline $\ge 4$. Early iron, emeralds, treasure maps. |
-| 🌀 **Ruined Portals** | Overworld | **$\ge 8$** | 9th+ = **+10 each** | Guaranteed baseline $\ge 8$. Fast Nether transit & crying obsidian. |
-| ⛏️ **Mineshafts** | Overworld | **$\ge 10$** | +**2 pts each** over 10 (**+20 pts max**) | Guaranteed baseline $\ge 10$. Rails, mob spawners, chest minecarts. |
-| 🧙 **Swamp Hut (Witch Hut)** | Overworld | $\ge 0$ | 1st = **+20 pts**, 2nd = **+10 pts** (**+30 max**) | Optional Stage 4 bonus. Predicted witch-farm start. |
-| 🛖 **Igloo (with Basement)**| Overworld | $\ge 0$ | 1st = **+10 pts**, 2nd = **+5 pts** (**+15 max**) | Optional Stage 4 bonus. Pinned MC_26_50 basement prediction. |
-| 🏺 **Trail Ruins** | Overworld | $\ge 0$ | 1st = **+15 pts**, 2nd = **+10 pts** (**+25 max**) | Optional Stage 4 bonus. Archaeology pottery sherds & armor trims. |
+| 🏺 **Desert Pyramid** | Overworld | **$\ge 1$** | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** (**+60 max**) | Guaranteed baseline $\ge 1$. Desert archaeology & enchanted apples. |
+| 🌿 **Jungle Temple** | Overworld | **$\ge 1$** | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** (**+60 max**) | Guaranteed baseline $\ge 1$. Redstone puzzle & jungle exploration. |
+| ⛵ **Shipwrecks** | Overworld | **$\ge 4$** | 5th..8th+ = **+5 each** (**+20 max**) | Guaranteed baseline $\ge 4$. Early iron, emeralds, treasure maps. |
+| 🌀 **Ruined Portals** | Overworld | **$\ge 8$** | 9th..12th+ = **+5 each** (**+20 max**) | Guaranteed baseline $\ge 8$. Fast Nether transit & crying obsidian. |
+| ⛏️ **Mineshafts** | Overworld | **$\ge 10$** | +2 each over 10 (**+20 max**) | Guaranteed baseline $\ge 10$. Rails, mob spawners, chest minecarts. |
+| 🧙 **Swamp Hut (Witch Hut)** | Overworld | $\ge 0$ | 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 max**) | Optional Stage 4 bonus. Predicted witch-farm start. |
+| 🛖 **Igloo (with Basement)**| Overworld | $\ge 0$ | 1st = **+30 pts**, 2nd+ = **+20 pts** (**+50 max**) | Optional Stage 4 bonus. Pinned MC_26_50 basement prediction. |
+| 🏺 **Trail Ruins** | Overworld | $\ge 0$ | 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 max**) | Optional Stage 4 bonus. Archaeology pottery sherds & armor trims. |
 
 > [!IMPORTANT]
 > **Implementation Capabilities vs. Approved Blueprint Design (Group D Audit Reconciliation):**
@@ -150,7 +151,7 @@ Because players cannot travel or mine outside the $1024 \times 1024$ Nether bord
 ### Stage 2 Multi-Plane Short-Circuiting Protocol
 To minimize sampling overhead, Stage 2 evaluates vertical planes with aggressive early exits:
 - **Plane $Y = 160$ (High Peaks):** Breaks immediately upon detecting the first cell of `jagged_peaks`, `frozen_peaks`, or `stony_peaks`.
-- **Planes $Y = 0$ & $Y = -48$ (Underground Caverns):** Deep Dark is already certified by $\ge 3$ Ancient Cities. The underground scan breaks immediately once at least 1 cell of `lush_caves` and 1 cell of `dripstone_caves` (plus the 512m hub mega-cave witness) are confirmed. *(Note: Cave witnesses verify underground biome cell occupancy; physical cavern entrances, opening geometry, and navigability remain unverified by predictor models.)*
+- **Planes $Y = 0$ & $Y = -48$ (Underground Caverns):** Deep Dark is already certified by $\ge 2$ Ancient Cities. The underground scan breaks immediately once at least 1 cell of `lush_caves` and 1 cell of `dripstone_caves` (plus the 512m hub mega-cave witness) are confirmed. *(Note: Cave witnesses verify underground biome cell occupancy; physical cavern entrances, opening geometry, and navigability remain unverified by predictor models.)*
 - **Plane $Y = 63$ (Surface):** Dark Forest, Desert, and Jungle are already certified by Stage 1B structures. Only remaining surface families are evaluated.
 
 ---
@@ -172,32 +173,32 @@ Structure points start accumulating the moment a structure exceeds its Guarantee
 
 | Category | Dim | Hard Floor ($F$) | Pts at $F$ | Surplus Schedule ($F+1$ onward) | Category Cap | Lookup Array (`LUT`) |
 | :--- | :---: | :---: | :---: | :--- | :---: | :--- |
-| 🏛️ **Woodland Mansion** | OW | **1** | 0 pts | 2nd = **+55**, 3rd+ = **+30** | **+85 pts** *(at 3+)* | `{0, 55, 85}` |
+| 🏛️ **Woodland Mansion** | OW | **1** | 0 pts | 2nd = **+45**, 3rd+ = **+25** | **+70 pts** *(at 3+)* | `{0, 45, 70}` |
 | 🏺 **Desert Pyramid** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
 | 🌿 **Jungle Temple** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
 | 🌌 **Ancient City** | OW | **2** | 0 pts | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** | **+65 pts** *(at 6+)* | `{0, 20, 40, 55, 65}` |
-| 🏰 **Stronghold** | OW | **1** | 0 pts | 2nd = **+20**, 3rd+ = **+30** | **+50 pts** *(at 3+)* | `{0, 20, 50}` |
+| 🏰 **Stronghold** | OW | **1** | 0 pts | 2nd = **+30**, 3rd+ = **+20** | **+50 pts** *(at 3+)* | `{0, 30, 50}` |
 | 🗿 **Ocean Monument** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+15**, 4th+ = **+10** | **+50 pts** *(at 4+)* | `{0, 25, 40, 50}` |
 | 🐷 **Bastion Remnant** | Nether | **2** | 0 pts | 3rd = **+20**, 4th = **+15**, 5th+ = **+15** | **+50 pts** *(at 5+)* | `{0, 20, 35, 50}` |
 | 🔥 **Nether Fortress** | Nether | **1** | 0 pts | 2nd = **+20**, 3rd = **+15**, 4th+ = **+15** | **+50 pts** *(at 4+)* | `{0, 20, 35, 50}` |
 | 🏘️ **Village** | OW | **6** | 0 pts | 7th..11th+ = **+10 each** | **+50 pts** *(at 11+)* | `{0, 10, 20, 30, 40, 50}` |
 | 🏴‍☠️ **Pillager Outpost** | OW | **1** | 0 pts | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** | **+40 pts** *(at 4+)* | `{0, 15, 30, 40}` |
-| ⚔️ **Trial Chamber** | OW | **8** | 0 pts | 9th = **+10**, 10th = **+8**, 11th = **+7**, 12th+ = **+5** | **+30 pts** *(at 12+)* | `{0, 10, 18, 25, 30}` |
+| ⚔️ **Trial Chamber** | OW | **8** | 0 pts | 9th = **+10**, 10th = **+10**, 11th = **+10**, 12th = **+8**, 13th+ = **+7** | **+45 pts** *(at 13+)* | `{0, 10, 20, 30, 38, 45}` |
 | 🌀 **Ruined Portal** | OW | **8** | 0 pts | 9th..12th+ = **+5 each** | **+20 pts** *(at 12+)* | `{0, 5, 10, 15, 20}` |
 | ⛵ **Shipwreck** | OW | **4** | 0 pts | 5th..8th+ = **+5 each** | **+20 pts** *(at 8+)* | `{0, 5, 10, 15, 20}` |
 | ⛏️ **Mineshaft** | OW | **10** | 0 pts | 11th..20th+ = **+2 each** | **+20 pts** *(at 20+)* | `min(20, max(0, count - 10) * 2)` |
 
-*(Sum of all core surplus caps: $85 + 60 + 60 + 65 + 50 + 50 + 50 + 50 + 50 + 40 + 30 + 20 + 20 + 20 = \mathbf{650\text{ pts}}$).*
+*(Sum of all core surplus caps: $70 + 60 + 60 + 65 + 50 + 50 + 50 + 50 + 50 + 40 + 45 + 20 + 20 + 20 = \mathbf{650\text{ pts}}$).*
 
 #### B. Optional Structure Schedule (5 OW Categories | $F = 0$ | 200 Pts Max)
 No hard floors. Discovered qualifying structures award bonuses up to individual category caps:
-- 🧙 **Swamp Huts:** 1st = **+30 pts**, 2nd = **+20 pts**, 3rd+ = **+10 pts** (**+60 pts max** at 3+).
+- 🧙 **Swamp Huts:** 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
 - 🏺 **Trail Ruins:** 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
-- 🛖 **Basement Igloos:** 1st = **+25 pts**, 2nd+ = **+15 pts** (**+40 pts max** at 2+).
+- 🛖 **Basement Igloos:** 1st = **+30 pts**, 2nd+ = **+20 pts** (**+50 pts max** at 2+).
 - 💎 **Buried Treasure:** 1st = **+10 pts**, 2nd = **+10 pts**, 3rd = **+5 pts**, 4th+ = **+5 pts** (**+30 pts max** at 4+).
 - 🌊 **Ocean Ruins:** 1st = **+10 pts**, 2nd+ = **+10 pts** (**+20 pts max** at 2+).
 
-*(Sum of all optional bonuses: $60 + 50 + 40 + 30 + 20 = \mathbf{200\text{ pts}}$).*
+*(Sum of all optional bonuses: $50 + 50 + 50 + 30 + 20 = \mathbf{200\text{ pts}}$).*
 
 #### C. Luxury Biomes (10 Categories + Tiered Diversity Jackpot | 265 Pts Max)
 Evaluated on the 64-block world lattice at $Y=63$:
@@ -234,9 +235,9 @@ Evaluated on the 64-block world lattice at $Y=63$:
 
 #### E. Centroid Magnet ($\omega_i$) Weights
 To prevent flat plains villages from monopolizing the sliding window center $(C_X, C_Z)$, rare temple structures exert strong centroid pull:
-- Village: $\omega = 3$
-- Trial Chamber, Ancient City, Woodland Mansion, Desert Pyramid, Jungle Temple: $\omega = 2$
-- Pillager Outpost, Ocean Monument, Stronghold: $\omega = 1$
+- Stronghold: $\omega = 3$
+- Ancient City, Woodland Mansion, Desert Pyramid, Jungle Temple, Village: $\omega = 2$
+- Trial Chamber, Pillager Outpost, Ocean Monument: $\omega = 1$
 - Ruined Portal, Shipwreck, Mineshaft: $\omega = 0$
 
 #### F. In-Memory Top-50 Tracker & Persistence
@@ -313,7 +314,7 @@ Supported by the SQLite index `candidate_leaderboard`.
 
 | Optimization | What Changes in the Pipeline | Why It's Safe (Zero False Rejects) | Throughput & Speedup Impact |
 | :--- | :--- | :--- | :--- |
-| **1. Enforce $1024 \times 1024$ Nether Co-Window Compatibility in Step 1** | Stage 1A Step 1 checks if $\ge 2$ Fortresses and $\ge 2$ Bastions exist in $[-634, 634]$. Add a `50 ns` bounding-box check requiring that at least 2 Fortresses and 2 Bastions fit inside a single $1024 \times 1024$ sub-window ($\Delta X_N \le 1024, \Delta Z_N \le 1024$) and calculate the valid Overworld center interval $[C_{X,\min}^{\text{Nether}}, C_{X,\max}^{\text{Nether}}]$. | If two Fortresses are $>1024\text{m}$ apart in $[-634, 634]$, they can never be co-captured in an $1024 \times 1024$ Nether box in Stage 1B. | **Cuts seeds entering Mansion biome checks by ~45–55%** (`~1.8×` speedup). |
+| **1. Enforce $1024 \times 1024$ Nether Co-Window Compatibility in Step 1** | Stage 1A Step 1 checks if $\ge 1$ Fortress and $\ge 2$ Bastions exist in $[-634, 634]$. Add a `50 ns` bounding-box check requiring that at least 2 Fortresses and 2 Bastions fit inside a single $1024 \times 1024$ sub-window ($\Delta X_N \le 1024, \Delta Z_N \le 1024$) and calculate the valid Overworld center interval $[C_{X,\min}^{\text{Nether}}, C_{X,\max}^{\text{Nether}}]$. | If two Fortresses are $>1024\text{m}$ apart in $[-634, 634]$, they can never be co-captured in an $1024 \times 1024$ Nether box in Stage 1B. | **Cuts seeds entering Mansion biome checks by ~45–55%** (`~1.8×` speedup). |
 | **2. Clamp Overworld Preflight Bounds to the Nether Safe Interval** | Instead of scanning the full $[-2000, 2000]$ box for Mansions, Monuments, and Outposts, only test regions within $[C_{X,\min}^{\text{Nether}} - 1024,\; C_{X,\max}^{\text{Nether}} + 1024]$. | Any Overworld structure outside $[C_{\min}^{\text{Nether}} - 1024,\; C_{\max}^{\text{Nether}} + 1024]$ cannot be captured without losing a mandatory Nether structure. | **Skips ~40% of Mansion & Monument noise lookups** (`~1.3×` speedup). |
 | **3. Move Pure-PRNG Outpost & Trial Chamber Grid Counts *Before* Mansion Biome Noise** | Pillager Outposts roll a pure-PRNG region spawn check *before* biome viability, and Trial Chambers ($\ge 8$ required) use pure chunk-grid PRNG. Verify that $\ge 1$ Outpost PRNG roll and $\ge 8$ Trial Chamber PRNG slots fall inside the feasible box **before** initializing Overworld climate noise for the Mansion. | Pure PRNG coordinate generation takes $<0.5\,\mu\text{s}$ in C; seeds lacking enough raw PRNG slots can never satisfy floors regardless of biomes. | **Rejects ~70% of remaining seeds before any biome noise runs** (`~1.5×` speedup). |
 | **4. Short-Circuit 6D Climate Noise on Mansion Checks** | A Dark Forest requires specific Continentalness ($C > -0.11$, inland), Temperature (temperate), and Humidity ($H > 0.1$). Evaluate noise parameters one octave at a time (`Humidity` $\to$ `Continentalness` $\to$ `Temperature`) and abort immediately on the first miss. | Evaluating 1 Perlin octave tree instead of all 6 on non-matching points is mathematically identical to a full biome lookup. | **Cuts Mansion & Bastion biome check CPU time by ~65–75%**. |
@@ -363,7 +364,7 @@ Supported by the SQLite index `candidate_leaderboard`.
       │ STAGE 1B: Exact 2D Event-Slab Solver & Centroid Magnet ($2048 \times 2048$)│
       │ • Half-open Overworld safe interval [X_i - 1023, X_i + 1024] (width 2048).│
       │ • Nether safe interval [8X_N,j - 4095, 8X_N,j + 4096] (width 8192).    │
-      │ • Enforce Guaranteed Hard Floors and Miss Budget ($B \le 3$).          │
+      │ • Enforce Guaranteed Hard Floors and Zero Miss Budget ($B = 0$).       │
       │ • Pull $(C_X, C_Z)$ toward centroid; clamp to Safe Zone S_safe.        │
       │ • Snap to nearest 16 per axis, fallback to 8 without leaving S_safe.   │
       └────────────────────────────────────────────────────────────────────────┘

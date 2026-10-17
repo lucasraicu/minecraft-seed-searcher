@@ -29,6 +29,7 @@ NETHER_NAMES=('fortress','bastion')
 OPTIONAL_NAMES=('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')
 CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':2,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':1}
 DYNAMIC_V2_CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':0}
+DYNAMIC_V3_CENTROID_WEIGHTS={'village':2,'trial_chamber':1,'ruined_portal':0,'ancient_city':2,'outpost':1,'desert_pyramid':2,'jungle_temple':2,'mansion':2,'monument':1,'stronghold':3,'shipwreck':0}
 NETHER_BIOMES=('nether_wastes','crimson_forest','warped_forest','soul_sand_valley','basalt_deltas')
 
 
@@ -242,14 +243,14 @@ def weighted_radial_v2(structures, center, dark_forest_mansions=None, overworld_
 
 
 ORDER_V3_RADIAL = (
-    ('stronghold', 1),
+    ('stronghold', 3),
     ('mansion', 2),
     ('jungle_temple', 2),
     ('desert_pyramid', 2),
     ('monument', 1),
     ('ancient_city', 2),
-    ('village', 3),
-    ('trial_chamber', 2),
+    ('village', 2),
+    ('trial_chamber', 1),
     ('outpost', 1),
 )
 
