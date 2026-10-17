@@ -23,8 +23,9 @@ def test_ui_values_reach_actual_machine_and_resume(monkeypatch, tmp_path, native
 const {load,root}=require('./tests/web_test_loader.cjs');
 const {INITIAL_CONFIG}=load(root+'/web-ui/src/mockData.ts');
 const {buildSweepRequest}=load(root+'/web-ui/src/utils/sweep.ts');
-const cfg={...INITIAL_CONFIG,sweepSeedCount:3,startIndex:'9007199254741001',
- openmpThreads:1,batchSize:2,maxMisses:1,structureFloorCounts:{...INITIAL_CONFIG.structureFloorCounts,
+const {getSearchProfile}=load(root+'/web-ui/src/constants/baselinePolicy.ts');
+const cfg={...INITIAL_CONFIG,profile:'dynamic1664',sweepSeedCount:3,startIndex:'9007199254741001',
+ openmpThreads:1,batchSize:2,maxMisses:1,structureFloorCounts:{...getSearchProfile('dynamic1664').counts,
  village:10,trial_chamber:9,monument:2,fortress:3,bastion:3}, selectedBiomes:['forest','deep_dark']};
 console.log(JSON.stringify(buildSweepRequest(cfg)));
 """

@@ -1,0 +1,19 @@
+{
+  "cases": 4,
+  "settings_per_case": 27,
+  "controls_per_case": 2,
+  "selected_centers_checked": 116,
+  "all_selected_centers_satisfy_hard_floors": true,
+  "nearest_distances_recomputed": true,
+  "repeated_controls_match": true,
+  "source_sha256": {
+    "scripts/investigate_center_weights.py": "2a44b89231bc008dde524c754217285f5955ed1b83e9909d63e0bf524ae8dd57",
+    "src/seed_search/realm/config.py": "479a8b424a1f339b0fbc9e1a88168a0fa05f7bc1b0083304b82b7af89d1139a1",
+    "src/seed_search/realm/dynamic.py": "27092628c1def1d730a4ffa2bd1ee405b12fb3e52e183f6b6a021b4a8abf35db",
+    "src/seed_search/realm/blueprint.py": "1ece6d0e6563a6a50aa0b0ba4bcf52fd214d0e45b935c8779479d3580e65bfed",
+    "native/blueprint_dynamic.inc": "5ebbbfa339075a06d34e065691681c49b1f340b1283b5bb8cb5aaf96984676fb",
+    "vendor/backend.json": "1f8979c4e7649017c95b03ebceaf7bc35d4f2be20b2842e08b8b6cbfff833369"
+  },
+  "native_source_fingerprint": "f95d79fedda0bfeedd3367a664535b764955cc5d7b88ce85fb5832921d2e26d9",
+  "generator_extension_sha256": "28bcd5eec3f79bd6249de731ee1fba2776975b4e1e405c7bc3fe80d39625db28"
+}

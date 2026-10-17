@@ -26,6 +26,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
         raise ValueError('Invalid experimental filter order or Stronghold placement')
     if pgo_generate and pgo_use:raise ValueError('PGO generate and use are separate builds')
     started=time.perf_counter()
+    from seed_search.realm.native_identity import native_source_fingerprint
     output=Path(output).resolve();output.mkdir(parents=True,exist_ok=True)
     ffi=FFI()
     header=(ROOT/'native/blueprint_batch.h').read_text()
@@ -34,6 +35,7 @@ def build(output,openmp_prefix=None,*,profile=False,disable_mansion_cache=False,
     source='#include "bridge.c"\n#include "'+('blueprint_profile.inc' if profile else 'blueprint_batch.inc')+'"\n'
     flags=['-O3','-std=c11','-fwrapv',f'-DNB_WORK_CHUNK={work_chunk}',
            f'-DNB_EXPERIMENT_ORDER={experiment_order}',f'-DNB_STRONGHOLD_AFTER={stronghold_after}',f'-DNB_DYNAMIC_PREFLIGHT={int(dynamic_preflight)}'];includes=[str(ROOT/'native'),str(ROOT/'vendor/cubiomes-bedrock')]
+    flags.append('-DSS_SOURCE_FINGERPRINT="'+native_source_fingerprint()+'"')
     is_x86=platform.machine().lower() in ('x86_64','amd64')
     enable_avx2=avx2 or vectorize or (cpu_native and is_x86)
     if cpu_native:

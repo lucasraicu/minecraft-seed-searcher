@@ -1,6 +1,16 @@
 MASK32 = (1 << 32) - 1
 MASK64 = (1 << 64) - 1
 
+
+def validate_sequence_range(start: int, count: int, sequence: str) -> None:
+    """Validate coverage before masking indices or creating a checkpoint."""
+    limit = 1 << (32 if sequence == 'strided' else 64)
+    if (type(start) is not int or type(count) is not int or
+            start < 0 or count < 0 or start + count > limit):
+        if sequence == 'strided':
+            raise ValueError('strided range exceeds its 32-bit seed domain')
+        raise ValueError(f'Invalid finite full64 range for {sequence}')
+
 def parse_seed(value: str | int) -> int:
     if isinstance(value, bool):
         raise ValueError("Seed must be a signed decimal integer")
@@ -29,8 +39,7 @@ def seed_strided(index: int, low32: int | str) -> int:
     """
     if isinstance(index, bool) or not isinstance(index, int):
         raise ValueError("Candidate index must be an integer")
-    if not 0 <= index <= MASK64:
-        raise ValueError("Candidate index outside unsigned 64-bit range")
+    validate_sequence_range(index, 1, 'strided')
     if isinstance(low32, str):
         low32 = parse_seed(low32)
     elif isinstance(low32, bool) or not isinstance(low32, int):
@@ -51,8 +60,7 @@ def seeds_strided(start_index: int, count: int, low32: int | str) -> list[int]:
         raise ValueError("Candidate start index outside unsigned range")
     if isinstance(count, bool) or not isinstance(count, int) or count < 0:
         raise ValueError("Candidate count must be non-negative")
-    if start_index + count > MASK64 + 1:
-        raise ValueError("Range exceeds 64-bit bounds")
+    validate_sequence_range(start_index, count, 'strided')
     if isinstance(low32, str):
         low32 = parse_seed(low32)
     elif isinstance(low32, bool) or not isinstance(low32, int):

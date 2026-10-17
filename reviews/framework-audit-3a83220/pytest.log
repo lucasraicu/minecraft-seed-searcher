@@ -1,0 +1,420 @@
+........................................................................ [  6%]
+........................................................................ [ 12%]
+........................................................................ [ 18%]
+........................................................................ [ 24%]
+........................................................................ [ 30%]
+........................................................................ [ 36%]
+...FFFF................................................................. [ 42%]
+........................................................................ [ 48%]
+........................................................................ [ 54%]
+........................................................................ [ 60%]
+........................................................................ [ 66%]
+........................................................................ [ 72%]
+........................................................................ [ 78%]
+........................................................................ [ 84%]
+........................................................................ [ 90%]
+..............................FFF....................................... [ 96%]
+............F................................                            [100%]
+=================================== FAILURES ===================================
+________ test_top_k_resume_rebuilds_from_committed_candidates[missing] _________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_rebuilds_fro0')
+checkpoint = 'missing'
+native_build = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/mansion-bound-native0')
+
+    @pytest.mark.parametrize('checkpoint', ['missing', 'corrupt', 'stale', 'valid'])
+    def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, native_build):
+        cfg = _policy()
+        cfg['search']['sequence'] = 'manifest'
+        cfg['search']['manifest_seeds'] = [str(SURVIVOR), '0']
+        run = tmp_path/'run'
+        options = dict(count=2, native_threads=1, native_batch_size=1,
+                       retention='survivors', top_k=1,
+                       native_build=native_build)
+        first = run_native_scan(cfg, run, stop_after=1, **options)
+        assert first['completed_seeds'] == 1
+        committed_leaders = json.loads((run/'top50.json').read_text())
+        assert len(committed_leaders) == 1
+        if checkpoint == 'missing':
+            (run/'top50.json').unlink()
+        elif checkpoint == 'corrupt':
+            (run/'top50.json').write_text('{broken')
+        elif checkpoint == 'stale':
+            (run/'top50.json').write_text('[]')
+        second = run_native_scan(cfg, run, resume=True, **options)
+        assert second['completed_seeds'] == 2
+        leaders = json.loads((run/'top50.json').read_text())
+        assert leaders == committed_leaders
+        assert leaders[0]['seed'] == str(SURVIVOR)
+        with sqlite3.connect(run/'realm.sqlite') as db:
+>           assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 296)
+E           AssertionError: assert ('-3336796033057908633', 311) == ('-3336796033057908633', 296)
+E             
+E             At index 1 diff: 311 != 296
+E             Use -v to get more diff
+
+tests/test_native_mansion_bound_and_recovery.py:81: AssertionError
+________ test_top_k_resume_rebuilds_from_committed_candidates[corrupt] _________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_rebuilds_fro1')
+checkpoint = 'corrupt'
+native_build = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/mansion-bound-native0')
+
+    @pytest.mark.parametrize('checkpoint', ['missing', 'corrupt', 'stale', 'valid'])
+    def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, native_build):
+        cfg = _policy()
+        cfg['search']['sequence'] = 'manifest'
+        cfg['search']['manifest_seeds'] = [str(SURVIVOR), '0']
+        run = tmp_path/'run'
+        options = dict(count=2, native_threads=1, native_batch_size=1,
+                       retention='survivors', top_k=1,
+                       native_build=native_build)
+        first = run_native_scan(cfg, run, stop_after=1, **options)
+        assert first['completed_seeds'] == 1
+        committed_leaders = json.loads((run/'top50.json').read_text())
+        assert len(committed_leaders) == 1
+        if checkpoint == 'missing':
+            (run/'top50.json').unlink()
+        elif checkpoint == 'corrupt':
+            (run/'top50.json').write_text('{broken')
+        elif checkpoint == 'stale':
+            (run/'top50.json').write_text('[]')
+        second = run_native_scan(cfg, run, resume=True, **options)
+        assert second['completed_seeds'] == 2
+        leaders = json.loads((run/'top50.json').read_text())
+        assert leaders == committed_leaders
+        assert leaders[0]['seed'] == str(SURVIVOR)
+        with sqlite3.connect(run/'realm.sqlite') as db:
+>           assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 296)
+E           AssertionError: assert ('-3336796033057908633', 311) == ('-3336796033057908633', 296)
+E             
+E             At index 1 diff: 311 != 296
+E             Use -v to get more diff
+
+tests/test_native_mansion_bound_and_recovery.py:81: AssertionError
+_________ test_top_k_resume_rebuilds_from_committed_candidates[stale] __________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_rebuilds_fro2')
+checkpoint = 'stale'
+native_build = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/mansion-bound-native0')
+
+    @pytest.mark.parametrize('checkpoint', ['missing', 'corrupt', 'stale', 'valid'])
+    def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, native_build):
+        cfg = _policy()
+        cfg['search']['sequence'] = 'manifest'
+        cfg['search']['manifest_seeds'] = [str(SURVIVOR), '0']
+        run = tmp_path/'run'
+        options = dict(count=2, native_threads=1, native_batch_size=1,
+                       retention='survivors', top_k=1,
+                       native_build=native_build)
+        first = run_native_scan(cfg, run, stop_after=1, **options)
+        assert first['completed_seeds'] == 1
+        committed_leaders = json.loads((run/'top50.json').read_text())
+        assert len(committed_leaders) == 1
+        if checkpoint == 'missing':
+            (run/'top50.json').unlink()
+        elif checkpoint == 'corrupt':
+            (run/'top50.json').write_text('{broken')
+        elif checkpoint == 'stale':
+            (run/'top50.json').write_text('[]')
+        second = run_native_scan(cfg, run, resume=True, **options)
+        assert second['completed_seeds'] == 2
+        leaders = json.loads((run/'top50.json').read_text())
+        assert leaders == committed_leaders
+        assert leaders[0]['seed'] == str(SURVIVOR)
+        with sqlite3.connect(run/'realm.sqlite') as db:
+>           assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 296)
+E           AssertionError: assert ('-3336796033057908633', 311) == ('-3336796033057908633', 296)
+E             
+E             At index 1 diff: 311 != 296
+E             Use -v to get more diff
+
+tests/test_native_mansion_bound_and_recovery.py:81: AssertionError
+_________ test_top_k_resume_rebuilds_from_committed_candidates[valid] __________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_rebuilds_fro3')
+checkpoint = 'valid'
+native_build = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/mansion-bound-native0')
+
+    @pytest.mark.parametrize('checkpoint', ['missing', 'corrupt', 'stale', 'valid'])
+    def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, native_build):
+        cfg = _policy()
+        cfg['search']['sequence'] = 'manifest'
+        cfg['search']['manifest_seeds'] = [str(SURVIVOR), '0']
+        run = tmp_path/'run'
+        options = dict(count=2, native_threads=1, native_batch_size=1,
+                       retention='survivors', top_k=1,
+                       native_build=native_build)
+        first = run_native_scan(cfg, run, stop_after=1, **options)
+        assert first['completed_seeds'] == 1
+        committed_leaders = json.loads((run/'top50.json').read_text())
+        assert len(committed_leaders) == 1
+        if checkpoint == 'missing':
+            (run/'top50.json').unlink()
+        elif checkpoint == 'corrupt':
+            (run/'top50.json').write_text('{broken')
+        elif checkpoint == 'stale':
+            (run/'top50.json').write_text('[]')
+        second = run_native_scan(cfg, run, resume=True, **options)
+        assert second['completed_seeds'] == 2
+        leaders = json.loads((run/'top50.json').read_text())
+        assert leaders == committed_leaders
+        assert leaders[0]['seed'] == str(SURVIVOR)
+        with sqlite3.connect(run/'realm.sqlite') as db:
+>           assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 296)
+E           AssertionError: assert ('-3336796033057908633', 311) == ('-3336796033057908633', 296)
+E             
+E             At index 1 diff: 311 != 296
+E             Use -v to get more diff
+
+tests/test_native_mansion_bound_and_recovery.py:81: AssertionError
+__________________________ test_top_k_integration_e2e __________________________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_integration_e2e0')
+
+    def test_top_k_integration_e2e(tmp_path):
+        cfg = dynamic_v3_blueprint_config()
+        out = tmp_path / "scan_top_k"
+    
+        # Run a small scan with top_k=5 within pilot limit (count <= 1000)
+>       status = run_native_scan(
+            cfg,
+            out,
+            count=1000,
+            start_index=0,
+            native_threads=4,
+            native_batch_size=250,
+            retention="survivors",
+            top_k=5
+        )
+
+tests/test_top_k_integration.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cfg = {'schema_version': 5, 'game': {'edition': 'bedrock', 'target_version': '26.52', 'backend_model': 'MC_26_50', 'backend_...s': 1024}, 'discovery': {'overworld_bounds': [-2000, -2000, 2000, 2000], 'nether_bounds': [-634, -634, 634, 634]}, ...}
+output = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_integration_e2e0/scan_top_k')
+count = 1000, start_index = 0, resume = False, identity = None
+native_build = None, native_threads = 4, native_batch_size = 250
+stop_after = None, progress = None, allow_prediction_scale = False
+retention = 'survivors', max_misses = 0, top_k = 5
+
+    def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
+                        native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
+                        allow_prediction_scale=False,retention="full",max_misses=None,top_k=0):
+        """Production opt-in; unsupported profiles fail before any input publication."""
+        validate_config(cfg)
+        if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
+        if two_group_policy(cfg) and retention=='survivors' and max_misses!=cfg['search']['max_misses']:
+            raise ValueError('V2 survivor budget must match the resolved config; set search.max_misses in the policy')
+        if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=MASK64+1 or isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64+1 or start_index+count>MASK64+1:raise ValueError('Invalid bounded full64 range')
+        if count>100000 and not allow_prediction_scale:
+            raise ValueError('Native ranges above 100,000 require explicit prediction scale')
+        search=cfg['search']
+        if search.get('numeric_threads_per_worker',1)!=1:raise ValueError('Numerical threads must equal one')
+        if search.get('sequence')=='manifest':
+            values=search.get('manifest_seeds')
+            if (not isinstance(values,list) or not 1<=len(values)<=10000 or
+                any(not isinstance(v,str) or str(parse_seed(v))!=v for v in values) or
+                len(set(values))!=len(values) or start_index+count>len(values)):
+                raise ValueError('Invalid or insufficient canonical full64 seed manifest')
+        prototype=Prototype(native_build,cfg)
+>       if native_threads>1 and not prototype.identity['openmp']:raise ValueError('Native threads above one need an explicitly built OpenMP extension')
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Native threads above one need an explicitly built OpenMP extension
+
+src/seed_search/realm/native_batch.py:742: ValueError
+_____________________ test_top_k_resume_preserves_tracker ______________________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_preserves_tr0')
+
+    def test_top_k_resume_preserves_tracker(tmp_path):
+        cfg = dynamic_v3_blueprint_config()
+        out = tmp_path / "scan_resume"
+    
+        # Scan with stop_after=250 within pilot limit
+>       status1 = run_native_scan(
+            cfg,
+            out,
+            count=1000,
+            start_index=0,
+            stop_after=250,
+            native_threads=4,
+            native_batch_size=250,
+            retention="survivors",
+            top_k=5
+        )
+
+tests/test_top_k_integration.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cfg = {'schema_version': 5, 'game': {'edition': 'bedrock', 'target_version': '26.52', 'backend_model': 'MC_26_50', 'backend_...s': 1024}, 'discovery': {'overworld_bounds': [-2000, -2000, 2000, 2000], 'nether_bounds': [-634, -634, 634, 634]}, ...}
+output = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_top_k_resume_preserves_tr0/scan_resume')
+count = 1000, start_index = 0, resume = False, identity = None
+native_build = None, native_threads = 4, native_batch_size = 250
+stop_after = 250, progress = None, allow_prediction_scale = False
+retention = 'survivors', max_misses = 0, top_k = 5
+
+    def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
+                        native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
+                        allow_prediction_scale=False,retention="full",max_misses=None,top_k=0):
+        """Production opt-in; unsupported profiles fail before any input publication."""
+        validate_config(cfg)
+        if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
+        if two_group_policy(cfg) and retention=='survivors' and max_misses!=cfg['search']['max_misses']:
+            raise ValueError('V2 survivor budget must match the resolved config; set search.max_misses in the policy')
+        if isinstance(count,bool) or not isinstance(count,int) or not 0<=count<=MASK64+1 or isinstance(start_index,bool) or not isinstance(start_index,int) or not 0<=start_index<=MASK64+1 or start_index+count>MASK64+1:raise ValueError('Invalid bounded full64 range')
+        if count>100000 and not allow_prediction_scale:
+            raise ValueError('Native ranges above 100,000 require explicit prediction scale')
+        search=cfg['search']
+        if search.get('numeric_threads_per_worker',1)!=1:raise ValueError('Numerical threads must equal one')
+        if search.get('sequence')=='manifest':
+            values=search.get('manifest_seeds')
+            if (not isinstance(values,list) or not 1<=len(values)<=10000 or
+                any(not isinstance(v,str) or str(parse_seed(v))!=v for v in values) or
+                len(set(values))!=len(values) or start_index+count>len(values)):
+                raise ValueError('Invalid or insufficient canonical full64 seed manifest')
+        prototype=Prototype(native_build,cfg)
+>       if native_threads>1 and not prototype.identity['openmp']:raise ValueError('Native threads above one need an explicitly built OpenMP extension')
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Native threads above one need an explicitly built OpenMP extension
+
+src/seed_search/realm/native_batch.py:742: ValueError
+_______________________ test_top_k_pruning_admissibility _______________________
+
+    def test_top_k_pruning_admissibility():
+        """Verify that native cutoff_score pruning preserves exact top candidate set."""
+        from seed_search.realm.native_batch import Prototype
+        from seed_search.realm.top_tracker import Top50Tracker
+    
+        cfg = dynamic_v3_blueprint_config()
+        proto = Prototype(None, cfg)
+    
+        # 1. Sweep without cutoff to collect true baseline candidates
+        with proto.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=0) as b_full:
+            recs_full = b_full.records()
+            observed_score = recs_full[0]['anchors'][0]['baseline_score_observed']
+>           assert observed_score == 482
+E           assert 479 == 482
+
+tests/test_top_k_integration.py:94: AssertionError
+________________ test_ui_values_reach_actual_machine_and_resume ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11fc80750>
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-350/test_ui_values_reach_actual_ma0')
+native_v2 = <seed_search.realm.native_batch.Prototype object at 0x1238fe710>
+
+    def test_ui_values_reach_actual_machine_and_resume(monkeypatch, tmp_path, native_v2):
+        # Generate the payload with the actual TypeScript helper used by both buttons.
+        js = """
+    const {load,root}=require('./tests/web_test_loader.cjs');
+    const {INITIAL_CONFIG}=load(root+'/web-ui/src/mockData.ts');
+    const {buildSweepRequest}=load(root+'/web-ui/src/utils/sweep.ts');
+    const cfg={...INITIAL_CONFIG,sweepSeedCount:3,startIndex:'9007199254741001',
+     openmpThreads:1,batchSize:2,maxMisses:1,structureFloorCounts:{...INITIAL_CONFIG.structureFloorCounts,
+     village:10,trial_chamber:9,monument:2,fortress:3,bastion:3}, selectedBiomes:['forest','deep_dark']};
+    console.log(JSON.stringify(buildSweepRequest(cfg)));
+    """
+        payload = json.loads(subprocess.run(['node', '-e', js], cwd=ROOT, check=True,
+                                            capture_output=True, text=True).stdout)
+        runs = tmp_path / 'runs'
+        monkeypatch.setattr(server, 'RUNS_DIR', runs)
+        monkeypatch.setattr(server, 'DEFAULT_NATIVE_BUILD', native_v2.directory)
+        manager = server.SweepManager()
+        monkeypatch.setattr(server, 'MANAGER', manager)
+        httpd = http.server.ThreadingHTTPServer(('127.0.0.1', 0), server.WebSearchHandler)
+        worker = threading.Thread(target=httpd.serve_forever, daemon=True)
+        worker.start()
+        captured = []
+        def post(endpoint, data):
+            conn = http.client.HTTPConnection(*httpd.server_address, timeout=10)
+            try:
+                conn.request('POST', endpoint, json.dumps(data), {'Content-Type': 'application/json'})
+                response = conn.getresponse()
+                return response.status, json.loads(response.read())
+            finally:
+                conn.close()
+        def capture(command, **kwargs):
+            captured.append((command, kwargs))
+            return FakeProcess()
+        try:
+            with monkeypatch.context() as fake:
+                fake.setattr(server.subprocess, 'Popen', capture)
+                code, preview = post('/api/sweep/preview', payload)
+                assert code == 200 and preview['ok']
+                assert not runs.exists() and captured == []
+                code, launched = post('/api/sweep/start', payload)
+                assert code == 200 and launched['ok']
+                manager.monitor_thread.join(timeout=5)
+            command, kwargs = captured[0]
+            assert command == launched['launch']['command'] == launched['command']
+            assert preview['effectiveConfig'] == launched['effectiveConfig']
+            directory = runs / launched['runId']
+            policy = yaml.safe_load((directory / 'policy.yaml').read_text())
+            assert policy['biomes']['required_families'] == payload['biomes'] == ['forest','deep_dark']
+            assert policy == yaml.safe_load(preview['launch']['policyYaml'])
+            assert policy == yaml.safe_load(launched['launch']['policyYaml'])
+            targets = {**policy['structures']['minimum_counts'], **policy['structures']['nether_minimum_counts']}
+            for key, count in payload['counts'].items():
+                assert targets[key] == count
+            assert command[command.index('--count')+1] == '3'
+            assert command[command.index('--start-index')+1] == payload['startIndex']
+            assert command[command.index('--native-threads')+1] == '1'
+            assert command[command.index('--native-batch-size')+1] == '2'
+>           assert command[command.index('--max-misses')+1] == '1'
+E           AssertionError: assert '0' == '1'
+E             
+E             - 1
+E             + 0
+
+tests/test_web_machine_contract.py:77: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1859:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1859 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1764:9: warning: code will never be executed [-Wunreachable-code]
+ 1764 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2419:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2419 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2519:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2519 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3419:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3419 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5112:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5112 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+----------------------------- Captured stderr call -----------------------------
+127.0.0.1 - - [16/Oct/2026 18:29:09] "POST /api/sweep/preview HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2026 18:29:09] "POST /api/sweep/start HTTP/1.1" 200 -
+=========================== short test summary info ============================
+FAILED tests/test_native_mansion_bound_and_recovery.py::test_top_k_resume_rebuilds_from_committed_candidates[missing]
+FAILED tests/test_native_mansion_bound_and_recovery.py::test_top_k_resume_rebuilds_from_committed_candidates[corrupt]
+FAILED tests/test_native_mansion_bound_and_recovery.py::test_top_k_resume_rebuilds_from_committed_candidates[stale]
+FAILED tests/test_native_mansion_bound_and_recovery.py::test_top_k_resume_rebuilds_from_committed_candidates[valid]
+FAILED tests/test_top_k_integration.py::test_top_k_integration_e2e - ValueErr...
+FAILED tests/test_top_k_integration.py::test_top_k_resume_preserves_tracker
+FAILED tests/test_top_k_integration.py::test_top_k_pruning_admissibility - as...
+FAILED tests/test_web_machine_contract.py::test_ui_values_reach_actual_machine_and_resume
+8 failed, 1189 passed in 398.97s (0:06:38)

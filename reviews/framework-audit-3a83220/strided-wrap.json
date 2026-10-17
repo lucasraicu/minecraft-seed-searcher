@@ -1,0 +1,39 @@
+{
+  "scalar": [
+    12345,
+    12345
+  ],
+  "list": [
+    [
+      12345
+    ],
+    [
+      12345
+    ]
+  ],
+  "vector": [
+    [
+      12345
+    ],
+    [
+      12345
+    ]
+  ],
+  "out_of_domain_run_accepted": {
+    "completed_seeds": 1,
+    "status": null,
+    "execution": {
+      "kind": "native",
+      "threads": 1,
+      "batch_size": 1,
+      "newly_committed": 1,
+      "wall_seconds": 0.09805193200008944,
+      "batch_latency_sample_scope": "last 4096 completed batches",
+      "batch_latency_p50_seconds": 0.0021608039969578385,
+      "batch_latency_p95_seconds": 0.0021608039969578385,
+      "retention": "survivors",
+      "max_misses": 0,
+      "checkpointed_scanned_inputs_per_second": 10.198677166290695
+    }
+  }
+}

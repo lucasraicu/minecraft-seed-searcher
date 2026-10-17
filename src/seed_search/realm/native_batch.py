@@ -23,7 +23,7 @@ from seed_search.realm.config import BLUEPRINT_CONTRACT, validate_config, locked
 from seed_search.realm.capabilities import identity as production_identity
 from seed_search.realm.store import RealmStore
 from seed_search.realm.native_records import build_record
-from seed_search.seeds import MASK64, parse_seed, seed_from_index, seed_strided, seeds_strided
+from seed_search.seeds import MASK64, parse_seed, seed_from_index, seed_strided, seeds_strided, validate_sequence_range
 
 NAMES=('mansion','jungle_temple','desert_pyramid','monument','ancient_city','village',
        'trial_chamber','ruined_portal','shipwreck','mineshaft','fortress','bastion','outpost')
@@ -47,6 +47,11 @@ def seeds_np(first: int, end: int, run_key: int):
 
 def seeds_strided_np(first: int, end: int, low32: int):
     import numpy as np
+    if type(end) is not int or type(first) is not int:
+        raise ValueError('Strided boundaries must be integers')
+    validate_sequence_range(first, end-first, 'strided')
+    if isinstance(low32, bool):raise ValueError('low32 must be a seed integer')
+    low32=parse_seed(low32)
     indices = np.arange(first, end, dtype=np.uint64)
     low = np.uint64(int(low32) & 0xFFFFFFFF)
     z = low | ((indices & np.uint64(0xFFFFFFFF)) << np.uint64(32))
@@ -73,6 +78,8 @@ class Prototype:
                 'stronghold_after':int(lib.nb_stronghold_after()) if hasattr(lib,'nb_stronghold_after') else None}
         else:
             self.directory=Path(directory).resolve();self.identity=json.loads((self.directory/'identity.json').read_text())
+            from .native_identity import validate_native_sources
+            validate_native_sources(self.identity)
             path=Path(self.identity['extension'])
             if not path.is_relative_to(self.directory) or hashlib.sha256(path.read_bytes()).hexdigest()!=self.identity['extension_sha256']:
                 raise ValueError('Private extension identity mismatch')
@@ -84,6 +91,8 @@ class Prototype:
         if two_group_policy(cfg) and not dynamic_policy(cfg) and self.identity.get('stronghold_after',2)!=stronghold_after(cfg):
             raise ValueError('Native Stronghold placement differs from the resolved policy')
         self.ffi,self.lib=self.module.ffi,self.module.lib;self.cfg=json.loads(json.dumps(cfg))
+        from .native_identity import validate_compiled_sources
+        validate_compiled_sources(self.ffi,self.lib)
         self.policy=self.ffi.new('NBPolicy *')
         self.policy.max_buffer_bytes=256<<20
         if not hasattr(self.policy,'outpost_goal'):raise ValueError('Native blueprint ABI changed; rebuild the extension before using this adapter')
@@ -513,6 +522,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     batch has a native allocation cap. Exceptions close all buffers, stop new
     claims, and recover uncommitted leases. No fallback changes implementation.
     """
+    validate_sequence_range(start_index, count, prototype.cfg['search'].get('sequence', 'permutation'))
     from concurrent.futures import ThreadPoolExecutor
     from collections import deque,Counter
     from seed_search.realm.native_encoding import fast_records
@@ -612,6 +622,9 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         pending.append((first,end,attempt,future,time.perf_counter(),native_future))
         dispatched+=end-first;max_pending=max(max_pending,len(pending));return True
     with _scan_lock(run),_numerical_threads(),RealmStore(run,identity=identity,resume=resume) as store:
+        previous_pipeline=store.get_state('native_pipeline') or {}
+        if resume and 'top_k' in previous_pipeline and previous_pipeline['top_k']!=top_k:
+            raise ValueError('Top-K capacity cannot change on resume; use a fresh run')
         store.configure_range(start_index,start_index+count,batch_size);store.recover_assignments()
         if tracker is not None and resume:
             # The candidate table and range receipts commit together. JSON is only
@@ -700,7 +713,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 'max_outstanding_batches':max_pending,'max_prepared_owned_estimate_bytes':max_payload,
                 'max_native_buffer_bytes_per_batch':int(prototype.policy.max_buffer_bytes),
                 'max_prepared_bytes':max_prepared_bytes,'service_seconds':dict(service),'batches':batches,
-                'prepare_on_writer':prepare_on_writer,
+                'prepare_on_writer':prepare_on_writer,'top_k':top_k,
                 'retention':retention,'max_misses':max_misses,'invocation_completed_seeds':committed,'interrupted':interrupted,
                 'error':str(failure) if failure else None})
             status=store.status()
@@ -721,9 +734,10 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
 
 def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
                     native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
-                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=0):
+                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=None):
     """Production opt-in; unsupported profiles fail before any input publication."""
     validate_config(cfg)
+    validate_sequence_range(start_index, count, cfg['search'].get('sequence', 'permutation'))
     if max_misses is None:max_misses=cfg['search']['max_misses'] if retention=='survivors' and two_group_policy(cfg) else 0
     if two_group_policy(cfg) and retention=='survivors' and max_misses!=cfg['search']['max_misses']:
         raise ValueError('V2 survivor budget must match the resolved config; set search.max_misses in the policy')
@@ -744,7 +758,8 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
     ident.update(execution='native',native=prototype.identity,
                  native_build=str(Path(native_build).resolve()) if native_build is not None else None,
                  evaluator='seed_search.realm.native_batch:run_native_scan')
-    if top_k is None or top_k==0:top_k=search.get('top_k',0)
+    if top_k is None:top_k=search.get('top_k',0)
+    if type(top_k) is not int or not 0<=top_k<=1000:raise ValueError('top_k must be an integer in 0–1000')
     result=persist_pipeline(prototype,output,count,run_key=search['run_key'],threads=native_threads,
         batch_size=native_batch_size,resume=resume,stop_after=stop_after,progress=progress,
         start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses,

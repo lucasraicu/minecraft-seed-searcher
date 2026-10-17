@@ -1,0 +1,165 @@
+{
+  "scope": "Natural structure-floor survivor with CUSTOM EMPTY Overworld palette; not a default-blueprint survivor",
+  "seed": -3336796033057908633,
+  "full": {
+    "evaluation_center": [
+      -480,
+      0
+    ],
+    "baseline_score_observed": 311,
+    "radial_key": 851304967,
+    "origin_distance_squared": 230400,
+    "hub_bonus": 26,
+    "scenic_bonus": 25,
+    "village_spread_bonus": 25,
+    "ranking": {
+      "score": 311,
+      "final_score": 311,
+      "deficit_tier": 0,
+      "weighted_radial_dist": 851.3049667996296,
+      "radial_key": 851304967,
+      "origin_distance_squared": 230400,
+      "origin_distance": 480.0,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 311,
+        "bonus_total": 311,
+        "deficit_penalty": 0,
+        "core_surplus": 115,
+        "optional_bonus": 50,
+        "luxury_biomes": 60,
+        "hub_bonus": 26,
+        "nether_core_bonus": 10,
+        "scenic_bonus": 25,
+        "village_spread_bonus": 25,
+        "treasure_bastion_bonus": 0
+      }
+    }
+  },
+  "survivors": {
+    "evaluation_center": [
+      -480,
+      0
+    ],
+    "baseline_score_observed": 311,
+    "radial_key": 851304967,
+    "origin_distance_squared": 230400,
+    "hub_bonus": 26,
+    "scenic_bonus": 25,
+    "village_spread_bonus": 25,
+    "ranking": {
+      "score": 311,
+      "final_score": 311,
+      "deficit_tier": 0,
+      "weighted_radial_dist": 851.3049667996296,
+      "radial_key": 851304967,
+      "origin_distance_squared": 230400,
+      "origin_distance": 480.0,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 311,
+        "bonus_total": 311,
+        "deficit_penalty": 0,
+        "core_surplus": 115,
+        "optional_bonus": 50,
+        "luxury_biomes": 60,
+        "hub_bonus": 26,
+        "nether_core_bonus": 10,
+        "scenic_bonus": 25,
+        "village_spread_bonus": 25,
+        "treasure_bastion_bonus": 0
+      }
+    }
+  },
+  "independent_python": {
+    "evaluation_center": [
+      -480,
+      0
+    ],
+    "baseline_score_observed": 311,
+    "radial_key": 851304967,
+    "origin_distance_squared": 230400,
+    "hub_bonus": 26,
+    "scenic_bonus": 25,
+    "village_spread_bonus": 25,
+    "ranking": {
+      "score": 311,
+      "final_score": 311,
+      "deficit_tier": 0,
+      "weighted_radial_dist": 851.3049667996296,
+      "radial_key": 851304967,
+      "origin_distance_squared": 230400,
+      "origin_distance": 480.0,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 311,
+        "bonus_total": 311,
+        "deficit_penalty": 0,
+        "core_surplus": 115,
+        "optional_bonus": 50,
+        "luxury_biomes": 60,
+        "hub_bonus": 26,
+        "nether_core_bonus": 10,
+        "scenic_bonus": 25,
+        "village_spread_bonus": 25,
+        "treasure_bastion_bonus": 0
+      }
+    }
+  },
+  "rescore": {
+    "evaluation_center": [
+      -480,
+      0
+    ],
+    "baseline_score_observed": 311,
+    "radial_key": 851304967,
+    "origin_distance_squared": 230400,
+    "hub_bonus": 26,
+    "scenic_bonus": 25,
+    "village_spread_bonus": 25,
+    "ranking": {
+      "score": 311,
+      "final_score": 311,
+      "deficit_tier": 0,
+      "weighted_radial_dist": 851.3049667996296,
+      "radial_key": 851304967,
+      "origin_distance_squared": 230400,
+      "origin_distance": 480.0,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 311,
+        "bonus_total": 311,
+        "deficit_penalty": 0,
+        "core_surplus": 115,
+        "optional_bonus": 50,
+        "luxury_biomes": 60,
+        "hub_bonus": 26,
+        "nether_core_bonus": 10,
+        "scenic_bonus": 25,
+        "village_spread_bonus": 25,
+        "treasure_bastion_bonus": 0
+      }
+    }
+  },
+  "cutoff_311_retained": 1,
+  "cutoff_312_retained": 0,
+  "stale_builds": [
+    {
+      "directory": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-mansion-bound-2026-10-16",
+      "stale_inputs": [
+        "native/blueprint_batch.inc",
+        "native/blueprint_dynamic.inc",
+        "vendor/cubiomes-bedrock/noise.h",
+        "vendor/cubiomes-bedrock/biomenoise.h",
+        "vendor/cubiomes-bedrock/mt.h",
+        "vendor/cubiomes-bedrock/generator.h",
+        "vendor/cubiomes-bedrock/noise.c",
+        "vendor/cubiomes-bedrock/biomenoise.c",
+        "vendor/cubiomes-bedrock/generator.c",
+        "vendor/cubiomes-bedrock/finders.c",
+        "vendor/cubiomes-bedrock/mt.c"
+      ],
+      "exception": "RuntimeError: Native/direct dynamic record parity failure at anchor 0"
+    }
+  ]
+}

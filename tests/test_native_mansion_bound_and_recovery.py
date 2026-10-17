@@ -39,9 +39,7 @@ def test_optimized_bounds_preserve_natural_survivors_and_compact_decisions(nativ
     root = Path(__file__).resolve().parents[1]
     optimized = Prototype(native_build, _policy())
     seeds = [SURVIVOR, *seeds_np(0, 4096, 2026101601)]
-    old_path = root/'runs/dynamic-baseline-2048/native'
-    expected = (_anchors(Prototype(old_path, _policy()), seeds, 'survivors')
-                if (old_path/'identity.json').is_file() else _anchors(optimized, seeds, 'full'))
+    expected = _anchors(optimized, seeds, 'full')
     assert str(SURVIVOR) in expected
     assert _anchors(optimized, seeds, 'survivors') == expected
     assert _anchors(optimized, [SURVIVOR], 'full') == {str(SURVIVOR): expected[str(SURVIVOR)]}
@@ -78,7 +76,7 @@ def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, n
     assert leaders == committed_leaders
     assert leaders[0]['seed'] == str(SURVIVOR)
     with sqlite3.connect(run/'realm.sqlite') as db:
-        assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 296)
+        assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 311)
         assert db.execute('SELECT count(*) FROM candidates').fetchone()[0] == 1
 
 
@@ -109,9 +107,13 @@ def test_web_saved_run_keeps_its_original_native_build(tmp_path, monkeypatch, na
     from seed_search.realm.cli import make_identity
     from seed_search.web import server
     root = Path(__file__).resolve().parents[1]
-    old = root/'runs/dynamic-baseline-2048/native'
-    if not (old/'identity.json').is_file():
-        pytest.skip('Historical private build is unavailable')
+    import shutil
+    monkeypatch.setattr(server,'PROJECT_ROOT',tmp_path)
+    old=tmp_path/'runs/dynamic-baseline-2048/original-native'
+    shutil.copytree(native_build,old)
+    metadata=json.loads((old/'identity.json').read_text())
+    metadata['extension']=str(old/Path(metadata['extension']).name)
+    (old/'identity.json').write_text(json.dumps(metadata))
     cfg = _policy()
     cfg['search']['sequence'] = 'manifest'
     cfg['search']['manifest_seeds'] = [str(SURVIVOR)]

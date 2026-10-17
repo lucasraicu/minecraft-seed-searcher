@@ -1,0 +1,26 @@
+{
+  "seed": 20261016,
+  "arithmetic_control": "pre-84a83ba noise.c, -ffp-contract=off; both use current other vendor files",
+  "biome_samples": 131072,
+  "biome_mismatches": 0,
+  "dark_filter_samples": 131072,
+  "dark_filter_mismatches": 0,
+  "raw_climate_samples": 98304,
+  "raw_climate_bit_mismatches": 65778,
+  "float32_climate_mismatches": 0,
+  "max_absolute_climate_delta": 4.440892098500626e-16,
+  "first_raw_difference": {
+    "seed": "13433625527330433547",
+    "coordinate": [
+      74.0,
+      0,
+      27.0
+    ],
+    "slot": 0,
+    "scalar": 0.040096118554733606,
+    "simd": 0.040096118554733655,
+    "absolute_delta": 4.85722573273506e-17
+  },
+  "first_biome_difference": null,
+  "wall_seconds": 3.580812567000976
+}

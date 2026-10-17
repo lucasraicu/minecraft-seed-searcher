@@ -1,8 +1,34 @@
 # Bedrock Coastal Continent seed search
 
+The October 16 framework corrections and verification are recorded in
+[the implementation report](reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md).
+Center-weight decisions and reproducible sensitivity experiments are tracked in
+[CENTER_WEIGHT_RESEARCH.md](CENTER_WEIGHT_RESEARCH.md).
+Native builds are checked against their source inputs and an embedded compiled
+fingerprint before use. Rebuild after C/vendor changes; stale private artifacts
+are rejected before scanning. Portable builds use scalar noise; `--avx2` and
+`--cpu-native` builds explicitly require the corresponding host instructions.
+Active v3 runs enable a durable Top-50 tracker by default (`search.top_k: 50`).
+Strided streams contain at most `2^32` upper-bit siblings for a fixed low32;
+normal permutation streams retain their full64 domain.
+
+Finalists can be reevaluated independently on the CPU over every chunk-aligned
+center, using the saved run policy:
+
+```sh
+.venv/bin/python scripts/refine_candidate_centers.py --seed <seed> \
+  --config <run>/policy.yaml --grid-step 16 --output <fresh-output>.json
+```
+
+This searches all 15,129 chunk-aligned centers under the pinned predictor.
+`--grid-step 8` searches all 60,025 integer-Nether-center positions and can split
+Overworld chunks. The output preserves the original result and labels the new
+selection separately; it does not rewrite a sweep checkpoint or certify actual
+generation. Native scanning continues to use the fast centroid representatives.
+
 The active CLI, web control plane, and search configurations implement the explicit `dynamic-envelope-2048-v3` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 6.0). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
 
-The active screening revision is **`dynamic-envelope-2048-v3`**. Instead of a fixed origin, the realm operates on an optimal sliding-window coordinate system that places a $2048 \times 2048$ Playable Overworld window ($128 \times 128$ chunks, radius 1024m) around a dynamic center $(C_X, C_Z) \in [-976, 976]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and a $1024 \times 1024$ Playable Nether window ($64 \times 64$ chunks, radius 512m) around scaled center $(C_X/8, C_Z/8) \in [-122, 122]^2$ within a $1268 \times 1268$ Nether preflight ($[-634, 634)^2$).
+The active screening revision is **`dynamic-envelope-2048-v3`**. Instead of a fixed origin, the realm operates on a sliding-window coordinate system that places a $2048 \times 2048$ Playable Overworld window ($128 \times 128$ chunks, radius 1024m) around a dynamic center $(C_X, C_Z) \in [-976, 976]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and a $1024 \times 1024$ Playable Nether window ($64 \times 64$ chunks, radius 512m) around scaled center $(C_X/8, C_Z/8) \in [-122, 122]^2$ within a $1268 \times 1268$ Nether preflight ($[-634, 634)^2$).
 
 Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the pure additive baseline where all 14 Guaranteed Hard Floors are non-negotiable entry tickets (Pillager Outpost hard floor is $\ge 1$; hard floors are fatal; zero deficit penalties, Miss Budget $B = 0$). Automatic terrain and coastal screening are retired for v3.
 
@@ -16,8 +42,8 @@ Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict 
 - **Control Baseline Speedup:** **$40\times$ faster** in compact mode ($8.8\times$ in full mode) than the pre-audit control pipeline ($\sim 5,400\text{ seeds/sec}$).
 
 The active v3 score operates on a **1,250-point pure additive architecture** (zero deficit penalties; fatal hard floors):
-- **Core Surplus Schedule (650 max across 14 categories):** 2nd Mansion (+55, 3rd+ +30; max +85), 2nd Stronghold (+20, 3rd+ +30; max +50), 2nd Monument (+25, 3rd +15, 4th+ +10; max +50), Village surplus (floor 6; 7th..11th+ = +10/ea; max +50), Trial Chamber surplus (floor 8; 9th: +10, 10th: +8, 11th: +7, 12th+: +5; max +30), Ancient City surplus (floor 2; 3rd: +20, 4th: +20, 5th: +15, 6th+: +10; max +65), Desert Pyramid surplus (floor 1; 2nd: +25, 3rd: +20, 4th+: +15; max +60), Jungle Temple surplus (floor 1; 2nd: +25, 3rd: +20, 4th+: +15; max +60), Pillager Outpost surplus (floor 1; 2nd: +15, 3rd: +15, 4th+: +10; max +40), Nether Fortress surplus (floor 1; 2nd: +20, 3rd: +15, 4th+: +15; max +50), Bastion Remnant surplus (floor 2; 3rd: +20, 4th: +15, 5th+: +15; max +50), Ruined Portal surplus (floor 8; 9th..12th+: +5/ea; max +20), Shipwreck surplus (floor 4; 5th..8th+: +5/ea; max +20), Mineshafts (>10: +2/ea up to 20; max +20).
-- **Optional Structure Schedule (200 max across 5 categories):** Swamp Hut (1st: +30, 2nd: +20, 3rd+: +10; max +60), Trail Ruins (1st: +25, 2nd: +15, 3rd+: +10; max +50), Basement Igloo (1st: +25, 2nd+: +15; max +40), Buried Treasure (1st: +10, 2nd: +10, 3rd: +5, 4th+: +5; max +30), Ocean Ruin (1st: +10, 2nd+: +10; max +20).
+- **Core Surplus Schedule (650 max across 14 categories):** 2nd Mansion (+45, 3rd+ +25; max +70), 2nd Stronghold (+30, 3rd+ +20; max +50), 2nd Monument (+25, 3rd +15, 4th+ +10; max +50), Village surplus (floor 6; 7th..11th+ = +10/ea; max +50), Trial Chamber surplus (floor 8; 9th: +10, 10th: +10, 11th: +10, 12th: +8, 13th+: +7; max +45), Ancient City surplus (floor 2; 3rd: +20, 4th: +20, 5th: +15, 6th+: +10; max +65), Desert Pyramid surplus (floor 1; 2nd: +25, 3rd: +20, 4th+: +15; max +60), Jungle Temple surplus (floor 1; 2nd: +25, 3rd: +20, 4th+: +15; max +60), Pillager Outpost surplus (floor 1; 2nd: +15, 3rd: +15, 4th+: +10; max +40), Nether Fortress surplus (floor 1; 2nd: +20, 3rd: +15, 4th+: +15; max +50), Bastion Remnant surplus (floor 2; 3rd: +20, 4th: +15, 5th+: +15; max +50), Ruined Portal surplus (floor 8; 9th..12th+: +5/ea; max +20), Shipwreck surplus (floor 4; 5th..8th+: +5/ea; max +20), Mineshafts (>10: +2/ea up to 20; max +20).
+- **Optional Structure Schedule (200 max across 5 categories):** Swamp Hut (1st: +25, 2nd: +15, 3rd+: +10; max +50), Trail Ruins (1st: +25, 2nd: +15, 3rd+: +10; max +50), Basement Igloo (1st: +30, 2nd+: +20; max +50), Buried Treasure (1st: +10, 2nd: +10, 3rd: +5, 4th+: +5; max +30), Ocean Ruin (1st: +10, 2nd+: +10; max +20).
 - **Luxury Biomes (265 max across 10 categories + Jackpot):** Mushroom Fields (+40), Pale Garden (+35), Badlands (+35), Cherry Grove (+25), Ice Spikes (+25), Warm Ocean (+20), Old Growth Taiga (+20), Flower Forest (+15), Windswept Savanna / Plateau including ordinary Savanna (+15), Bamboo Jungle (+10), plus Tiered Diversity Jackpot (+10 at $\ge 5$, +25 at $\ge 7$; max +25).
 - **Spatial, Layout & Nether Core Bonuses (135 max):**
   - Starter Hub Proximity (+45 max): Village within 256m (+15) or 512m (+10); other hub structures within 512m (Desert Pyramid, Jungle Temple, Outpost, Ancient City at +6/ea; Ruined Portal at +4/ea; non-village cap +30).
@@ -118,7 +144,7 @@ Native execution is an explicit option for the audited blueprint eligibility pro
 
 Omit `--openmp-prefix` for a portable serial build and use `--native-threads 1`. Standard package builds also include `seed_search._blueprint_batch`; `native/blueprint_build.py` builds just that extension. Serial is the default, with the same explicit OpenMP prefix/architecture rules as `native/build.py`. There is no silent fallback if the selected extension or profile is incompatible. Each invocation is bounded to 100,000 inputs; native batches are bounded to 16,384. The pipeline reserves two CPU slots for preparation/writing, limits outstanding batches and bytes, monitors process-tree memory, and preserves WAL with FULL synchronization and disk reserves.
 
-For new v3 dashboard sweeps, the server selects `runs/dynamic-baseline-2048/native-mansion-bound-2026-10-16` when its verified build identity exists. Rebuild that private artifact after native source changes with `scripts/build_blueprint_batch.py --output runs/dynamic-baseline-2048/native-mansion-bound-2026-10-16 --openmp-prefix runs/master-implementation-2026-10-10/openmp/install --cpu-native --avx2 --lto`. The bounds optimization intersects Nether-feasible centers with the union of all possible Dark Forest Mansion windows. Saved runs retain their recorded native build identity on resume. Compact Top-K recovers from committed SQLite candidates, so an absent or stale `top50.json` cannot erase a previously committed leader.
+For new v3 dashboard sweeps, the server selects `runs/dynamic-baseline-2048/native-fixed-2026-10-16` when its source hashes and binary identity match this checkout. Rebuild that private artifact after native source changes with `scripts/build_blueprint_batch.py --output runs/dynamic-baseline-2048/native-fixed-2026-10-16 --openmp-prefix runs/master-implementation-2026-10-10/openmp/install --cpu-native --avx2 --lto`. The bounds optimization intersects Nether-feasible centers with the union of all possible Dark Forest Mansion windows. Saved runs retain their recorded native build identity on resume. Compact Top-K recovers from committed SQLite candidates, so an absent or stale `top50.json` cannot erase a previously committed leader.
 
 Private builds accept `--work-chunk 16`, `64` or `128` for measured atomic scheduling experiments. The default remains 16: larger chunks slowed the current compact workload. Reproduce the same-policy comparison with `scripts/benchmark_native_chunks.py --output <fresh-directory> --openmp-prefix <runtime-prefix>`. See [GEMINI_PIPELINE_REVIEW_RESULTS.md](GEMINI_PIPELINE_REVIEW_RESULTS.md) for retained measurements and review findings. Process-tree monitoring failures stop new dispatch; current-process peak RSS cannot replace live parent-and-worker memory.
 

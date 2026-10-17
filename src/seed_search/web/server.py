@@ -39,11 +39,19 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
 OPTIMIZED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-mansion-bound-2026-10-16'
-DEFAULT_NATIVE_BUILD = Path(os.environ.get('SEED_SEARCH_NATIVE_BUILD', str(
-    OPTIMIZED_NATIVE_BUILD if (OPTIMIZED_NATIVE_BUILD / 'identity.json').is_file()
-    else PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native'
-    if (PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native').exists()
-    else PROJECT_ROOT / 'runs' / 'dynamic-baseline-1664' / 'native')))
+from seed_search.realm.native_identity import compatible_native_build
+FIXED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-fixed-2026-10-16'
+def select_native_build():
+    override=os.environ.get('SEED_SEARCH_NATIVE_BUILD')
+    if override:return Path(override)  # An explicit invalid override fails at launch.
+    for directory in (FIXED_NATIVE_BUILD, OPTIMIZED_NATIVE_BUILD,
+                      PROJECT_ROOT/'runs/dynamic-baseline-2048/native',
+                      PROJECT_ROOT/'runs/dynamic-baseline-1664/native'):
+        if compatible_native_build(directory):return directory
+    return FIXED_NATIVE_BUILD  # Give a concrete rebuild target when none is current.
+
+
+DEFAULT_NATIVE_BUILD = select_native_build()
 
 
 class SweepManager:

@@ -115,6 +115,7 @@ def validate_config(cfg):
     if cfg['discovery'] != DEFAULT['discovery']:
         raise ValueError('Discovery must use exactly half-open [-2000,2000) in each dimension')
     s=cfg['search']
+    _integer(s.get('top_k',0),0,1000,'top_k')
     if s.get('mode')!='prediction' or s.get('sequence') not in ('permutation','sequential','manifest','strided'):
         raise ValueError('Realm scan mode must explicitly label predictions and supported seed sequence')
     if s.get('sequence')=='manifest':
@@ -410,6 +411,7 @@ def dynamic_v3_blueprint_config():
         'monument':1,'stronghold':3,'shipwreck':0
     }
     cfg['search']['max_misses']=0
+    cfg['search']['top_k']=50
     return cfg
 
 

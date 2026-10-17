@@ -115,6 +115,9 @@ def merge_runs(sources, destination, *, strict=True):
                 raise ValueError(f"Aggregate coverage requires permutation or strided index domain, got '{signature['sequence']}'")
             intervals = [(int(a), int(b)) for a, b in conn.execute("SELECT start,end FROM ranges WHERE status='complete'")]
             union_intervals(intervals)
+            from seed_search.seeds import validate_sequence_range
+            for first, end in intervals:
+                validate_sequence_range(first, end-first, signature['sequence'])
             # Durable identity + configured interval distinguishes shards, even if their directory names match.
             shard = json.loads(meta.get('range', 'null'))
             source_id = hashlib.sha256(canonical({'identity': semantic_identity(identity), 'range': shard}).encode()).hexdigest()

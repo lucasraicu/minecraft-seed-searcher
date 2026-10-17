@@ -1,14 +1,18 @@
 from pathlib import Path
 import os
 import platform
+import sys
 from cffi import FFI
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT/'src'))
+from seed_search.realm.native_identity import native_source_fingerprint
 ffibuilder = FFI()
 header = (ROOT / "native/bridge.h").read_text()
 ffibuilder.cdef("\n".join(line for line in header.splitlines() if not line.startswith("#")))
 units = ["noise", "biomes", "layers", "biomenoise", "cave", "generator", "finders", "util", "quadbase", "mt"]
 compile_args = ["-O3", "-std=c11", "-fwrapv", "-fno-inline-functions"]
+compile_args += ['-DSS_SOURCE_FINGERPRINT="'+native_source_fingerprint()+'"']
 include_dirs = [str(ROOT / "native"), str(ROOT / "vendor/cubiomes-bedrock")]
 libraries = ["m"]
 library_dirs, link_args = [], []

@@ -4,7 +4,7 @@ Verifies that:
 1. Evaluating 5,000 seeds through the optimized native sweep and comparing against
    `seed_search.realm.blueprint.evaluate_dynamic_seed` produces 100% bit-exact scores,
    components, and centers for EVERY qualifying candidate match.
-2. Zero false positives and zero false negatives occur across the optimized pipeline.
+2. Retained candidates and a bounded sample of rejects agree with the reference.
 3. Multi-threaded execution across 1, 4, 8, 16, 34 threads is 100% deterministic.
 4. Cutoff score pruning preserves candidate matches at or above threshold bit-exactly.
 """
@@ -31,6 +31,7 @@ from seed_search.seeds import seed_from_index
 def get_v3_prototype(cfg: Dict[str, Any]) -> Prototype:
     """Helper to instantiate prototype using optimized native build."""
     candidate_dirs = [
+        ROOT / "runs/dynamic-baseline-2048/native-fixed-2026-10-16",
         ROOT / "runs/dynamic-baseline-2048/native",
         ROOT / "runs/master-implementation-2026-10-10/openmp/install",
     ]
@@ -94,7 +95,7 @@ def assert_anchor_bit_exact(native_anchor: Dict[str, Any], py_anchor: Dict[str, 
     assert native_anchor.get("qualification") == py_anchor.get("qualification")
 
 
-def test_v3_5000_seeds_sweep_and_zero_false_positives():
+def test_v3_5000_seeds_retained_parity_and_sampled_rejects():
     """Evaluate 5,000 seeds through native sweep and verify zero false positives and parity."""
     cfg = dynamic_v3_blueprint_config()
     cfg["search"]["run_key"] = "2026101501"
@@ -121,16 +122,12 @@ def test_v3_5000_seeds_sweep_and_zero_false_positives():
         py_anchor = py_record["anchors"][0]
         assert_anchor_bit_exact(native_anchor, py_anchor)
 
-    # Confirm that if 0 candidates survived in this range, both native and python agree
-    if not retained:
-        # Check a sample of seeds through evaluate_dynamic_seed to confirm zero false negatives
-        sample_indices = [0, 10, 50, 100, 500, 1000, 2500, 4999]
-        for i in sample_indices:
-            s = int(seeds[i])
-            py_res = evaluate_dynamic_seed(i, s, cfg)
-            assert len(py_res.get("anchors", [])) == 0, (
-                f"FALSE NEGATIVE: evaluate_dynamic_seed accepted seed {s} at index {i}, but native rejected it."
-            )
+    # Check a bounded reject sample even when this cohort has survivors.
+    retained_seeds = {int(row['seed']) for row in retained}
+    for i in [0, 10, 50, 100, 500, 1000, 2500, 4999]:
+        seed = int(seeds[i])
+        if seed not in retained_seeds:
+            assert not evaluate_dynamic_seed(i, seed, cfg)['anchors']
 
 
 def test_v3_candidate_match_100_percent_bit_exact_parity():

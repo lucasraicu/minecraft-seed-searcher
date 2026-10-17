@@ -1,0 +1,35 @@
+{
+  "default_search_top_k": 0,
+  "old_v3_config_validation_error": "Centroid weights differ from the blueprint",
+  "old_and_new_screening_revision": "dynamic-envelope-2048-v3",
+  "web_default": {
+    "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-mansion-bound-2026-10-16",
+    "source_mismatches": [
+      "native/blueprint_batch.inc",
+      "native/blueprint_dynamic.inc",
+      "vendor/cubiomes-bedrock/noise.h",
+      "vendor/cubiomes-bedrock/biomenoise.h",
+      "vendor/cubiomes-bedrock/mt.h",
+      "vendor/cubiomes-bedrock/generator.h",
+      "vendor/cubiomes-bedrock/noise.c",
+      "vendor/cubiomes-bedrock/biomenoise.c",
+      "vendor/cubiomes-bedrock/generator.c",
+      "vendor/cubiomes-bedrock/finders.c",
+      "vendor/cubiomes-bedrock/mt.c"
+    ],
+    "init": "accepted",
+    "error": "RuntimeError: Native/direct dynamic record parity failure at anchor 0"
+  },
+  "current": {
+    "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native",
+    "source_mismatches": [],
+    "init": "accepted",
+    "fixture_score": 479
+  },
+  "default_scan": {
+    "completed_seeds": 1,
+    "candidate_count": 1,
+    "top50_json_exists": false,
+    "top_candidates_table_exists": 0
+  }
+}

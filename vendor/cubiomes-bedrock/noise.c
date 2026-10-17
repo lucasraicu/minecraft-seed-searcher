@@ -4,7 +4,8 @@
 #include <math.h>
 #include <stdio.h>
 
-#if (defined(__x86_64__) || defined(_M_X64)) && (defined(__GNUC__) || defined(__clang__))
+/* Portable builds retain scalar noise. CPU-specific AVX2/FMA is explicit. */
+#if (defined(__x86_64__) || defined(_M_X64)) && defined(__AVX2__) && defined(__FMA__) && (defined(__GNUC__) || defined(__clang__))
 #include <immintrin.h>
 #define NOISE_USE_AVX2 1
 #define ATTR_AVX2 __attribute__((target("avx2,fma")))

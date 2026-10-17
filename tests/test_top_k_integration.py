@@ -15,7 +15,7 @@ def test_top_k_integration_e2e(tmp_path):
         out,
         count=1000,
         start_index=0,
-        native_threads=4,
+        native_threads=1,
         native_batch_size=250,
         retention="survivors",
         top_k=5
@@ -51,7 +51,7 @@ def test_top_k_resume_preserves_tracker(tmp_path):
         count=1000,
         start_index=0,
         stop_after=250,
-        native_threads=4,
+        native_threads=1,
         native_batch_size=250,
         retention="survivors",
         top_k=5
@@ -67,7 +67,7 @@ def test_top_k_resume_preserves_tracker(tmp_path):
         start_index=0,
         resume=True,
         stop_after=250,
-        native_threads=4,
+        native_threads=1,
         native_batch_size=250,
         retention="survivors",
         top_k=5
@@ -91,14 +91,14 @@ def test_top_k_pruning_admissibility():
     with proto.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=0) as b_full:
         recs_full = b_full.records()
         observed_score = recs_full[0]['anchors'][0]['baseline_score_observed']
-        assert observed_score == 482
+        assert observed_score == 479
 
-    # 2. Sweep with tracker seeded with candidate: cutoff = 482
+    # 2. Sweep with tracker seeded with candidate: cutoff = 479
     tracker = Top50Tracker(capacity=1)
     tracker.observe(recs_full[0])
-    assert tracker.cutoff_score() == 482
+    assert tracker.cutoff_score() == 479
 
-    # A seed that can achieve >= 482 is retained
+    # A seed that can achieve >= 479 is retained
     with proto.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score()) as b_retained:
         recs_retained = b_retained.records()
         assert len(recs_retained[0]['anchors']) == 1

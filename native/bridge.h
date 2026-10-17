@@ -4,6 +4,7 @@ SeedContext *ss_create(uint64_t seed);
 void ss_destroy(SeedContext *ctx);
 int ss_openmp_enabled(void);
 const char *ss_openmp_library(void);
+const char *ss_source_fingerprint(void);
 int ss_set_threads(SeedContext *ctx, int threads);
 int ss_model(void);
 const char *ss_model_name(void);

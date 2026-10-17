@@ -1,0 +1,208 @@
+.....................................FF.....                             [100%]
+=================================== FAILURES ===================================
+______________ test_web_saved_run_keeps_its_original_native_build ______________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-352/test_web_saved_run_keeps_its_o0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1109269e0>
+native_build = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-352/mansion-bound-native0')
+
+    def test_web_saved_run_keeps_its_original_native_build(tmp_path, monkeypatch, native_build):
+        from pathlib import Path
+        from seed_search.realm.cli import make_identity
+        from seed_search.web import server
+        root = Path(__file__).resolve().parents[1]
+        import shutil
+        old=tmp_path/'original-native'
+        shutil.copytree(native_build,old)
+        metadata=json.loads((old/'identity.json').read_text())
+        metadata['extension']=str(old/Path(metadata['extension']).name)
+        (old/'identity.json').write_text(json.dumps(metadata))
+        cfg = _policy()
+        cfg['search']['sequence'] = 'manifest'
+        cfg['search']['manifest_seeds'] = [str(SURVIVOR)]
+        monkeypatch.setattr(server, 'RUNS_DIR', tmp_path)
+        run = tmp_path/'web-sweep-20261016-000000-12345678'
+        run_native_scan(cfg, run, count=1, native_threads=1, native_batch_size=1,
+                        retention='survivors', native_build=old,
+                        identity=make_identity(cfg, 1, 0))
+        monkeypatch.setattr(server, 'DEFAULT_NATIVE_BUILD', native_build)
+>       directory, identity, completed, _ = server.SweepManager()._saved_run(run.name)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_mansion_bound_and_recovery.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <seed_search.web.server.SweepManager object at 0x12515f9d0>
+run_id = 'web-sweep-20261016-000000-12345678'
+
+    def _saved_run(self, run_id):
+        if not isinstance(run_id,str) or not re.fullmatch(r"web-sweep-[0-9]{8}-[0-9]{6}-[0-9a-f]{8}",run_id):
+            raise ValueError("Invalid saved run ID")
+        directory=RUNS_DIR/run_id
+        if directory.is_symlink() or directory.resolve().parent!=RUNS_DIR.resolve():
+            raise ValueError("Saved run must be a direct run directory")
+        db=directory/'realm.sqlite'
+        if not db.is_file() or db.is_symlink():raise ValueError("Saved checkpoint is unavailable")
+        with contextlib.closing(sqlite3.connect(f"file:{db}?mode=ro",uri=True)) as conn:
+            values={key:json.loads(value) for key,value in conn.execute(
+                "SELECT key,value FROM meta WHERE key IN ('identity','completed_seeds','native_pipeline')")}
+        identity=values.get('identity')
+        if not isinstance(identity,dict) or identity.get('execution')!='native':
+            raise ValueError("Saved run is not a native sweep")
+        cfg=identity['config'];validate_config(cfg)
+        count=identity['count'];first=identity['start_index'];completed=values.get('completed_seeds',0)
+        if (type(count) is not int or not 1<=count<=2**53-1 or type(first) is not int
+                or not 0<=first<2**64 or first+count>2**64 or type(completed) is not int
+                or not 0<=completed<=count):raise ValueError("Invalid saved range")
+        from seed_search.realm.native_batch import Prototype
+        from seed_search.realm.cli import make_identity
+        from seed_search.realm.store import semantic_identity
+        build=identity.get('native_build')
+        build_path=Path(build).resolve() if build else None
+        historical_roots=(PROJECT_ROOT/'runs'/'dynamic-baseline-2048',
+                          PROJECT_ROOT/'runs'/'dynamic-baseline-1664')
+        if build_path is None or not (build_path==DEFAULT_NATIVE_BUILD.resolve() or
+                any(build_path.is_relative_to(root.resolve()) for root in historical_roots)):
+>           raise ValueError("Saved sweep uses a different native build")
+E           ValueError: Saved sweep uses a different native build
+
+src/seed_search/web/server.py:368: ValueError
+________________ test_ui_values_reach_actual_machine_and_resume ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x125a6b9a0>
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-352/test_ui_values_reach_actual_ma0')
+native_v2 = <seed_search.realm.native_batch.Prototype object at 0x125a66e90>
+
+    def test_ui_values_reach_actual_machine_and_resume(monkeypatch, tmp_path, native_v2):
+        # Generate the payload with the actual TypeScript helper used by both buttons.
+        js = """
+    const {load,root}=require('./tests/web_test_loader.cjs');
+    const {INITIAL_CONFIG}=load(root+'/web-ui/src/mockData.ts');
+    const {buildSweepRequest}=load(root+'/web-ui/src/utils/sweep.ts');
+    const cfg={...INITIAL_CONFIG,profile:'dynamic1664',sweepSeedCount:3,startIndex:'9007199254741001',
+     openmpThreads:1,batchSize:2,maxMisses:1,structureFloorCounts:{...INITIAL_CONFIG.structureFloorCounts,
+     village:10,trial_chamber:9,monument:2,fortress:3,bastion:3}, selectedBiomes:['forest','deep_dark']};
+    console.log(JSON.stringify(buildSweepRequest(cfg)));
+    """
+>       payload = json.loads(subprocess.run(['node', '-e', js], cwd=ROOT, check=True,
+                                            capture_output=True, text=True).stdout)
+
+tests/test_web_machine_contract.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['node', '-e', "\nconst {load,root}=require('./tests/web_test_loader.cjs');\nconst {INITIAL_CONFIG}=load(root+'/web-u...tress:3,bastion:3}, selectedBiomes:['forest','deep_dark']};\nconsole.log(JSON.stringify(buildSweepRequest(cfg)));\n"],)
+kwargs = {'cwd': PosixPath('/Users/lucasraicu/Downloads/minecraft-seed-searcher'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['node', '-e', "\nconst {load,root}=require('./tests/web_test_loader.cjs');\nconst {INITIAL_CONFIG}=load(root+'/web-ui/src/mockData.ts');\nconst {buildSweepRequest}=load(root+'/web-ui/src/utils/sweep.ts');\nconst cfg={...INITIAL_CONFIG,profile:'dynamic1664',sweepSeedCount:3,startIndex:'9007199254741001',\n openmpThreads:1,batchSize:2,maxMisses:1,structureFloorCounts:{...INITIAL_CONFIG.structureFloorCounts,\n village:10,trial_chamber:9,monument:2,fortress:3,bastion:3}, selectedBiomes:['forest','deep_dark']};\nconsole.log(JSON.stringify(buildSweepRequest(cfg)));\n"]' returned non-zero exit status 1.
+
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py:577: CalledProcessError
+---------------------------- Captured stderr setup -----------------------------
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1859:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1859 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1764:9: warning: code will never be executed [-Wunreachable-code]
+ 1764 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2419:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2419 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2519:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2519 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3419:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3419 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5112:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5112 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+=========================== short test summary info ============================
+FAILED tests/test_native_mansion_bound_and_recovery.py::test_web_saved_run_keeps_its_original_native_build
+FAILED tests/test_web_machine_contract.py::test_ui_values_reach_actual_machine_and_resume
+2 failed, 42 passed in 57.46s

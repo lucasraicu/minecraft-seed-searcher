@@ -190,6 +190,8 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
             progress=progress,allow_prediction_scale=allow_prediction_scale,retention=retention,max_misses=max_misses)
     if native_build is not None or retention!='full' or max_misses:raise ValueError('Native build or compact retention requires execution=native')
     index_key(start_index)
+    from ..seeds import validate_sequence_range
+    validate_sequence_range(start_index, count, cfg['search'].get('sequence', 'permutation'))
     if isinstance(count, bool) or not isinstance(count, int) or count < 0 or start_index + count > LIMIT:
         raise ValueError("Invalid finite full64 seed count")
     if stop_after is not None and (isinstance(stop_after, bool) or not isinstance(stop_after, int) or stop_after < 0):

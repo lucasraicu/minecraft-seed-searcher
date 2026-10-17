@@ -79,6 +79,7 @@ int nb_stronghold_after(void);
 
 int ss_openmp_enabled(void);
 const char *ss_openmp_library(void);
+const char *ss_source_fingerprint(void);
 int nb_dynamic_raw_bounds(const int *fort, int nf, const int *bast, int nb, int fort_goal, int bast_goal, int *feasible);
 
 void nb_diag_reset(void);

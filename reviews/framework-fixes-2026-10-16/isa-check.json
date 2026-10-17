@@ -1,0 +1,5 @@
+{
+  "portable_scalar": true,
+  "explicit_avx2_fma": true,
+  "method": "compiler preprocessing with explicit -mno-avx2/-mno-fma and -mavx2/-mfma"
+}

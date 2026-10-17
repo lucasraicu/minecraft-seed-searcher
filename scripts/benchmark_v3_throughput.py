@@ -74,6 +74,7 @@ DIAG_LABELS = [
 def resolve_prototype(cfg: Dict[str, Any]) -> Prototype:
     """Resolve the optimized native OpenMP prototype build."""
     candidate_dirs = [
+        ROOT / "runs/dynamic-baseline-2048/native-fixed-2026-10-16",
         ROOT / "runs/dynamic-baseline-2048/native",
         ROOT / "runs/master-implementation-2026-10-10/openmp/install",
     ]
@@ -130,14 +131,14 @@ def measure_throughput_for_threads(
 
     rss_after = get_peak_rss_mb()
 
-    # Use best (minimum wall time) for peak throughput reporting
+    # Report medians; retain minima as explicitly labeled diagnostic values.
     best_wall = min(trial_wall_times)
     median_wall = float(np.median(trial_wall_times))
     best_native = min(trial_native_times)
     median_native = float(np.median(trial_native_times))
 
-    wall_rate = total_seeds / best_wall if best_wall > 0 else 0.0
-    kernel_rate = total_seeds / best_native if best_native > 0 else 0.0
+    wall_rate = total_seeds / median_wall if median_wall > 0 else 0.0
+    kernel_rate = total_seeds / median_native if median_native > 0 else 0.0
 
     return {
         "threads": threads,
@@ -249,7 +250,7 @@ def build_markdown_report(
     md.append("")
 
     # Main Throughput Table
-    md.append("## 1. Multi-Threaded Sweep Throughput vs. Baseline")
+    md.append("## 1. Median compact sweep throughput (historical references are unpaired)")
     md.append("")
     md.append("| Threads | Wall Time (s) | Throughput (seeds/s) | Baseline (seeds/s) | Speedup vs Baseline | Delta (%) | Scaling Efficiency | Peak RSS (MB) |")
     md.append("|:-------:|:-------------:|:--------------------:|:------------------:|:-------------------:|:---------:|:------------------:|:-------------:|")
@@ -266,7 +267,7 @@ def build_markdown_report(
         sign = "+" if delta_pct >= 0 else ""
 
         md.append(
-            f"| **{t}** | {r['best_wall_seconds']:.3f} | **{rate:,.1f}** | "
+            f"| **{t}** | {r['median_wall_seconds']:.3f} | **{rate:,.1f}** | "
             f"{baseline:,.1f} | **{ratio:.2f}x** | {sign}{delta_pct:.1f}% | "
             f"{scaling_eff:.1f}% | {r['rss_after_mb']:.1f} |"
         )
@@ -274,7 +275,7 @@ def build_markdown_report(
     md.append("")
     md.append("> [!NOTE]")
     md.append(f"> **Baseline Reference Points:** Baseline throughput is calibrated at **~48k seeds/s** at 12 threads and **~87k seeds/s** at 34 threads.")
-    md.append("> The optimized dynamic pipeline achieves significant acceleration across all concurrency levels with bounded memory overhead.")
+    md.append("> Reference rates are historical constants, not a fresh paired control. Ratios do not establish an optimization speedup. Stage percentages below describe full retention, not compact screening; these sweep rates exclude durable persistence.")
     md.append("")
 
     # Stage Timings Table
@@ -340,7 +341,7 @@ def run_benchmarks(
     print(f"Cohort Size: {count:,} seeds | Batch Size: {batch_size:,} | Run Key: {run_key}")
     print(f"Thread Configurations: {thread_counts}")
     print(f"OpenMP Library: {prototype.identity.get('runtime', 'None (Serial)')}")
-    print(f"CPU Native Flags: AVX2 + FMA + Native")
+    print(f"Native build flags: {prototype.identity.get('flags', 'packaged build')}")
     print("=" * 80)
 
     print("\nGenerating seed cohort via seeds_np...")
@@ -358,7 +359,7 @@ def run_benchmarks(
         rate = res["wall_throughput"]
         base = BASELINES.get(t, 0.0)
         speedup = rate / base if base > 0 else 1.0
-        print(f" -> {rate:10,.1f} seeds/sec (Best wall: {res['best_wall_seconds']:.3f}s | {speedup:.2f}x baseline)")
+        print(f" -> {rate:10,.1f} seeds/sec (Median wall: {res['median_wall_seconds']:.3f}s | {speedup:.2f}x baseline)")
         throughput_results.append(res)
 
     # 2. Stage Breakdown
@@ -403,7 +404,7 @@ def run_benchmarks(
         ratio = (rate / base) if base > 0 else 1.0
         delta_pct = ((rate - base) / base * 100.0) if base > 0 else 0.0
         sign = "+" if delta_pct >= 0 else ""
-        print(f"{t:7d} | {r['best_wall_seconds']:8.3f} | {rate:12,.1f} | {base:12,.1f} | {ratio:8.2f}x | {sign}{delta_pct:6.1f}% | {r['rss_after_mb']:8.1f}")
+        print(f"{t:7d} | {r['median_wall_seconds']:8.3f} | {rate:12,.1f} | {base:12,.1f} | {ratio:8.2f}x | {sign}{delta_pct:6.1f}% | {r['rss_after_mb']:8.1f}")
     print("=" * 80)
 
     if output_md:

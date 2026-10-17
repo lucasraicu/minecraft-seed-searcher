@@ -22,7 +22,6 @@ class FakeProcess:
 
 def test_start_binds_validated_counts_and_budget(monkeypatch,tmp_path):
     monkeypatch.setattr(server,'RUNS_DIR',tmp_path)
-    monkeypatch.setattr(server,'DEFAULT_NATIVE_BUILD',server.PROJECT_ROOT/'runs/dynamic-baseline-1664/native')
     captured=[]
     monkeypatch.setattr(server.subprocess,'Popen',lambda cmd,**kwargs:(captured.append(cmd),FakeProcess())[1])
     manager=server.SweepManager()

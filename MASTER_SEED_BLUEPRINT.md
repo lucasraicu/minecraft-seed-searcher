@@ -1,7 +1,7 @@
 # Master Seed Blueprint: Bedrock 15–20 Player Server (2048 × 2048)
 
 > **Specification Status:** Approved Engineering Blueprint Specification (Revision 6.0 - Dynamic Envelope v3 2048x2048 Realm Scale - October 2026).
-> **Pipeline Policy:** `dynamic-envelope-2048-v3` with sliding optimal cluster center $(C_X, C_Z)$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)$) and $1268 \times 1268$ Nether preflight envelope ($[-634, 634)$).
+> **Pipeline Policy:** `dynamic-envelope-2048-v3` with sliding constrained-centroid cluster center $(C_X, C_Z)$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)$) and $1268 \times 1268$ Nether preflight envelope ($[-634, 634)$).
 > **Historical Archive Notice:** The previous $1664 \times 1664$ Overworld / $832 \times 832$ Nether specification is preserved as historical reference at [`MASTER_SEED_BLUEPRINT_1664_V2.md`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/MASTER_SEED_BLUEPRINT_1664_V2.md) and [`docs/historical_reports/MASTER_SEED_BLUEPRINT_1664_V2.md`](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/docs/historical_reports/MASTER_SEED_BLUEPRINT_1664_V2.md), alongside `dynamic-envelope-1664-v1`. Both remain fully readable and valid for historical database replay.
 > **Target Game Version:** Minecraft Bedrock Edition 1.21+ (pinned `MC_26_50`; live BDS target 1.26.52.3).
 > **Target Community:** 15–20 Players (High-density active server; shared central starter hub; distributed homestead districts; zero resource depletion).
@@ -308,7 +308,7 @@ Supported by the SQLite index `candidate_leaderboard`.
 
 ## 7. Execution Pipeline & Performance Engineering
 
-> **Implementation evidence:** This is the approved search design. The measured implementation and its limits are recorded in `LATEST_PUSH_REVIEW.md`. Section 7's performance percentages, climate-noise shortcut and automatic biome credits are proposals or projections, not proofs. The current engine keeps exact biome lookup and explicit four-Y witnesses, and does not enable those unproven shortcuts. Center selection ranks the defined constrained-centroid representatives; it is not a proof of globally optimal center placement over arbitrary alternative rules.
+> **Implementation evidence:** This is the approved search design. The measured implementation and its limits are recorded in `LATEST_PUSH_REVIEW.md`. Section 7's performance percentages, climate-noise shortcut and automatic biome credits are proposals or projections, not proofs. The current engine keeps exact biome lookup and explicit four-Y witnesses, and does not enable those unproven shortcuts. Native center selection ranks the defined constrained-centroid representatives. The independent finalist command `scripts/refine_candidate_centers.py` additionally searches every valid 16-block center (or, explicitly, every 8-block center), using the same predictor score. Neither path certifies actual generation or player preferences. See `reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md` for current deployment and validation status.
 
 ### 7.1 Top 5 Zero-Loss Pipeline Optimizations
 

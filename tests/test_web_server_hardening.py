@@ -43,7 +43,6 @@ class FakeProc:
 
 def test_start_sweep_cleanup_on_popen_failure(monkeypatch, tmp_path):
     monkeypatch.setattr(server, 'RUNS_DIR', tmp_path)
-    monkeypatch.setattr(server, 'DEFAULT_NATIVE_BUILD', server.PROJECT_ROOT / 'runs/dynamic-baseline-1664/native')
 
     def fail_popen(*args, **kwargs):
         raise OSError("Exec format error")

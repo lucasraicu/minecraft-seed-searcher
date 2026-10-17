@@ -25,6 +25,8 @@ archive/
 reviews/**/no-diag-*
 reviews/**/durable-*
 reviews/**/durable-measured-*
+reviews/**/*.sqlite*
+reviews/**/.realm-scan.lock
 
 .DS_Store
 

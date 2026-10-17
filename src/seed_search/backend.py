@@ -21,6 +21,8 @@ _RAW_LAYOUTS=OrderedDict()
 _NATIVE_THREADS=1
 
 def native_runtime():
+    from .realm.native_identity import validate_compiled_sources
+    validate_compiled_sources(ffi,lib)
     import hashlib
     from pathlib import Path
     ptr=lib.ss_openmp_library()

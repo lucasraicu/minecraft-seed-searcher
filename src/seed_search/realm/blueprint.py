@@ -694,17 +694,20 @@ def dynamic_v3_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treas
     return final_score,components,deficits
 
 
-def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_circuit=True):
+def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True,short_circuit=True,
+                          center_grid_step=None):
     """Independent complete-inventory oracle for the exact dynamic center."""
     import math
     from .baseline import structure_observation
-    from .dynamic import (candidate_centers,OVERWORLD_NAMES,NETHER_NAMES,OPTIONAL_NAMES,
+    from .dynamic import (candidate_centers,grid_candidate_centers,OVERWORLD_NAMES,NETHER_NAMES,OPTIONAL_NAMES,
                           overworld_bounds,nether_bounds,nether_palette,hub_bonus,weighted_radial,PaletteIndex,
                           DYNAMIC_V2_CENTROID_WEIGHTS,hub_bonus_v2,hub_village_v2,weighted_radial_v2,
                           scenic_pair_bonus_v2,village_spread_bonus_v2,treasure_bastion_bonus_v2,
                           hub_bonus_v3,nether_core_bonus_v3,weighted_radial_v3)
     from .config import baseline_requirements,dynamic_v2_policy,dynamic_v3_policy
     is_v3=dynamic_v3_policy(cfg)
+    if center_grid_step is not None and (not is_v3 or type(center_grid_step) is not int or center_grid_step not in (8,16)):
+        raise ValueError('Exhaustive center refinement requires v3 and grid step 8 or 16')
     is_v2=dynamic_v2_policy(cfg)
     seed=parse_seed(seed);started=time.perf_counter();cpu=time.process_time()
     timings={};anchors=[];counts={}
@@ -715,10 +718,12 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
     ow_macro=tuple(cfg['discovery']['overworld_bounds'])
     nw_macro=tuple(cfg['discovery']['nether_bounds'])
     with backend_factory(seed) as backend:
+        replay_center=getattr(backend,'dynamic_center',None)
+        if center_grid_step is not None and replay_center is not None:
+            raise ValueError('Center refinement requires independent complete macro evidence, not native replay')
         sampler=BiomeSampler(backend)
         strongholds=timed('stronghold',lambda:structure_observation(backend,'stronghold',ow_macro,combined))
         inventories={'stronghold':strongholds}
-        replay_center=getattr(backend,'dynamic_center',None)
         if getattr(backend,'dynamic_no_anchor',False):eligible=[]
         elif replay_center is None:
             mansion=timed('structure_mansion',lambda:count_observation(backend,'mansion',ow_macro,1,capped=False,combined=combined))
@@ -751,9 +756,14 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                 cw=cfg['search'].get('centroid_weights') if is_v2 else None
                 ow_half=cfg['deployment']['overworld_side_blocks']//2
                 nw_half=cfg['deployment']['nether_side_blocks']//2
-                eligible=candidate_centers(all_points,cfg['structures']['hard_floors'],
-                    ideals,cfg['search']['density_weights'],cfg['search']['max_misses'],centroid_weights=cw,
-                    overworld_half=ow_half,nether_half=nw_half)
+                if center_grid_step is not None:
+                    eligible=grid_candidate_centers(all_points,cfg['structures']['hard_floors'],
+                        ideals,cfg['search']['density_weights'],cfg['search']['max_misses'],
+                        overworld_half=ow_half,nether_half=nw_half,step=center_grid_step)
+                else:
+                    eligible=candidate_centers(all_points,cfg['structures']['hard_floors'],
+                        ideals,cfg['search']['density_weights'],cfg['search']['max_misses'],centroid_weights=cw,
+                        overworld_half=ow_half,nether_half=nw_half)
                 # Strict categories reject below their configurable targets.
                 eligible=[item for item in eligible if all(item.counts[name]>=all_ideals[name] for name in strict)]
             else:eligible=[]
@@ -965,6 +975,10 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     anchor['weighted_radial_dist']=radial
                     anchor['origin_distance']=float(np.hypot(*selected))
                 anchors=[anchor]
+                if center_grid_step is not None:
+                    anchor['center_selection']={'revision':f'exhaustive-grid-{center_grid_step}-v1',
+                        'grid_step':center_grid_step,'scope':'complete eligible grid under pinned predictor; actual generation unverified',
+                        'centroid_pull_used':False}
                 from .spawn import classify_spawn
                 anchor['spawn_stage']=classify_spawn(anchor,cfg)
         work=getattr(backend,'native_work',{})

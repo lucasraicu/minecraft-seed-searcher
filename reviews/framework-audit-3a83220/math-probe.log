@@ -1,0 +1,121 @@
+{
+  "score_arithmetic": {
+    "cases": 20000,
+    "mismatches": [],
+    "scope": "Freshly extracted C core/optional/luxury helpers vs Python score components"
+  },
+  "snapping": {
+    "cases": 100000,
+    "mismatches": []
+  },
+  "nether_half_open": {
+    "cases": 315732,
+    "mismatches": [],
+    "scope": "Every snapped v3 center and macro Nether X plus rational entry/exit neighbors"
+  },
+  "caps": {
+    "total": 1250,
+    "components": {
+      "score_revision": "dynamic-envelope-2048-v3",
+      "final_score": 1250,
+      "bonus_total": 1250,
+      "deficit_penalty": 0,
+      "core_surplus": 650,
+      "optional_bonus": 200,
+      "luxury_biomes": 265,
+      "hub_bonus": 45,
+      "nether_core_bonus": 20,
+      "scenic_bonus": 25,
+      "village_spread_bonus": 25,
+      "treasure_bastion_bonus": 20
+    },
+    "non_core_max": 600,
+    "after_luxury_max": 335,
+    "after_optional_max": 135
+  }
+}
+{
+  "center_witness": {
+    "representatives": 510,
+    "best": {
+      "center": [
+        64,
+        0
+      ],
+      "score": 90,
+      "radial": 115.60555821197045,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 90,
+        "bonus_total": 90,
+        "deficit_penalty": 0,
+        "core_surplus": 0,
+        "optional_bonus": 25,
+        "luxury_biomes": 0,
+        "hub_bonus": 45,
+        "nether_core_bonus": 20,
+        "scenic_bonus": 0,
+        "village_spread_bonus": 0,
+        "treasure_bastion_bonus": 0
+      },
+      "counts": {
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1,
+        "stronghold": 1,
+        "fortress": 1,
+        "bastion": 2,
+        "swamp_hut": 1
+      },
+      "all_hard_floors_satisfied": true
+    },
+    "alternative": {
+      "center": [
+        32,
+        0
+      ],
+      "score": 105,
+      "radial": 98.74285714285715,
+      "components": {
+        "score_revision": "dynamic-envelope-2048-v3",
+        "final_score": 105,
+        "bonus_total": 105,
+        "deficit_penalty": 0,
+        "core_surplus": 0,
+        "optional_bonus": 40,
+        "luxury_biomes": 0,
+        "hub_bonus": 45,
+        "nether_core_bonus": 20,
+        "scenic_bonus": 0,
+        "village_spread_bonus": 0,
+        "treasure_bastion_bonus": 0
+      },
+      "counts": {
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1,
+        "stronghold": 1,
+        "fortress": 1,
+        "bastion": 2,
+        "swamp_hut": 2
+      },
+      "all_hard_floors_satisfied": true
+    }
+  }
+}

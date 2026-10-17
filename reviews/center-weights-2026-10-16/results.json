@@ -1,0 +1,7019 @@
+{
+  "scope": "Sensitivity experiment, not a representative corpus, preference calibration, or BDS verification",
+  "config": {
+    "schema_version": 5,
+    "game": {
+      "edition": "bedrock",
+      "target_version": "26.52",
+      "backend_model": "MC_26_50",
+      "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+      "bds_version": "1.26.52.3"
+    },
+    "deployment": {
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 1024
+    },
+    "discovery": {
+      "overworld_bounds": [
+        -2000,
+        -2000,
+        2000,
+        2000
+      ],
+      "nether_bounds": [
+        -634,
+        -634,
+        634,
+        634
+      ]
+    },
+    "search": {
+      "mode": "prediction",
+      "sequence": "permutation",
+      "run_key": "0",
+      "workers": 30,
+      "max_workers": 36,
+      "numeric_threads_per_worker": 1,
+      "native_threads_per_worker": 1,
+      "batch_size": 32,
+      "pilot_limit": 1000,
+      "inventory_mode": "eligibility",
+      "memory_target_gib": 25,
+      "memory_ceiling_gib": 30,
+      "docker_reserve_gib": 8,
+      "run_disk_limit_bytes": 137438953472,
+      "free_disk_reserve_bytes": 17179869184,
+      "projected_bytes_per_seed": 65536,
+      "structure_order": [
+        "outpost",
+        "desert_pyramid",
+        "jungle_temple",
+        "ruined_portal",
+        "trial_chamber",
+        "mansion",
+        "ancient_city",
+        "village",
+        "mineshaft"
+      ],
+      "max_misses": 0,
+      "density_weights": {
+        "village": 3,
+        "trial_chamber": 2,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "outpost": 1
+      },
+      "centroid_weights": {
+        "village": 2,
+        "trial_chamber": 1,
+        "ruined_portal": 0,
+        "ancient_city": 2,
+        "outpost": 1,
+        "desert_pyramid": 2,
+        "jungle_temple": 2,
+        "mansion": 2,
+        "monument": 1,
+        "stronghold": 3,
+        "shipwreck": 0
+      },
+      "top_k": 50
+    },
+    "structures": {
+      "required": [
+        "stronghold",
+        "mansion",
+        "village",
+        "trial_chamber",
+        "ancient_city",
+        "desert_pyramid",
+        "jungle_temple",
+        "monument",
+        "ruined_portal",
+        "shipwreck",
+        "mineshaft",
+        "outpost"
+      ],
+      "minimum_counts": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1
+      },
+      "nether_required": [
+        "fortress",
+        "bastion"
+      ],
+      "nether_minimum_counts": {
+        "fortress": 1,
+        "bastion": 2
+      },
+      "optional_bonuses": {},
+      "deferred_until_coastal_terrain": [],
+      "hard_floors": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1,
+        "fortress": 1,
+        "bastion": 2
+      }
+    },
+    "biomes": {
+      "spacing": 64,
+      "sample_y": 63,
+      "lattice": "world",
+      "gate_batch_size": 16,
+      "refinement_budget": 128,
+      "wooded_minimum_families": 2,
+      "family_bonuses": {},
+      "variant_bonuses": {},
+      "sample_y_levels": [
+        63,
+        -48,
+        0,
+        160
+      ],
+      "required_families": [],
+      "include_frozen_peaks": true,
+      "nether_required": [
+        "nether_wastes",
+        "crimson_forest",
+        "warped_forest",
+        "soul_sand_valley",
+        "basalt_deltas"
+      ]
+    },
+    "scoring": {
+      "geometry_weight": 0.8,
+      "biome_fit_weight": 0.1,
+      "baseline_weight": 0.1,
+      "baseline_quality_cap": 60
+    },
+    "terrain": {
+      "variants": [],
+      "native_threads": 1,
+      "scheduler": "rotation",
+      "resolutions": [
+        128,
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "center_spacing": 64,
+      "refine_center_spacing": 16,
+      "rays": 32,
+      "maximum_refinements_per_anchor": 8
+    },
+    "bds": {
+      "enabled": true,
+      "version": "1.26.52.3",
+      "docker_cli": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "image": "bedrock-verification-poc:1.26.52.3",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "cpus": 4,
+      "memory_gib": 6,
+      "verification_budget": 20,
+      "persist_snapshot": false,
+      "compare_reference": true,
+      "maximum_region_side": 256
+    },
+    "caves": {
+      "automatic": false,
+      "y_levels": [
+        0,
+        -16,
+        -32,
+        -48
+      ],
+      "spacing": 64,
+      "maximum_samples": 10000
+    },
+    "contract": "master_seed_blueprint_v1",
+    "screening_revision": "dynamic-envelope-2048-v3"
+  },
+  "settings_per_case": 27,
+  "controls_per_case": 2,
+  "cases": [
+    {
+      "name": "optional_capture_witness",
+      "evidence_kind": "synthetic; assumed valid palette, no luxuries/scenic/treasure",
+      "inventory": {
+        "stronghold": [
+          [
+            992,
+            0
+          ]
+        ],
+        "mansion": [
+          [
+            32,
+            0
+          ]
+        ],
+        "village": [
+          [
+            32,
+            -40
+          ],
+          [
+            32,
+            -24
+          ],
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            40
+          ]
+        ],
+        "trial_chamber": [
+          [
+            32,
+            -56
+          ],
+          [
+            32,
+            -40
+          ],
+          [
+            32,
+            -24
+          ],
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            40
+          ],
+          [
+            32,
+            56
+          ]
+        ],
+        "ancient_city": [
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ]
+        ],
+        "desert_pyramid": [
+          [
+            32,
+            0
+          ]
+        ],
+        "jungle_temple": [
+          [
+            32,
+            0
+          ]
+        ],
+        "monument": [
+          [
+            32,
+            0
+          ]
+        ],
+        "ruined_portal": [
+          [
+            32,
+            -56
+          ],
+          [
+            32,
+            -40
+          ],
+          [
+            32,
+            -24
+          ],
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            40
+          ],
+          [
+            32,
+            56
+          ]
+        ],
+        "shipwreck": [
+          [
+            32,
+            -24
+          ],
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            24
+          ]
+        ],
+        "mineshaft": [
+          [
+            32,
+            -72
+          ],
+          [
+            32,
+            -56
+          ],
+          [
+            32,
+            -40
+          ],
+          [
+            32,
+            -24
+          ],
+          [
+            32,
+            -8
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            40
+          ],
+          [
+            32,
+            56
+          ],
+          [
+            32,
+            72
+          ]
+        ],
+        "outpost": [
+          [
+            32,
+            0
+          ]
+        ],
+        "fortress": [
+          [
+            0,
+            0
+          ]
+        ],
+        "bastion": [
+          [
+            -32,
+            0
+          ],
+          [
+            32,
+            0
+          ]
+        ],
+        "swamp_hut": [
+          [
+            -992,
+            0
+          ],
+          [
+            1040,
+            0
+          ]
+        ]
+      },
+      "variants": [
+        {
+          "label": "current",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 115.60555821197046,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.09706089799874462
+        },
+        {
+          "label": "previous",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              48,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 48.397030139251754,
+            "current_weight_radial": 105.3406162398057,
+            "nearest": {
+              "village": 17.88854381999832,
+              "stronghold": 944.0,
+              "trial_chamber": 17.88854381999832
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 510,
+          "seconds": 0.09012578500551172
+        },
+        {
+          "label": "v1-t0-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 82.33468725413543,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07600443297997117
+        },
+        {
+          "label": "v1-t0-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 124.61795289142867,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.06731432199012488
+        },
+        {
+          "label": "v1-t0-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 162.8742408489797,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07280354999238625
+        },
+        {
+          "label": "v1-t1-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 71.91758739296883,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07424306799657643
+        },
+        {
+          "label": "v1-t1-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 102.49195927179137,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.06780416000401601
+        },
+        {
+          "label": "v1-t1-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 130.95775377966064,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07077970099635422
+        },
+        {
+          "label": "v1-t2-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 66.26259032547837,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.09742500999709591
+        },
+        {
+          "label": "v1-t2-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 90.19974059421509,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.0961072409991175
+        },
+        {
+          "label": "v1-t2-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 112.8429908484255,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.1205855089938268
+        },
+        {
+          "label": "v2-t0-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 72.51114942549526,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.11236889500287361
+        },
+        {
+          "label": "v2-t0-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 105.4145667552839,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.1027661680127494
+        },
+        {
+          "label": "v2-t0-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 135.88069391249562,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.08044874298502691
+        },
+        {
+          "label": "v2-t1-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 66.36953143693837,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.08701518501038663
+        },
+        {
+          "label": "v2-t1-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 91.7116040417343,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07995220000157133
+        },
+        {
+          "label": "v2-t1-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 115.60555821197046,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.0621275519952178
+        },
+        {
+          "label": "v2-t2-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              48,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 51.098338331299026,
+            "current_weight_radial": 105.3406162398057,
+            "nearest": {
+              "village": 17.88854381999832,
+              "stronghold": 944.0,
+              "trial_chamber": 17.88854381999832
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 510,
+          "seconds": 0.08371807800722308
+        },
+        {
+          "label": "v2-t2-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 83.22881760001312,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.05765982798766345
+        },
+        {
+          "label": "v2-t2-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 102.87465905117561,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.0994849810085725
+        },
+        {
+          "label": "v3-t0-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 66.49027140148999,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07281125799636357
+        },
+        {
+          "label": "v3-t0-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 93.41245042019342,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07342292700195685
+        },
+        {
+          "label": "v3-t0-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 118.7029822256421,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.07116863099508919
+        },
+        {
+          "label": "v3-t1-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 62.52856962122498,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.0700073610059917
+        },
+        {
+          "label": "v3-t1-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 84.16535538069436,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.06714470800943673
+        },
+        {
+          "label": "v3-t1-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 104.74668817628718,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.062230870011262596
+        },
+        {
+          "label": "v3-t2-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              48,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 48.397030139251754,
+            "current_weight_radial": 105.3406162398057,
+            "nearest": {
+              "village": 17.88854381999832,
+              "stronghold": 944.0,
+              "trial_chamber": 17.88854381999832
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 510,
+          "seconds": 0.08438464099890552
+        },
+        {
+          "label": "v3-t2-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 78.00062535436166,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.05962821299908683
+        },
+        {
+          "label": "v3-t2-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              64,
+              0
+            ],
+            "score": 90,
+            "weighted_radial": 95.34755136753795,
+            "current_weight_radial": 115.60555821197046,
+            "nearest": {
+              "village": 32.984845004941285,
+              "stronghold": 928.0,
+              "trial_chamber": 32.984845004941285
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 510,
+          "seconds": 0.05744320899248123
+        }
+      ],
+      "exhaustive_16_current_weights": {
+        "center": [
+          32,
+          0
+        ],
+        "score": 105,
+        "weighted_radial": 98.74285714285715,
+        "current_weight_radial": 98.74285714285715,
+        "nearest": {
+          "village": 8.0,
+          "stronghold": 960.0,
+          "trial_chamber": 8.0
+        },
+        "origin_distance_squared": 1024
+      },
+      "grid_eligible_count": 7497
+    },
+    {
+      "name": "saturated_trial_sprawl",
+      "evidence_kind": "synthetic; assumed valid palette, no luxuries/scenic/treasure",
+      "inventory": {
+        "stronghold": [
+          [
+            -800,
+            0
+          ]
+        ],
+        "mansion": [
+          [
+            0,
+            0
+          ]
+        ],
+        "village": [
+          [
+            -500,
+            -40
+          ],
+          [
+            -500,
+            -24
+          ],
+          [
+            -500,
+            -8
+          ],
+          [
+            -500,
+            8
+          ],
+          [
+            -500,
+            24
+          ],
+          [
+            -500,
+            40
+          ]
+        ],
+        "trial_chamber": [
+          [
+            800,
+            -200
+          ],
+          [
+            800,
+            -184
+          ],
+          [
+            800,
+            -168
+          ],
+          [
+            800,
+            -152
+          ],
+          [
+            800,
+            -136
+          ],
+          [
+            800,
+            -120
+          ],
+          [
+            800,
+            -104
+          ],
+          [
+            800,
+            -88
+          ],
+          [
+            800,
+            -72
+          ],
+          [
+            800,
+            -56
+          ],
+          [
+            800,
+            -40
+          ],
+          [
+            800,
+            -24
+          ],
+          [
+            800,
+            -8
+          ],
+          [
+            800,
+            8
+          ],
+          [
+            800,
+            24
+          ],
+          [
+            800,
+            40
+          ],
+          [
+            800,
+            56
+          ],
+          [
+            800,
+            72
+          ],
+          [
+            800,
+            88
+          ],
+          [
+            800,
+            104
+          ],
+          [
+            800,
+            120
+          ],
+          [
+            800,
+            136
+          ],
+          [
+            800,
+            152
+          ],
+          [
+            800,
+            168
+          ],
+          [
+            800,
+            184
+          ],
+          [
+            800,
+            200
+          ]
+        ],
+        "ancient_city": [
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "desert_pyramid": [
+          [
+            0,
+            0
+          ]
+        ],
+        "jungle_temple": [
+          [
+            0,
+            0
+          ]
+        ],
+        "monument": [
+          [
+            0,
+            0
+          ]
+        ],
+        "ruined_portal": [
+          [
+            0,
+            -56
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            40
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "shipwreck": [
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "mineshaft": [
+          [
+            0,
+            -72
+          ],
+          [
+            0,
+            -56
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            40
+          ],
+          [
+            0,
+            56
+          ],
+          [
+            0,
+            72
+          ]
+        ],
+        "outpost": [
+          [
+            0,
+            0
+          ]
+        ],
+        "fortress": [
+          [
+            0,
+            0
+          ]
+        ],
+        "bastion": [
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      },
+      "variants": [
+        {
+          "label": "current",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 556.0875259408066,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.11198769402108155
+        },
+        {
+          "label": "previous",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 625.4072713781492,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.09697945401421748
+        },
+        {
+          "label": "v1-t0-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 213.03138640368664,
+            "current_weight_radial": 576.1387716503352,
+            "nearest": {
+              "village": 452.07079091664394,
+              "stronghold": 752.0,
+              "trial_chamber": 848.0377350094747
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 368,
+          "seconds": 0.11024357497808523
+        },
+        {
+          "label": "v1-t0-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 239.9798170835023,
+            "current_weight_radial": 576.1387716503352,
+            "nearest": {
+              "village": 452.07079091664394,
+              "stronghold": 752.0,
+              "trial_chamber": 848.0377350094747
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 368,
+          "seconds": 0.06682339898543432
+        },
+        {
+          "label": "v1-t0-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 264.36173055571646,
+            "current_weight_radial": 576.1387716503352,
+            "nearest": {
+              "village": 452.07079091664394,
+              "stronghold": 752.0,
+              "trial_chamber": 848.0377350094747
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 368,
+          "seconds": 0.06603925899253227
+        },
+        {
+          "label": "v1-t1-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 552.6258811005251,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07417922699823976
+        },
+        {
+          "label": "v1-t1-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 558.0035793374702,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07161665198509581
+        },
+        {
+          "label": "v1-t1-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 563.1524393515666,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07273205899400637
+        },
+        {
+          "label": "v1-t2-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 646.4768320240584,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.08016244100872427
+        },
+        {
+          "label": "v1-t2-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 648.6090982459465,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.08092268800828606
+        },
+        {
+          "label": "v1-t2-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 650.6829462151801,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.0724280439899303
+        },
+        {
+          "label": "v2-t0-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 264.3159986138524,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06302038498688489
+        },
+        {
+          "label": "v2-t0-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 276.9192294363965,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06319812900619581
+        },
+        {
+          "label": "v2-t0-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 288.5888876054189,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06789794799988158
+        },
+        {
+          "label": "v2-t1-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 546.5223308796618,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07784219802124426
+        },
+        {
+          "label": "v2-t1-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 551.3969014396682,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.0718961909878999
+        },
+        {
+          "label": "v2-t1-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 556.0875259408066,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07346485098241828
+        },
+        {
+          "label": "v2-t2-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 635.1211597278865,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07736440299777314
+        },
+        {
+          "label": "v2-t2-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 637.2349910134265,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.08471891199587844
+        },
+        {
+          "label": "v2-t2-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 639.2953075828767,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07139615699998103
+        },
+        {
+          "label": "v3-t0-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 269.9207215941683,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06657206299132667
+        },
+        {
+          "label": "v3-t0-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 279.98569904435055,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06537396999192424
+        },
+        {
+          "label": "v3-t0-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -208,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 289.4406778611884,
+            "current_weight_radial": 644.9896171315028,
+            "nearest": {
+              "village": 292.1095684841563,
+              "stronghold": 592.0,
+              "trial_chamber": 1008.0317455318558
+            },
+            "origin_distance_squared": 43264
+          },
+          "representatives": 368,
+          "seconds": 0.06268151599215344
+        },
+        {
+          "label": "v3-t1-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 541.7037386000327,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07192902301903814
+        },
+        {
+          "label": "v3-t1-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 546.1571224172735,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07369121702504344
+        },
+        {
+          "label": "v3-t1-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 550.459544071218,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.0833836010133382
+        },
+        {
+          "label": "v3-t2-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 625.4072713781492,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.07779232898610644
+        },
+        {
+          "label": "v3-t2-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 627.485756242695,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.08720486500533298
+        },
+        {
+          "label": "v3-t2-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              0,
+              0
+            ],
+            "score": 105,
+            "weighted_radial": 629.5153355810162,
+            "current_weight_radial": 556.0875259408066,
+            "nearest": {
+              "village": 500.0639959045242,
+              "stronghold": 800.0,
+              "trial_chamber": 800.03999900005
+            },
+            "origin_distance_squared": 0
+          },
+          "representatives": 368,
+          "seconds": 0.08678171099745668
+        }
+      ],
+      "exhaustive_16_current_weights": {
+        "center": [
+          0,
+          0
+        ],
+        "score": 105,
+        "weighted_radial": 556.0875259408066,
+        "current_weight_radial": 556.0875259408066,
+        "nearest": {
+          "village": 500.0639959045242,
+          "stronghold": 800.0,
+          "trial_chamber": 800.03999900005
+        },
+        "origin_distance_squared": 0
+      },
+      "grid_eligible_count": 3332
+    },
+    {
+      "name": "stronghold_outlier",
+      "evidence_kind": "synthetic; assumed valid palette, no luxuries/scenic/treasure",
+      "inventory": {
+        "stronghold": [
+          [
+            950,
+            0
+          ]
+        ],
+        "mansion": [
+          [
+            0,
+            0
+          ]
+        ],
+        "village": [
+          [
+            -300,
+            -40
+          ],
+          [
+            -300,
+            -24
+          ],
+          [
+            -300,
+            -8
+          ],
+          [
+            -300,
+            8
+          ],
+          [
+            -300,
+            24
+          ],
+          [
+            -300,
+            40
+          ]
+        ],
+        "trial_chamber": [
+          [
+            -300,
+            -56
+          ],
+          [
+            -300,
+            -40
+          ],
+          [
+            -300,
+            -24
+          ],
+          [
+            -300,
+            -8
+          ],
+          [
+            -300,
+            8
+          ],
+          [
+            -300,
+            24
+          ],
+          [
+            -300,
+            40
+          ],
+          [
+            -300,
+            56
+          ]
+        ],
+        "ancient_city": [
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "desert_pyramid": [
+          [
+            0,
+            0
+          ]
+        ],
+        "jungle_temple": [
+          [
+            0,
+            0
+          ]
+        ],
+        "monument": [
+          [
+            0,
+            0
+          ]
+        ],
+        "ruined_portal": [
+          [
+            0,
+            -56
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            40
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "shipwreck": [
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "mineshaft": [
+          [
+            0,
+            -72
+          ],
+          [
+            0,
+            -56
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -24
+          ],
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            40
+          ],
+          [
+            0,
+            56
+          ],
+          [
+            0,
+            72
+          ]
+        ],
+        "outpost": [
+          [
+            0,
+            0
+          ]
+        ],
+        "fortress": [
+          [
+            0,
+            0
+          ]
+        ],
+        "bastion": [
+          [
+            0,
+            -8
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      },
+      "variants": [
+        {
+          "label": "current",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 244.95456916499217,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06782960699638352
+        },
+        {
+          "label": "previous",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 210.24234951721968,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.0497414419951383
+        },
+        {
+          "label": "v1-t0-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 163.02592472544245,
+            "current_weight_radial": 247.18501134341525,
+            "nearest": {
+              "village": 252.1269521491108,
+              "stronghold": 998.0,
+              "trial_chamber": 252.1269521491108
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 420,
+          "seconds": 0.046367923001525924
+        },
+        {
+          "label": "v1-t0-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 211.17147071200625,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.04873711898108013
+        },
+        {
+          "label": "v1-t0-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 249.4014006781012,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.050980202009668574
+        },
+        {
+          "label": "v1-t1-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 189.62862053630198,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.0579685989941936
+        },
+        {
+          "label": "v1-t1-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 219.02254386448826,
+            "current_weight_radial": 247.18501134341525,
+            "nearest": {
+              "village": 252.1269521491108,
+              "stronghold": 998.0,
+              "trial_chamber": 252.1269521491108
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 420,
+          "seconds": 0.04984619401511736
+        },
+        {
+          "label": "v1-t1-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 245.88383545536797,
+            "current_weight_radial": 247.18501134341525,
+            "nearest": {
+              "village": 252.1269521491108,
+              "stronghold": 998.0,
+              "trial_chamber": 252.1269521491108
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 420,
+          "seconds": 0.04985750699415803
+        },
+        {
+          "label": "v1-t2-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 200.87188842057662,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.0694198069977574
+        },
+        {
+          "label": "v1-t2-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 223.45878040889394,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06778943899553269
+        },
+        {
+          "label": "v1-t2-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 244.82475931676169,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.04986250601359643
+        },
+        {
+          "label": "v2-t0-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 184.73346954389078,
+            "current_weight_radial": 247.18501134341525,
+            "nearest": {
+              "village": 252.1269521491108,
+              "stronghold": 998.0,
+              "trial_chamber": 252.1269521491108
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 420,
+          "seconds": 0.048574067011941224
+        },
+        {
+          "label": "v2-t0-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -48,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 216.01295148451038,
+            "current_weight_radial": 247.18501134341525,
+            "nearest": {
+              "village": 252.1269521491108,
+              "stronghold": 998.0,
+              "trial_chamber": 252.1269521491108
+            },
+            "origin_distance_squared": 2304
+          },
+          "representatives": 420,
+          "seconds": 0.05382063900469802
+        },
+        {
+          "label": "v2-t0-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 246.77283631609987,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.051702526019653305
+        },
+        {
+          "label": "v2-t1-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 198.34575517499167,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.07719872999587096
+        },
+        {
+          "label": "v2-t1-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 222.33558590513897,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.08727847499540076
+        },
+        {
+          "label": "v2-t1-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 244.95456916499217,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.09499566600425169
+        },
+        {
+          "label": "v2-t2-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 206.2427624637745,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.1248205540177878
+        },
+        {
+          "label": "v2-t2-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 225.47507764320844,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.07627871001022868
+        },
+        {
+          "label": "v2-t2-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 243.81286653522685,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.12192728198715486
+        },
+        {
+          "label": "v3-t0-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 195.49366925255703,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.11985694000031799
+        },
+        {
+          "label": "v3-t0-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 221.07199208841462,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.0875217370048631
+        },
+        {
+          "label": "v3-t0-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 245.10011354028083,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.058576968003762886
+        },
+        {
+          "label": "v3-t1-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 204.38069454023838,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06542675002128817
+        },
+        {
+          "label": "v3-t1-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 224.6211771767324,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.07192784600192681
+        },
+        {
+          "label": "v3-t1-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 243.8743191968121,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06895439099753276
+        },
+        {
+          "label": "v3-t2-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 210.24234951721968,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06348520101164468
+        },
+        {
+          "label": "v3-t2-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 226.98730056894428,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.06347672501578927
+        },
+        {
+          "label": "v3-t2-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -64,
+              0
+            ],
+            "score": 65,
+            "weighted_radial": 243.04878423080254,
+            "current_weight_radial": 244.95456916499217,
+            "nearest": {
+              "village": 236.13555429032706,
+              "stronghold": 1014.0,
+              "trial_chamber": 236.13555429032706
+            },
+            "origin_distance_squared": 4096
+          },
+          "representatives": 420,
+          "seconds": 0.05405385699123144
+        }
+      ],
+      "exhaustive_16_current_weights": {
+        "center": [
+          -64,
+          0
+        ],
+        "score": 65,
+        "weighted_radial": 244.95456916499217,
+        "current_weight_radial": 244.95456916499217,
+        "nearest": {
+          "village": 236.13555429032706,
+          "stronghold": 1014.0,
+          "trial_chamber": 236.13555429032706
+        },
+        "origin_distance_squared": 4096
+      },
+      "grid_eligible_count": 5950
+    },
+    {
+      "name": "natural_-3336796033057908633",
+      "evidence_kind": "natural custom empty OW palette predictor",
+      "inventory": {
+        "stronghold": [
+          [
+            -1676,
+            1492
+          ],
+          [
+            -1500,
+            -268
+          ],
+          [
+            884,
+            1204
+          ]
+        ],
+        "mansion": [
+          [
+            152,
+            -1016
+          ]
+        ],
+        "village": [
+          [
+            -1496,
+            -888
+          ],
+          [
+            -1496,
+            -264
+          ],
+          [
+            -1016,
+            -344
+          ],
+          [
+            -904,
+            1288
+          ],
+          [
+            -776,
+            -792
+          ],
+          [
+            -776,
+            104
+          ],
+          [
+            -344,
+            -1416
+          ],
+          [
+            264,
+            -1560
+          ],
+          [
+            296,
+            -1912
+          ],
+          [
+            360,
+            760
+          ],
+          [
+            1144,
+            1896
+          ],
+          [
+            1720,
+            -1368
+          ],
+          [
+            1752,
+            1352
+          ],
+          [
+            1816,
+            -856
+          ],
+          [
+            1848,
+            1896
+          ],
+          [
+            1864,
+            -456
+          ]
+        ],
+        "trial_chamber": [
+          [
+            -1976,
+            -264
+          ],
+          [
+            -1928,
+            -984
+          ],
+          [
+            -1928,
+            1416
+          ],
+          [
+            -1912,
+            840
+          ],
+          [
+            -1880,
+            1688
+          ],
+          [
+            -1608,
+            -408
+          ],
+          [
+            -1512,
+            1864
+          ],
+          [
+            -1400,
+            -1880
+          ],
+          [
+            -1384,
+            -1448
+          ],
+          [
+            -1368,
+            808
+          ],
+          [
+            -1368,
+            1144
+          ],
+          [
+            -1336,
+            -952
+          ],
+          [
+            -1336,
+            312
+          ],
+          [
+            -952,
+            -1624
+          ],
+          [
+            -952,
+            -376
+          ],
+          [
+            -920,
+            280
+          ],
+          [
+            -920,
+            1416
+          ],
+          [
+            -792,
+            888
+          ],
+          [
+            -760,
+            -840
+          ],
+          [
+            -744,
+            1736
+          ],
+          [
+            -456,
+            -296
+          ],
+          [
+            -440,
+            -1832
+          ],
+          [
+            -376,
+            -1320
+          ],
+          [
+            -328,
+            1432
+          ],
+          [
+            -280,
+            1672
+          ],
+          [
+            -264,
+            -1080
+          ],
+          [
+            -232,
+            56
+          ],
+          [
+            -232,
+            648
+          ],
+          [
+            88,
+            856
+          ],
+          [
+            136,
+            -488
+          ],
+          [
+            136,
+            1128
+          ],
+          [
+            184,
+            -1352
+          ],
+          [
+            184,
+            1688
+          ],
+          [
+            264,
+            136
+          ],
+          [
+            552,
+            1112
+          ],
+          [
+            600,
+            -456
+          ],
+          [
+            632,
+            808
+          ],
+          [
+            648,
+            -1400
+          ],
+          [
+            712,
+            -872
+          ],
+          [
+            856,
+            8
+          ],
+          [
+            872,
+            1688
+          ],
+          [
+            1160,
+            -344
+          ],
+          [
+            1176,
+            104
+          ],
+          [
+            1208,
+            -1512
+          ],
+          [
+            1336,
+            1176
+          ],
+          [
+            1432,
+            712
+          ],
+          [
+            1432,
+            1848
+          ],
+          [
+            1736,
+            -1608
+          ],
+          [
+            1736,
+            104
+          ],
+          [
+            1752,
+            1848
+          ],
+          [
+            1832,
+            1368
+          ],
+          [
+            1880,
+            664
+          ],
+          [
+            1912,
+            -312
+          ],
+          [
+            1944,
+            -1064
+          ]
+        ],
+        "ancient_city": [
+          [
+            -696,
+            968
+          ],
+          [
+            -296,
+            936
+          ],
+          [
+            -232,
+            -1800
+          ],
+          [
+            1192,
+            -1400
+          ]
+        ],
+        "desert_pyramid": [
+          [
+            -1768,
+            -168
+          ],
+          [
+            -1720,
+            296
+          ],
+          [
+            -1464,
+            104
+          ],
+          [
+            -792,
+            360
+          ],
+          [
+            -792,
+            1368
+          ]
+        ],
+        "jungle_temple": [
+          [
+            -184,
+            -280
+          ]
+        ],
+        "monument": [
+          [
+            168,
+            -312
+          ],
+          [
+            872,
+            -936
+          ]
+        ],
+        "ruined_portal": [
+          [
+            -1912,
+            -1016
+          ],
+          [
+            -1784,
+            296
+          ],
+          [
+            -1752,
+            -1800
+          ],
+          [
+            -1672,
+            1416
+          ],
+          [
+            -1560,
+            -600
+          ],
+          [
+            -1544,
+            1032
+          ],
+          [
+            -1208,
+            1016
+          ],
+          [
+            -1192,
+            -1672
+          ],
+          [
+            -1128,
+            1656
+          ],
+          [
+            -1048,
+            72
+          ],
+          [
+            -1000,
+            -1112
+          ],
+          [
+            -952,
+            -472
+          ],
+          [
+            -568,
+            -1256
+          ],
+          [
+            -536,
+            -1784
+          ],
+          [
+            -488,
+            120
+          ],
+          [
+            -472,
+            1352
+          ],
+          [
+            -440,
+            808
+          ],
+          [
+            -392,
+            -616
+          ],
+          [
+            8,
+            -968
+          ],
+          [
+            136,
+            1624
+          ],
+          [
+            168,
+            856
+          ],
+          [
+            296,
+            -1544
+          ],
+          [
+            296,
+            -360
+          ],
+          [
+            296,
+            344
+          ],
+          [
+            808,
+            -1560
+          ],
+          [
+            824,
+            1560
+          ],
+          [
+            840,
+            88
+          ],
+          [
+            872,
+            -1224
+          ],
+          [
+            904,
+            -488
+          ],
+          [
+            936,
+            696
+          ],
+          [
+            1336,
+            1672
+          ],
+          [
+            1352,
+            -280
+          ],
+          [
+            1432,
+            -1752
+          ],
+          [
+            1464,
+            -968
+          ],
+          [
+            1496,
+            1000
+          ],
+          [
+            1576,
+            1976
+          ],
+          [
+            1672,
+            312
+          ],
+          [
+            1928,
+            312
+          ]
+        ],
+        "shipwreck": [
+          [
+            -1384,
+            -1512
+          ],
+          [
+            -120,
+            -1992
+          ],
+          [
+            8,
+            56
+          ],
+          [
+            200,
+            -536
+          ],
+          [
+            392,
+            -216
+          ],
+          [
+            536,
+            -568
+          ],
+          [
+            552,
+            -1000
+          ],
+          [
+            1080,
+            1784
+          ],
+          [
+            1336,
+            1608
+          ]
+        ],
+        "mineshaft": [
+          [
+            -1992,
+            1992
+          ],
+          [
+            -1976,
+            984
+          ],
+          [
+            -1928,
+            312
+          ],
+          [
+            -1896,
+            440
+          ],
+          [
+            -1880,
+            328
+          ],
+          [
+            -1880,
+            1256
+          ],
+          [
+            -1848,
+            -1672
+          ],
+          [
+            -1848,
+            -504
+          ],
+          [
+            -1832,
+            1272
+          ],
+          [
+            -1816,
+            1624
+          ],
+          [
+            -1800,
+            104
+          ],
+          [
+            -1784,
+            -1576
+          ],
+          [
+            -1784,
+            1576
+          ],
+          [
+            -1768,
+            -872
+          ],
+          [
+            -1768,
+            1768
+          ],
+          [
+            -1736,
+            -1240
+          ],
+          [
+            -1720,
+            -1624
+          ],
+          [
+            -1720,
+            -1144
+          ],
+          [
+            -1720,
+            456
+          ],
+          [
+            -1688,
+            -1320
+          ],
+          [
+            -1688,
+            -552
+          ],
+          [
+            -1656,
+            -1352
+          ],
+          [
+            -1656,
+            -744
+          ],
+          [
+            -1656,
+            -568
+          ],
+          [
+            -1640,
+            -1864
+          ],
+          [
+            -1624,
+            -1912
+          ],
+          [
+            -1624,
+            1976
+          ],
+          [
+            -1608,
+            -1544
+          ],
+          [
+            -1608,
+            -984
+          ],
+          [
+            -1592,
+            -872
+          ],
+          [
+            -1592,
+            1336
+          ],
+          [
+            -1576,
+            -1272
+          ],
+          [
+            -1576,
+            536
+          ],
+          [
+            -1576,
+            1416
+          ],
+          [
+            -1576,
+            1672
+          ],
+          [
+            -1544,
+            1864
+          ],
+          [
+            -1512,
+            -1176
+          ],
+          [
+            -1512,
+            -840
+          ],
+          [
+            -1512,
+            -792
+          ],
+          [
+            -1480,
+            -328
+          ],
+          [
+            -1448,
+            -968
+          ],
+          [
+            -1448,
+            -504
+          ],
+          [
+            -1448,
+            184
+          ],
+          [
+            -1432,
+            -1128
+          ],
+          [
+            -1432,
+            -376
+          ],
+          [
+            -1432,
+            824
+          ],
+          [
+            -1432,
+            1384
+          ],
+          [
+            -1432,
+            1576
+          ],
+          [
+            -1416,
+            -24
+          ],
+          [
+            -1416,
+            104
+          ],
+          [
+            -1400,
+            600
+          ],
+          [
+            -1384,
+            -1752
+          ],
+          [
+            -1352,
+            712
+          ],
+          [
+            -1352,
+            1240
+          ],
+          [
+            -1352,
+            1688
+          ],
+          [
+            -1336,
+            456
+          ],
+          [
+            -1336,
+            968
+          ],
+          [
+            -1320,
+            488
+          ],
+          [
+            -1304,
+            -1496
+          ],
+          [
+            -1304,
+            -568
+          ],
+          [
+            -1304,
+            808
+          ],
+          [
+            -1288,
+            -1784
+          ],
+          [
+            -1288,
+            232
+          ],
+          [
+            -1272,
+            -1800
+          ],
+          [
+            -1272,
+            1608
+          ],
+          [
+            -1240,
+            -472
+          ],
+          [
+            -1240,
+            -456
+          ],
+          [
+            -1192,
+            -1592
+          ],
+          [
+            -1160,
+            1288
+          ],
+          [
+            -1144,
+            984
+          ],
+          [
+            -1144,
+            1768
+          ],
+          [
+            -1112,
+            1928
+          ],
+          [
+            -1096,
+            -1336
+          ],
+          [
+            -1096,
+            232
+          ],
+          [
+            -1096,
+            1944
+          ],
+          [
+            -1080,
+            -1400
+          ],
+          [
+            -1080,
+            -616
+          ],
+          [
+            -1080,
+            1064
+          ],
+          [
+            -1064,
+            -104
+          ],
+          [
+            -1032,
+            -1496
+          ],
+          [
+            -1032,
+            -424
+          ],
+          [
+            -1016,
+            1576
+          ],
+          [
+            -1000,
+            1528
+          ],
+          [
+            -920,
+            1672
+          ],
+          [
+            -904,
+            -168
+          ],
+          [
+            -904,
+            1992
+          ],
+          [
+            -888,
+            -808
+          ],
+          [
+            -888,
+            1048
+          ],
+          [
+            -872,
+            408
+          ],
+          [
+            -840,
+            680
+          ],
+          [
+            -824,
+            -1960
+          ],
+          [
+            -808,
+            -1672
+          ],
+          [
+            -776,
+            -440
+          ],
+          [
+            -776,
+            1544
+          ],
+          [
+            -728,
+            -1176
+          ],
+          [
+            -712,
+            -440
+          ],
+          [
+            -712,
+            -376
+          ],
+          [
+            -648,
+            -936
+          ],
+          [
+            -648,
+            -248
+          ],
+          [
+            -648,
+            808
+          ],
+          [
+            -616,
+            -1272
+          ],
+          [
+            -600,
+            -1368
+          ],
+          [
+            -584,
+            1432
+          ],
+          [
+            -536,
+            -728
+          ],
+          [
+            -504,
+            -1992
+          ],
+          [
+            -504,
+            -1800
+          ],
+          [
+            -488,
+            1272
+          ],
+          [
+            -488,
+            1512
+          ],
+          [
+            -488,
+            1864
+          ],
+          [
+            -376,
+            -1224
+          ],
+          [
+            -328,
+            712
+          ],
+          [
+            -296,
+            744
+          ],
+          [
+            -296,
+            1752
+          ],
+          [
+            -280,
+            -1128
+          ],
+          [
+            -280,
+            1192
+          ],
+          [
+            -248,
+            -1400
+          ],
+          [
+            -216,
+            1640
+          ],
+          [
+            -168,
+            -1320
+          ],
+          [
+            -136,
+            -1912
+          ],
+          [
+            -88,
+            -1960
+          ],
+          [
+            -88,
+            -1704
+          ],
+          [
+            -88,
+            -552
+          ],
+          [
+            -40,
+            1672
+          ],
+          [
+            -24,
+            968
+          ],
+          [
+            56,
+            -1736
+          ],
+          [
+            72,
+            1144
+          ],
+          [
+            72,
+            1608
+          ],
+          [
+            72,
+            1688
+          ],
+          [
+            72,
+            1800
+          ],
+          [
+            88,
+            1368
+          ],
+          [
+            104,
+            -728
+          ],
+          [
+            104,
+            568
+          ],
+          [
+            104,
+            1720
+          ],
+          [
+            104,
+            1976
+          ],
+          [
+            120,
+            -1848
+          ],
+          [
+            136,
+            -1112
+          ],
+          [
+            200,
+            -1256
+          ],
+          [
+            248,
+            -1480
+          ],
+          [
+            264,
+            -1960
+          ],
+          [
+            264,
+            1416
+          ],
+          [
+            264,
+            1464
+          ],
+          [
+            296,
+            1144
+          ],
+          [
+            296,
+            1736
+          ],
+          [
+            312,
+            1032
+          ],
+          [
+            328,
+            1848
+          ],
+          [
+            344,
+            -696
+          ],
+          [
+            408,
+            936
+          ],
+          [
+            440,
+            -920
+          ],
+          [
+            440,
+            1096
+          ],
+          [
+            440,
+            1416
+          ],
+          [
+            456,
+            -248
+          ],
+          [
+            488,
+            -1560
+          ],
+          [
+            536,
+            -1336
+          ],
+          [
+            536,
+            -200
+          ],
+          [
+            568,
+            -1192
+          ],
+          [
+            568,
+            1544
+          ],
+          [
+            616,
+            1832
+          ],
+          [
+            632,
+            1352
+          ],
+          [
+            648,
+            -920
+          ],
+          [
+            760,
+            1880
+          ],
+          [
+            792,
+            -1768
+          ],
+          [
+            840,
+            -1992
+          ],
+          [
+            840,
+            584
+          ],
+          [
+            872,
+            1480
+          ],
+          [
+            888,
+            1368
+          ],
+          [
+            888,
+            1864
+          ],
+          [
+            904,
+            1976
+          ],
+          [
+            920,
+            -88
+          ],
+          [
+            968,
+            1752
+          ],
+          [
+            1032,
+            -1544
+          ],
+          [
+            1032,
+            1736
+          ],
+          [
+            1064,
+            1352
+          ],
+          [
+            1080,
+            -1816
+          ],
+          [
+            1096,
+            -1048
+          ],
+          [
+            1096,
+            1416
+          ],
+          [
+            1112,
+            -1352
+          ],
+          [
+            1112,
+            -120
+          ],
+          [
+            1144,
+            888
+          ],
+          [
+            1160,
+            -200
+          ],
+          [
+            1208,
+            -872
+          ],
+          [
+            1208,
+            -280
+          ],
+          [
+            1240,
+            664
+          ],
+          [
+            1256,
+            472
+          ],
+          [
+            1272,
+            -1416
+          ],
+          [
+            1288,
+            -136
+          ],
+          [
+            1304,
+            -1960
+          ],
+          [
+            1304,
+            -792
+          ],
+          [
+            1352,
+            440
+          ],
+          [
+            1368,
+            -1336
+          ],
+          [
+            1368,
+            -168
+          ],
+          [
+            1400,
+            -296
+          ],
+          [
+            1416,
+            1752
+          ],
+          [
+            1432,
+            -1512
+          ],
+          [
+            1448,
+            -808
+          ],
+          [
+            1448,
+            1144
+          ],
+          [
+            1480,
+            728
+          ],
+          [
+            1496,
+            1000
+          ],
+          [
+            1496,
+            1016
+          ],
+          [
+            1496,
+            1896
+          ],
+          [
+            1544,
+            -360
+          ],
+          [
+            1560,
+            -776
+          ],
+          [
+            1592,
+            -1496
+          ],
+          [
+            1592,
+            888
+          ],
+          [
+            1608,
+            -696
+          ],
+          [
+            1608,
+            664
+          ],
+          [
+            1624,
+            1608
+          ],
+          [
+            1640,
+            -1960
+          ],
+          [
+            1656,
+            -1032
+          ],
+          [
+            1656,
+            -520
+          ],
+          [
+            1672,
+            584
+          ],
+          [
+            1672,
+            648
+          ],
+          [
+            1704,
+            -760
+          ],
+          [
+            1704,
+            568
+          ],
+          [
+            1704,
+            1336
+          ],
+          [
+            1736,
+            1208
+          ],
+          [
+            1736,
+            1640
+          ],
+          [
+            1752,
+            -376
+          ],
+          [
+            1768,
+            -1688
+          ],
+          [
+            1784,
+            1400
+          ],
+          [
+            1784,
+            1816
+          ],
+          [
+            1800,
+            -1768
+          ],
+          [
+            1816,
+            -1944
+          ],
+          [
+            1832,
+            -1608
+          ],
+          [
+            1864,
+            -104
+          ],
+          [
+            1864,
+            216
+          ],
+          [
+            1880,
+            -1512
+          ],
+          [
+            1880,
+            760
+          ],
+          [
+            1912,
+            936
+          ],
+          [
+            1928,
+            -1640
+          ],
+          [
+            1944,
+            -712
+          ],
+          [
+            1944,
+            -184
+          ],
+          [
+            1992,
+            -520
+          ]
+        ],
+        "outpost": [
+          [
+            -1056,
+            -880
+          ],
+          [
+            112,
+            576
+          ],
+          [
+            1920,
+            -848
+          ]
+        ],
+        "fortress": [
+          [
+            168,
+            264
+          ],
+          [
+            184,
+            584
+          ],
+          [
+            616,
+            -184
+          ]
+        ],
+        "bastion": [
+          [
+            -456,
+            -248
+          ],
+          [
+            -216,
+            184
+          ]
+        ],
+        "swamp_hut": [],
+        "igloo": [],
+        "trail_ruins": [
+          [
+            -1992,
+            1960
+          ],
+          [
+            -1864,
+            -1368
+          ],
+          [
+            -1368,
+            1928
+          ],
+          [
+            568,
+            1720
+          ],
+          [
+            808,
+            408
+          ],
+          [
+            1176,
+            -1800
+          ],
+          [
+            1688,
+            -1912
+          ],
+          [
+            1928,
+            712
+          ]
+        ],
+        "ocean_ruin": [
+          [
+            -1256,
+            -1560
+          ],
+          [
+            -904,
+            1368
+          ],
+          [
+            -872,
+            1768
+          ],
+          [
+            -472,
+            -1752
+          ],
+          [
+            -280,
+            -584
+          ],
+          [
+            -216,
+            -1864
+          ],
+          [
+            -184,
+            -184
+          ],
+          [
+            8,
+            -1880
+          ],
+          [
+            56,
+            104
+          ],
+          [
+            72,
+            -232
+          ],
+          [
+            136,
+            -520
+          ],
+          [
+            328,
+            -168
+          ],
+          [
+            344,
+            -1096
+          ],
+          [
+            392,
+            -568
+          ],
+          [
+            408,
+            -920
+          ],
+          [
+            456,
+            56
+          ],
+          [
+            664,
+            1464
+          ],
+          [
+            696,
+            168
+          ],
+          [
+            728,
+            -920
+          ],
+          [
+            728,
+            -568
+          ],
+          [
+            792,
+            -296
+          ],
+          [
+            824,
+            -1112
+          ],
+          [
+            984,
+            168
+          ],
+          [
+            1032,
+            1928
+          ],
+          [
+            1064,
+            -952
+          ],
+          [
+            1112,
+            1704
+          ],
+          [
+            1400,
+            1624
+          ]
+        ],
+        "buried_treasure": [
+          [
+            -1512,
+            -1320
+          ],
+          [
+            -1512,
+            -1272
+          ],
+          [
+            -1464,
+            -1464
+          ],
+          [
+            -1464,
+            -1256
+          ],
+          [
+            -1320,
+            -1592
+          ],
+          [
+            -1272,
+            -1576
+          ],
+          [
+            -1272,
+            -1208
+          ],
+          [
+            -1208,
+            -1400
+          ],
+          [
+            -1208,
+            -1208
+          ],
+          [
+            -1016,
+            1928
+          ],
+          [
+            -952,
+            -1336
+          ],
+          [
+            -872,
+            -1656
+          ],
+          [
+            -760,
+            -1528
+          ],
+          [
+            -760,
+            1480
+          ],
+          [
+            -696,
+            1560
+          ],
+          [
+            -696,
+            1736
+          ],
+          [
+            -680,
+            1480
+          ],
+          [
+            -680,
+            1608
+          ],
+          [
+            -680,
+            1816
+          ],
+          [
+            -632,
+            -1848
+          ],
+          [
+            -632,
+            -1720
+          ],
+          [
+            -616,
+            1752
+          ],
+          [
+            -568,
+            -1704
+          ],
+          [
+            -568,
+            -1144
+          ],
+          [
+            -552,
+            -1208
+          ],
+          [
+            -504,
+            -1208
+          ],
+          [
+            -488,
+            1608
+          ],
+          [
+            -440,
+            -1192
+          ],
+          [
+            -440,
+            -568
+          ],
+          [
+            -424,
+            -1592
+          ],
+          [
+            -376,
+            -1704
+          ],
+          [
+            -376,
+            -1144
+          ],
+          [
+            -376,
+            -616
+          ],
+          [
+            -360,
+            -1080
+          ],
+          [
+            -360,
+            -504
+          ],
+          [
+            -312,
+            -1784
+          ],
+          [
+            -312,
+            -632
+          ],
+          [
+            -312,
+            -504
+          ],
+          [
+            -248,
+            -440
+          ],
+          [
+            -248,
+            -248
+          ],
+          [
+            -232,
+            -1080
+          ],
+          [
+            -232,
+            -168
+          ],
+          [
+            -232,
+            -120
+          ],
+          [
+            -184,
+            -1080
+          ],
+          [
+            -184,
+            -440
+          ],
+          [
+            -184,
+            -248
+          ],
+          [
+            -168,
+            -1336
+          ],
+          [
+            -168,
+            -1208
+          ],
+          [
+            -168,
+            -568
+          ],
+          [
+            -120,
+            -1272
+          ],
+          [
+            -120,
+            -1064
+          ],
+          [
+            -104,
+            -1400
+          ],
+          [
+            -104,
+            -1320
+          ],
+          [
+            -104,
+            -1208
+          ],
+          [
+            -56,
+            -1720
+          ],
+          [
+            -56,
+            -1016
+          ],
+          [
+            -56,
+            -696
+          ],
+          [
+            72,
+            -1272
+          ],
+          [
+            72,
+            344
+          ],
+          [
+            72,
+            392
+          ],
+          [
+            72,
+            584
+          ],
+          [
+            88,
+            -1512
+          ],
+          [
+            136,
+            -1400
+          ],
+          [
+            136,
+            -1192
+          ],
+          [
+            136,
+            -1144
+          ],
+          [
+            200,
+            -1832
+          ],
+          [
+            200,
+            -1272
+          ],
+          [
+            200,
+            -744
+          ],
+          [
+            264,
+            -1336
+          ],
+          [
+            328,
+            -1336
+          ],
+          [
+            328,
+            -872
+          ],
+          [
+            328,
+            264
+          ],
+          [
+            392,
+            264
+          ],
+          [
+            520,
+            1560
+          ],
+          [
+            520,
+            1992
+          ],
+          [
+            584,
+            -1336
+          ],
+          [
+            584,
+            1480
+          ],
+          [
+            584,
+            1864
+          ],
+          [
+            600,
+            -1400
+          ],
+          [
+            600,
+            1928
+          ],
+          [
+            648,
+            1992
+          ],
+          [
+            712,
+            -440
+          ],
+          [
+            712,
+            1432
+          ],
+          [
+            712,
+            1944
+          ],
+          [
+            776,
+            -504
+          ],
+          [
+            776,
+            1560
+          ],
+          [
+            792,
+            1480
+          ],
+          [
+            840,
+            -568
+          ],
+          [
+            840,
+            -504
+          ],
+          [
+            840,
+            1688
+          ],
+          [
+            856,
+            1608
+          ],
+          [
+            904,
+            -1336
+          ],
+          [
+            904,
+            -632
+          ],
+          [
+            904,
+            1672
+          ],
+          [
+            920,
+            -248
+          ],
+          [
+            968,
+            1800
+          ],
+          [
+            1032,
+            1880
+          ],
+          [
+            1096,
+            -824
+          ],
+          [
+            1096,
+            1416
+          ],
+          [
+            1112,
+            8
+          ],
+          [
+            1160,
+            72
+          ],
+          [
+            1160,
+            136
+          ],
+          [
+            1160,
+            1352
+          ],
+          [
+            1160,
+            1928
+          ],
+          [
+            1224,
+            1928
+          ],
+          [
+            1352,
+            1480
+          ],
+          [
+            1352,
+            1800
+          ],
+          [
+            1480,
+            1224
+          ],
+          [
+            1480,
+            1432
+          ],
+          [
+            1544,
+            1048
+          ],
+          [
+            1608,
+            1032
+          ],
+          [
+            1672,
+            968
+          ],
+          [
+            1672,
+            1160
+          ],
+          [
+            1672,
+            1224
+          ],
+          [
+            1672,
+            1304
+          ],
+          [
+            1672,
+            1352
+          ],
+          [
+            1688,
+            1112
+          ],
+          [
+            1752,
+            1032
+          ],
+          [
+            1752,
+            1160
+          ],
+          [
+            1992,
+            968
+          ]
+        ]
+      },
+      "variants": [
+        {
+          "label": "current",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 851.3049667996296,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.81973258999642
+        },
+        {
+          "label": "previous",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 833.0505914917815,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.7442980779742356
+        },
+        {
+          "label": "v1-t0-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 864.0182163673325,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 2.643671853991691
+        },
+        {
+          "label": "v1-t0-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 872.3948851431903,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 2.8278843449952547
+        },
+        {
+          "label": "v1-t0-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 879.9979597339844,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.1077900739910547
+        },
+        {
+          "label": "v1-t1-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 833.1724590456458,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 2.94778168600169
+        },
+        {
+          "label": "v1-t1-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 839.381046244713,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 2.8973762349924073
+        },
+        {
+          "label": "v1-t1-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 845.2540341357223,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 3.6891807839856483
+        },
+        {
+          "label": "v1-t2-s1",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 819.0348202732062,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 3.3737215050205123
+        },
+        {
+          "label": "v1-t2-s2",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 823.8847545168562,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 3.206074774003355
+        },
+        {
+          "label": "v1-t2-s3",
+          "weights": {
+            "village": 1,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 828.5406913907603,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 3.207147381006507
+        },
+        {
+          "label": "v2-t0-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 869.2407427688096,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.1112879950087517
+        },
+        {
+          "label": "v2-t0-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 875.6331416672234,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.077967740013264
+        },
+        {
+          "label": "v2-t0-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 881.5993806390763,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.2619855160010047
+        },
+        {
+          "label": "v2-t1-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 841.3871451399622,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.059750966989668
+        },
+        {
+          "label": "v2-t1-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 846.464125275268,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.9782369020103943
+        },
+        {
+          "label": "v2-t1-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 851.3049667996296,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.134368497005198
+        },
+        {
+          "label": "v2-t2-s1",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              8
+            ],
+            "score": 311,
+            "weighted_radial": 826.9067200576451,
+            "current_weight_radial": 851.4811807679226,
+            "nearest": {
+              "village": 311.17840542042757,
+              "stronghold": 1056.6815982120631,
+              "trial_chamber": 252.6024544615511
+            },
+            "origin_distance_squared": 230464
+          },
+          "representatives": 5,
+          "seconds": 3.944969141011825
+        },
+        {
+          "label": "v2-t2-s2",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 831.0840984504189,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.0217932429804932
+        },
+        {
+          "label": "v2-t2-s3",
+          "weights": {
+            "village": 2,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 835.0758165284972,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.020085330994334
+        },
+        {
+          "label": "v3-t0-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 872.552093620098,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.344303938007215
+        },
+        {
+          "label": "v3-t0-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 877.7540426830327,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.057989655993879
+        },
+        {
+          "label": "v3-t0-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 0,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 882.6669945758042,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.9561795810004696
+        },
+        {
+          "label": "v3-t1-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 847.3383688573427,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.815157420001924
+        },
+        {
+          "label": "v3-t1-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 851.6567426482901,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.789401246991474
+        },
+        {
+          "label": "v3-t1-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 1,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 855.7988562845047,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.8115646239893977
+        },
+        {
+          "label": "v3-t2-s1",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 1,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 833.0505914917815,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.834664651978528
+        },
+        {
+          "label": "v3-t2-s2",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 2,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 836.682881972618,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 3.0730726100155152
+        },
+        {
+          "label": "v3-t2-s3",
+          "weights": {
+            "village": 3,
+            "trial_chamber": 2,
+            "ruined_portal": 0,
+            "ancient_city": 2,
+            "outpost": 1,
+            "desert_pyramid": 2,
+            "jungle_temple": 2,
+            "mansion": 2,
+            "monument": 1,
+            "stronghold": 3,
+            "shipwreck": 0
+          },
+          "best": {
+            "center": [
+              -480,
+              0
+            ],
+            "score": 311,
+            "weighted_radial": 840.1980017927824,
+            "current_weight_radial": 851.3049667996296,
+            "nearest": {
+              "village": 313.73874481804125,
+              "stronghold": 1054.6203108228099,
+              "trial_chamber": 254.24397731313127
+            },
+            "origin_distance_squared": 230400
+          },
+          "representatives": 5,
+          "seconds": 2.9012330519908573
+        }
+      ],
+      "exhaustive_16_current_weights": {
+        "center": [
+          -480,
+          0
+        ],
+        "score": 311,
+        "weighted_radial": 851.3049667996296,
+        "current_weight_radial": 851.3049667996296,
+        "nearest": {
+          "village": 313.73874481804125,
+          "stronghold": 1054.6203108228099,
+          "trial_chamber": 254.24397731313127
+        },
+        "origin_distance_squared": 230400
+      },
+      "grid_eligible_count": 4
+    }
+  ]
+}

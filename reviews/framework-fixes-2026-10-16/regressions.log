@@ -1,0 +1,23 @@
+......F.......................................                           [100%]
+=================================== FAILURES ===================================
+_________________ test_merge_rejects_wrapped_strided_coverage __________________
+
+tmp_path = PosixPath('/private/var/folders/kl/z67x30p92kz9m4ypbt8580tw0000gp/T/pytest-of-lucasraicu/pytest-354/test_merge_rejects_wrapped_str0')
+
+    def test_merge_rejects_wrapped_strided_coverage(tmp_path):
+        from seed_search.realm.store import RealmStore, index_key
+        from scripts.merge_runs import merge_runs
+        cfg=dynamic_v3_blueprint_config();cfg['search'].update(sequence='strided',low32=12345)
+        source=tmp_path/'source'
+        with RealmStore(source,identity={'config':cfg,'native_build':'test-source'}) as store:
+            store.configure_range(2**32,2**32+1,1)
+            store.db.execute("UPDATE ranges SET status='complete'")
+            store.db.commit()
+>       with pytest.raises(ValueError,match='32-bit seed domain'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_framework_fixes.py:46: Failed
+=========================== short test summary info ============================
+FAILED tests/test_framework_fixes.py::test_merge_rejects_wrapped_strided_coverage
+1 failed, 45 passed in 71.00s (0:01:10)

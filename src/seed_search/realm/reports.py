@@ -568,7 +568,8 @@ def rescore(store, policy, *, batch_size=256, progress=None):
         top50_file = store.run / 'top50.json' if hasattr(store, 'run') and store.run else None
         if has_top_table or (top50_file and top50_file.exists()):
             from .top_tracker import Top50Tracker
-            tracker = Top50Tracker(capacity=50)
+            pipeline=store.get_state('native_pipeline') or {}
+            tracker = Top50Tracker(capacity=pipeline.get('top_k') or 50)
             rows = store.db.execute('SELECT result FROM candidates').fetchall()
             for (payload,) in rows:
                 candidate = json.loads(payload)

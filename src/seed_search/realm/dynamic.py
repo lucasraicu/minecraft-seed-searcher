@@ -142,6 +142,46 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2, centro
     return rows
 
 
+def grid_candidate_centers(inventories, floors, ideals, weights, max_misses=0, *,
+                           overworld_half=1024, nether_half=512, step=16):
+    """Exhaustive bounded finalist oracle; never used by the raw native sweep.
+
+    Step 16 searches all chunk-aligned centers. Step 8 explicitly permits all
+    integer Nether centers, independently of the centroid policy's fallback.
+    """
+    import numpy as np
+    if step not in (8,16) or type(step) is not int:raise ValueError('Center grid step must be 8 or 16')
+    limit=2000-overworld_half
+    axis=np.arange(-(-(-limit)//step)*step,limit+1,step,dtype=np.int64)
+    cx,cz=np.meshgrid(axis,axis,indexing='ij')
+    centers=np.column_stack((cx.ravel(),cz.ravel()))
+    counts={}
+    for name,points in inventories.items():
+        pts=np.asarray(points,dtype=np.int64).reshape(-1,2)
+        scaled=pts*8 if name in NETHER_NAMES else pts
+        half=nether_half*8 if name in NETHER_NAMES else overworld_half
+        totals=np.zeros(len(centers),dtype=np.int64)
+        # Bound temporary arrays even for an unusually large macro inventory.
+        for first in range(0,len(pts),64):
+            chunk=scaled[first:first+64]
+            captured=((chunk[None,:,:]>=centers[:,None,:]-half)&
+                      (chunk[None,:,:]<centers[:,None,:]+half)).all(axis=2)
+            totals+=captured.sum(axis=1)
+        counts[name]=totals
+    valid=np.ones(len(centers),dtype=bool)
+    for name,floor in floors.items():valid &= counts.get(name,np.zeros(len(centers)))>=floor
+    misses=np.zeros(len(centers),dtype=np.int64)
+    for name,ideal in ideals.items():misses+=counts.get(name,np.zeros(len(centers)))<ideal
+    valid &= misses<=max_misses
+    rows=[]
+    for i in np.flatnonzero(valid):
+        c={name:int(values[i]) for name,values in counts.items()}
+        deficit=tuple(name for name,ideal in ideals.items() if c.get(name,0)<ideal)
+        density=sum(weight*c.get(name,0) for name,weight in weights.items())
+        rows.append(Candidate(tuple(map(int,centers[i])),density,c,deficit))
+    return rows
+
+
 def nether_palette(backend,center,nether_half=None):
     from ..backend import biome_name
     bounds=nether_bounds(center,nether_half)

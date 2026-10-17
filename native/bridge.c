@@ -6,6 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+#ifndef SS_SOURCE_FINGERPRINT
+#define SS_SOURCE_FINGERPRINT "unversioned"
+#endif
+const char *ss_source_fingerprint(void) { return SS_SOURCE_FINGERPRINT; }
 #ifdef _OPENMP
 #include <omp.h>
 #endif
