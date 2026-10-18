@@ -1,0 +1,16 @@
+diff --git a/src/signalling/http.js b/src/signalling/http.js
+index 99c9007..10efa15 100644
+--- a/src/signalling/http.js
++++ b/src/signalling/http.js
+@@ -23,9 +23,9 @@ async function exchangeOffer (client, signal) {
+   const rtc = client.rtcConnection
+   signal.throwIfAborted()
+   while (rtc.iceGatheringState !== 'complete') await once(rtc, 'icegatheringstatechange', { signal })
+-  if (!client.identity) throw new Error('Nethernet HTTP offer requires a player identity')
++  // Local audit only: the disposable server explicitly permits offline joins.
+   // Sign the complete local description after ICE gathering, with no trickle candidates.
+-  const body = attachIdentity(rtc.localDescription.sdp, client.identity)
++  const body = client.identity ? attachIdentity(rtc.localDescription.sdp, client.identity) : rtc.localDescription.sdp
+   const { url, serverKey, onServerKey } = client.http
+   const response = await fetch(new URL(`/v1/join/${client.networkId}`, url), {
+     method: 'POST', headers: { 'content-type': 'application/sdp' }, body, signal, redirect: 'error'

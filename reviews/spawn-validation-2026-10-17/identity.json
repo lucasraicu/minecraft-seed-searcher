@@ -1,0 +1,43 @@
+{
+  "image": "bedrock-verification-poc:1.26.52.3",
+  "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+  "host": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+  "compile_command": [
+    "cc",
+    "-O3",
+    "-std=c11",
+    "-fwrapv",
+    "-I",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/spawn_predict.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/noise.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomes.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomenoise.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/cave.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/generator.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/util.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/quadbase.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/mt.c",
+    "-lm",
+    "-o",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/spawn_predict"
+  ],
+  "source_sha256": {
+    "reviews/spawn-validation-2026-10-17/spawn_predict.c": "b4b6897cfa9dabc42e987433a18483a54a7271395249e46208c37dd27d3c7a52",
+    "vendor/cubiomes-bedrock/noise.c": "2494ccfe8a02aa37252d806623595831ae1a166c4e6dde2e272d362edd2858db",
+    "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+    "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+    "vendor/cubiomes-bedrock/biomenoise.c": "90f571a731665fde0ecbdcf274eeb2ce77f57e16e12be5a59174fc6be4447a33",
+    "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+    "vendor/cubiomes-bedrock/generator.c": "4123a3a28c1298af8449cd11de1c4687ed4bcd87329b200a189fec9d665b6247",
+    "vendor/cubiomes-bedrock/finders.c": "7a76a74fdb412673d54cdbb5bb35336e119d33085ae22b79fd2e42635d1d0315",
+    "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+    "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+    "vendor/cubiomes-bedrock/mt.c": "d7ac7183f7816654815488624c29bc86c458bd9ae41f9b355d1171b83ef10fe0",
+    "reviews/spawn-validation-2026-10-17/observer.js": "2ce1490ab71321eea676fd512109c91b886708482c878809abfa9a1761d357c3",
+    "reviews/spawn-validation-2026-10-17/bds_runner.py": "62e229d3ff7f18b6caeed12c61966aadce892a36d33ffcc6741f01b2a901bb3f",
+    "reviews/spawn-validation-2026-10-17/run_cohort.py": "dd6dd96b98c655c9c1bc015149ca94a0c3f12b45968ea808c35438c36961ae9f"
+  }
+}

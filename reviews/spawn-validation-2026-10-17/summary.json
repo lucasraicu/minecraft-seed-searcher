@@ -1,0 +1,2642 @@
+{
+  "reference": "BDS 1.26.52.3 default Overworld spawn X/Z, not initial-player placement",
+  "world_count": 108,
+  "random_count": 100,
+  "edge_count": 8,
+  "stable_worlds": 108,
+  "persisted_metadata_matches": 108,
+  "no_pack_controls": 3,
+  "initial_player_joins_observed": 0,
+  "methods": {
+    "estimate": {
+      "horizontal_displacement_blocks": {
+        "count": 108,
+        "p50": 8.94427190999916,
+        "p95_nearest_rank": 11.313708498984761,
+        "max": 11.313708498984761
+      },
+      "within_16_blocks": 108,
+      "within_64_blocks": 108,
+      "exact_xz_matches": 0,
+      "applySeed_plus_routine_elapsed_ms": {
+        "count": 108,
+        "p50": 3.8345000000000002,
+        "p95_nearest_rank": 5.013,
+        "max": 5.237
+      },
+      "per_seed": [
+        {
+          "seed": "-2152535657050944081",
+          "predicted": [
+            -8,
+            -136
+          ],
+          "observed_xz": [
+            -9,
+            -140
+          ],
+          "displacement_blocks": 4.123105625617661
+        },
+        {
+          "seed": "-7995527694508729151",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-7541218347953203506",
+          "predicted": [
+            88,
+            104
+          ],
+          "observed_xz": [
+            87,
+            105
+          ],
+          "displacement_blocks": 1.4142135623730951
+        },
+        {
+          "seed": "2092789425003139053",
+          "predicted": [
+            136,
+            168
+          ],
+          "observed_xz": [
+            128,
+            171
+          ],
+          "displacement_blocks": 8.54400374531753
+        },
+        {
+          "seed": "7958955049054603978",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "7134611160154358618",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4799528948525441024",
+          "predicted": [
+            216,
+            -72
+          ],
+          "observed_xz": [
+            213,
+            -78
+          ],
+          "displacement_blocks": 6.708203932499369
+        },
+        {
+          "seed": "7191089600892374487",
+          "predicted": [
+            8,
+            40
+          ],
+          "observed_xz": [
+            12,
+            41
+          ],
+          "displacement_blocks": 4.123105625617661
+        },
+        {
+          "seed": "-7037347547344193994",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-5859373336115519388",
+          "predicted": [
+            -360,
+            -360
+          ],
+          "observed_xz": [
+            -362,
+            -366
+          ],
+          "displacement_blocks": 6.324555320336759
+        },
+        {
+          "seed": "614480483733483466",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "5833679380957638813",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-7764212369254871293",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4266536433689457921",
+          "predicted": [
+            24,
+            8
+          ],
+          "observed_xz": [
+            29,
+            14
+          ],
+          "displacement_blocks": 7.810249675906654
+        },
+        {
+          "seed": "7685909621375755838",
+          "predicted": [
+            -40,
+            -8
+          ],
+          "observed_xz": [
+            -40,
+            -7
+          ],
+          "displacement_blocks": 1.0
+        },
+        {
+          "seed": "-8693192994549575675",
+          "predicted": [
+            -8,
+            72
+          ],
+          "observed_xz": [
+            -3,
+            70
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "6764836397866521095",
+          "predicted": [
+            -312,
+            -232
+          ],
+          "observed_xz": [
+            -310,
+            -229
+          ],
+          "displacement_blocks": 3.605551275463989
+        },
+        {
+          "seed": "-9186087665489710237",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "1234184003990712370",
+          "predicted": [
+            -168,
+            104
+          ],
+          "observed_xz": [
+            -173,
+            104
+          ],
+          "displacement_blocks": 5.0
+        },
+        {
+          "seed": "-4881772309812929980",
+          "predicted": [
+            -24,
+            56
+          ],
+          "observed_xz": [
+            -28,
+            48
+          ],
+          "displacement_blocks": 8.94427190999916
+        },
+        {
+          "seed": "3900778703475868044",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "489215147674969543",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4031318727804449270",
+          "predicted": [
+            216,
+            -264
+          ],
+          "observed_xz": [
+            215,
+            -266
+          ],
+          "displacement_blocks": 2.23606797749979
+        },
+        {
+          "seed": "-1668625442929540650",
+          "predicted": [
+            -184,
+            -72
+          ],
+          "observed_xz": [
+            -188,
+            -66
+          ],
+          "displacement_blocks": 7.211102550927978
+        },
+        {
+          "seed": "-6140446985676120508",
+          "predicted": [
+            -88,
+            280
+          ],
+          "observed_xz": [
+            -81,
+            277
+          ],
+          "displacement_blocks": 7.615773105863909
+        },
+        {
+          "seed": "-6770949640989198583",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4343734038048715302",
+          "predicted": [
+            40,
+            -56
+          ],
+          "observed_xz": [
+            43,
+            -58
+          ],
+          "displacement_blocks": 3.605551275463989
+        },
+        {
+          "seed": "-7544033835432737142",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-8044424495745788820",
+          "predicted": [
+            -8,
+            -8
+          ],
+          "observed_xz": [
+            -8,
+            -1
+          ],
+          "displacement_blocks": 7.0
+        },
+        {
+          "seed": "-4937271565411561616",
+          "predicted": [
+            -184,
+            72
+          ],
+          "observed_xz": [
+            -179,
+            73
+          ],
+          "displacement_blocks": 5.0990195135927845
+        },
+        {
+          "seed": "-6273981045315334706",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-2929144642507117846",
+          "predicted": [
+            8,
+            24
+          ],
+          "observed_xz": [
+            7,
+            23
+          ],
+          "displacement_blocks": 1.4142135623730951
+        },
+        {
+          "seed": "-1518980640785161215",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "3174492301114349736",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-8564670916400471027",
+          "predicted": [
+            200,
+            -104
+          ],
+          "observed_xz": [
+            200,
+            -102
+          ],
+          "displacement_blocks": 2.0
+        },
+        {
+          "seed": "5574532911583637595",
+          "predicted": [
+            -8,
+            -40
+          ],
+          "observed_xz": [
+            -15,
+            -38
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "-1606916276571817445",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4059056057579886329",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-1512699648912621904",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-3572946980067025172",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "3935774486848180498",
+          "predicted": [
+            -8,
+            -40
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "1265094156158224713",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4767286540954276203",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-5014216602933006456",
+          "predicted": [
+            -8,
+            -40
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-340821038812474285",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-582666427928917290",
+          "predicted": [
+            -696,
+            360
+          ],
+          "observed_xz": [
+            -702,
+            357
+          ],
+          "displacement_blocks": 6.708203932499369
+        },
+        {
+          "seed": "-4976944935746785273",
+          "predicted": [
+            -936,
+            -696
+          ],
+          "observed_xz": [
+            -929,
+            -690
+          ],
+          "displacement_blocks": 9.219544457292887
+        },
+        {
+          "seed": "8913683988413733765",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "291080821224767267",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "2038608524547893592",
+          "predicted": [
+            -520,
+            -56
+          ],
+          "observed_xz": [
+            -515,
+            -54
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-4969719147650657077",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "6762955539682377832",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-453651019953061814",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4008620433193537674",
+          "predicted": [
+            -456,
+            -520
+          ],
+          "observed_xz": [
+            -453,
+            -521
+          ],
+          "displacement_blocks": 3.1622776601683795
+        },
+        {
+          "seed": "-4880012962450640011",
+          "predicted": [
+            24,
+            8
+          ],
+          "observed_xz": [
+            24,
+            3
+          ],
+          "displacement_blocks": 5.0
+        },
+        {
+          "seed": "7931773194558452508",
+          "predicted": [
+            -40,
+            72
+          ],
+          "observed_xz": [
+            -41,
+            77
+          ],
+          "displacement_blocks": 5.0990195135927845
+        },
+        {
+          "seed": "-7126771794132131513",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "3892645080117226033",
+          "predicted": [
+            -152,
+            -40
+          ],
+          "observed_xz": [
+            -150,
+            -33
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "9056593541966880722",
+          "predicted": [
+            -24,
+            72
+          ],
+          "observed_xz": [
+            -17,
+            68
+          ],
+          "displacement_blocks": 8.06225774829855
+        },
+        {
+          "seed": "-7597076093810329540",
+          "predicted": [
+            -8,
+            104
+          ],
+          "observed_xz": [
+            -5,
+            97
+          ],
+          "displacement_blocks": 7.615773105863909
+        },
+        {
+          "seed": "-4968894309939447961",
+          "predicted": [
+            376,
+            792
+          ],
+          "observed_xz": [
+            369,
+            794
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "4719769192585930289",
+          "predicted": [
+            136,
+            24
+          ],
+          "observed_xz": [
+            140,
+            26
+          ],
+          "displacement_blocks": 4.47213595499958
+        },
+        {
+          "seed": "3616225228971510762",
+          "predicted": [
+            -40,
+            -8
+          ],
+          "observed_xz": [
+            -40,
+            -10
+          ],
+          "displacement_blocks": 2.0
+        },
+        {
+          "seed": "-8326010472259879371",
+          "predicted": [
+            -24,
+            72
+          ],
+          "observed_xz": [
+            -17,
+            68
+          ],
+          "displacement_blocks": 8.06225774829855
+        },
+        {
+          "seed": "-2984072045296972605",
+          "predicted": [
+            136,
+            56
+          ],
+          "observed_xz": [
+            137,
+            63
+          ],
+          "displacement_blocks": 7.0710678118654755
+        },
+        {
+          "seed": "3965022595533706929",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "3178540356880283481",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-1896390971614198588",
+          "predicted": [
+            120,
+            216
+          ],
+          "observed_xz": [
+            118,
+            209
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "368342364169337290",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "6003839248161056871",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "7424157817344609039",
+          "predicted": [
+            -664,
+            -904
+          ],
+          "observed_xz": [
+            -660,
+            -904
+          ],
+          "displacement_blocks": 4.0
+        },
+        {
+          "seed": "-3408748666638837073",
+          "predicted": [
+            -8,
+            -40
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-8186207492830622566",
+          "predicted": [
+            472,
+            -744
+          ],
+          "observed_xz": [
+            471,
+            -746
+          ],
+          "displacement_blocks": 2.23606797749979
+        },
+        {
+          "seed": "-3418513350286140853",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "5329533497540776603",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-8412065011434420316",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-1876585591560152142",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "7086638178683056257",
+          "predicted": [
+            -264,
+            -24
+          ],
+          "observed_xz": [
+            -261,
+            -29
+          ],
+          "displacement_blocks": 5.830951894845301
+        },
+        {
+          "seed": "6271748679462446236",
+          "predicted": [
+            168,
+            -120
+          ],
+          "observed_xz": [
+            163,
+            -122
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-8676804462035448029",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-4783243616791654021",
+          "predicted": [
+            24,
+            -40
+          ],
+          "observed_xz": [
+            23,
+            -33
+          ],
+          "displacement_blocks": 7.0710678118654755
+        },
+        {
+          "seed": "-7957279602082591499",
+          "predicted": [
+            -424,
+            552
+          ],
+          "observed_xz": [
+            -417,
+            551
+          ],
+          "displacement_blocks": 7.0710678118654755
+        },
+        {
+          "seed": "1002036849063315980",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "685060799451887893",
+          "predicted": [
+            8,
+            72
+          ],
+          "observed_xz": [
+            0,
+            65
+          ],
+          "displacement_blocks": 10.63014581273465
+        },
+        {
+          "seed": "-3502566552263851198",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "7932416640711727352",
+          "predicted": [
+            -360,
+            -8
+          ],
+          "observed_xz": [
+            -356,
+            -16
+          ],
+          "displacement_blocks": 8.94427190999916
+        },
+        {
+          "seed": "-3222587535588144715",
+          "predicted": [
+            168,
+            -232
+          ],
+          "observed_xz": [
+            166,
+            -234
+          ],
+          "displacement_blocks": 2.8284271247461903
+        },
+        {
+          "seed": "-809356907263006270",
+          "predicted": [
+            -8,
+            -40
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "4439252105671733795",
+          "predicted": [
+            -72,
+            -8
+          ],
+          "observed_xz": [
+            -71,
+            -15
+          ],
+          "displacement_blocks": 7.0710678118654755
+        },
+        {
+          "seed": "-3388917876749333114",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-1182511411641069882",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-552526745116739118",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-7108773605410801809",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-341177895293932105",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-732091456477728473",
+          "predicted": [
+            -24,
+            8
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "-327054986932344948",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "7075883509774426401",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "5718913436695043505",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "-1085744880512107243",
+          "predicted": [
+            248,
+            744
+          ],
+          "observed_xz": [
+            253,
+            736
+          ],
+          "displacement_blocks": 9.433981132056603
+        },
+        {
+          "seed": "4824385676517010403",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "0",
+          "predicted": [
+            -24,
+            8
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "1",
+          "predicted": [
+            168,
+            168
+          ],
+          "observed_xz": [
+            163,
+            170
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-1",
+          "predicted": [
+            504,
+            392
+          ],
+          "observed_xz": [
+            498,
+            387
+          ],
+          "displacement_blocks": 7.810249675906654
+        },
+        {
+          "seed": "-9223372036854775808",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "9223372036854775807",
+          "predicted": [
+            8,
+            8
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 11.313708498984761
+        },
+        {
+          "seed": "12345",
+          "predicted": [
+            104,
+            -24
+          ],
+          "observed_xz": [
+            103,
+            -28
+          ],
+          "displacement_blocks": 4.123105625617661
+        },
+        {
+          "seed": "42",
+          "predicted": [
+            -24,
+            8
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 7.280109889280518
+        },
+        {
+          "seed": "-1234567890123456789",
+          "predicted": [
+            24,
+            184
+          ],
+          "observed_xz": [
+            20,
+            181
+          ],
+          "displacement_blocks": 5.0
+        }
+      ]
+    },
+    "detailed": {
+      "horizontal_displacement_blocks": {
+        "count": 108,
+        "p50": 5.7339636687163615,
+        "p95_nearest_rank": 17.4928556845359,
+        "max": 30.528675044947494
+      },
+      "within_16_blocks": 98,
+      "within_64_blocks": 108,
+      "exact_xz_matches": 50,
+      "applySeed_plus_routine_elapsed_ms": {
+        "count": 108,
+        "p50": 4.0535,
+        "p95_nearest_rank": 5.328,
+        "max": 5.555
+      },
+      "per_seed": [
+        {
+          "seed": "-2152535657050944081",
+          "predicted": [
+            -16,
+            -144
+          ],
+          "observed_xz": [
+            -9,
+            -140
+          ],
+          "displacement_blocks": 8.06225774829855
+        },
+        {
+          "seed": "-7995527694508729151",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-7541218347953203506",
+          "predicted": [
+            80,
+            96
+          ],
+          "observed_xz": [
+            87,
+            105
+          ],
+          "displacement_blocks": 11.40175425099138
+        },
+        {
+          "seed": "2092789425003139053",
+          "predicted": [
+            128,
+            160
+          ],
+          "observed_xz": [
+            128,
+            171
+          ],
+          "displacement_blocks": 11.0
+        },
+        {
+          "seed": "7958955049054603978",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "7134611160154358618",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4799528948525441024",
+          "predicted": [
+            208,
+            -52
+          ],
+          "observed_xz": [
+            213,
+            -78
+          ],
+          "displacement_blocks": 26.476404589747453
+        },
+        {
+          "seed": "7191089600892374487",
+          "predicted": [
+            0,
+            32
+          ],
+          "observed_xz": [
+            12,
+            41
+          ],
+          "displacement_blocks": 15.0
+        },
+        {
+          "seed": "-7037347547344193994",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-5859373336115519388",
+          "predicted": [
+            -368,
+            -368
+          ],
+          "observed_xz": [
+            -362,
+            -366
+          ],
+          "displacement_blocks": 6.324555320336759
+        },
+        {
+          "seed": "614480483733483466",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "5833679380957638813",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-7764212369254871293",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4266536433689457921",
+          "predicted": [
+            16,
+            0
+          ],
+          "observed_xz": [
+            29,
+            14
+          ],
+          "displacement_blocks": 19.1049731745428
+        },
+        {
+          "seed": "7685909621375755838",
+          "predicted": [
+            -48,
+            -16
+          ],
+          "observed_xz": [
+            -40,
+            -7
+          ],
+          "displacement_blocks": 12.041594578792296
+        },
+        {
+          "seed": "-8693192994549575675",
+          "predicted": [
+            -16,
+            64
+          ],
+          "observed_xz": [
+            -3,
+            70
+          ],
+          "displacement_blocks": 14.317821063276353
+        },
+        {
+          "seed": "6764836397866521095",
+          "predicted": [
+            -320,
+            -240
+          ],
+          "observed_xz": [
+            -310,
+            -229
+          ],
+          "displacement_blocks": 14.866068747318506
+        },
+        {
+          "seed": "-9186087665489710237",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "1234184003990712370",
+          "predicted": [
+            -176,
+            96
+          ],
+          "observed_xz": [
+            -173,
+            104
+          ],
+          "displacement_blocks": 8.54400374531753
+        },
+        {
+          "seed": "-4881772309812929980",
+          "predicted": [
+            -32,
+            48
+          ],
+          "observed_xz": [
+            -28,
+            48
+          ],
+          "displacement_blocks": 4.0
+        },
+        {
+          "seed": "3900778703475868044",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "489215147674969543",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4031318727804449270",
+          "predicted": [
+            208,
+            -272
+          ],
+          "observed_xz": [
+            215,
+            -266
+          ],
+          "displacement_blocks": 9.219544457292887
+        },
+        {
+          "seed": "-1668625442929540650",
+          "predicted": [
+            -192,
+            -80
+          ],
+          "observed_xz": [
+            -188,
+            -66
+          ],
+          "displacement_blocks": 14.560219778561036
+        },
+        {
+          "seed": "-6140446985676120508",
+          "predicted": [
+            -96,
+            272
+          ],
+          "observed_xz": [
+            -81,
+            277
+          ],
+          "displacement_blocks": 15.811388300841896
+        },
+        {
+          "seed": "-6770949640989198583",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4343734038048715302",
+          "predicted": [
+            32,
+            -64
+          ],
+          "observed_xz": [
+            43,
+            -58
+          ],
+          "displacement_blocks": 12.529964086141668
+        },
+        {
+          "seed": "-7544033835432737142",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-8044424495745788820",
+          "predicted": [
+            -16,
+            -16
+          ],
+          "observed_xz": [
+            -8,
+            -1
+          ],
+          "displacement_blocks": 17.0
+        },
+        {
+          "seed": "-4937271565411561616",
+          "predicted": [
+            -192,
+            64
+          ],
+          "observed_xz": [
+            -179,
+            73
+          ],
+          "displacement_blocks": 15.811388300841896
+        },
+        {
+          "seed": "-6273981045315334706",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-2929144642507117846",
+          "predicted": [
+            0,
+            16
+          ],
+          "observed_xz": [
+            7,
+            23
+          ],
+          "displacement_blocks": 9.899494936611665
+        },
+        {
+          "seed": "-1518980640785161215",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "3174492301114349736",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-8564670916400471027",
+          "predicted": [
+            192,
+            -112
+          ],
+          "observed_xz": [
+            200,
+            -102
+          ],
+          "displacement_blocks": 12.806248474865697
+        },
+        {
+          "seed": "5574532911583637595",
+          "predicted": [
+            -16,
+            -48
+          ],
+          "observed_xz": [
+            -15,
+            -38
+          ],
+          "displacement_blocks": 10.04987562112089
+        },
+        {
+          "seed": "-1606916276571817445",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4059056057579886329",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-1512699648912621904",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-3572946980067025172",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "3935774486848180498",
+          "predicted": [
+            -16,
+            -48
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 10.44030650891055
+        },
+        {
+          "seed": "1265094156158224713",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4767286540954276203",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-5014216602933006456",
+          "predicted": [
+            -16,
+            -48
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 10.44030650891055
+        },
+        {
+          "seed": "-340821038812474285",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-582666427928917290",
+          "predicted": [
+            -704,
+            352
+          ],
+          "observed_xz": [
+            -702,
+            357
+          ],
+          "displacement_blocks": 5.385164807134504
+        },
+        {
+          "seed": "-4976944935746785273",
+          "predicted": [
+            -944,
+            -704
+          ],
+          "observed_xz": [
+            -929,
+            -690
+          ],
+          "displacement_blocks": 20.518284528683193
+        },
+        {
+          "seed": "8913683988413733765",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "291080821224767267",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "2038608524547893592",
+          "predicted": [
+            -528,
+            -64
+          ],
+          "observed_xz": [
+            -515,
+            -54
+          ],
+          "displacement_blocks": 16.401219466856727
+        },
+        {
+          "seed": "-4969719147650657077",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "6762955539682377832",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-453651019953061814",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4008620433193537674",
+          "predicted": [
+            -464,
+            -528
+          ],
+          "observed_xz": [
+            -453,
+            -521
+          ],
+          "displacement_blocks": 13.038404810405298
+        },
+        {
+          "seed": "-4880012962450640011",
+          "predicted": [
+            16,
+            0
+          ],
+          "observed_xz": [
+            24,
+            3
+          ],
+          "displacement_blocks": 8.54400374531753
+        },
+        {
+          "seed": "7931773194558452508",
+          "predicted": [
+            -48,
+            64
+          ],
+          "observed_xz": [
+            -41,
+            77
+          ],
+          "displacement_blocks": 14.7648230602334
+        },
+        {
+          "seed": "-7126771794132131513",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "3892645080117226033",
+          "predicted": [
+            -160,
+            -48
+          ],
+          "observed_xz": [
+            -150,
+            -33
+          ],
+          "displacement_blocks": 18.027756377319946
+        },
+        {
+          "seed": "9056593541966880722",
+          "predicted": [
+            -32,
+            64
+          ],
+          "observed_xz": [
+            -17,
+            68
+          ],
+          "displacement_blocks": 15.524174696260024
+        },
+        {
+          "seed": "-7597076093810329540",
+          "predicted": [
+            -16,
+            96
+          ],
+          "observed_xz": [
+            -5,
+            97
+          ],
+          "displacement_blocks": 11.045361017187261
+        },
+        {
+          "seed": "-4968894309939447961",
+          "predicted": [
+            368,
+            784
+          ],
+          "observed_xz": [
+            369,
+            794
+          ],
+          "displacement_blocks": 10.04987562112089
+        },
+        {
+          "seed": "4719769192585930289",
+          "predicted": [
+            156,
+            0
+          ],
+          "observed_xz": [
+            140,
+            26
+          ],
+          "displacement_blocks": 30.528675044947494
+        },
+        {
+          "seed": "3616225228971510762",
+          "predicted": [
+            -48,
+            -16
+          ],
+          "observed_xz": [
+            -40,
+            -10
+          ],
+          "displacement_blocks": 10.0
+        },
+        {
+          "seed": "-8326010472259879371",
+          "predicted": [
+            -32,
+            64
+          ],
+          "observed_xz": [
+            -17,
+            68
+          ],
+          "displacement_blocks": 15.524174696260024
+        },
+        {
+          "seed": "-2984072045296972605",
+          "predicted": [
+            128,
+            48
+          ],
+          "observed_xz": [
+            137,
+            63
+          ],
+          "displacement_blocks": 17.4928556845359
+        },
+        {
+          "seed": "3965022595533706929",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "3178540356880283481",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-1896390971614198588",
+          "predicted": [
+            112,
+            208
+          ],
+          "observed_xz": [
+            118,
+            209
+          ],
+          "displacement_blocks": 6.082762530298219
+        },
+        {
+          "seed": "368342364169337290",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "6003839248161056871",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "7424157817344609039",
+          "predicted": [
+            -672,
+            -912
+          ],
+          "observed_xz": [
+            -660,
+            -904
+          ],
+          "displacement_blocks": 14.422205101855956
+        },
+        {
+          "seed": "-3408748666638837073",
+          "predicted": [
+            -16,
+            -48
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 10.44030650891055
+        },
+        {
+          "seed": "-8186207492830622566",
+          "predicted": [
+            464,
+            -752
+          ],
+          "observed_xz": [
+            471,
+            -746
+          ],
+          "displacement_blocks": 9.219544457292887
+        },
+        {
+          "seed": "-3418513350286140853",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "5329533497540776603",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-8412065011434420316",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-1876585591560152142",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "7086638178683056257",
+          "predicted": [
+            -272,
+            -32
+          ],
+          "observed_xz": [
+            -261,
+            -29
+          ],
+          "displacement_blocks": 11.40175425099138
+        },
+        {
+          "seed": "6271748679462446236",
+          "predicted": [
+            160,
+            -128
+          ],
+          "observed_xz": [
+            163,
+            -122
+          ],
+          "displacement_blocks": 6.708203932499369
+        },
+        {
+          "seed": "-8676804462035448029",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-4783243616791654021",
+          "predicted": [
+            16,
+            -48
+          ],
+          "observed_xz": [
+            23,
+            -33
+          ],
+          "displacement_blocks": 16.55294535724685
+        },
+        {
+          "seed": "-7957279602082591499",
+          "predicted": [
+            -432,
+            544
+          ],
+          "observed_xz": [
+            -417,
+            551
+          ],
+          "displacement_blocks": 16.55294535724685
+        },
+        {
+          "seed": "1002036849063315980",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "685060799451887893",
+          "predicted": [
+            0,
+            64
+          ],
+          "observed_xz": [
+            0,
+            65
+          ],
+          "displacement_blocks": 1.0
+        },
+        {
+          "seed": "-3502566552263851198",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "7932416640711727352",
+          "predicted": [
+            -368,
+            -16
+          ],
+          "observed_xz": [
+            -356,
+            -16
+          ],
+          "displacement_blocks": 12.0
+        },
+        {
+          "seed": "-3222587535588144715",
+          "predicted": [
+            160,
+            -240
+          ],
+          "observed_xz": [
+            166,
+            -234
+          ],
+          "displacement_blocks": 8.48528137423857
+        },
+        {
+          "seed": "-809356907263006270",
+          "predicted": [
+            -16,
+            -48
+          ],
+          "observed_xz": [
+            -13,
+            -38
+          ],
+          "displacement_blocks": 10.44030650891055
+        },
+        {
+          "seed": "4439252105671733795",
+          "predicted": [
+            -80,
+            -16
+          ],
+          "observed_xz": [
+            -71,
+            -15
+          ],
+          "displacement_blocks": 9.055385138137417
+        },
+        {
+          "seed": "-3388917876749333114",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-1182511411641069882",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-552526745116739118",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-7108773605410801809",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-341177895293932105",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-732091456477728473",
+          "predicted": [
+            -32,
+            0
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 6.082762530298219
+        },
+        {
+          "seed": "-327054986932344948",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "7075883509774426401",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "5718913436695043505",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "-1085744880512107243",
+          "predicted": [
+            240,
+            736
+          ],
+          "observed_xz": [
+            253,
+            736
+          ],
+          "displacement_blocks": 13.0
+        },
+        {
+          "seed": "4824385676517010403",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "0",
+          "predicted": [
+            -32,
+            0
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 6.082762530298219
+        },
+        {
+          "seed": "1",
+          "predicted": [
+            160,
+            160
+          ],
+          "observed_xz": [
+            163,
+            170
+          ],
+          "displacement_blocks": 10.44030650891055
+        },
+        {
+          "seed": "-1",
+          "predicted": [
+            496,
+            384
+          ],
+          "observed_xz": [
+            498,
+            387
+          ],
+          "displacement_blocks": 3.605551275463989
+        },
+        {
+          "seed": "-9223372036854775808",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "9223372036854775807",
+          "predicted": [
+            0,
+            0
+          ],
+          "observed_xz": [
+            0,
+            0
+          ],
+          "displacement_blocks": 0.0
+        },
+        {
+          "seed": "12345",
+          "predicted": [
+            96,
+            -32
+          ],
+          "observed_xz": [
+            103,
+            -28
+          ],
+          "displacement_blocks": 8.06225774829855
+        },
+        {
+          "seed": "42",
+          "predicted": [
+            -32,
+            0
+          ],
+          "observed_xz": [
+            -31,
+            6
+          ],
+          "displacement_blocks": 6.082762530298219
+        },
+        {
+          "seed": "-1234567890123456789",
+          "predicted": [
+            16,
+            176
+          ],
+          "observed_xz": [
+            20,
+            181
+          ],
+          "displacement_blocks": 6.4031242374328485
+        }
+      ]
+    }
+  }
+}

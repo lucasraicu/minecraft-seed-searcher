@@ -1,0 +1,10 @@
+{
+  "name": "isolated-spawn-audit-client",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline localhost-only joining client for disposable BDS spawn validation",
+  "dependencies": {
+    "bedrock-protocol": "3.60.1",
+    "nethernet": "file:nethernet-source"
+  }
+}

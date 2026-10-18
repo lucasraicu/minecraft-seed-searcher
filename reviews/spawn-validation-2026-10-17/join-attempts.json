@@ -1,0 +1,278 @@
+[
+  {
+    "seed": "12345",
+    "kind": "real_initial_player_join",
+    "label": "join-first-12345",
+    "before": {
+      "phase": "world_tick40",
+      "tick": 40,
+      "seed": "12345",
+      "defaultSpawn": {
+        "x": 103,
+        "y": 32767,
+        "z": -28
+      },
+      "players": 0,
+      "spawnRadius": 10,
+      "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+      "wallSinceStart": 6.7750527080497704
+    },
+    "status": "failed",
+    "error": "BDS player_spawn; last logs: [2026-10-18 03:01:53:717 ERROR] \n[2026-10-18 03:01:53:717 ERROR] To switch, set 'transport=nethernet' in server.properties.\n[2026-10-18 03:01:53:718 ERROR] \n[2026-10-18 03:01:53:718 ERROR] For more information, please reference the included bedrock_server_how_to.html file.\n[2026-10-18 03:01:53:718 ERROR] =======================================================\n[2026-10-18 03:01:53:719 INFO] ================ TELEMETRY MESSAGE ===================\n[2026-10-18 03:01:53:719 INFO] Server Telemetry is currently not enabled. \n[2026-10-18 03:01:53:719 INFO] Enabling this telemetry helps us improve the game.\n[2026-10-18 03:01:53:719 INFO] \n[2026-10-18 03:01:53:719 INFO] To enable this feature, add the line 'emit-server-telemetry=true'\n[2026-10-18 03:01:53:719 INFO] to the server.properties file in the handheld/src-server directory\n[2026-10-18 03:01:53:719 INFO] ======================================================\n[2026-10-18 03:01:53:755 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_load\",\"tick\":0,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:01:54:709 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick20\",\"tick\":20,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:01:55:704 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick40\",\"tick\":40,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n",
+    "clean_shutdown": true,
+    "rows": [
+      {
+        "phase": "world_load",
+        "tick": 0,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 4.82734676200198
+      },
+      {
+        "phase": "world_tick20",
+        "tick": 20,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 5.779819191026036
+      },
+      {
+        "phase": "world_tick40",
+        "tick": 40,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 6.7750527080497704
+      }
+    ],
+    "console.log_sha256": "16049b459b54b49785f619b089daed70c7b33bb47d3c35927882d871fa9c966d",
+    "client.log_sha256": "846d9e3cf0e26755c44ffee2400da93a6ca36d48c5b02b16788598d0c9de4b1c",
+    "client_log": "Server discovery failed: All promises were rejected; using configured defaults\nnode:internal/buffer:88\n  throw new ERR_OUT_OF_RANGE(type || 'offset',\n  ^\n\nRangeError [ERR_OUT_OF_RANGE]: The value of \"offset\" is out of range. It must be >= 0 and <= 31. Received 33\n    at boundsError (node:internal/buffer:88:9)\n    at Uint8Array.readUInt16BE (node:internal/buffer:334:5)\n    at UnconnectedPong.readShort (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/@jsprismarine/jsbinaryutils/dist/BinaryStream.js:63:28)\n    at UnconnectedPong.readString (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/jsp-raknet/js/protocol/Packet.js:28:31)\n    at UnconnectedPong.decode (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/jsp-raknet/js/protocol/UnconnectedPong.js:17:32)\n    at Client.handleUnconnectedPong (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/jsp-raknet/js/Client.js:107:23)\n    at Client.handle (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/jsp-raknet/js/Client.js:72:26)\n    at Socket.<anonymous> (/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/spawn-validation-2026-10-17/client/node_modules/jsp-raknet/js/Client.js:46:18)\n    at Socket.emit (node:events:524:28)\n    at UDP.onMessage [as onmessage] (node:dgram:951:8) {\n  code: 'ERR_OUT_OF_RANGE'\n}\n\nNode.js v20.20.2\n"
+  },
+  {
+    "seed": "12345",
+    "kind": "real_initial_player_join",
+    "label": "join-http-12345",
+    "before": {
+      "phase": "world_tick40",
+      "tick": 40,
+      "seed": "12345",
+      "defaultSpawn": {
+        "x": 103,
+        "y": 32767,
+        "z": -28
+      },
+      "players": 0,
+      "spawnRadius": 10,
+      "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+      "wallSinceStart": 6.247871585015673
+    },
+    "status": "failed",
+    "error": "BDS player_spawn; last logs: [2026-10-18 03:03:42:712 INFO] Opening level 'worlds/spawn_audit/db'\n[2026-10-18 03:03:42:721 INFO] Accepting clients on [::]:19132\n[2026-10-18 03:03:42:896 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer\n[2026-10-18 03:03:44:752 INFO] Signed in to signaling service successfully\n[2026-10-18 03:03:44:762 INFO] Server started.\n[2026-10-18 03:03:44:762 INFO] ================ TELEMETRY MESSAGE ===================\n[2026-10-18 03:03:44:762 INFO] Server Telemetry is currently not enabled. \n[2026-10-18 03:03:44:762 INFO] Enabling this telemetry helps us improve the game.\n[2026-10-18 03:03:44:762 INFO] \n[2026-10-18 03:03:44:762 INFO] To enable this feature, add the line 'emit-server-telemetry=true'\n[2026-10-18 03:03:44:762 INFO] to the server.properties file in the handheld/src-server directory\n[2026-10-18 03:03:44:762 INFO] ======================================================\n[2026-10-18 03:03:44:785 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_load\",\"tick\":0,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:03:45:734 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick20\",\"tick\":20,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:03:46:734 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick40\",\"tick\":40,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n",
+    "clean_shutdown": true,
+    "rows": [
+      {
+        "phase": "world_load",
+        "tick": 0,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 4.298749262990896
+      },
+      {
+        "phase": "world_tick20",
+        "tick": 20,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 5.247719321982004
+      },
+      {
+        "phase": "world_tick40",
+        "tick": 40,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 6.247871585015673
+      }
+    ],
+    "console.log_sha256": "9a61c84d396beca5bc80108b8f18b8de165cbfa023037072b3a28468f8c2437f",
+    "client.log_sha256": "21fc5cf9916a13daf777b0bc29d93956358ee532a000746cd5435b64aac42e95",
+    "client_log": "{\"event\":\"error\",\"data\":\"Error: Nethernet HTTP offer requires a player identity\\n    at exchangeOffer (/client/nethernet-source/src/signalling/http.js:26:31)\\n    at nn.Client.createOffer (/client/nethernet-source/src/client.js:311:27)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\"}\nServer closed connection: closed\n{\"event\":\"close\",\"data\":true}\n"
+  },
+  {
+    "seed": "12345",
+    "kind": "real_initial_player_join",
+    "label": "join-http-offline-12345",
+    "before": {
+      "phase": "world_tick40",
+      "tick": 40,
+      "seed": "12345",
+      "defaultSpawn": {
+        "x": 103,
+        "y": 32767,
+        "z": -28
+      },
+      "players": 0,
+      "spawnRadius": 10,
+      "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+      "wallSinceStart": 6.946963008027524
+    },
+    "status": "failed",
+    "error": "BDS player_spawn; last logs: [2026-10-18 03:04:21:557 INFO] Opening level 'worlds/spawn_audit/db'\n[2026-10-18 03:04:21:564 INFO] Accepting clients on [::]:19132\n[2026-10-18 03:04:21:738 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer\n[2026-10-18 03:04:23:676 INFO] Signed in to signaling service successfully\n[2026-10-18 03:04:23:900 INFO] Server started.\n[2026-10-18 03:04:23:900 INFO] ================ TELEMETRY MESSAGE ===================\n[2026-10-18 03:04:23:900 INFO] Server Telemetry is currently not enabled. \n[2026-10-18 03:04:23:900 INFO] Enabling this telemetry helps us improve the game.\n[2026-10-18 03:04:23:900 INFO] \n[2026-10-18 03:04:23:900 INFO] To enable this feature, add the line 'emit-server-telemetry=true'\n[2026-10-18 03:04:23:900 INFO] to the server.properties file in the handheld/src-server directory\n[2026-10-18 03:04:23:900 INFO] ======================================================\n[2026-10-18 03:04:23:927 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_load\",\"tick\":0,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:04:24:876 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick20\",\"tick\":20,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:04:25:876 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick40\",\"tick\":40,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n",
+    "clean_shutdown": true,
+    "rows": [
+      {
+        "phase": "world_load",
+        "tick": 0,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 4.997603347001132
+      },
+      {
+        "phase": "world_tick20",
+        "tick": 20,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 5.94690704299137
+      },
+      {
+        "phase": "world_tick40",
+        "tick": 40,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 6.946963008027524
+      }
+    ],
+    "console.log_sha256": "232dd3ae9f0ee3fae080773502d978f5ca78f5328fd8a1af514767892471243b",
+    "client.log_sha256": "8fd75445ed8cbbf4749fcb3b718d484f4f26818841f7aaa98fe6bed90096db39",
+    "client_log": "{\"event\":\"error\",\"data\":\"Error: Nethernet HTTP rejected the offer: 37\\n    at exchangeOffer (/client/nethernet-source/src/signalling/http.js:35:39)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async nn.Client.createOffer (/client/nethernet-source/src/client.js:311:21)\"}\nServer closed connection: closed\n{\"event\":\"close\",\"data\":true}\n"
+  },
+  {
+    "seed": "12345",
+    "kind": "real_initial_player_join",
+    "label": "join-http-signed-offline-12345",
+    "before": {
+      "phase": "world_tick40",
+      "tick": 40,
+      "seed": "12345",
+      "defaultSpawn": {
+        "x": 103,
+        "y": 32767,
+        "z": -28
+      },
+      "players": 0,
+      "spawnRadius": 10,
+      "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+      "wallSinceStart": 6.167470375017729
+    },
+    "status": "failed",
+    "error": "BDS player_spawn; last logs: [2026-10-18 03:05:00:786 INFO] Opening level 'worlds/spawn_audit/db'\n[2026-10-18 03:05:00:820 INFO] Accepting clients on [::]:19132\n[2026-10-18 03:05:01:033 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer\n[2026-10-18 03:05:02:897 INFO] Signed in to signaling service successfully\n[2026-10-18 03:05:02:906 INFO] Server started.\n[2026-10-18 03:05:02:906 INFO] ================ TELEMETRY MESSAGE ===================\n[2026-10-18 03:05:02:906 INFO] Server Telemetry is currently not enabled. \n[2026-10-18 03:05:02:906 INFO] Enabling this telemetry helps us improve the game.\n[2026-10-18 03:05:02:906 INFO] \n[2026-10-18 03:05:02:906 INFO] To enable this feature, add the line 'emit-server-telemetry=true'\n[2026-10-18 03:05:02:906 INFO] to the server.properties file in the handheld/src-server directory\n[2026-10-18 03:05:02:906 INFO] ======================================================\n[2026-10-18 03:05:02:935 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_load\",\"tick\":0,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:05:03:884 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick20\",\"tick\":20,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n[2026-10-18 03:05:04:884 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick40\",\"tick\":40,\"seed\":\"12345\",\"defaultSpawn\":{\"x\":103,\"y\":32767,\"z\":-28},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}\n\n",
+    "clean_shutdown": true,
+    "rows": [
+      {
+        "phase": "world_load",
+        "tick": 0,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 4.218012612021994
+      },
+      {
+        "phase": "world_tick20",
+        "tick": 20,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 5.166919730021618
+      },
+      {
+        "phase": "world_tick40",
+        "tick": 40,
+        "seed": "12345",
+        "defaultSpawn": {
+          "x": 103,
+          "y": 32767,
+          "z": -28
+        },
+        "players": 0,
+        "spawnRadius": 10,
+        "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation",
+        "wallSinceStart": 6.167470375017729
+      }
+    ],
+    "console.log_sha256": "a8d14f2a556221abb472f0e132dc28f42d57bf0978f1a28e2736ccef5ac8450a",
+    "client.log_sha256": "8fd75445ed8cbbf4749fcb3b718d484f4f26818841f7aaa98fe6bed90096db39",
+    "client_log": "{\"event\":\"error\",\"data\":\"Error: Nethernet HTTP rejected the offer: 37\\n    at exchangeOffer (/client/nethernet-source/src/signalling/http.js:35:39)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async nn.Client.createOffer (/client/nethernet-source/src/client.js:311:21)\"}\nServer closed connection: closed\n{\"event\":\"close\",\"data\":true}\n"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "client_audit": {
+    "node_image": "node:24-bookworm-slim",
+    "node_image_id": "sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5",
+    "bedrock_protocol": "3.60.1",
+    "nethernet_commit": "6431f0f98a4c82d919e59fdbdb54e576e939b9dd",
+    "join_attempts": 4,
+    "successful_joins": 0,
+    "offline_only": true
+  },
+  "verification": {
+    "spawn_regression_tests": "47 passed; tests/test_web_spawn_metric.py and tests/test_two_group_config.py",
+    "cohort_metadata_verified": 108,
+    "no_pack_controls": 3,
+    "remaining_audit_containers": 0
+  }
+}
