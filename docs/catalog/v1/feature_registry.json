@@ -1,0 +1,956 @@
+{
+  "schema_version": 1,
+  "registry_id": "catalog-features-proposed-v1",
+  "status": "proposed_not_implemented",
+  "scope": {
+    "edition": "bedrock",
+    "exact_game_builds": [],
+    "model_candidate": "MC_26_50",
+    "silent_version_fallback": false
+  },
+  "categories": [
+    {
+      "id": "general",
+      "label": "General catalog",
+      "default_profile": "balanced_survival"
+    },
+    {
+      "id": "builders",
+      "label": "Builders",
+      "default_profile": "biome_variety"
+    },
+    {
+      "id": "rare",
+      "label": "Rare & unusual",
+      "default_profile": "structure_collector"
+    },
+    {
+      "id": "survival",
+      "label": "Survival & realms",
+      "default_profile": "village_life"
+    },
+    {
+      "id": "adventure",
+      "label": "Adventure",
+      "default_profile": "trial_adventurer"
+    },
+    {
+      "id": "biomes",
+      "label": "Biome explorers",
+      "default_profile": "biome_variety"
+    },
+    {
+      "id": "ocean",
+      "label": "Ocean exploration",
+      "default_profile": "ocean_explorer"
+    },
+    {
+      "id": "technical",
+      "label": "Technical planning",
+      "default_profile": "archaeology"
+    }
+  ],
+  "features": [
+    {
+      "id": "structure.village",
+      "slot": 0,
+      "label": "Village",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "general",
+        "builders",
+        "survival"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "village",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 6,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.trial_chamber",
+      "slot": 1,
+      "label": "Trial chamber",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "general",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "trial_chamber",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 4,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.ancient_city",
+      "slot": 2,
+      "label": "Ancient city",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "ancient_city",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Known candidate/viability disagreement; actual generation unverified"
+    },
+    {
+      "id": "structure.mansion",
+      "slot": 3,
+      "label": "Woodland mansion",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "mansion",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 1,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.monument",
+      "slot": 4,
+      "label": "Ocean monument",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "ocean",
+        "technical"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "monument",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.outpost",
+      "slot": 5,
+      "label": "Pillager outpost",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "survival",
+        "technical"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "outpost",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.desert_pyramid",
+      "slot": 6,
+      "label": "Desert pyramid",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "desert_pyramid",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.jungle_temple",
+      "slot": 7,
+      "label": "Jungle temple",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "jungle_temple",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.swamp_hut",
+      "slot": 8,
+      "label": "Swamp hut",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "technical"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "swamp_hut",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.igloo",
+      "slot": 9,
+      "label": "Igloo",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "igloo",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.trail_ruins",
+      "slot": 10,
+      "label": "Trail ruins",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "trail_ruins",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 2,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.ruined_portal",
+      "slot": 11,
+      "label": "Ruined portal",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "general",
+        "survival"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "ruined_portal",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 6,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.shipwreck",
+      "slot": 12,
+      "label": "Shipwreck",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "ocean",
+        "adventure"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "shipwreck",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 4,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "structure.mineshaft",
+      "slot": 13,
+      "label": "Mineshaft",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "category_tags": [
+        "adventure",
+        "technical"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "extractor_key": "mineshaft",
+      "semantics": "distinct_viable_predicted_start",
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "count_min": 1,
+      "count_max": 16,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Predicted structure start",
+      "complete_negative_evidence": false,
+      "specialist_reference_target": 8,
+      "known_caveat": "Actual generation unverified"
+    },
+    {
+      "id": "biome.cherry_grove",
+      "slot": 0,
+      "label": "Cherry grove",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "cherry_grove"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.mushroom_fields",
+      "slot": 1,
+      "label": "Mushroom fields",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "mushroom_fields",
+        "mushroom_field_shore"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.bamboo_jungle",
+      "slot": 2,
+      "label": "Bamboo jungle",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "bamboo_jungle"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.desert",
+      "slot": 3,
+      "label": "Desert",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "desert",
+        "desert_hills",
+        "desert_lakes"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.badlands",
+      "slot": 4,
+      "label": "Badlands",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "rare",
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "badlands",
+        "badlands_plateau",
+        "wooded_badlands_plateau",
+        "eroded_badlands",
+        "modified_badlands_plateau",
+        "modified_wooded_badlands_plateau",
+        "wooded_badlands"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.snowy",
+      "slot": 5,
+      "label": "Snowy terrain",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "snowy_plains",
+        "snowy_mountains",
+        "ice_spikes",
+        "snowy_slopes",
+        "snowy_taiga"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.mangrove_swamp",
+      "slot": 6,
+      "label": "Mangrove swamp",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "builders",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "mangrove_swamp"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.forest",
+      "slot": 7,
+      "label": "Forest / birch",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "general",
+        "builders",
+        "survival",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "forest",
+        "birch_forest",
+        "flower_forest",
+        "old_growth_birch_forest"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    },
+    {
+      "id": "biome.plains",
+      "slot": 8,
+      "label": "Plains / meadow",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "category_tags": [
+        "general",
+        "builders",
+        "survival",
+        "biomes"
+      ],
+      "contract_status": "planned_filter",
+      "runtime_enabled": false,
+      "canonical_members": [
+        "plains",
+        "sunflower_plains",
+        "meadow"
+      ],
+      "canonicalizer": "seed_search.realm.biomes.canonical",
+      "method": "predictor_world_lattice_y63_stride64_v1",
+      "sample_y": 63,
+      "sample_stride": 64,
+      "supported_rules": [
+        "required",
+        "preferred"
+      ],
+      "supported_scopes": [
+        "near_base",
+        "inside_border"
+      ],
+      "supports_any_of": true,
+      "importance": [
+        1,
+        3,
+        5
+      ],
+      "evidence_label": "Sampled biome observation",
+      "surface_claim": false,
+      "complete_negative_evidence": false
+    }
+  ],
+  "roadmap": [
+    {
+      "id": "structure.stronghold",
+      "status": "map_only",
+      "runtime_enabled": false,
+      "requires": "Known incomplete enumeration; no mandatory-count filter"
+    },
+    {
+      "id": "variant.igloo_basement",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Separate predictor/variant validation"
+    },
+    {
+      "id": "terrain.base_surface_biome",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Validated surface query"
+    },
+    {
+      "id": "terrain.flat_build_area",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Surface slope and connected area"
+    },
+    {
+      "id": "terrain.biome_patch_area",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Surface-biome raster and connectivity"
+    },
+    {
+      "id": "terrain.island",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Land/water geometry and connectivity"
+    },
+    {
+      "id": "relation.structure_biome",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Structure-relative biome query"
+    },
+    {
+      "id": "relation.structure_cluster",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Pair/cluster geometry; does not establish farm function"
+    },
+    {
+      "id": "verification.portal_room",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Actual block evidence and footprint coverage"
+    },
+    {
+      "id": "dimension.nether",
+      "status": "deferred",
+      "runtime_enabled": false,
+      "requires": "Independent public dimensional contract"
+    },
+    {
+      "id": "anchor.spawn",
+      "status": "gated",
+      "runtime_enabled": false,
+      "requires": "Version-matched accuracy and incremental-cost experiment"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "policy_id": "catalog-policy-proposed-v1",
+  "status": "proposed_not_implemented",
+  "runtime_enabled": false,
+  "personal_policy": {
+    "revision": "dynamic-envelope-2048-v3",
+    "top_k": 50,
+    "change_personal_behavior": false
+  },
+  "public": {
+    "border_sides": [
+      2048,
+      4096,
+      8192
+    ],
+    "near_radii": [
+      256,
+      512,
+      1024
+    ],
+    "anchor_grid_axis": [
+      -976,
+      -768,
+      -512,
+      -256,
+      0,
+      256,
+      512,
+      768,
+      976
+    ],
+    "anchor_modes_active_when_catalog_enabled": [
+      "origin",
+      "recommended"
+    ],
+    "default_anchor_mode": "recommended",
+    "spawn_mode": "gated_off_until_accuracy_and_cost_validation",
+    "origin_is_spawn": false,
+    "geometry": "half_open_square_and_closed_circle_intersection_v1",
+    "absolute_coordinate_dtype": "int32",
+    "tile_side_blocks": 256,
+    "biome_stride": 64,
+    "biome_y_planes": [
+      63
+    ],
+    "biome_id_dtype": "uint16_le",
+    "nominal_max_envelope": [
+      -5072,
+      -5072,
+      5072,
+      5072
+    ],
+    "tile_aligned_max_envelope": [
+      -5120,
+      -5120,
+      5120,
+      5120
+    ],
+    "first_reference_worlds": 100,
+    "full_reference_worlds": 10000,
+    "storage_budget_gib": 20,
+    "pause_ingestion_at_fraction": 0.8,
+    "no_row_per_rejected_seed": true,
+    "sampling_policy": "explicit_per_campaign_independent_of_personal_qualification"
+  },
+  "score": {
+    "revision": "request-relative-v1",
+    "utility_lcm": 720720,
+    "importance": [
+      1,
+      3,
+      5
+    ],
+    "required_compensation": false,
+    "default_profile": "balanced_survival",
+    "tie_distance_scale": 1000000,
+    "tie_distance_rounding": "integer_floor_normalized_sqrt",
+    "canonical_seed_order": "unsigned_64_bit_pattern_ascending"
+  },
+  "retention": {
+    "modes": [
+      "origin",
+      "recommended"
+    ],
+    "border_sides": [
+      2048,
+      4096,
+      8192
+    ],
+    "structure_count": {
+      "features": 14,
+      "scopes_per_border": 4,
+      "k": 100,
+      "admit_count_at_least": 1
+    },
+    "structure_proximity": {
+      "features": 14,
+      "k": 100,
+      "admit_within_blocks": 256
+    },
+    "biome_proximity": {
+      "features": 9,
+      "k": 100,
+      "admit_within_blocks": 1024
+    },
+    "biome_landmark_pairs": {
+      "biomes": 9,
+      "landmarks": [
+        "structure.village",
+        "structure.trial_chamber",
+        "structure.monument",
+        "structure.desert_pyramid"
+      ],
+      "k": 50,
+      "biome_within": 256,
+      "landmark_within": 512
+    },
+    "profiles": {
+      "count": 16,
+      "k": 100
+    },
+    "diversity": {
+      "bits": [
+        "biome.cherry_grove",
+        "biome.mushroom_fields",
+        "biome.bamboo_jungle",
+        "biome.snowy",
+        "structure.village",
+        "structure.trial_chamber",
+        "structure.ancient_city",
+        "structure.monument"
+      ],
+      "within": 1024,
+      "profiles": [
+        "balanced_survival",
+        "biome_variety",
+        "compact_starter",
+        "archaeology"
+      ],
+      "k_each": 1
+    },
+    "reference_sample": {
+      "k": 10000,
+      "hash": "sha256",
+      "salt": "catalog-reference-proposed-v1",
+      "before_relevance_gates": true
+    },
+    "world_cap_before_pins_and_dedup": 83944,
+    "world_cap_with_spawn_before_pins_and_dedup": 120916,
+    "capacities_are_pilot_defaults_not_quality_guarantees": true
+  },
+  "profile_features": {
+    "V": "min(village_count_near1024/6,1)",
+    "T": "min(trial_count_near1024/4,1)",
+    "A": "min(ancient_city_count_near1024/2,1)",
+    "O": "min((monument+shipwreck)_near1024/6,1)",
+    "E": "distinct_observed_launch_structure_types_near1024/14",
+    "B": "min(distinct_observed_launch_biome_families_near1024/8,1)",
+    "H": "max(0,1-nearest_village_distance/1024); zero if none in scope",
+    "R": "min((jungle_temple+swamp_hut+igloo+trail_ruins)_near1024/4,1)"
+  },
+  "profiles": [
+    {
+      "id": "balanced_survival",
+      "coefficients_VTAOEBHR": [
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "id": "village_life",
+      "coefficients_VTAOEBHR": [
+        5,
+        0,
+        0,
+        0,
+        1,
+        1,
+        5,
+        0
+      ]
+    },
+    {
+      "id": "trial_adventurer",
+      "coefficients_VTAOEBHR": [
+        1,
+        5,
+        1,
+        0,
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "ancient_city_explorer",
+      "coefficients_VTAOEBHR": [
+        1,
+        1,
+        5,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "ocean_explorer",
+      "coefficients_VTAOEBHR": [
+        0,
+        0,
+        0,
+        5,
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "biome_variety",
+      "coefficients_VTAOEBHR": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "structure_collector",
+      "coefficients_VTAOEBHR": [
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "id": "archaeology",
+      "coefficients_VTAOEBHR": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "compact_starter",
+      "coefficients_VTAOEBHR": [
+        2,
+        1,
+        0,
+        0,
+        1,
+        1,
+        5,
+        0
+      ]
+    },
+    {
+      "id": "village_and_trials",
+      "coefficients_VTAOEBHR": [
+        4,
+        4,
+        0,
+        0,
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "village_and_ocean",
+      "coefficients_VTAOEBHR": [
+        4,
+        0,
+        0,
+        4,
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "village_and_biomes",
+      "coefficients_VTAOEBHR": [
+        4,
+        0,
+        0,
+        0,
+        1,
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "cities_and_trials",
+      "coefficients_VTAOEBHR": [
+        0,
+        4,
+        4,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "ocean_and_biomes",
+      "coefficients_VTAOEBHR": [
+        0,
+        0,
+        0,
+        4,
+        1,
+        4,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "rare_and_biomes",
+      "coefficients_VTAOEBHR": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        1,
+        4
+      ]
+    },
+    {
+      "id": "multiplayer_variety",
+      "coefficients_VTAOEBHR": [
+        4,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        1
+      ]
+    }
+  ],
+  "billing": {
+    "enabled": false,
+    "currency": "usd",
+    "prices_are_hypotheses": true,
+    "free": {
+      "price_cents": 0,
+      "searches_daily": 20,
+      "max_rows": 3,
+      "max_worlds_per_request": 5,
+      "favorites": 10,
+      "saved_alerts": 0,
+      "comparison_worlds": 2,
+      "exports_daily": 0
+    },
+    "plus": {
+      "monthly_price_cents": 499,
+      "nonrenewing_7_day_price_cents": 299,
+      "searches_daily": 200,
+      "max_rows": 12,
+      "max_worlds_per_request": 50,
+      "favorites": 200,
+      "saved_alerts": 20,
+      "comparison_worlds": 5,
+      "exports_daily": 20
+    },
+    "all_categories_and_supported_borders_on_both_tiers": true,
+    "paid_accuracy_upgrade": false,
+    "full_sweeps_or_bds_jobs_included": false,
+    "quota_day": "UTC_calendar_day_display_reset_in_user_timezone"
+  },
+  "serving": {
+    "initial_p95_target_ms": 1000,
+    "benchmark_concurrent_users": 5,
+    "index_segment_layout_rows_max": 1048576,
+    "exact_over_saved_layouts": true,
+    "raw_observation_store_replicas": 2,
+    "no_unverified_top25_shortcut": true
+  }
+}

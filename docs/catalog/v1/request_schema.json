@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed catalog query; runtime capability and entitlement checks are additionally required",
+  "type": "object",
+  "properties": {
+    "request_revision": {
+      "const": "catalog-query-v1"
+    },
+    "edition": {
+      "const": "bedrock"
+    },
+    "game_build_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalog_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world_settings_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dimension": {
+      "const": "overworld"
+    },
+    "anchor_mode": {
+      "enum": [
+        "origin",
+        "recommended",
+        "spawn"
+      ]
+    },
+    "border_side": {
+      "enum": [
+        2048,
+        4096,
+        8192
+      ]
+    },
+    "evidence_policy": {
+      "const": "predicted_observations_v1"
+    },
+    "fallback_profile": {
+      "enum": [
+        "balanced_survival",
+        "village_life",
+        "trial_adventurer",
+        "ancient_city_explorer",
+        "ocean_explorer",
+        "biome_variety",
+        "structure_collector",
+        "archaeology",
+        "compact_starter",
+        "village_and_trials",
+        "village_and_ocean",
+        "village_and_biomes",
+        "cities_and_trials",
+        "ocean_and_biomes",
+        "rare_and_biomes",
+        "multiplayer_variety"
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "rule": {
+                "enum": [
+                  "required",
+                  "preferred"
+                ]
+              },
+              "scope": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "near_base"
+                      },
+                      "radius": {
+                        "enum": [
+                          256,
+                          512,
+                          1024
+                        ]
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "radius"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "inside_border"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "importance": {
+                "enum": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              "kind": {
+                "const": "structure_count"
+              },
+              "feature": {
+                "enum": [
+                  "structure.village",
+                  "structure.trial_chamber",
+                  "structure.ancient_city",
+                  "structure.mansion",
+                  "structure.monument",
+                  "structure.outpost",
+                  "structure.desert_pyramid",
+                  "structure.jungle_temple",
+                  "structure.swamp_hut",
+                  "structure.igloo",
+                  "structure.trail_ruins",
+                  "structure.ruined_portal",
+                  "structure.shipwreck",
+                  "structure.mineshaft"
+                ]
+              },
+              "at_least": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16
+              }
+            },
+            "required": [
+              "rule",
+              "kind",
+              "scope",
+              "feature",
+              "at_least"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "rule": {
+                      "const": "preferred"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "importance"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "importance"
+                    ]
+                  }
+                }
+              }
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "rule": {
+                "enum": [
+                  "required",
+                  "preferred"
+                ]
+              },
+              "scope": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "near_base"
+                      },
+                      "radius": {
+                        "enum": [
+                          256,
+                          512,
+                          1024
+                        ]
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "radius"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "inside_border"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "importance": {
+                "enum": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              "kind": {
+                "const": "biome_witness"
+              },
+              "any_of": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "biome.cherry_grove",
+                    "biome.mushroom_fields",
+                    "biome.bamboo_jungle",
+                    "biome.desert",
+                    "biome.badlands",
+                    "biome.snowy",
+                    "biome.mangrove_swamp",
+                    "biome.forest",
+                    "biome.plains"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 9,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "rule",
+              "kind",
+              "scope",
+              "any_of"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "rule": {
+                      "const": "preferred"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "importance"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "importance"
+                    ]
+                  }
+                }
+              }
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "request_revision",
+    "edition",
+    "game_build_id",
+    "catalog_snapshot_id",
+    "world_settings_id",
+    "dimension",
+    "anchor_mode",
+    "border_side",
+    "evidence_policy",
+    "fallback_profile",
+    "rows"
+  ],
+  "additionalProperties": false
+}

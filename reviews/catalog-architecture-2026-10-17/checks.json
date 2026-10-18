@@ -1,0 +1,76 @@
+{
+  "scope": "Arithmetic and isolated source control flow; no actual-world or performance validation",
+  "certification_with_stubbed_passing_heuristic_and_skipped_docker": {
+    "seed": 123,
+    "center": [
+      0,
+      0
+    ],
+    "counts_in_window": {
+      "strongholds": 1,
+      "villages": 1,
+      "mansions": 1,
+      "ancient_cities": 1,
+      "trial_chambers": 1
+    },
+    "tier_a_predictive_accuracy": {
+      "certified": true
+    },
+    "tier_b_bds_ground_truth": {
+      "status": "SKIPPED",
+      "reason": "Requested skip_docker or Docker daemon unavailable"
+    },
+    "final_verdict": "CERTIFIED"
+  },
+  "lossy_distance_summary_counterexample": {
+    "near": [
+      128,
+      200,
+      300
+    ],
+    "far": [
+      128,
+      900,
+      950
+    ],
+    "query": "at least 3 within 512"
+  },
+  "cross_anchor_conjunction_counterexample": {
+    "anchor_facts_village_cherry": [
+      [
+        true,
+        false
+      ],
+      [
+        false,
+        true
+      ]
+    ],
+    "matching_anchor": false
+  },
+  "catalog_record_bytes": 64,
+  "pilot_anchor_count": 5701104,
+  "production_anchor_count": 2916000000,
+  "anchors_incomplete_at_positive_closed_circle_boundary": 17,
+  "raw_36m_worlds_64_bytes_GB": 2.304,
+  "raw_36m_worlds_81_anchors_64_bytes_GB": 186.624,
+  "illustrative_count_bytes_per_anchor": 84,
+  "illustrative_pilot_count_GB": 0.478892736,
+  "illustrative_36m_world_count_GB": 244.944,
+  "36b_screen_at_100m_per_second_seconds": 360.0,
+  "3_6m_cpu_at_100k_per_second_seconds": 36.0,
+  "3_6m_cpu_at_50k_per_second_seconds": 72.0,
+  "v3_hard_floor_count": 13,
+  "source_sha256": {
+    "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md": "5e6e46550bd389d456483e7d13aac6da9021d1e0dea08115598c1f291abe9d94",
+    "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md": "cab2f55fd1f01605a2a08b8a994c5a8f6e3cbc3ff63a5d53379907bb551d6661",
+    "IMPLEMENTATION_PLAN.md": "51d2e86e319958c7bd67846bbb7c95245e9c544433309a819472d5ac953e7afa",
+    "MASTER_SEED_BLUEPRINT.md": "5abf109220caf270872e3242afb48de3f1e48189b2cd54009eba003e85756c10",
+    "native/blueprint_dynamic.inc": "8d234d10aaf39bd683769661c4b80d2fd88304f566819bbaa7970ae7d26060d2",
+    "native/blueprint_batch.h": "4bf9dd342c24ba22ff08ffa46baa2ad34ee0dde1cd0feeffb99f8c2a9b82263a",
+    "native/filters.inc": "b977c1adc171b9731c0fa80db9b3333b5f6c980bea3a3912523471b7e9f63e9a",
+    "src/seed_search/realm/config.py": "f299593b5df646b60191de1405737e98c9718f1c586229ef3d807f694571f7ed",
+    "scripts/bds_verify_finalist.py": "6b2499ceba9421f04ced2eccd1ed06a998fe7c39ccf69f7cf59a089bd5959996",
+    "scripts/calibrate_player_weights.py": "97fdf1ca3112de75c8c7a8112815f061b002ef8b159284f5988c00a0fbd282e7"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scope": "Proposed contract and tiny in-memory model consistency, not production implementation/throughput",
+  "passed": true,
+  "categories": 8,
+  "features": 23,
+  "settlement_anchors": 81,
+  "border_sides": [
+    2048,
+    4096,
+    8192
+  ],
+  "initial_layouts_per_world": 243,
+  "retention_slot_bound": 83944,
+  "retention_bound_with_spawn": 120916,
+  "fixed_feature_payload_bytes": 364,
+  "largest_one_plane_biome_grid_bytes": 51200,
+  "checks": [
+    "registry/preset references",
+    "valid and invalid request shapes",
+    "exact three borders",
+    "retention arithmetic",
+    "negative coordinates",
+    "nested and clipped geometry",
+    "same-anchor conjunction",
+    "payload round-trip",
+    "SQL schema and constraints",
+    "int64 seed round-trip",
+    "local documentation links"
+  ],
+  "contract_sha256": {
+    "example_request.json": "250f78a970982fc249d16b46f84eb2dd0c5601e52810c063f521d115157f67ca",
+    "feature_registry.json": "a9aec4388e3e017e8edb2ae0c04183e8dc3df1febcc487bd941d0ae909257568",
+    "public_policy.json": "8c44cc5cbe8d9f74fe5c00b4c3055b1072a96ab9c6eabfa3f099de8d4cfb5a44",
+    "request_schema.json": "313b1d86b7c17962ea9653e5cc679392393f0e70c6bf95cb7100341160e5bf0d",
+    "storage_layout.json": "49ca585aa083dbb452f73a4165da03a0ed535800746f5ffa1ed048d5abaa1571",
+    "ui_presets.json": "4de982f7a60a3b05c4c914dfa2feda1f8ff3acc78990f8d475bbe5c9f887c1db"
+  }
+}

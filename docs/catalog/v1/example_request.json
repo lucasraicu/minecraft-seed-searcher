@@ -1,0 +1,46 @@
+{
+  "request_revision": "catalog-query-v1",
+  "edition": "bedrock",
+  "game_build_id": "example-only-build",
+  "catalog_snapshot_id": "example-only-snapshot",
+  "world_settings_id": "vanilla-default-proposed",
+  "dimension": "overworld",
+  "anchor_mode": "recommended",
+  "border_side": 4096,
+  "evidence_policy": "predicted_observations_v1",
+  "fallback_profile": "balanced_survival",
+  "rows": [
+    {
+      "rule": "required",
+      "kind": "structure_count",
+      "feature": "structure.village",
+      "at_least": 3,
+      "scope": {
+        "kind": "near_base",
+        "radius": 512
+      }
+    },
+    {
+      "rule": "required",
+      "kind": "biome_witness",
+      "any_of": [
+        "biome.cherry_grove",
+        "biome.mushroom_fields"
+      ],
+      "scope": {
+        "kind": "near_base",
+        "radius": 256
+      }
+    },
+    {
+      "rule": "preferred",
+      "kind": "structure_count",
+      "feature": "structure.trial_chamber",
+      "at_least": 2,
+      "importance": 5,
+      "scope": {
+        "kind": "inside_border"
+      }
+    }
+  ]
+}

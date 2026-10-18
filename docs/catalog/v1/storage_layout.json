@@ -1,0 +1,103 @@
+{
+  "revision": "catalog-storage-proposed-v1",
+  "authoritative": {
+    "coordinates": "absolute signed int32 block positions; dimension always explicit",
+    "structure_columns": {
+      "feature_slot": "uint16",
+      "x": "int32",
+      "z": "int32",
+      "y": "nullable int16",
+      "variant": "nullable uint16",
+      "evidence_ref": "dictionary reference"
+    },
+    "biome_tile": {
+      "tile_side": 256,
+      "sample_stride": 64,
+      "sample_y": 63,
+      "shape": [
+        4,
+        4
+      ],
+      "axis_order": "z_then_x",
+      "dtype": "uint16_le",
+      "bytes_per_plane_tile_before_compression": 32
+    },
+    "tile_coordinate": "floor(block_coordinate/256); local=block_coordinate-tile*256",
+    "no_all_blocks_volume": true
+  },
+  "summary": {
+    "count_scopes": [
+      "near256",
+      "near512",
+      "near1024",
+      "inside_border"
+    ],
+    "structure_counts": {
+      "shape": [
+        14,
+        4
+      ],
+      "dtype": "uint32_le",
+      "bytes": 224
+    },
+    "structure_nearest_d2": {
+      "shape": [
+        14
+      ],
+      "dtype": "uint32_le",
+      "bytes": 56
+    },
+    "biome_nearest_d2": {
+      "shape": [
+        9
+      ],
+      "dtype": "uint32_le",
+      "bytes": 36
+    },
+    "biome_witness_sample_ref": {
+      "shape": [
+        9
+      ],
+      "dtype": "uint32_le",
+      "bytes": 36
+    },
+    "scope_complete_bits": {
+      "features": 23,
+      "scopes": 4,
+      "bytes": 12
+    },
+    "nearest_missing_sentinel": 4294967295,
+    "witness_missing_sentinel": 4294967295,
+    "fixed_feature_payload_bytes": 364,
+    "layout_metadata_estimate_bytes": 36,
+    "illustrative_layout_total_bytes": 400,
+    "estimate_is_not_sqlite_row_size_or_compression_measurement": true
+  },
+  "index": {
+    "row_identity": "catalog_snapshot + segment_id + local_layout_row",
+    "local_row_dtype": "uint32",
+    "max_rows_per_segment": 1048576,
+    "sidecar_arrays": [
+      "world_ref",
+      "anchor_ref",
+      "role_flags",
+      "border_side",
+      "coverage_ref"
+    ],
+    "bitmap_index": "feature/count-threshold/radius/role/coverage as needed; same layout row throughout intersection",
+    "all_caches_include": [
+      "canonical_query",
+      "catalog_snapshot",
+      "registry_revision",
+      "observation_revision",
+      "geometry_revision",
+      "score_revision",
+      "evidence_policy"
+    ]
+  },
+  "formats": {
+    "pilot": "SQLite metadata + layout summary BLOBs and checksummed compressed observation bundles",
+    "scale_candidate": "immutable partitioned Parquet/Arrow + service-owned metadata + memory-mapped column arrays/bitmaps",
+    "custom_engine_candidate": "same contracts over an existing durable KV engine, or versioned immutable column segments after benchmarks"
+  }
+}
