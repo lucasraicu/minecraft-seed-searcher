@@ -1,0 +1,169 @@
+{
+  "parity": {
+    "status": "passed",
+    "full_records": 64,
+    "biome_point_values": 220,
+    "openmp_threads": [
+      1,
+      2,
+      4,
+      34
+    ],
+    "source_fingerprint": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+    "scope": "bounded fixture replay, not fleet performance/general accuracy proof"
+  },
+  "openmp": {
+    "status": "passed",
+    "parallel": true,
+    "source_fingerprint": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+    "runtime": {
+      "openmp": true,
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+      "policy": "outer-columns-static-min256-v1"
+    },
+    "biome_checks": [
+      {
+        "kind": "biome_point_replay",
+        "threads": 1,
+        "points": 220
+      },
+      {
+        "kind": "biome_point_replay",
+        "threads": 2,
+        "points": 220
+      },
+      {
+        "kind": "biome_point_replay",
+        "threads": 4,
+        "points": 220
+      },
+      {
+        "kind": "biome_point_replay",
+        "threads": 34,
+        "points": 220
+      }
+    ],
+    "blueprint_checks": [
+      {
+        "threads": 1,
+        "effective_threads": 1,
+        "native_seconds": 0.04100008006207645,
+        "records": 64
+      },
+      {
+        "threads": 2,
+        "effective_threads": 2,
+        "native_seconds": 0.020890877000056207,
+        "records": 64
+      },
+      {
+        "threads": 4,
+        "effective_threads": 4,
+        "native_seconds": 0.011040248908102512,
+        "records": 64
+      },
+      {
+        "threads": 34,
+        "effective_threads": 34,
+        "native_seconds": 0.01786034496035427,
+        "records": 64
+      }
+    ],
+    "independent_python_replay": true,
+    "wall_seconds": 10.053090112982318,
+    "cpu_seconds": 17.253230000000002,
+    "peak_rss_bytes": 361971712,
+    "scope": "Two existing regression seeds,220points/thread setting;64 synthetic full-retention records/thread setting;no natural seed discovery/campaign. Thread-team and complete semantic-record equality, not throughput benchmark.",
+    "complete_records_sha256": "deca425ef70ca5bec7ccccabd740299951e1638dcdfcabf5ba7fcd5a753844db",
+    "biome_values_sha256": "b4140a0766da1fac30e0a16ce84a83d960a24a67e98ffc351c9f953fc69ac4d8"
+  },
+  "serial": {
+    "status": "passed",
+    "parallel": false,
+    "source_fingerprint": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+    "runtime": {
+      "openmp": false,
+      "runtime_sha256": null,
+      "policy": "outer-columns-static-min256-v1"
+    },
+    "biome_checks": [
+      {
+        "kind": "biome_point_replay",
+        "threads": 1,
+        "points": 220
+      }
+    ],
+    "blueprint_checks": [
+      {
+        "threads": 1,
+        "effective_threads": 1,
+        "native_seconds": 0.044406166998669505,
+        "records": 64
+      }
+    ],
+    "independent_python_replay": true,
+    "wall_seconds": 2.58516741998028,
+    "cpu_seconds": 2.572721,
+    "peak_rss_bytes": 164171776,
+    "scope": "Two existing regression seeds,220points/thread setting;64 synthetic full-retention records/thread setting;no natural seed discovery/campaign. Thread-team and complete semantic-record equality, not throughput benchmark.",
+    "complete_records_sha256": "deca425ef70ca5bec7ccccabd740299951e1638dcdfcabf5ba7fcd5a753844db",
+    "biome_values_sha256": "b4140a0766da1fac30e0a16ce84a83d960a24a67e98ffc351c9f953fc69ac4d8"
+  },
+  "activation": {
+    "primary_artifacts": [
+      {
+        "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/_native.abi3.so",
+        "before_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+        "after_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+        "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/previous-primary/_native.abi3.so"
+      },
+      {
+        "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/_blueprint_batch.abi3.so",
+        "before_sha256": "f9bd5e3370aacde03cb0529d3e17a1777a5a06a5aa73a824f0dd9438cb0cc233",
+        "after_sha256": "3fbb286e4f06a4726e3c1e7216a5aad4d30f2abc6b0bf7b97532bf085b372687",
+        "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/previous-primary/_blueprint_batch.abi3.so"
+      }
+    ],
+    "private_runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-corrected-openmp-2026-10-21",
+    "personal_process_restarted": false,
+    "source_fingerprint": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a"
+  },
+  "parallel_point_threshold_checks": {
+    "openmp": {
+      "status": "passed",
+      "values_sha256": "db9e2849cca47e71fac8fa8d0294d70ebe6b953d97a49f1bb8187dc66851ec6c",
+      "settings": [
+        {
+          "threads": 1,
+          "point_values": 1280
+        },
+        {
+          "threads": 2,
+          "point_values": 1280
+        },
+        {
+          "threads": 4,
+          "point_values": 1280
+        },
+        {
+          "threads": 34,
+          "point_values": 1280
+        }
+      ],
+      "wall_seconds": 0.0300592650892213,
+      "scope": "320points per call exceeds C OpenMP threshold256;two existing seeds,Overworld/Nether,scalar spot checks,no seed search"
+    },
+    "serial": {
+      "status": "passed",
+      "values_sha256": "db9e2849cca47e71fac8fa8d0294d70ebe6b953d97a49f1bb8187dc66851ec6c",
+      "settings": [
+        {
+          "threads": 1,
+          "point_values": 1280
+        }
+      ],
+      "wall_seconds": 0.01712279999628663,
+      "scope": "320points per call exceeds C OpenMP threshold256;two existing seeds,Overworld/Nether,scalar spot checks,no seed search"
+    }
+  }
+}

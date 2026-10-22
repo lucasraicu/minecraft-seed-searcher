@@ -1,0 +1,63 @@
+{
+  "task_id": "1926361b5f2a",
+  "role": "review",
+  "state": "succeeded",
+  "created": 1792669730.8631492,
+  "updated": 1792669890.147866,
+  "worker_id": "gemini-1",
+  "objective": "High tool-free evidence and integration review for already-approved conditional treasure activation. Read only 3supplied concise contexts. Find concrete control independence, shared loot false classification, registry/layout/membership/history/2K or budget defects. Igloo stays gated; unsupported unk",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 180,
+    "effective_timeout_seconds": 180,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "a17e4c4bd56e6fd82568cbe3af900657eb31b86438cf6ba32ad46233448cf30b",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792669736.945944,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "<=650words prioritized findings with evidence and minimum correction.\n\n### Outcome\nConditional activation of `bastion_treasure` via source-bound numeric reuse is architecturally sound, but five concrete control, classification, comparison, and layout defects must be resolved prior to publication. Igloo basement correctly remains fully gated.\n\n---\n\n### Prioritized Findings & Evidence (Proof vs. Inference)\n\n1. **Control Independence Defect (Targeted Selection & Missing Subtype 0)**\n   - *Proof*: In [CONTROL_RESULTS.json](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/CONTROL_RESULTS.json), 3 of 4 bastion controls (cases 5, 6, 7) used `targeted_frozen_prediction` rather than independent random sampling. Negative controls only cover hoglin stable (case 1) and bridge (case 7). Subtype 0 (housing units) was never tested (0 cases). Furthermore, cases 5 and 7 share identical start coordinates `[8, 8]`.\n   - *Proof vs. Inference*: The controls prove BDS feature generation at those specific seeds, but do *not* prove independent population accuracy or false-positive resistance across all variants.\n   - *Correction*: Explicitly record controls as targeted existence witnesses, not population census proofs; document subtype 0 omission as an unobserved variant.\n\n2. **Shared Loot Classification & Hardcoded Reason in Recognizer**\n   - *Proof*: In [`bastion`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/recognize_variants.py#L52-L61), housing units only generate `bastion_other.json`, which is excluded from both `positive` and `negative`, always resolving to `value=None` (UNKNOWN). Additionally, line 60 hardcodes `reason='bastion_other is shared, absence is UNKNOWN'` across all returns, creating contradictory logs where `actual: true` (cases 5, 6) and `actual: false` (cases 1, 7) assert that absence is unknown. Line 58 also checks `spawn_entity` without verifying `id == 'MobSpawner'`.\n   - *Correction*: Make the reason field dynamic reflecting the matched signal branch; gate magma cube checks on `id == 'MobSpawner'`.\n\n3. **Membership Comparison Hash Invalidation via Layout Rebinding**\n   - *Proof*: [TREASURE_ACTIVATION_DESIGN.md](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/TREASURE_ACTIVATION_DESIGN.md) rebinds member `layout_id`s to the new V3 layout map, yet prescribes: *\"Independently compare all7540 other memberships... before adopting.\"* Direct row-digest comparison against the source snapshot will produce 7,540 false mismatch failures.\n   - *Correction*: Define membership equality verification modulo the deterministic `old_layout_id -> new_layout_id` mapping.\n\n4. **Dual Registry Divergence & 2K Candidate Ambiguity**\n   - *Proof*: The design introduces a new snapshot registry with `bastion_treasure available=true`, but retains the default registry unchanged. Query endpoints relying on the default registry will reject treasure queries. For rankings, *\"retain2K=40 distinct worlds/objective\"* conflates pool retention ceiling ($40$) with nominal objective rank ($K=20$).\n   - *Correction*: Synchronize registry availability across query endpoints; document candidate schema as retaining a top-$40$ ($2K$) candidate pool.\n\n5. **Successor Storage Budget & Igloo Preserved Unknowns**\n   - *Proof*: Copying full immutable history (snapshots, SQLite backups, previews) alongside 222 world bundles risks breaching the strict `<=2GiB` successor output limit. For igloos, [CONTROL_RESULTS.json](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/CONTROL_RESULTS.json) recorded 4 unknowns (case 0 locate failure, cases 2–4 locate mismatches) and 0 usable labels; keeping igloo lists empty in [`igloo`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/recognize_variants.py#L35-L50) strictly satisfies the requirement that unsupported unknowns never become negatives.\n   - *Correction*: Enforce strict preflight disk reservation before history copy; maintain all 9 igloo candidate lists empty.\n\n---\n\n- **Changed files**: None (read-only review role; no workspace files modified).\n- **Tests actually run**: None (static logical and contract audit; no tool execution or BDS runs).\n- **Remaining limitations**: Subtype 0 remains unverified in BDS; live rebuild execution deferred to integration step.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 19473,
+          "output_tokens": 19352,
+          "thinking_tokens": 18096,
+          "cache_read_tokens": 0,
+          "total_tokens": 38825
+        },
+        "conversation_id": "ccbe2be4-1fd9-4231-83f0-c7dd76b569f3",
+        "duration_seconds": 148.960259,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 19473,
+      "output_tokens": 19352,
+      "thinking_tokens": 18096,
+      "cache_read_tokens": 0,
+      "total_tokens": 38825
+    },
+    "response": "<=650words prioritized findings with evidence and minimum correction.\n\n### Outcome\nConditional activation of `bastion_treasure` via source-bound numeric reuse is architecturally sound, but five concrete control, classification, comparison, and layout defects must be resolved prior to publication. Igloo basement correctly remains fully gated.\n\n---\n\n### Prioritized Findings & Evidence (Proof vs. Inference)\n\n1. **Control Independence Defect (Targeted Selection & Missing Subtype 0)**\n   - *Proof*: In [CONTROL_RESULTS.json](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/CONTROL_RESULTS.json), 3 of 4 bastion controls (cases 5, 6, 7) used `targeted_frozen_prediction` rather than independent random sampling. Negative controls only cover hoglin stable (case 1) and bridge (case 7). Subtype 0 (housing units) was never tested (0 cases). Furthermore, cases 5 and 7 share identical start coordinates `[8, 8]`.\n   - *Proof vs. Inference*: The controls prove BDS feature generation at those specific seeds, but do *not* prove independent population accuracy or false-positive resistance across all variants.\n   - *Correction*: Explicitly record controls as targeted existence witnesses, not population census proofs; document subtype 0 omission as an unobserved variant.\n\n2. **Shared Loot Classification & Hardcoded Reason in Recognizer**\n   - *Proof*: In [`bastion`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/recognize_variants.py#L52-L61), housing units only generate `bastion_other.json`, which is excluded from both `positive` and `negative`, always resolving to `value=None` (UNKNOWN). Additionally, line 60 hardcodes `reason='bastion_other is shared, absence is UNKNOWN'` across all returns, creating contradictory logs where `actual: true` (cases 5, 6) and `actual: false` (cases 1, 7) assert that absence is unknown. Line 58 also checks `spawn_entity` without verifying `id == 'MobSpawner'`.\n   - *Correction*: Make the reason field dynamic reflecting the matched signal branch; gate magma cube checks on `id == 'MobSpawner'`.\n\n3. **Membership Comparison Hash Invalidation via Layout Rebinding**\n   - *Proof*: [TREASURE_ACTIVATION_DESIGN.md](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/TREASURE_ACTIVATION_DESIGN.md) rebinds member `layout_id`s to the new V3 layout map, yet prescribes: *\"Independently compare all7540 other memberships... before adopting.\"* Direct row-digest comparison against the source snapshot will produce 7,540 false mismatch failures.\n   - *Correction*: Define membership equality verification modulo the deterministic `old_layout_id -> new_layout_id` mapping.\n\n4. **Dual Registry Divergence & 2K Candidate Ambiguity**\n   - *Proof*: The design introduces a new snapshot registry with `bastion_treasure available=true`, but retains the default registry unchanged. Query endpoints relying on the default registry will reject treasure queries. For rankings, *\"retain2K=40 distinct worlds/objective\"* conflates pool retention ceiling ($40$) with nominal objective rank ($K=20$).\n   - *Correction*: Synchronize registry availability across query endpoints; document candidate schema as retaining a top-$40$ ($2K$) candidate pool.\n\n5. **Successor Storage Budget & Igloo Preserved Unknowns**\n   - *Proof*: Copying full immutable history (snapshots, SQLite backups, previews) alongside 222 world bundles risks breaching the strict `<=2GiB` successor output limit. For igloos, [CONTROL_RESULTS.json](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/CONTROL_RESULTS.json) recorded 4 unknowns (case 0 locate failure, cases 2–4 locate mismatches) and 0 usable labels; keeping igloo lists empty in [`igloo`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a/workspace/reviews/variant-controls-and-organization-2026-10-22/recognize_variants.py#L35-L50) strictly satisfies the requirement that unsupported unknowns never become negatives.\n   - *Correction*: Enforce strict preflight disk reservation before history copy; maintain all 9 igloo candidate lists empty.\n\n---\n\n- **Changed files**: None (read-only review role; no workspace files modified).\n- **Tests actually run**: None (static logical and contract audit; no tool execution or BDS runs).\n- **Remaining limitations**: Subtype 0 remains unverified in BDS; live rebuild execution deferred to integration step.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "response_truncated": false,
+    "checks": [],
+    "changed_files": [],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed": 1792669890.146406,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 208404480
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1926361b5f2a",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

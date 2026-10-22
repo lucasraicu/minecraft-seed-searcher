@@ -1,0 +1,1226 @@
+{
+  "wall_seconds": 7.405742404982448,
+  "cpu_seconds": 7.404710000000009,
+  "counters": {
+    "json.loads": {
+      "calls": 226,
+      "wall_seconds": 3.1165294132661074,
+      "cpu_seconds": 3.116602000000114,
+      "input_bytes": 82414043,
+      "output_bytes": 0
+    },
+    "sha256.initial": {
+      "calls": 510,
+      "wall_seconds": 0.10088975192047656,
+      "cpu_seconds": 0.10096899999992104,
+      "input_bytes": 47285353,
+      "output_bytes": 0
+    },
+    "artifact.read_verified": {
+      "calls": 279,
+      "wall_seconds": 0.292797711212188,
+      "cpu_seconds": 0.2928599999999335,
+      "input_bytes": 0,
+      "output_bytes": 42037665
+    },
+    "json.dumps": {
+      "calls": 229,
+      "wall_seconds": 0.10970973805524409,
+      "cpu_seconds": 0.10976399999994157,
+      "input_bytes": 0,
+      "output_bytes": 7487391
+    },
+    "zlib.decompress": {
+      "calls": 222,
+      "wall_seconds": 0.13788265455514193,
+      "cpu_seconds": 0.13796900000001244,
+      "input_bytes": 20318836,
+      "output_bytes": 81969837
+    },
+    "artifact.get_json": {
+      "calls": 222,
+      "wall_seconds": 3.5136801816988736,
+      "cpu_seconds": 3.513225000000105,
+      "input_bytes": 0,
+      "output_bytes": 0
+    }
+  },
+  "profile": {
+    "total_calls": 6358597,
+    "total_self_seconds": 7.394372235999995,
+    "top_self": [
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+        "line": 351,
+        "function": "raw_decode",
+        "primitive_calls": 226,
+        "total_calls": 226,
+        "self_seconds": 3.049626172,
+        "cumulative_seconds": 3.1081522140000004
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 321,
+        "function": "_rank_features",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.602608494,
+        "cumulative_seconds": 7.268761432000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 25,
+        "function": "__getitem__",
+        "primitive_calls": 278070,
+        "total_calls": 278070,
+        "self_seconds": 0.531518252,
+        "cumulative_seconds": 0.5716745440000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.all>",
+        "primitive_calls": 305711,
+        "total_calls": 305711,
+        "self_seconds": 0.30975373100000003,
+        "cumulative_seconds": 0.749040802
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1192,
+        "function": "iter_query_summaries",
+        "primitive_calls": 17984,
+        "total_calls": 17984,
+        "self_seconds": 0.30171256100000005,
+        "cumulative_seconds": 4.2331848590000005
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.sum>",
+        "primitive_calls": 143864,
+        "total_calls": 143864,
+        "self_seconds": 0.264490363,
+        "cumulative_seconds": 0.446610437
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 10,
+        "function": "profile_units",
+        "primitive_calls": 17983,
+        "total_calls": 17983,
+        "self_seconds": 0.262624705,
+        "cumulative_seconds": 0.9691253930000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 514,
+        "function": "<genexpr>",
+        "primitive_calls": 737303,
+        "total_calls": 737303,
+        "self_seconds": 0.200382797,
+        "cumulative_seconds": 0.29531839600000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sqrt' of 'decimal.Decimal' objects>",
+        "primitive_calls": 32874,
+        "total_calls": 32874,
+        "self_seconds": 0.14860178000000002,
+        "cumulative_seconds": 0.14860178000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'get' of 'dict' objects>",
+        "primitive_calls": 801902,
+        "total_calls": 801902,
+        "self_seconds": 0.138603164,
+        "cumulative_seconds": 0.138603164
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'decompress' of 'zlib.Decompress' objects>",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.136802413,
+        "cumulative_seconds": 0.136802413
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1119,
+        "function": "_unpack_query_rows",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.12470254800000001,
+        "cumulative_seconds": 0.26317561100000003
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 13,
+        "function": "<genexpr>",
+        "primitive_calls": 737303,
+        "total_calls": 737303,
+        "self_seconds": 0.120971059,
+        "cumulative_seconds": 0.120971059
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+        "line": 207,
+        "function": "iterencode",
+        "primitive_calls": 229,
+        "total_calls": 229,
+        "self_seconds": 0.10520132700000001,
+        "cumulative_seconds": 0.10520132700000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _hashlib.openssl_sha256>",
+        "primitive_calls": 510,
+        "total_calls": 510,
+        "self_seconds": 0.09866896500000001,
+        "cumulative_seconds": 0.09866896500000001
+      },
+      {
+        "file": "<frozen _collections_abc>",
+        "line": 897,
+        "function": "__iter__",
+        "primitive_calls": 281060,
+        "total_calls": 281060,
+        "self_seconds": 0.08516490800000001,
+        "cumulative_seconds": 0.658833133
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 25,
+        "function": "_unique_pairs",
+        "primitive_calls": 40183,
+        "total_calls": 40183,
+        "self_seconds": 0.058526042,
+        "cumulative_seconds": 0.058526042
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.len>",
+        "primitive_calls": 379326,
+        "total_calls": 381562,
+        "self_seconds": 0.049970925000000006,
+        "cumulative_seconds": 0.050645176
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1155,
+        "function": "_projection",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.042025772,
+        "cumulative_seconds": 3.931472298
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.isinstance>",
+        "primitive_calls": 312863,
+        "total_calls": 312863,
+        "self_seconds": 0.040527652000000004,
+        "cumulative_seconds": 0.040527652000000004
+      },
+      {
+        "file": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/storage-query-profile-20261022/instrument.py",
+        "line": 10,
+        "function": "call",
+        "primitive_calls": 743,
+        "total_calls": 1466,
+        "self_seconds": 0.037812045,
+        "cumulative_seconds": 3.721293708
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.min>",
+        "primitive_calls": 215796,
+        "total_calls": 215796,
+        "self_seconds": 0.036362089,
+        "cumulative_seconds": 0.036362089
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 23,
+        "function": "<genexpr>",
+        "primitive_calls": 161847,
+        "total_calls": 161847,
+        "self_seconds": 0.035759704,
+        "cumulative_seconds": 0.035759704
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 14,
+        "function": "<genexpr>",
+        "primitive_calls": 179830,
+        "total_calls": 179830,
+        "self_seconds": 0.033592822,
+        "cumulative_seconds": 0.033592822
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 17,
+        "function": "<genexpr>",
+        "primitive_calls": 269745,
+        "total_calls": 269745,
+        "self_seconds": 0.031655118,
+        "cumulative_seconds": 0.031655118
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 521,
+        "function": "<genexpr>",
+        "primitive_calls": 269745,
+        "total_calls": 269745,
+        "self_seconds": 0.030998073,
+        "cumulative_seconds": 0.030998073
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 515,
+        "function": "<genexpr>",
+        "primitive_calls": 179830,
+        "total_calls": 179830,
+        "self_seconds": 0.026749785,
+        "cumulative_seconds": 0.026749785
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.any>",
+        "primitive_calls": 36855,
+        "total_calls": 36855,
+        "self_seconds": 0.025323737000000002,
+        "cumulative_seconds": 0.055695707000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method posix.lstat>",
+        "primitive_calls": 6193,
+        "total_calls": 6193,
+        "self_seconds": 0.023480684,
+        "cumulative_seconds": 0.023496716
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 24,
+        "function": "<genexpr>",
+        "primitive_calls": 161847,
+        "total_calls": 161847,
+        "self_seconds": 0.022997616000000002,
+        "cumulative_seconds": 0.022997616000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _decimal.localcontext>",
+        "primitive_calls": 34420,
+        "total_calls": 34420,
+        "self_seconds": 0.022474741000000003,
+        "cumulative_seconds": 0.022474741000000003
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1127,
+        "function": "<genexpr>",
+        "primitive_calls": 54615,
+        "total_calls": 54615,
+        "self_seconds": 0.018320517,
+        "cumulative_seconds": 0.023745582
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'fullmatch' of 're.Pattern' objects>",
+        "primitive_calls": 19268,
+        "total_calls": 19268,
+        "self_seconds": 0.018018162,
+        "cumulative_seconds": 0.018018162
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _io.open>",
+        "primitive_calls": 284,
+        "total_calls": 284,
+        "self_seconds": 0.017530012,
+        "cumulative_seconds": 0.017764122
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method '__exit__' of 'decimal.ContextManager' objects>",
+        "primitive_calls": 34420,
+        "total_calls": 34420,
+        "self_seconds": 0.016682192000000002,
+        "cumulative_seconds": 0.016682192000000002
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/automation_query.py",
+        "line": 70,
+        "function": "layouts",
+        "primitive_calls": 17984,
+        "total_calls": 17984,
+        "self_seconds": 0.015816988,
+        "cumulative_seconds": 4.263433127
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method posix.stat>",
+        "primitive_calls": 1415,
+        "total_calls": 1415,
+        "self_seconds": 0.015310430000000002,
+        "cumulative_seconds": 0.041155216
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'read' of '_io.BufferedReader' objects>",
+        "primitive_calls": 284,
+        "total_calls": 284,
+        "self_seconds": 0.014713538000000002,
+        "cumulative_seconds": 0.014713538000000002
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 18,
+        "function": "<genexpr>",
+        "primitive_calls": 89915,
+        "total_calls": 89915,
+        "self_seconds": 0.011798633000000001,
+        "cumulative_seconds": 0.011798633000000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 716,
+        "function": "_sha",
+        "primitive_calls": 18429,
+        "total_calls": 18429,
+        "self_seconds": 0.011642781000000001,
+        "cumulative_seconds": 0.029742472000000002
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 524,
+        "function": "<genexpr>",
+        "primitive_calls": 89915,
+        "total_calls": 89915,
+        "self_seconds": 0.011565939,
+        "cumulative_seconds": 0.011565939
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 257,
+        "function": "_parse_path",
+        "primitive_calls": 2258,
+        "total_calls": 2258,
+        "self_seconds": 0.010411367000000001,
+        "cumulative_seconds": 0.020284017
+      },
+      {
+        "file": "<frozen posixpath>",
+        "line": 388,
+        "function": "realpath",
+        "primitive_calls": 560,
+        "total_calls": 560,
+        "self_seconds": 0.010322524000000001,
+        "cumulative_seconds": 0.037772778
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/automation_query.py",
+        "line": 50,
+        "function": "check",
+        "primitive_calls": 17984,
+        "total_calls": 17984,
+        "self_seconds": 0.009897981,
+        "cumulative_seconds": 0.014432765
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'decode' of 'bytes' objects>",
+        "primitive_calls": 225,
+        "total_calls": 225,
+        "self_seconds": 0.008349488,
+        "cumulative_seconds": 0.008349488
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.max>",
+        "primitive_calls": 32874,
+        "total_calls": 32874,
+        "self_seconds": 0.008116357000000001,
+        "cumulative_seconds": 0.008116357000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'add' of 'set' objects>",
+        "primitive_calls": 36188,
+        "total_calls": 36188,
+        "self_seconds": 0.007916193,
+        "cumulative_seconds": 0.007916193
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 70,
+        "function": "_safe_resolve_key",
+        "primitive_calls": 559,
+        "total_calls": 559,
+        "self_seconds": 0.006860646000000001,
+        "cumulative_seconds": 0.159047131
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 117,
+        "function": "__init__",
+        "primitive_calls": 4013,
+        "total_calls": 4013,
+        "self_seconds": 0.006476046,
+        "cumulative_seconds": 0.010652943000000002
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 289,
+        "function": "drive",
+        "primitive_calls": 4009,
+        "total_calls": 4009,
+        "self_seconds": 0.0064481270000000005,
+        "cumulative_seconds": 0.034814246
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method time.process_time>",
+        "primitive_calls": 3377,
+        "total_calls": 3377,
+        "self_seconds": 0.006371619,
+        "cumulative_seconds": 0.006371619
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/service.py",
+        "line": 290,
+        "function": "query",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.006053796,
+        "cumulative_seconds": 7.4054861370000005
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method sys.intern>",
+        "primitive_calls": 19192,
+        "total_calls": 19192,
+        "self_seconds": 0.005768108,
+        "cumulative_seconds": 0.005768108
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.abs>",
+        "primitive_calls": 36410,
+        "total_calls": 36410,
+        "self_seconds": 0.005425065000000001,
+        "cumulative_seconds": 0.005425065000000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1128,
+        "function": "<genexpr>",
+        "primitive_calls": 36632,
+        "total_calls": 36632,
+        "self_seconds": 0.005360111000000001,
+        "cumulative_seconds": 0.005360111000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'append' of 'list' objects>",
+        "primitive_calls": 22028,
+        "total_calls": 22028,
+        "self_seconds": 0.005109345,
+        "cumulative_seconds": 0.005109345
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1122,
+        "function": "<genexpr>",
+        "primitive_calls": 17760,
+        "total_calls": 17760,
+        "self_seconds": 0.004752112,
+        "cumulative_seconds": 0.004752112
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 498,
+        "function": "__init__",
+        "primitive_calls": 4013,
+        "total_calls": 4013,
+        "self_seconds": 0.0047369280000000005,
+        "cumulative_seconds": 0.015389871000000001
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 227,
+        "function": "__str__",
+        "primitive_calls": 4052,
+        "total_calls": 4052,
+        "self_seconds": 0.004716601,
+        "cumulative_seconds": 0.034204829
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method time.monotonic>",
+        "primitive_calls": 17988,
+        "total_calls": 17988,
+        "self_seconds": 0.004538745,
+        "cumulative_seconds": 0.004538745
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 365,
+        "function": "relative_to",
+        "primitive_calls": 559,
+        "total_calls": 559,
+        "self_seconds": 0.004155584,
+        "cumulative_seconds": 0.041683476000000004
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/geometry.py",
+        "line": 11,
+        "function": "bounds_for",
+        "primitive_calls": 1495,
+        "total_calls": 1495,
+        "self_seconds": 0.004126903,
+        "cumulative_seconds": 0.0074594940000000005
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+        "line": 130,
+        "function": "with_segments",
+        "primitive_calls": 3446,
+        "total_calls": 3446,
+        "self_seconds": 0.0040811350000000005,
+        "cumulative_seconds": 0.018597645
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 226,
+        "function": "get_json",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.003801085,
+        "cumulative_seconds": 3.4834575450000003
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/service.py",
+        "line": 219,
+        "function": "_query_snapshot",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.0035279010000000004,
+        "cumulative_seconds": 0.086559116
+      }
+    ],
+    "top_cumulative": [
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/service.py",
+        "line": 290,
+        "function": "query",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.006053796,
+        "cumulative_seconds": 7.4054861370000005
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/automation_query.py",
+        "line": 43,
+        "function": "query",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.000109716,
+        "cumulative_seconds": 7.399427552000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 632,
+        "function": "rank_v3",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.00010482300000000001,
+        "cumulative_seconds": 7.268934006
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 321,
+        "function": "_rank_features",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.602608494,
+        "cumulative_seconds": 7.268761432000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/automation_query.py",
+        "line": 70,
+        "function": "layouts",
+        "primitive_calls": 17984,
+        "total_calls": 17984,
+        "self_seconds": 0.015816988,
+        "cumulative_seconds": 4.263433127
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1192,
+        "function": "iter_query_summaries",
+        "primitive_calls": 17984,
+        "total_calls": 17984,
+        "self_seconds": 0.30171256100000005,
+        "cumulative_seconds": 4.2331848590000005
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1155,
+        "function": "_projection",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.042025772,
+        "cumulative_seconds": 3.931472298
+      },
+      {
+        "file": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/storage-query-profile-20261022/instrument.py",
+        "line": 10,
+        "function": "call",
+        "primitive_calls": 743,
+        "total_calls": 1466,
+        "self_seconds": 0.037812045,
+        "cumulative_seconds": 3.721293708
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 226,
+        "function": "get_json",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.003801085,
+        "cumulative_seconds": 3.4834575450000003
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py",
+        "line": 304,
+        "function": "loads",
+        "primitive_calls": 226,
+        "total_calls": 226,
+        "self_seconds": 0.001761785,
+        "cumulative_seconds": 3.1147528880000004
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+        "line": 340,
+        "function": "decode",
+        "primitive_calls": 226,
+        "total_calls": 226,
+        "self_seconds": 0.001645299,
+        "cumulative_seconds": 3.1111864750000002
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+        "line": 351,
+        "function": "raw_decode",
+        "primitive_calls": 226,
+        "total_calls": 226,
+        "self_seconds": 3.049626172,
+        "cumulative_seconds": 3.1081522140000004
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 10,
+        "function": "profile_units",
+        "primitive_calls": 17983,
+        "total_calls": 17983,
+        "self_seconds": 0.262624705,
+        "cumulative_seconds": 0.9691253930000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.all>",
+        "primitive_calls": 305711,
+        "total_calls": 305711,
+        "self_seconds": 0.30975373100000003,
+        "cumulative_seconds": 0.749040802
+      },
+      {
+        "file": "<frozen _collections_abc>",
+        "line": 897,
+        "function": "__iter__",
+        "primitive_calls": 281060,
+        "total_calls": 281060,
+        "self_seconds": 0.08516490800000001,
+        "cumulative_seconds": 0.658833133
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 25,
+        "function": "__getitem__",
+        "primitive_calls": 278070,
+        "total_calls": 278070,
+        "self_seconds": 0.531518252,
+        "cumulative_seconds": 0.5716745440000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.sum>",
+        "primitive_calls": 143864,
+        "total_calls": 143864,
+        "self_seconds": 0.264490363,
+        "cumulative_seconds": 0.446610437
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 514,
+        "function": "<genexpr>",
+        "primitive_calls": 737303,
+        "total_calls": 737303,
+        "self_seconds": 0.200382797,
+        "cumulative_seconds": 0.29531839600000004
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 207,
+        "function": "_read_verified_raw",
+        "primitive_calls": 279,
+        "total_calls": 279,
+        "self_seconds": 0.003071003,
+        "cumulative_seconds": 0.290952437
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1119,
+        "function": "_unpack_query_rows",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.12470254800000001,
+        "cumulative_seconds": 0.26317561100000003
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 70,
+        "function": "_safe_resolve_key",
+        "primitive_calls": 559,
+        "total_calls": 559,
+        "self_seconds": 0.006860646000000001,
+        "cumulative_seconds": 0.159047131
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sqrt' of 'decimal.Decimal' objects>",
+        "primitive_calls": 32874,
+        "total_calls": 32874,
+        "self_seconds": 0.14860178000000002,
+        "cumulative_seconds": 0.14860178000000002
+      },
+      {
+        "file": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/storage-query-profile-20261022/instrument.py",
+        "line": 30,
+        "function": "decompress",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.001252192,
+        "cumulative_seconds": 0.138957938
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'get' of 'dict' objects>",
+        "primitive_calls": 801902,
+        "total_calls": 801902,
+        "self_seconds": 0.138603164,
+        "cumulative_seconds": 0.138603164
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'decompress' of 'zlib.Decompress' objects>",
+        "primitive_calls": 222,
+        "total_calls": 222,
+        "self_seconds": 0.136802413,
+        "cumulative_seconds": 0.136802413
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 13,
+        "function": "<genexpr>",
+        "primitive_calls": 737303,
+        "total_calls": 737303,
+        "self_seconds": 0.120971059,
+        "cumulative_seconds": 0.120971059
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/registry.py",
+        "line": 9,
+        "function": "canonical_json",
+        "primitive_calls": 227,
+        "total_calls": 227,
+        "self_seconds": 0.0012268210000000001,
+        "cumulative_seconds": 0.11368550100000001
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py",
+        "line": 185,
+        "function": "dumps",
+        "primitive_calls": 229,
+        "total_calls": 229,
+        "self_seconds": 0.001265174,
+        "cumulative_seconds": 0.10822833800000001
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+        "line": 185,
+        "function": "encode",
+        "primitive_calls": 229,
+        "total_calls": 229,
+        "self_seconds": 0.0009265580000000001,
+        "cumulative_seconds": 0.106581296
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+        "line": 207,
+        "function": "iterencode",
+        "primitive_calls": 229,
+        "total_calls": 229,
+        "self_seconds": 0.10520132700000001,
+        "cumulative_seconds": 0.10520132700000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _hashlib.openssl_sha256>",
+        "primitive_calls": 510,
+        "total_calls": 510,
+        "self_seconds": 0.09866896500000001,
+        "cumulative_seconds": 0.09866896500000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 102,
+        "function": "_validate_manifest",
+        "primitive_calls": 280,
+        "total_calls": 280,
+        "self_seconds": 0.0033741530000000004,
+        "cumulative_seconds": 0.096748095
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/registry.py",
+        "line": 13,
+        "function": "digest",
+        "primitive_calls": 225,
+        "total_calls": 225,
+        "self_seconds": 0.00080201,
+        "cumulative_seconds": 0.08731145800000001
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/service.py",
+        "line": 219,
+        "function": "_query_snapshot",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.0035279010000000004,
+        "cumulative_seconds": 0.086559116
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/artifacts.py",
+        "line": 25,
+        "function": "_unique_pairs",
+        "primitive_calls": 40183,
+        "total_calls": 40183,
+        "self_seconds": 0.058526042,
+        "cumulative_seconds": 0.058526042
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.any>",
+        "primitive_calls": 36855,
+        "total_calls": 36855,
+        "self_seconds": 0.025323737000000002,
+        "cumulative_seconds": 0.055695707000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.len>",
+        "primitive_calls": 379326,
+        "total_calls": 381562,
+        "self_seconds": 0.049970925000000006,
+        "cumulative_seconds": 0.050645176
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/service.py",
+        "line": 279,
+        "function": "_save_result",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.000653211,
+        "cumulative_seconds": 0.04238169
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+        "line": 513,
+        "function": "is_symlink",
+        "primitive_calls": 1124,
+        "total_calls": 1124,
+        "self_seconds": 0.0013897640000000001,
+        "cumulative_seconds": 0.042034071
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 510,
+        "function": "stat",
+        "primitive_calls": 1415,
+        "total_calls": 1415,
+        "self_seconds": 0.0006847870000000001,
+        "cumulative_seconds": 0.041840003
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 664,
+        "function": "resolve",
+        "primitive_calls": 560,
+        "total_calls": 560,
+        "self_seconds": 0.000978493,
+        "cumulative_seconds": 0.041833593
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 365,
+        "function": "relative_to",
+        "primitive_calls": 559,
+        "total_calls": 559,
+        "self_seconds": 0.004155584,
+        "cumulative_seconds": 0.041683476000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method posix.stat>",
+        "primitive_calls": 1415,
+        "total_calls": 1415,
+        "self_seconds": 0.015310430000000002,
+        "cumulative_seconds": 0.041155216
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.isinstance>",
+        "primitive_calls": 312863,
+        "total_calls": 312863,
+        "self_seconds": 0.040527652000000004,
+        "cumulative_seconds": 0.040527652000000004
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+        "line": 432,
+        "function": "lstat",
+        "primitive_calls": 1124,
+        "total_calls": 1124,
+        "self_seconds": 0.000806157,
+        "cumulative_seconds": 0.040401103
+      },
+      {
+        "file": "<frozen posixpath>",
+        "line": 388,
+        "function": "realpath",
+        "primitive_calls": 560,
+        "total_calls": 560,
+        "self_seconds": 0.010322524000000001,
+        "cumulative_seconds": 0.037772778
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.min>",
+        "primitive_calls": 215796,
+        "total_calls": 215796,
+        "self_seconds": 0.036362089,
+        "cumulative_seconds": 0.036362089
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 23,
+        "function": "<genexpr>",
+        "primitive_calls": 161847,
+        "total_calls": 161847,
+        "self_seconds": 0.035759704,
+        "cumulative_seconds": 0.035759704
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 289,
+        "function": "drive",
+        "primitive_calls": 4009,
+        "total_calls": 4009,
+        "self_seconds": 0.0064481270000000005,
+        "cumulative_seconds": 0.034814246
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 227,
+        "function": "__str__",
+        "primitive_calls": 4052,
+        "total_calls": 4052,
+        "self_seconds": 0.004716601,
+        "cumulative_seconds": 0.034204829
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 14,
+        "function": "<genexpr>",
+        "primitive_calls": 179830,
+        "total_calls": 179830,
+        "self_seconds": 0.033592822,
+        "cumulative_seconds": 0.033592822
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 17,
+        "function": "<genexpr>",
+        "primitive_calls": 269745,
+        "total_calls": 269745,
+        "self_seconds": 0.031655118,
+        "cumulative_seconds": 0.031655118
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 521,
+        "function": "<genexpr>",
+        "primitive_calls": 269745,
+        "total_calls": 269745,
+        "self_seconds": 0.030998073,
+        "cumulative_seconds": 0.030998073
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 716,
+        "function": "_sha",
+        "primitive_calls": 18429,
+        "total_calls": 18429,
+        "self_seconds": 0.011642781000000001,
+        "cumulative_seconds": 0.029742472000000002
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/query.py",
+        "line": 515,
+        "function": "<genexpr>",
+        "primitive_calls": 179830,
+        "total_calls": 179830,
+        "self_seconds": 0.026749785,
+        "cumulative_seconds": 0.026749785
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 166,
+        "function": "__fspath__",
+        "primitive_calls": 2300,
+        "total_calls": 2300,
+        "self_seconds": 0.0014981410000000001,
+        "cumulative_seconds": 0.026558940000000003
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/store.py",
+        "line": 1127,
+        "function": "<genexpr>",
+        "primitive_calls": 54615,
+        "total_calls": 54615,
+        "self_seconds": 0.018320517,
+        "cumulative_seconds": 0.023745582
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method posix.lstat>",
+        "primitive_calls": 6193,
+        "total_calls": 6193,
+        "self_seconds": 0.023480684,
+        "cumulative_seconds": 0.023496716
+      },
+      {
+        "file": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/catalog/scoring.py",
+        "line": 24,
+        "function": "<genexpr>",
+        "primitive_calls": 161847,
+        "total_calls": 161847,
+        "self_seconds": 0.022997616000000002,
+        "cumulative_seconds": 0.022997616000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _decimal.localcontext>",
+        "primitive_calls": 34420,
+        "total_calls": 34420,
+        "self_seconds": 0.022474741000000003,
+        "cumulative_seconds": 0.022474741000000003
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+        "line": 257,
+        "function": "_parse_path",
+        "primitive_calls": 2258,
+        "total_calls": 2258,
+        "self_seconds": 0.010411367000000001,
+        "cumulative_seconds": 0.020284017
+      },
+      {
+        "file": "<frozen _collections_abc>",
+        "line": 1041,
+        "function": "__contains__",
+        "primitive_calls": 559,
+        "total_calls": 559,
+        "self_seconds": 0.002135038,
+        "cumulative_seconds": 0.019178324
+      },
+      {
+        "file": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+        "line": 130,
+        "function": "with_segments",
+        "primitive_calls": 3446,
+        "total_calls": 3446,
+        "self_seconds": 0.0040811350000000005,
+        "cumulative_seconds": 0.018597645
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'fullmatch' of 're.Pattern' objects>",
+        "primitive_calls": 19268,
+        "total_calls": 19268,
+        "self_seconds": 0.018018162,
+        "cumulative_seconds": 0.018018162
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _io.open>",
+        "primitive_calls": 284,
+        "total_calls": 284,
+        "self_seconds": 0.017530012,
+        "cumulative_seconds": 0.017764122
+      }
+    ]
+  }
+}

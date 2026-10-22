@@ -1,0 +1,243 @@
+{
+  "status": "prepared_NOT_EXECUTED_awaiting_approval",
+  "supersedes": "ORGANIZATION_BATCH2.json (unexecuted overbroad link-normalization draft)",
+  "moves": {
+    "MASTER_PLATFORM_SPECIFICATION.md": "docs/specs/MASTER_PLATFORM_SPECIFICATION.md",
+    "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md": "docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+    "PUBLIC_CATALOG_PLAYER_POLICY.md": "docs/catalog/PUBLIC_CATALOG_PLAYER_POLICY.md",
+    "Public_Catalog_Master_Plan.md": "docs/catalog/proposals/Public_Catalog_Master_Plan.md"
+  },
+  "changes": [
+    {
+      "source": "CODEX_HANDOFF.md",
+      "destination": "CODEX_HANDOFF.md",
+      "before_sha256": "7c5fe0d6da49a35093c1ced2dfff09942ad739a9db6de6c08c0170a5d7bc1edd",
+      "after_sha256": "007a05ac3a926dbe9701931702e245dec32ef1a776c5b42429cb93d0de873f13",
+      "mode": "0o644",
+      "kind": "link_updates_only"
+    },
+    {
+      "source": "Public_Catalog_Master_Plan.md",
+      "destination": "docs/catalog/proposals/Public_Catalog_Master_Plan.md",
+      "before_sha256": "84cc7a7b5a157828147329066c0be93c78affb71db08b8b0127cab2ea1dd5c11",
+      "after_sha256": "d906fa19aae21f2af146caa2a6c3297d504a0a3e56baa07aef437c5e223df780",
+      "mode": "0o644",
+      "kind": "move_with_relative_link_updates"
+    },
+    {
+      "source": "MASTER_PLATFORM_SPECIFICATION.md",
+      "destination": "docs/specs/MASTER_PLATFORM_SPECIFICATION.md",
+      "before_sha256": "4c2d8c5c07812240f198a0d2b198b2d78fbf869b76377f823bb31889c7d63d5d",
+      "after_sha256": "87dc07eaf19796df0fc3b7f46cadb2c819c271a10a6faa4d002bead73817b0f6",
+      "mode": "0o644",
+      "kind": "move_with_relative_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before_sha256": "3ea2bdf53072f3aa5f257648bda95ab43e0b8c89af531a8e24e8f5f69d009b08",
+      "after_sha256": "339e0fc0a94e409bd912b1ae7e69902eb8d87953dc918b78ca3817f3f20e8509",
+      "mode": "0o644",
+      "kind": "move_with_relative_link_updates"
+    },
+    {
+      "source": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "destination": "docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "before_sha256": "62fffa1ba974db69eb3be46c99f733b021a018987b32e1b824616d9ce313c958",
+      "after_sha256": "48a0e12daa6fbddda404cf3e0713e4e97a0b06d0c5887438fe01ecadf1607798",
+      "mode": "0o644",
+      "kind": "move_with_relative_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "destination": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "before_sha256": "dc0b826dd9916341a7042752413e1d1674d60ce8b6b1a008e6d10d1420d8cbc1",
+      "after_sha256": "ef1115600c7b39c830bb4f202ebaa5e32dd76c3e4ea9890fd364af3534944706",
+      "mode": "0o644",
+      "kind": "link_updates_only"
+    },
+    {
+      "source": "docs/PROJECT_STATUS.md",
+      "destination": "docs/PROJECT_STATUS.md",
+      "before_sha256": "bb9196705f5484f880cddd456cf2bbd14d41a1c3fe55e116490a1f5398febc7f",
+      "after_sha256": "e85fb04c5b55b4ce071c4f33c2c0689187b3526ba19a9384e41d40985d6af3ea",
+      "mode": "0o644",
+      "kind": "link_updates_only"
+    },
+    {
+      "source": "docs/catalog/v1/README.md",
+      "destination": "docs/catalog/v1/README.md",
+      "before_sha256": "933c20a38d3f74ed141967dd5111b8e7e5ae9203996390fe97cb979fa6faf442",
+      "after_sha256": "8b37d7f88ebfe554674d3e3dbd338979aa6f5f7eb6be25e786d71e6d72b840af",
+      "mode": "0o644",
+      "kind": "link_updates_only"
+    }
+  ],
+  "relative_link_edits": [
+    {
+      "file": "CODEX_HANDOFF.md",
+      "before": "MASTER_PLATFORM_SPECIFICATION.md",
+      "after": "docs/specs/MASTER_PLATFORM_SPECIFICATION.md"
+    },
+    {
+      "file": "CODEX_HANDOFF.md",
+      "before": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "after": "docs/catalog/PUBLIC_CATALOG_PLAYER_POLICY.md"
+    },
+    {
+      "file": "CODEX_HANDOFF.md",
+      "before": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "after": "docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md",
+      "after": "../../../reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "PUBLIC_CATALOG_AUTOMATION_PLAN.md",
+      "after": "../../../PUBLIC_CATALOG_AUTOMATION_PLAN.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/accuracy-advanced-products-2026-10-21/PLAN.md",
+      "after": "../../../reviews/accuracy-advanced-products-2026-10-21/PLAN.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "MASTER_SEED_BLUEPRINT.md",
+      "after": "../../../MASTER_SEED_BLUEPRINT.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "after": "../../../PUBLIC_CATALOG_SYSTEM_SPEC.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "docs/catalog/v1/README.md",
+      "after": "../v1/README.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "MASTER_PLATFORM_SPECIFICATION.md",
+      "after": "../../specs/MASTER_PLATFORM_SPECIFICATION.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "docs/catalog/PRIVATE_PILOT.md",
+      "after": "../PRIVATE_PILOT.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/catalog-private-pilot-2026-10-20/REPORT.md",
+      "after": "../../../reviews/catalog-private-pilot-2026-10-20/REPORT.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/spawn-validation-2026-10-17/README.md",
+      "after": "../../../reviews/spawn-validation-2026-10-17/README.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/catalog-four-pillars-bridge-2026-10-20/PLAN.md",
+      "after": "../../../reviews/catalog-four-pillars-bridge-2026-10-20/PLAN.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "reviews/catalog-four-pillars-bridge-2026-10-20/REPORT.md",
+      "after": "../../../reviews/catalog-four-pillars-bridge-2026-10-20/REPORT.md"
+    },
+    {
+      "file": "Public_Catalog_Master_Plan.md",
+      "before": "docs/catalog/FOUR_PILLARS_AND_HARVEST.md",
+      "after": "../FOUR_PILLARS_AND_HARVEST.md"
+    },
+    {
+      "file": "MASTER_PLATFORM_SPECIFICATION.md",
+      "before": "docs/PROJECT_STATUS.md",
+      "after": "../PROJECT_STATUS.md"
+    },
+    {
+      "file": "MASTER_PLATFORM_SPECIFICATION.md",
+      "before": "reviews/catalog-validation-2026-10-20/REPORT.md",
+      "after": "../../reviews/catalog-validation-2026-10-20/REPORT.md"
+    },
+    {
+      "file": "MASTER_PLATFORM_SPECIFICATION.md",
+      "before": "Public_Catalog_Master_Plan.md",
+      "after": "../catalog/proposals/Public_Catalog_Master_Plan.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "docs/catalog/ACCURACY.md",
+      "after": "ACCURACY.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "after": "../../PUBLIC_CATALOG_SYSTEM_SPEC.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "Public_Catalog_Master_Plan.md",
+      "after": "proposals/Public_Catalog_Master_Plan.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "docs/catalog/FOUR_PILLARS_AND_HARVEST.md",
+      "after": "FOUR_PILLARS_AND_HARVEST.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+      "after": "../../PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+      "after": "../../reviews/catalog-architecture-2026-10-17/REVIEW.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "before": "reviews/spawn-validation-2026-10-17/README.md",
+      "after": "../../reviews/spawn-validation-2026-10-17/README.md"
+    },
+    {
+      "file": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "before": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "after": "../../PUBLIC_CATALOG_SYSTEM_SPEC.md"
+    },
+    {
+      "file": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "before": "Public_Catalog_Master_Plan.md",
+      "after": "docs/catalog/proposals/Public_Catalog_Master_Plan.md"
+    },
+    {
+      "file": "docs/PROJECT_STATUS.md",
+      "before": "../PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "after": "catalog/PUBLIC_CATALOG_PLAYER_POLICY.md"
+    },
+    {
+      "file": "docs/PROJECT_STATUS.md",
+      "before": "../Public_Catalog_Master_Plan.md",
+      "after": "catalog/proposals/Public_Catalog_Master_Plan.md"
+    },
+    {
+      "file": "docs/PROJECT_STATUS.md",
+      "before": "../MASTER_PLATFORM_SPECIFICATION.md",
+      "after": "specs/MASTER_PLATFORM_SPECIFICATION.md"
+    },
+    {
+      "file": "docs/catalog/v1/README.md",
+      "before": "../../../Public_Catalog_Master_Plan.md",
+      "after": "../proposals/Public_Catalog_Master_Plan.md"
+    }
+  ],
+  "staging": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repo-organization-proposed-20261022/batch2-reviewed-stage",
+  "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repo-organization-proposed-20261022/batch2-reviewed-originals.tar.gz",
+  "backup_sha256": "7b3e789b88eca32011bb5d92529f9906b7d3a5f2fa81a19a8f42bcba1f8e8326",
+  "backup_extraction_verified": true,
+  "scope": "Only four approved-next documents and their actual active inbound links. No historical report normalization, code, contracts, deletion or commits."
+}

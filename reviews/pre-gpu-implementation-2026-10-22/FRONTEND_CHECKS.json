@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_accuracy_ui.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.6464094800176099
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_biome_expansion.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.7639554700581357
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_evidence_integration.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.633205100079067
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_evidence_ui.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.41734841209836304
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_evidence_validation.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.3613175470381975
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_pillar_interactions.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.40320654097013175
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_pillars.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.5352487129857764
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_ui_contracts.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.48277430702000856
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_v2_filters.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.5318704239325598
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_catalog_v2_products.cjs"
+      ],
+      "exit_status": 0,
+      "seconds": 0.7450327009428293
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web-ui",
+        "run",
+        "build"
+      ],
+      "exit_status": 0
+    }
+  ]
+}

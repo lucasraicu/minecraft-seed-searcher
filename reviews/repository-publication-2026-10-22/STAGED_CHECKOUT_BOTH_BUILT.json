@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/catalog/test_ingestion_optimization.py",
+    "tests/catalog/test_guarded_read_views.py",
+    "tests/catalog/test_versioned_derivation.py",
+    "tests/catalog/test_reserve_v3.py",
+    "tests/test_personal_reserve.py",
+    "tests/test_readiness_reserve_capacity.py",
+    "tests/test_native_runtime_guard.py",
+    "tests/test_native_refinement_parity.py",
+    "tests/test_v3_optimizations_parity.py",
+    "--basetemp=/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/pytest-staged-both-built"
+  ],
+  "cwd": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout",
+  "exit_code": 0,
+  "seconds": 32.121286869980395,
+  "output": ".................................................................s       [100%]\n=============================== warnings summary ===============================\ntests/test_native_runtime_guard.py::test_fork_resets_lock_and_runtime_validation\n  /Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/tests/test_native_runtime_guard.py:195: DeprecationWarning: This process (pid=56692) is multi-threaded, use of fork() may lead to deadlocks in the child.\n    pid=os.fork()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n65 passed, 1 skipped, 1 warning in 31.71s\n",
+  "note": "Same suite after both declared CFFI modules built from exported source. Dependency environment reused; original binaries and live services unchanged."
+}

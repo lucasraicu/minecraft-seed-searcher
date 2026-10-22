@@ -1,0 +1,22 @@
+PASS: validateProductResultsV2 accepts valid 20-row v2 response
+PASS: validateProductResultsV2 rejects mismatched snapshot_id
+PASS: validateProductResultsV2 rejects mismatched product_id
+PASS: validateProductResultsV2 rejects numeric seed (must be signed64 string)
+PASS: validateProductResultsV2 rejects invalid revision
+PASS: validateProductResultsV2 rejects negative matched_worlds or non-array results
+PASS: formatRankItem handles numbers, rational fractions and unknowns
+PASS: PillarNavigation renders all 4 pillars with correct labels and accessibility
+PASS: ProductPillar renders historical registry payloads including gated records
+PASS: Current backend registry renders seventeen records without terrain-heavy cards
+PASS: Optional product evaluation counts are checked and displayed
+PASS: Larger Realm boards show their own scope and fixed Nether budget
+PASS: ProductPillar renders chosen gated product criteria and dependencies
+PASS: LaunchProductList renders loading and error states cleanly
+PASS: LaunchProductList renders empty results state
+PASS: LaunchProductList renders 20 rows with signed64 strings, witnesses, metrics, disclaimers, and pagination
+PASS: response guards reject unsafe source rows and preserve signed64 boundaries
+
+========================================
+17 Catalog V2 UI tests passed; 0 failed.
+========================================
+

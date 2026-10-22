@@ -1,0 +1,27 @@
+{
+  "argv_without_prompt": [
+    "/usr/bin/sandbox-exec",
+    "-f",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/048cd901ee8c/worker.sb",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/bin/python",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/worker_exec.py",
+    "60",
+    "/Users/lucasraicu/.local/bin/agy",
+    "--disable-slash-commands",
+    "--new-project",
+    "--model",
+    "gemini-3.8-flash-high",
+    "--effort",
+    "high",
+    "--print-timeout",
+    "180s",
+    "-p",
+    "<bounded prompt.txt>",
+    "--output-format",
+    "json"
+  ],
+  "cwd": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/048cd901ee8c/workspace",
+  "profile": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/048cd901ee8c/worker.sb",
+  "shared_authentication": true,
+  "sandbox_layer": "OS Seatbelt wraps entire CLI and descendants; nested Antigravity terminal sandbox disabled to avoid macOS EPERM"
+}

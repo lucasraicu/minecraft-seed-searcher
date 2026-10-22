@@ -1,0 +1,77 @@
+{
+  "bds_build": "1.26.52.3",
+  "interpretation": "Reviewed exclusions of these candidate starts only. No global absence, general native fix or exhaustive physical census. Beta copied-world membership is corroboration, not a relabeled stable audit.",
+  "proof_manifest_sha256": "ace2b5f9e1f86f2333d0ebccab04951cc23fab9c3cd774a1af34ded2fb5fc2c0",
+  "proof_report_sha256": "f3723bfe6e9a4073f54852d3d1b9ce7b400b20cf7da8b58748ff8ced0a15d95d",
+  "proof_settings_sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+  "removals": [
+    {
+      "feature_id": "structure.village",
+      "membership_bounds": [
+        -304,
+        -64,
+        -320,
+        -288,
+        320,
+        -304
+      ],
+      "observation_id": "2dabc38e81e77f174d4edace2239c5c8b6ee4ecf6b65c91fc351acd0bd40bb11",
+      "position": [
+        -296,
+        -312
+      ],
+      "positive_control_bounds": [
+        -368,
+        -64,
+        240,
+        -352,
+        320,
+        256
+      ],
+      "seed": "-3509659830737203357",
+      "verdict": "reviewed_false_positive_start",
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412"
+    },
+    {
+      "feature_id": "structure.outpost",
+      "membership_bounds": [
+        528,
+        -64,
+        512,
+        544,
+        320,
+        528
+      ],
+      "observation_id": "2dabc38e81e77f174d4edace2239c5c8b6ee4ecf6b65c91fc351acd0bd40bb11",
+      "position": [
+        528,
+        512
+      ],
+      "positive_control_bounds": [
+        -1008,
+        -64,
+        400,
+        -992,
+        320,
+        416
+      ],
+      "seed": "-3509659830737203357",
+      "verdict": "reviewed_false_positive_start",
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412"
+    }
+  ],
+  "revision": "catalog-reviewed-exclusions-v1",
+  "script_api": "2.11.0-beta",
+  "source_header": {
+    "edition": "bedrock",
+    "extractor_revision": "cpu-catalog-reference-v1",
+    "game_build_id": "research:26.50",
+    "model_id": "26.50",
+    "native_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+    "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+    "source_sha256": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+    "world_settings_id": "default"
+  },
+  "source_snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+  "user_confirmation_sha256": "0376beb0be452b813e668b0cb238896c3bb31986111bf4de57c299dfe0a4505a"
+}

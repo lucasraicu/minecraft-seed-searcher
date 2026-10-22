@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "port": 5173,
+      "status": 200,
+      "seconds": 0.0925218410557136
+    },
+    {
+      "port": 3000,
+      "status": 200,
+      "seconds": 0.0038770140381529927
+    }
+  ],
+  "processes": "17880 node /Users/lucasraicu/Downloads/minecraft-seed-searcher/web-ui/node_modules/.bin/vite --host 127.0.0.1 --port 5173\n22035 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.catalog.http_server --root /Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog --port 3001 --query-processes 2\n91321 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.web.server 3000\n"
+}

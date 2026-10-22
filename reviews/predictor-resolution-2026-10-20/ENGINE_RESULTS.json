@@ -1,0 +1,263 @@
+{
+  "status": "completed_scoped_correctness_stage",
+  "prepared": {
+    "audit": {
+      "layouts": 48600,
+      "passed": true,
+      "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+      "worlds": 200
+    },
+    "changed_biome_points": 210114,
+    "derived": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/predictor-engine-20261020/catalog-reextract/derived-0c367bd0b24e",
+    "implementation_sha256": "0c367bd0b24e4ffa2dce751475eba9a14ce8651e0e89252002e48a9b6d44753e",
+    "layouts": 48600,
+    "native_sha256": "aac26a213aa9a56de51f7d4de21977fa4a171c43947127dc7f8a7ebc163f0209",
+    "rebound_game_worlds": 4,
+    "rehearsal": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/predictor-engine-20261020/catalog-reextract/rehearsal-0c367bd0b24e",
+    "revision": "native-engine-correction-refresh-v1",
+    "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+    "source_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/private-pilot-indexed-import-20261020/catalog",
+    "source_sha256": "f51d3b3b48375ddd2c1f6a3c1b3b94ac0b2e0c246865962d19d5b8df134c3fef",
+    "source_snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "structure_deltas": {
+      "structure.ancient_city": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.desert_pyramid": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.igloo": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.jungle_temple": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.mansion": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.mineshaft": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.monument": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.outpost": {
+        "added": 0,
+        "removed": 75
+      },
+      "structure.ruined_portal": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.shipwreck": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.swamp_hut": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.trail_ruins": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.trial_chamber": {
+        "added": 0,
+        "removed": 0
+      },
+      "structure.village": {
+        "added": 0,
+        "removed": 750
+      }
+    },
+    "wall_seconds": 326.8888047840446,
+    "worlds": 200
+  },
+  "independent_verification": {
+    "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+    "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/predictor-engine-20261020/catalog-reextract/rehearsal-0c367bd0b24e",
+    "verifier_sha256": "86e9c9850eb930fe6ebb8790f2dcc35f6296cf3e10739c268363e04088020f06",
+    "worlds": 200,
+    "layouts": 48600,
+    "biome_points": 5120000,
+    "structure_points": 516214,
+    "evidence_worlds": 4,
+    "all_numeric_fields_match": true,
+    "same_anchor_and_border_scope": true,
+    "all_preview_rankings_match": true,
+    "query_paths_match": true,
+    "query_measurements": [
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.5572350840084255
+      },
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.5457851419923827
+      },
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.6543279229663312
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 6.265596022014506
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.6501095850253478
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.504749447922222
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.7509346220176667
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.568701441050507
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.7411881790030748
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.6664443800691515
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.855220614001155
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.814964657998644
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.6090794319752604
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.5149397749919444
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.8155018381075934
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.979190218029544
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.8449933680240065
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.358490586979315
+      }
+    ],
+    "perturbation_detected": true,
+    "wall_seconds": 238.69922409101855
+  },
+  "publication": {
+    "layouts": 48600,
+    "native_sha256": "aac26a213aa9a56de51f7d4de21977fa4a171c43947127dc7f8a7ebc163f0209",
+    "previous_preserved": true,
+    "previous_snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+    "source_sha256": "f51d3b3b48375ddd2c1f6a3c1b3b94ac0b2e0c246865962d19d5b8df134c3fef",
+    "wall_seconds": 226.80759823299013,
+    "worlds": 200
+  },
+  "live_verification": {
+    "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+    "previous_snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "old_files_preserved": 1270,
+    "rehearsal_files_identical": 609,
+    "api_ports_checked": [
+      3001,
+      5173
+    ],
+    "query_and_detail_pass": true,
+    "village_count": 27,
+    "village_located_exact": 27,
+    "exhaustive_count": null,
+    "personal_view_preserved": true,
+    "personal_run_id": "web-sweep-20261020-143452-e5161c27",
+    "wall_seconds": 7.973448675009422
+  },
+  "transition": {
+    "snapshot_id": "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae",
+    "samples": 99,
+    "seen": [
+      "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+      "b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae"
+    ],
+    "errors": 0,
+    "previews_and_evidence_ready": true,
+    "prior_snapshot_readable": true,
+    "wall_seconds": 197.1280893710209
+  },
+  "tests": {
+    "focused_passed": 54,
+    "focused_subtests": 14,
+    "focused_seconds": 5.96,
+    "expanded_initial_passed": 346,
+    "expanded_initial_skipped": 1,
+    "expanded_initial_failed": 1,
+    "expanded_missing_external_fixture_rerun_passed": 1,
+    "note": "The sole expanded failure was a missing copied review fixture; the affected test passed after preparing it. No implementation failure remains."
+  },
+  "limitations": [
+    "No exhaustive physical structure census or all-seed accuracy claim.",
+    "Primary loaded personal engine and its binaries were intentionally preserved; use the verified isolated runtime until a controlled rebuild/restart.",
+    "Browser QA deferred by the user. Public activation, Stage D feature work, larger campaigns, GPU, custom database and commerce are outside this completed pass."
+  ]
+}

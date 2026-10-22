@@ -1,0 +1,33 @@
+{
+  "revision": "cheap-spawn-fresh-control-protocol-v1",
+  "selection": "First8 unique signed64 SHA256-prefix seeds from declared fixed salt/counter, excluding all116 prior controls; no game observations made",
+  "salt": "cheap-bedrock-spawn-heldout-2026-10-21-v1",
+  "seeds": [
+    "5211829937107749755",
+    "-2843255914671695188",
+    "7705844170286206201",
+    "8325803399984527980",
+    "-8779572041521799581",
+    "-7270427731420962697",
+    "-4018515786920099874",
+    "5206687523655729336"
+  ],
+  "game_build": "1.26.52.3",
+  "observations_required": [
+    "Script API default-world spawn at load/ticks20/40",
+    "Independent saved level.dat RandomSeed and SpawnX/SpawnY/SpawnZ",
+    "Zero joined players; unmodified default-world settings",
+    "Save/shutdown/owned-resource cleanup checks"
+  ],
+  "allowance": {
+    "worlds": 8,
+    "concurrency": 1,
+    "cpus": 2,
+    "memory_gib": 2,
+    "seconds_per_world": 300,
+    "total_seconds": 1200,
+    "owned_output_gib": 1
+  },
+  "status": "frozen_not_executed_awaiting_user_approval",
+  "protocol_sha256": "e71ac72232920056ca2ba5ccfcf4dc3bbf0db8afac1ad053788c69871b4d3d99"
+}

@@ -1,0 +1,241 @@
+{
+  "status": "PASS_WITH_DOCUMENTED_PROFILE_PERTURBATION_AND_EXPORT_RECOVERY",
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "worlds": 222,
+  "unprofiled_world_seconds": 32.427010747021995,
+  "unprofiled_stage_seconds": {
+    "base_extraction": 22.514994208933786,
+    "height_extension": 0.22732747998088598,
+    "summaries": 5.742176734958775,
+    "publication": 1.4447116820374504,
+    "other": 2.4978006411110982
+  },
+  "queries": {
+    "origin": {
+      "cold_median_seconds": 2.2461585010169074,
+      "warm_median_seconds": 0.1027415549615398,
+      "cold_cpu_median_seconds": 2.245792,
+      "predecoded_score_seconds": 0.06521198502741754,
+      "matched_worlds": 222
+    },
+    "broad-recommended": {
+      "cold_median_seconds": 4.587742069968954,
+      "warm_median_seconds": 0.10240444308146834,
+      "cold_cpu_median_seconds": 4.586631000000001,
+      "predecoded_score_seconds": 1.84853310091421,
+      "matched_worlds": 222
+    },
+    "mixed-variants": {
+      "cold_median_seconds": 3.340587251004763,
+      "warm_median_seconds": 0.0708166160620749,
+      "cold_cpu_median_seconds": 3.339985999999996,
+      "predecoded_score_seconds": 0.08349325298331678,
+      "matched_worlds": 17
+    },
+    "biome-or": {
+      "cold_median_seconds": 4.232791997026652,
+      "warm_median_seconds": 0.10041490406729281,
+      "cold_cpu_median_seconds": 4.231357000000003,
+      "predecoded_score_seconds": 1.392783288960345,
+      "matched_worlds": 222
+    },
+    "selective": {
+      "cold_median_seconds": 3.4624524579849094,
+      "warm_median_seconds": 0.07377076300326735,
+      "cold_cpu_median_seconds": 3.462418999999997,
+      "predecoded_score_seconds": 0.053601730964146554,
+      "matched_worlds": 0
+    }
+  },
+  "product_readmodel": [
+    {
+      "view": "primary",
+      "old_median_seconds": 3.251068393001333,
+      "indexed_lookup_median_seconds": 0.0004790180828422308,
+      "memory_blob_lookup_median_seconds": 6.637000478804111e-05
+    },
+    {
+      "view": "reserve",
+      "old_median_seconds": 3.2977874618954957,
+      "indexed_lookup_median_seconds": 0.00047379592433571815,
+      "memory_blob_lookup_median_seconds": 5.380797665566206e-05
+    }
+  ],
+  "current_reachable_cas_bytes": 241264651,
+  "all_automation_cas_bytes": 1036457363,
+  "total_catalog_bytes": 1270798175,
+  "counter_only": [
+    {
+      "name": "broad-recommended",
+      "timing": {
+        "wall_seconds": 4.270299258991145,
+        "cpu_seconds": 4.269270000000001
+      },
+      "counters": {
+        "json.loads": {
+          "calls": 226,
+          "wall_seconds": 2.2583427237113938,
+          "cpu_seconds": 2.258509999999998,
+          "input_bytes": 82414043,
+          "output_bytes": 0
+        },
+        "sha256.initial": {
+          "calls": 510,
+          "wall_seconds": 0.0987378292484209,
+          "cpu_seconds": 0.09874399999999506,
+          "input_bytes": 47285353,
+          "output_bytes": 0
+        },
+        "artifact.read_verified": {
+          "calls": 279,
+          "wall_seconds": 0.2054751116083935,
+          "cpu_seconds": 0.20547800000000382,
+          "input_bytes": 0,
+          "output_bytes": 42037665
+        },
+        "json.dumps": {
+          "calls": 229,
+          "wall_seconds": 0.10510240867733955,
+          "cpu_seconds": 0.10513600000000389,
+          "input_bytes": 0,
+          "output_bytes": 7487390
+        },
+        "zlib.decompress": {
+          "calls": 222,
+          "wall_seconds": 0.1314472594531253,
+          "cpu_seconds": 0.13151199999999807,
+          "input_bytes": 20318836,
+          "output_bytes": 81969837
+        },
+        "artifact.get_json": {
+          "calls": 222,
+          "wall_seconds": 2.569832807406783,
+          "cpu_seconds": 2.569519,
+          "input_bytes": 0,
+          "output_bytes": 0
+        }
+      },
+      "matched_worlds": 222
+    },
+    {
+      "name": "mixed-variants",
+      "timing": {
+        "wall_seconds": 3.031594036030583,
+        "cpu_seconds": 3.0307679999999992
+      },
+      "counters": {
+        "json.loads": {
+          "calls": 226,
+          "wall_seconds": 2.1655708684120327,
+          "cpu_seconds": 2.1652680000000073,
+          "input_bytes": 82414655,
+          "output_bytes": 0
+        },
+        "sha256.initial": {
+          "calls": 510,
+          "wall_seconds": 0.10129946831148118,
+          "cpu_seconds": 0.10138700000001588,
+          "input_bytes": 47285915,
+          "output_bytes": 0
+        },
+        "artifact.read_verified": {
+          "calls": 279,
+          "wall_seconds": 0.21062636270653456,
+          "cpu_seconds": 0.21065099999999948,
+          "input_bytes": 0,
+          "output_bytes": 42037665
+        },
+        "json.dumps": {
+          "calls": 229,
+          "wall_seconds": 0.06623457570094615,
+          "cpu_seconds": 0.06617399999999574,
+          "input_bytes": 0,
+          "output_bytes": 5390227
+        },
+        "zlib.decompress": {
+          "calls": 222,
+          "wall_seconds": 0.13022727926727384,
+          "cpu_seconds": 0.1302070000000004,
+          "input_bytes": 20318836,
+          "output_bytes": 81969837
+        },
+        "artifact.get_json": {
+          "calls": 222,
+          "wall_seconds": 2.4738069840241224,
+          "cpu_seconds": 2.4729920000000067,
+          "input_bytes": 0,
+          "output_bytes": 0
+        }
+      },
+      "matched_worlds": 17
+    }
+  ],
+  "fixed_replay": {
+    "status": "PASS",
+    "same_frozen_observation": true,
+    "snapshot_id": "2fd170fc6171e87e0b3124fcc2d805279efb5b7a1a82ec896d335f04d582cd84",
+    "baseline_seconds": 10.609164311084896,
+    "profiled_seconds": 15.069783475017175,
+    "runtime_ratio": 1.4204496257326922,
+    "scope": "Identical frozen base observation;current height extension,summaries,products,retention,publish;no base re-extraction"
+  },
+  "resources": {
+    "phases": [
+      {
+        "phase": "world-pair",
+        "exit_status": 0,
+        "failure": null,
+        "wall_seconds": 87.23972803703509,
+        "peak_owned_rss_bytes": 667967488,
+        "output_bytes": 1295566806
+      },
+      {
+        "phase": "storage",
+        "exit_status": 0,
+        "failure": null,
+        "wall_seconds": 20.458999022026546,
+        "peak_owned_rss_bytes": 429195264,
+        "output_bytes": 1295991681
+      },
+      {
+        "phase": "queries",
+        "exit_status": 1,
+        "failure": null,
+        "wall_seconds": 137.891748751048,
+        "peak_owned_rss_bytes": 1163431936,
+        "output_bytes": 1296188947
+      },
+      {
+        "phase": "readmodels",
+        "exit_status": 0,
+        "failure": null,
+        "wall_seconds": 36.21486951294355,
+        "peak_owned_rss_bytes": 1231527936,
+        "output_bytes": 1386170353
+      },
+      {
+        "phase": "query-counters",
+        "exit_status": 0,
+        "failure": null,
+        "wall_seconds": 10.764811008935794,
+        "peak_owned_rss_bytes": 382091264,
+        "output_bytes": 1386174829
+      },
+      {
+        "phase": "fixed-replay",
+        "exit_status": 0,
+        "failure": null,
+        "wall_seconds": 27.96502538502682,
+        "peak_owned_rss_bytes": 297238528,
+        "output_bytes": 1390434678
+      }
+    ],
+    "limits": {
+      "wall_seconds": 900,
+      "rss_bytes": 4294967296,
+      "output_bytes": 3221225472
+    },
+    "charged_seconds": 320.5351817170158
+  },
+  "decision": "Keep SQLite control state;customindexed/materializedreadviews justified as next implementation,notcustomdatabaseengine;columnarlayoutandDuckDBbenchmark candidates,notmeasuredenginewinners"
+}

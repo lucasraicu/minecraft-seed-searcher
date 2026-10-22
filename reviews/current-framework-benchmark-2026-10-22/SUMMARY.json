@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "input_seeds_per_cohort": 262144,
+  "cohorts": 3,
+  "unique_input_seeds": 786432,
+  "threads": 34,
+  "batch_size": 16384,
+  "top_k": 50,
+  "candidate_capacity": 100,
+  "personal_kernel_median": 81517.00760569709,
+  "registration_phase_medians": {
+    "personal_only": 72028.06477634035,
+    "catalog_handoff": 73175.43344009158
+  },
+  "registration_median_elapsed_increase_pct": 2.2953095653831523,
+  "active_phase_medians": {
+    "active_baseline": 75666.0971224914,
+    "active_catalog": 69057.70281651804
+  },
+  "active_median_elapsed_increase_pct": 9.699406191925908,
+  "active_median_paired_throughput_loss_pct": 8.841803733154396,
+  "active_elapsed_increase_pct_range": [
+    7.137173908684957,
+    11.425049330494751
+  ],
+  "complete_public_world_seconds": [
+    35.502903670072556,
+    34.51345170091372,
+    35.655193121987395
+  ],
+  "public_world_median_seconds": 35.502903670072556,
+  "query_count": 6,
+  "query_seconds_range": [
+    5.510033712023869,
+    5.6885444490471855
+  ],
+  "all_queries_result_cache_misses": true,
+  "all_active_intervals_fully_overlapped": true,
+  "predicted_survivors_per_cohort": {
+    "0": 0,
+    "1": 1,
+    "2": 0
+  },
+  "semantic_and_receipt_parity": true,
+  "current_pipeline_registry": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+  "resources": {
+    "phases": [
+      {
+        "script": "measure_personal.py",
+        "exit_status": 0,
+        "wall_seconds": 32.84273154300172,
+        "peak_owned_rss_bytes": 267816960
+      },
+      {
+        "script": "measure_catalog.py",
+        "exit_status": 0,
+        "wall_seconds": 70.92967032198794,
+        "peak_owned_rss_bytes": 781385728
+      },
+      {
+        "script": "measure_active.py",
+        "exit_status": 0,
+        "wall_seconds": 119.9142898269929,
+        "peak_owned_rss_bytes": 840790016
+      }
+    ],
+    "failure": null,
+    "cumulative_wall_seconds": 228.30719838000368,
+    "peak_owned_rss_bytes": 840790016
+  },
+  "serial_diagnostic_scheduling_note": "Serial diagnostic parent was nice+10 and child inherited then added+10, reaching nice19; corrected harness removes parent niceness for all active trials, whose actual settings prove production child nice10. Do not treat serial diagnostic as a precisely matched production scheduler comparison."
+}

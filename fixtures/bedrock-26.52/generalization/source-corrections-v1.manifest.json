@@ -1,0 +1,177 @@
+{
+  "revision": "source-corrections-v1",
+  "archive": "source-corrections-v1.tar.gz",
+  "archive_bytes": 68633,
+  "archive_sha256": "19d26c5021deabc09499ab0c0f5d1ef955b46cdd91ec8d5f8c674df1b6642513",
+  "files": {
+    "b-heldout-frozen.json": {
+      "bytes": 140347,
+      "sha256": "5728b55b71527251489855c407653f5f4bf364b5813ab96d652480b3373e0120"
+    },
+    "b_targeted_runner.py": {
+      "bytes": 15558,
+      "sha256": "977d623dfeedabf760f14be88127b0caa518f4276ca21a2be3f7f993a3123962"
+    },
+    "run_b_heldout.py": {
+      "bytes": 4734,
+      "sha256": "6a1fdeda4beb40d851f6d1b2da183cfc4a780557f1ab132e2e43d6440a68d4be"
+    },
+    "analyze_b_heldout.py": {
+      "bytes": 2025,
+      "sha256": "6ec2eedea6ca18f1353fccd25d4fdfe8899b8aac2837761ced4f101c3aa98b0a"
+    },
+    "b-heldout-analysis.json": {
+      "bytes": 14955,
+      "sha256": "74bc3aa14cc26f34e0e780c759e49fde7301c9fc8b6d8644ef5ec4c53132bdcc"
+    },
+    "nether-voronoi-prototype-v2.c": {
+      "bytes": 965,
+      "sha256": "33687b213ff859f95c78c0fb0e41ffb69d7c7819c886062982b6b4f758a2b4d8"
+    },
+    "structure-rule-prototype.c": {
+      "bytes": 758,
+      "sha256": "86b913e480125ecb388ff367b2ac875788a67e5386db1bc27959bf9aaeef1c92"
+    },
+    "ledger.json": {
+      "bytes": 2409,
+      "sha256": "33ebba3e9be6de6ea2fce961f13ea5ff53e984cca67a6580fc5c5c3b9b8877aa"
+    },
+    "controls.json": {
+      "bytes": 834,
+      "sha256": "b0277d16766e987b6571f423b33b43beccea08b79011531a5945b470d9e318dc"
+    },
+    "pass-00/report.json": {
+      "bytes": 26503,
+      "sha256": "33eb9cb3ebaf09ba6058746f059ab98850b24630ef827d39064872db89013486"
+    },
+    "pass-00/console.log": {
+      "bytes": 8364,
+      "sha256": "f3ae34d4474053f125735a9c89f6e0da41bfcac42671a4361bd5bd34a31327ad"
+    },
+    "pass-00/observer.js": {
+      "bytes": 3468,
+      "sha256": "498eaabeb1e587295d0a151bfe30ad07c304c3a5634fadd24ffbe09e6fe8af34"
+    },
+    "pass-00/server.properties": {
+      "bytes": 561,
+      "sha256": "b9f81e9db9b78a2e5f42c0687c20c05292e8ad1beb19f4639280b8f1e4e57636"
+    },
+    "pass-01/report.json": {
+      "bytes": 17856,
+      "sha256": "fb6e517b9abce6c4589a91409b9695f52706cad9136404ddf88109b07ec7fb47"
+    },
+    "pass-01/console.log": {
+      "bytes": 5063,
+      "sha256": "15e089f3d069180193644571da4ebcbd8dedf10ae9d895ab82da230ea79e3643"
+    },
+    "pass-01/observer.js": {
+      "bytes": 3471,
+      "sha256": "1e8ad67f8dbef139b046d7fefc8a0f94217ce1765a2d9b52833f8e3bda482f72"
+    },
+    "pass-01/server.properties": {
+      "bytes": 561,
+      "sha256": "b9f81e9db9b78a2e5f42c0687c20c05292e8ad1beb19f4639280b8f1e4e57636"
+    },
+    "pass-02/report.json": {
+      "bytes": 26309,
+      "sha256": "bee9aafef093a6b4b2ed592aa208f4e00dcac53e1a7cbae8a71081c32ea8bd69"
+    },
+    "pass-02/console.log": {
+      "bytes": 8272,
+      "sha256": "03ed428f468d653a10513b78c33b5679955887959c0e3998ed9c7658f188d2d5"
+    },
+    "pass-02/observer.js": {
+      "bytes": 3468,
+      "sha256": "498eaabeb1e587295d0a151bfe30ad07c304c3a5634fadd24ffbe09e6fe8af34"
+    },
+    "pass-02/server.properties": {
+      "bytes": 561,
+      "sha256": "45d81af15d7303762ce619395fdd9cc402ccf75709603bf2ae43806ab52ac3b1"
+    },
+    "pass-03/report.json": {
+      "bytes": 17861,
+      "sha256": "563417b9df394b49da1b23db78e69e799ea651ac9b3fa5a66972cd87f627b66e"
+    },
+    "pass-03/console.log": {
+      "bytes": 5098,
+      "sha256": "a769f95623416f4c88d504a1f53b2143c3dca092c1a097a6e6862014480dac37"
+    },
+    "pass-03/observer.js": {
+      "bytes": 3471,
+      "sha256": "1e8ad67f8dbef139b046d7fefc8a0f94217ce1765a2d9b52833f8e3bda482f72"
+    },
+    "pass-03/server.properties": {
+      "bytes": 561,
+      "sha256": "45d81af15d7303762ce619395fdd9cc402ccf75709603bf2ae43806ab52ac3b1"
+    },
+    "pass-04/report.json": {
+      "bytes": 25439,
+      "sha256": "d83915603ec818070132d150eafcfc3bd04a5aeeebdb25d9096f87ff8c87745b"
+    },
+    "pass-04/console.log": {
+      "bytes": 8350,
+      "sha256": "17f39e7c192e8337ac7037a06a1747f5fd4a4c33522f24e64659d400e1db65ac"
+    },
+    "pass-04/observer.js": {
+      "bytes": 3468,
+      "sha256": "498eaabeb1e587295d0a151bfe30ad07c304c3a5634fadd24ffbe09e6fe8af34"
+    },
+    "pass-04/server.properties": {
+      "bytes": 562,
+      "sha256": "ad5a6abddbdb74c89ac00361a9ee53d1a04eaef41c1ac48942076fb3fa8f632c"
+    },
+    "pass-05/report.json": {
+      "bytes": 17600,
+      "sha256": "bac5950551c4e4aab92ddd8b3282617bb1cfe7456152d3ffc4acc741d4781cb2"
+    },
+    "pass-05/console.log": {
+      "bytes": 5093,
+      "sha256": "3e34d3a4b9a23f80a9b9e2920bfbe7085fdfee0f707aa303c5c7ea2da4800f25"
+    },
+    "pass-05/observer.js": {
+      "bytes": 3471,
+      "sha256": "1e8ad67f8dbef139b046d7fefc8a0f94217ce1765a2d9b52833f8e3bda482f72"
+    },
+    "pass-05/server.properties": {
+      "bytes": 562,
+      "sha256": "ad5a6abddbdb74c89ac00361a9ee53d1a04eaef41c1ac48942076fb3fa8f632c"
+    },
+    "pass-06/report.json": {
+      "bytes": 25262,
+      "sha256": "8192df87aeeb74b44aae1c9b6416458d8caacf8c7ee89900d092cd30f6b1bfa9"
+    },
+    "pass-06/console.log": {
+      "bytes": 8279,
+      "sha256": "382fb19b9cd9c55a266a7ad042ad2ffdf5ff0404b822376bb07456d8c5e50b88"
+    },
+    "pass-06/observer.js": {
+      "bytes": 3468,
+      "sha256": "498eaabeb1e587295d0a151bfe30ad07c304c3a5634fadd24ffbe09e6fe8af34"
+    },
+    "pass-06/server.properties": {
+      "bytes": 562,
+      "sha256": "db00ffdd5798074a956629accc21500970c736e32eca4859798c3eb839bda11e"
+    },
+    "pass-07/report.json": {
+      "bytes": 17944,
+      "sha256": "91d6d0e3f09d1dd6574e1cd81de2bf7f0883f43184ef288e6df014efc008c4d0"
+    },
+    "pass-07/console.log": {
+      "bytes": 5283,
+      "sha256": "74f63c7fc08b692f490051374425632baf6b15bcf1f7dbd720dc3d6e1b85083e"
+    },
+    "pass-07/observer.js": {
+      "bytes": 3471,
+      "sha256": "1e8ad67f8dbef139b046d7fefc8a0f94217ce1765a2d9b52833f8e3bda482f72"
+    },
+    "pass-07/server.properties": {
+      "bytes": 562,
+      "sha256": "db00ffdd5798074a956629accc21500970c736e32eca4859798c3eb839bda11e"
+    },
+    "legacy-controls.json": {
+      "bytes": 417142,
+      "sha256": "7d5e86af4d5c7cc427b54fbad8ba3362c237a1d9ad60ca876a971abaab7ea40f"
+    }
+  },
+  "scope": "Four fresh paired-seed source-mechanism controls; no universal accuracy/census claim"
+}

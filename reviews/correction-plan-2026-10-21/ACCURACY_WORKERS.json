@@ -1,0 +1,363 @@
+{
+  "note": "Actual terminal statuses; static reviews are not runtime tests. Failed coding jobs were not integrated.",
+  "tasks": [
+    {
+      "task_id": "edba7537105a",
+      "role": "code",
+      "state": "failed",
+      "created": 1792573925.324991,
+      "updated": 1792574378.962462,
+      "worker_id": "gemini-1",
+      "objective": "APPROVED practical accuracy plan. High reasoning. Begin final PRACTICAL_IMPLEMENTATION. Implement ONLY chunk height provider interface in ACCURACY_INTERFACES.md. Existing decoder is oracle; no native/BDS/network/agents/notification. Builtin reader/editor allowed within owned paths; run exact supplie",
+      "result": {
+        "worker_id": "gemini-1",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "21dad6bb7a8718e14c2d4b8eca5b2f348ea1a22f946507b36e91c2e5f73a8945",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792573929.842228,
+        "attempts": [
+          {
+            "kind": "permission_denied",
+            "process_exit": 0,
+            "status": "SUCCESS",
+            "response": "",
+            "denied_actions": [
+              {
+                "action": "write_file",
+                "display_name": "EditFile"
+              }
+            ],
+            "usage": {
+              "input_tokens": 139957,
+              "output_tokens": 51631,
+              "thinking_tokens": 38240,
+              "cache_read_tokens": 1083460,
+              "total_tokens": 191588
+            },
+            "conversation_id": "005aa509-c779-474e-8073-77807aba9bd9",
+            "duration_seconds": 445.922727,
+            "response_truncated": false
+          }
+        ],
+        "usage": {
+          "input_tokens": 139957,
+          "output_tokens": 51631,
+          "thinking_tokens": 38240,
+          "cache_read_tokens": 1083460,
+          "total_tokens": 191588
+        },
+        "response": "",
+        "denied_actions": [
+          {
+            "action": "write_file",
+            "display_name": "EditFile"
+          }
+        ],
+        "process_exit": 0,
+        "provider_status": "SUCCESS",
+        "error": "Antigravity result rejected: permission_denied",
+        "completed": 1792574378.962177,
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 258818048
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/edba7537105a",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "a1d5ca44cb16",
+      "role": "code",
+      "state": "failed",
+      "created": 1792573929.871403,
+      "updated": 1792574415.063286,
+      "worker_id": "gemini-2",
+      "objective": "APPROVED practical accuracy plan. High reasoning. Begin final PRACTICAL_IMPLEMENTATION. Implement ONLY 21type structure matrix/evidence assessment exact ACCURACY_INTERFACES.md. Read audit coverage to determine names and supported exact membership tokens, never invent confirmed mechanism. No BDS/nati",
+      "result": {
+        "worker_id": "gemini-2",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "21dad6bb7a8718e14c2d4b8eca5b2f348ea1a22f946507b36e91c2e5f73a8945",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792573934.472875,
+        "error": "timeout",
+        "completed": 1792574415.062925,
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 263217152
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/a1d5ca44cb16",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "91b695d759a5",
+      "role": "review",
+      "state": "succeeded",
+      "created": 1792574843.836927,
+      "updated": 1792574888.418509,
+      "worker_id": "gemini-2",
+      "objective": "High TOOL-FREE independent review of approved practical accuracy implementation. Begin ACCURACY_CORE_REVIEW. Inspect actual supplied source. Focus proof false-absence, arbitrary anchors/v1 compatibility, immutable artifact generations, snapshot/seed/provider binding, corruption/resource bugs. <=700w",
+      "result": {
+        "worker_id": "gemini-2",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "fe0e7385628f476c52e83baa50d568a94a5c3900c1aeb86bec50f23ca7271000",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792574848.519506,
+        "attempts": [
+          {
+            "kind": "ok",
+            "process_exit": 0,
+            "status": "SUCCESS",
+            "response": "ACCURACY_CORE_REVIEW\n\n### Outcome\nReview complete. No blocking architectural defects found. The design soundly enforces provider separation, immutability, and reference scope semantics. Identified one actionable false-absence risk in `refinement.py` under degenerate scope intersections, plus verified exact boundary behavior across all six modules.\n\n- **Changed files**: None (read-only review role).\n- **Tests actually run**: None (tool-free static inspection per contract).\n\n---\n\n### Key Findings & Correctness Mechanisms\n\n#### 1. False-Absence Proof Soundness (`refinement.py`)\n- **Actionable Defect / Edge-Case False Absence**: In `evaluate_scope()`, `total` and `covered` are initialized to `0`. If a circle constraint (`anchor` + `radius`) does not intersect `bounds` at all, or if `radius=0` and the anchor lies outside `bounds`, the loop over `[z, hz) x [x, hx)` skips every point. Consequently, `total == 0` and `covered == 0`. The expression `('absent' if covered == total else 'unknown')` evaluates `0 == 0` as `True`, certifying `status='absent'` over an empty evaluation scope.\n  - *Recommendation*: Explicitly guard against empty scopes: require `total > 0 and covered == total` for `'absent'`, or raise a `ValueError` if the clipped query volume contains zero logical blocks.\n- **Sound Absence Proofs**: For non-degenerate scopes, absence strictly requires every block in the requested volume to be resolved under the exact same provider identity (`provider_id(ctx)`) and vertical layer (`y`). Unknown/uncovered blocks (`v is None`) prevent `'absent'`, returning `'unknown'`.\n- **Conflict Handling**: Overlapping conflicting tile data immediately raises `ValueError('Conflicting tile evidence')`, preventing last-writer-wins corruption.\n\n#### 2. Arbitrary Anchors & v1 Query Compatibility (`anchors.py`, `accuracy_query.py`)\n- **Compatibility**: `validate_accuracy_request()` translates requests to `catalog-query-v1` syntax (`anchor_mode='recommended'`) to leverage `_rank()` cleanly without altering the underlying v1 scoring engine.\n- **Envelope Invariant**: `bounds_for()` layouts exceeding `ENVELOPE` are rejected from claiming completeness in `validate_anchor_summary()` and are systematically filtered out (`unavailable += 1`) in `accuracy_query.query()`, preventing partial grid overflow from masquerading as ranked candidates.\n- **Identity Integrity**: `derive_anchor_layouts()` strictly enforces `anchor['context']['identity'] == obs['identity']`.\n\n#### 3. Snapshot, Seed, and Provider Binding (`accuracy.py`, `accuracy_store.py`)\n- **Rigid Snapshot Pinning**: `bound_entries()` cross-verifies all bundle anchors against the SQLite `observation_ref` table (`world_id`, `observation_id`, and `seed`). Any mismatch against `info['header']` or snapshot membership aborts execution.\n- **Generational Immutability**: `write_bundle()` writes content-addressed manifests into `ArtifactStore` objects and enforces strict immutability if `generation.json` already exists. `read_bundle()` guards against payload tampering by verifying both binding digest and full bundle digest.\n\n#### 4. Stored vs. Procedural Guarantees & Typed Positive vs. Physical Totals\n- **No Procedural Fallbacks**: `StoredBiomeProvider` strictly mandates `ctx['provider'] == 'bds_saved_runtime_v3'`. Missing chunks or unpopulated runtime palettes return `status='unknown'` with explicit failure reasons (`missing_chunk`, `unresolved`), never falling back to procedural noise generators.\n- **Reference Points vs. Physical Instances**: `structure_verification.py` enforces that game locate commands and membership tokens represent navigation reference points rather than physical instance boundaries or counts (`physical_instance_count_supported=False`).\n- **Temple Disambiguation**: Grouped temple locate calls (`desert_pyramid`, `jungle_temple`, `swamp_hut`, `igloo`) return `located_group_reference` and refuse to certify positive subtype presence without independent piece evidence.\n\n#### 5. Corruption & Resource Bounds\n- **Tile Decompression Safety**: `decode_tile()` strictly enforces payload string size `<= 32768`, explicit decompressed length checks with `expected + 1`, and asserts `d.eof` without trailing or unconsumed data, guarding against zip-bomb and truncation exploits.\n- **Explicit Caps**: Anchors (`<= 4000`), tiles (`<= 256`), chunk records (`<= 256`, `<= 16MB` payload total), and pagination (`page_size <= 50`, `query_seconds` wall-clock timeout) prevent memory and compute exhaustion.\n\n---\n\n### Limitations & Recommendations\n1. **Fix Empty-Scope Evaluation**: In `refinement.evaluate_scope`, change `status = 'present' if witness else ('absent' if covered == total and total > 0 else 'unknown')`.\n2. **Acceptance Criteria Verification**: The implementation faithfully distinguishes stored chunk observations from procedural simulations, and typed positive/reference coordinates from complete physical census counts. No other blockers identified.\n",
+            "denied_actions": [],
+            "usage": {
+              "input_tokens": 18899,
+              "output_tokens": 5878,
+              "thinking_tokens": 4760,
+              "cache_read_tokens": 0,
+              "total_tokens": 24777
+            },
+            "conversation_id": "38ce1b58-061e-42af-acff-1802b5918317",
+            "duration_seconds": 36.682977,
+            "response_truncated": false
+          }
+        ],
+        "usage": {
+          "input_tokens": 18899,
+          "output_tokens": 5878,
+          "thinking_tokens": 4760,
+          "cache_read_tokens": 0,
+          "total_tokens": 24777
+        },
+        "response": "ACCURACY_CORE_REVIEW\n\n### Outcome\nReview complete. No blocking architectural defects found. The design soundly enforces provider separation, immutability, and reference scope semantics. Identified one actionable false-absence risk in `refinement.py` under degenerate scope intersections, plus verified exact boundary behavior across all six modules.\n\n- **Changed files**: None (read-only review role).\n- **Tests actually run**: None (tool-free static inspection per contract).\n\n---\n\n### Key Findings & Correctness Mechanisms\n\n#### 1. False-Absence Proof Soundness (`refinement.py`)\n- **Actionable Defect / Edge-Case False Absence**: In `evaluate_scope()`, `total` and `covered` are initialized to `0`. If a circle constraint (`anchor` + `radius`) does not intersect `bounds` at all, or if `radius=0` and the anchor lies outside `bounds`, the loop over `[z, hz) x [x, hx)` skips every point. Consequently, `total == 0` and `covered == 0`. The expression `('absent' if covered == total else 'unknown')` evaluates `0 == 0` as `True`, certifying `status='absent'` over an empty evaluation scope.\n  - *Recommendation*: Explicitly guard against empty scopes: require `total > 0 and covered == total` for `'absent'`, or raise a `ValueError` if the clipped query volume contains zero logical blocks.\n- **Sound Absence Proofs**: For non-degenerate scopes, absence strictly requires every block in the requested volume to be resolved under the exact same provider identity (`provider_id(ctx)`) and vertical layer (`y`). Unknown/uncovered blocks (`v is None`) prevent `'absent'`, returning `'unknown'`.\n- **Conflict Handling**: Overlapping conflicting tile data immediately raises `ValueError('Conflicting tile evidence')`, preventing last-writer-wins corruption.\n\n#### 2. Arbitrary Anchors & v1 Query Compatibility (`anchors.py`, `accuracy_query.py`)\n- **Compatibility**: `validate_accuracy_request()` translates requests to `catalog-query-v1` syntax (`anchor_mode='recommended'`) to leverage `_rank()` cleanly without altering the underlying v1 scoring engine.\n- **Envelope Invariant**: `bounds_for()` layouts exceeding `ENVELOPE` are rejected from claiming completeness in `validate_anchor_summary()` and are systematically filtered out (`unavailable += 1`) in `accuracy_query.query()`, preventing partial grid overflow from masquerading as ranked candidates.\n- **Identity Integrity**: `derive_anchor_layouts()` strictly enforces `anchor['context']['identity'] == obs['identity']`.\n\n#### 3. Snapshot, Seed, and Provider Binding (`accuracy.py`, `accuracy_store.py`)\n- **Rigid Snapshot Pinning**: `bound_entries()` cross-verifies all bundle anchors against the SQLite `observation_ref` table (`world_id`, `observation_id`, and `seed`). Any mismatch against `info['header']` or snapshot membership aborts execution.\n- **Generational Immutability**: `write_bundle()` writes content-addressed manifests into `ArtifactStore` objects and enforces strict immutability if `generation.json` already exists. `read_bundle()` guards against payload tampering by verifying both binding digest and full bundle digest.\n\n#### 4. Stored vs. Procedural Guarantees & Typed Positive vs. Physical Totals\n- **No Procedural Fallbacks**: `StoredBiomeProvider` strictly mandates `ctx['provider'] == 'bds_saved_runtime_v3'`. Missing chunks or unpopulated runtime palettes return `status='unknown'` with explicit failure reasons (`missing_chunk`, `unresolved`), never falling back to procedural noise generators.\n- **Reference Points vs. Physical Instances**: `structure_verification.py` enforces that game locate commands and membership tokens represent navigation reference points rather than physical instance boundaries or counts (`physical_instance_count_supported=False`).\n- **Temple Disambiguation**: Grouped temple locate calls (`desert_pyramid`, `jungle_temple`, `swamp_hut`, `igloo`) return `located_group_reference` and refuse to certify positive subtype presence without independent piece evidence.\n\n#### 5. Corruption & Resource Bounds\n- **Tile Decompression Safety**: `decode_tile()` strictly enforces payload string size `<= 32768`, explicit decompressed length checks with `expected + 1`, and asserts `d.eof` without trailing or unconsumed data, guarding against zip-bomb and truncation exploits.\n- **Explicit Caps**: Anchors (`<= 4000`), tiles (`<= 256`), chunk records (`<= 256`, `<= 16MB` payload total), and pagination (`page_size <= 50`, `query_seconds` wall-clock timeout) prevent memory and compute exhaustion.\n\n---\n\n### Limitations & Recommendations\n1. **Fix Empty-Scope Evaluation**: In `refinement.evaluate_scope`, change `status = 'present' if witness else ('absent' if covered == total and total > 0 else 'unknown')`.\n2. **Acceptance Criteria Verification**: The implementation faithfully distinguishes stored chunk observations from procedural simulations, and typed positive/reference coordinates from complete physical census counts. No other blockers identified.\n",
+        "denied_actions": [],
+        "process_exit": 0,
+        "provider_status": "SUCCESS",
+        "response_truncated": false,
+        "checks": [],
+        "changed_files": [],
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "completed": 1792574888.41678,
+        "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 205647872
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/91b695d759a5",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "e834caf939aa",
+      "role": "review",
+      "state": "failed",
+      "created": 1792574839.254234,
+      "updated": 1792575024.319864,
+      "worker_id": "gemini-1",
+      "objective": "High TOOL-FREE independent actual eight-world pilot harness review. Begin ACCURACY_PILOT_REVIEW. Approved practical scope. Only supplied actual context; no commands/readers/edit/network/agents. <=600words concrete execution/oracle/resource problems, distinguish blockers vs nonblocking limitations. D",
+      "result": {
+        "worker_id": "gemini-1",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "fe0e7385628f476c52e83baa50d568a94a5c3900c1aeb86bec50f23ca7271000",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792574843.807629,
+        "error": "timeout",
+        "completed": 1792575024.319422,
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 179712000
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/e834caf939aa",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "b6771149e2cb",
+      "role": "review",
+      "state": "succeeded",
+      "created": 1792575055.6138089,
+      "updated": 1792575208.2608159,
+      "worker_id": "gemini-1",
+      "objective": "High TOOL-FREE narrow actual observer correctness review, one controlled retry after timeout. Begin PILOT_NARROW_REVIEW. Only embedded narrowcontext. No commands/readers/edits/network/agents/tests. <=400words concrete bug/mechanism or no blocker; outercaps already stated. Approved game pilot remains",
+      "result": {
+        "worker_id": "gemini-1",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "2bc18d8c08cf8e7e63584d584030712a28b99d1074508145c8af5e071f0c9447",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792575060.272727,
+        "attempts": [
+          {
+            "kind": "ok",
+            "process_exit": 0,
+            "status": "SUCCESS",
+            "response": "PILOT_NARROW_REVIEW\n\n### Outcome\n**RECOMMENDATION: NO BLOCKER** for the narrow actual observer implementation under the specified pilot parameters.\n\n### Evidence & Source Correctness\nAnalysis of the embedded script against the three target diffs (`compacttiles` payload, Z/X expansion order, and 4096 read cap) confirms source correctness and execution safety:\n\n1. **Tile Schema & Z/X Expansion**:\n   - Tile schema enforcement (`[x, z, w, h, y]`, `1 <= w, h <= 32`) and point generation iterate `dz` in the outer loop and `dx` in the inner loop, strictly preserving expected row-major Z/X ordering.\n   - All points (discrete and tile-expanded) undergo rigorous dimension bounds checks (`[-64, 319]` Overworld, `[0, 127]` Nether, `|coord| <= 5120`).\n2. **Chunk Management & Watchdog Safety**:\n   - Unique chunk extraction via `chunks.set(Math.floor(x/16)+','+Math.floor(z/16), p)` correctly groups coordinate columns. At <=4 chunks for 2 planes + height probes, the <=10 chunk limit is respected.\n   - Chunk pre-loading polls `manager.createTickingArea` up to 400 ticks (20s) before reading.\n   - The sampling loop yields via `await tick()` every 32 points (`i % 32 === 31`), preventing script watchdog exhaustion across 2066–4096 reads (~65–128 ticks total).\n   - Point queries wrap `dim.getBlock` and `dim.getBiome` in per-point `try/catch`, ensuring partial read anomalies emit structured row errors rather than unhandled script crashes.\n3. **Budget & Read Caps**:\n   - Total reads across pre-load (<=10), point sampling (<=4096), and mutations (<=20) reach at most 4126 block reads and 4096 biome reads, comfortably inside the `biomeReads <= 4096` and `blockReads <= 8192` ceilings.\n4. **Persistence Dirty/Restore**:\n   - Overworld-only marker mutation at `y: 319` captures `b.permutation` and `getAllStates()`, toggles block type, restores permutation in `finally`, and validates restoration before recording. This reliably marks chunks dirty for LevelDB persistence without permanent world corruption.\n\n### Changed Files\n- None (tool-free review role; `owned_paths: []`).\n\n### Tests Actually Run\n- None (tool-free review; no execution claimed).\n\n### Remaining Limitations\n- Observer correctness is contingent on outer runner harness enforcement (disposable container, hash verification, 280s/300s timeouts).\n- Approved practical game pilot execution remains pending Codex orchestration.\n",
+            "denied_actions": [],
+            "usage": {
+              "input_tokens": 12022,
+              "output_tokens": 19840,
+              "thinking_tokens": 19198,
+              "cache_read_tokens": 0,
+              "total_tokens": 31862
+            },
+            "conversation_id": "66dcb177-b39a-425f-b535-e280e03e98b5",
+            "duration_seconds": 141.834474,
+            "response_truncated": false
+          }
+        ],
+        "usage": {
+          "input_tokens": 12022,
+          "output_tokens": 19840,
+          "thinking_tokens": 19198,
+          "cache_read_tokens": 0,
+          "total_tokens": 31862
+        },
+        "response": "PILOT_NARROW_REVIEW\n\n### Outcome\n**RECOMMENDATION: NO BLOCKER** for the narrow actual observer implementation under the specified pilot parameters.\n\n### Evidence & Source Correctness\nAnalysis of the embedded script against the three target diffs (`compacttiles` payload, Z/X expansion order, and 4096 read cap) confirms source correctness and execution safety:\n\n1. **Tile Schema & Z/X Expansion**:\n   - Tile schema enforcement (`[x, z, w, h, y]`, `1 <= w, h <= 32`) and point generation iterate `dz` in the outer loop and `dx` in the inner loop, strictly preserving expected row-major Z/X ordering.\n   - All points (discrete and tile-expanded) undergo rigorous dimension bounds checks (`[-64, 319]` Overworld, `[0, 127]` Nether, `|coord| <= 5120`).\n2. **Chunk Management & Watchdog Safety**:\n   - Unique chunk extraction via `chunks.set(Math.floor(x/16)+','+Math.floor(z/16), p)` correctly groups coordinate columns. At <=4 chunks for 2 planes + height probes, the <=10 chunk limit is respected.\n   - Chunk pre-loading polls `manager.createTickingArea` up to 400 ticks (20s) before reading.\n   - The sampling loop yields via `await tick()` every 32 points (`i % 32 === 31`), preventing script watchdog exhaustion across 2066–4096 reads (~65–128 ticks total).\n   - Point queries wrap `dim.getBlock` and `dim.getBiome` in per-point `try/catch`, ensuring partial read anomalies emit structured row errors rather than unhandled script crashes.\n3. **Budget & Read Caps**:\n   - Total reads across pre-load (<=10), point sampling (<=4096), and mutations (<=20) reach at most 4126 block reads and 4096 biome reads, comfortably inside the `biomeReads <= 4096` and `blockReads <= 8192` ceilings.\n4. **Persistence Dirty/Restore**:\n   - Overworld-only marker mutation at `y: 319` captures `b.permutation` and `getAllStates()`, toggles block type, restores permutation in `finally`, and validates restoration before recording. This reliably marks chunks dirty for LevelDB persistence without permanent world corruption.\n\n### Changed Files\n- None (tool-free review role; `owned_paths: []`).\n\n### Tests Actually Run\n- None (tool-free review; no execution claimed).\n\n### Remaining Limitations\n- Observer correctness is contingent on outer runner harness enforcement (disposable container, hash verification, 280s/300s timeouts).\n- Approved practical game pilot execution remains pending Codex orchestration.\n",
+        "denied_actions": [],
+        "process_exit": 0,
+        "provider_status": "SUCCESS",
+        "response_truncated": false,
+        "checks": [],
+        "changed_files": [],
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "completed": 1792575208.259011,
+        "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 203632640
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/b6771149e2cb",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "c9a347812d01",
+      "role": "review",
+      "state": "succeeded",
+      "created": 1792577106.535678,
+      "updated": 1792577310.1064131,
+      "worker_id": "gemini-1",
+      "objective": "High TOOL-FREE final approved practical accuracy source critique. Begin ACCURACY_FINAL_REVIEW. Use actual source/context; no commands/readers/edits/network/agents/tests. <=650words actionable semantic/security/resource/performance risks. Do not infer fullseedaccuracy/playerlanding/census. Check curr",
+      "result": {
+        "worker_id": "gemini-1",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "c6e6bfcf5a7537a89033bc682e3234fd8438d647c11c7d207056a7cc5d5516eb",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792577111.336643,
+        "attempts": [
+          {
+            "kind": "ok",
+            "process_exit": 0,
+            "status": "SUCCESS",
+            "response": "### ACCURACY_FINAL_REVIEW\n\n**Outcome:** Actionable semantic, resource, and false-matching risks identified in `accuracy_query.py`. No files edited or commands run (tool-free review per contract). 500-concurrent HTTP capacity failure is reproducible from mechanism and cannot be waived.\n\n---\n\n### Key Findings & Mechanisms\n\n#### 1. Inverted Unknown Separation & False Incomplete Categorization ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L76-L92))\n* **Mechanism:** For biome predicates, `if not present or not all(layout['complete'][14+BIOME_SLOTS[f]][slot] for f in predicate['any_of']): unknown = True`.\n* **Bugs:**\n  1. If a world is 100% evaluated and a required biome is definitively absent (`not present` is `True`, `all(...)` is `True`), `unknown` evaluates to `True`. Because biomes never set `impossible = True`, every definitively non-matching seed in the catalog is falsely classified as `status='unresolved'` (`reason='Required evidence is incomplete'`) and returned in `unresolved_candidates` instead of being rejected.\n  2. If a required biome alternative is already satisfied (`present = True`), but an unused alternative in `any_of` was not fully evaluated (`not all(...) = True`), `unknown` is still flagged `True`.\n* **Fix:**\n  ```python\n  if present:\n      pass\n  elif not all(layout['complete'][14+BIOME_SLOTS[f]][slot] for f in predicate['any_of']):\n      unknown = True\n  else:\n      impossible = True; break\n  ```\n\n#### 2. Resource Starvation: Cache Checked After Bundle Parsing & DB Proofs ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L35-L45))\n* **Mechanism:** Before checking `service._cached_result(cache_key)`, `query()` executes:\n  1. `bound_entries()`: calls [`read_bundle()`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py#L72-L86), which runs [`validate_bundle()`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py#L13-L41) (decompressing up to 256 zlib tiles) and executes SQLite membership queries.\n  2. Snapshot proof computation: fetches and hashes 2,000 DB rows (`SELECT world_id... FROM observation_ref`).\n* **Impact:** Every cached request still performs heavy synchronous disk I/O, zlib decompression, and SQLite table locks. Under 500 concurrent HTTP requests, this causes CPU exhaustion and connection pool timeouts, directly explaining the capacity test failure.\n\n#### 3. Coarse Prefilter Origin Anchor Leak in Recommended Mode ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L54-L57))\n* **Mechanism:** When `req['anchor_mode'] == 'recommended'`, `(req['anchor_mode'] != 'origin' or layout['anchor'] == [0,0])` is vacuously `True`.\n* **Impact:** Origin layouts (`anchor == [0, 0]`) from segmented storage are ingested into `by_layout` alongside recommended layouts. They bypass the `ENVELOPE` check (only enforced on `entries`), duplicate world entries in `ranked`, and distort `matched_worlds = len(ranked)`.\n\n#### 4. Redundant Cold Bundle Deserialization ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L37-L47))\n* **Mechanism:** `read_bundle` is invoked in `bound_entries()` and called a second time at line 47 on cold queries, duplicating JSON parsing and tile validation.\n\n#### 5. Cursor Expiration Check Missing ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L98-L108))\n* **Mechanism:** `_page()` verifies request SHA, snapshot ID, and page size, but omits `if cursor.get('expires', 0) < time.time(): raise ServiceError('Cursor expired', ...)`. Expired cursor tokens are accepted indefinitely.\n\n#### 6. Immutable Bindings and Provider Scopes\n* [`accuracy_store.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py) publication locking (`fcntl.flock`) and strict immutable bundle appending (`old['anchors']` and `old['tiles']` subset checks) are sound.\n* [`refinement.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/refinement.py#L14-L22) correctly isolates raw namespaces across providers, though `provider_id` hashing excludes `evidence_sha256` solely for `procedural_model_v1`.\n\n---\n\n* **Changed files:** None (review role).\n* **Tests actually run:** None (tool-free review; static analysis).\n* **Remaining limitations / disagreements:** The 500-concurrent HTTP capacity failure cannot be certified or waived until the query cache check is placed ahead of tile decompression and snapshot proof validation, and the unknown/prefilter logic bugs are corrected.\n",
+            "denied_actions": [],
+            "usage": {
+              "input_tokens": 17865,
+              "output_tokens": 28637,
+              "thinking_tokens": 27095,
+              "cache_read_tokens": 0,
+              "total_tokens": 46502
+            },
+            "conversation_id": "f5e4948c-3395-4cea-b025-98532989515a",
+            "duration_seconds": 194.538,
+            "response_truncated": false
+          }
+        ],
+        "usage": {
+          "input_tokens": 17865,
+          "output_tokens": 28637,
+          "thinking_tokens": 27095,
+          "cache_read_tokens": 0,
+          "total_tokens": 46502
+        },
+        "response": "### ACCURACY_FINAL_REVIEW\n\n**Outcome:** Actionable semantic, resource, and false-matching risks identified in `accuracy_query.py`. No files edited or commands run (tool-free review per contract). 500-concurrent HTTP capacity failure is reproducible from mechanism and cannot be waived.\n\n---\n\n### Key Findings & Mechanisms\n\n#### 1. Inverted Unknown Separation & False Incomplete Categorization ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L76-L92))\n* **Mechanism:** For biome predicates, `if not present or not all(layout['complete'][14+BIOME_SLOTS[f]][slot] for f in predicate['any_of']): unknown = True`.\n* **Bugs:**\n  1. If a world is 100% evaluated and a required biome is definitively absent (`not present` is `True`, `all(...)` is `True`), `unknown` evaluates to `True`. Because biomes never set `impossible = True`, every definitively non-matching seed in the catalog is falsely classified as `status='unresolved'` (`reason='Required evidence is incomplete'`) and returned in `unresolved_candidates` instead of being rejected.\n  2. If a required biome alternative is already satisfied (`present = True`), but an unused alternative in `any_of` was not fully evaluated (`not all(...) = True`), `unknown` is still flagged `True`.\n* **Fix:**\n  ```python\n  if present:\n      pass\n  elif not all(layout['complete'][14+BIOME_SLOTS[f]][slot] for f in predicate['any_of']):\n      unknown = True\n  else:\n      impossible = True; break\n  ```\n\n#### 2. Resource Starvation: Cache Checked After Bundle Parsing & DB Proofs ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L35-L45))\n* **Mechanism:** Before checking `service._cached_result(cache_key)`, `query()` executes:\n  1. `bound_entries()`: calls [`read_bundle()`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py#L72-L86), which runs [`validate_bundle()`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py#L13-L41) (decompressing up to 256 zlib tiles) and executes SQLite membership queries.\n  2. Snapshot proof computation: fetches and hashes 2,000 DB rows (`SELECT world_id... FROM observation_ref`).\n* **Impact:** Every cached request still performs heavy synchronous disk I/O, zlib decompression, and SQLite table locks. Under 500 concurrent HTTP requests, this causes CPU exhaustion and connection pool timeouts, directly explaining the capacity test failure.\n\n#### 3. Coarse Prefilter Origin Anchor Leak in Recommended Mode ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L54-L57))\n* **Mechanism:** When `req['anchor_mode'] == 'recommended'`, `(req['anchor_mode'] != 'origin' or layout['anchor'] == [0,0])` is vacuously `True`.\n* **Impact:** Origin layouts (`anchor == [0, 0]`) from segmented storage are ingested into `by_layout` alongside recommended layouts. They bypass the `ENVELOPE` check (only enforced on `entries`), duplicate world entries in `ranked`, and distort `matched_worlds = len(ranked)`.\n\n#### 4. Redundant Cold Bundle Deserialization ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L37-L47))\n* **Mechanism:** `read_bundle` is invoked in `bound_entries()` and called a second time at line 47 on cold queries, duplicating JSON parsing and tile validation.\n\n#### 5. Cursor Expiration Check Missing ([`accuracy_query.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_query.py#L98-L108))\n* **Mechanism:** `_page()` verifies request SHA, snapshot ID, and page size, but omits `if cursor.get('expires', 0) < time.time(): raise ServiceError('Cursor expired', ...)`. Expired cursor tokens are accepted indefinitely.\n\n#### 6. Immutable Bindings and Provider Scopes\n* [`accuracy_store.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/accuracy_store.py) publication locking (`fcntl.flock`) and strict immutable bundle appending (`old['anchors']` and `old['tiles']` subset checks) are sound.\n* [`refinement.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01/workspace/src/seed_search/catalog/refinement.py#L14-L22) correctly isolates raw namespaces across providers, though `provider_id` hashing excludes `evidence_sha256` solely for `procedural_model_v1`.\n\n---\n\n* **Changed files:** None (review role).\n* **Tests actually run:** None (tool-free review; static analysis).\n* **Remaining limitations / disagreements:** The 500-concurrent HTTP capacity failure cannot be certified or waived until the query cache check is placed ahead of tile decompression and snapshot proof validation, and the unknown/prefilter logic bugs are corrected.\n",
+        "denied_actions": [],
+        "process_exit": 0,
+        "provider_status": "SUCCESS",
+        "response_truncated": false,
+        "checks": [],
+        "changed_files": [],
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "completed": 1792577310.1038709,
+        "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 211804160
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c9a347812d01",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    },
+    {
+      "task_id": "547e3de479d3",
+      "role": "review",
+      "state": "succeeded",
+      "created": 1792577111.367154,
+      "updated": 1792577200.924991,
+      "worker_id": "gemini-2",
+      "objective": "High TOOL-FREE independent final UI integration review. Begin ACCURACY_UI_REVIEW. Only embeddedactual excerpts/context, no tools/readers/edit/network/agents/tests. <=500words actionable anchor/generation/favorites/stale-state/accessibility/evidence UX bugs or no blockers. Existing fourpillars retain",
+      "result": {
+        "worker_id": "gemini-2",
+        "model": "gemini-3.8-flash-high",
+        "reasoning_effort": "high",
+        "baseline_digest": "c6e6bfcf5a7537a89033bc682e3234fd8438d647c11c7d207056a7cc5d5516eb",
+        "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+        "attempt": 1,
+        "started": 1792577116.2912588,
+        "attempts": [
+          {
+            "kind": "ok",
+            "process_exit": 0,
+            "status": "SUCCESS",
+            "response": "ACCURACY_UI_REVIEW\n\n### Outcome\nStatic review completed across [useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts), [CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx), [DetailModal.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/DetailModal.tsx), [CandidateCard.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CandidateCard.tsx), and [validation.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts). No architectural blockers preventing integration. Uncertainty semantics (X/Z reference only, no physical census/landing/safety claims, coarse missing tiles not proving absence) are sound. Four actionable static UI/binding bugs identified.\n\n---\n\n### Actionable Findings & Evidence\n\n1. **Duplicate Anchor Modes & Non-Unique React Key** ([CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L32-L33), [CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L240-L245)):\n   - **Evidence**: `const anchorModes = [...(capabilities?.anchor_modes?.length ? capabilities.anchor_modes : ANCHOR_MODES), ...(snapshots.find(...)?.accuracy_anchor_modes || [])];` rendered with `key={ANCHOR_LABELS[mode]}`.\n   - **Bug**: If capabilities and snapshot metadata overlap, duplicate buttons render and duplicate keys collide in React reconciliation.\n   - **Fix**: Deduplicate modes via `Array.from(new Set(anchorModes))` and key by `mode`.\n\n2. **Anchor Selector Accessibility Missing ARIA State** ([CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L242-L255)):\n   - **Evidence**: Mode buttons apply visual classes based on `anchorMode === mode` but omit `aria-pressed={anchorMode === mode}` (or `role=\"radiogroup\"` / `role=\"radio\"` with `aria-checked`).\n   - **Bug**: Assistive technologies cannot determine active anchor selection.\n\n3. **Persistent `storageError` Masquerades as Query Error** ([useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L25-L27), [useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L78)):\n   - **Evidence**: Hook returns `queryError: queryError || storageError`.\n   - **Bug**: If `localStorage` read fails on mount, `storageError` is set. When queries run, `useEffect([payloadKey])` clears `queryError`, but `storageError` remains truthy, permanently displaying a query error banner despite successful queries.\n   - **Fix**: Return `storageError` as an independent state property.\n\n4. **Favorite Persistence Missing `border_side` Fallback** ([useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L47), [validation.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts#L16)):\n   - **Evidence**: `toggleFavorite` stores `border_side: c.border_side`. [`validFavorites`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts#L9-L21) enforces `[2048, 4096, 8192].includes(f.border_side)`.\n   - **Bug**: If candidate items lack explicit per-record `border_side` (relying on query-level scope), saving throws `Invalid favorite metadata`.\n   - **Fix**: Fall back defensively: `border_side: c.border_side || borderSide`.\n\n---\n\n### Uncertainty Semantics & Stale State Verification\n- **Uncertainty Disclaimers**: Preserved accurately in [DetailModal.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/DetailModal.tsx#L190-L195) (*\"X/Z only. Player landing, usable ground height and safety are unverified\"*), [CandidateCard.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CandidateCard.tsx#L48) (*\"X/Z reference, not player landing\"*), and unresolved candidate disclosures (*\"potential candidates, separate from matches under selected evidence policy\"*).\n- **Stale State Management**: Request aborts and epoch tracking (`requestEpoch`, `detailEpoch`) properly invalidate in-flight queries and detail inspections on payload/hash change.\n- **Four Pillars**: Navigation, presets, personalization, and rare criteria state bindings remain intact.\n\n---\n\n### Verification Status & Limitations\n- **Changed Files**: Read-only static review; 0 files modified (`owned_paths: []`).\n- **Tests Actually Run**: None (tool-free constraint; interactive browser QA waived by user). All findings represent static code evaluations.\n",
+            "denied_actions": [],
+            "usage": {
+              "input_tokens": 17810,
+              "output_tokens": 11246,
+              "thinking_tokens": 9711,
+              "cache_read_tokens": 0,
+              "total_tokens": 29056
+            },
+            "conversation_id": "f9e76bbe-3612-40b0-9e2e-625731552306",
+            "duration_seconds": 81.043313,
+            "response_truncated": false
+          }
+        ],
+        "usage": {
+          "input_tokens": 17810,
+          "output_tokens": 11246,
+          "thinking_tokens": 9711,
+          "cache_read_tokens": 0,
+          "total_tokens": 29056
+        },
+        "response": "ACCURACY_UI_REVIEW\n\n### Outcome\nStatic review completed across [useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts), [CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx), [DetailModal.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/DetailModal.tsx), [CandidateCard.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CandidateCard.tsx), and [validation.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts). No architectural blockers preventing integration. Uncertainty semantics (X/Z reference only, no physical census/landing/safety claims, coarse missing tiles not proving absence) are sound. Four actionable static UI/binding bugs identified.\n\n---\n\n### Actionable Findings & Evidence\n\n1. **Duplicate Anchor Modes & Non-Unique React Key** ([CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L32-L33), [CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L240-L245)):\n   - **Evidence**: `const anchorModes = [...(capabilities?.anchor_modes?.length ? capabilities.anchor_modes : ANCHOR_MODES), ...(snapshots.find(...)?.accuracy_anchor_modes || [])];` rendered with `key={ANCHOR_LABELS[mode]}`.\n   - **Bug**: If capabilities and snapshot metadata overlap, duplicate buttons render and duplicate keys collide in React reconciliation.\n   - **Fix**: Deduplicate modes via `Array.from(new Set(anchorModes))` and key by `mode`.\n\n2. **Anchor Selector Accessibility Missing ARIA State** ([CatalogWorkspace.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CatalogWorkspace.tsx#L242-L255)):\n   - **Evidence**: Mode buttons apply visual classes based on `anchorMode === mode` but omit `aria-pressed={anchorMode === mode}` (or `role=\"radiogroup\"` / `role=\"radio\"` with `aria-checked`).\n   - **Bug**: Assistive technologies cannot determine active anchor selection.\n\n3. **Persistent `storageError` Masquerades as Query Error** ([useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L25-L27), [useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L78)):\n   - **Evidence**: Hook returns `queryError: queryError || storageError`.\n   - **Bug**: If `localStorage` read fails on mount, `storageError` is set. When queries run, `useEffect([payloadKey])` clears `queryError`, but `storageError` remains truthy, permanently displaying a query error banner despite successful queries.\n   - **Fix**: Return `storageError` as an independent state property.\n\n4. **Favorite Persistence Missing `border_side` Fallback** ([useCatalogState.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/useCatalogState.ts#L47), [validation.ts](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts#L16)):\n   - **Evidence**: `toggleFavorite` stores `border_side: c.border_side`. [`validFavorites`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/validation.ts#L9-L21) enforces `[2048, 4096, 8192].includes(f.border_side)`.\n   - **Bug**: If candidate items lack explicit per-record `border_side` (relying on query-level scope), saving throws `Invalid favorite metadata`.\n   - **Fix**: Fall back defensively: `border_side: c.border_side || borderSide`.\n\n---\n\n### Uncertainty Semantics & Stale State Verification\n- **Uncertainty Disclaimers**: Preserved accurately in [DetailModal.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/DetailModal.tsx#L190-L195) (*\"X/Z only. Player landing, usable ground height and safety are unverified\"*), [CandidateCard.tsx](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3/workspace/CandidateCard.tsx#L48) (*\"X/Z reference, not player landing\"*), and unresolved candidate disclosures (*\"potential candidates, separate from matches under selected evidence policy\"*).\n- **Stale State Management**: Request aborts and epoch tracking (`requestEpoch`, `detailEpoch`) properly invalidate in-flight queries and detail inspections on payload/hash change.\n- **Four Pillars**: Navigation, presets, personalization, and rare criteria state bindings remain intact.\n\n---\n\n### Verification Status & Limitations\n- **Changed Files**: Read-only static review; 0 files modified (`owned_paths: []`).\n- **Tests Actually Run**: None (tool-free constraint; interactive browser QA waived by user). All findings represent static code evaluations.\n",
+        "denied_actions": [],
+        "process_exit": 0,
+        "provider_status": "SUCCESS",
+        "response_truncated": false,
+        "checks": [],
+        "changed_files": [],
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "completed": 1792577200.923147,
+        "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+        "resource_usage": {
+          "peak_process_tree_rss_bytes": 208498688
+        }
+      },
+      "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/547e3de479d3",
+      "needs_codex_review": true,
+      "integration_status": "not_integrated"
+    }
+  ]
+}

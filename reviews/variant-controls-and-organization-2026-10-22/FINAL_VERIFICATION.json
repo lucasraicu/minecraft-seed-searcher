@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "adoption": {
+    "ok": true,
+    "pid": 22035,
+    "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog",
+    "port": 3001,
+    "personal_pid": 91321,
+    "vite_pid": 17880,
+    "rollback_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/biome-expansion-approved-20261022/catalog-corrected",
+    "startup_note": "Initial 30-second readiness wait expired while warming; process remained healthy, subsequent readiness passed."
+  },
+  "catalog_audit": {
+    "status": "PASS",
+    "source_snapshot": "9637bc21753fa249775f0b11e84ec7a9a92d3872d7982f8e3dfd9a2be4859421",
+    "successor_snapshot": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+    "worlds": 222,
+    "summary_rows": 54615,
+    "variant_feature_oracles": 109230,
+    "old_memberships_preserved": 109438,
+    "new_variant_lists": 12,
+    "new_variant_memberships": 480,
+    "immutable_history_files_verified": 6808,
+    "seconds": 58.662480619037524
+  },
+  "organization": {
+    "ok": true,
+    "index_links_checked": 460,
+    "document_moves": 8,
+    "root_markdown": 14,
+    "deleted_payloads": 0,
+    "preexisting_payload_changes": [
+      "CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "DIAGRAMS.md",
+      "CODEX_HANDOFF.md",
+      "Public_Catalog_Master_Plan.md",
+      "MASTER_PLATFORM_SPECIFICATION.md",
+      "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "AUDIT_CONTEXT.md",
+      "MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "REPO_ORGANIZATION_PLAN.md",
+      "PUBLIC_CATALOG_SYSTEM_SPEC.md"
+    ],
+    "protected_files": 199,
+    "native_files": 57
+  },
+  "ui": {
+    "ok": true,
+    "real_snapshot_option_checks": 4,
+    "actual_product_responses_decoded": 4,
+    "biome_ui_suite": 25,
+    "product_ui_suite": 17
+  },
+  "portable_fixture": {
+    "status": "PASS",
+    "members": 137,
+    "control_worlds": 8,
+    "static_checks": 48,
+    "game_runtime_seconds": 283.5292337500723,
+    "archive_sha256": "ab4d7a9cbf53781db8d8d51f9f5a8877dcb329d3a39c484690905dccc985aaea"
+  },
+  "http": {
+    "ok": true,
+    "base": "http://127.0.0.1:3001",
+    "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+    "checks": [
+      {
+        "name": "capabilities",
+        "status": 200,
+        "seconds": 0.08205141394864768
+      },
+      {
+        "name": "historical-capabilities",
+        "status": 200,
+        "seconds": 0.07847409299574792
+      },
+      {
+        "name": "snapshots",
+        "status": 200,
+        "seconds": 0.6782085710437968
+      },
+      {
+        "name": "automation-status",
+        "status": 200,
+        "seconds": 0.5214667241089046
+      },
+      {
+        "name": "igloo-origin",
+        "status": 200,
+        "seconds": 2.197338473983109
+      },
+      {
+        "name": "treasure-origin",
+        "status": 200,
+        "seconds": 2.102915807045065
+      },
+      {
+        "name": "igloo-recommended",
+        "status": 200,
+        "seconds": 2.845449863001704
+      },
+      {
+        "name": "treasure-recommended",
+        "status": 200,
+        "seconds": 2.6801078550051898
+      },
+      {
+        "name": "igloo-world_spawn_estimated",
+        "status": 200,
+        "seconds": 2.0806085870135576
+      },
+      {
+        "name": "treasure-world_spawn_estimated",
+        "status": 200,
+        "seconds": 2.064633397036232
+      },
+      {
+        "name": "mixed-8192",
+        "status": 200,
+        "seconds": 3.0890828230185434
+      },
+      {
+        "name": "historical-gate",
+        "status": 400,
+        "seconds": 3.0869793830206618
+      },
+      {
+        "name": "detail",
+        "status": 200,
+        "seconds": 4.472319831955247
+      },
+      {
+        "name": "products",
+        "status": 200,
+        "seconds": 0.00841417198535055
+      },
+      {
+        "name": "product-0-primary",
+        "status": 200,
+        "seconds": 3.240451859892346
+      },
+      {
+        "name": "product-0-reserve",
+        "status": 200,
+        "seconds": 3.213360209017992
+      },
+      {
+        "name": "product-1-primary",
+        "status": 200,
+        "seconds": 3.401675052009523
+      },
+      {
+        "name": "product-1-reserve",
+        "status": 200,
+        "seconds": 3.5861495550489053
+      }
+    ]
+  },
+  "proxy_personal": {
+    "ok": true,
+    "checks": [
+      {
+        "port": 5173,
+        "status": 200,
+        "seconds": 0.0925218410557136
+      },
+      {
+        "port": 3000,
+        "status": 200,
+        "seconds": 0.0038770140381529927
+      }
+    ],
+    "processes": "17880 node /Users/lucasraicu/Downloads/minecraft-seed-searcher/web-ui/node_modules/.bin/vite --host 127.0.0.1 --port 5173\n22035 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.catalog.http_server --root /Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog --port 3001 --query-processes 2\n91321 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.web.server 3000\n"
+  },
+  "legacy_json_contracts": 11,
+  "gemini_running": 0,
+  "gemini_account_pause": null,
+  "python_tests": {
+    "passed": 66,
+    "seconds": 7.57,
+    "reused_completed_current_task_result": true
+  },
+  "limitations": [
+    "Finite targeted controls, not population accuracy",
+    "Bastion subtype zero not directly controlled",
+    "Results remain predicted, not individually BDS-certified",
+    "Broader source/test relocations outside approved safe organization"
+  ],
+  "final_report_handoff_links_checked": 23
+}

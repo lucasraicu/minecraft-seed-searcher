@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "goal_scope": "A-D implementation/verification;GPUcontractonly;databasecomparison",
+  "head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+  "source_baseline_files": 978,
+  "approved_existing_file_changes": [
+    "CODEX_HANDOFF.md",
+    "docs/PRE_GPU_READINESS_PLAN.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/REPOSITORY_MAP.md",
+    "docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+    "src/seed_search/catalog/automation.py",
+    "src/seed_search/catalog/automation_query.py",
+    "src/seed_search/catalog/harvest_native.py",
+    "src/seed_search/catalog/ingestion.py",
+    "src/seed_search/catalog/service.py"
+  ],
+  "protected_source_state_changed": [
+    "src/seed_search/catalog/service.py",
+    "src/seed_search/catalog/ingestion.py",
+    "src/seed_search/catalog/automation.py",
+    "src/seed_search/catalog/automation_query.py",
+    "src/seed_search/catalog/harvest_native.py"
+  ],
+  "protected_personal_native_checkpoint_files": 199,
+  "live_immutable_artifacts": 8624,
+  "unchanged_frozen_catalog_json_files": 15,
+  "original_summary_source_preserved": true,
+  "live_processes_match": true,
+  "live_public_capabilities_control_status_match": true,
+  "live_personal_run_config_counters_identity_match": true,
+  "source_restore_and_native_smoke": true,
+  "required_receipts": [
+    "REFERENCE_FREEZE.json",
+    "RESTORE_NATIVE_SMOKE.json",
+    "SERVING_PARITY.json",
+    "FIXED_REPLAY_PARITY.json",
+    "SAVED_FACT_REPLAY.json",
+    "SUSTAINED.json",
+    "POSITIVE_COEXISTENCE.json",
+    "BACKPRESSURE.json",
+    "FRONTEND_CHECKS.json",
+    "GPU_CONTRACT_VERIFICATION.json",
+    "DATABASE_COMPARISON.json",
+    "DATABASE_RECOVERY.json",
+    "SQLITE_PRIVATE_RUNTIME.json"
+  ],
+  "full_selected_tests": 687,
+  "private_runtime_coverage": {
+    "initial_passed": 678,
+    "bootstrap_failures_preserved": 9,
+    "corrected_rerun_passed": 9
+  },
+  "node_suites": 10,
+  "frontend_build": true,
+  "links_checked": 140,
+  "broken_links": [],
+  "workers": [
+    {
+      "task_id": "c27d5a82c593",
+      "state": "failed",
+      "error": "Antigravity result rejected: permission_denied"
+    },
+    {
+      "task_id": "8ff74cff4f2a",
+      "state": "failed",
+      "error": "Antigravity result rejected: permission_denied"
+    },
+    {
+      "task_id": "048cd901ee8c",
+      "state": "failed",
+      "error": "timeout"
+    },
+    {
+      "task_id": "200e3433e2de",
+      "state": "failed",
+      "error": "timeout"
+    }
+  ],
+  "resource": {
+    "status": "PASS",
+    "extraction_seconds_charged": 342.13756299600936,
+    "extraction_cap_seconds": 600,
+    "failed_attempt_seconds_included": true,
+    "private_current_logical_bytes": 1906105873,
+    "new_worker_snapshot_bytes": {
+      "c27d5a82c593": 157905574,
+      "8ff74cff4f2a": 157905343,
+      "048cd901ee8c": 157565696,
+      "200e3433e2de": 157460470
+    },
+    "workspace_new_or_modified_bytes": 77478483,
+    "owned_remaining_pytest_bytes": 8019033,
+    "current_total_logical_bytes": 2622440472,
+    "conservative_sampled_peak_including_static_extras": 2641849655,
+    "logical_disk_cap_bytes": 3221225472,
+    "observed_aggregate_rss_peak_bytes": 2131521536,
+    "aggregate_rss_cap_bytes": 4294967296,
+    "scope": "Observed benchmark trees plus actual final static worker/workspace/temp outputs; initial worker RSS peaks preserved separately. No deleted evidence or recycled allocations"
+  },
+  "limitations": [
+    "Live source/runtime adoption and patched production interpreter remain separate",
+    "No GPU kernel/device/fleet performance claim",
+    "Prototype database/lookups and row replicas are not complete API/fleet benchmarks",
+    "Natural full100heap/real retention quality/unique discovery not measured",
+    "Known explicit multithreaded-fork test warning",
+    "No supplemental worker findings counted;Codex reviewed/verified source"
+  ],
+  "implementation_sha256": {
+    "src/seed_search/catalog/ingestion.py": "8b80b100c279029374c4cd0500004d3e4c9e3d84d7a9cdaf90c2a87e67e2b3b6",
+    "src/seed_search/catalog/harvest_native.py": "c5fe48811e3b3fb9d3416d71ecedcb8b96db3c48ac542614b2d5e019da29186c",
+    "src/seed_search/catalog/automation.py": "9a0a8e8c3b6ef544fb44ffccc22113813377091d7bd7ec496d6ccfef01163ce3",
+    "src/seed_search/catalog/service.py": "c6ab24e26f2cbbe880d80978e22986a2b0d9b1acb7a821f9e38dedc17b6d23ec",
+    "src/seed_search/catalog/automation_query.py": "3d107fc79492120f5d1570c34d9855fde4d016ae41dce7e10a9af6ffc9245845",
+    "src/seed_search/catalog/summaries_fast.py": "ca14b7a704f686bf5c90bcc163879dd7d80bf2dcf6f8760093c8fd02914e9412",
+    "src/seed_search/catalog/read_views.py": "d9e35eff01b8114dd6289dc80c10fc37651add31513ffcd5e26b9e70fd35d51b",
+    "tests/catalog/test_ingestion_optimization.py": "6044383411df07b1aadc85a4fd9a8dd892dc93a26b1e06b235364877bfa47d37",
+    "tests/catalog/test_guarded_read_views.py": "ea51c18efe07bc82875871bbadeab79c5d9b7349cc4afe0a7831d7ff9534347c",
+    "tests/catalog/test_versioned_derivation.py": "28f4b734d4390cbb9f886c8acb5038e51781430e04628c4e1b82981689e2d3f2",
+    "tests/test_readiness_reserve_capacity.py": "e4298256d3842dedf3a61d9c518da613406c63d3808045313f0493a84cfbf38c"
+  },
+  "final_owned_benchmark_processes": [],
+  "resource_monitor_terminated": true
+}

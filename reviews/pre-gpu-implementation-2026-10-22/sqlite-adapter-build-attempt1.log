@@ -1,0 +1,24 @@
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/blob.c:7:10: fatal error: 'pycore_weakref.h' file not found
+    7 | #include "pycore_weakref.h"    // FT_CLEAR_WEAKREFS()
+      |          ^~~~~~~~~~~~~~~~~~
+1 error generated.
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/connection.c:37:10: fatal error: 'pycore_import.h' file not found
+   37 | #include "pycore_import.h"        // _PyImport_GetModuleAttrString()
+      |          ^~~~~~~~~~~~~~~~~
+1 error generated.
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/cursor.c:33:10: fatal error: 'pycore_pyerrors.h' file not found
+   33 | #include "pycore_pyerrors.h"      // _PyErr_FormatFromCause()
+      |          ^~~~~~~~~~~~~~~~~~~
+1 error generated.
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/module.c:36:10: fatal error: 'pycore_import.h' file not found
+   36 | #include "pycore_import.h"        // _PyImport_GetModuleAttrString()
+      |          ^~~~~~~~~~~~~~~~~
+1 error generated.
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/row.c:32:10: fatal error: 'clinic/row.c.h' file not found
+   32 | #include "clinic/row.c.h"
+      |          ^~~~~~~~~~~~~~~~
+1 error generated.
+/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/sqlite-fixed/adapter/util.c:29:10: fatal error: 'pycore_long.h' file not found
+   29 | #include "pycore_long.h"          // _PyLong_AsByteArray()
+      |          ^~~~~~~~~~~~~~~
+1 error generated.

@@ -1,0 +1,391 @@
+{
+  "cold_definition": "fresh service cache; OS filesystem cache not flushed",
+  "query_seconds": 10,
+  "cases": [
+    {
+      "query_id": 0,
+      "mode": "origin",
+      "side": 2048,
+      "query_type": "broad",
+      "cold_seconds": 3.0606696780305356,
+      "warm_seconds": 0.03021008602809161,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 500,
+        "eligible_layouts": 500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.0547369370469823
+      }
+    },
+    {
+      "query_id": 1,
+      "mode": "origin",
+      "side": 2048,
+      "query_type": "selective",
+      "cold_seconds": 2.908652509911917,
+      "warm_seconds": 0.01706967898644507,
+      "matched_worlds": 45,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 45,
+        "eligible_layouts": 45,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 2.9045801169704646
+      }
+    },
+    {
+      "query_id": 2,
+      "mode": "origin",
+      "side": 2048,
+      "query_type": "mixed",
+      "cold_seconds": 3.030661236960441,
+      "warm_seconds": 0.02644833503291011,
+      "matched_worlds": 449,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 449,
+        "eligible_layouts": 449,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.0247292920248583
+      }
+    },
+    {
+      "query_id": 3,
+      "mode": "recommended",
+      "side": 2048,
+      "query_type": "broad",
+      "cold_seconds": 7.510843698983081,
+      "warm_seconds": 0.034246686031110585,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 40500,
+        "eligible_layouts": 40500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 7.504246045020409
+      }
+    },
+    {
+      "query_id": 4,
+      "mode": "recommended",
+      "side": 2048,
+      "query_type": "selective",
+      "cold_seconds": 3.3855465099914,
+      "warm_seconds": 0.02280922094359994,
+      "matched_worlds": 257,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 3794,
+        "eligible_layouts": 3794,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.3778295600786805
+      }
+    },
+    {
+      "query_id": 5,
+      "mode": "recommended",
+      "side": 2048,
+      "query_type": "mixed",
+      "cold_seconds": 6.309456747956574,
+      "warm_seconds": 0.030458385008387268,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 36286,
+        "eligible_layouts": 36286,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 6.303380140918307
+      }
+    },
+    {
+      "query_id": 6,
+      "mode": "origin",
+      "side": 4096,
+      "query_type": "broad",
+      "cold_seconds": 3.029935725964606,
+      "warm_seconds": 0.03061482694465667,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 500,
+        "eligible_layouts": 500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.024002618039958
+      }
+    },
+    {
+      "query_id": 7,
+      "mode": "origin",
+      "side": 4096,
+      "query_type": "selective",
+      "cold_seconds": 2.8903755840146914,
+      "warm_seconds": 0.017023300984874368,
+      "matched_worlds": 45,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 45,
+        "eligible_layouts": 45,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 2.8860800199909136
+      }
+    },
+    {
+      "query_id": 8,
+      "mode": "origin",
+      "side": 4096,
+      "query_type": "mixed",
+      "cold_seconds": 3.0083258929662406,
+      "warm_seconds": 0.02628419001121074,
+      "matched_worlds": 449,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 449,
+        "eligible_layouts": 449,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.002712020999752
+      }
+    },
+    {
+      "query_id": 9,
+      "mode": "recommended",
+      "side": 4096,
+      "query_type": "broad",
+      "cold_seconds": 7.516552177956328,
+      "warm_seconds": 0.03441784007009119,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 40500,
+        "eligible_layouts": 40500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 7.50993315607775
+      }
+    },
+    {
+      "query_id": 10,
+      "mode": "recommended",
+      "side": 4096,
+      "query_type": "selective",
+      "cold_seconds": 3.396589230047539,
+      "warm_seconds": 0.023236963083036244,
+      "matched_worlds": 257,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 3794,
+        "eligible_layouts": 3794,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.388689024024643
+      }
+    },
+    {
+      "query_id": 11,
+      "mode": "recommended",
+      "side": 4096,
+      "query_type": "mixed",
+      "cold_seconds": 6.3303524809889495,
+      "warm_seconds": 0.027195411967113614,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 36286,
+        "eligible_layouts": 36286,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 6.324800907983445
+      }
+    },
+    {
+      "query_id": 12,
+      "mode": "origin",
+      "side": 8192,
+      "query_type": "broad",
+      "cold_seconds": 3.240260962047614,
+      "warm_seconds": 0.03130350005812943,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 500,
+        "eligible_layouts": 500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.23420233593788
+      }
+    },
+    {
+      "query_id": 13,
+      "mode": "origin",
+      "side": 8192,
+      "query_type": "selective",
+      "cold_seconds": 3.0280995429493487,
+      "warm_seconds": 0.017545319977216423,
+      "matched_worlds": 45,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 45,
+        "eligible_layouts": 45,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.0240182789275423
+      }
+    },
+    {
+      "query_id": 14,
+      "mode": "origin",
+      "side": 8192,
+      "query_type": "mixed",
+      "cold_seconds": 3.0414522829232737,
+      "warm_seconds": 0.027006292948499322,
+      "matched_worlds": 449,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 449,
+        "eligible_layouts": 449,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.0361710300203413
+      }
+    },
+    {
+      "query_id": 15,
+      "mode": "recommended",
+      "side": 8192,
+      "query_type": "broad",
+      "cold_seconds": 7.500431271968409,
+      "warm_seconds": 0.031552552012726665,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 40500,
+        "eligible_layouts": 40500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 7.493104320950806
+      }
+    },
+    {
+      "query_id": 16,
+      "mode": "recommended",
+      "side": 8192,
+      "query_type": "selective",
+      "cold_seconds": 3.527259883005172,
+      "warm_seconds": 0.026281598955392838,
+      "matched_worlds": 257,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 3794,
+        "eligible_layouts": 3794,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 3.522176836966537
+      }
+    },
+    {
+      "query_id": 17,
+      "mode": "recommended",
+      "side": 8192,
+      "query_type": "mixed",
+      "cold_seconds": 6.329355171066709,
+      "warm_seconds": 0.028310480061918497,
+      "matched_worlds": 500,
+      "full_ordered_result_parity": true,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 36286,
+        "eligible_layouts": 36286,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 6.323866822058335
+      }
+    }
+  ],
+  "concurrency": [
+    {
+      "query_id": 3,
+      "status": 429,
+      "seconds": 0.015493070939555764,
+      "code": "busy",
+      "exact_parity": false
+    },
+    {
+      "query_id": 4,
+      "status": 429,
+      "seconds": 2.02290704799816,
+      "code": "busy",
+      "exact_parity": false
+    },
+    {
+      "query_id": 5,
+      "status": 429,
+      "seconds": 0.05113212193828076,
+      "code": "busy",
+      "exact_parity": false
+    },
+    {
+      "query_id": 6,
+      "status": 429,
+      "seconds": 0.05078427097760141,
+      "code": "busy",
+      "exact_parity": false
+    },
+    {
+      "query_id": 7,
+      "status": 200,
+      "seconds": 2.972327260999009,
+      "code": null,
+      "exact_parity": true
+    },
+    {
+      "query_id": 8,
+      "status": 429,
+      "seconds": 0.015671703033149242,
+      "code": "busy",
+      "exact_parity": false
+    },
+    {
+      "query_id": 9,
+      "status": 200,
+      "seconds": 7.554116159910336,
+      "code": null,
+      "exact_parity": true
+    },
+    {
+      "query_id": 10,
+      "status": 429,
+      "seconds": 2.023455992923118,
+      "code": "busy",
+      "exact_parity": false
+    }
+  ],
+  "capacity_gate_passed": true,
+  "all_18_single_queries_under_10s": true,
+  "peak_rss_bytes": 119705600
+}

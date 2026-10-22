@@ -1203,7 +1203,7 @@ void initBiomeNoise(BiomeNoise *bn, int mc)
 
 
 /// Biome sampler for MC 1.18
-int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
+static int sampleBiomeNoiseCore(const BiomeNoise *bn, int64_t *np, int x, double blockY, int z,
     uint64_t *dat, uint32_t sample_flags)
 {
     if (bn->nptype >= 0)
@@ -1238,8 +1238,7 @@ int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
         };
         double off = getSpline(bn->sp, np_param) + 0.015F;
 
-        //double py = y + sampleDoublePerlin(&bn->shift, y, z, x) * 4.0;
-        d = 1.0 - (y * 4) / 128.0 - 83.0/160.0 + off;
+        d = 1.0 - blockY / 128.0 - 83.0/160.0 + off;
     }
 
     t = sampleDoublePerlin(&bn->climate[NP_TEMPERATURE], px, 0, pz);
@@ -1258,6 +1257,22 @@ int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
     if (!(sample_flags & SAMPLE_NO_BIOME))
         id = climateToBiome(bn->mc, (const uint64_t*)p_np, dat);
     return id;
+}
+
+int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
+    uint64_t *dat, uint32_t sample_flags)
+{
+    /* Preserve the legacy integer multiply before conversion, including its
+     * defined wrapping semantics in builds using -fwrapv. */
+    return sampleBiomeNoiseCore(bn, np, x, (double)(y * 4), z, dat, sample_flags);
+}
+
+/* X/Z remain quart coordinates; Y is an exact block coordinate. Keep the
+ * integer-quart entry point above for all existing grid/climate callers. */
+int sampleBiomeNoiseAtBlockY(const BiomeNoise *bn, int64_t *np, int x, int blockY, int z,
+    uint64_t *dat, uint32_t sample_flags)
+{
+    return sampleBiomeNoiseCore(bn, np, x, blockY, z, dat, sample_flags);
 }
 
 // Note: Climate noise is sampled at a 1:1 scale.

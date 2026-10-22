@@ -1,0 +1,1447 @@
+{
+  "revision": "catalog-cold-query-profile-v1",
+  "cold_definition": "fresh service/result/index caches; OS filesystem cache not flushed",
+  "source_hashes": {
+    "src/seed_search/catalog/store.py": "3c73c47d794fa84aeacdc5af8e280fe960f832e635ccc3570cd46cb5aaa6a6fd",
+    "src/seed_search/catalog/refinement_queue.py": "a42112f6541c105ade6d227831f682c998665e95184ef80eed5cf34f4548314b",
+    "src/seed_search/catalog/service.py": "8fa3f9133ac0bcd253304fcb780e5dfd328755dfc228cd9150a2b74a07d62f68",
+    "src/seed_search/catalog/ingestion.py": "55da74864207f73c126907f6a35078ab43f65dfb38a9e9efd6c71bdb501eb91f",
+    "src/seed_search/catalog/product_views.py": "56661b6682b396811b49b20a6d41601ca7f94e1cbdba1c6202067fd42b36aedd",
+    "src/seed_search/catalog/models.py": "07be80f1e9a55bb566582654c385884a6cb4923cc1c8cdb8869e5cc4344a2bae",
+    "src/seed_search/catalog/query.py": "beb1c3967c23fc3d5542f09cc3d3f83307ad5e32ffe0faf6eaf991e9cf66e30e",
+    "src/seed_search/catalog/index.py": "588dab8ab16436d63fccbdcd71f8be2cdfea7644b0e03d41163cdadffd6ad8bb",
+    "src/seed_search/catalog/validation_synthetic.py": "8db581d81e46df29332793b9ee968d14f898a444a7e2ca9923ab73a2e36bf2db",
+    "src/seed_search/catalog/refined_witnesses.py": "df212eb4c3ab9d3106f9a6bb28dd8cc8804a23ac7b9d5be62c42de09488e8f52",
+    "src/seed_search/catalog/refinement_worker.py": "cfe16bff731b396f8f612653b6c71fbaa78849a2c37e810daba2aed5eebfedb6",
+    "src/seed_search/catalog/registry.py": "b9e0d7808fcb743b97b3aa23ec5d629192b4ce10bad8902b198317a87b2fdec0",
+    "src/seed_search/catalog/segments.py": "45486580362318c4e483faac6b1e6205aa2ee76f6e4d8714cd7e1da80b81ee72",
+    "src/seed_search/catalog/scoring.py": "3e50fdf1993f4a77e49242f6d203d95981e4ac77914f0a443312f47893571d29",
+    "src/seed_search/catalog/spawn_estimator.py": "298bc5a87ab0fbdf0715c459894a7f2fd56c85c096344a8ca171adacd34d7c6e",
+    "src/seed_search/catalog/evaluation.py": "6fe8737739590ff9376f80844bf98d9be6290814cd8d868427f5c95470983c9e",
+    "src/seed_search/catalog/accuracy_harvest.py": "11aaf97c2cda154685cb2f918f1460ff60876934eebf050875a4d921cc346ae7",
+    "src/seed_search/catalog/bridge.py": "346a832b8b1c9bcef8e5f3dcd0b552c4b3c2d0c03164258ba94a0f7bdd0bf39f",
+    "src/seed_search/catalog/request.py": "c63fa020e9b0cee963be5570a98af3eeab323ebdbc7ebbe596b94bf607434a08",
+    "src/seed_search/catalog/__init__.py": "c6778d1c6dd199825211e5bdaa71625010f9c94f95a9c32f5f4bceccb373374b",
+    "src/seed_search/catalog/products.py": "705862e7efc03bcee1151619d6af51aca25a384d869d0db01ea44357d0809564",
+    "src/seed_search/catalog/coverage.py": "7daafb4a843603b4bb5d19f85f7623e1deaa72f2fc2309c0ffde66589890a163",
+    "src/seed_search/catalog/refinement.py": "76fae925e5ed05f37dfabbd73f9f53917991f300a6a2d5d6189025bc9c7f4ebf",
+    "src/seed_search/catalog/http_server.py": "ea3bf18f2c05fe2476da337d3e7fb225608f62c16966097277c8c5aaf350afb0",
+    "src/seed_search/catalog/harvest_native.py": "4ac2da21f803baeec45a1aa2dcbcfadc7338429582400b0100375730b2c7def5",
+    "src/seed_search/catalog/validation_contracts.py": "01bb35af4824dc1a035b4882536e0f7fda1869a774c5cc3bf8a486e9a775123d",
+    "src/seed_search/catalog/anchors.py": "929fd5db45fa361aed0ca6f7c8bfdfa59adf6b96a48a0846ef69231ae4831d99",
+    "src/seed_search/catalog/view.py": "15f7cd1b87be1a503f3c9add96ce0763d1b0c23d326569f400999e744e38c9b8",
+    "src/seed_search/catalog/capabilities.py": "f94316217756ab62d65fdf397720d45ffbac2afb0664e729536f40392987077f",
+    "src/seed_search/catalog/corrections.py": "c71175e45809729cfcb47ab80cf3f127c08049854c6bf6f48258f9b36829a92d",
+    "src/seed_search/catalog/harvest.py": "ee0ee0593449466c26ff0ad031ed1b21a491b477fb224e2980d69dd82a403d13",
+    "src/seed_search/catalog/retention.py": "34dee16690a65ff08a4a273bdc5db86df736d2bf19d9e2b05fdea65731b63b0c",
+    "src/seed_search/catalog/geometry.py": "9ced7b55b10b20740583b1cc779081257691e2a5451b09c7ff0f7d6e79ac72d2",
+    "src/seed_search/catalog/usefulness.py": "7f900927ec4d354b89506877ad28616a84e19d6e9c2c245f5b0de921d65e6978",
+    "src/seed_search/catalog/biome_provider.py": "a545daaa1f097b0bbde33a33b958f8c21c14bc0b7d8632cb491949520a483b16",
+    "src/seed_search/catalog/structure_verification.py": "ba514c200b07ab2004d6d3cb8c4352622631e5f90163abc4a8f16b51d15d65d1",
+    "src/seed_search/catalog/artifacts.py": "486434007674b2fe9a64cec7d259fed0a240078f5b7223b579f802b03638928b",
+    "src/seed_search/catalog/retention_oracle.py": "a1fc6ada5acf0b64357eaeca9344dbea5a74948bd90b0b7fb80230b7aba7cc38",
+    "src/seed_search/catalog/accuracy.py": "6f5df05aabce3e21e7bde161a25d8b641ed7e47d1cd19c29d252642c10781992",
+    "src/seed_search/catalog/accuracy_store.py": "dadd0d58d2fd3f013e449b54735306f262ccce1db5ea4e0ee5ae8cc03c942a37",
+    "src/seed_search/catalog/codec.py": "9f40e945f16d968826f444bade656827891e34ba66e327143e18a5cdc65dd179",
+    "src/seed_search/catalog/summaries.py": "785ae9fae817d5d00b7e4554d6b8d25a6e6a84512c0793ce8d4fba76d317cc51",
+    "src/seed_search/catalog/evidence.py": "92fb89642da707a00cccdb8267592804e750789d564591067e4958edb587a16d",
+    "src/seed_search/catalog/harvest_worker.py": "5f50189adef1b9bf2d617306a2c83249b0f2aa57a3fcb5c9e128f4553e96fb48",
+    "src/seed_search/catalog/extract.py": "119bc8e85b4db7ed4e8985f10d2e725b44cf79a60c19a04b01332c112f9b9727",
+    "src/seed_search/catalog/accuracy_query.py": "eaf863c561b272ac379fa0043e7c7b72bea476ea302d2ecf95eab1ec371ea825"
+  },
+  "cases": [
+    {
+      "case": "500-origin",
+      "request": {
+        "request_revision": "catalog-query-v1",
+        "edition": "bedrock",
+        "game_build_id": "research:synthetic-operational-v1",
+        "catalog_snapshot_id": "7582d43d1be4a1951f10ed6242aeb5066495c7222949ea8fa1147ac0e8d72776",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "origin",
+        "border_side": 8192,
+        "evidence_policy": "predicted_observations_v1",
+        "fallback_profile": "balanced_survival",
+        "rows": []
+      },
+      "unprofiled_seconds": 6.2735702390782535,
+      "profiled_seconds": 20.61244513699999,
+      "result_parity": true,
+      "matched_worlds": 500,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 500,
+        "eligible_layouts": 500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 6.271014236030169
+      },
+      "exclusive_module_seconds": [
+        [
+          "~",
+          9.744704942000002
+        ],
+        [
+          "index.py",
+          8.157208742000002
+        ],
+        [
+          "encoder.py",
+          1.371582684
+        ],
+        [
+          "decoder.py",
+          0.42325725200000003
+        ],
+        [
+          "_local.py",
+          0.208069618
+        ],
+        [
+          "segments.py",
+          0.206036181
+        ],
+        [
+          "artifacts.py",
+          0.12354321
+        ],
+        [
+          "codec.py",
+          0.120712493
+        ],
+        [
+          "geometry.py",
+          0.04729495100000001
+        ],
+        [
+          "<frozen posixpath>",
+          0.04689808
+        ],
+        [
+          "service.py",
+          0.030781908000000004
+        ],
+        [
+          "query.py",
+          0.029327409000000002
+        ],
+        [
+          "_abc.py",
+          0.022295667
+        ],
+        [
+          "__init__.py",
+          0.020759574000000003
+        ],
+        [
+          "registry.py",
+          0.018485426
+        ],
+        [
+          "models.py",
+          0.014923136
+        ],
+        [
+          "<frozen _collections_abc>",
+          0.011418958
+        ],
+        [
+          "request.py",
+          0.008050523
+        ]
+      ],
+      "functions": [
+        {
+          "module": "service.py",
+          "function": "query",
+          "line": 215,
+          "calls": 1,
+          "self_seconds": 0.024574676,
+          "cumulative_seconds": 20.612426064
+        },
+        {
+          "module": "segments.py",
+          "function": "iter_segments",
+          "line": 816,
+          "calls": 501,
+          "self_seconds": 0.204665179,
+          "cumulative_seconds": 20.507051884000003
+        },
+        {
+          "module": "index.py",
+          "function": "validate_index",
+          "line": 198,
+          "calls": 1000,
+          "self_seconds": 0.30522293,
+          "cumulative_seconds": 17.397933501
+        },
+        {
+          "module": "index.py",
+          "function": "decode_bitset",
+          "line": 53,
+          "calls": 1029000,
+          "self_seconds": 1.192930972,
+          "cumulative_seconds": 16.596509132
+        },
+        {
+          "module": "index.py",
+          "function": "filter_index",
+          "line": 314,
+          "calls": 500,
+          "self_seconds": 0.0024573290000000003,
+          "cumulative_seconds": 8.783199179
+        },
+        {
+          "module": "index.py",
+          "function": "<genexpr>",
+          "line": 61,
+          "calls": 64827000,
+          "self_seconds": 6.6292233110000005,
+          "cumulative_seconds": 6.6292233110000005
+        },
+        {
+          "module": "registry.py",
+          "function": "canonical_json",
+          "line": 9,
+          "calls": 4512,
+          "self_seconds": 0.012474054,
+          "cumulative_seconds": 1.409786293
+        },
+        {
+          "module": "artifacts.py",
+          "function": "get_json",
+          "line": 205,
+          "calls": 1006,
+          "self_seconds": 0.014121982000000002,
+          "cumulative_seconds": 1.3717225240000002
+        },
+        {
+          "module": "registry.py",
+          "function": "digest",
+          "line": 13,
+          "calls": 4005,
+          "self_seconds": 0.006011372,
+          "cumulative_seconds": 1.062577762
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_safe_resolve_key",
+          "line": 70,
+          "calls": 2012,
+          "self_seconds": 0.020515383,
+          "cumulative_seconds": 0.50995073
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_validate_manifest",
+          "line": 102,
+          "calls": 1006,
+          "self_seconds": 0.008629870000000001,
+          "cumulative_seconds": 0.29514616800000004
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary",
+          "line": 15,
+          "calls": 1000,
+          "self_seconds": 0.015775562,
+          "cumulative_seconds": 0.22777713000000002
+        },
+        {
+          "module": "codec.py",
+          "function": "unpack_summary",
+          "line": 76,
+          "calls": 500,
+          "self_seconds": 0.018510723,
+          "cumulative_seconds": 0.13868845400000002
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary_numbers",
+          "line": 37,
+          "calls": 1000,
+          "self_seconds": 0.047043140000000004,
+          "cumulative_seconds": 0.115649178
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_unique_pairs",
+          "line": 25,
+          "calls": 126011,
+          "self_seconds": 0.080266348,
+          "cumulative_seconds": 0.080266348
+        },
+        {
+          "module": "query.py",
+          "function": "_rank",
+          "line": 69,
+          "calls": 500,
+          "self_seconds": 0.023590924000000003,
+          "cumulative_seconds": 0.04479865
+        },
+        {
+          "module": "models.py",
+          "function": "world_id",
+          "line": 50,
+          "calls": 500,
+          "self_seconds": 0.0011392540000000001,
+          "cumulative_seconds": 0.039766795
+        },
+        {
+          "module": "index.py",
+          "function": "_select_index",
+          "line": 326,
+          "calls": 500,
+          "self_seconds": 0.013016001000000001,
+          "cumulative_seconds": 0.029270502
+        },
+        {
+          "module": "models.py",
+          "function": "validate_identity",
+          "line": 33,
+          "calls": 500,
+          "self_seconds": 0.004461326000000001,
+          "cumulative_seconds": 0.028504961000000002
+        },
+        {
+          "module": "geometry.py",
+          "function": "anchors",
+          "line": 38,
+          "calls": 1000,
+          "self_seconds": 0.013663528000000001,
+          "cumulative_seconds": 0.024303663000000003
+        },
+        {
+          "module": "request.py",
+          "function": "validate_request",
+          "line": 25,
+          "calls": 502,
+          "self_seconds": 0.008050523,
+          "cumulative_seconds": 0.022881574000000002
+        },
+        {
+          "module": "codec.py",
+          "function": "layout_id",
+          "line": 11,
+          "calls": 1500,
+          "self_seconds": 0.0016301710000000001,
+          "cumulative_seconds": 0.021740495000000002
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 29,
+          "calls": 195000,
+          "self_seconds": 0.020391807,
+          "cumulative_seconds": 0.020391807
+        },
+        {
+          "module": "service.py",
+          "function": "_save_result",
+          "line": 204,
+          "calls": 1,
+          "self_seconds": 0.0009378570000000001,
+          "cumulative_seconds": 0.019865289
+        },
+        {
+          "module": "geometry.py",
+          "function": "integer",
+          "line": 5,
+          "calls": 91000,
+          "self_seconds": 0.017783997000000003,
+          "cumulative_seconds": 0.017783997000000003
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 57,
+          "calls": 115000,
+          "self_seconds": 0.017361090000000003,
+          "cumulative_seconds": 0.017361090000000003
+        },
+        {
+          "module": "index.py",
+          "function": "<genexpr>",
+          "line": 212,
+          "calls": 130000,
+          "self_seconds": 0.014358199,
+          "cumulative_seconds": 0.014358199
+        },
+        {
+          "module": "segments.py",
+          "function": "_verified_membership",
+          "line": 310,
+          "calls": 1,
+          "self_seconds": 0.000502244,
+          "cumulative_seconds": 0.011657716
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 39,
+          "calls": 82000,
+          "self_seconds": 0.010640135,
+          "cumulative_seconds": 0.010640135
+        },
+        {
+          "module": "segments.py",
+          "function": "_collect_leaf_manifests_from_tree",
+          "line": 285,
+          "calls": 5,
+          "self_seconds": 0.0006465150000000001,
+          "cumulative_seconds": 0.007795479
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 45,
+          "calls": 65000,
+          "self_seconds": 0.0070108060000000005,
+          "cumulative_seconds": 0.0070108060000000005
+        },
+        {
+          "module": "geometry.py",
+          "function": "bounds_for",
+          "line": 11,
+          "calls": 1500,
+          "self_seconds": 0.0035558100000000004,
+          "cumulative_seconds": 0.006526914
+        },
+        {
+          "module": "service.py",
+          "function": "offer",
+          "line": 39,
+          "calls": 500,
+          "self_seconds": 0.0025912350000000003,
+          "cumulative_seconds": 0.0057643830000000005
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 36,
+          "calls": 5000,
+          "self_seconds": 0.00231175,
+          "cumulative_seconds": 0.00334666
+        },
+        {
+          "module": "service.py",
+          "function": "_store",
+          "line": 60,
+          "calls": 2,
+          "self_seconds": 3.2346000000000005e-05,
+          "cumulative_seconds": 0.003270699
+        },
+        {
+          "module": "segments.py",
+          "function": "__init__",
+          "line": 45,
+          "calls": 1,
+          "self_seconds": 9.6475e-05,
+          "cumulative_seconds": 0.0027292740000000003
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 14,
+          "calls": 4500,
+          "self_seconds": 0.001651481,
+          "cumulative_seconds": 0.0026944070000000002
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 260,
+          "calls": 20500,
+          "self_seconds": 0.0025804450000000002,
+          "cumulative_seconds": 0.0025804450000000002
+        },
+        {
+          "module": "service.py",
+          "function": "check",
+          "line": 224,
+          "calls": 1002,
+          "self_seconds": 0.000968656,
+          "cumulative_seconds": 0.001381199
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 264,
+          "calls": 4500,
+          "self_seconds": 0.001180878,
+          "cumulative_seconds": 0.001180878
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 232,
+          "calls": 2947,
+          "self_seconds": 0.000939426,
+          "cumulative_seconds": 0.000939426
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 231,
+          "calls": 4127,
+          "self_seconds": 0.000928422,
+          "cumulative_seconds": 0.000928422
+        },
+        {
+          "module": "service.py",
+          "function": "_prune",
+          "line": 36,
+          "calls": 500,
+          "self_seconds": 0.0006519630000000001,
+          "cumulative_seconds": 0.000824624
+        },
+        {
+          "module": "service.py",
+          "function": "results",
+          "line": 50,
+          "calls": 1,
+          "self_seconds": 4.165e-06,
+          "cumulative_seconds": 0.000706879
+        },
+        {
+          "module": "service.py",
+          "function": "__lt__",
+          "line": 30,
+          "calls": 1085,
+          "self_seconds": 0.0006674140000000001,
+          "cumulative_seconds": 0.0006674140000000001
+        }
+      ],
+      "peak_rss_bytes": 70135808
+    },
+    {
+      "case": "500-recommended",
+      "request": {
+        "request_revision": "catalog-query-v1",
+        "edition": "bedrock",
+        "game_build_id": "research:synthetic-operational-v1",
+        "catalog_snapshot_id": "7582d43d1be4a1951f10ed6242aeb5066495c7222949ea8fa1147ac0e8d72776",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "evidence_policy": "predicted_observations_v1",
+        "fallback_profile": "balanced_survival",
+        "rows": []
+      },
+      "unprofiled_seconds": 14.000254333019257,
+      "profiled_seconds": 46.693795795999975,
+      "result_parity": true,
+      "matched_worlds": 500,
+      "stats": {
+        "segments": 500,
+        "decoded_layouts": 40500,
+        "eligible_layouts": 40500,
+        "index_cache_hits": 500,
+        "result_cache_hit": false,
+        "wall_seconds": 13.99562313396018
+      },
+      "exclusive_module_seconds": [
+        [
+          "~",
+          17.48389005600001
+        ],
+        [
+          "codec.py",
+          9.770338441000002
+        ],
+        [
+          "index.py",
+          8.234588171
+        ],
+        [
+          "geometry.py",
+          3.504100423
+        ],
+        [
+          "encoder.py",
+          2.332826157
+        ],
+        [
+          "query.py",
+          1.4579695030000002
+        ],
+        [
+          "models.py",
+          1.050370917
+        ],
+        [
+          "segments.py",
+          0.6240413570000001
+        ],
+        [
+          "decoder.py",
+          0.450810439
+        ],
+        [
+          "registry.py",
+          0.369625442
+        ],
+        [
+          "__init__.py",
+          0.332637585
+        ],
+        [
+          "seeds.py",
+          0.267060185
+        ],
+        [
+          "service.py",
+          0.25984469200000004
+        ],
+        [
+          "_local.py",
+          0.21980969600000003
+        ],
+        [
+          "artifacts.py",
+          0.131730671
+        ],
+        [
+          "base64.py",
+          0.057651254
+        ],
+        [
+          "<frozen importlib._bootstrap>",
+          0.052484877000000006
+        ],
+        [
+          "<frozen posixpath>",
+          0.048940197000000005
+        ]
+      ],
+      "functions": [
+        {
+          "module": "service.py",
+          "function": "query",
+          "line": 215,
+          "calls": 1,
+          "self_seconds": 0.252058241,
+          "cumulative_seconds": 46.693775231000004
+        },
+        {
+          "module": "segments.py",
+          "function": "iter_segments",
+          "line": 816,
+          "calls": 501,
+          "self_seconds": 0.6226374,
+          "cumulative_seconds": 44.152643276000006
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary",
+          "line": 15,
+          "calls": 81000,
+          "self_seconds": 0.993754196,
+          "cumulative_seconds": 17.936884983000002
+        },
+        {
+          "module": "index.py",
+          "function": "validate_index",
+          "line": 198,
+          "calls": 1000,
+          "self_seconds": 0.31660634400000004,
+          "cumulative_seconds": 17.556958100000003
+        },
+        {
+          "module": "index.py",
+          "function": "decode_bitset",
+          "line": 53,
+          "calls": 1028500,
+          "self_seconds": 1.221280347,
+          "cumulative_seconds": 16.719861458
+        },
+        {
+          "module": "codec.py",
+          "function": "unpack_summary",
+          "line": 76,
+          "calls": 40500,
+          "self_seconds": 1.762581643,
+          "cumulative_seconds": 10.903534177000001
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary_numbers",
+          "line": 37,
+          "calls": 81000,
+          "self_seconds": 3.8213419060000002,
+          "cumulative_seconds": 9.423236253
+        },
+        {
+          "module": "index.py",
+          "function": "filter_index",
+          "line": 314,
+          "calls": 500,
+          "self_seconds": 0.0028359310000000003,
+          "cumulative_seconds": 8.810387365
+        },
+        {
+          "module": "index.py",
+          "function": "<genexpr>",
+          "line": 61,
+          "calls": 64795500,
+          "self_seconds": 6.6655065680000005,
+          "cumulative_seconds": 6.6655065680000005
+        },
+        {
+          "module": "registry.py",
+          "function": "digest",
+          "line": 13,
+          "calls": 164005,
+          "self_seconds": 0.192578893,
+          "cumulative_seconds": 3.1289492290000003
+        },
+        {
+          "module": "registry.py",
+          "function": "canonical_json",
+          "line": 9,
+          "calls": 164512,
+          "self_seconds": 0.177046549,
+          "cumulative_seconds": 3.001957748
+        },
+        {
+          "module": "models.py",
+          "function": "world_id",
+          "line": 50,
+          "calls": 40500,
+          "self_seconds": 0.058931282,
+          "cumulative_seconds": 2.667850135
+        },
+        {
+          "module": "query.py",
+          "function": "_rank",
+          "line": 69,
+          "calls": 500,
+          "self_seconds": 1.006617104,
+          "cumulative_seconds": 2.249324919
+        },
+        {
+          "module": "models.py",
+          "function": "validate_identity",
+          "line": 33,
+          "calls": 40500,
+          "self_seconds": 0.259210051,
+          "cumulative_seconds": 2.039979056
+        },
+        {
+          "module": "geometry.py",
+          "function": "anchors",
+          "line": 38,
+          "calls": 81000,
+          "self_seconds": 1.050094042,
+          "cumulative_seconds": 1.8296654650000002
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 29,
+          "calls": 15795000,
+          "self_seconds": 1.6569158560000001,
+          "cumulative_seconds": 1.6569158560000001
+        },
+        {
+          "module": "codec.py",
+          "function": "layout_id",
+          "line": 11,
+          "calls": 121500,
+          "self_seconds": 0.10777534100000001,
+          "cumulative_seconds": 1.604055854
+        },
+        {
+          "module": "artifacts.py",
+          "function": "get_json",
+          "line": 205,
+          "calls": 1006,
+          "self_seconds": 0.016030757,
+          "cumulative_seconds": 1.465060116
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 57,
+          "calls": 9315000,
+          "self_seconds": 1.427969499,
+          "cumulative_seconds": 1.427969499
+        },
+        {
+          "module": "geometry.py",
+          "function": "integer",
+          "line": 5,
+          "calls": 7291000,
+          "self_seconds": 1.4268813710000001,
+          "cumulative_seconds": 1.4268813710000001
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 39,
+          "calls": 6642000,
+          "self_seconds": 0.779571423,
+          "cumulative_seconds": 0.779571423
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 45,
+          "calls": 5265000,
+          "self_seconds": 0.559387641,
+          "cumulative_seconds": 0.559387641
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_safe_resolve_key",
+          "line": 70,
+          "calls": 2012,
+          "self_seconds": 0.023545929,
+          "cumulative_seconds": 0.547169412
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_validate_manifest",
+          "line": 102,
+          "calls": 1006,
+          "self_seconds": 0.010348528000000001,
+          "cumulative_seconds": 0.329009423
+        },
+        {
+          "module": "geometry.py",
+          "function": "bounds_for",
+          "line": 11,
+          "calls": 81500,
+          "self_seconds": 0.16917114400000002,
+          "cumulative_seconds": 0.313167884
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 36,
+          "calls": 405000,
+          "self_seconds": 0.172841943,
+          "cumulative_seconds": 0.25694195200000003
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 260,
+          "calls": 1660500,
+          "self_seconds": 0.23976063600000003,
+          "cumulative_seconds": 0.23976063600000003
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 14,
+          "calls": 244500,
+          "self_seconds": 0.07838244300000001,
+          "cumulative_seconds": 0.13041586200000002
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_unique_pairs",
+          "line": 25,
+          "calls": 126011,
+          "self_seconds": 0.08179467900000001,
+          "cumulative_seconds": 0.08179467900000001
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 231,
+          "calls": 335063,
+          "self_seconds": 0.078418679,
+          "cumulative_seconds": 0.078418679
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 232,
+          "calls": 240886,
+          "self_seconds": 0.068852255,
+          "cumulative_seconds": 0.068852255
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 264,
+          "calls": 364500,
+          "self_seconds": 0.06421510600000001,
+          "cumulative_seconds": 0.06421510600000001
+        },
+        {
+          "module": "request.py",
+          "function": "validate_request",
+          "line": 25,
+          "calls": 502,
+          "self_seconds": 0.009409106,
+          "cumulative_seconds": 0.024992824
+        },
+        {
+          "module": "index.py",
+          "function": "_select_index",
+          "line": 326,
+          "calls": 500,
+          "self_seconds": 0.013933592000000002,
+          "cumulative_seconds": 0.022168543000000002
+        },
+        {
+          "module": "service.py",
+          "function": "_save_result",
+          "line": 204,
+          "calls": 1,
+          "self_seconds": 0.001109701,
+          "cumulative_seconds": 0.020575131
+        },
+        {
+          "module": "index.py",
+          "function": "<genexpr>",
+          "line": 212,
+          "calls": 130000,
+          "self_seconds": 0.014425389,
+          "cumulative_seconds": 0.014425389
+        },
+        {
+          "module": "segments.py",
+          "function": "_verified_membership",
+          "line": 310,
+          "calls": 1,
+          "self_seconds": 0.0005435700000000001,
+          "cumulative_seconds": 0.011936627
+        },
+        {
+          "module": "segments.py",
+          "function": "_collect_leaf_manifests_from_tree",
+          "line": 285,
+          "calls": 5,
+          "self_seconds": 0.0006403810000000001,
+          "cumulative_seconds": 0.007940885
+        },
+        {
+          "module": "service.py",
+          "function": "offer",
+          "line": 39,
+          "calls": 500,
+          "self_seconds": 0.0033142590000000004,
+          "cumulative_seconds": 0.006928908
+        },
+        {
+          "module": "service.py",
+          "function": "_store",
+          "line": 60,
+          "calls": 2,
+          "self_seconds": 3.1025e-05,
+          "cumulative_seconds": 0.003467622
+        },
+        {
+          "module": "segments.py",
+          "function": "__init__",
+          "line": 45,
+          "calls": 1,
+          "self_seconds": 0.00010107,
+          "cumulative_seconds": 0.002871737
+        },
+        {
+          "module": "service.py",
+          "function": "check",
+          "line": 224,
+          "calls": 1002,
+          "self_seconds": 0.0015738330000000002,
+          "cumulative_seconds": 0.0020651420000000003
+        },
+        {
+          "module": "service.py",
+          "function": "_prune",
+          "line": 36,
+          "calls": 500,
+          "self_seconds": 0.0007891450000000001,
+          "cumulative_seconds": 0.001070664
+        },
+        {
+          "module": "service.py",
+          "function": "results",
+          "line": 50,
+          "calls": 1,
+          "self_seconds": 4.85e-06,
+          "cumulative_seconds": 0.0007889650000000001
+        },
+        {
+          "module": "service.py",
+          "function": "__lt__",
+          "line": 30,
+          "calls": 1124,
+          "self_seconds": 0.000504715,
+          "cumulative_seconds": 0.000504715
+        }
+      ],
+      "peak_rss_bytes": 94363648
+    },
+    {
+      "case": "200-accuracy-recommended",
+      "request": {
+        "request_revision": "catalog-query-accuracy-v1",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "evidence_policy": "predicted_plus_refined_witnesses_v1",
+        "fallback_profile": "balanced_survival",
+        "rows": [],
+        "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f"
+      },
+      "unprofiled_seconds": 7.606257910956629,
+      "profiled_seconds": 27.766048819999995,
+      "result_parity": true,
+      "matched_worlds": 200,
+      "stats": {
+        "wall_seconds": 7.552593050990254,
+        "accuracy_layouts": 16200,
+        "result_cache_hit": false
+      },
+      "exclusive_module_seconds": [
+        [
+          "~",
+          9.295700904
+        ],
+        [
+          "copy.py",
+          6.474699522
+        ],
+        [
+          "codec.py",
+          3.87541888
+        ],
+        [
+          "index.py",
+          3.2084032200000006
+        ],
+        [
+          "geometry.py",
+          1.4383768860000004
+        ],
+        [
+          "encoder.py",
+          0.960011857
+        ],
+        [
+          "query.py",
+          0.6779705630000001
+        ],
+        [
+          "models.py",
+          0.424900038
+        ],
+        [
+          "segments.py",
+          0.27198866000000005
+        ],
+        [
+          "decoder.py",
+          0.25979393700000003
+        ],
+        [
+          "registry.py",
+          0.14870585400000003
+        ],
+        [
+          "__init__.py",
+          0.13538285900000002
+        ],
+        [
+          "seeds.py",
+          0.110581972
+        ],
+        [
+          "accuracy_query.py",
+          0.10968064200000001
+        ],
+        [
+          "_local.py",
+          0.08927368
+        ],
+        [
+          "refined_witnesses.py",
+          0.082758998
+        ],
+        [
+          "artifacts.py",
+          0.053558359
+        ],
+        [
+          "service.py",
+          0.049261892
+        ]
+      ],
+      "functions": [
+        {
+          "module": "service.py",
+          "function": "query",
+          "line": 215,
+          "calls": 1,
+          "self_seconds": 0.048776401000000004,
+          "cumulative_seconds": 27.766022619
+        },
+        {
+          "module": "accuracy_query.py",
+          "function": "query",
+          "line": 44,
+          "calls": 1,
+          "self_seconds": 0.07912203400000001,
+          "cumulative_seconds": 27.717239821000003
+        },
+        {
+          "module": "segments.py",
+          "function": "iter_segments",
+          "line": 816,
+          "calls": 201,
+          "self_seconds": 0.270806994,
+          "cumulative_seconds": 17.399045675
+        },
+        {
+          "module": "accuracy_query.py",
+          "function": "add_layout",
+          "line": 67,
+          "calls": 16200,
+          "self_seconds": 0.029703683,
+          "cumulative_seconds": 9.041501325
+        },
+        {
+          "module": "refined_witnesses.py",
+          "function": "apply_witnesses",
+          "line": 24,
+          "calls": 16200,
+          "self_seconds": 0.07563784900000001,
+          "cumulative_seconds": 9.002529817000001
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary",
+          "line": 15,
+          "calls": 32400,
+          "self_seconds": 0.389070911,
+          "cumulative_seconds": 7.012315927
+        },
+        {
+          "module": "index.py",
+          "function": "validate_index",
+          "line": 198,
+          "calls": 400,
+          "self_seconds": 0.12181404300000001,
+          "cumulative_seconds": 6.850636287
+        },
+        {
+          "module": "index.py",
+          "function": "decode_bitset",
+          "line": 53,
+          "calls": 411400,
+          "self_seconds": 0.47240994300000005,
+          "cumulative_seconds": 6.526432099
+        },
+        {
+          "module": "codec.py",
+          "function": "unpack_summary",
+          "line": 76,
+          "calls": 16200,
+          "self_seconds": 0.70544284,
+          "cumulative_seconds": 4.273349414
+        },
+        {
+          "module": "codec.py",
+          "function": "validate_summary_numbers",
+          "line": 37,
+          "calls": 33009,
+          "self_seconds": 1.522742738,
+          "cumulative_seconds": 3.7548188280000003
+        },
+        {
+          "module": "index.py",
+          "function": "filter_index",
+          "line": 314,
+          "calls": 200,
+          "self_seconds": 0.0011292770000000001,
+          "cumulative_seconds": 3.44309571
+        },
+        {
+          "module": "index.py",
+          "function": "<genexpr>",
+          "line": 61,
+          "calls": 25918200,
+          "self_seconds": 2.6018073360000002,
+          "cumulative_seconds": 2.6018073360000002
+        },
+        {
+          "module": "registry.py",
+          "function": "digest",
+          "line": 13,
+          "calls": 66907,
+          "self_seconds": 0.074804965,
+          "cumulative_seconds": 1.271762319
+        },
+        {
+          "module": "registry.py",
+          "function": "canonical_json",
+          "line": 9,
+          "calls": 67115,
+          "self_seconds": 0.07390088900000001,
+          "cumulative_seconds": 1.230728053
+        },
+        {
+          "module": "models.py",
+          "function": "world_id",
+          "line": 50,
+          "calls": 16403,
+          "self_seconds": 0.02350137,
+          "cumulative_seconds": 1.061802076
+        },
+        {
+          "module": "query.py",
+          "function": "_rank",
+          "line": 69,
+          "calls": 1,
+          "self_seconds": 0.5164104890000001,
+          "cumulative_seconds": 0.975842348
+        },
+        {
+          "module": "models.py",
+          "function": "validate_identity",
+          "line": 33,
+          "calls": 16646,
+          "self_seconds": 0.10468297600000001,
+          "cumulative_seconds": 0.826250004
+        },
+        {
+          "module": "geometry.py",
+          "function": "anchors",
+          "line": 38,
+          "calls": 32400,
+          "self_seconds": 0.41107368800000005,
+          "cumulative_seconds": 0.7143826750000001
+        },
+        {
+          "module": "artifacts.py",
+          "function": "get_json",
+          "line": 205,
+          "calls": 409,
+          "self_seconds": 0.0069158710000000005,
+          "cumulative_seconds": 0.681778635
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 29,
+          "calls": 6318000,
+          "self_seconds": 0.645973882,
+          "cumulative_seconds": 0.645973882
+        },
+        {
+          "module": "codec.py",
+          "function": "layout_id",
+          "line": 11,
+          "calls": 48600,
+          "self_seconds": 0.042031290000000006,
+          "cumulative_seconds": 0.623760305
+        },
+        {
+          "module": "geometry.py",
+          "function": "integer",
+          "line": 5,
+          "calls": 3003610,
+          "self_seconds": 0.57904215,
+          "cumulative_seconds": 0.57904215
+        },
+        {
+          "module": "codec.py",
+          "function": "<genexpr>",
+          "line": 57,
+          "calls": 3796035,
+          "self_seconds": 0.570157219,
+          "cumulative_seconds": 0.570157219
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 39,
+          "calls": 2656800,
+          "self_seconds": 0.30330898700000003,
+          "cumulative_seconds": 0.30330898700000003
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 45,
+          "calls": 2163980,
+          "self_seconds": 0.22775462900000001,
+          "cumulative_seconds": 0.22775462900000001
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_safe_resolve_key",
+          "line": 70,
+          "calls": 818,
+          "self_seconds": 0.009626087,
+          "cumulative_seconds": 0.218390561
+        },
+        {
+          "module": "accuracy_query.py",
+          "function": "_bound_bundle",
+          "line": 26,
+          "calls": 1,
+          "self_seconds": 0.000770783,
+          "cumulative_seconds": 0.208437422
+        },
+        {
+          "module": "accuracy_store.py",
+          "function": "read_bundle",
+          "line": 98,
+          "calls": 1,
+          "self_seconds": 0.00019663000000000002,
+          "cumulative_seconds": 0.201576795
+        },
+        {
+          "module": "geometry.py",
+          "function": "bounds_for",
+          "line": 11,
+          "calls": 49409,
+          "self_seconds": 0.09815921400000001,
+          "cumulative_seconds": 0.183243455
+        },
+        {
+          "module": "accuracy_store.py",
+          "function": "validate_bundle",
+          "line": 14,
+          "calls": 1,
+          "self_seconds": 0.002666337,
+          "cumulative_seconds": 0.16932019
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_validate_manifest",
+          "line": 102,
+          "calls": 409,
+          "self_seconds": 0.004409486000000001,
+          "cumulative_seconds": 0.132309363
+        },
+        {
+          "module": "models.py",
+          "function": "<genexpr>",
+          "line": 36,
+          "calls": 166460,
+          "self_seconds": 0.068961063,
+          "cumulative_seconds": 0.102750983
+        },
+        {
+          "module": "anchors.py",
+          "function": "validate_anchor_summary",
+          "line": 41,
+          "calls": 609,
+          "self_seconds": 0.004313181,
+          "cumulative_seconds": 0.091717516
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 260,
+          "calls": 664200,
+          "self_seconds": 0.087594718,
+          "cumulative_seconds": 0.087594718
+        },
+        {
+          "module": "geometry.py",
+          "function": "<genexpr>",
+          "line": 14,
+          "calls": 148227,
+          "self_seconds": 0.046792847000000005,
+          "cumulative_seconds": 0.077043733
+        },
+        {
+          "module": "anchors.py",
+          "function": "validate_anchor",
+          "line": 31,
+          "calls": 203,
+          "self_seconds": 0.000707523,
+          "cumulative_seconds": 0.033917215
+        },
+        {
+          "module": "anchors.py",
+          "function": "make_anchor",
+          "line": 20,
+          "calls": 203,
+          "self_seconds": 0.000637939,
+          "cumulative_seconds": 0.033184164
+        },
+        {
+          "module": "accuracy.py",
+          "function": "validate_context",
+          "line": 27,
+          "calls": 243,
+          "self_seconds": 0.0009725240000000001,
+          "cumulative_seconds": 0.032746668
+        },
+        {
+          "module": "artifacts.py",
+          "function": "_unique_pairs",
+          "line": 25,
+          "calls": 52109,
+          "self_seconds": 0.032588433,
+          "cumulative_seconds": 0.032588433
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 231,
+          "calls": 133708,
+          "self_seconds": 0.025819599000000002,
+          "cumulative_seconds": 0.025819599000000002
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 264,
+          "calls": 145800,
+          "self_seconds": 0.024250988,
+          "cumulative_seconds": 0.024250988
+        },
+        {
+          "module": "query.py",
+          "function": "<genexpr>",
+          "line": 232,
+          "calls": 75829,
+          "self_seconds": 0.02382253,
+          "cumulative_seconds": 0.02382253
+        },
+        {
+          "module": "refinement.py",
+          "function": "decode_tile",
+          "line": 64,
+          "calls": 20,
+          "self_seconds": 0.0028753380000000003,
+          "cumulative_seconds": 0.011651029
+        },
+        {
+          "module": "segments.py",
+          "function": "_verified_membership",
+          "line": 310,
+          "calls": 2,
+          "self_seconds": 0.000417965,
+          "cumulative_seconds": 0.011151840000000001
+        },
+        {
+          "module": "request.py",
+          "function": "validate_request",
+          "line": 25,
+          "calls": 202,
+          "self_seconds": 0.0038443220000000003,
+          "cumulative_seconds": 0.010112389000000001
+        }
+      ],
+      "peak_rss_bytes": 245108736
+    }
+  ]
+}

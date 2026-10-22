@@ -1,0 +1,129 @@
+[
+  {
+    "seed": "-9103892851552028103",
+    "kind": "structure.stronghold",
+    "dimension": "overworld",
+    "query": [
+      820,
+      -1708
+    ],
+    "reported": [
+      98,
+      -2030
+    ],
+    "outcome": "coordinate_difference",
+    "raw_output": [
+      "[2026-10-20 18:07:44:232 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (790 blocks away)"
+    ],
+    "block_biomes": [
+      {
+        "x": 820,
+        "z": -1708,
+        "values": {
+          "-48": "jungle",
+          "0": "dripstone_caves",
+          "63": "jungle",
+          "80": "jungle",
+          "120": "jungle",
+          "319": "jungle"
+        }
+      }
+    ],
+    "native_filter_admits": true,
+    "matching_region_attempts": [
+      [
+        0,
+        -1
+      ]
+    ],
+    "classification": "static region candidate"
+  },
+  {
+    "seed": "-3509659830737203357",
+    "kind": "structure.outpost",
+    "dimension": "overworld",
+    "query": [
+      528,
+      512
+    ],
+    "reported": [
+      -1000,
+      408
+    ],
+    "outcome": "coordinate_difference",
+    "raw_output": [
+      "[2026-10-20 17:56:30:654 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (1531 blocks away)"
+    ],
+    "block_biomes": [
+      {
+        "x": 528,
+        "z": 512,
+        "values": {
+          "-48": "deep_dark",
+          "0": "deep_dark",
+          "63": "dripstone_caves",
+          "80": "dripstone_caves",
+          "120": "dripstone_caves",
+          "319": "grove"
+        }
+      },
+      {
+        "x": 536,
+        "z": 520,
+        "values": {
+          "-48": "deep_dark",
+          "0": "deep_dark",
+          "63": "dripstone_caves",
+          "80": "dripstone_caves",
+          "120": "dripstone_caves",
+          "319": "grove"
+        }
+      }
+    ],
+    "native_filter_admits": true,
+    "matching_region_attempts": [
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  {
+    "seed": "-3509659830737203357",
+    "kind": "structure.village",
+    "dimension": "overworld",
+    "query": [
+      -296,
+      -312
+    ],
+    "reported": [
+      -888,
+      136
+    ],
+    "outcome": "coordinate_difference",
+    "raw_output": [
+      "[2026-10-20 17:56:31:509 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)"
+    ],
+    "block_biomes": [
+      {
+        "x": -296,
+        "z": -312,
+        "values": {
+          "-48": "snowy_plains",
+          "0": "dripstone_caves",
+          "63": "snowy_plains",
+          "80": "snowy_plains",
+          "120": "snowy_plains",
+          "319": "snowy_plains"
+        }
+      }
+    ],
+    "native_filter_admits": true,
+    "matching_region_attempts": [
+      [
+        -1,
+        -1
+      ]
+    ]
+  }
+]

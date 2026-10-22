@@ -1,0 +1,196 @@
+{
+  "scope": "Restart/adoption and bounded performance comparison only; no implementation/native changes; immutable catalog/personal preservation verified",
+  "external_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021",
+  "files": {
+    "reviews/openmp-adoption-benchmark-2026-10-21/SUMMARY.json": {
+      "bytes": 1148,
+      "sha256": "0df502109228a787ebc80a808d1f12593f7fd342401eb527820db575604475c8"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/ARCHITECTURE.md": {
+      "bytes": 4601,
+      "sha256": "72cf14185d260846be9ec78883243bf518abd74fc22deb066c976ed728928b44"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/ACTIVE_RESULTS.json": {
+      "bytes": 22190,
+      "sha256": "a4e2c727a4b03809f9fb80b182b09196507ec478b4ac24eaefeccdf32a95ff3d"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/REPORT.md": {
+      "bytes": 8584,
+      "sha256": "41dfcf6530469b13f8ff65f94653ddc7702fcb43f2be49d164bae63f02d896ce"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/WORKER_REVIEW.json": {
+      "bytes": 8103,
+      "sha256": "ca38838d30898611d4b1e78c1606d82654d0082472b5d8565637b6bd1d0b8bcb"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/CATALOG_RESULTS.json": {
+      "bytes": 1793,
+      "sha256": "4e279df6b74a7cb2ca1b7fb69e4fd05bf4a27ad885e5125925f5890b51163141"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/RESOURCES.json": {
+      "bytes": 1868,
+      "sha256": "34339a8423acfae1b967b50a4be0152eed5199f8ff759de91aca4a09c92d207c"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/FINAL_VERIFICATION.json": {
+      "bytes": 1118,
+      "sha256": "1e481269f32d3b4ea33208646a7d10502ef30804e66cb418cf245a96038ba5a1"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/PLAN.md": {
+      "bytes": 5234,
+      "sha256": "0e576f7b20ac1ce4ea53548861bfc3d913d16b1e63d0981fffe923f2814e7955"
+    },
+    "reviews/openmp-adoption-benchmark-2026-10-21/PERSONAL_RESULTS.json": {
+      "bytes": 25359,
+      "sha256": "3d636ca8aad7f4c59552058bb3281a03fe8c5c22674a67a9b45e833e60048894"
+    },
+    "README.md": {
+      "bytes": 55712,
+      "sha256": "f7379c6f56bf720bd8f5220be1444e3608fad52ba3dd06012af6cc2904c0b825"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/summary.json": {
+      "bytes": 1148,
+      "sha256": "0df502109228a787ebc80a808d1f12593f7fd342401eb527820db575604475c8"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_personal.py-resources.json": {
+      "bytes": 317,
+      "sha256": "dbd41d43aeb0a7415c04e40d4a76cf6873bfcf7280e35a664e2932df006e8be0"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_catalog.py-resources.json": {
+      "bytes": 316,
+      "sha256": "3823ccc4535132c05faf3fc861a6d8e4354bf25249000f3131cd6cdbcb4ac4e0"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_catalog.py.log": {
+      "bytes": 1507,
+      "sha256": "3384aef0cbb79a2bbfa9b8d89c629ec4655e9d4426ba5e12396a5e2b1feb4e94"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/run_bounded.py": {
+      "bytes": 1671,
+      "sha256": "f07254f967a02d84f5589a98d99f79b4cb5edcb3043b59f9d7bea7491b80800e"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_personal.py": {
+      "bytes": 5000,
+      "sha256": "405cee36df13af9cad81b01d0013c5d750d91e672342c5b4f20c80dfcdba0213"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_personal.py.retry1.log": {
+      "bytes": 2715,
+      "sha256": "9373dcc6209f7c0941e6861d0609a1df8b466d3f4d7d20aac8f59c28b8185a8f"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/post-restart.json": {
+      "bytes": 151247,
+      "sha256": "2ead52c928b3d52682aeee21fd78db4af314579b2644c2a6c1180a83038cfcef"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-0.log": {
+      "bytes": 1118,
+      "sha256": "2418cc16403e72d14061a692660f259a5e1ce37e14c5b2cb6771046daa51e506"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-results.json": {
+      "bytes": 25359,
+      "sha256": "3d636ca8aad7f4c59552058bb3281a03fe8c5c22674a67a9b45e833e60048894"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/pre-restart.json": {
+      "bytes": 272513,
+      "sha256": "d59b10459cd4d017b7178d81eaf28fac4c8e5d16a5fcd42a1ac8f95a5cf835f3"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-1.json": {
+      "bytes": 1789,
+      "sha256": "72da50c361dc156dd35c628d8a32ab124f12fea2392ada060f8dd4a0699bec25"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-0.json": {
+      "bytes": 1790,
+      "sha256": "e7dd0b3c1fe0f477fafde8c3f4e55496e231eaa0ad375db454c896332fe14e99"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_active.py.log": {
+      "bytes": 1692,
+      "sha256": "36e4765036aea658a511ee5ddafc6e04a9a075854e4a3ba1f111ea814b9f950f"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/final-verification.json": {
+      "bytes": 1118,
+      "sha256": "1e481269f32d3b4ea33208646a7d10502ef30804e66cb418cf245a96038ba5a1"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_active.py.retry1.log": {
+      "bytes": 2797,
+      "sha256": "a2bf5655bceccfc29e2dbe785e0c311a209f8240d65e4016e8adfaca006243eb"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/catalog-seeds.json": {
+      "bytes": 48,
+      "sha256": "fe1c470f0514774f68aee67ca4b51e1696c0e0d98ad5a1cc0091d307b6600b51"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_personal.py.log": {
+      "bytes": 1673,
+      "sha256": "76a4707c51d78114104d7a616d491b7b584ab6c627729af02f5cbd86815107f5"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-2.log": {
+      "bytes": 1483,
+      "sha256": "bcd1e597d830f9ff89e472c51936c6e5b4c3d51165e498729e98b42b586016a2"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-2.json": {
+      "bytes": 1787,
+      "sha256": "2c6624b62f9e7ab3caf627374530168334d78cd60b00239c25372cd818e3df31"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-0.log": {
+      "bytes": 1486,
+      "sha256": "f391e0b3fa2824f02b0cec5a90d08c46523707b35d5312953608ace7bd8555b9"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-1.log": {
+      "bytes": 1485,
+      "sha256": "2f76cdb42b996dd9bf6fe0a5ebee7b847e561aeb00380ce7b1569353af6c4013"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/catalog-results.json": {
+      "bytes": 1793,
+      "sha256": "4e279df6b74a7cb2ca1b7fb69e4fd05bf4a27ad885e5125925f5890b51163141"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_personal.py.retry1-resources.json": {
+      "bytes": 317,
+      "sha256": "f2ffecfa57d2ec04d121b695ce554e6feec865d43e455af3e8bae561c4073eaf"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_active.py": {
+      "bytes": 4773,
+      "sha256": "4b4d5033045b54bf1fecf11c616483a25209f66dbd28ddd08fce3aa49de7d66e"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_catalog.py": {
+      "bytes": 3303,
+      "sha256": "b88a2e626fe6c39b29c439f4d4b51d620f6afab804749ee0ff9ee0f2a4a1828e"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-results.json": {
+      "bytes": 22190,
+      "sha256": "a4e2c727a4b03809f9fb80b182b09196507ec478b4ac24eaefeccdf32a95ff3d"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_active.py-resources.json": {
+      "bytes": 316,
+      "sha256": "2a03ea9e5af2900dea34918f852d05edfe1b1c46f6ad94d82aa020e668290d36"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/thermal-final.txt": {
+      "bytes": 223,
+      "sha256": "46ae6395074c079b8fbb1489050c5b898242520336af65fd6db1e8a7d90a6df5"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/measure_active.py.retry1-resources.json": {
+      "bytes": 315,
+      "sha256": "5662619e246d68887f7a2b98719c054f9c63143f725fd0ccfab66e939053f966"
+    },
+    "src/seed_search/web/server.py": {
+      "bytes": 82931,
+      "sha256": "18654d066837aeb773b99a620835b3140a52145c8c97d552e301b260655c38f3"
+    },
+    "src/seed_search/realm/native_batch.py": {
+      "bytes": 58701,
+      "sha256": "811600b43ca7afb1b18bd30fa98d10555dd46edf56380bda2f7a351435139eca"
+    },
+    "src/seed_search/catalog/bridge.py": {
+      "bytes": 2395,
+      "sha256": "346a832b8b1c9bcef8e5f3dcd0b552c4b3c2d0c03164258ba94a0f7bdd0bf39f"
+    },
+    "src/seed_search/catalog/retention.py": {
+      "bytes": 25789,
+      "sha256": "34dee16690a65ff08a4a273bdc5db86df736d2bf19d9e2b05fdea65731b63b0c"
+    },
+    "src/seed_search/realm/top_tracker.py": {
+      "bytes": 12573,
+      "sha256": "b5e88d90065dc7f47595251c0ea6de64b0b05d7376951445374fd45bd9de02e8"
+    },
+    "reviews/native-refinement-2026-10-16/benchmark.json": {
+      "bytes": 19702,
+      "sha256": "b6d48daf293dc2f43eb6648a4e53e524fd39bde6f265b90ea87bfcdd4a6cf121"
+    }
+  },
+  "source_changes": "No implementation/native artifact changes in this task; giant inherited dirty tree preserved",
+  "note": "Old failure logs/resources kept; only successful fresh paired trials used for measured comparisons. Large disposable SQLite/observation files retained externally, not copied into repo."
+}

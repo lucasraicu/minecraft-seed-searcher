@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:3001",
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "checks": [
+    {
+      "name": "capabilities",
+      "status": 200,
+      "seconds": 0.08205141394864768
+    },
+    {
+      "name": "historical-capabilities",
+      "status": 200,
+      "seconds": 0.07847409299574792
+    },
+    {
+      "name": "snapshots",
+      "status": 200,
+      "seconds": 0.6782085710437968
+    },
+    {
+      "name": "automation-status",
+      "status": 200,
+      "seconds": 0.5214667241089046
+    },
+    {
+      "name": "igloo-origin",
+      "status": 200,
+      "seconds": 2.197338473983109
+    },
+    {
+      "name": "treasure-origin",
+      "status": 200,
+      "seconds": 2.102915807045065
+    },
+    {
+      "name": "igloo-recommended",
+      "status": 200,
+      "seconds": 2.845449863001704
+    },
+    {
+      "name": "treasure-recommended",
+      "status": 200,
+      "seconds": 2.6801078550051898
+    },
+    {
+      "name": "igloo-world_spawn_estimated",
+      "status": 200,
+      "seconds": 2.0806085870135576
+    },
+    {
+      "name": "treasure-world_spawn_estimated",
+      "status": 200,
+      "seconds": 2.064633397036232
+    },
+    {
+      "name": "mixed-8192",
+      "status": 200,
+      "seconds": 3.0890828230185434
+    },
+    {
+      "name": "historical-gate",
+      "status": 400,
+      "seconds": 3.0869793830206618
+    },
+    {
+      "name": "detail",
+      "status": 200,
+      "seconds": 4.472319831955247
+    },
+    {
+      "name": "products",
+      "status": 200,
+      "seconds": 0.00841417198535055
+    },
+    {
+      "name": "product-0-primary",
+      "status": 200,
+      "seconds": 3.240451859892346
+    },
+    {
+      "name": "product-0-reserve",
+      "status": 200,
+      "seconds": 3.213360209017992
+    },
+    {
+      "name": "product-1-primary",
+      "status": 200,
+      "seconds": 3.401675052009523
+    },
+    {
+      "name": "product-1-reserve",
+      "status": 200,
+      "seconds": 3.5861495550489053
+    }
+  ]
+}

@@ -25,8 +25,12 @@ DENSITY_NAMES=('village','trial_chamber','ancient_city','desert_pyramid',
 OVERWORLD_NAMES=('stronghold','mansion','village','trial_chamber','ancient_city',
                  'desert_pyramid','jungle_temple','monument','ruined_portal',
                  'shipwreck','mineshaft','outpost')
+OVERWORLD_NAMES_V3=('stronghold','mansion','village','trial_chamber','ancient_city',
+                    'desert_pyramid','monument','ruined_portal',
+                    'shipwreck','mineshaft','outpost')
 NETHER_NAMES=('fortress','bastion')
 OPTIONAL_NAMES=('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure')
+OPTIONAL_NAMES_V3=('swamp_hut','igloo','trail_ruins','ocean_ruin','buried_treasure','jungle_temple')
 CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':2,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':1}
 DYNAMIC_V2_CENTROID_WEIGHTS={'village':3,'trial_chamber':2,'ruined_portal':0,'ancient_city':2,'outpost':1,'desert_pyramid':1,'jungle_temple':1,'mansion':1,'monument':1,'stronghold':1,'shipwreck':0}
 DYNAMIC_V3_CENTROID_WEIGHTS={'village':2,'trial_chamber':1,'ruined_portal':0,'ancient_city':2,'outpost':1,'desert_pyramid':2,'jungle_temple':2,'mansion':2,'monument':1,'stronghold':3,'shipwreck':0}
@@ -98,8 +102,9 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2, centro
                   for v in (8 * n - (8 * nw_half - 1), 8 * n + (8 * nw_half + 1))}
     lat_events = {v for v in lat_events if min_c < v <= max_c}
     xs=[];zs=[];nether_x=[];nether_z=[]
+    opt_names = OPTIONAL_NAMES_V3 if ow_half == OVERWORLD_HALF_V3 else OPTIONAL_NAMES
     for name,points in inventories.items():
-        if name in OPTIONAL_NAMES:continue
+        if name in opt_names:continue
         target_x,target_z=(nether_x,nether_z) if name in NETHER_NAMES else (xs,zs)
         for x,z in points:target_x.append(x);target_z.append(z)
     ex=sorted(set(_axis_events(xs,ow_half,False,min_c,max_c)+_axis_events(nether_x,nw_half,True,min_c,max_c))|lat_events)
@@ -132,7 +137,7 @@ def candidate_centers(inventories, floors, ideals, weights, max_misses=2, centro
             snapped=tuple(axes)
             s_ow=overworld_bounds(snapped,ow_half)
             c=dict(counts)
-            for name in OPTIONAL_NAMES:
+            for name in opt_names:
                 if name in inventories:c[name]=sum(contains(p,s_ow) for p in inventories[name])
             radial=sum(w*math.hypot(x-snapped[0],z-snapped[1]) for x,z,w in captured)/weight if weight else 0.
             density=sum(weights[name]*c.get(name,0) for name in DENSITY_NAMES)

@@ -1,0 +1,84 @@
+{
+  "catalog_refresh": {
+    "exhaustive_count": null,
+    "layouts": 48600,
+    "located_exact": 27,
+    "origin_circle_villages": 27,
+    "snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "source_snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+    "worlds": 200
+  },
+  "completion": "Storage/alias fixes, targeted structure adjudications and catalog refresh verified. General native prediction fixes remain incomplete.",
+  "game_execution": {
+    "lifecycle": {
+      "all_clean": true,
+      "biome_reads": 156,
+      "block_reads": 4180,
+      "locates": 24,
+      "memberships": 0,
+      "wall_seconds": 136.8648032459896,
+      "worlds": 4
+    },
+    "membership": {
+      "all_clean": true,
+      "biome_reads": 37,
+      "block_reads": 43,
+      "locates": 6,
+      "memberships": 37,
+      "wall_seconds": 34.81518105091527,
+      "worlds": 2
+    },
+    "membership-columns": {
+      "all_clean": true,
+      "biome_reads": 43,
+      "block_reads": 1367,
+      "locates": 6,
+      "memberships": 2341,
+      "wall_seconds": 43.01059327891562,
+      "worlds": 2
+    },
+    "membership-volumes": {
+      "all_clean": true,
+      "biome_reads": 27,
+      "block_reads": 852,
+      "locates": 4,
+      "memberships": 394775,
+      "wall_seconds": 64.48682138405275,
+      "worlds": 1
+    }
+  },
+  "general_cave_rule": "unresolved",
+  "general_village_outpost_rule": "unresolved",
+  "hypotheses": {
+    "ancient_city_proximity": "Correlation only; no native rule accepted",
+    "climate_interpolation": "Not exact; controls fail",
+    "continuous_coordinates": "Not exact on all fresh/preserved cohorts",
+    "java_voronoi_variants": "Not exact; alternate hash seeds tested",
+    "outpost_lower_height": "Reject: loses positive controls",
+    "quart_y_plus_one": "Improves sampled score but breaks valid (-256,32,-256) control",
+    "village_Y0": "Reject: loses 7 of 27 located positives"
+  },
+  "native_serving_changes": false,
+  "source_preservation": {
+    "all_other_baseline_files_unchanged": true,
+    "head_unchanged": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "missing_paths": [],
+    "native_sources_and_binaries_unchanged": true,
+    "preexisting_changed_paths": [
+      "src/seed_search/catalog/product_views.py",
+      "src/seed_search/catalog/segments.py",
+      "src/seed_search/catalog/coverage.py",
+      "src/seed_search/catalog/summaries.py",
+      "src/seed_search/realm/biomes.py",
+      "src/seed_search/realm/bedrock_biome_storage.py",
+      "scripts/predictor_targeted_bds.py",
+      "scripts/predictor_storage_probe.py",
+      "scripts/predictor_diagnostics.py",
+      "tests/test_predictor_diagnostics.py",
+      "docs/catalog/PREDICTOR_DIAGNOSTICS.md",
+      "docs/catalog/BIOME_STORAGE_VERIFICATION.md",
+      "CODEX_HANDOFF.md"
+    ],
+    "whitespace_warning": "Preexisting native/bridge.c:536 blank EOF line; native hash unchanged"
+  }
+}

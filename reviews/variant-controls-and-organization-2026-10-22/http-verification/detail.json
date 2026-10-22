@@ -1,0 +1,3288 @@
+{
+  "ok": true,
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "world_id": "8ba078e4303883fd26951f1c479cab3ad88adcc4fdc447c3629ac47f62e098c5",
+  "identity": {
+    "edition": "bedrock",
+    "extractor_revision": "cpu-catalog-reference-v1",
+    "game_build_id": "research:26.50",
+    "model_id": "26.50",
+    "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+    "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+    "seed": "-4448602725700497049",
+    "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+    "world_settings_id": "default"
+  },
+  "layout": {
+    "anchor": [
+      0,
+      0
+    ],
+    "anchor_modes": [
+      "origin",
+      "recommended"
+    ],
+    "border_side": 2048,
+    "features": {
+      "biome.badlands": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.bamboo_jungle": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.basalt_deltas": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 32768,
+        "witness": [
+          -128,
+          64,
+          128
+        ]
+      },
+      "biome.cherry_grove": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.crimson_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 0,
+        "witness": [
+          0,
+          64,
+          0
+        ]
+      },
+      "biome.desert": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.badlands": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.bamboo_jungle": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.beach": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 737280,
+        "witness": [
+          -768,
+          63,
+          384
+        ]
+      },
+      "biome.exact.birch_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.cherry_grove": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.cold_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 524288,
+        "witness": [
+          -512,
+          63,
+          512
+        ]
+      },
+      "biome.exact.dappled_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 348160,
+        "witness": [
+          448,
+          63,
+          -384
+        ]
+      },
+      "biome.exact.dark_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.deep_cold_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.deep_dark": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 16384,
+        "witness": [
+          -128,
+          -48,
+          0
+        ]
+      },
+      "biome.exact.deep_frozen_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 626688,
+        "witness": [
+          -192,
+          63,
+          768
+        ]
+      },
+      "biome.exact.deep_lukewarm_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.deep_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.desert": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.dripstone_caves": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          64,
+          0,
+          0
+        ]
+      },
+      "biome.exact.eroded_badlands": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.flower_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 8192,
+        "witness": [
+          64,
+          63,
+          -64
+        ]
+      },
+      "biome.exact.frozen_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 249856,
+        "witness": [
+          -320,
+          63,
+          384
+        ]
+      },
+      "biome.exact.frozen_peaks": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.frozen_river": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 16384,
+        "witness": [
+          128,
+          63,
+          0
+        ]
+      },
+      "biome.exact.grove": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 118784,
+        "witness": [
+          -320,
+          160,
+          -128
+        ]
+      },
+      "biome.exact.ice_spikes": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 991232,
+        "witness": [
+          704,
+          63,
+          -704
+        ]
+      },
+      "biome.exact.jagged_peaks": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 184320,
+        "witness": [
+          192,
+          160,
+          -384
+        ]
+      },
+      "biome.exact.jungle": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.lukewarm_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.lush_caves": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 32768,
+        "witness": [
+          -128,
+          0,
+          128
+        ]
+      },
+      "biome.exact.mangrove_swamp": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.meadow": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 16384,
+        "witness": [
+          -128,
+          63,
+          0
+        ]
+      },
+      "biome.exact.mushroom_fields": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.old_growth_birch_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.old_growth_pine_taiga": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 40960,
+        "witness": [
+          -192,
+          63,
+          -64
+        ]
+      },
+      "biome.exact.old_growth_spruce_taiga": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 163840,
+        "witness": [
+          -128,
+          63,
+          -384
+        ]
+      },
+      "biome.exact.pale_garden": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.plains": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 139264,
+        "witness": [
+          320,
+          63,
+          -192
+        ]
+      },
+      "biome.exact.river": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 0,
+        "witness": [
+          0,
+          63,
+          0
+        ]
+      },
+      "biome.exact.savanna": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.savanna_plateau": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.snowy_beach": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 69632,
+        "witness": [
+          -64,
+          63,
+          256
+        ]
+      },
+      "biome.exact.snowy_plains": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          64,
+          63,
+          0
+        ]
+      },
+      "biome.exact.snowy_slopes": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 364544,
+        "witness": [
+          512,
+          63,
+          -320
+        ]
+      },
+      "biome.exact.snowy_taiga": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          0,
+          63,
+          64
+        ]
+      },
+      "biome.exact.sparse_jungle": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.stony_peaks": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.stony_shore": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 757760,
+        "witness": [
+          -704,
+          63,
+          -512
+        ]
+      },
+      "biome.exact.sulfur_caves": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 303104,
+        "witness": [
+          448,
+          0,
+          320
+        ]
+      },
+      "biome.exact.sunflower_plains": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.swamp": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.taiga": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          -64,
+          63,
+          0
+        ]
+      },
+      "biome.exact.warm_ocean": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.windswept_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.windswept_gravelly_hills": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.windswept_hills": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.windswept_savanna": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.exact.wooded_badlands": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 8192,
+        "witness": [
+          64,
+          63,
+          -64
+        ]
+      },
+      "biome.group.badlands": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.group.forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 8192,
+        "witness": [
+          64,
+          63,
+          -64
+        ]
+      },
+      "biome.group.plains": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 16384,
+        "witness": [
+          -128,
+          63,
+          0
+        ]
+      },
+      "biome.group.snowy": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          0,
+          63,
+          64
+        ]
+      },
+      "biome.mangrove_swamp": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.mushroom_fields": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "biome.nether_wastes": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 8192,
+        "witness": [
+          -64,
+          64,
+          64
+        ]
+      },
+      "biome.plains": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 16384,
+        "witness": [
+          -128,
+          63,
+          0
+        ]
+      },
+      "biome.snowy": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 4096,
+        "witness": [
+          0,
+          63,
+          64
+        ]
+      },
+      "biome.soul_sand_valley": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 16384,
+        "witness": [
+          -128,
+          64,
+          0
+        ]
+      },
+      "biome.warped_forest": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 4096,
+        "witness": [
+          0,
+          64,
+          64
+        ]
+      },
+      "structure.ancient_city": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          1,
+          2,
+          2
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 74880,
+        "witness": [
+          168,
+          null,
+          -216
+        ]
+      },
+      "structure.bastion": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "dimension": "nether",
+        "nearest_d2": 100480,
+        "witness": [
+          56,
+          null,
+          312
+        ]
+      },
+      "structure.bastion_treasure": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "nether",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.desert_pyramid": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.fortress": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "nether",
+        "nearest_d2": 46720,
+        "witness": [
+          8,
+          null,
+          -216
+        ]
+      },
+      "structure.igloo": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          1,
+          3,
+          3
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 108160,
+        "witness": [
+          248,
+          null,
+          216
+        ]
+      },
+      "structure.igloo_with_basement": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 108160,
+        "witness": [
+          248,
+          null,
+          216
+        ]
+      },
+      "structure.jungle_temple": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.mansion": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.mineshaft": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          3,
+          27,
+          31
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 141952,
+        "witness": [
+          -376,
+          null,
+          24
+        ]
+      },
+      "structure.monument": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.outpost": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 774656,
+        "witness": [
+          400,
+          null,
+          -784
+        ]
+      },
+      "structure.ruined_portal": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          2,
+          8,
+          11
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 109696,
+        "witness": [
+          200,
+          null,
+          -264
+        ]
+      },
+      "structure.shipwreck": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          3,
+          4
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 894592,
+        "witness": [
+          136,
+          null,
+          936
+        ]
+      },
+      "structure.stronghold": {
+        "complete": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.swamp_hut": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dimension": "overworld",
+        "nearest_d2": null,
+        "witness": null
+      },
+      "structure.trail_ruins": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          2,
+          5,
+          5
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 164480,
+        "witness": [
+          152,
+          null,
+          376
+        ]
+      },
+      "structure.trial_chamber": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          1,
+          1,
+          12,
+          15
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 24704,
+        "witness": [
+          40,
+          null,
+          152
+        ]
+      },
+      "structure.village": {
+        "complete": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": [
+          0,
+          2,
+          5,
+          6
+        ],
+        "dimension": "overworld",
+        "nearest_d2": 101504,
+        "witness": [
+          200,
+          null,
+          248
+        ]
+      }
+    },
+    "layout_id": "1c87b39a00616ab094751d0d669a017bc2fb9865feaf1ef97d648d07ea02a54d",
+    "legacy": {
+      "anchor": [
+        0,
+        0
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4096,
+        4294967295,
+        8192,
+        16384
+      ],
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        12881,
+        4294967295,
+        12721,
+        12878
+      ],
+      "border_side": 2048,
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "counts": [
+        [
+          0,
+          2,
+          5,
+          6
+        ],
+        [
+          1,
+          1,
+          12,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          5,
+          5
+        ],
+        [
+          0,
+          2,
+          8,
+          11
+        ],
+        [
+          0,
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          27,
+          31
+        ]
+      ],
+      "layout_id": "1b088f08c73a91782e1cb3327687a3e6cff83ffdecaa81edd98655a51a741db7",
+      "observation_id": "a8953aa27f56e420fe30f242dd5b79855d09a15869d7d9c8f3706f01dbe6c3d1",
+      "revision": "catalog-summary-v1",
+      "seed": "-4448602725700497049",
+      "structure_nearest_d2": [
+        101504,
+        24704,
+        74880,
+        4294967295,
+        4294967295,
+        774656,
+        4294967295,
+        4294967295,
+        4294967295,
+        108160,
+        164480,
+        109696,
+        894592,
+        141952
+      ],
+      "world_id": "8ba078e4303883fd26951f1c479cab3ad88adcc4fdc447c3629ac47f62e098c5"
+    },
+    "nether_anchor": [
+      0,
+      0
+    ],
+    "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+    "revision": "catalog-summary-v3",
+    "sampling_profile_revision": "7e65f01cacbc4932944844ad71e4872cf200b7fbf5b1ff763d0459393b432c71",
+    "seed": "-4448602725700497049",
+    "source_extension_id": "702b933089bc7d0aebf1e7ea9b4b904a2da259edfaf9d12d006d7a6635c672ae",
+    "source_observation_id": "13643048fceb99b554512538a827c47384a07c1e8835b37f0f9876fcbf62de83",
+    "world_id": "8ba078e4303883fd26951f1c479cab3ad88adcc4fdc447c3629ac47f62e098c5",
+    "counts": [
+      [
+        0,
+        2,
+        5,
+        6
+      ],
+      [
+        1,
+        1,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        3,
+        3
+      ],
+      [
+        0,
+        2,
+        5,
+        5
+      ],
+      [
+        0,
+        2,
+        8,
+        11
+      ],
+      [
+        0,
+        0,
+        3,
+        4
+      ],
+      [
+        0,
+        3,
+        27,
+        31
+      ]
+    ],
+    "complete": [
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true
+      ]
+    ],
+    "structure_nearest_d2": [
+      101504,
+      24704,
+      74880,
+      4294967295,
+      4294967295,
+      774656,
+      4294967295,
+      4294967295,
+      4294967295,
+      108160,
+      164480,
+      109696,
+      894592,
+      141952
+    ],
+    "biome_nearest_d2": [
+      4294967295,
+      4294967295,
+      4294967295,
+      4294967295,
+      4294967295,
+      4096,
+      4294967295,
+      8192,
+      16384
+    ],
+    "anchor_mode": "origin"
+  },
+  "anchor_evidence": null,
+  "anchor_roles": [],
+  "anchor_sources": [],
+  "structures": {
+    "structure.ancient_city": [
+      [
+        168,
+        -216
+      ],
+      [
+        488,
+        -296
+      ]
+    ],
+    "structure.desert_pyramid": [],
+    "structure.igloo": [
+      [
+        -264,
+        -904
+      ],
+      [
+        248,
+        216
+      ],
+      [
+        616,
+        696
+      ]
+    ],
+    "structure.jungle_temple": [],
+    "structure.mansion": [],
+    "structure.mineshaft": [
+      [
+        -984,
+        120
+      ],
+      [
+        -968,
+        -776
+      ],
+      [
+        -904,
+        120
+      ],
+      [
+        -808,
+        -24
+      ],
+      [
+        -760,
+        -392
+      ],
+      [
+        -616,
+        -456
+      ],
+      [
+        -536,
+        -872
+      ],
+      [
+        -440,
+        856
+      ],
+      [
+        -392,
+        -296
+      ],
+      [
+        -376,
+        24
+      ],
+      [
+        -328,
+        -216
+      ],
+      [
+        -296,
+        -648
+      ],
+      [
+        -232,
+        856
+      ],
+      [
+        -136,
+        872
+      ],
+      [
+        40,
+        648
+      ],
+      [
+        184,
+        648
+      ],
+      [
+        200,
+        -504
+      ],
+      [
+        248,
+        -840
+      ],
+      [
+        264,
+        1016
+      ],
+      [
+        312,
+        664
+      ],
+      [
+        408,
+        312
+      ],
+      [
+        520,
+        280
+      ],
+      [
+        632,
+        472
+      ],
+      [
+        648,
+        216
+      ],
+      [
+        648,
+        472
+      ],
+      [
+        728,
+        -56
+      ],
+      [
+        792,
+        232
+      ],
+      [
+        824,
+        -344
+      ],
+      [
+        920,
+        -104
+      ],
+      [
+        984,
+        792
+      ],
+      [
+        1000,
+        344
+      ]
+    ],
+    "structure.monument": [],
+    "structure.outpost": [
+      [
+        400,
+        -784
+      ]
+    ],
+    "structure.ruined_portal": [
+      [
+        -968,
+        1000
+      ],
+      [
+        -952,
+        168
+      ],
+      [
+        -632,
+        280
+      ],
+      [
+        -488,
+        -488
+      ],
+      [
+        -456,
+        1016
+      ],
+      [
+        200,
+        -264
+      ],
+      [
+        232,
+        984
+      ],
+      [
+        392,
+        216
+      ],
+      [
+        664,
+        -616
+      ],
+      [
+        664,
+        1016
+      ],
+      [
+        712,
+        200
+      ]
+    ],
+    "structure.shipwreck": [
+      [
+        -1016,
+        24
+      ],
+      [
+        -648,
+        920
+      ],
+      [
+        -248,
+        920
+      ],
+      [
+        136,
+        936
+      ]
+    ],
+    "structure.stronghold": [],
+    "structure.swamp_hut": [],
+    "structure.trail_ruins": [
+      [
+        -440,
+        -216
+      ],
+      [
+        -184,
+        -904
+      ],
+      [
+        152,
+        376
+      ],
+      [
+        360,
+        936
+      ],
+      [
+        584,
+        24
+      ]
+    ],
+    "structure.trial_chamber": [
+      [
+        -920,
+        -440
+      ],
+      [
+        -920,
+        664
+      ],
+      [
+        -904,
+        -776
+      ],
+      [
+        -744,
+        232
+      ],
+      [
+        -472,
+        296
+      ],
+      [
+        -440,
+        -504
+      ],
+      [
+        -408,
+        760
+      ],
+      [
+        -344,
+        -936
+      ],
+      [
+        24,
+        664
+      ],
+      [
+        40,
+        152
+      ],
+      [
+        56,
+        -920
+      ],
+      [
+        616,
+        -312
+      ],
+      [
+        616,
+        888
+      ],
+      [
+        648,
+        152
+      ],
+      [
+        696,
+        -744
+      ]
+    ],
+    "structure.village": [
+      [
+        -936,
+        -328
+      ],
+      [
+        -376,
+        152
+      ],
+      [
+        -344,
+        -920
+      ],
+      [
+        200,
+        248
+      ],
+      [
+        648,
+        152
+      ],
+      [
+        744,
+        888
+      ]
+    ]
+  },
+  "nether_structures": {
+    "structure.bastion": [
+      [
+        -440,
+        -472
+      ],
+      [
+        56,
+        312
+      ]
+    ],
+    "structure.fortress": [
+      [
+        8,
+        -216
+      ]
+    ]
+  },
+  "nether_bounds": [
+    -512,
+    -512,
+    512,
+    512
+  ],
+  "nether_biome_witnesses": [
+    {
+      "feature": "biome.basalt_deltas",
+      "x": -128,
+      "y": 64,
+      "z": 128,
+      "distance_squared": 32768
+    },
+    {
+      "feature": "biome.crimson_forest",
+      "x": 0,
+      "y": 64,
+      "z": 0,
+      "distance_squared": 0
+    },
+    {
+      "feature": "biome.nether_wastes",
+      "x": -64,
+      "y": 64,
+      "z": 64,
+      "distance_squared": 8192
+    },
+    {
+      "feature": "biome.soul_sand_valley",
+      "x": -128,
+      "y": 64,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.warped_forest",
+      "x": 0,
+      "y": 64,
+      "z": 64,
+      "distance_squared": 4096
+    }
+  ],
+  "structures_truncated": false,
+  "biome_witnesses": [
+    {
+      "feature": "biome.exact.beach",
+      "x": -768,
+      "y": 63,
+      "z": 384,
+      "distance_squared": 737280
+    },
+    {
+      "feature": "biome.exact.cold_ocean",
+      "x": -512,
+      "y": 63,
+      "z": 512,
+      "distance_squared": 524288
+    },
+    {
+      "feature": "biome.exact.dappled_forest",
+      "x": 448,
+      "y": 63,
+      "z": -384,
+      "distance_squared": 348160
+    },
+    {
+      "feature": "biome.exact.deep_dark",
+      "x": -128,
+      "y": -48,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.exact.deep_frozen_ocean",
+      "x": -192,
+      "y": 63,
+      "z": 768,
+      "distance_squared": 626688
+    },
+    {
+      "feature": "biome.exact.dripstone_caves",
+      "x": 64,
+      "y": 0,
+      "z": 0,
+      "distance_squared": 4096
+    },
+    {
+      "feature": "biome.exact.forest",
+      "x": 64,
+      "y": 63,
+      "z": -64,
+      "distance_squared": 8192
+    },
+    {
+      "feature": "biome.exact.frozen_ocean",
+      "x": -320,
+      "y": 63,
+      "z": 384,
+      "distance_squared": 249856
+    },
+    {
+      "feature": "biome.exact.frozen_river",
+      "x": 128,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.exact.grove",
+      "x": -320,
+      "y": 160,
+      "z": -128,
+      "distance_squared": 118784
+    },
+    {
+      "feature": "biome.exact.ice_spikes",
+      "x": 704,
+      "y": 63,
+      "z": -704,
+      "distance_squared": 991232
+    },
+    {
+      "feature": "biome.exact.jagged_peaks",
+      "x": 192,
+      "y": 160,
+      "z": -384,
+      "distance_squared": 184320
+    },
+    {
+      "feature": "biome.exact.lush_caves",
+      "x": -128,
+      "y": 0,
+      "z": 128,
+      "distance_squared": 32768
+    },
+    {
+      "feature": "biome.exact.meadow",
+      "x": -128,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.exact.old_growth_pine_taiga",
+      "x": -192,
+      "y": 63,
+      "z": -64,
+      "distance_squared": 40960
+    },
+    {
+      "feature": "biome.exact.old_growth_spruce_taiga",
+      "x": -128,
+      "y": 63,
+      "z": -384,
+      "distance_squared": 163840
+    },
+    {
+      "feature": "biome.exact.plains",
+      "x": 320,
+      "y": 63,
+      "z": -192,
+      "distance_squared": 139264
+    },
+    {
+      "feature": "biome.exact.river",
+      "x": 0,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 0
+    },
+    {
+      "feature": "biome.exact.snowy_beach",
+      "x": -64,
+      "y": 63,
+      "z": 256,
+      "distance_squared": 69632
+    },
+    {
+      "feature": "biome.exact.snowy_plains",
+      "x": 64,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 4096
+    },
+    {
+      "feature": "biome.exact.snowy_slopes",
+      "x": 512,
+      "y": 63,
+      "z": -320,
+      "distance_squared": 364544
+    },
+    {
+      "feature": "biome.exact.snowy_taiga",
+      "x": 0,
+      "y": 63,
+      "z": 64,
+      "distance_squared": 4096
+    },
+    {
+      "feature": "biome.exact.stony_shore",
+      "x": -704,
+      "y": 63,
+      "z": -512,
+      "distance_squared": 757760
+    },
+    {
+      "feature": "biome.exact.sulfur_caves",
+      "x": 448,
+      "y": 0,
+      "z": 320,
+      "distance_squared": 303104
+    },
+    {
+      "feature": "biome.exact.taiga",
+      "x": -64,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 4096
+    },
+    {
+      "feature": "biome.forest",
+      "x": 64,
+      "y": 63,
+      "z": -64,
+      "distance_squared": 8192
+    },
+    {
+      "feature": "biome.group.forest",
+      "x": 64,
+      "y": 63,
+      "z": -64,
+      "distance_squared": 8192
+    },
+    {
+      "feature": "biome.group.plains",
+      "x": -128,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.group.snowy",
+      "x": 0,
+      "y": 63,
+      "z": 64,
+      "distance_squared": 4096
+    },
+    {
+      "feature": "biome.plains",
+      "x": -128,
+      "y": 63,
+      "z": 0,
+      "distance_squared": 16384
+    },
+    {
+      "feature": "biome.snowy",
+      "x": 0,
+      "y": 63,
+      "z": 64,
+      "distance_squared": 4096
+    }
+  ],
+  "coverage": {
+    "biome.badlands": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.bamboo_jungle": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.basalt_deltas": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_world_lattice_y64_stride64_v2",
+      "status": "complete"
+    },
+    "biome.cherry_grove": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.crimson_forest": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_world_lattice_y64_stride64_v2",
+      "status": "complete"
+    },
+    "biome.desert": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.forest": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.mangrove_swamp": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.mushroom_fields": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.nether_wastes": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_world_lattice_y64_stride64_v2",
+      "status": "complete"
+    },
+    "biome.plains": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.snowy": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_world_lattice_y63_stride64_v2",
+      "status": "complete"
+    },
+    "biome.soul_sand_valley": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_world_lattice_y64_stride64_v2",
+      "status": "complete"
+    },
+    "biome.warped_forest": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_world_lattice_y64_stride64_v2",
+      "status": "complete"
+    },
+    "structure.ancient_city": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.bastion": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.desert_pyramid": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.fortress": {
+      "bounds": [
+        -640,
+        -640,
+        640,
+        640
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.igloo": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.jungle_temple": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.mansion": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.mineshaft": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.monument": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.outpost": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.ruined_portal": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.shipwreck": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.stronghold": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_bounded_strongholds_v2",
+      "status": "partial"
+    },
+    "structure.swamp_hut": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.trail_ruins": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.trial_chamber": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    },
+    "structure.village": {
+      "bounds": [
+        -5120,
+        -5120,
+        5120,
+        5120
+      ],
+      "method_id": "predictor_viable_starts_v1",
+      "status": "complete"
+    }
+  },
+  "structure_evidence": {},
+  "sampling_profile_revision": "7e65f01cacbc4932944844ad71e4872cf200b7fbf5b1ff763d0459393b432c71",
+  "source_extension_id": "702b933089bc7d0aebf1e7ea9b4b904a2da259edfaf9d12d006d7a6635c672ae",
+  "biome_evidence": {
+    "method": "saved_predicted_xyz_v3",
+    "interpretation": "Predicted biome presence at sampled heights; missing witnesses remain unknown.",
+    "verifier_game_build_id": null,
+    "checks": []
+  },
+  "evidence_label": "Predicted structure starts and biome witnesses at declared heights; no physical-count, player-landing, portal-safety or exact-absence certification."
+}

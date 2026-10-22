@@ -1,0 +1,66 @@
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1859:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1859 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1764:9: warning: code will never be executed [-Wunreachable-code]
+ 1764 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2419:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2419 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2519:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2519 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3419:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3419 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5112:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5112 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1859:1: warning: unused label 'L_jigsaw' [-Wunused-label]
+ 1859 | L_jigsaw:
+      | ^~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:1764:9: warning: code will never be executed [-Wunreachable-code]
+ 1764 |         goto L_not_viable;
+      |         ^~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2419:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2419 |         float largeProb = 0, clusterProb = 0;
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:2519:9: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+ 2519 |         uint64_t rng = chunkGenerateRnd(seed, cx, cz);
+      |         ^
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:3419:5: warning: unused function 'strongholdPieceBaseRngCount' [-Wunused-function]
+ 3419 | int strongholdPieceBaseRngCount(const Piece *p, uint8_t data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c:5112:12: warning: unused function 'pv_facing_to_rot' [-Wunused-function]
+ 5112 | static int pv_facing_to_rot(int facing)
+      |            ^~~~~~~~~~~~~~~~
+6 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:17: warning: unused variable 'ii' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                 ^~
+/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c:1736:21: warning: unused variable 'jj' [-Wunused-variable]
+ 1736 |             int ii, jj;
+      |                     ^~
+2 warnings generated.
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-fno-strict-overflow' [-Wunused-command-line-argument]
+generating build/seed_search/_blueprint_batch.c
+(already up-to-date)
+setting the current directory to '/Users/lucasraicu/Downloads/minecraft-seed-searcher/build'

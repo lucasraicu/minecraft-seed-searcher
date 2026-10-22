@@ -1,0 +1,345 @@
+{
+  "status": "PASS",
+  "membership_index_build": {
+    "wall_seconds": 1.6521789759863168,
+    "cpu_seconds": 1.6250450000000005,
+    "rows": 109918
+  },
+  "products": [
+    {
+      "product_id": "record.v2.bastion_density",
+      "view": "primary",
+      "rows": 5,
+      "sqlite_lookup": [
+        {
+          "wall_seconds": 0.0005424580303952098,
+          "cpu_seconds": 0.0005429999999995161
+        },
+        {
+          "wall_seconds": 0.0004790180828422308,
+          "cpu_seconds": 0.0004780000000002005
+        },
+        {
+          "wall_seconds": 0.0004927869886159897,
+          "cpu_seconds": 0.0004929999999996326
+        },
+        {
+          "wall_seconds": 0.0004797299625352025,
+          "cpu_seconds": 0.00048000000000048004
+        },
+        {
+          "wall_seconds": 0.00047002697829157114,
+          "cpu_seconds": 0.00046999999999997044
+        },
+        {
+          "wall_seconds": 0.00044635392259806395,
+          "cpu_seconds": 0.0004460000000001685
+        },
+        {
+          "wall_seconds": 0.0004415060393512249,
+          "cpu_seconds": 0.00044199999999960937
+        }
+      ],
+      "in_memory_blob_lookup": [
+        {
+          "wall_seconds": 0.00013162102550268173,
+          "cpu_seconds": 0.00013100000000054735
+        },
+        {
+          "wall_seconds": 8.731090929359198e-05,
+          "cpu_seconds": 8.799999999986596e-05
+        },
+        {
+          "wall_seconds": 8.42410372570157e-05,
+          "cpu_seconds": 8.300000000005525e-05
+        },
+        {
+          "wall_seconds": 6.637000478804111e-05,
+          "cpu_seconds": 6.599999999945538e-05
+        },
+        {
+          "wall_seconds": 6.467103958129883e-05,
+          "cpu_seconds": 6.500000000020378e-05
+        },
+        {
+          "wall_seconds": 6.581505294889212e-05,
+          "cpu_seconds": 6.600000000034356e-05
+        },
+        {
+          "wall_seconds": 6.433797534555197e-05,
+          "cpu_seconds": 6.4000000000064e-05
+        }
+      ],
+      "query_plan": [
+        [
+          4,
+          0,
+          47,
+          "SEARCH member USING PRIMARY KEY (snapshot=? AND objective=? AND ordinal>? AND ordinal<?)"
+        ]
+      ],
+      "scope": "Lookup+JSON decode+role+metadata guard only;notfullHTTP/cursors/provenance/corruption/recovery validation"
+    },
+    {
+      "product_id": "record.v2.bastion_density",
+      "view": "reserve",
+      "rows": 5,
+      "sqlite_lookup": [
+        {
+          "wall_seconds": 0.0005271120462566614,
+          "cpu_seconds": 0.000528000000000084
+        },
+        {
+          "wall_seconds": 0.0004835609579458833,
+          "cpu_seconds": 0.000484000000000151
+        },
+        {
+          "wall_seconds": 0.0005323879886418581,
+          "cpu_seconds": 0.0005329999999998947
+        },
+        {
+          "wall_seconds": 0.0004701080033555627,
+          "cpu_seconds": 0.00046999999999997044
+        },
+        {
+          "wall_seconds": 0.00045952002983540297,
+          "cpu_seconds": 0.000460000000000349
+        },
+        {
+          "wall_seconds": 0.0004585050046443939,
+          "cpu_seconds": 0.00045899999999932106
+        },
+        {
+          "wall_seconds": 0.00047379592433571815,
+          "cpu_seconds": 0.00047400000000052955
+        }
+      ],
+      "in_memory_blob_lookup": [
+        {
+          "wall_seconds": 7.608998566865921e-05,
+          "cpu_seconds": 7.500000000071338e-05
+        },
+        {
+          "wall_seconds": 5.453592166304588e-05,
+          "cpu_seconds": 5.500000000058236e-05
+        },
+        {
+          "wall_seconds": 5.380797665566206e-05,
+          "cpu_seconds": 5.3000000000302805e-05
+        },
+        {
+          "wall_seconds": 5.370099097490311e-05,
+          "cpu_seconds": 5.3000000000302805e-05
+        },
+        {
+          "wall_seconds": 5.370192229747772e-05,
+          "cpu_seconds": 5.3999999999554404e-05
+        },
+        {
+          "wall_seconds": 5.38029707968235e-05,
+          "cpu_seconds": 5.3999999999554404e-05
+        },
+        {
+          "wall_seconds": 7.12379114702344e-05,
+          "cpu_seconds": 7.00000000000145e-05
+        }
+      ],
+      "query_plan": [
+        [
+          4,
+          0,
+          47,
+          "SEARCH member USING PRIMARY KEY (snapshot=? AND objective=? AND ordinal>? AND ordinal<?)"
+        ]
+      ],
+      "scope": "Lookup+JSON decode+role+metadata guard only;notfullHTTP/cursors/provenance/corruption/recovery validation"
+    }
+  ],
+  "projection_predecode": {
+    "wall_seconds": 6.676455922075547,
+    "cpu_seconds": 6.674707000000001
+  },
+  "filter_index_build": {
+    "wall_seconds": 0.5606737260241061,
+    "cpu_seconds": 0.5572739999999996,
+    "rows": 17983,
+    "npy_bytes": 1079492
+  },
+  "filter_cases": [
+    {
+      "name": "broad-recommended",
+      "total_rows": 17983,
+      "candidate_rows": 17983,
+      "candidate_worlds": 222,
+      "predecoded_full_scorer": {
+        "wall_seconds": 1.0973786099348217,
+        "cpu_seconds": 1.0970639999999996
+      },
+      "sqlite_filter": {
+        "wall_seconds": 0.007375026936642826,
+        "cpu_seconds": 0.007375999999998939
+      },
+      "numeric_filter": {
+        "wall_seconds": 0.0005708300741389394,
+        "cpu_seconds": 0.0005699999999997374
+      },
+      "filtered_same_scorer": {
+        "wall_seconds": 0.8327247860142961,
+        "cpu_seconds": 0.8325190000000013
+      },
+      "selective_blob_load_plus_same_scorer": {
+        "wall_seconds": 7.933424561982974,
+        "cpu_seconds": 7.931100000000001
+      },
+      "ordered_results_and_unknowns_equal": true,
+      "query_plan": [
+        [
+          3,
+          0,
+          216,
+          "SCAN filters"
+        ]
+      ]
+    },
+    {
+      "name": "mixed-variants",
+      "total_rows": 17983,
+      "candidate_rows": 270,
+      "candidate_worlds": 17,
+      "predecoded_full_scorer": {
+        "wall_seconds": 0.051210373057983816,
+        "cpu_seconds": 0.05120900000000006
+      },
+      "sqlite_filter": {
+        "wall_seconds": 0.0017132660141214728,
+        "cpu_seconds": 0.001712000000001268
+      },
+      "numeric_filter": {
+        "wall_seconds": 0.000398307922296226,
+        "cpu_seconds": 0.0003989999999980398
+      },
+      "filtered_same_scorer": {
+        "wall_seconds": 0.017144595971331,
+        "cpu_seconds": 0.017140000000001265
+      },
+      "selective_blob_load_plus_same_scorer": {
+        "wall_seconds": 0.2539166670758277,
+        "cpu_seconds": 0.2539119999999997
+      },
+      "ordered_results_and_unknowns_equal": true,
+      "query_plan": [
+        [
+          3,
+          0,
+          216,
+          "SCAN filters"
+        ]
+      ]
+    },
+    {
+      "name": "biome-or",
+      "total_rows": 17983,
+      "candidate_rows": 17983,
+      "candidate_worlds": 222,
+      "predecoded_full_scorer": {
+        "wall_seconds": 0.38605924800504,
+        "cpu_seconds": 0.386060999999998
+      },
+      "sqlite_filter": {
+        "wall_seconds": 0.00812664907425642,
+        "cpu_seconds": 0.008126999999998219
+      },
+      "numeric_filter": {
+        "wall_seconds": 0.0007072379812598228,
+        "cpu_seconds": 0.0007069999999984589
+      },
+      "filtered_same_scorer": {
+        "wall_seconds": 0.1962835320737213,
+        "cpu_seconds": 0.1962849999999996
+      },
+      "selective_blob_load_plus_same_scorer": {
+        "wall_seconds": 7.498087725020014,
+        "cpu_seconds": 7.496939000000001
+      },
+      "ordered_results_and_unknowns_equal": true,
+      "query_plan": [
+        [
+          3,
+          0,
+          216,
+          "SCAN filters"
+        ]
+      ]
+    },
+    {
+      "name": "selective",
+      "total_rows": 17983,
+      "candidate_rows": 0,
+      "candidate_worlds": 0,
+      "predecoded_full_scorer": {
+        "wall_seconds": 0.026917460025288165,
+        "cpu_seconds": 0.026917000000000968
+      },
+      "sqlite_filter": {
+        "wall_seconds": 0.0014066289877519011,
+        "cpu_seconds": 0.0014070000000003802
+      },
+      "numeric_filter": {
+        "wall_seconds": 0.000312678050249815,
+        "cpu_seconds": 0.0003130000000020061
+      },
+      "filtered_same_scorer": {
+        "wall_seconds": 0.00016546400729566813,
+        "cpu_seconds": 0.00016499999999908255
+      },
+      "selective_blob_load_plus_same_scorer": {
+        "wall_seconds": 0.0001529189758002758,
+        "cpu_seconds": 0.00015199999999992997
+      },
+      "ordered_results_and_unknowns_equal": true,
+      "query_plan": [
+        [
+          3,
+          0,
+          216,
+          "SCAN filters"
+        ]
+      ]
+    }
+  ],
+  "prefix_scaling": [
+    {
+      "worlds": 25,
+      "rows": 2025,
+      "scorer": {
+        "wall_seconds": 0.09798665507696569,
+        "cpu_seconds": 0.09797000000000011
+      }
+    },
+    {
+      "worlds": 100,
+      "rows": 8100,
+      "scorer": {
+        "wall_seconds": 0.38772026100195944,
+        "cpu_seconds": 0.3876470000000012
+      }
+    },
+    {
+      "worlds": 222,
+      "rows": 17983,
+      "scorer": {
+        "wall_seconds": 0.8740864950232208,
+        "cpu_seconds": 0.8740710000000007
+      }
+    }
+  ],
+  "sqlite_bytes": 75997184,
+  "numeric_array_bytes": 1079492,
+  "limitations": [
+    "Narrow disposable projections,notproductionengine",
+    "Exactfiniteworkloadparity,notgeneralreplacementproof",
+    "No crash/corruption/recovery/multiversion writer-concurrency tests",
+    "OS cache warm;222world dataset;no arbitrary scale claim",
+    "Derived index trust/build cost outside lookup timings"
+  ]
+}

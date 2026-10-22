@@ -1,0 +1,63 @@
+{
+  "task_id": "732780f7df7c",
+  "role": "review",
+  "state": "succeeded",
+  "created": 1792665691.3070269,
+  "updated": 1792665844.962487,
+  "worker_id": "gemini-1",
+  "objective": "High narrow read-only review of LAZY_QUERY_REVIEW.md. New query-only performance optimization within approved unchanged10s gate. Review lazy trusted V5 feature mappings and early best-anchor skip for concrete ranking, missing data, unknown-state, fallback, or validation defects. Complete candidate f",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 300,
+    "effective_timeout_seconds": 300,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "87fce66ae7ae082503e8dc59617a5460e9192dfe4b81517c4740e1a3d6e3e639",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792665697.12592,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "### High Reasoning Read-Only Review: `LAZY_QUERY_REVIEW.md`\n\n#### Analysis & Evidence\n\n1. **ALL / ANY Semantics**:\n   - Required constraints evaluate identically: structure counts require ALL rules to pass (`count >= at_least`, failing on completeness), while biome witnesses accept ANY match (`counts[scope_idx] > 0`).\n   - Preferred utility scoring and `'status'` reporting (`'known'` vs `'unknown'`) remain exact.\n\n2. **Pending vs. Matching Best Maps**:\n   - The skip targets `destination` (`best_matches_by_world` if `not has_pending_required` else `best_pending_by_world`).\n   - Routing anchors to their respective map preserves correct candidate retention. Matching anchors never skip against pending entries, and pending candidates remain subject to downstream filtering in `unresolved_by_world` against `best_matches_by_world`.\n\n3. **Tie-Breaking Determinism**:\n   - The early skip condition `wid in destination and sort_key >= destination[wid]['_sort_key']` preserves incumbent candidates on exact ties (`sort_key == existing`).\n   - This identically matches the baseline update condition (`sort_key < destination[wid]['_sort_key']`), maintaining strict determinism down to `layout_id`.\n\n4. **Validation, Stale Validators, & Strict Fallback**:\n   - `lazy_features` defaults to `False`, preserving eager full decoding by default.\n   - For stale or untrusted projections (`summary_validator_sha256 != self._query_validator_id()`), `validate` is set to `True`. Because lazy unpacking requires `lazy_features and not validate`, stale entries strictly bypass `_PackedFeatures` and execute full eager unpacking followed by strict codec validation (`validate_summary_v3` / `validate_summary_v2`).\n\n5. **Full Output Data Preservation**:\n   - Winning candidates iterate `summary.get('features', {}).items()`. Because `_PackedFeatures` implements `Mapping` over `slots`, all feature counts and completeness masks are decoded on demand.\n   - `feature_counts` and `feature_complete` dictionaries are fully populated in candidate dictionaries before returning, preventing any `_PackedFeatures` instance leakage into returned query results.\n\n#### Outcome\nNo concrete defects or regressions identified in ranking, fallback paths, validation gates, or output data structures.\n\nConcrete findings or no concrete findings, changed files none, tests none.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 16891,
+          "output_tokens": 20566,
+          "thinking_tokens": 20036,
+          "cache_read_tokens": 0,
+          "total_tokens": 37457
+        },
+        "conversation_id": "260ea16e-22d0-474b-a19c-71efaa640f31",
+        "duration_seconds": 143.326058,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 16891,
+      "output_tokens": 20566,
+      "thinking_tokens": 20036,
+      "cache_read_tokens": 0,
+      "total_tokens": 37457
+    },
+    "response": "### High Reasoning Read-Only Review: `LAZY_QUERY_REVIEW.md`\n\n#### Analysis & Evidence\n\n1. **ALL / ANY Semantics**:\n   - Required constraints evaluate identically: structure counts require ALL rules to pass (`count >= at_least`, failing on completeness), while biome witnesses accept ANY match (`counts[scope_idx] > 0`).\n   - Preferred utility scoring and `'status'` reporting (`'known'` vs `'unknown'`) remain exact.\n\n2. **Pending vs. Matching Best Maps**:\n   - The skip targets `destination` (`best_matches_by_world` if `not has_pending_required` else `best_pending_by_world`).\n   - Routing anchors to their respective map preserves correct candidate retention. Matching anchors never skip against pending entries, and pending candidates remain subject to downstream filtering in `unresolved_by_world` against `best_matches_by_world`.\n\n3. **Tie-Breaking Determinism**:\n   - The early skip condition `wid in destination and sort_key >= destination[wid]['_sort_key']` preserves incumbent candidates on exact ties (`sort_key == existing`).\n   - This identically matches the baseline update condition (`sort_key < destination[wid]['_sort_key']`), maintaining strict determinism down to `layout_id`.\n\n4. **Validation, Stale Validators, & Strict Fallback**:\n   - `lazy_features` defaults to `False`, preserving eager full decoding by default.\n   - For stale or untrusted projections (`summary_validator_sha256 != self._query_validator_id()`), `validate` is set to `True`. Because lazy unpacking requires `lazy_features and not validate`, stale entries strictly bypass `_PackedFeatures` and execute full eager unpacking followed by strict codec validation (`validate_summary_v3` / `validate_summary_v2`).\n\n5. **Full Output Data Preservation**:\n   - Winning candidates iterate `summary.get('features', {}).items()`. Because `_PackedFeatures` implements `Mapping` over `slots`, all feature counts and completeness masks are decoded on demand.\n   - `feature_counts` and `feature_complete` dictionaries are fully populated in candidate dictionaries before returning, preventing any `_PackedFeatures` instance leakage into returned query results.\n\n#### Outcome\nNo concrete defects or regressions identified in ranking, fallback paths, validation gates, or output data structures.\n\nConcrete findings or no concrete findings, changed files none, tests none.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "response_truncated": false,
+    "checks": [],
+    "changed_files": [],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed": 1792665844.960088,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 202133504
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/732780f7df7c",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

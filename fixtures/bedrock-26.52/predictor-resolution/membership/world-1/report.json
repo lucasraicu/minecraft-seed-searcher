@@ -1,0 +1,359 @@
+{
+  "controls": {
+    "seed": "-9103892851552028103",
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "script_api": "2.11.0-beta",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 240,
+    "output_bytes": 4294967296,
+    "manifest_sha256": "8e920a10c4902f2ad6f99076a48e4d1c6eecbfdceea43fad625549e3d9f75c1f",
+    "observer_sha256": "f8ac2ef35a1e7c4e0dfa4698310949069cca6d76691113d1613e958392b188b9",
+    "harness_sha256": "616c61f89d1158aead160bfba9bc94c749c9ec60452a8457ab48c02ca800181e",
+    "settings_sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a",
+    "container": "codex-targeted-e3008c91a1c8",
+    "prediction": {
+      "seed": "-9103892851552028103",
+      "world_id": "569fb8ca2a84c899da4c07788550528341b784cee7d467587d58deb3691ad510",
+      "observation_id": "784cdb233199ab5aaa1e4298fa36a17a21bb2c0a4629315529363ec437c26811"
+    },
+    "role": "Targeted API/storage observations; not an exhaustive or physical structure census"
+  },
+  "status": "observed",
+  "queries": [
+    {
+      "index": 0,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        820,
+        -1708
+      ],
+      "output": [
+        "[2026-10-20 23:40:56:592 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (790 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        100,
+        -2028
+      ],
+      "output": [
+        "[2026-10-20 23:40:56:632 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (2 blocks away)"
+      ]
+    }
+  ],
+  "biome_batches": [
+    {
+      "id": "target",
+      "rows": [
+        {
+          "x": 820,
+          "y": 8,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 9,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 12,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 16,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:air",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 20,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:air",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 24,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:air",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 25,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:cracked_stone_bricks",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 820,
+          "y": 32,
+          "z": -1708,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone",
+          "structures": []
+        },
+        {
+          "x": 98,
+          "y": -8,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:cracked_stone_bricks",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 98,
+          "y": 0,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:deepslate",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 98,
+          "y": 8,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone_bricks",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 98,
+          "y": 12,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:cracked_stone_bricks",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 98,
+          "y": 16,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone_bricks",
+          "structures": [
+            "minecraft:stronghold"
+          ]
+        },
+        {
+          "x": 98,
+          "y": 24,
+          "z": -2030,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:calcite",
+          "structures": []
+        }
+      ],
+      "ticking_areas_held": 2
+    }
+  ],
+  "copied_world": {
+    "source": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/predictor-resolution-20261020/lifecycle/dirty_restore-1/worlds/world/worlds/spawn_audit",
+    "source_hashes": {
+      "db/000003.log": "872f844c9083bc8f908ed902a5635efb12afbaddc3e0b27fddccd1ae68f603c1",
+      "db/CURRENT": "1005a525006f148c86efcbfb36c6eac091b311532448010f70f7de9a68007167",
+      "db/MANIFEST-000002": "e292f241daafc3df90f3e2d339c61c6e2787a0d0739aac764e1ea9bb8544ee97",
+      "level.dat": "233792f4e80f2c3af41bf469052ec1b67fe05927e636d959469f119db3f8254e"
+    },
+    "source_unchanged": true
+  },
+  "world_identity": {
+    "seed": "-9103892851552028103",
+    "api": "2.11.0-beta",
+    "players": 0
+  },
+  "target_result": {
+    "rows": [
+      {
+        "x": 820,
+        "y": 8,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 9,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 12,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 16,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:air",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 20,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:air",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 24,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:air",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 25,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:cracked_stone_bricks",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 820,
+        "y": 32,
+        "z": -1708,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone",
+        "structures": []
+      },
+      {
+        "x": 98,
+        "y": -8,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:cracked_stone_bricks",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 98,
+        "y": 0,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:deepslate",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 98,
+        "y": 8,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone_bricks",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 98,
+        "y": 12,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:cracked_stone_bricks",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 98,
+        "y": 16,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone_bricks",
+        "structures": [
+          "minecraft:stronghold"
+        ]
+      },
+      {
+        "x": 98,
+        "y": 24,
+        "z": -2030,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:calcite",
+        "structures": []
+      }
+    ],
+    "columns": [],
+    "blockReads": 16,
+    "biomeReads": 14,
+    "tickingAreas": 2,
+    "chunks": 2
+  },
+  "save_confirmed": true,
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 13.417813932988793
+}

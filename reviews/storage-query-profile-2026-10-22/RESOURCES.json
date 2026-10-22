@@ -1,0 +1,58 @@
+{
+  "phases": [
+    {
+      "phase": "world-pair",
+      "exit_status": 0,
+      "failure": null,
+      "wall_seconds": 87.23972803703509,
+      "peak_owned_rss_bytes": 667967488,
+      "output_bytes": 1295566806
+    },
+    {
+      "phase": "storage",
+      "exit_status": 0,
+      "failure": null,
+      "wall_seconds": 20.458999022026546,
+      "peak_owned_rss_bytes": 429195264,
+      "output_bytes": 1295991681
+    },
+    {
+      "phase": "queries",
+      "exit_status": 1,
+      "failure": null,
+      "wall_seconds": 137.891748751048,
+      "peak_owned_rss_bytes": 1163431936,
+      "output_bytes": 1296188947
+    },
+    {
+      "phase": "readmodels",
+      "exit_status": 0,
+      "failure": null,
+      "wall_seconds": 36.21486951294355,
+      "peak_owned_rss_bytes": 1231527936,
+      "output_bytes": 1386170353
+    },
+    {
+      "phase": "query-counters",
+      "exit_status": 0,
+      "failure": null,
+      "wall_seconds": 10.764811008935794,
+      "peak_owned_rss_bytes": 382091264,
+      "output_bytes": 1386174829
+    },
+    {
+      "phase": "fixed-replay",
+      "exit_status": 0,
+      "failure": null,
+      "wall_seconds": 27.96502538502682,
+      "peak_owned_rss_bytes": 297238528,
+      "output_bytes": 1390434678
+    }
+  ],
+  "limits": {
+    "wall_seconds": 900,
+    "rss_bytes": 4294967296,
+    "output_bytes": 3221225472
+  },
+  "charged_seconds": 320.5351817170158
+}

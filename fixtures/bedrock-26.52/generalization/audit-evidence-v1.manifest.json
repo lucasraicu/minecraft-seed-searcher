@@ -1,0 +1,664 @@
+{
+  "revision": "generalization-audit-evidence-v1",
+  "archive": "audit-evidence-v1.tar.gz",
+  "archive_bytes": 1196445,
+  "archive_sha256": "cfed037379c0c7e980a5a27908ecd2426dfd55f8d9b3aa050d9271dc56d30e03",
+  "bds_build": "1.26.52.3",
+  "prediction_revision": "cubiomes-bedrock-26.50",
+  "source_manifest_sha256": "bbc14d21fba0455ed8f7cfe66099f34b6734575dfb7d8ffbcb00337eced72f1c",
+  "files": {
+    "cohort/manifest.json": {
+      "bytes": 9140099,
+      "sha256": "bbc14d21fba0455ed8f7cfe66099f34b6734575dfb7d8ffbcb00337eced72f1c"
+    },
+    "cohort/biome-inventory.json": {
+      "bytes": 19046,
+      "sha256": "09b6cc0844f12bafc0ee4e6e62a856f30e18a64a57cd1bc65a59866df2eb78ba"
+    },
+    "cohort/results.json": {
+      "bytes": 3300607,
+      "sha256": "fd2444109232aa00a7abf37f8a33ad84cb10151b42013ec622d8571d30333161"
+    },
+    "cohort/coverage.json": {
+      "bytes": 88432,
+      "sha256": "d9e46bed3653b6f770d8429a336d8d48512a61c3d7ac0df6d2627ab939276d00"
+    },
+    "cohort/ledger.json": {
+      "bytes": 6123,
+      "sha256": "5d1671b96f052e7949f987f61205432dbf0d633d18a51c38cfe169d5dd9164e0"
+    },
+    "cohort/world-00/report.json": {
+      "bytes": 49635,
+      "sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989"
+    },
+    "cohort/world-00/console.log": {
+      "bytes": 38342,
+      "sha256": "adb1b92f261732dcdc7324cf79b56cca87a37fc4fce0ab7e0585f7c99203d7cf"
+    },
+    "cohort/world-00/observer.js": {
+      "bytes": 3073,
+      "sha256": "630284699445aca79f6062436de8f9cdd2286d4a579b85749cf262be6a2de46e"
+    },
+    "cohort/world-00/server.properties": {
+      "bytes": 562,
+      "sha256": "e28aad6e71165acc7c8f44ad334377418c37101aef4f5b2ad07693ffd4c6409c"
+    },
+    "cohort/world-16/report.json": {
+      "bytes": 77030,
+      "sha256": "8a2bc2b02adf38a32a380e1f556c0e753ef949d76750da18238c8aa2229c1416"
+    },
+    "cohort/world-16/console.log": {
+      "bytes": 67543,
+      "sha256": "1404fb549006b436fab4570756b5a1986db1e03c1ab4593ce38719263bd210bc"
+    },
+    "cohort/world-16/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-16/server.properties": {
+      "bytes": 561,
+      "sha256": "bf71cf1692fc6a21828361425b966542be61756fec9b1ead8487004fe72e869a"
+    },
+    "cohort/world-01/report.json": {
+      "bytes": 76775,
+      "sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285"
+    },
+    "cohort/world-01/console.log": {
+      "bytes": 60070,
+      "sha256": "5aab4680ba6386c248cdc365ec91dd50a2b84bc994c79908d9efb8333eae920a"
+    },
+    "cohort/world-01/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-01/server.properties": {
+      "bytes": 561,
+      "sha256": "fb040b152390440773750bd61901963b8c59ffa925d537bcd9e045b50dbbc6d7"
+    },
+    "cohort/world-17/report.json": {
+      "bytes": 85818,
+      "sha256": "a91718b3a5b4d36ace35222956f7bb6467fdc55661294195a4fb80ba33de254e"
+    },
+    "cohort/world-17/console.log": {
+      "bytes": 67102,
+      "sha256": "b8e9441d84f64b8908f3f8f5520c04db92375b1c76816249883dd81a7cb3525a"
+    },
+    "cohort/world-17/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-17/server.properties": {
+      "bytes": 560,
+      "sha256": "4bd0c2249ba2ab5d433929742e7fb9aab5e8f4636edf387eed3b7e6740d16e1e"
+    },
+    "cohort/world-02/report.json": {
+      "bytes": 72882,
+      "sha256": "3c8e848f5991831f596955afe05383b862dfd66262d2036dea3f167453fe3ff1"
+    },
+    "cohort/world-02/console.log": {
+      "bytes": 57247,
+      "sha256": "3cabd59396d719d9d46ca14fcb45966b5317a4e60131d35926dbc06a8422b2da"
+    },
+    "cohort/world-02/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-02/server.properties": {
+      "bytes": 561,
+      "sha256": "f02ceb5d9b8e9c419b7c0d94ef7951ebb44a54d54d740cda1e8592aaee13aef5"
+    },
+    "cohort/world-03/report.json": {
+      "bytes": 74659,
+      "sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178"
+    },
+    "cohort/world-03/console.log": {
+      "bytes": 58532,
+      "sha256": "e4ab2e06d97121a482f56b393801098ce4747be20a5dddf36b10c74f3b9dc220"
+    },
+    "cohort/world-03/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-03/server.properties": {
+      "bytes": 561,
+      "sha256": "0da8eb0a75f80ddd60081b38f07ec0324f2851d7bb971477478b1805f9d95c7f"
+    },
+    "cohort/world-04/report.json": {
+      "bytes": 71951,
+      "sha256": "53c85959c3edc18d1dc583aec909cdcd4d1f7e3493e35dfcb79cf73ad98d8788"
+    },
+    "cohort/world-04/console.log": {
+      "bytes": 56245,
+      "sha256": "7b65cb4390f505759d4638a07984172bd0bae301ca292978048b598508b8bd9c"
+    },
+    "cohort/world-04/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-04/server.properties": {
+      "bytes": 561,
+      "sha256": "b716c8175f5540f7204e332ba0e99c1efedd7935e16c8af0bb7cb9f0cb7c689e"
+    },
+    "cohort/world-05/report.json": {
+      "bytes": 71463,
+      "sha256": "20852478ed58443cf0beb1f070e64ffa779b73433c2cec572adb9d0cf136e3fa"
+    },
+    "cohort/world-05/console.log": {
+      "bytes": 55895,
+      "sha256": "3a189dbe676476083454a99139dbc2623ce27826a41579b65b33c664d3ef5ab7"
+    },
+    "cohort/world-05/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-05/server.properties": {
+      "bytes": 561,
+      "sha256": "245d7ecdba608d9994dda4410e4cb2813522e163829241d845b7cc04f4b38b1f"
+    },
+    "cohort/world-06/report.json": {
+      "bytes": 73414,
+      "sha256": "62c4ea73a6526721fbc46497d7b2e4428f3250a94d8c562cd6c59956473b3b8e"
+    },
+    "cohort/world-06/console.log": {
+      "bytes": 57582,
+      "sha256": "e8b0f8637a2e287b719c150dea448e2ff6a37a52287ab160a5a775e4484ccf9d"
+    },
+    "cohort/world-06/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-06/server.properties": {
+      "bytes": 561,
+      "sha256": "611e0580b546d71e9c50dcb8a9c133ba78ed9281f151ed2d8a17b8e93ae01af4"
+    },
+    "cohort/world-07/report.json": {
+      "bytes": 76507,
+      "sha256": "327517ca537858451964bcfb5a8a51bf268563ca2575a0639fc1e256507c858e"
+    },
+    "cohort/world-07/console.log": {
+      "bytes": 59943,
+      "sha256": "129cd532abe7f7735f49dfbcb9a1df70749a1a31023119c4f12cb64f1aced3b3"
+    },
+    "cohort/world-07/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-07/server.properties": {
+      "bytes": 561,
+      "sha256": "42f78fe0abcdb30d8ca48afad378ff2f2b6b2c1c491be748292fb47f8e77806d"
+    },
+    "cohort/world-08/report.json": {
+      "bytes": 69308,
+      "sha256": "9f685e2ab280c74657c4aceda09c1e7a65f2b27d6ed47994f90a9d7f75e577eb"
+    },
+    "cohort/world-08/console.log": {
+      "bytes": 54300,
+      "sha256": "801f06b7c6c0813ade79defef31a21aa87deb4ff26b5542690c745e5d4a13ab6"
+    },
+    "cohort/world-08/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-08/server.properties": {
+      "bytes": 562,
+      "sha256": "15db4fa1e4ecf19bf89b6295e79dd2bd6892f282197206e911e2c8c8e60b4371"
+    },
+    "cohort/world-09/report.json": {
+      "bytes": 74349,
+      "sha256": "eb652fbb268d08c39d603f44d2a6a87768a8a622f986cdfb07502cadf2199eb1"
+    },
+    "cohort/world-09/console.log": {
+      "bytes": 58306,
+      "sha256": "f4081237895929b04f3e959b66c29ed4ff58fa96898a65f446c0eef90f1cb80f"
+    },
+    "cohort/world-09/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-09/server.properties": {
+      "bytes": 562,
+      "sha256": "6117dbaca08060a702941e144188fc990e1990ffddd7ada511664d6f620bcd68"
+    },
+    "cohort/world-10/report.json": {
+      "bytes": 74357,
+      "sha256": "fd68e7b9d15dad677131fb2263db0738dd9c20e4a822ca45f09c943b6c16e3e4"
+    },
+    "cohort/world-10/console.log": {
+      "bytes": 58220,
+      "sha256": "7e5ab9c70be8e8eb42c5c27f58dd2635bd3d45d2d84f36eac23305e374e01720"
+    },
+    "cohort/world-10/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-10/server.properties": {
+      "bytes": 562,
+      "sha256": "e64bb7ddc6eccd52ddb05db817fcda8875fae1d0600c7516557064da9440a41f"
+    },
+    "cohort/world-11/report.json": {
+      "bytes": 70537,
+      "sha256": "51ebf64d49c122650bb63e97928054e5da87c3e6742d5fd6ba6d6494e2c917e0"
+    },
+    "cohort/world-11/console.log": {
+      "bytes": 55115,
+      "sha256": "23fe3710b133a70f7fd9081216041aacdcedede1e98dc60b54636a3de963eaa1"
+    },
+    "cohort/world-11/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-11/server.properties": {
+      "bytes": 562,
+      "sha256": "c13ed672b0a36600f64d69069195a448f78c9db9f670383fb9740207ab29e849"
+    },
+    "cohort/world-12/report.json": {
+      "bytes": 71012,
+      "sha256": "36d25629e1fb5f53afa06458e9d6d252acb10080968bddb49b4f8fc6d91e4b43"
+    },
+    "cohort/world-12/console.log": {
+      "bytes": 55501,
+      "sha256": "4ab97725cf2043c1d10d00a232f09a8ab6e863ed89f24d64125754821822d9e0"
+    },
+    "cohort/world-12/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-12/server.properties": {
+      "bytes": 561,
+      "sha256": "29669dd30d000f78bcb5b617a3f9bdb6a13f3b26f5d275036ac1b636cd1f42f1"
+    },
+    "cohort/world-13/report.json": {
+      "bytes": 72796,
+      "sha256": "8772f095cefaa066d81e06c664a57d2c9d73b371072953b6cb39b296a2ee5891"
+    },
+    "cohort/world-13/console.log": {
+      "bytes": 57118,
+      "sha256": "2931b6241d7a9e382daa8b945bc7dda2905389672ff5db88d29c697d3e95d334"
+    },
+    "cohort/world-13/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-13/server.properties": {
+      "bytes": 561,
+      "sha256": "9af77c2071a2e95fd6bd361517ed69650385ee77d298e601b5f30b8cbdfd2c53"
+    },
+    "cohort/world-14/report.json": {
+      "bytes": 68615,
+      "sha256": "10024252c00de39346a8770e0172c27250a060b906ff9adadc696754fa8ccdb3"
+    },
+    "cohort/world-14/console.log": {
+      "bytes": 53641,
+      "sha256": "991603e70710dbdd1440a2541e0f3023a1f3cd085cb88113971faaae479f8f8e"
+    },
+    "cohort/world-14/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-14/server.properties": {
+      "bytes": 562,
+      "sha256": "f640819d8d0cb8e9eb8f6a721aa5b9fdb971e324b1d8db63a780cf6ba2cba291"
+    },
+    "cohort/world-15/report.json": {
+      "bytes": 71167,
+      "sha256": "850253a694ddc5cc976de5a7ab9f220bd361cda68884a3b2db3cb8bb776af3f6"
+    },
+    "cohort/world-15/console.log": {
+      "bytes": 55604,
+      "sha256": "e881948ab2f5dcf938a37d6ef6fa4154f6f6ca6311968c00a8c302972e9352e6"
+    },
+    "cohort/world-15/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-15/server.properties": {
+      "bytes": 561,
+      "sha256": "10aa82487f5a5786b29c8173d4cc3ae20f69d12ed2a64201420621b74f495618"
+    },
+    "cohort/world-18/report.json": {
+      "bytes": 85915,
+      "sha256": "9df99d33b8c182115049ca257f09faec8908d11123020e84da17d038d74dde0b"
+    },
+    "cohort/world-18/console.log": {
+      "bytes": 67252,
+      "sha256": "04dde1baeb8226f13a89862c8195509bf711c1d21f4ee203d27948b639a75034"
+    },
+    "cohort/world-18/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-18/server.properties": {
+      "bytes": 561,
+      "sha256": "6435a316677461a27cf1a369bd8b01f094415bc549fc8fe1564bd9c8a8c1f485"
+    },
+    "cohort/world-19/report.json": {
+      "bytes": 85506,
+      "sha256": "8e87b80f6da297585b5bbfe011bb2bbc5e18b3d3cd31defc3da8b2aa8e006cac"
+    },
+    "cohort/world-19/console.log": {
+      "bytes": 66793,
+      "sha256": "c4081f92e90eeedc400ca332455f40470c9c8093e8a6490bfa1b0642ac95bf0d"
+    },
+    "cohort/world-19/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-19/server.properties": {
+      "bytes": 562,
+      "sha256": "bc397555f631796d68cbe8036b662699eb6d9d6a4ca2f2924df017642c145d89"
+    },
+    "cohort/world-20/report.json": {
+      "bytes": 81361,
+      "sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec"
+    },
+    "cohort/world-20/console.log": {
+      "bytes": 63602,
+      "sha256": "f1bcd19f25cfd02caff5469f8971602730aa06862309dce18d8d4eb892e35640"
+    },
+    "cohort/world-20/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-20/server.properties": {
+      "bytes": 561,
+      "sha256": "1828e3db2be377b0b4dfb7c475b93aee173052cc4909af023b38207dbdaa0a5d"
+    },
+    "cohort/world-21/report.json": {
+      "bytes": 83667,
+      "sha256": "7c905e1d7f97c9500898cf455738674f9a1543329e1575e2e27624b60d1348bb"
+    },
+    "cohort/world-21/console.log": {
+      "bytes": 65586,
+      "sha256": "a6c8faf5305be8cf959bba9e65b2e0192206e4c6b3fdfb11f95f7ba75afbfdcc"
+    },
+    "cohort/world-21/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-21/server.properties": {
+      "bytes": 561,
+      "sha256": "1068ad3ef7c27eecbedae4ec23aa26bd348540b9bc892dc4aba20cac964722d8"
+    },
+    "cohort/world-22/report.json": {
+      "bytes": 85990,
+      "sha256": "739a6ede1c7bf03d4351c5d6fe4ed55e0ee93336a0f090aa52db9783fb1bd2ca"
+    },
+    "cohort/world-22/console.log": {
+      "bytes": 67234,
+      "sha256": "a438911ae989c8d1bbbc2756e430a3df8f3391a3367d331bdfaeb703a4a3aa94"
+    },
+    "cohort/world-22/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-22/server.properties": {
+      "bytes": 561,
+      "sha256": "339b807a65a87652ec1e006135a7fc5fb8d24fc7ff048559dc7994e0a02d9d74"
+    },
+    "cohort/world-23/report.json": {
+      "bytes": 85648,
+      "sha256": "0e1c3fdb372dad02e8bae7cb7de0761126b98b006c8fe182783d74601c4a586c"
+    },
+    "cohort/world-23/console.log": {
+      "bytes": 66944,
+      "sha256": "85c7bf376923211d5cda885801d1bc7a4926e2c5f02a5420b63779489ce5ad20"
+    },
+    "cohort/world-23/observer.js": {
+      "bytes": 3287,
+      "sha256": "6ee8fe6fe0e1af45844f228e9c057e5b7097c791e6f397668a2b1305cfc279bc"
+    },
+    "cohort/world-23/server.properties": {
+      "bytes": 561,
+      "sha256": "9aa9f38e318fcd6ec13570e2ef53caff42beaf95873caff4328485fc7d1eec19"
+    },
+    "attempt-history/world-16/report.json": {
+      "bytes": 35751,
+      "sha256": "fda8cb4dd76948ebd244a87707669bbaf43255ab31dbe054ddc42c9b041877b4"
+    },
+    "attempt-history/world-16/console.log": {
+      "bytes": 28068,
+      "sha256": "78c2b23f81fb949edd3f16dbc5e30bf37dfcd17f4762d4000547614ed31dce1c"
+    },
+    "attempt-history/world-16/observer.js": {
+      "bytes": 3073,
+      "sha256": "630284699445aca79f6062436de8f9cdd2286d4a579b85749cf262be6a2de46e"
+    },
+    "attempt-history/world-16-resume-1/report.json": {
+      "bytes": 36282,
+      "sha256": "730d8da69a50e502089142be4e09476dec90775996edf4054ffc44ce922801e2"
+    },
+    "attempt-history/world-16-resume-1/console.log": {
+      "bytes": 31898,
+      "sha256": "14f7bc3ce945f5d35bcbd04f2fb7a39d2e850f35abc8317d2c52c827fb70b2a3"
+    },
+    "attempt-history/world-16-resume-1/observer.js": {
+      "bytes": 3073,
+      "sha256": "630284699445aca79f6062436de8f9cdd2286d4a579b85749cf262be6a2de46e"
+    },
+    "followup/attempt-1/ledger.json": {
+      "bytes": 918,
+      "sha256": "68f47bcfccae7fd1690b9359cdb6470829999fbaeeec165e093d40cacdebe935"
+    },
+    "followup/attempt-1/frozen.json": {
+      "bytes": 21903,
+      "sha256": "5dcce3c4433726ec00b761999bb8f8d0ad4a83f895a1cb9efff6f9f450122eff"
+    },
+    "followup/attempt-1/protocol.json": {
+      "bytes": 1268,
+      "sha256": "25b485e53e585ff9cb7ee1d510d5fdebd45f927cbfd6392c0c9746a518b663b9"
+    },
+    "followup/attempt-1/world-02/report.json": {
+      "bytes": 17624,
+      "sha256": "4dc0213086f9e5ea72b131fbca10cd2d42e43d37e6ce7608742e89d0091435f0"
+    },
+    "followup/attempt-1/world-02/console.log": {
+      "bytes": 8888,
+      "sha256": "7fbe2e7722ec26171f0cffb1e4a9e2994ffca1faa85390d1acc7dd8f2e50ef6c"
+    },
+    "followup/attempt-1/world-02/observer.js": {
+      "bytes": 3728,
+      "sha256": "9bb22893b7d2a7935ef8fb66c9e964e668d3b7d2b7f855f61f079273ee4a2062"
+    },
+    "followup/attempt-1/world-02/server.properties": {
+      "bytes": 561,
+      "sha256": "f02ceb5d9b8e9c419b7c0d94ef7951ebb44a54d54d740cda1e8592aaee13aef5"
+    },
+    "followup/attempt-1/world-03/report.json": {
+      "bytes": 3234,
+      "sha256": "5f50ca7b92cd01a6fae38098dd514c2d7650a12c9ffd9fdd946fb7191ac3c925"
+    },
+    "followup/attempt-1/world-03/console.log": {
+      "bytes": 4344,
+      "sha256": "e8d1ee079822a3e1f81dadadf9cbd10197decf24fdc556da7faf7937446db710"
+    },
+    "followup/attempt-1/world-03/observer.js": {
+      "bytes": 3728,
+      "sha256": "9bb22893b7d2a7935ef8fb66c9e964e668d3b7d2b7f855f61f079273ee4a2062"
+    },
+    "followup/attempt-1/world-03/server.properties": {
+      "bytes": 561,
+      "sha256": "0da8eb0a75f80ddd60081b38f07ec0324f2851d7bb971477478b1805f9d95c7f"
+    },
+    "followup/attempt-2/ledger.json": {
+      "bytes": 1498,
+      "sha256": "d43a59796c06f1ec94df8fc451a629b4214dddcd37cfcea2998b659a3fa33a4d"
+    },
+    "followup/attempt-2/frozen.json": {
+      "bytes": 21903,
+      "sha256": "5dcce3c4433726ec00b761999bb8f8d0ad4a83f895a1cb9efff6f9f450122eff"
+    },
+    "followup/attempt-2/protocol.json": {
+      "bytes": 1944,
+      "sha256": "a915731c731683280a63b1ead6499982c0c69371df024449d2ab00835c5772bb"
+    },
+    "followup/attempt-2/world-03/report.json": {
+      "bytes": 21053,
+      "sha256": "41840b466bd0624d61cec3edbb985dfb628886eabd566a377bc03697b9fd43a2"
+    },
+    "followup/attempt-2/world-03/console.log": {
+      "bytes": 10025,
+      "sha256": "8633897e65d3028765b2d9356cb75c9939be9bd9203df6149828a23da3b2beb9"
+    },
+    "followup/attempt-2/world-03/observer.js": {
+      "bytes": 3728,
+      "sha256": "c456e1f4d10c45dd7e144b2cccea74c5d04898bceef38ad8b41b2ddbc98f4381"
+    },
+    "followup/attempt-2/world-03/server.properties": {
+      "bytes": 561,
+      "sha256": "0da8eb0a75f80ddd60081b38f07ec0324f2851d7bb971477478b1805f9d95c7f"
+    },
+    "followup/attempt-2/world-04/report.json": {
+      "bytes": 5813,
+      "sha256": "bcd14b2ca6831085c9b58676d37b76f0e299244e649033da0084129247403cf0"
+    },
+    "followup/attempt-2/world-04/console.log": {
+      "bytes": 5403,
+      "sha256": "335eb48aa5583d06e63aef06a2f2f9e588e1ac221ddba3fa61fc63696d8062d1"
+    },
+    "followup/attempt-2/world-04/observer.js": {
+      "bytes": 3725,
+      "sha256": "0c28efe9e1038ca146d644c0a5859c95f89ce56d6c3a8dcf25002c88bf79a4a7"
+    },
+    "followup/attempt-2/world-04/server.properties": {
+      "bytes": 561,
+      "sha256": "b716c8175f5540f7204e332ba0e99c1efedd7935e16c8af0bb7cb9f0cb7c689e"
+    },
+    "followup/attempt-2/world-17/report.json": {
+      "bytes": 5406,
+      "sha256": "db7340af34b5a6042c543d7c001722c3b1df18874ef675e938d4dd2472cbaf79"
+    },
+    "followup/attempt-2/world-17/console.log": {
+      "bytes": 5288,
+      "sha256": "2959a02584d5736ad408ced7a49ae477538bee34f59bc2e825558a92e9915918"
+    },
+    "followup/attempt-2/world-17/observer.js": {
+      "bytes": 3725,
+      "sha256": "0c28efe9e1038ca146d644c0a5859c95f89ce56d6c3a8dcf25002c88bf79a4a7"
+    },
+    "followup/attempt-2/world-17/server.properties": {
+      "bytes": 560,
+      "sha256": "4bd0c2249ba2ab5d433929742e7fb9aab5e8f4636edf387eed3b7e6740d16e1e"
+    },
+    "followup/attempt-2/world-16/report.json": {
+      "bytes": 3420,
+      "sha256": "316d95ce29c12fafa8e3dd1038c853d6c80f3138b82a88da5dba97510d4d6e61"
+    },
+    "followup/attempt-2/world-16/console.log": {
+      "bytes": 4669,
+      "sha256": "d95d12b693fa58f15055b1900a314eeb02871ebce2e2a8d82fd43fef7f4f7ce2"
+    },
+    "followup/attempt-2/world-16/observer.js": {
+      "bytes": 3728,
+      "sha256": "c456e1f4d10c45dd7e144b2cccea74c5d04898bceef38ad8b41b2ddbc98f4381"
+    },
+    "followup/attempt-2/world-16/server.properties": {
+      "bytes": 561,
+      "sha256": "bf71cf1692fc6a21828361425b966542be61756fec9b1ead8487004fe72e869a"
+    },
+    "followup/attempt-3/ledger.json": {
+      "bytes": 372,
+      "sha256": "8eaf7992483d1827f49df666ab7952f3fd5f0b35d517706bec2f1d36d27ae6fd"
+    },
+    "followup/attempt-3/frozen.json": {
+      "bytes": 21903,
+      "sha256": "5dcce3c4433726ec00b761999bb8f8d0ad4a83f895a1cb9efff6f9f450122eff"
+    },
+    "followup/attempt-3/protocol.json": {
+      "bytes": 1510,
+      "sha256": "5b5b6ecdb3ba71530fb505a7e5e439fe8f04c605d8eac055b80fb37c9048fc01"
+    },
+    "followup/attempt-3/world-16/report.json": {
+      "bytes": 33018,
+      "sha256": "c484b329b4afc8710bf458869fdf24fe4002c21c94a8d246fdc710393943c770"
+    },
+    "followup/attempt-3/world-16/console.log": {
+      "bytes": 13563,
+      "sha256": "50cf6a6b2f63841871da09fae33fbd170114769326e09c92461103e93fb0e577"
+    },
+    "followup/attempt-3/world-16/observer.js": {
+      "bytes": 3728,
+      "sha256": "c456e1f4d10c45dd7e144b2cccea74c5d04898bceef38ad8b41b2ddbc98f4381"
+    },
+    "followup/attempt-3/world-16/server.properties": {
+      "bytes": 561,
+      "sha256": "bf71cf1692fc6a21828361425b966542be61756fec9b1ead8487004fe72e869a"
+    },
+    "followup/ledger.json": {
+      "bytes": 3492,
+      "sha256": "a07d2e0798689612c5c9eeecb3d61c277097867a54dced30b4f618d722683093"
+    },
+    "followup/frozen.json": {
+      "bytes": 21903,
+      "sha256": "5dcce3c4433726ec00b761999bb8f8d0ad4a83f895a1cb9efff6f9f450122eff"
+    },
+    "followup/summary.json": {
+      "bytes": 6646,
+      "sha256": "3bd6d0a08c80cffe65a152d07db845cb5d6037fe0dad3e8e2e6ffea2c426394d"
+    },
+    "followup/biome-correct-runtime.json": {
+      "bytes": 65019,
+      "sha256": "dee265e349dab7c4116f8a0fa9da19deddb7c06595f2369edf877f652a58982a"
+    },
+    "followup/biome-obsolete-runtime.json": {
+      "bytes": 75941,
+      "sha256": "27c4501ea95a150f4984ec737d9ae8c6ccd4f3ff6b77cfffa4137f0e92b2e72f"
+    },
+    "cohort/native-replay.json": {
+      "bytes": 602,
+      "sha256": "d42213957781aac4088dcec653d020570ee6bdc38848bb26a4fca82b9ab59a33"
+    },
+    "biome-recheck/ledger.json": {
+      "bytes": 795,
+      "sha256": "2513f8a585d7999f638bc98fd0859062c93165d595a4ade84bc5291efdfdd4c3"
+    },
+    "biome-recheck/frozen.json": {
+      "bytes": 7352,
+      "sha256": "46d899dca0cfb1d405d9a5635a7e3c51ed6136e496af1bf53685484a6701aef2"
+    },
+    "biome-recheck/driver.py": {
+      "bytes": 6656,
+      "sha256": "a4eaea720179773dc983f16333b7e7d96355bd14ad5dec7d6c981c38257eec00"
+    },
+    "biome-recheck/correct-runtime.json": {
+      "bytes": 36341,
+      "sha256": "05e785def301f6537015af5eed349927f9dbe369c7c5cb0a28b52533984da231"
+    },
+    "biome-recheck/obsolete-runtime.json": {
+      "bytes": 41060,
+      "sha256": "ac4518ad3aa3c28880318c1e8d9d8bccea2558a8a18d43bc28593d7f9697e063"
+    },
+    "biome-recheck/overworld/report.json": {
+      "bytes": 10621,
+      "sha256": "0c300c3c4467dbe066ad4d7dc38aac0ca5d992293e7a95ecccbb398e2a8e36de"
+    },
+    "biome-recheck/overworld/console.log": {
+      "bytes": 6831,
+      "sha256": "fa3cc584ae781265e71043c2a1a3b60adbd451431fc77876cef3eb1e96eb18ad"
+    },
+    "biome-recheck/overworld/observer.js": {
+      "bytes": 3459,
+      "sha256": "4902b96c9ae31c93265999315ea0e560d0cccb4f646b4391713a1e402a7f4504"
+    },
+    "biome-recheck/overworld/server.properties": {
+      "bytes": 561,
+      "sha256": "1828e3db2be377b0b4dfb7c475b93aee173052cc4909af023b38207dbdaa0a5d"
+    },
+    "biome-recheck/nether/report.json": {
+      "bytes": 12166,
+      "sha256": "daf9471bf8b48e66f6e8e6f9fb7196526fc61e41ef03cce01db5aeafbde5acff"
+    },
+    "biome-recheck/nether/console.log": {
+      "bytes": 7136,
+      "sha256": "497324d248cf5fdab8ace5153ec442331ed5bc7b50c50e41f56cecbc05b66563"
+    },
+    "biome-recheck/nether/observer.js": {
+      "bytes": 3456,
+      "sha256": "095f9a995044f6e680a5253f08a28c7b75ccc477ebd6b8ae9a9d4a7bf37c85b7"
+    },
+    "biome-recheck/nether/server.properties": {
+      "bytes": 561,
+      "sha256": "1828e3db2be377b0b4dfb7c475b93aee173052cc4909af023b38207dbdaa0a5d"
+    }
+  },
+  "interpretation": "Frozen game facts and original cohort predictions; cohort completion is not all-feature verification. Beta copies are a separate scope. Supplementary frozen biome predictions accidentally used stale primary sampler; obsolete comparisons retained, source-corrected post-observation analyses explicitly named correct-runtime. Full original3411points replayed under verified isolated nativebuild with zero differences."
+}

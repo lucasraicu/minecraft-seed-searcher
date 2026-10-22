@@ -1,0 +1,57 @@
+{
+  "source_attachment_sha256": "4e92a0ad056c5044cbef66feaaf1a3bc604ef4ec56504f96943100b9672af0e3",
+  "top_k_counterexample": {
+    "local_a": [
+      100,
+      99,
+      98,
+      97,
+      96
+    ],
+    "local_b": [
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "local_k": 2,
+    "global_k": 5,
+    "true_global": [
+      100,
+      99,
+      98,
+      97,
+      96
+    ],
+    "merged_local": [
+      100,
+      99,
+      5,
+      4
+    ]
+  },
+  "biome_sampling_counterexample": {
+    "rare_witness": [
+      64,
+      64
+    ],
+    "seen_on_64_lattice": true,
+    "seen_on_256_lattice": false
+  },
+  "radial_order_counterexample": {
+    "A_distances": [
+      0,
+      10
+    ],
+    "B_distances": [
+      6,
+      6
+    ]
+  },
+  "independent_tail_union_24": 0.009555969264408049,
+  "independent_tail_union_72": 0.02839483076560878,
+  "raw_retained_bytes_36b_at_0_1_percent": 2304000000,
+  "cpu_us_budget_240_cores_850k_survivors_s": 282.35294117647055,
+  "upper16_plus_lower32_coverage_fraction_full64": 1.52587890625e-05
+}

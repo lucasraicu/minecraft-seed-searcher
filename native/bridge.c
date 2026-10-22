@@ -148,10 +148,11 @@ int ss_biome(SeedContext *ctx, int dimension, int x, int y, int z) {
     Generator *g=ss_generator(ctx, dimension);
     if (!g) return none;
     if (dimension==DIM_OVERWORLD) {
-        int x4,y4,z4;
-        voronoiAccess3D(g->sha,x,y,z,&x4,&y4,&z4);
-        /* Exact single-point MC_26_50 path. NULL hint preserves tie handling. */
-        return sampleBiomeNoise(&g->bn,NULL,x4,y4,z4,NULL,0);
+        int q[3];
+        getBedrockBiomeQuart(g->seed,x,y,z,q);
+        /* Share the pinned Bedrock block selector with range/grid queries.
+         * NULL hint preserves independent raw-node tie handling. */
+        return sampleBiomeNoise(&g->bn,NULL,q[0],q[1],q[2],NULL,0);
     }
     if (dimension==DIM_END) {
         Range r={1,x,z,1,1,y,1},s=getVoronoiSrcRange(r);
@@ -486,3 +487,51 @@ int ss_bastion_variant(SeedContext *ctx,int x,int z) {
     if(!ctx||!getVariant(&variant,Bastion,MC_26_50,ctx->seed,x,z,-1))return -1;
     return variant.start;
 }
+
+int ss_stronghold_portal_details(SeedContext *ctx, int x, int z, int *has_portal, int *portal_eyes, int *bb, int *valid_depth) {
+    if (!ctx || !has_portal || !portal_eyes || !bb || !valid_depth) return -1;
+    *has_portal = 0;
+    *portal_eyes = 0;
+    *valid_depth = 0;
+    memset(bb, 0, 6 * sizeof(int));
+
+    int chunkX = floordiv(x, 16);
+    int chunkZ = floordiv(z, 16);
+
+    StrongholdLayout *sh = (StrongholdLayout *)calloc(1, sizeof(StrongholdLayout));
+    if (!sh) return -1;
+
+    int count = getStrongholdLayout(sh, ctx->overworld.mc, ctx->seed, chunkX, chunkZ);
+    if (count <= 0) {
+        free(sh);
+        return 0;
+    }
+
+    for (int i = 0; i < sh->count; i++) {
+        if (sh->pieces[i].type == SH_PORTAL_ROOM) {
+            *has_portal = 1;
+            bb[0] = sh->pieces[i].bb.minX;
+            bb[1] = sh->pieces[i].bb.minY;
+            bb[2] = sh->pieces[i].bb.minZ;
+            bb[3] = sh->pieces[i].bb.maxX;
+            bb[4] = sh->pieces[i].bb.maxY;
+            bb[5] = sh->pieces[i].bb.maxZ;
+
+            if (bb[1] >= -54 && bb[4] <= 32) {
+                *valid_depth = 1;
+            }
+
+            StrongholdPortalFrame frames[12];
+            int n_frames = getStrongholdPortalFrames(frames, sh);
+            int eyes = 0;
+            for (int f = 0; f < n_frames; f++) {
+                if (frames[f].hasEye) eyes++;
+            }
+            *portal_eyes = eyes;
+            break;
+        }
+    }
+    free(sh);
+    return 1;
+}
+

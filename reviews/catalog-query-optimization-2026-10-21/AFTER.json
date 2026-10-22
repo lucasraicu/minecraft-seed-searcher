@@ -1,0 +1,136 @@
+{
+  "phase": "after",
+  "source": "/Users/lucasraicu/Downloads/minecraft-seed-searcher",
+  "cold_definition": "fresh service/result/index caches; OS file cache not flushed",
+  "cases": [
+    {
+      "case": "500-origin",
+      "samples": [
+        {
+          "cold_seconds": 3.075470701092854,
+          "warm_seconds": 0.02658349694684148,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 3.0728851039893925
+          }
+        },
+        {
+          "cold_seconds": 3.046919465996325,
+          "warm_seconds": 0.025814765016548336,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 3.0445127399871126
+          }
+        },
+        {
+          "cold_seconds": 3.0361819689860567,
+          "warm_seconds": 0.028037686017341912,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 3.033159054000862
+          }
+        }
+      ],
+      "median_cold_seconds": 3.046919465996325,
+      "median_warm_seconds": 0.02658349694684148,
+      "worlds": 500,
+      "result_sha256": "bb1533b00f7b275c9641b07b210eb13f27da16311bfdee3e2c8ef3267fe42440",
+      "peak_rss_bytes": 77070336
+    },
+    {
+      "case": "500-recommended",
+      "samples": [
+        {
+          "cold_seconds": 7.594319598050788,
+          "warm_seconds": 0.029146153014153242,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 7.591125071980059
+          }
+        },
+        {
+          "cold_seconds": 7.492131457081996,
+          "warm_seconds": 0.0278502709697932,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 7.488740122993477
+          }
+        },
+        {
+          "cold_seconds": 7.698428794043139,
+          "warm_seconds": 0.02847966703120619,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 7.69477787904907
+          }
+        }
+      ],
+      "median_cold_seconds": 7.594319598050788,
+      "median_warm_seconds": 0.02847966703120619,
+      "worlds": 500,
+      "result_sha256": "ee7e26e4ce8a41e2de4263b673984f13a040eda47187676fe4087b5b16a18923",
+      "peak_rss_bytes": 115232768
+    },
+    {
+      "case": "200-accuracy-recommended",
+      "samples": [
+        {
+          "cold_seconds": 3.703498505987227,
+          "warm_seconds": 0.10320744407363236,
+          "stats": {
+            "wall_seconds": 3.6395715799881145,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        },
+        {
+          "cold_seconds": 3.569368359982036,
+          "warm_seconds": 0.10252223093993962,
+          "stats": {
+            "wall_seconds": 3.519923143903725,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        },
+        {
+          "cold_seconds": 3.535665770061314,
+          "warm_seconds": 0.1027901730267331,
+          "stats": {
+            "wall_seconds": 3.482771781971678,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        }
+      ],
+      "median_cold_seconds": 3.569368359982036,
+      "median_warm_seconds": 0.1027901730267331,
+      "worlds": 200,
+      "result_sha256": "ba94101b454ff910a4a5a1fd0cf58a05fea5b7e8733dd81a546a2badad257182",
+      "peak_rss_bytes": 262807552
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "automated_milestone_finished_browser_qa_deferred_by_user",
+  "full_regression": {
+    "total": 1489,
+    "passed": 1488,
+    "failures": [
+      {
+        "classname": "tests.test_native_throughput",
+        "name": "test_pipeline_three_stages_and_exact_partial_resume",
+        "message": "assert False\n +  where False = any(<generator object test_pipeline_three_stages_and_exact_partial_resume.<locals>.<genexpr> at 0x11f393a60>)"
+      }
+    ],
+    "catalog_tests": 215,
+    "catalog_failures": 0,
+    "seconds": 561.22,
+    "clean_full_run": false
+  },
+  "targeted_rerun": {
+    "test": "tests/test_native_throughput.py::test_pipeline_three_stages_and_exact_partial_resume",
+    "passed": true,
+    "seconds": 8.47,
+    "note": "Unchanged test failed a scheduler-overlap timing assertion in full run; isolated rerun passed all checks. Original failure retained."
+  },
+  "frontend": {
+    "typecheck_build": "passed",
+    "output": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/private-pilot-dist-release-candidate-20261020",
+    "network_contracts": 18,
+    "catalog_contracts_and_card_render": "passed",
+    "interactive_browser": "deferred_at_user_request"
+  },
+  "preservation": {
+    "baseline_changed": [
+      "CODEX_HANDOFF.md",
+      "scripts/catalog_validate.py",
+      "src/seed_search/catalog/evaluation.py",
+      "src/seed_search/catalog/query.py",
+      "src/seed_search/catalog/validation_contracts.py",
+      "src/seed_search/web/server.py",
+      "web-ui/src/App.tsx",
+      "web-ui/vite.config.ts"
+    ],
+    "baseline_missing": [],
+    "unrelated_files_preserved": true,
+    "native": {
+      "src/seed_search/_native.abi3.so": true,
+      "src/seed_search/_blueprint_batch.abi3.so": true
+    },
+    "head_unchanged": true,
+    "index_unchanged": true,
+    "live_sweep": "60144 Fri Oct 16 12:39:02 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.web.server 3000",
+    "live_dist_rebuilt": false,
+    "commit_push_reset_stash_clean": false
+  },
+  "http_smoke": {
+    "worlds": 200,
+    "layouts": 48600,
+    "origin_checked": true,
+    "pagination_unique_worlds": true,
+    "pinned_detail_seed_preserved": true,
+    "cached_second_page": true
+  },
+  "player_usefulness": "not_evaluated_no_actual_participant_corpus",
+  "spawn": "unaccepted",
+  "public_compatibility": "unaccepted",
+  "browser_qa_decision": {
+    "decision": "Leave browser QA pending",
+    "source": "Explicit user reply",
+    "acceptance": "Deferred, not passed"
+  }
+}

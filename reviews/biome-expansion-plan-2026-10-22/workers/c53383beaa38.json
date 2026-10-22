@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"task_id\": \"c53383beaa38\",\n  \"role\": \"code\",\n  \"state\": \"failed\",\n  \"created\": 1792663017.527961,\n  \"updated\": 1792663804.078217,\n  \"worker_id\": \"gemini-1\",\n  \"objective\": \"High reasoning approved narrow query deadline correction. Implement packed V3 derived JSON projections per PACKED_PROJECTION_CONTEXT.md. Own only store.py and new test_packed_v3_projection.py. No edits elsewhere, no native/search/server jobs. Use scoped file tools only, no model-issued shell command\",\n  \"result\": {\n    \"worker_id\": \"gemini-1\",\n    \"model\": \"gemini-3.8-flash-high\",\n    \"reasoning_effort\": \"high\",\n    \"timeout_seconds\": 900,\n    \"effective_timeout_seconds\": 900,\n    \"acceptance_reserve_seconds\": 120,\n    \"baseline_digest\": \"01089672ec87002d13f7bc33bcb3a1a3164061b559805f0ee9a0bf15e624f5b6\",\n    \"baseline_head\": \"fd36d4dc3b86581858ff75e91df187eac088862c\",\n    \"attempt\": 1,\n    \"started\": 1792663023.5470972,\n    \"error\": \"timeout\",\n    \"timeout_phase\": \"model\",\n    \"elapsed_seconds\": 780.55,\n    \"completed\": 1792663804.077682,\n    \"resource_usage\": {\n      \"peak_process_tree_rss_bytes\": 254668800\n    }\n  },\n  \"artifacts\": \"/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/c53383beaa38\",\n  \"needs_codex_review\": true,\n  \"integration_status\": \"not_integrated\"\n}"
+    }
+  ],
+  "isError": false
+}

@@ -7,7 +7,13 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
+    host: '127.0.0.1',
+    strictPort: true,
     proxy: {
+      '/api/catalog': {
+        target: process.env.SEED_SEARCH_CATALOG_PROXY || 'http://127.0.0.1:3001',
+        changeOrigin: true,
+      },
       '/api': {
         target: 'http://127.0.0.1:3000',
         changeOrigin: true,

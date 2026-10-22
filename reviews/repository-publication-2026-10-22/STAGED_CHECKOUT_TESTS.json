@@ -1,0 +1,34 @@
+{
+  "export_method": "git checkout-index --all to new external directory; no ignored runtime or native binaries copied",
+  "environment": "Existing dependency environment reused; PYTHONPATH points to staged export; actual package imports verified below. This is not a clean dependency installation.",
+  "import_command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-c",
+    "import seed_search,seed_search.catalog.service,seed_search.catalog.summaries_fast,seed_search.realm.config; print(seed_search.__file__); print(seed_search.catalog.service.__file__); print(seed_search.catalog.summaries_fast.__file__)"
+  ],
+  "import_paths": [
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/src/seed_search/__init__.py",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/src/seed_search/catalog/service.py",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/src/seed_search/catalog/summaries_fast.py"
+  ],
+  "command": [
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/catalog/test_ingestion_optimization.py",
+    "tests/catalog/test_guarded_read_views.py",
+    "tests/catalog/test_versioned_derivation.py",
+    "tests/catalog/test_reserve_v3.py",
+    "tests/test_personal_reserve.py",
+    "tests/test_readiness_reserve_capacity.py",
+    "tests/test_native_runtime_guard.py",
+    "tests/test_native_refinement_parity.py",
+    "tests/test_v3_optimizations_parity.py",
+    "--basetemp=/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/pytest-staged"
+  ],
+  "cwd": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout",
+  "exit_code": 2,
+  "seconds": 1.0300774910720065,
+  "output": "\n==================================== ERRORS ====================================\n_____________ ERROR collecting tests/test_native_runtime_guard.py ______________\nImportError while importing test module '/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/tests/test_native_runtime_guard.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_native_runtime_guard.py:10: in <module>\n    from seed_search import backend\nsrc/seed_search/backend.py:9: in <module>\n    from ._native import ffi, lib\nE   ModuleNotFoundError: No module named 'seed_search._native'\n___________ ERROR collecting tests/test_native_refinement_parity.py ____________\nImportError while importing test module '/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/tests/test_native_refinement_parity.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_native_refinement_parity.py:9: in <module>\n    from seed_search.backend import biome_catalog\nsrc/seed_search/backend.py:9: in <module>\n    from ._native import ffi, lib\nE   ModuleNotFoundError: No module named 'seed_search._native'\n____________ ERROR collecting tests/test_v3_optimizations_parity.py ____________\nImportError while importing test module '/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/staged-checkout/tests/test_v3_optimizations_parity.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_v3_optimizations_parity.py:25: in <module>\n    from seed_search.realm.blueprint import evaluate_dynamic_seed, dynamic_v3_score\nsrc/seed_search/realm/blueprint.py:13: in <module>\n    from ..backend import Backend, biome_name\nsrc/seed_search/backend.py:9: in <module>\n    from ._native import ffi, lib\nE   ModuleNotFoundError: No module named 'seed_search._native'\n=========================== short test summary info ============================\nERROR tests/test_native_runtime_guard.py\nERROR tests/test_native_refinement_parity.py\nERROR tests/test_v3_optimizations_parity.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!\n3 errors in 0.71s\n"
+}

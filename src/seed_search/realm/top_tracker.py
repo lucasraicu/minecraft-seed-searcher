@@ -61,10 +61,14 @@ class RevStr:
 class Top50Tracker:
     """Bounded in-memory priority queue maintaining the top N candidates."""
 
-    def __init__(self, capacity: int = 50):
+    def __init__(self, capacity: int = 50, *, winner_limit=None, reserve_policy=None):
         if capacity < 1:
             raise ValueError("Capacity must be at least 1")
         self.capacity = capacity
+        self.winner_limit = capacity if winner_limit is None else winner_limit
+        if type(self.winner_limit) is not int or not 0 <= self.winner_limit <= capacity:
+            raise ValueError("Invalid winner limit")
+        self.reserve_policy = reserve_policy
         # Min-heap storing tuples: (sort_key, insertion_index, record)
         # sort_key is constructed so that WORSE candidates have SMALLER keys,
         # placing the worst candidate among the top N at root (index 0).
@@ -228,11 +232,22 @@ class Top50Tracker:
     def save_to_json(self, path: str) -> None:
         """Atomically dump current top records to a JSON file."""
         records = self.top_records()
+        if self.reserve_policy is not None:
+            self._write_json(path + ".selection.json", dict(self.reserve_policy, primary_count=min(len(records), self.winner_limit), reserve_count=max(0,len(records)-self.winner_limit), evidence_status="predicted"))
+            self._write_json(str(__import__("pathlib").Path(path).with_name("reserves.json")), records[self.winner_limit:])
+        records = records[:self.winner_limit]
         tmp_path = f"{path}.tmp"
         with open(tmp_path, "w", encoding="utf-8") as f:
             json.dump(records, f, indent=2)
         import os
         os.replace(tmp_path, path)
+
+    @staticmethod
+    def _write_json(path, value):
+        import os
+        with open(str(path) + ".tmp", "w", encoding="utf-8") as f:
+            json.dump(value, f, indent=2)
+        os.replace(str(path) + ".tmp", path)
 
     def load_from_json(self, path: str) -> int:
         """Load candidate records from JSON file. Returns count loaded."""

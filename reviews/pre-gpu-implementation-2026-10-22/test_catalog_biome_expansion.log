@@ -1,0 +1,34 @@
+=== Suite 1: V3 Feature Registry Vocabulary & Metadata ===
+  ✓ V3 Exact Biomes: Exactly 56 Overworld choices
+  ✓ Core 46 Overworld choices enabled, 10 mountain and cave choices gated
+  ✓ Four declared biome groups with exact atomic members
+  ✓ Contextual structures: basement igloo and treasure bastion initially gated
+  ✓ Feature dimension and Nether feature predicates
+  ✓ isV3Feature accurately identifies V3 additions vs V1/V2 legacy
+  ✓ featureLabel resolves all V3 and legacy labels cleanly
+=== Suite 2: Serialization, Capping & Negotiation ===
+  ✓ serializeRows limits any_of to max 16 unique alternatives
+  ✓ serializeRows bounds total rows to maximum 12
+  ✓ serializeRows deduplicates repeated alternatives before capping
+=== Suite 3: FilterBuilder Pure Helpers ===
+  ✓ getRowDimension identifies dimension from feature or any_of biomes
+  ✓ switchRowFeature normalizes radius when switching dimension in V3
+  ✓ switchBiomeDimension enforces default in new dimension and normalizes radius
+  ✓ toggleBiomeSelectionInRow prevents selecting gated biomes in V3
+  ✓ toggleBiomeSelectionInRow enforces 16-alternative ceiling in V3
+  ✓ selectBiomeGroupInRow adds group choice towards the 16 limit
+  ✓ filterBiomesBySearch filters biomes by keyword across label, id and category
+=== Suite 4: React SSR Rendering Verification ===
+  ✓ FilterBuilder renders in V3 mode with expandable groups, search bar and gated notices
+  ✓ FilterBuilder renders in V2 and V1 legacy modes for full backwards compatibility
+  ✓ DetailModal renders witness XYZ coordinates and height evidence states
+  ✓ validateProductResultsV2 accepts V3 responses with primary and reserve counts
+  ✓ LaunchProductList renders witnesses with XYZ coordinates and height state column
+  ✓ Snapshot metadata enables validated mountain choices and can gate a named group
+  ✓ Personal reserve selector is explicit and hidden for historical runs
+  ✓ Candidate page rejects malformed reserve metadata
+
+========================================
+All 25/25 tests passed successfully!
+========================================
+

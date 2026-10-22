@@ -1,0 +1,8 @@
+..........................                                               [100%]
+=============================== warnings summary ===============================
+tests/test_native_runtime_guard.py::test_fork_resets_lock_and_runtime_validation
+  /Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_native_runtime_guard.py:195: DeprecationWarning: This process (pid=29046) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    pid=os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+26 passed, 1 warning in 6.37s

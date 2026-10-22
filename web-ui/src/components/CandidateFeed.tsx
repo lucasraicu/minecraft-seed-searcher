@@ -6,6 +6,7 @@ import { spawnWithinRadius, spawnEvidenceLabel } from '../utils/spawn';
 interface CandidateFeedProps {
   candidates: SeedCandidate[];
   pagination?: { offset: number; total: number; limit: number; onChangeOffset: (offset: number) => void };
+  reserveSelection?:{primary:number;reserve:number;view:'primary'|'reserve';onChange:(view:'primary'|'reserve')=>void};
   selectedCandidate: SeedCandidate | null;
   onSelectCandidate: (candidate: SeedCandidate) => void;
   onInspectCandidate: (candidate: SeedCandidate) => void;
@@ -18,6 +19,7 @@ interface CandidateFeedProps {
 export const CandidateFeed: React.FC<CandidateFeedProps> = ({
   candidates,
   pagination,
+  reserveSelection,
   selectedCandidate,
   onSelectCandidate,
   onInspectCandidate,
@@ -112,6 +114,19 @@ export const CandidateFeed: React.FC<CandidateFeedProps> = ({
         </div>
 
         <p className="text-[10px] text-slate-400">Canonical baseline order from structure and biome screening. Historical terrain results do not affect this list.</p>
+
+        {reserveSelection && (
+          <div className="space-y-1 text-xs">
+            <div className="flex gap-2" aria-label="Candidate retention view">
+              {(['primary','reserve'] as const).map(view=><button key={view} type="button"
+                aria-pressed={reserveSelection.view===view} onClick={()=>reserveSelection.onChange(view)}
+                className={`rounded border px-2 py-1 ${reserveSelection.view===view?'border-emerald-500 text-emerald-300':'border-slate-700 text-slate-400'}`}>
+                {view==='primary'?'Primary':'Reserve'} ({reserveSelection[view]})
+              </button>)}
+            </div>
+            <p className="text-[10px] text-slate-400">Predicted candidates; reserve status belongs to this ranked list.</p>
+          </div>
+        )}
 
         {pagination && (
           <div className="space-y-1 text-[10px] text-slate-400">

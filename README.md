@@ -1,5 +1,35 @@
 # Bedrock Coastal Continent seed search
 
+Start with the [repository map](docs/REPOSITORY_MAP.md),
+[test navigation](tests/README.md) and [scripts index](scripts/README.md).
+The latest completed work is the [CPU/catalog readiness report](reviews/pre-gpu-implementation-2026-10-22/REPORT.md):
+versioned extraction improvements, guarded query views, a [GPU contract](docs/gpu/GPU_CONTRACT_V1.md)
+and a [database comparison](docs/catalog/DATABASE_COMPARISON.md). No GPU kernel or
+new database engine has been deployed; preserved live services require controlled
+adoption of the validated source/runtime. Independent reviewers can use the
+[Claude/Gemini audit prompt](docs/audits/INDEPENDENT_REPOSITORY_AUDIT_PROMPT.md).
+
+Throughput units matter: about 67,000 **personal input seeds screened/sec** was
+measured alongside one catalog extraction worker and two query clients. A complete
+catalog record took about 25 seconds alone and 45 seconds under that load, on
+repeated known-world trials. These are distinct measurements, not 67,000 complete
+catalog records/sec or a new unique-world discovery rate. See the report for
+hardware, cache conditions, cohort and coverage limits.
+
+Implemented capabilities and proposed features are separated in
+[the project status map](docs/PROJECT_STATUS.md). Phase 1/2 stabilization and bounded
+CPU measurement evidence are recorded in
+[the October 20 report](reviews/phase12-2026-10-20/REPORT.md). The new
+[CPU catalog reference](src/seed_search/catalog/README.md) implements bounded
+extraction, coverage, SQLite/artifact persistence and saved-layout queries.
+Its [100-world validation](reviews/catalog-validation-2026-10-20/REPORT.md) adds
+bounded ingestion, fixed retention, cached query views and recovery measurements.
+The [local four-pillar catalog automation](docs/catalog/v2/README.md) is implemented in the existing UI; [release evidence](reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md) covers222 refreshed worlds, calibrated Realm sizes, recovery, retention and query load. CUDA/fleet work, a custom engine, public hosting and payments remain separate proposals.
+
+The [spawn correction and migration](reviews/accuracy-advanced-products-2026-10-21/RELEASE_REPORT.md)
+is live locally:124world-reference controls matched,222catalog worlds migrated
+without new terrain extraction, and personal scoring/old snapshots preserved.
+
 The October 16 framework corrections and verification are recorded in
 [the implementation report](reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md).
 Center-weight decisions and reproducible sensitivity experiments are tracked in
@@ -24,15 +54,37 @@ This searches all 15,129 chunk-aligned centers under the pinned predictor.
 `--grid-step 8` searches all 60,025 integer-Nether-center positions and can split
 Overworld chunks. The output preserves the original result and labels the new
 selection separately; it does not rewrite a sweep checkpoint or certify actual
-generation. Native scanning continues to use the fast centroid representatives.
+generation. Native v3 production scanning now automatically refines floor- and
+palette-qualified candidates before checkpoint admission and Top-K updates. It
+searches every 16-block center, then deduplicated local 8-block windows around
+multiple coarse peaks within two score points. The original representative is
+retained if it ranks better. This is exhaustive on the 16-block grid; local
+8-block refinement does not establish the global 8-block optimum.
+
+Candidate JSON retains `sweep_centroid`, `centroid_unrefined`, `refined_center`,
+`refinement_gain`, `grid_step`, and versioned `center_selection` provenance.
+Existing checkpoints retain their computation identity and require a separate
+run after this native change. Rebuild both extensions and restart the web server;
+current private OpenMP builds are selected only if their source manifests match.
+See [Pillar 3 implementation evidence](reviews/native-refinement-2026-10-16/IMPLEMENTATION.md).
 
 The active CLI, web control plane, and search configurations implement the explicit `dynamic-envelope-2048-v3` contract from [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) (Revision 6.0). The supported runtime remains pinned to Bedrock **26.52 / BDS 1.26.52.3** and predictor **MC_26_50**.
 
 The active screening revision is **`dynamic-envelope-2048-v3`**. Instead of a fixed origin, the realm operates on a sliding-window coordinate system that places a $2048 \times 2048$ Playable Overworld window ($128 \times 128$ chunks, radius 1024m) around a dynamic center $(C_X, C_Z) \in [-976, 976]^2$ within a $4000 \times 4000$ Overworld macro-envelope ($[-2000, 2000)^2$), and a $1024 \times 1024$ Playable Nether window ($64 \times 64$ chunks, radius 512m) around scaled center $(C_X/8, C_Z/8) \in [-122, 122]^2$ within a $1268 \times 1268$ Nether preflight ($[-634, 634)^2$).
 
-Candidate centers are resolved using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the pure additive baseline where all 14 Guaranteed Hard Floors are non-negotiable entry tickets (Pillager Outpost hard floor is $\ge 1$; hard floors are fatal; zero deficit penalties, Miss Budget $B = 0$). Automatic terrain and coastal screening are retired for v3.
+The fast sweep proposes candidate centers using a three-defense geometric architecture: (1) 2D event-slab intersection over half-open intervals $[lo, hi)$, (2) weighted centroid magnet pull (with zeroed Ruined Portal and Shipwreck pull weights to focus strictly on human settlements and dungeons), and (3) chunk-grid alignment snapping to multiples of 16 (with fallback to 8) within the feasible safe zone $\mathcal{S}_{\text{safe}}$. Strict 64-block lattice invariance guarantees that cell boundaries match biome palette membership. Candidate centers adhere to the pure additive baseline where all 14 Guaranteed Hard Floors are non-negotiable entry tickets (Pillager Outpost hard floor is $\ge 1$; hard floors are fatal; zero deficit penalties, Miss Budget $B = 0$). Automatic terrain and coastal screening are retired for v3.
 
-### Measured Performance & Throughput (Intel Xeon W-2191B, 30–34 Threads)
+Latest [October22 current-framework benchmark](reviews/current-framework-benchmark-2026-10-22/REPORT.md):
+34threads,Top50/100candidate capacity;75,666seeds/sec personal-only paired median,
+69,058with full current catalog extraction plus two queries,9.70%median elapsed
+increase. Full public records took34.51–35.66seconds/world. These are bounded
+screening trials (one predicted survivor), not sustained/full-heap throughput.
+
+[Current storage/query profiling](reviews/storage-query-profile-2026-10-22/REPORT.md)
+finds substantial checkpoint/JSON/manifest work. SQLite control state remains;
+serving read-index prototypes justify a follow-up, with no production engine change.
+
+### Historical measured screening throughput (Intel Xeon W-2191B, 30–34 threads)
 
 Following low-32 PRNG preflight, short-circuit `nb_raw_atleast` filters, strict equivalence cell lattice invariance, single-pass argmin selection, Clang Profile-Guided Optimization (PGO), Link-Time Optimization (LTO), zero-copy vectorized batch dispatch, and pruned kernel teardown:
 - **Active v3 Native OpenMP Pipeline (34 Threads):** **~55,000–58,000 seeds/sec** ($\sim 17.5\text{s}$ per million seeds, $\sim 29.5\text{ mins}$ for a complete 100M-seed shard) across the full $2048 \times 2048$ Overworld envelope, $1024 \times 1024$ Nether window, 14 hard floors, 4-plane Overworld biomes, and 5-biome Nether check.
@@ -59,7 +111,7 @@ V2 rescoring reconstructs spatial bonuses and Bastion awards from retained evide
 
 ## System Architecture & Engineering Framework
 
-The search framework operates on three tightly integrated tiers designed for maximum CPU utilization, durability, and zero false positives:
+The search framework operates on three tiers for predictor screening, durability and scoped evidence reporting. Predictor agreement does not establish actual-world false-positive or recall rates:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -127,9 +179,9 @@ Production builds include the count kernel directly through `native/bridge.h` an
 
 The React dashboard in `web-ui/` connects to `seed_search.web.server`, launches explicit native sweeps, and reads durable SQLite progress and paginated candidates. Every editable search setting is sent to the machine: policy, structure targets, selected Overworld biome families (v2), seed count, exact full64 starting index, deficit budget, native threads, and batch size. The v2 palette defaults to all 13 blueprint families; deselecting families creates a custom relaxed palette, recorded in the saved policy and restored on resume. Structure viability, Nether biome requirements, and biome bonuses are unchanged. The probability panel is an uncalibrated historical planning estimate, not a measured campaign success rate. Fixed policy rules are read-only; map and result-view controls affect the display. The **Machine command** card previews the resolved command and policy YAML before launch, then retains the actual command, working directory, and policy used for scan/resume. A preview contains a `<new-run>` placeholder; launch saves the real `policy.yaml` and `launch.json`. Search settings lock while running, paused, or verifying; resume restores the saved settings. See the [UI-to-machine verification ledger](reviews/ui-machine-parity-2026-10-15/IMPLEMENTATION.md) for the tested contract. Initial demo records are labeled illustrative; prediction, terrain screening and actual BDS evidence remain distinct. Existing computation-identity checks still apply when resuming; the dashboard does not certify actual worlds or exhaustive CPU optimality.
 
-See [ENGINE_AUDIT_RESULTS.md](ENGINE_AUDIT_RESULTS.md) for implementation and correctness findings, [BLUEPRINT_FEASIBILITY_ANALYSIS.md](BLUEPRINT_FEASIBILITY_ANALYSIS.md) for requirement feasibility, and [BLUEPRINT_BENCHMARK_RESULTS.md](BLUEPRINT_BENCHMARK_RESULTS.md) for measured throughput, stage costs, cleanup and conditional runtime scenarios. The 30,000-input pilot measured 1,238.23 baseline inputs/second; full-blueprint success probability and verified-world runtime remain unknown.
+See [ENGINE_AUDIT_RESULTS.md](docs/historical_reports/ENGINE_AUDIT_RESULTS.md) for implementation and correctness findings, [BLUEPRINT_FEASIBILITY_ANALYSIS.md](docs/historical_reports/BLUEPRINT_FEASIBILITY_ANALYSIS.md) for requirement feasibility, and [BLUEPRINT_BENCHMARK_RESULTS.md](docs/historical_reports/BLUEPRINT_BENCHMARK_RESULTS.md) for measured throughput, stage costs, cleanup and conditional runtime scenarios. The 30,000-input pilot measured 1,238.23 baseline inputs/second; full-blueprint success probability and verified-world runtime remain unknown.
 
-The following throughput numbers describe the **historical 1536/896 policy**, before the locked-border revision. The original isolated prototype is retained in [NATIVE_BASELINE_PROTOTYPE_RESULTS.md](NATIVE_BASELINE_PROTOTYPE_RESULTS.md). Its 19,835.87/sec C-only rate was not persisted throughput. The implementation and fresh comparisons are recorded in [NATIVE_THROUGHPUT_RESULTS.md](NATIVE_THROUGHPUT_RESULTS.md): full evidence measured 3,061.70 persisted inputs/sec on the repeated 30,000-input cohorts and 2,793.36/sec on the repeated 100,000-input held-out cohort, versus 1,164.12 and 996.41/sec for the fresh Python controls. The final actual CLI held-out comparison measured **3,730.73 full-evidence persisted inputs/sec** versus **1,174.71/sec** for Python. Compact scanning with up to two misses measured **12,226.51 checkpointed inputs/sec**; strict survivors measured **17,252.74/sec**. Each is a three-trial median on 100,000 inputs. The compact cohort saved no natural candidates, so accepted-record cost remains supported by positive fixtures. The 5,000/sec full-evidence target remains unmet.
+The following throughput numbers describe the **historical 1536/896 policy**, before the locked-border revision. The original isolated prototype is retained in [NATIVE_BASELINE_PROTOTYPE_RESULTS.md](docs/historical_reports/NATIVE_BASELINE_PROTOTYPE_RESULTS.md). Its 19,835.87/sec C-only rate was not persisted throughput. The implementation and fresh comparisons are recorded in [NATIVE_THROUGHPUT_RESULTS.md](docs/historical_reports/NATIVE_THROUGHPUT_RESULTS.md): full evidence measured 3,061.70 persisted inputs/sec on the repeated 30,000-input cohorts and 2,793.36/sec on the repeated 100,000-input held-out cohort, versus 1,164.12 and 996.41/sec for the fresh Python controls. The final actual CLI held-out comparison measured **3,730.73 full-evidence persisted inputs/sec** versus **1,174.71/sec** for Python. Compact scanning with up to two misses measured **12,226.51 checkpointed inputs/sec**; strict survivors measured **17,252.74/sec**. Each is a three-trial median on 100,000 inputs. The compact cohort saved no natural candidates, so accepted-record cost remains supported by positive fixtures. The 5,000/sec full-evidence target remains unmet.
 
 Native execution is an explicit option for the audited blueprint eligibility profile. The Python route remains the default and the replay adapter remains an oracle. Build a separate native batch extension without replacing the existing generator:
 
@@ -144,9 +196,11 @@ Native execution is an explicit option for the audited blueprint eligibility pro
 
 Omit `--openmp-prefix` for a portable serial build and use `--native-threads 1`. Standard package builds also include `seed_search._blueprint_batch`; `native/blueprint_build.py` builds just that extension. Serial is the default, with the same explicit OpenMP prefix/architecture rules as `native/build.py`. There is no silent fallback if the selected extension or profile is incompatible. Each invocation is bounded to 100,000 inputs; native batches are bounded to 16,384. The pipeline reserves two CPU slots for preparation/writing, limits outstanding batches and bytes, monitors process-tree memory, and preserves WAL with FULL synchronization and disk reserves.
 
-For new v3 dashboard sweeps, the server selects `runs/dynamic-baseline-2048/native-fixed-2026-10-16` when its source hashes and binary identity match this checkout. Rebuild that private artifact after native source changes with `scripts/build_blueprint_batch.py --output runs/dynamic-baseline-2048/native-fixed-2026-10-16 --openmp-prefix runs/master-implementation-2026-10-10/openmp/install --cpu-native --avx2 --lto`. The bounds optimization intersects Nether-feasible centers with the union of all possible Dark Forest Mansion windows. Saved runs retain their recorded native build identity on resume. Compact Top-K recovers from committed SQLite candidates, so an absent or stale `top50.json` cannot erase a previously committed leader.
+For new v3 dashboard processes, the server first selects `runs/dynamic-baseline-2048/native-corrected-openmp-2026-10-21` when its source hashes and binary identity match this checkout, then checks historical fallbacks. `SEED_SEARCH_NATIVE_BUILD` still overrides selection. The corrected OpenMP build was tested against the corrected serial runtime with exact fixture results at 1, 2, 4 and 34 threads. The personal server was explicitly restarted on2026-10-21 to adopt that selection, preserving its saved run; replacing artifacts alone does not hot-refresh a process. Rebuild after native source changes into a **fresh directory**, using `scripts/build_blueprint_batch.py --output <fresh-directory> --openmp-prefix runs/master-implementation-2026-10-10/openmp/install`, then verify its identity before selection. The bounds optimization intersects Nether-feasible centers with the union of all possible Dark Forest Mansion windows. Saved runs retain their recorded native build identity on resume. Compact Top-K recovers from committed SQLite candidates, so an absent or stale `top50.json` cannot erase a previously committed leader.
 
-Private builds accept `--work-chunk 16`, `64` or `128` for measured atomic scheduling experiments. The default remains 16: larger chunks slowed the current compact workload. Reproduce the same-policy comparison with `scripts/benchmark_native_chunks.py --output <fresh-directory> --openmp-prefix <runtime-prefix>`. See [GEMINI_PIPELINE_REVIEW_RESULTS.md](GEMINI_PIPELINE_REVIEW_RESULTS.md) for retained measurements and review findings. Process-tree monitoring failures stop new dispatch; current-process peak RSS cannot replace live parent-and-worker memory.
+The standalone catalog preview (`python -m seed_search.catalog.http_server --root <catalog> --port 3001`) defaults to two owned CPU query processes. `--query-processes 0` retains the reference in-process path; `1` selects a single isolated worker. Admission stays four requests, execution stays two, and the total query allowance stays ten seconds. Warm cache affinity never waits behind a busy worker. Deadlines bound IPC reads and writes; failed jobs return explicit errors, with bounded worker replacement and no automatic replay. Each process has a 64 MiB serialized cache allowance, plus Python overhead. Query children limit their own OpenMP/BLAS threads to one. A simultaneous 34-thread personal sweep can compete for CPU; the isolated query measurements do not establish latency under that combined load. See [query and OpenMP verification](reviews/catalog-query-processes-2026-10-21/REPORT.md).
+
+Private builds accept `--work-chunk 16`, `64` or `128` for measured atomic scheduling experiments. The default remains 16: larger chunks slowed the current compact workload. Reproduce the same-policy comparison with `scripts/benchmark_native_chunks.py --output <fresh-directory> --openmp-prefix <runtime-prefix>`. See [GEMINI_PIPELINE_REVIEW_RESULTS.md](docs/historical_reports/GEMINI_PIPELINE_REVIEW_RESULTS.md) for retained measurements and review findings. Process-tree monitoring failures stop new dispatch; current-process peak RSS cannot replace live parent-and-worker memory.
 
 For compact storage, save predicted survivors and near misses instead of individual rejected inputs:
 
@@ -223,7 +277,7 @@ Timing buffers are capped at 64 MiB per call, in addition to the existing native
 output/scratch cap. The profiler checks full-record/control parity and measures its
 own overhead; these C-only measurements are not persisted throughput.
 
-Historical locked geometry, regressions and measured comparisons are documented in [NATIVE_LOCKED_GEOMETRY_RESULTS.md](NATIVE_LOCKED_GEOMETRY_RESULTS.md). Rebuild private or packaged batch extensions for the revised native policy ABI; previously compiled batch extensions fail with an explicit rebuild message. Use fresh checkpoints when changing geometry or screening identity. `blueprint_config()`, `locked_blueprint_config()`, `river_blueprint_config()` and `outpost_blueprint_config()` preserve historical policies; `origin_blueprint_config()` supplies the active CLI default.
+Historical locked geometry, regressions and measured comparisons are documented in [NATIVE_LOCKED_GEOMETRY_RESULTS.md](docs/historical_reports/NATIVE_LOCKED_GEOMETRY_RESULTS.md). Rebuild private or packaged batch extensions for the revised native policy ABI; previously compiled batch extensions fail with an explicit rebuild message. Use fresh checkpoints when changing geometry or screening identity. `blueprint_config()`, `locked_blueprint_config()`, `river_blueprint_config()` and `outpost_blueprint_config()` preserve historical policies; `origin_blueprint_config()` supplies the active CLI default.
 
 The preceding locked v1 policy (2 Bastions / 4 Shipwrecks, without the river gate) measured **10,192.81 checkpointed inputs/sec** with one-miss compact retention, **5,783.05/sec** with two misses, and **1,281.97 full-evidence persisted inputs/sec** versus **961.98/sec** for the comparable Python control. C-only one-miss screening is 12,646.71/sec. These are three-trial medians; terrain and BDS are separate. The full-evidence 5,000/sec target remains unmet.
 
@@ -232,20 +286,20 @@ Terrain already uses a bounded coarse-to-fine cascade with exact point reuse. Th
 Official BDS verification stays outside screening and retains its persistent 20-attempt budget. `verify-terrain --top 20` selects only eligible finalists within the remaining budget; use `--top 1` for a small first check. Headless execution, exact request caching, same-world tile batching and copied LevelDB inspection already exist. The 16-tile default cap cannot certify all 64 tiles of a 2048 border: oversized or incomplete requests remain PARTIAL. View-distance 5 versus 8 measured about 11 seconds for a tiny region, with partial coverage and block-state differences; no production property change was adopted. Full-world verification time remains unestablished. See the linked locked-geometry report for bounded reproduction commands and retained evidence.
 
 The earlier 1536/896 ranking/profile changes and bounded Mansion reuse are documented in
-[NATIVE_RANKING_PROFILE_RESULTS.md](NATIVE_RANKING_PROFILE_RESULTS.md). The longer
+[NATIVE_RANKING_PROFILE_RESULTS.md](docs/historical_reports/NATIVE_RANKING_PROFILE_RESULTS.md). The longer
 matched C controls measured about 2.9% improvement; fresh two-miss CLI trials measured
 about 1.9%. These modest scan gains are separate from the much larger leaderboard
 query improvement. Rebuild the extension for Mansion reuse; a build with
 `--disable-mansion-cache` provides the uncached control. Use a fresh run after a
 computation-identity change.
 
-Original controls and raw evidence remain under `runs/native-throughput-2026-10-12/`; no retained prototype runs or source dependencies were removed. The implementation plan is [NATIVE_THROUGHPUT_IMPLEMENTATION_PLAN.md](NATIVE_THROUGHPUT_IMPLEMENTATION_PLAN.md).
+Original controls and raw evidence remain under `runs/native-throughput-2026-10-12/`; no retained prototype runs or source dependencies were removed. The implementation plan is [NATIVE_THROUGHPUT_IMPLEMENTATION_PLAN.md](docs/historical_reports/NATIVE_THROUGHPUT_IMPLEMENTATION_PLAN.md).
 
 ## Historical schema 5 island and mountain profiles
 
 The remainder of this section records the prior schema-5 contracts. Statements about defaults, mandatory families, V1 islands and V2 apply only to saved legacy configurations, not the active blueprint profile.
 
-Historical target: **4000×4000 discovery in each dimension, 1536×1536 Overworld, 896×896 Nether**. The [compact search implementation plan](COMPACT_SEARCH_IMPLEMENTATION_PLAN.md) is implemented; measured results and remaining prediction limits are in [COMPACT_SEARCH_IMPLEMENTATION_RESULTS.md](COMPACT_SEARCH_IMPLEMENTATION_RESULTS.md). Older benchmark results retain their original geometry. Use fresh run directories for changed computation identities.
+Historical target: **4000×4000 discovery in each dimension, 1536×1536 Overworld, 896×896 Nether**. The [compact search implementation plan](docs/historical_reports/COMPACT_SEARCH_IMPLEMENTATION_PLAN.md) is implemented; measured results and remaining prediction limits are in [COMPACT_SEARCH_IMPLEMENTATION_RESULTS.md](docs/historical_reports/COMPACT_SEARCH_IMPLEMENTATION_RESULTS.md). Older benchmark results retain their original geometry. Use fresh run directories for changed computation identities.
 
 The default `search`, `doctor`, and `benchmark` commands now use the new Realm contract. Explicit schema 3/4 configurations and existing historical checkpoints retain their legacy interfaces. New results are predictions until actual Bedrock evidence establishes otherwise.
 
@@ -253,7 +307,7 @@ The new universal baseline discovers Strongholds in `[-2000,2000)` on both axes 
 
 V1 finds islands with connected surrounding water; V2 finds mountain basins and accepts jagged or steep interiors. Both independently consume the same saved provisionally qualified baseline pool. The former combined variant is retired. Formation-fit status stays separate; promising outside/uncertain footprints remain recorded. Final Nether bounds are 896×896 around exact Stronghold/8, requiring Fortress and Bastion. Exact generated structure enumeration and complete natural-ground validation remain unsupported/unverified; no fully verified Realm candidate is claimed.
 
-The active terrain preferences now require **250,000 square blocks of one connected main island**, favor about **650,000**, and permit area-equivalent diameters up to **1300 blocks**. Disconnected islets do not add to the main island's area; irregular outlines are allowed and border fit uses the sampled footprint. V2 uses an inclusive **surrounding mountains** policy: substantial elevated terrain on at least **16 of 32 directions**, at least **24 blocks** above the sampled interior, at **150–700 blocks**, with no empty angular gap above **135°**. Separate mountains, open passes, rough interiors and water interiors are allowed; strict connected-arc shape is an optional historical policy. These are nomination preferences, with actual geometry verification separate. See [terrain preference update](TERRAIN_PREFERENCE_UPDATE.md). Existing results retain their old policy and need a fresh matching computation identity for further work.
+The active terrain preferences now require **250,000 square blocks of one connected main island**, favor about **650,000**, and permit area-equivalent diameters up to **1300 blocks**. Disconnected islets do not add to the main island's area; irregular outlines are allowed and border fit uses the sampled footprint. V2 uses an inclusive **surrounding mountains** policy: substantial elevated terrain on at least **16 of 32 directions**, at least **24 blocks** above the sampled interior, at **150–700 blocks**, with no empty angular gap above **135°**. Separate mountains, open passes, rough interiors and water interiors are allowed; strict connected-arc shape is an optional historical policy. These are nomination preferences, with actual geometry verification separate. See [terrain preference update](docs/historical_reports/TERRAIN_PREFERENCE_UPDATE.md). Existing results retain their old policy and need a fresh matching computation identity for further work.
 
 ```sh
 .venv/bin/python -m seed_search compatibility --output runs/compatibility.json
@@ -284,9 +338,9 @@ Terrain work uses a fixed saved membership revision for both variants and durabl
 
 `verify-biomes` explicitly loads up to 16 points in one BDS world. `points.json` is an array such as `[[100,200],[-300,400]]`; every point must be inside the candidate's Stronghold-centered Realm. Stable observed names can establish two wooded families, while absent or unsupported samples stay unknown. Actual surface evidence and bonus intervals are saved separately from prediction scores and exposed in exports. This command never certifies the required structures, exhaustive biome coverage, or whole terrain geometry, and never invokes cave scanning.
 
-Measured performance and exact supported/unverified scope are in [PERFORMANCE_BASELINE.md](PERFORMANCE_BASELINE.md), [REALM_IMPLEMENTATION_RESULTS.md](REALM_IMPLEMENTATION_RESULTS.md) and `runs/realm-implementation-2026-10-10/`.
+Measured performance and exact supported/unverified scope are in [PERFORMANCE_BASELINE.md](docs/historical_reports/PERFORMANCE_BASELINE.md), [REALM_IMPLEMENTATION_RESULTS.md](docs/historical_reports/REALM_IMPLEMENTATION_RESULTS.md) and `runs/realm-implementation-2026-10-10/`.
 
-The completed [master implementation](MASTER_IMPLEMENTATION_PLAN.md) adds mandatory final-square Fortress/Bastion prediction checks, exact eight-Y noise reuse and native quart deduplication. `config/realm.yaml` selects 18 OpenMP threads for its single-process terrain scheduler running alone; baseline remains 30 processes with one native/numerical thread each. Concurrent discovery/terrain/BDS needs a separately measured smaller profile. The code defaults retain serial compatibility. `terrain.scheduler: priority` enables the experimental durable 3:1 ranked/oldest dispatcher; rotation remains the measured default. Native thread counts and numerical-library limits are separate.
+The completed [master implementation](docs/historical_reports/MASTER_IMPLEMENTATION_PLAN.md) adds mandatory final-square Fortress/Bastion prediction checks, exact eight-Y noise reuse and native quart deduplication. `config/realm.yaml` selects 18 OpenMP threads for its single-process terrain scheduler running alone; baseline remains 30 processes with one native/numerical thread each. Concurrent discovery/terrain/BDS needs a separately measured smaller profile. The code defaults retain serial compatibility. `terrain.scheduler: priority` enables the experimental durable 3:1 ranked/oldest dispatcher; rotation remains the measured default. Native thread counts and numerical-library limits are separate.
 
 `native/build.py` builds a portable serial extension by default. On this Intel Mac, its optional host-only OpenMP build is:
 
@@ -320,7 +374,7 @@ Local full signed-64-bit search for **Bedrock 26.52**, explicitly mapped to the 
 
 The pipeline searches structures-only locations, enclosed inner islands, ocean islands, and dry flat mountain basins. Bastion is optional and contributes at most two of the ten Nether proximity points. The default fast mode screens joint Stronghold/Fortress center windows before expensive terrain work. Missing predictions and incompatible nomination envelopes are saved in `stronghold-deferred.json` and `stronghold-deferred-seeds.txt`; they are not proof of absence. Recover those cases in a new bounded rank run with `config/review-all.yaml`. Known Stronghold misses mean fast mode can overlook worthy worlds. It then refines density coast connectivity, scores terrain and structures, ranks distinct seeds, and checkpoints completed indices in SQLite. This is a bounded heuristic search, not exhaustive coverage. The pinned density model excludes caves, aquifers, decoration and actual chunk interpolation; woodland is a surface-biome proxy.
 
-Large sweeps require a readiness record matching configuration, source/native identity and verified evidence artifacts. Changing `large_search_enabled` cannot open the gate. Work status and finite pilot budgets are in [PROGRESS.md](PROGRESS.md); current results and commands are in [IMPLEMENTATION_RESULTS.md](IMPLEMENTATION_RESULTS.md) and [SWEEP_COMMANDS.md](SWEEP_COMMANDS.md). The production sweep remains unstarted.
+Large sweeps require a readiness record matching configuration, source/native identity and verified evidence artifacts. Changing `large_search_enabled` cannot open the gate. Work status and finite pilot budgets are in [PROGRESS.md](docs/historical_reports/PROGRESS.md); current results and commands are in [IMPLEMENTATION_RESULTS.md](docs/historical_reports/IMPLEMENTATION_RESULTS.md) and [SWEEP_COMMANDS.md](docs/historical_reports/SWEEP_COMMANDS.md). The production sweep remains unstarted.
 
 ## Commands
 
@@ -341,7 +395,7 @@ Specify `--config path.yaml` **before** the command. Automatic enumeration appli
 
 Outputs include all center metrics and explicit rejection/deferred reasons, separate numeric rankings and interval review lists, and shortlist folders with `candidate.json`, Overworld/Nether PNGs and `inspection.md`. Required disputed raw starts remain available for Chunkbase review; they cannot be presented as website-confirmed eligible first. Marker/start border membership is separate from accessible structure footprints.
 
-Optimization details and controlled measurements are in [FILTER_OPTIMIZATION.md](FILTER_OPTIMIZATION.md). Raw MT structure layouts alone can share lower32-bit cache keys; full seeds still determine biome/terrain/viability, and the seed sequence is unchanged. The prior readiness records do not validate this changed algorithm; use the current command and record in [SWEEP_READINESS.md](SWEEP_READINESS.md).
+Optimization details and controlled measurements are in [FILTER_OPTIMIZATION.md](docs/historical_reports/FILTER_OPTIMIZATION.md). Raw MT structure layouts alone can share lower32-bit cache keys; full seeds still determine biome/terrain/viability, and the seed sequence is unchanged. The prior readiness records do not validate this changed algorithm; use the current command and record in [SWEEP_READINESS.md](docs/historical_reports/SWEEP_READINESS.md).
 
 Fresh actual website reviews can be recorded in the schema implemented by `review.py`, then imported:
 
@@ -365,21 +419,21 @@ The supported install/rebuild path is:
 
 The dependency lock targets Intel macOS/Python 3.13. The vendored Bedrock backend commit is `294c72ab0392dd818a91d293dbd5774d4874d64b`. [vendor/backend.json](vendor/backend.json) records 33 source/license hashes. Compile flags are `-O3 -std=c11 -fwrapv`, without fast-math. The direct `native/build.py` compilation entry point now changes to the repository root before compiling; its standalone CFFI target is `_native.abi3.so`, matching the Python loader. Prefer the supported editable-install path.
 
-Current implementation verification artifacts are under `runs/implementation-2026-10-08`; `runs/filter-optimization` contains historical measurements; earlier sweep/expansion/preflight/phone/audit evidence remains preserved. [SEARCH_TARGETS.md](SEARCH_TARGETS.md) defines distances and eligibility; [CHUNKBASE_WORKFLOW.md](CHUNKBASE_WORKFLOW.md) defines external review; [GOAL.md](GOAL.md) records the implementation goal and history.
+Current implementation verification artifacts are under `runs/implementation-2026-10-08`; `runs/filter-optimization` contains historical measurements; earlier sweep/expansion/preflight/phone/audit evidence remains preserved. [SEARCH_TARGETS.md](docs/historical_reports/SEARCH_TARGETS.md) defines distances and eligibility; [CHUNKBASE_WORKFLOW.md](docs/historical_reports/CHUNKBASE_WORKFLOW.md) defines external review; [GOAL.md](docs/historical_reports/GOAL.md) records the implementation goal and history.
 
 ## Distributed sweeps
 
-See [DISTRIBUTED_README.md](DISTRIBUTED_README.md) for disjoint index ranges under a shared run key, per-machine native validation, safe SQLite backups and a read-only aggregate leaderboard. Production execution currently supports up to 34 native threads and 16,384 inputs per batch. The tuner reports bounded native-kernel comparisons; throughput on other machines and complete actual-world certification require their own evidence.
+See [DISTRIBUTED_README.md](docs/historical_reports/DISTRIBUTED_README.md) for disjoint index ranges under a shared run key, per-machine native validation, safe SQLite backups and a read-only aggregate leaderboard. Production execution currently supports up to 34 native threads and 16,384 inputs per batch. The tuner reports bounded native-kernel comparisons; throughput on other machines and complete actual-world certification require their own evidence.
 
 ## Sweep verification
 
-The prior `runs/filter-optimization/readiness.json` is incompatible with the new geometry and prediction identity. Final tests, two run keys with 256 inputs per search mode, three 20-seed quart comparisons, worker/resume tests and new-border external reviews are being sealed under `runs/implementation-2026-10-08`. Do not reuse the historical 2000-seed command. [SWEEP_READINESS.md](SWEEP_READINESS.md) tracks the gate.
+The prior `runs/filter-optimization/readiness.json` is incompatible with the new geometry and prediction identity. Final tests, two run keys with 256 inputs per search mode, three 20-seed quart comparisons, worker/resume tests and new-border external reviews are being sealed under `runs/implementation-2026-10-08`. Do not reuse the historical 2000-seed command. [SWEEP_READINESS.md](docs/historical_reports/SWEEP_READINESS.md) tracks the gate.
 
 ## Enumeration and biome ranking
 
 `full_64_bit_reference` is the default. `lower32_staged` examines 10,000 distinct raw low32 layouts, keeps 48 by raw cluster proximity plus 16 deterministic exploration selections, and evaluates four unique high32 siblings per layout. Raw placement is shared only for eight audited families. Strongholds, Trial Chambers, Mineshafts, terrain, biomes and final viability are evaluated for each complete seed. The strategy is biased; per-category useful yield must justify any default promotion.
 
-All four categories keep the same mandatory structures. Structures-only retains a base score out of 30; terrain categories retain a base out of 100. A separate sampled resource-family bonus adds at most five points. Surface, Nether and unmeasured cave coverage are labeled separately; biome variety never repairs failed eligibility. Weights and sampling are documented in [BIOME_DIVERSITY_PLAN.md](BIOME_DIVERSITY_PLAN.md). Exact quart reuse shares raw-land booleans only; height and biome sample coordinates remain independent.
+All four categories keep the same mandatory structures. Structures-only retains a base score out of 30; terrain categories retain a base out of 100. A separate sampled resource-family bonus adds at most five points. Surface, Nether and unmeasured cave coverage are labeled separately; biome variety never repairs failed eligibility. Weights and sampling are documented in [BIOME_DIVERSITY_PLAN.md](docs/historical_reports/BIOME_DIVERSITY_PLAN.md). Exact quart reuse shares raw-land booleans only; height and biome sample coordinates remain independent.
 
 ## Current landscape and structure policy
 

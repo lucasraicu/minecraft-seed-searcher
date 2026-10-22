@@ -1,0 +1,323 @@
+........................................................................ [ 10%]
+........................................................................ [ 20%]
+........................................................................ [ 31%]
+........................................................................ [ 41%]
+....FFFFF.F............................................................. [ 52%]
+........................................................................ [ 62%]
+........................................................................ [ 73%]
+........................................................................ [ 83%]
+...........................................................FF........... [ 94%]
+...................F...................                                  [100%]
+=================================== FAILURES ===================================
+____________________ test_ingest_synthetic_stubs_accounting ____________________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_ingest_synthetic_stubs_ac0')
+
+    def test_ingest_synthetic_stubs_accounting(tmp_path):
+        root = tmp_path / "stubs_run"
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        def stub_factory(index, seed, checkpoint_path):
+            if index == 0:
+                # Complete world
+                script = (
+                    f"from tests.catalog.test_ingestion import make_complete_observation\n"
+                    f"from seed_search.catalog.ingestion import atomic_json\n"
+                    f"build_id = {build['identity']}\n"
+                    f"obs = make_complete_observation('{seed}', build_id)\n"
+                    f"atomic_json('{checkpoint_path}', obs)\n"
+                )
+                return [sys.executable, "-c", script]
+            elif index == 1:
+                # Partial world (empty obs)
+                script = (
+                    f"from seed_search.catalog.ingestion import atomic_json\n"
+                    f"from seed_search.catalog.models import empty_observation\n"
+                    f"build_id = {build['identity']}\n"
+                    f"obs = empty_observation(dict(build_id, seed='{seed}'))\n"
+                    f"atomic_json('{checkpoint_path}', obs)\n"
+                )
+                return [sys.executable, "-c", script]
+            elif index == 2:
+                # Process failure
+                return [sys.executable, "-c", "import sys; sys.exit(7)"]
+            else:
+                return [sys.executable, "-c", "import sys; sys.exit(0)"]
+    
+        report = ingest(root, ctrls, stop_after=3, command_factory=stub_factory)
+        assert report['summary']['total_seeds'] == 100
+>       assert report['summary']['completed'] == 1
+E       assert 0 == 1
+
+tests/catalog/test_ingestion.py:208: AssertionError
+_______________ test_preflight_10_and_resume_budget_idempotence ________________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_preflight_10_and_resume_b0')
+
+    def test_preflight_10_and_resume_budget_idempotence(tmp_path):
+        root = tmp_path / "preflight_run"
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        def stub_factory(index, seed, checkpoint_path):
+            script = (
+                f"from seed_search.catalog.ingestion import atomic_json\n"
+                f"from seed_search.catalog.models import empty_observation\n"
+                f"build_id = {build['identity']}\n"
+                f"obs = empty_observation(dict(build_id, seed='{seed}'))\n"
+                f"atomic_json('{checkpoint_path}', obs)\n"
+            )
+            return [sys.executable, "-c", script]
+    
+        # Preflight: stop_after=10
+        rep1 = ingest(root, ctrls, stop_after=10, command_factory=stub_factory)
+>       assert rep1['summary']['partial'] == 10
+E       assert 0 == 10
+
+tests/catalog/test_ingestion.py:253: AssertionError
+_____________________ test_conservative_budget_prediction ______________________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_conservative_budget_predi0')
+
+    def test_conservative_budget_prediction(tmp_path):
+        root = tmp_path / "budget_pred_run"
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        def stub_factory(index, seed, checkpoint_path):
+            script = (
+                f"import time\n"
+                f"from seed_search.catalog.ingestion import atomic_json\n"
+                f"from seed_search.catalog.models import empty_observation\n"
+                f"build_id = {build['identity']}\n"
+                f"time.sleep(0.04)\n"
+                f"obs = empty_observation(dict(build_id, seed='{seed}'))\n"
+                f"atomic_json('{checkpoint_path}', obs)\n"
+            )
+            return [sys.executable, "-c", script]
+    
+        # 10 worlds complete
+        rep1 = ingest(root, ctrls, stop_after=10, command_factory=stub_factory)
+>       assert rep1['summary']['partial'] == 10
+E       assert 0 == 10
+
+tests/catalog/test_ingestion.py:286: AssertionError
+_______________ test_resource_limits_wall_timeout_memory_output ________________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_resource_limits_wall_time0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x106c4ab30>
+
+    def test_resource_limits_wall_timeout_memory_output(tmp_path, monkeypatch):
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        def stub_sleep(idx, seed, ckpt):
+            return [sys.executable, "-c", "import time; time.sleep(10)"]
+    
+        # 1. Wall timeout
+        real_monotonic = time.monotonic
+        calls = 0
+        t0 = real_monotonic()
+        def fake_monotonic():
+            nonlocal calls
+            calls += 1
+            if calls > 2:
+                return t0 + 35.0
+            return t0
+    
+        monkeypatch.setattr(time, "monotonic", fake_monotonic)
+        rep_wall = ingest(tmp_path / "wall", ctrls, stop_after=1, command_factory=stub_sleep, poll_seconds=0.01)
+        assert rep_wall['receipts'][0]['status'] == 'failed'
+>       assert rep_wall['receipts'][0]['stopreason'] == 'wall_timeout'
+E       AssertionError: assert 'exit_1' == 'wall_timeout'
+E         
+E         - wall_timeout
+E         + exit_1
+
+tests/catalog/test_ingestion.py:320: AssertionError
+__________________ test_bounded_retries_and_checkpoint_reuse ___________________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_bounded_retries_and_check0')
+
+    def test_bounded_retries_and_checkpoint_reuse(tmp_path):
+        root = tmp_path / "reuse_run"
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        def stub_factory(idx, seed, ckpt):
+            # On attempt 1: only structures -> partial
+            # On attempt 2: reuse checkpoint, add biomes -> complete!
+            script = (
+                f"import os\n"
+                f"from seed_search.catalog.ingestion import atomic_json, strict_json_loads\n"
+                f"from seed_search.catalog.models import empty_observation\n"
+                f"from seed_search.catalog.registry import STRUCTURES, BIOMES, ENVELOPE\n"
+                f"from seed_search.catalog.coverage import STRUCTURE_METHOD, BIOME_METHOD\n"
+                f"build_id = {build['identity']}\n"
+                f"if not os.path.exists('{ckpt}'):\n"
+                f"    obs = empty_observation(dict(build_id, seed='{seed}'))\n"
+                f"    for st in STRUCTURES:\n"
+                f"        obs['structures'][st['id']] = []\n"
+                f"        obs['coverage'][st['id']] = {{'status': 'complete', 'bounds': list(ENVELOPE), 'method_id': STRUCTURE_METHOD}}\n"
+                f"    atomic_json('{ckpt}', obs)\n"
+                f"else:\n"
+                f"    with open('{ckpt}', 'r') as f: obs = strict_json_loads(f.read())\n"
+                f"    obs['biome_names'] = {{'1': 'plains'}}\n"
+                f"    obs['biomes'] = [[x, 63, z, 1] for x in range(-5120, 5120, 64) for z in range(-5120, 5120, 64)]\n"
+                f"    for bm in BIOMES:\n"
+                f"        obs['coverage'][bm['id']] = {{'status': 'complete', 'bounds': list(ENVELOPE), 'method_id': BIOME_METHOD}}\n"
+                f"    atomic_json('{ckpt}', obs)\n"
+            )
+            return [sys.executable, "-c", script]
+    
+        # Attempt 1 -> partial
+        rep1 = ingest(root, ctrls, stop_after=1, command_factory=stub_factory)
+>       assert rep1['receipts'][0]['status'] == 'partial'
+E       AssertionError: assert 'failed' == 'partial'
+E         
+E         - partial
+E         + failed
+
+tests/catalog/test_ingestion.py:370: AssertionError
+_____________ test_sigkill_parent_recovery_at_checkpoint_boundary ______________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_sigkill_parent_recovery_a0')
+
+    def test_sigkill_parent_recovery_at_checkpoint_boundary(tmp_path):
+        root = tmp_path / "sigkill_parent_run"
+        build = make_test_build()
+        ctrls = make_controls(build)
+    
+        coordinator_code = (
+            f"import sys, os, signal\n"
+            f"from seed_search.catalog.ingestion import ingest\n"
+            f"from seed_search.catalog.validation_contracts import controls as make_controls\n"
+            f"build = {build}\n"
+            f"ctrls = make_controls(build)\n"
+            f"parent_pid = os.getpid()\n"
+            f"def stub_factory(idx, seed, ckpt):\n"
+            f"    script = (\n"
+            f"        'import os, signal\\n'\n"
+            f"        'from seed_search.catalog.ingestion import atomic_json\\n'\n"
+            f"        'from seed_search.catalog.models import empty_observation\\n'\n"
+            f"        f'build_id = {{build[\"identity\"]}}\\n'\n"
+            f"        f'obs = empty_observation(dict(build_id, seed=\"{{seed}}\"))\\n'\n"
+            f"        f'atomic_json(\"{{ckpt}}\", obs)\\n'\n"
+            f"        f'os.kill({{parent_pid}}, signal.SIGKILL)\\n'\n"
+            f"    )\n"
+            f"    return [sys.executable, '-c', script]\n"
+            f"ingest('{root}', ctrls, stop_after=1, command_factory=stub_factory, poll_seconds=0.01)\n"
+        )
+    
+        parent_proc = subprocess.Popen([sys.executable, "-c", coordinator_code])
+        ret = parent_proc.wait(timeout=10)
+>       assert ret == -signal.SIGKILL
+E       assert 1 == -<Signals.SIGKILL: 9>
+E        +  where <Signals.SIGKILL: 9> = signal.SIGKILL
+
+tests/catalog/test_ingestion.py:476: AssertionError
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+    from seed_search.catalog.ingestion import ingest
+ModuleNotFoundError: No module named 'seed_search'
+________ test_gated_launch_eof_and_failed_durable_lease_do_not_execute _________
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_gated_launch_eof_and_fail0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x107a43460>
+
+    def test_gated_launch_eof_and_failed_durable_lease_do_not_execute(tmp_path,monkeypatch):
+        marker=tmp_path/'executed'
+        argv=[sys.executable,'-c',f'from pathlib import Path;Path({str(marker)!r}).touch()']
+        child=subprocess.run([sys.executable,'-m','seed_search.catalog.ingestion',json.dumps(argv)],input=b'',capture_output=True,timeout=5)
+>       assert child.returncode==3 and not marker.exists()
+E       assert (1 == 3)
+E        +  where 1 = CompletedProcess(args=['/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/vali...nding module specification for 'seed_search.catalog.ingestion' (ModuleNotFoundError: No module named 'seed_search')\n").returncode
+
+tests/catalog/test_validation_supervision.py:20: AssertionError
+____ test_output_drained_with_bounded_tail_and_complete_checkpoint_checksum ____
+
+tmp_path = PosixPath('/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/pytest-sqlite-fixed/test_output_drained_with_bound0')
+
+    def test_output_drained_with_bounded_tail_and_complete_checkpoint_checksum(tmp_path):
+        build=make_test_build();root=tmp_path/'run'
+        def command(_,seed,checkpoint):
+            code=(f'from tests.catalog.test_ingestion import make_complete_observation\n'
+                f'from seed_search.catalog.ingestion import atomic_json\n'
+                f'atomic_json({checkpoint!r},make_complete_observation({seed!r},{build["identity"]!r}))\n'
+                'import os;os.write(1,b"x"*200000)\n')
+            return [sys.executable,'-c',code]
+        report=ingest(root,controls(build),stop_after=1,command_factory=command,poll_seconds=.01)
+        receipt=report['receipts'][0]
+>       assert receipt['status']=='complete' and receipt['output_bytes']==200000
+E       AssertionError: assert ('failed' == 'complete'
+E         
+E         - complete
+E         + failed)
+
+tests/catalog/test_validation_supervision.py:42: AssertionError
+_______________ test_helper_first_import_order_in_fresh_process ________________
+
+    def test_helper_first_import_order_in_fresh_process():
+        script=r'''
+    import sys,types
+    before=list(sys.path)
+    import scripts.predictor_storage_probe as storage
+    assert sys.path==before, 'storage helper changed runtime import precedence'
+    class FFI:
+     NULL=None
+     def string(self,p):return p
+     def gc(self,p,d):return p
+     def release(self,p):pass
+    class Lib:
+     digest=b'0'*64
+     creates=0
+     def ss_source_fingerprint(self):return self.digest
+     def ss_create(self,seed):self.creates+=1;return object()
+     def ss_destroy(self,p):pass
+     def ss_openmp_enabled(self):return 0
+     def ss_openmp_library(self):return None
+    native=types.ModuleType('seed_search._native');native.ffi=FFI();native.lib=Lib()
+    sys.modules['seed_search._native']=native
+    from seed_search.backend import Backend,native_runtime
+    from seed_search.realm.native_identity import native_source_fingerprint
+    try:Backend(1)
+    except ValueError:pass
+    else:raise AssertionError('stale handle accepted')
+    assert native.lib.creates==0
+    native.lib.digest=native_source_fingerprint().encode()
+    with Backend(1):pass
+    assert native.lib.creates==1
+    assert native_runtime()['policy']=='outer-columns-static-min256-v1'
+    print('helper-first runtime rejected then validated')
+    '''
+        result=subprocess.run([sys.executable,'-c',script],cwd=Path(__file__).resolve().parents[1],
+            capture_output=True,text=True,timeout=20)
+>       assert result.returncode==0,result.stdout+result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<string>", line 21, in <module>
+E             from seed_search.backend import Backend,native_runtime
+E         ModuleNotFoundError: No module named 'seed_search'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/vali...>\n    from seed_search.backend import Backend,native_runtime\nModuleNotFoundError: No module named \'seed_search\'\n').returncode
+
+tests/test_native_runtime_guard.py:182: AssertionError
+=============================== warnings summary ===============================
+tests/test_native_runtime_guard.py::test_fork_resets_lock_and_runtime_validation
+  /Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_native_runtime_guard.py:195: DeprecationWarning: This process (pid=37710) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    pid=os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/catalog/test_ingestion.py::test_ingest_synthetic_stubs_accounting
+FAILED tests/catalog/test_ingestion.py::test_preflight_10_and_resume_budget_idempotence
+FAILED tests/catalog/test_ingestion.py::test_conservative_budget_prediction
+FAILED tests/catalog/test_ingestion.py::test_resource_limits_wall_timeout_memory_output
+FAILED tests/catalog/test_ingestion.py::test_bounded_retries_and_checkpoint_reuse
+FAILED tests/catalog/test_ingestion.py::test_sigkill_parent_recovery_at_checkpoint_boundary
+FAILED tests/catalog/test_validation_supervision.py::test_gated_launch_eof_and_failed_durable_lease_do_not_execute
+FAILED tests/catalog/test_validation_supervision.py::test_output_drained_with_bounded_tail_and_complete_checkpoint_checksum
+FAILED tests/test_native_runtime_guard.py::test_helper_first_import_order_in_fresh_process
+9 failed, 678 passed, 1 warning in 289.85s (0:04:49)

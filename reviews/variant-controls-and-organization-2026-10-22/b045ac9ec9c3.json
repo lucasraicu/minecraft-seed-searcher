@@ -1,0 +1,31 @@
+{
+  "task_id": "b045ac9ec9c3",
+  "role": "review",
+  "state": "failed",
+  "created": 1792667733.730966,
+  "updated": 1792668040.323084,
+  "worker_id": "gemini-1",
+  "objective": "High read-only source investigation and plan critique. Review REPO_ORGANIZATION_PLAN.md against completed biome release and actual source path dependencies. Use scoped file readers only; no shell, edits, moves, deletion, builds, tests, commits or delegation. Identify safe/deferred moves, evidence/po",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 300,
+    "effective_timeout_seconds": 300,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "1efe3739ebfdaf7f11e536c281ebe72f3463cfb52436a1c4741764d57481419e",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792667739.744944,
+    "error": "timeout",
+    "timeout_phase": "model",
+    "elapsed_seconds": 300.585,
+    "completed": 1792668040.322669,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 224092160
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/b045ac9ec9c3",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

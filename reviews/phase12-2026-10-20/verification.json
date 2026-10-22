@@ -1,0 +1,114 @@
+{
+  "status": "completed_and_verified",
+  "approved_scope": "Phases 1 and 2 only; catalog/GPU/custom DB remain separate",
+  "full_suite": {
+    "passed": 1274,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 410.94
+  },
+  "baseline_suite": {
+    "passed": 1230,
+    "failed": 7,
+    "seconds": 411.41,
+    "repairs": "All seven resolved with stronger parity/recovery checks; no scoring changes"
+  },
+  "additional_checks": {
+    "focused_contracts": 48,
+    "focused_web_recovery": 52,
+    "fresh_count_builder_tests": 7,
+    "count_comparisons": 405,
+    "network_contracts": 18,
+    "render_states": 4,
+    "web_build": "passed; isolated /tmp output",
+    "lint": "exit 0; two MapCanvas warnings; no suppressions"
+  },
+  "preservation": {
+    "baseline_files": 1250,
+    "changed_preexisting_files": [
+      ".gitignore",
+      "CODEX_HANDOFF.md",
+      "IMPLEMENTATION_PLAN.md",
+      "MASTER_PLATFORM_SPECIFICATION.md",
+      "README.md",
+      "scripts/bds_verify_finalist.py",
+      "scripts/build_count_pilot.py",
+      "scripts/calibrate_player_weights.py",
+      "scripts/extract_player_metrics.py",
+      "src/seed_search/realm/structure_accuracy.py",
+      "src/seed_search/web/server.py",
+      "tests/test_count_pilot_build.py",
+      "tests/test_native_mansion_bound_and_recovery.py",
+      "tests/test_player_calibration.py",
+      "tests/test_structure_accuracy.py",
+      "tests/test_top_k_integration.py",
+      "web-ui/src/App.tsx",
+      "web-ui/src/components/MapCanvas.tsx",
+      "web-ui/src/components/TelemetryBar.tsx",
+      "web-ui/src/types.ts"
+    ],
+    "unrelated_preexisting_files_unchanged": 1230,
+    "unexpected_changed_files": [],
+    "head_unchanged": true,
+    "index_unchanged": true,
+    "production_native_sources_unchanged": true,
+    "native_binary_sha256_unchanged": {
+      "_native.abi3.so": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+      "_blueprint_batch.abi3.so": "f9bd5e3370aacde03cb0529d3e17a1777a5a06a5aa73a824f0dd9438cb0cc233"
+    },
+    "original_web_process_preserved": 60144,
+    "live_frontend_dist_unchanged": true,
+    "committed_or_pushed": false
+  },
+  "worker_health": {
+    "running": 0,
+    "max_concurrency": 4,
+    "dispatch_paused": null
+  },
+  "raw_log_sha256": {
+    "phases12-baseline-tests.log": "11852281f9fa99d30cb1e94590dbf8a2eff4883d6dd046c0640b66e03a0b07b9",
+    "phases12-final-tests.log": "ccd18e36111f7514d180b884cabff205d2f0586d7bf816cec8557a8d3a55bc9d",
+    "phases12-focused-tests.log": "5f7a0b2506c2beb5aae82a32240f530701a452b059cd78c11ef7ec31ede7d346",
+    "phases12-integration-focused.log": "37e0b4237a8ae706ba3fe7574ff185c5a43ead3a5831e61e4a70c489a95481fb",
+    "phases12-count-builder-tests.log": "bb9cceaa4891976c8d252611087ee97ccd0e282075a43e706c7c0211ce371872",
+    "phases12-network-tests.log": "42c5ac398b1cbb6171047561da101d97a5f60b81b14d4667bb508730ab4ece3f",
+    "phases12-render-tests.log": "7f2d0e7225eae0b53c2f181a66979087ec3c2763ced105996e48a16908cd9af6",
+    "phases12-web-lint.log": "a015ae468f85212a02be10e3456d005b2b651fb8f0808277e947351fcc329a0a"
+  },
+  "raw_log_directory": "/Users/lucasraicu/.local/share/antigravity-worker-mcp",
+  "current_source_sha256": {
+    ".gitignore": "86c7de2938ae1df7d458f6a05dc6f6175c1992cc56b13279928afc5712c30528",
+    "CODEX_HANDOFF.md": "e508c1a48ab8b685ed05a17da03581cc5cb16bf33889932ee529f0d3ebfd2b57",
+    "IMPLEMENTATION_PLAN.md": "02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918",
+    "MASTER_PLATFORM_SPECIFICATION.md": "70ed1fe6649c0f546a462565e90ab7f3e64402b7df557ee84715ec6be6131f39",
+    "README.md": "b0cff8b40b0a9b190dbc10ec2e04e1cd9ced742bb35b585105383a0659b7aacf",
+    "docs/PROJECT_STATUS.md": "54faa17d069f1e3e8e641b3dd8c25995ee1ea715e05801a3f8d72a4b5f9cf5bf",
+    "scripts/bds_verify_finalist.py": "0b4478e204f4ae51ad0f121f4247400c01e57fca2f744521cd17cf8c66bafa56",
+    "scripts/build_count_pilot.py": "18b983fd07e0c1cf5e57f2d32c7b909f91b8ee31804aee143d0f2e5b40d138cc",
+    "scripts/calibrate_player_weights.py": "b4e7baaec2aa0effb616c74645f473851d8c271375b0507af614656e2c5f87a0",
+    "scripts/extract_player_metrics.py": "051eb3af3abcb314c33602e190780502024527a8c16287f0126289ef17b9425d",
+    "scripts/profile_phase2.py": "951d5e28bac1326c43009beba27ea67435385741cd5af53fec11ad693e021bd6",
+    "src/seed_search/realm/structure_accuracy.py": "6cb57d761022f99fb0bfcb96e020343ec7f64ef2c63271471d83d4304bb2f4fd",
+    "src/seed_search/web/server.py": "13eb8cbd8a2e04616b2167d5b2209685c773dc71c745c86ed6334cdfba563a0c",
+    "tests/test_count_pilot_build.py": "3c6f47c8c2cd428674ce33c222f9fe711b4a52a5d4c970afc1ed831e5886d9b4",
+    "tests/test_evidence_calibration_contracts.py": "5e46dbaaa567aa4cf66a797f19ff47ee99a911d67e34da15aac75a2650ffa957",
+    "tests/test_native_mansion_bound_and_recovery.py": "3cd561da295a495a20fc2313c173ed69be3cbbea6eca8cab59294b79b0f95e13",
+    "tests/test_network_contracts.cjs": "7c5396298759ffe7ac6cc7eee78d675eaf6c0c855bbe7ddb53d64a2e60c67c1a",
+    "tests/test_phase2_profile.py": "0c22bd32709ec872e6f14d3f323cb5a7c87f9ffea7ee7357ac72584707d8dbca",
+    "tests/test_player_calibration.py": "3fea9460d597d65d02e0bb325be1f527937fea15b73a46b96009d5344d32e4b1",
+    "tests/test_structure_accuracy.py": "e2362069d7c968b486752abd735a55bbf9acd717843374cb57ded92dc12081c5",
+    "tests/test_telemetry_contracts.py": "4a38138bd86bab330384487eb833b1458ff4b3245c9f32fc110ddf6d070811d0",
+    "tests/test_telemetry_render.cjs": "95ddd79ee774418fb2e0d4e3c502d1ee58c1f163db4b931e462f1ca615e14eea",
+    "tests/test_top_k_integration.py": "67812cb1f38a90394cbe17fa9012488397fce7ee297142bc028f064a8e640426",
+    "web-ui/src/App.tsx": "84ed3f0b7cc72bd3392ee24583cb593124c05491ac3e008068b80788f0dd3c7c",
+    "web-ui/src/components/MapCanvas.tsx": "f287bad653a0bad71ca3ceedb0e9bf6624b70df46590e5a8e8cc7c671ad7fb80",
+    "web-ui/src/components/TelemetryBar.tsx": "f3df8950072f66aa90cd62d20ea6480003786fd08126505e68c0f67883e626d6",
+    "web-ui/src/types.ts": "29df7bf3a32708bedd35f448eccd1620b7fcd73c926731622e451041f53c66ee",
+    "web-ui/src/utils/network.ts": "40c9c50560971d89c557e8e4f017cc7caff2b2ed7ec847857e40f328b228aba0"
+  },
+  "limitations": [
+    "No interactive browser session or live deployment performed",
+    "No BDS worlds, player study, default-positive recall estimate, catalog, GPU kernel or custom storage implemented",
+    "Shared-host fixed-cohort performance only; no general speedup claim"
+  ]
+}

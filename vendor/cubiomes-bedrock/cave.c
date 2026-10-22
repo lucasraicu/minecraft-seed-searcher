@@ -693,6 +693,36 @@ static double maxDistance(int d1, int d2)
     return 1.0 - (double) IABS(d2 - d1) / 25.0;
 }
 
+int getPreliminarySurfaceLevel(const BiomeNoise *bn, const TerrainShaper *ts,
+                              int biomeX, int biomeZ)
+{
+    double rawOffset, rawFactor;
+    sampleTerrainShape(bn, ts, biomeX, biomeZ, &rawOffset, &rawFactor);
+    float offset = (float)rawOffset, factor = (float)rawFactor;
+    for (int y = 248, top = 1, bottom = 39; y >= -64; y -= 8, top++, bottom--)
+    {
+        float gradient = (1.0f - y * (1.0f / 128.0f)) + offset;
+        gradient *= factor;
+        gradient *= gradient > 0.0f ? 4.0f : 1.0f;
+        volatile float scaled = gradient * 128.0f;
+        float density = scaled - 90.0f;
+        float upper = top * 0.5f;
+        if (upper <= 1.0f)
+        {
+            volatile float blend = (density + 10.0f) * upper;
+            density = blend - 10.0f;
+        }
+        float lower = bottom / 3.0f;
+        if (lower <= 1.0f)
+        {
+            volatile float blend = (density - 15.0f) * lower;
+            density = blend + 15.0f;
+        }
+        if (density > 50.0f) return y;
+    }
+    return 32767;
+}
+
 static int getSurfaceHeightNoCaves(const BiomeNoise *bn, const TerrainShaper *ts, int x, int z)
 {
     double offset, factor;

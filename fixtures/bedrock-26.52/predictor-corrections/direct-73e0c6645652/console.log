@@ -1,0 +1,58 @@
+NO LOG FILE! - setting up server logging...
+[2026-10-20 18:10:14:594 INFO] Starting Server
+[2026-10-20 18:10:14:594 INFO] Version: 1.26.52.3
+[2026-10-20 18:10:14:594 INFO] Session ID: 2183ec5b-ed51-42c4-aa74-33edb8d9c73d
+[2026-10-20 18:10:14:594 INFO] Build ID: 51798919
+[2026-10-20 18:10:14:594 INFO] Branch: r/26_u5
+[2026-10-20 18:10:14:594 INFO] Commit ID: 54116bb5ee0b7aee0b5591efbcc8bc3cf64f168a
+[2026-10-20 18:10:14:594 INFO] Configuration: Publish
+[2026-10-20 18:10:14:595 INFO] Contents of server.properties: {}
+[2026-10-20 18:10:14:595 INFO] Level Name: spawn_audit
+[2026-10-20 18:10:14:596 INFO] Profiler config ('bootstrap.json') load result: success=1, errorMessage=(null)
+[2026-10-20 18:10:14:598 INFO] No CDN config file found at: cdn_config.json for dedicated server
+[2026-10-20 18:10:14:598 INFO] Game mode: 0 Survival
+[2026-10-20 18:10:14:598 INFO] Difficulty: 0 PEACEFUL
+[2026-10-20 18:10:14:600 INFO] Content logging to console is enabled.
+[2026-10-20 18:10:14:603 INFO] 
+
+#####################################################
+#                                                   #
+#              CREATING VANILLA WORLD               #
+#                                                   #
+#####################################################
+[2026-10-20 18:10:15:716 INFO] Content logging to disk is enabled. Writing log to: ContentLog2026-10-20_18-10-15
+[2026-10-20 18:10:15:718 INFO] Opening level 'worlds/spawn_audit/db'
+[2026-10-20 18:10:15:893 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer
+[2026-10-20 18:10:17:382 INFO] Signed in to signaling service successfully
+[2026-10-20 18:10:17:551 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-20 18:10:17:551 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-20 18:10:17:602 INFO] Server started.
+[2026-10-20 18:10:17:602 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+[2026-10-20 18:10:17:602 ERROR] Your current connection type is not set to NetherNet. In this release, NetherNet is the only supported transport type.
+[2026-10-20 18:10:17:603 ERROR] Players will not be able to connect to your game without NetherNet.
+[2026-10-20 18:10:17:603 ERROR] 
+[2026-10-20 18:10:17:603 ERROR] To switch, set 'transport=nethernet' in server.properties.
+[2026-10-20 18:10:17:603 ERROR] 
+[2026-10-20 18:10:17:603 ERROR] For more information, please reference the included bedrock_server_how_to.html file.
+[2026-10-20 18:10:17:603 ERROR] =======================================================
+[2026-10-20 18:10:17:604 INFO] ================ TELEMETRY MESSAGE ===================
+[2026-10-20 18:10:17:604 INFO] Server Telemetry is currently not enabled. 
+[2026-10-20 18:10:17:604 INFO] Enabling this telemetry helps us improve the game.
+[2026-10-20 18:10:17:605 INFO] 
+[2026-10-20 18:10:17:605 INFO] To enable this feature, add the line 'emit-server-telemetry=true'
+[2026-10-20 18:10:17:605 INFO] to the server.properties file in the handheld/src-server directory
+[2026-10-20 18:10:17:605 INFO] ======================================================
+[2026-10-20 18:10:17:626 WARN] [Scripting] SPAWN_AUDIT {"seed":"-3509659830737203357","players":0,"api":"2.10.0","generatedStructures":"undefined"}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_0","dimension":"overworld","points":[[-256,-48,-256],[-256,0,-256],[-256,63,-256],[-256,120,-256],[-256,180,-256],[-256,256,-256],[-256,319,-256],[-448,-48,320],[-448,0,320],[-448,63,320],[-448,120,320],[-448,180,320],[-448,256,320],[-448,319,320],[-64,-48,320],[-64,0,320]]}
+[2026-10-20 18:10:17:792 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:10:28:972 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_0","rows":[{"x":-256,"y":-48,"z":-256,"id":"minecraft:deep_dark","loaded":true},{"x":-256,"y":0,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-256,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-256,"y":120,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-256,"y":180,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-256,"y":256,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-256,"y":319,"z":-256,"id":"minecraft:ice_plains","loaded":false},{"x":-448,"y":-48,"z":320,"id":"minecraft:deep_dark","loaded":true},{"x":-448,"y":0,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-448,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-448,"y":120,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-448,"y":180,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-448,"y":256,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-448,"y":319,"z":320,"id":"minecraft:cold_taiga","loaded":false},{"x":-64,"y":-48,"z":320,"id":"minecraft:deep_dark","loaded":true},{"x":-64,"y":0,"z":320,"id":"minecraft:snowy_slopes","loaded":false}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_1","dimension":"overworld","points":[[-64,63,320],[-64,120,320],[-64,180,320],[-64,256,320],[-64,319,320],[446,63,-512],[447,63,-512],[448,63,-512],[449,63,-512],[450,63,-512],[451,63,-512],[452,63,-512]]}
+[2026-10-20 18:10:29:007 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:10:33:573 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_1","rows":[{"x":-64,"y":63,"z":320,"id":"minecraft:snowy_slopes","loaded":true},{"x":-64,"y":120,"z":320,"id":"minecraft:snowy_slopes","loaded":false},{"x":-64,"y":180,"z":320,"id":"minecraft:snowy_slopes","loaded":false},{"x":-64,"y":256,"z":320,"id":"minecraft:snowy_slopes","loaded":false},{"x":-64,"y":319,"z":320,"id":"minecraft:snowy_slopes","loaded":false},{"x":446,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":true},{"x":447,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":false},{"x":448,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":true},{"x":449,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":false},{"x":450,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":false},{"x":451,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":false},{"x":452,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":false}],"chunksAfterUnload":0}
+
+AUDIT_INPUT stop
+[2026-10-20 18:10:33:627 INFO] Server stop requested.
+[2026-10-20 18:10:33:676 INFO] Stopping server...
+Quit correctly

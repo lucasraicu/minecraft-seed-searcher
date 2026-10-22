@@ -1,0 +1,22 @@
+{
+  "revision": "paired-spawn-cost-summary-v1",
+  "seeds": 116,
+  "calls_per_method": 580,
+  "raw": {
+    "samples": 580,
+    "median_ms": 3.193,
+    "p95_ms": 3.749,
+    "mean_ms": 3.2480810344827584
+  },
+  "current": {
+    "samples": 580,
+    "median_ms": 3.1985,
+    "p95_ms": 3.786,
+    "mean_ms": 3.2572293103448273
+  },
+  "all_outputs_match_prior_diagnostic": true,
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+  "scope": "Interleaved serial local iMac costs; not fleet or billion-seed throughput. No source/runtime adoption.",
+  "raw_over_current_median_ratio": 0.9982804439581053,
+  "raw_over_current_p95_ratio": 0.9902271526677232
+}

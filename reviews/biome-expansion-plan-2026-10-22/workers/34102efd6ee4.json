@@ -1,0 +1,63 @@
+{
+  "task_id": "34102efd6ee4",
+  "role": "review",
+  "state": "succeeded",
+  "created": 1792666105.5909052,
+  "updated": 1792666192.580968,
+  "worker_id": "gemini-1",
+  "objective": "High narrow read-only review VERIFIED_QUERY_INDEX_REVIEW.md: new compact immutable query index in existing32MiB cache half, full snapshot digest/schema verified on fill, every CAS index/page wire hash rechecked before reuse and binding equality required, primed before readiness within unchanged5s wo",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 300,
+    "effective_timeout_seconds": 300,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "b7f33edad9374eb647ca1ca4d93d556933f0c1f06339f2f744dd82324e9c5c6d",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792666111.392416,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "### Review: Verified Compact Query Index (`VERIFIED_QUERY_INDEX_REVIEW.md`)\n\n**Role / Mode**: High reasoning, read-only, tool-free review.\n**Outcome**: Concrete defects identified across integrity validation, context retention, cache accounting, stale-binding recovery, and startup safety.\n\n**Concrete Source Findings**:\n\n1. **Checksum Chain Disconnect & Context Truncation**:\n   - `_query_snapshot` reads `value = store.artifacts.get_json(binding['artifact'])` to collect page refs, but discards `value` and caches only `context = {k:v for k,v in manifest.items() if k!='memberships'}`. The actual catalog index pages and mappings are lost; callers never receive query index data.\n   - `_read_verified_raw` validates only raw wire SHA-256 and byte length. Unlike full snapshot validation, index pages are never decompressed or JSON/schema-validated on fill or reuse. Corrupt page payloads remain undetected until query execution.\n2. **Prohibitive Per-Query Revalidation Overhead**:\n   - Re-opening, reading, and SHA-256 hashing *all* CAS page compressed bytes on every query cache hit defeats the latency objective of an in-memory index and risks query deadline timeouts under load.\n3. **Stale-Binding Cache Poisoning**:\n   - If `store._binding(sid) != cached['binding']`, `ValueError` is raised after `self.cache[key] = found` has already re-inserted the entry. The stale entry is never evicted or refreshed, permanently poisoning lookups for that `sid`.\n4. **Shared Cache Budget & Eviction Breakage**:\n   - `size = len(canonical_json(cached))` tracks wire JSON serialization, significantly undercounting resident Python heap allocations.\n   - The eviction loop `_, (_, removed) = self.cache.popitem(last=False)` assumes every shared cache entry is structured as `(data, size)`. If existing items in the shared 32MiB cache use any other schema, eviction crashes with `ValueError` or `TypeError`.\n5. **Startup & Nonautomation Fallback**:\n   - `automation_store = _store(service)` in `_worker_main` lacks context manager cleanup (`with`), leaking resources.\n   - If `_query_snapshot` raises `ValueError` during startup priming, `_worker_main` silently swallows it and closes `channel` without sending `ready`, breaking the startup protocol without diagnostics.\n   - When `available()` is false, priming is skipped cleanly, but fallback query routing remains cold and unprimed.\n6. **Mutability Risk**:\n   - `cached['context']` returns a direct mutable dict without defensive copying or `MappingProxyType`.\n\n**Changed files**: None.\n**Tests actually run**: None.\n**Remaining limitations**: Static review of context specification; runtime disk I/O benchmarks not run.\n\nConcise findings or no concrete findings; files/tests none.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 12796,
+          "output_tokens": 10004,
+          "thinking_tokens": 9357,
+          "cache_read_tokens": 0,
+          "total_tokens": 22800
+        },
+        "conversation_id": "7caf4811-dc2b-4138-878f-de1783805627",
+        "duration_seconds": 77.74634,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 12796,
+      "output_tokens": 10004,
+      "thinking_tokens": 9357,
+      "cache_read_tokens": 0,
+      "total_tokens": 22800
+    },
+    "response": "### Review: Verified Compact Query Index (`VERIFIED_QUERY_INDEX_REVIEW.md`)\n\n**Role / Mode**: High reasoning, read-only, tool-free review.\n**Outcome**: Concrete defects identified across integrity validation, context retention, cache accounting, stale-binding recovery, and startup safety.\n\n**Concrete Source Findings**:\n\n1. **Checksum Chain Disconnect & Context Truncation**:\n   - `_query_snapshot` reads `value = store.artifacts.get_json(binding['artifact'])` to collect page refs, but discards `value` and caches only `context = {k:v for k,v in manifest.items() if k!='memberships'}`. The actual catalog index pages and mappings are lost; callers never receive query index data.\n   - `_read_verified_raw` validates only raw wire SHA-256 and byte length. Unlike full snapshot validation, index pages are never decompressed or JSON/schema-validated on fill or reuse. Corrupt page payloads remain undetected until query execution.\n2. **Prohibitive Per-Query Revalidation Overhead**:\n   - Re-opening, reading, and SHA-256 hashing *all* CAS page compressed bytes on every query cache hit defeats the latency objective of an in-memory index and risks query deadline timeouts under load.\n3. **Stale-Binding Cache Poisoning**:\n   - If `store._binding(sid) != cached['binding']`, `ValueError` is raised after `self.cache[key] = found` has already re-inserted the entry. The stale entry is never evicted or refreshed, permanently poisoning lookups for that `sid`.\n4. **Shared Cache Budget & Eviction Breakage**:\n   - `size = len(canonical_json(cached))` tracks wire JSON serialization, significantly undercounting resident Python heap allocations.\n   - The eviction loop `_, (_, removed) = self.cache.popitem(last=False)` assumes every shared cache entry is structured as `(data, size)`. If existing items in the shared 32MiB cache use any other schema, eviction crashes with `ValueError` or `TypeError`.\n5. **Startup & Nonautomation Fallback**:\n   - `automation_store = _store(service)` in `_worker_main` lacks context manager cleanup (`with`), leaking resources.\n   - If `_query_snapshot` raises `ValueError` during startup priming, `_worker_main` silently swallows it and closes `channel` without sending `ready`, breaking the startup protocol without diagnostics.\n   - When `available()` is false, priming is skipped cleanly, but fallback query routing remains cold and unprimed.\n6. **Mutability Risk**:\n   - `cached['context']` returns a direct mutable dict without defensive copying or `MappingProxyType`.\n\n**Changed files**: None.\n**Tests actually run**: None.\n**Remaining limitations**: Static review of context specification; runtime disk I/O benchmarks not run.\n\nConcise findings or no concrete findings; files/tests none.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "response_truncated": false,
+    "checks": [],
+    "changed_files": [],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed": 1792666192.5789561,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 205246464
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/34102efd6ee4",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

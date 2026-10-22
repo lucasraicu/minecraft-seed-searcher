@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "live_non_sqlite_files_verified": 8624,
+  "source_build_state_files": 208,
+  "protected_personal_native_checkpoint_files": 199,
+  "personal_pid": 91321,
+  "public_pid": 22035,
+  "vite_pid": 17880,
+  "live_automation": {
+    "ok": true,
+    "catalog_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog",
+    "configured": true,
+    "state": "paused",
+    "consumed": 0.0,
+    "reason": "operator pause; current world drains",
+    "queue": {
+      "revision": "catalog-harvest-status-v1",
+      "jobs": {},
+      "campaigns": []
+    },
+    "generation": 1,
+    "population_worlds": 222,
+    "retained_worlds": 222,
+    "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+    "total_budget_seconds": 600
+  },
+  "scope": "All measured writes stayed private;livequerycaches may change in memory;mutable catalog DB semantic control/status unchanged"
+}

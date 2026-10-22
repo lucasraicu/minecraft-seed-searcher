@@ -1,0 +1,6 @@
+{"trial": 0, "arm": "positive-control", "count": 262144, "wall_seconds": 3.584392483928241, "input_seeds_per_second": 73134.84814383628}
+Traceback (most recent call last):
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/pre-gpu-implementation-2026-10-22/verify_positive_coexistence.py", line 21, in <module>
+    control=m.one_run(0,'positive-control',start=m.COUNT);assert control['fingerprint']==expected
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

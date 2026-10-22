@@ -1,0 +1,47 @@
+[
+  {
+    "mode": "read_only",
+    "world": 0,
+    "records": 7,
+    "stored": 60,
+    "unknown": 10,
+    "kinds": {
+      "stored": 44,
+      "stored_repeated": 16,
+      "missing_data3d_record": 10
+    }
+  },
+  {
+    "mode": "read_only",
+    "world": 1,
+    "records": 2,
+    "stored": 8,
+    "unknown": 0,
+    "kinds": {
+      "stored": 6,
+      "stored_repeated": 2
+    }
+  },
+  {
+    "mode": "dirty_restore",
+    "world": 0,
+    "records": 9,
+    "stored": 70,
+    "unknown": 0,
+    "kinds": {
+      "stored": 53,
+      "stored_repeated": 17
+    }
+  },
+  {
+    "mode": "dirty_restore",
+    "world": 1,
+    "records": 2,
+    "stored": 8,
+    "unknown": 0,
+    "kinds": {
+      "stored": 6,
+      "stored_repeated": 2
+    }
+  }
+]

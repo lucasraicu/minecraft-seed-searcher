@@ -1,0 +1,1253 @@
+{
+  "revision": "bds-type-validation-summary-v1",
+  "completed_worlds": 3,
+  "cohort_worlds": 3,
+  "structures": {
+    "structure.trial_chamber": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-17, -17)": 1,
+        "(-17, 1)": 3,
+        "(1, -17)": 2,
+        "(1, 1)": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.stronghold": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-2, -2)": 8,
+        "(-722, -322)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.mineshaft": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-8, -8)": 9
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.ancient_city": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.village": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.ruined_portal": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.shipwreck": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.monument": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.outpost": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(8, 8)": 9
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.fortress": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-8, -8)": 9
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.bastion": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.desert_pyramid": {
+      "queries": 8,
+      "exact": 7,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-448, -448)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.jungle_temple": {
+      "queries": 9,
+      "exact": 8,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-688, 1344)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.swamp_hut": {
+      "queries": 8,
+      "exact": 6,
+      "coordinate_difference": 2,
+      "no_location": 0,
+      "offsets": {
+        "(-592, -64)": 1,
+        "(112, -624)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.igloo": {
+      "queries": 8,
+      "exact": 7,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-416, 304)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.ocean_ruin": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.mansion": {
+      "queries": 7,
+      "exact": 7,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.buried_treasure": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.trail_ruins": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-5, -11)": 2,
+        "(-10, -6)": 2,
+        "(-10, -10)": 1,
+        "(-5, -5)": 1,
+        "(-11, -11)": 2,
+        "(-6, -6)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.abandoned_camp": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 0,
+      "no_location": 9,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.ruined_portal_nether": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {},
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "structure.end_city": {
+      "queries": 9,
+      "exact": 4,
+      "coordinate_difference": 5,
+      "no_location": 0,
+      "offsets": {
+        "(-320, 0)": 1,
+        "(-320, -288)": 1,
+        "(-240, -16)": 1,
+        "(336, 16)": 1,
+        "(288, 16)": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    }
+  },
+  "biomes": {
+    "overworld:badlands": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:mesa": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:bamboo_jungle": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:bamboo_jungle": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:beach": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:beach": 5,
+        "minecraft:plains": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:birch_forest": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:birch_forest": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:cherry_grove": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:cherry_grove": 5,
+        "minecraft:dripstone_caves": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:cold_ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:cold_ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:dappled_forest": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:dappled_forest": 5,
+        "minecraft:sunflower_plains": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:dark_forest": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:roofed_forest": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:deep_cold_ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:deep_cold_ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:deep_dark": {
+      "points": 2,
+      "canonical_matches": 2,
+      "errors": 0,
+      "observed": {
+        "minecraft:deep_dark": 2
+      },
+      "seeds": [
+        "-9103892851552028103"
+      ]
+    },
+    "overworld:deep_frozen_ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:deep_frozen_ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:deep_lukewarm_ocean": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:deep_lukewarm_ocean": 5,
+        "minecraft:lukewarm_ocean": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:deep_ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:deep_ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:desert": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:desert": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:dripstone_caves": {
+      "points": 6,
+      "canonical_matches": 2,
+      "errors": 0,
+      "observed": {
+        "minecraft:forest": 2,
+        "minecraft:plains": 1,
+        "minecraft:dripstone_caves": 2,
+        "minecraft:birch_forest": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:eroded_badlands": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:mesa_bryce": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:flower_forest": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:flower_forest": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:forest": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:river": 1,
+        "minecraft:forest": 5
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:frozen_ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:frozen_ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:frozen_peaks": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:forest": 1,
+        "minecraft:frozen_peaks": 5
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:frozen_river": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:frozen_river": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:grove": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:grove": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:ice_spikes": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:ice_plains_spikes": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:jagged_peaks": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:jagged_peaks": 5,
+        "minecraft:dripstone_caves": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:jungle": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:jungle": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:lukewarm_ocean": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:lukewarm_ocean": 5,
+        "minecraft:beach": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:lush_caves": {
+      "points": 6,
+      "canonical_matches": 3,
+      "errors": 0,
+      "observed": {
+        "minecraft:jungle": 1,
+        "minecraft:bamboo_jungle": 1,
+        "minecraft:lush_caves": 3,
+        "minecraft:mega_taiga": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:mangrove_swamp": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:mangrove_swamp": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:meadow": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:meadow": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:mushroom_fields": {
+      "points": 5,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:mushroom_island": 5
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:ocean": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:ocean": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:old_growth_birch_forest": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:birch_forest_mutated": 5,
+        "minecraft:river": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:old_growth_pine_taiga": {
+      "points": 6,
+      "canonical_matches": 4,
+      "errors": 0,
+      "observed": {
+        "minecraft:mega_taiga": 4,
+        "minecraft:extreme_hills_plus_trees": 1,
+        "minecraft:taiga": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:old_growth_spruce_taiga": {
+      "points": 6,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:redwood_taiga_mutated": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:pale_garden": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:pale_garden": 5,
+        "minecraft:roofed_forest": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:plains": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:plains": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:river": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:river": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:savanna": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:savanna": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:savanna_plateau": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:savanna_plateau": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:snowy_beach": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:cold_beach": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:snowy_plains": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:ice_plains": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:snowy_slopes": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:snowy_slopes": 5,
+        "minecraft:plains": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:snowy_taiga": {
+      "points": 6,
+      "canonical_matches": 4,
+      "errors": 0,
+      "observed": {
+        "minecraft:cold_taiga": 4,
+        "minecraft:ice_plains": 1,
+        "minecraft:frozen_river": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:sparse_jungle": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:jungle_edge": 5,
+        "minecraft:river": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:stony_peaks": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:stony_peaks": 5,
+        "minecraft:forest": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:stony_shore": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:stone_beach": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:sulfur_caves": {
+      "points": 6,
+      "canonical_matches": 4,
+      "errors": 0,
+      "observed": {
+        "minecraft:jungle": 2,
+        "minecraft:sulfur_caves": 4
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:sunflower_plains": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:sunflower_plains": 5,
+        "minecraft:plains": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:swamp": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:swampland": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:taiga": {
+      "points": 6,
+      "canonical_matches": 4,
+      "errors": 0,
+      "observed": {
+        "minecraft:cold_ocean": 1,
+        "minecraft:taiga": 4,
+        "minecraft:forest": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:warm_ocean": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:warm_ocean": 5,
+        "minecraft:desert": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:windswept_forest": {
+      "points": 6,
+      "canonical_matches": 5,
+      "errors": 0,
+      "observed": {
+        "minecraft:extreme_hills_plus_trees": 5,
+        "minecraft:mega_taiga": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:windswept_gravelly_hills": {
+      "points": 5,
+      "canonical_matches": 4,
+      "errors": 0,
+      "observed": {
+        "minecraft:extreme_hills_mutated": 4,
+        "minecraft:extreme_hills": 1
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:windswept_hills": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:extreme_hills": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:windswept_savanna": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:savanna_mutated": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "overworld:wooded_badlands": {
+      "points": 6,
+      "canonical_matches": 6,
+      "errors": 0,
+      "observed": {
+        "minecraft:mesa_plateau_stone": 6
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "nether:crimson_forest": {
+      "points": 3,
+      "canonical_matches": 3,
+      "errors": 0,
+      "observed": {
+        "minecraft:crimson_forest": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "nether:nether_wastes": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:hell": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "nether:basalt_deltas": {
+      "points": 3,
+      "canonical_matches": 2,
+      "errors": 0,
+      "observed": {
+        "minecraft:hell": 1,
+        "minecraft:basalt_deltas": 2
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "nether:soul_sand_valley": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:soulsand_valley": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "nether:warped_forest": {
+      "points": 3,
+      "canonical_matches": 3,
+      "errors": 0,
+      "observed": {
+        "minecraft:warped_forest": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "the_end:small_end_islands": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:the_end": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "the_end:end_midlands": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:the_end": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "the_end:end_highlands": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:the_end": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "the_end:end_barrens": {
+      "points": 3,
+      "canonical_matches": 0,
+      "errors": 0,
+      "observed": {
+        "minecraft:the_end": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    },
+    "the_end:the_end": {
+      "points": 3,
+      "canonical_matches": 3,
+      "errors": 0,
+      "observed": {
+        "minecraft:the_end": 3
+      },
+      "seeds": [
+        "-4565879772552070118",
+        "-9103892851552028103",
+        "3477702448211353566"
+      ]
+    }
+  },
+  "discovery_unique_counts": {
+    "discovery.structure.trial_chamber": 8,
+    "discovery.structure.stronghold": 5,
+    "discovery.structure.mineshaft": 8,
+    "discovery.structure.ancient_city": 6,
+    "discovery.structure.village": 7,
+    "discovery.structure.ruined_portal": 8,
+    "discovery.structure.shipwreck": 8,
+    "discovery.structure.monument": 7,
+    "discovery.structure.outpost": 7,
+    "discovery.structure.fortress": 8,
+    "discovery.structure.bastion": 8,
+    "discovery.structure.desert_pyramid": 6,
+    "discovery.structure.jungle_temple": 6,
+    "discovery.structure.swamp_hut": 6,
+    "discovery.structure.igloo": 6,
+    "discovery.structure.ocean_ruin": 7,
+    "discovery.structure.mansion": 2,
+    "discovery.structure.buried_treasure": 8,
+    "discovery.structure.trail_ruins": 8,
+    "discovery.structure.ruined_portal_nether": 8,
+    "discovery.structure.end_city": 8
+  },
+  "reports": [
+    {
+      "path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/direct-7864106d5732/report.json",
+      "sha256": "ecc8a388d70b54593b7f1ccad430fbf6ca7c26678423ecf4c9d72c9aa03fb147",
+      "seed": "-9103892851552028103",
+      "wall_seconds": 294.5572537459666,
+      "clean_shutdown": true,
+      "removed": true
+    },
+    {
+      "path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/direct-af0d21387ea3/report.json",
+      "sha256": "4fe6b53cc23813272fd87d4ff737d88e8451c8c27994bd2bd55cefbab5eaf46c",
+      "seed": "-4565879772552070118",
+      "wall_seconds": 289.658017957001,
+      "clean_shutdown": true,
+      "removed": true
+    },
+    {
+      "path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/direct-f9a3dff6c7d1/report.json",
+      "sha256": "5c8edb06f2cc6498e101309e624bdb59abf2bcce392472555c66ff1cf3a86501",
+      "seed": "3477702448211353566",
+      "wall_seconds": 278.78698339906987,
+      "clean_shutdown": true,
+      "removed": true
+    }
+  ],
+  "limitations": [
+    "Selected type-coverage cohort, not population accuracy estimate",
+    "Temple command confirms grouped temple location, not subtype",
+    "Coordinate differences retained without fitted tolerance",
+    "End terrain classes are not necessarily separate BDS biome identifiers",
+    "Independent discovery queries are not complete recall",
+    "No exhaustive physical structure census"
+  ]
+}

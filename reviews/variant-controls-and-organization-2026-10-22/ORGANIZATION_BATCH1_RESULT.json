@@ -1,0 +1,47 @@
+{
+  "status": "executed_verified_payloads",
+  "approval": "Approve the four-document batch",
+  "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repo-organization-proposed-20261022/batch1-originals.tar.gz",
+  "backup_sha256": "79df182f248ac2ab1f2586211dcfdf9af678916820bbf6d591bbdfc36cbbc755",
+  "moves": [
+    {
+      "source": "CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "destination": "docs/specs/CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "sha256": "b2644818151f81c2f70edf92dbe989ba2974197b7793c21cf74c5d2e38efe910",
+      "inverse": {
+        "source": "docs/specs/CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+        "destination": "CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md"
+      }
+    },
+    {
+      "source": "DIAGRAMS.md",
+      "destination": "docs/specs/DIAGRAMS.md",
+      "sha256": "64b984e1750737a1676c2b95d585aac7979c195567654d396bafbb7847bce453",
+      "inverse": {
+        "source": "docs/specs/DIAGRAMS.md",
+        "destination": "DIAGRAMS.md"
+      }
+    },
+    {
+      "source": "MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "destination": "docs/blueprints/archive/MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "sha256": "629813fe7fb5d59027300c77362886221042a1b0465bae5452a9c9988e59d798",
+      "inverse": {
+        "source": "docs/blueprints/archive/MASTER_SEED_BLUEPRINT_1664_V2.md",
+        "destination": "MASTER_SEED_BLUEPRINT_1664_V2.md"
+      }
+    },
+    {
+      "source": "AUDIT_CONTEXT.md",
+      "destination": "docs/audits/AUDIT_CONTEXT.md",
+      "sha256": "32218d743176897ba7bba1adf2478bf9899b1dcc554449797b2e9c1b98ed0c0a",
+      "inverse": {
+        "source": "docs/audits/AUDIT_CONTEXT.md",
+        "destination": "AUDIT_CONTEXT.md"
+      }
+    }
+  ],
+  "deleted": 0,
+  "index_links_checked": 455,
+  "missing_links": []
+}

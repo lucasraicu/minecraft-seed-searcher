@@ -1,0 +1,26 @@
+{
+  "task_id": "9bdf2a9282b3",
+  "role": "review",
+  "state": "failed",
+  "created": 1792506447.0264041,
+  "updated": 1792506631.616916,
+  "worker_id": "gemini-1",
+  "objective": "TOOL-FREE High final review of embedded context files (their complete text is supplied in task JSON). Invoke NO tools/readers/commands/agents/MCP and edit nothing. User approved this privateCatalog milestone; architecture review already done. Review ONLY newly implemented service result-cache/query/",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "baseline_digest": "c177ea7d65d82cf37ebaaa3a2b6c27a79604d912528c5f06b880fcca6b9e0f4b",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792506451.037386,
+    "error": "timeout",
+    "completed": 1792506631.616574,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 176214016
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/9bdf2a9282b3",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

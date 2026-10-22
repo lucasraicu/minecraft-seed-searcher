@@ -1,0 +1,748 @@
+{
+  "controls": {
+    "seed": "-3509659830737203357",
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "script_api": "2.10.0",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 300,
+    "output_bytes": 4294967296,
+    "manifest_sha256": "3ecc8b605a21fd2de7085f9d3dee64e58b98339d9eb8eb70405898b8f1074e65",
+    "observer_sha256": "a3e90840c24078a8e8c44eb891c23b87adb0503c226bcf13883d4b9b3448e6b2",
+    "harness_sha256": "f2b738ef520bd841a5d237ff81a136fb84f74bb8f39710f3e951714e48009d6b",
+    "settings_sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+    "container": "codex-targeted-39911c4894b3",
+    "prediction": {
+      "seed": "-3509659830737203357",
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412",
+      "observation_id": "2dabc38e81e77f174d4edace2239c5c8b6ee4ecf6b65c91fc351acd0bd40bb11"
+    },
+    "role": "Targeted API/storage observations; not an exhaustive or physical structure census"
+  },
+  "status": "observed",
+  "queries": [
+    {
+      "index": 0,
+      "kind": "structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -296,
+        -312
+      ],
+      "output": [
+        "[2026-10-20 21:48:39:407 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -360,
+        248
+      ],
+      "output": [
+        "[2026-10-20 21:48:39:428 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        528,
+        512
+      ],
+      "output": [
+        "[2026-10-20 21:48:39:479 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (1531 blocks away)"
+      ]
+    },
+    {
+      "index": 3,
+      "kind": "structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        -1008,
+        400
+      ],
+      "output": [
+        "[2026-10-20 21:48:39:528 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (11 blocks away)"
+      ]
+    }
+  ],
+  "biome_batches": [
+    {
+      "id": "target",
+      "rows": [
+        {
+          "x": -256,
+          "y": -48,
+          "z": -256,
+          "id": "minecraft:deep_dark",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -256,
+          "y": 0,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": -256,
+          "y": 32,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -256,
+          "y": 60,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -256,
+          "y": 80,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -256,
+          "y": 120,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -256,
+          "y": 319,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -448,
+          "y": -48,
+          "z": 320,
+          "id": "minecraft:deep_dark",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": -448,
+          "y": 0,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": -448,
+          "y": 32,
+          "z": 320,
+          "id": "minecraft:lush_caves",
+          "block": "minecraft:clay"
+        },
+        {
+          "x": -448,
+          "y": 60,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 80,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 120,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -448,
+          "y": 319,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -64,
+          "y": -48,
+          "z": 320,
+          "id": "minecraft:deep_dark",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": -64,
+          "y": 0,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": -64,
+          "y": 32,
+          "z": 320,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -64,
+          "y": 60,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:andesite"
+        },
+        {
+          "x": -64,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -64,
+          "y": 80,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -64,
+          "y": 120,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -64,
+          "y": 319,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:air"
+        },
+        {
+          "x": 446,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 447,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 448,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 449,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 450,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 451,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 452,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -296,
+          "y": 63,
+          "z": -312,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -296,
+          "y": 319,
+          "z": -312,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -360,
+          "y": 63,
+          "z": 248,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -360,
+          "y": 319,
+          "z": 248,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        },
+        {
+          "x": 528,
+          "y": 63,
+          "z": 512,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": 528,
+          "y": 319,
+          "z": 512,
+          "id": "minecraft:grove",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -1008,
+          "y": 63,
+          "z": 400,
+          "id": "minecraft:taiga",
+          "block": "minecraft:dirt"
+        },
+        {
+          "x": -1008,
+          "y": 319,
+          "z": 400,
+          "id": "minecraft:taiga",
+          "block": "minecraft:air"
+        }
+      ],
+      "ticking_areas_held": 9
+    }
+  ],
+  "world_identity": {
+    "seed": "-3509659830737203357",
+    "api": "2.10.0",
+    "players": 0
+  },
+  "target_result": {
+    "rows": [
+      {
+        "x": -256,
+        "y": -48,
+        "z": -256,
+        "id": "minecraft:deep_dark",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -256,
+        "y": 0,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": -256,
+        "y": 32,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -256,
+        "y": 60,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -256,
+        "y": 63,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -256,
+        "y": 80,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -256,
+        "y": 120,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -256,
+        "y": 319,
+        "z": -256,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -448,
+        "y": -48,
+        "z": 320,
+        "id": "minecraft:deep_dark",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": -448,
+        "y": 0,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": -448,
+        "y": 32,
+        "z": 320,
+        "id": "minecraft:lush_caves",
+        "block": "minecraft:clay"
+      },
+      {
+        "x": -448,
+        "y": 60,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 63,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 80,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 120,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -448,
+        "y": 319,
+        "z": 320,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -64,
+        "y": -48,
+        "z": 320,
+        "id": "minecraft:deep_dark",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": -64,
+        "y": 0,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": -64,
+        "y": 32,
+        "z": 320,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -64,
+        "y": 60,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:andesite"
+      },
+      {
+        "x": -64,
+        "y": 63,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -64,
+        "y": 80,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -64,
+        "y": 120,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -64,
+        "y": 319,
+        "z": 320,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:air"
+      },
+      {
+        "x": 446,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 447,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 448,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 449,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 450,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 451,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 452,
+        "y": 63,
+        "z": -512,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -296,
+        "y": 63,
+        "z": -312,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -296,
+        "y": 319,
+        "z": -312,
+        "id": "minecraft:ice_plains",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -360,
+        "y": 63,
+        "z": 248,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -360,
+        "y": 319,
+        "z": 248,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:air"
+      },
+      {
+        "x": 528,
+        "y": 63,
+        "z": 512,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": 528,
+        "y": 319,
+        "z": 512,
+        "id": "minecraft:grove",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -1008,
+        "y": 63,
+        "z": 400,
+        "id": "minecraft:taiga",
+        "block": "minecraft:dirt"
+      },
+      {
+        "x": -1008,
+        "y": 319,
+        "z": 400,
+        "id": "minecraft:taiga",
+        "block": "minecraft:air"
+      }
+    ],
+    "columns": [
+      {
+        "x": -256,
+        "z": -256,
+        "top": {
+          "y": 111,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 112,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": -448,
+        "z": 320,
+        "top": {
+          "y": 112,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 113,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": -64,
+        "z": 320,
+        "top": {
+          "y": 98,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 99,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": -296,
+        "z": -312,
+        "top": {
+          "y": 77,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 78,
+          "id": "minecraft:ice_plains",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": -360,
+        "z": 248,
+        "top": {
+          "y": 122,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 123,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": 528,
+        "z": 512,
+        "top": {
+          "y": 163,
+          "block": "minecraft:snow_layer"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 164,
+          "id": "minecraft:grove",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": -1008,
+        "z": 400,
+        "top": {
+          "y": 64,
+          "block": "minecraft:grass_block"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 65,
+          "id": "minecraft:taiga",
+          "block": "minecraft:air"
+        }
+      }
+    ],
+    "blockReads": 1548,
+    "biomeReads": 46,
+    "tickingAreas": 9,
+    "chunks": 9
+  },
+  "save_confirmed": true,
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 38.63979952398222
+}

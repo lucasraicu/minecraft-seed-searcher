@@ -99,17 +99,17 @@ Counts are complete predictor counts within the selected window. Hard floors con
 | 🏰 **Stronghold** | Overworld | **$\ge 1$** | 2nd = **+30 pts**, 3rd = **+20 pts** (**+50 max**) | **Non-negotiable.** Predicted End-access start; portal room unverified. |
 | 🏛️ **Woodland Mansion** | Overworld | **$\ge 1$** | 2nd = **+45 pts**, 3rd+ = **+25 pts** (**+70 max**) | **Mandatory $\ge 1$.** Guaranteed Dark Forest start at Y=63. |
 | 🗿 **Ocean Monument** | Overworld | **$\ge 1$** | 2nd = **+25 pts**, 3rd = **+15 pts**, 4th+ = **+10 pts** (**+50 max**) | **Mandatory $\ge 1$.** Prismarine, sponges, conduit core. |
-| 🏴‍☠️ **Pillager Outpost** | Overworld | **$\ge 1$** | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** (**+40 max**) | **Mandatory $\ge 1$.** Infinite Bad Omen & raid farming. |
+| 🏴‍☠️ **Pillager Outpost** | Overworld | **$\ge 1$** | 2nd = **+20**, 3rd = **+20**, 4th+ = **+10** (**+50 max**) | **Mandatory $\ge 1$.** Infinite Bad Omen & raid farming. |
 | 🔥 **Nether Fortress** | Nether | **$\ge 1$** | 2nd = **+20**, 3rd = **+15**, 4th+ = **+15** (**+50 max**) | **Mandatory $\ge 1$** inside $1024 \times 1024$ Nether. Blaze rods & skulls. |
 | 🐷 **Bastion Remnant** | Nether | **$\ge 2$** | 3rd = **+20**, 4th = **+15**, 5th+ = **+15** (**+50 max**; +20 Treasure variant) | **Mandatory $\ge 2$** inside $1024 \times 1024$ Nether. Piglin bartering & upgrade trims. |
 | 🏘️ **Villages** | Overworld | **$\ge 6$** | 7th..11th+ = **+10 each** (**+50 max**) | Guaranteed baseline $\ge 6$. Rewards mega-settlements. |
 | ⚔️ **Trial Chambers** | Overworld | **$\ge 8$** | 9th = **+10**, 10th = **+10**, 11th = **+10**, 12th = **+8**, 13th+ = **+7** (**+45 max**) | Guaranteed baseline $\ge 8$. Heavy Cores, maces, Ominous Vaults. |
 | 🌌 **Ancient City** | Overworld | **$\ge 2$** | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** (**+65 max**) | Guaranteed baseline $\ge 2$. Swift Sneak, Silence Trim, Wardens. |
 | 🏺 **Desert Pyramid** | Overworld | **$\ge 1$** | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** (**+60 max**) | Guaranteed baseline $\ge 1$. Desert archaeology & enchanted apples. |
-| 🌿 **Jungle Temple** | Overworld | **$\ge 1$** | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** (**+60 max**) | Guaranteed baseline $\ge 1$. Redstone puzzle & jungle exploration. |
 | ⛵ **Shipwrecks** | Overworld | **$\ge 4$** | 5th..8th+ = **+5 each** (**+20 max**) | Guaranteed baseline $\ge 4$. Early iron, emeralds, treasure maps. |
 | 🌀 **Ruined Portals** | Overworld | **$\ge 8$** | 9th..12th+ = **+5 each** (**+20 max**) | Guaranteed baseline $\ge 8$. Fast Nether transit & crying obsidian. |
 | ⛏️ **Mineshafts** | Overworld | **$\ge 10$** | +2 each over 10 (**+20 max**) | Guaranteed baseline $\ge 10$. Rails, mob spawners, chest minecarts. |
+| 🌿 **Jungle Temple** | Overworld | $\ge 0$ | 1st = **+20 pts**, 2nd = **+20 pts**, 3rd+ = **+10 pts** (**+50 max**) | Optional Stage 4 bonus. Redstone puzzle & jungle exploration. |
 | 🧙 **Swamp Hut (Witch Hut)** | Overworld | $\ge 0$ | 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 max**) | Optional Stage 4 bonus. Predicted witch-farm start. |
 | 🛖 **Igloo (with Basement)**| Overworld | $\ge 0$ | 1st = **+30 pts**, 2nd+ = **+20 pts** (**+50 max**) | Optional Stage 4 bonus. Pinned MC_26_50 basement prediction. |
 | 🏺 **Trail Ruins** | Overworld | $\ge 0$ | 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 max**) | Optional Stage 4 bonus. Archaeology pottery sherds & armor trims. |
@@ -160,45 +160,45 @@ To minimize sampling overhead, Stage 2 evaluates vertical planes with aggressive
 
 ### 5.1 Active `dynamic-envelope-2048-v3` Player Scoring Architecture (1,250-Point Pure Additive System)
 
-Under the active `dynamic-envelope-2048-v3` specification, scoring operates on a **pure additive dynamic system** with **zero deficit penalties** and a **1,250-Point Master Architecture** (`Core Surplus: 650 max` + `Optional Structures: 200 max` + `Luxury Biomes: 265 max` + `Spatial & Nether Core: 135 max`). Every candidate that satisfies all 14 Guaranteed Hard Floors qualifies for the candidate pool. Beyond the guaranteed baseline, every extra structure, optional feature, luxury biome, and spatial amenity progressively adds stacking points. A baseline qualifying seed meeting hard floors receives exactly **0 surplus points**.
+Under the active `dynamic-envelope-2048-v3` specification, scoring operates on a **pure additive dynamic system** with **zero deficit penalties** and a **1,250-Point Master Architecture** (`Core Surplus: 600 max` + `Optional Structures: 250 max` + `Luxury Biomes: 265 max` + `Spatial & Nether Core: 135 max`). Every candidate that satisfies all 13 Guaranteed Hard Floors qualifies for the candidate pool. Beyond the guaranteed baseline, every extra structure, optional feature, luxury biome, and spatial amenity progressively adds stacking points. A baseline qualifying seed meeting hard floors receives exactly **0 surplus points**.
 
-$$\mathbf{Total\ Smart\ Score} = \text{Core Surplus (650)} + \text{Optional Structures (200)} + \text{Luxury Biomes (265)} + \text{Spatial Layout \& Nether Core (135)} = \mathbf{1,250\ Pts\ Max}$$
+$$\mathbf{Total\ Smart\ Score} = \text{Core Surplus (600)} + \text{Optional Structures (250)} + \text{Luxury Biomes (265)} + \text{Spatial Layout \& Nether Core (135)} = \mathbf{1,250\ Pts\ Max}$$
 
 - **No Deficit Minuses (-):** You never subtract points. The deficit penalty is strictly $0$, and Miss Budget is $B = 0$ (`max_misses = 0`).
 - **Hard Floor = Baseline Entry Ticket:** Meeting every hard floor guarantees baseline qualification. A seed below any floor is fatal.
 - **Top-50 Ratchet Cutoff Bar ($S_{50}$):** The in-memory Top-50 Tracker maintains a size-50 min-heap. Once 50 candidates are found, the 50th score ($S_{50}$) automatically acts as an upper-bound cutoff to prune non-competitive seeds in C before allocation.
 
-#### A. Core Structure Surplus Schedule (14 Categories | $F = 0\text{ pts}$ | 650 Pts Max)
+#### A. Core Structure Surplus Schedule (13 Categories | $F = 0\text{ pts}$ | 600 Pts Max)
 Structure points start accumulating the moment a structure exceeds its Guaranteed Hard Floor ($F$). All categories have concave diminishing returns and hard caps:
 
 | Category | Dim | Hard Floor ($F$) | Pts at $F$ | Surplus Schedule ($F+1$ onward) | Category Cap | Lookup Array (`LUT`) |
 | :--- | :---: | :---: | :---: | :--- | :---: | :--- |
 | 🏛️ **Woodland Mansion** | OW | **1** | 0 pts | 2nd = **+45**, 3rd+ = **+25** | **+70 pts** *(at 3+)* | `{0, 45, 70}` |
 | 🏺 **Desert Pyramid** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
-| 🌿 **Jungle Temple** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+20**, 4th+ = **+15** | **+60 pts** *(at 4+)* | `{0, 25, 45, 60}` |
 | 🌌 **Ancient City** | OW | **2** | 0 pts | 3rd = **+20**, 4th = **+20**, 5th = **+15**, 6th+ = **+10** | **+65 pts** *(at 6+)* | `{0, 20, 40, 55, 65}` |
 | 🏰 **Stronghold** | OW | **1** | 0 pts | 2nd = **+30**, 3rd+ = **+20** | **+50 pts** *(at 3+)* | `{0, 30, 50}` |
 | 🗿 **Ocean Monument** | OW | **1** | 0 pts | 2nd = **+25**, 3rd = **+15**, 4th+ = **+10** | **+50 pts** *(at 4+)* | `{0, 25, 40, 50}` |
 | 🐷 **Bastion Remnant** | Nether | **2** | 0 pts | 3rd = **+20**, 4th = **+15**, 5th+ = **+15** | **+50 pts** *(at 5+)* | `{0, 20, 35, 50}` |
 | 🔥 **Nether Fortress** | Nether | **1** | 0 pts | 2nd = **+20**, 3rd = **+15**, 4th+ = **+15** | **+50 pts** *(at 4+)* | `{0, 20, 35, 50}` |
 | 🏘️ **Village** | OW | **6** | 0 pts | 7th..11th+ = **+10 each** | **+50 pts** *(at 11+)* | `{0, 10, 20, 30, 40, 50}` |
-| 🏴‍☠️ **Pillager Outpost** | OW | **1** | 0 pts | 2nd = **+15**, 3rd = **+15**, 4th+ = **+10** | **+40 pts** *(at 4+)* | `{0, 15, 30, 40}` |
+| 🏴‍☠️ **Pillager Outpost** | OW | **1** | 0 pts | 2nd = **+20**, 3rd = **+20**, 4th+ = **+10** | **+50 pts** *(at 4+)* | `{0, 20, 40, 50}` |
 | ⚔️ **Trial Chamber** | OW | **8** | 0 pts | 9th = **+10**, 10th = **+10**, 11th = **+10**, 12th = **+8**, 13th+ = **+7** | **+45 pts** *(at 13+)* | `{0, 10, 20, 30, 38, 45}` |
 | 🌀 **Ruined Portal** | OW | **8** | 0 pts | 9th..12th+ = **+5 each** | **+20 pts** *(at 12+)* | `{0, 5, 10, 15, 20}` |
 | ⛵ **Shipwreck** | OW | **4** | 0 pts | 5th..8th+ = **+5 each** | **+20 pts** *(at 8+)* | `{0, 5, 10, 15, 20}` |
 | ⛏️ **Mineshaft** | OW | **10** | 0 pts | 11th..20th+ = **+2 each** | **+20 pts** *(at 20+)* | `min(20, max(0, count - 10) * 2)` |
 
-*(Sum of all core surplus caps: $70 + 60 + 60 + 65 + 50 + 50 + 50 + 50 + 50 + 40 + 45 + 20 + 20 + 20 = \mathbf{650\text{ pts}}$).*
+*(Sum of all core surplus caps: $70 + 60 + 65 + 50 + 50 + 50 + 50 + 50 + 50 + 45 + 20 + 20 + 20 = \mathbf{600\text{ pts}}$).*
 
-#### B. Optional Structure Schedule (5 OW Categories | $F = 0$ | 200 Pts Max)
+#### B. Optional Structure Schedule (6 OW Categories | $F = 0$ | 250 Pts Max)
 No hard floors. Discovered qualifying structures award bonuses up to individual category caps:
+- 🌿 **Jungle Temples:** 1st = **+20 pts**, 2nd = **+20 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
 - 🧙 **Swamp Huts:** 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
 - 🏺 **Trail Ruins:** 1st = **+25 pts**, 2nd = **+15 pts**, 3rd+ = **+10 pts** (**+50 pts max** at 3+).
 - 🛖 **Basement Igloos:** 1st = **+30 pts**, 2nd+ = **+20 pts** (**+50 pts max** at 2+).
 - 💎 **Buried Treasure:** 1st = **+10 pts**, 2nd = **+10 pts**, 3rd = **+5 pts**, 4th+ = **+5 pts** (**+30 pts max** at 4+).
 - 🌊 **Ocean Ruins:** 1st = **+10 pts**, 2nd+ = **+10 pts** (**+20 pts max** at 2+).
 
-*(Sum of all optional bonuses: $50 + 50 + 50 + 30 + 20 = \mathbf{200\text{ pts}}$).*
+*(Sum of all optional bonuses: $50 + 50 + 50 + 50 + 30 + 20 = \mathbf{250\text{ pts}}$).*
 
 #### C. Luxury Biomes (10 Categories + Tiered Diversity Jackpot | 265 Pts Max)
 Evaluated on the 64-block world lattice at $Y=63$:
@@ -308,7 +308,7 @@ Supported by the SQLite index `candidate_leaderboard`.
 
 ## 7. Execution Pipeline & Performance Engineering
 
-> **Implementation evidence:** This is the approved search design. The measured implementation and its limits are recorded in `LATEST_PUSH_REVIEW.md`. Section 7's performance percentages, climate-noise shortcut and automatic biome credits are proposals or projections, not proofs. The current engine keeps exact biome lookup and explicit four-Y witnesses, and does not enable those unproven shortcuts. Native center selection ranks the defined constrained-centroid representatives. The independent finalist command `scripts/refine_candidate_centers.py` additionally searches every valid 16-block center (or, explicitly, every 8-block center), using the same predictor score. Neither path certifies actual generation or player preferences. See `reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md` for current deployment and validation status.
+> **Implementation evidence:** This is the approved search design. The measured implementation and its limits are recorded in `LATEST_PUSH_REVIEW.md`. Section 7's performance percentages, climate-noise shortcut and automatic biome credits are proposals or projections, not proofs. The current engine keeps exact biome lookup and explicit four-Y witnesses, and does not enable those unproven shortcuts. The fast native sweep proposes constrained-centroid representatives. Before a qualified v3 candidate is admitted, the production pipeline ranks all 15,129 centers on the 16-block grid over `[-976,976]^2`, plus deduplicated local 8-block windows around multiple coarse centers within two points of the best coarse score. It retains the original representative if better. The resulting optimum is exact over this declared union, not the entire 8-block grid. Candidate JSON preserves both centers and the score gain under `native-grid-16-local-8-v1`; the cutoff applies after refinement. Low-level `Prototype.sweep` keeps explicit `refine_centers=False` for independent controls. The independent finalist command `scripts/refine_candidate_centers.py` additionally searches every valid 16-block center (or, explicitly, every 8-block center), using the same predictor score. Neither path certifies actual generation or player preferences. See `reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md` for current deployment and validation status.
 
 ### 7.1 Top 5 Zero-Loss Pipeline Optimizations
 

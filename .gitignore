@@ -38,5 +38,7 @@ reviews/**/.realm-scan.lock
 *.key
 *.p12
 *.mobileprovision
-__pycache__/
-.DS_Store
+runs/pillar3-benchmark-*/
+
+# Disposable bounded profiling checkpoints; reviewed evidence is under reviews/.
+runs/phase12-2026-10-20-*/

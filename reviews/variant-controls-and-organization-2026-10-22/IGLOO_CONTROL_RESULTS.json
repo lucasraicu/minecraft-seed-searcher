@@ -1,0 +1,308 @@
+{
+  "revision": "igloo-control-results-v1",
+  "status": "pass",
+  "positive_worlds": 2,
+  "negative_worlds": 2,
+  "controls": [
+    {
+      "case": {
+        "id": 0,
+        "seed": "-4442996248857059339",
+        "world_id": "a35f39394a285b599b1ed187f35415d5f28ec2eb628bbe277bc7b136389e529e",
+        "observation_id": "06ed690fa60fb20488b1c0cade6bf011b57f2dfd7d9ab8a73912ee7270128135",
+        "selection": "ordinary_fixed_world_hash",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          -200,
+          24
+        ],
+        "predicted": true,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "actual": true,
+      "recognition": {
+        "value": true,
+        "plain": [],
+        "trapped": [
+          {
+            "origin": [
+              -208,
+              65,
+              16
+            ],
+            "rotation": 2,
+            "mirror": false,
+            "matched_blocks": 59
+          }
+        ],
+        "laboratories": [
+          {
+            "origin": [
+              -208,
+              32,
+              18
+            ],
+            "rotation": 2,
+            "mirror": false,
+            "matched_blocks": 7
+          }
+        ],
+        "connected": [
+          {
+            "hut": {
+              "origin": [
+                -208,
+                65,
+                16
+              ],
+              "rotation": 2,
+              "mirror": false,
+              "matched_blocks": 59
+            },
+            "lab": {
+              "origin": [
+                -208,
+                32,
+                18
+              ],
+              "rotation": 2,
+              "mirror": false,
+              "matched_blocks": 7
+            }
+          }
+        ],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "-4442996248857059339",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "settings_sha256": "a22aace5a4cca30f1d41994031cc46d342efe572f07a7d85e177f2e9f722bbff",
+      "source_report_sha256": "3cdfcb964a70e48c04fd4decd8c748950ddd4d915c97688dba1bdd7effddce2e",
+      "scope": "actual BDS blocks",
+      "prior_unknowns_preserved": true,
+      "cumulative_world_requests": 8,
+      "cumulative_world_seconds": 53.31236226903275
+    },
+    {
+      "case": {
+        "id": 2,
+        "seed": "4368694989079322414",
+        "world_id": "25ff2880b2038ad7a804df141965395e4baa6d08b55260fd19cdc6832099a5d8",
+        "observation_id": "15069e608432a52ac11fa746db2e95af102d13c201787114ba18cd87d1b32c5d",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          -152,
+          24
+        ],
+        "predicted": true,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "actual": true,
+      "recognition": {
+        "value": true,
+        "signals": [
+          {
+            "hut": {
+              "origin": [
+                -160,
+                71,
+                16
+              ],
+              "rotation": 3,
+              "mirror": false
+            },
+            "chest": {
+              "position": [
+                -156,
+                45,
+                15
+              ],
+              "id": "Chest",
+              "loot_table": "loot_tables/chests/igloo_chest.json",
+              "spawn_entity": ""
+            },
+            "brewing_stand": {
+              "position": [
+                -156,
+                46,
+                11
+              ],
+              "id": "BrewingStand",
+              "loot_table": "",
+              "spawn_entity": ""
+            },
+            "cauldron": {
+              "position": [
+                -158,
+                45,
+                11
+              ],
+              "id": "Cauldron",
+              "loot_table": "",
+              "spawn_entity": ""
+            }
+          }
+        ],
+        "reason": "Exclusive unopened igloo basement loot and actual lab displacement below matching surface furniture; absence UNKNOWN"
+      },
+      "identity": {
+        "seed": "4368694989079322414",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "settings_sha256": "219b9a7e1bbc363eddb26dc69a592b6718c89b47b77300b4f4beca95c203f149",
+      "source_report_sha256": "ae01a8b95d20dc42223f8c83bdb923ad3fbd976e740a6425317dc5cd7a4c537e",
+      "scope": "actual stopped-world lab and furniture block entities",
+      "prior_unknowns_preserved": true,
+      "cumulative_world_requests": 8,
+      "cumulative_world_seconds": 33.28352910792455
+    },
+    {
+      "case": {
+        "id": 3,
+        "seed": "3629856058375408595",
+        "world_id": "57466c6152954445a821f86b806baf2a599751d071d34dd4edba3ed66a72f2dd",
+        "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          56
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "actual": false,
+      "recognition": {
+        "value": false,
+        "plain": [
+          {
+            "origin": [
+              16,
+              66,
+              48
+            ],
+            "rotation": 1,
+            "mirror": false,
+            "matched_blocks": 59
+          }
+        ],
+        "trapped": [],
+        "laboratories": [],
+        "connected": [],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "3629856058375408595",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "settings_sha256": "53fbb141f71475e990b3f5b32c1d8033bd60236cc56a6a789634c04f35fdd215",
+      "source_report_sha256": "36a777285f3e06b1766494538cd29d910d831e2ce915e75ddd0e45414f5b13b0",
+      "scope": "actual BDS blocks",
+      "prior_unknowns_preserved": true,
+      "cumulative_world_requests": 9,
+      "cumulative_world_seconds": 59.89377556205727
+    },
+    {
+      "case": {
+        "id": 4,
+        "seed": "3792726330709425179",
+        "world_id": "bda23177a86e687d876ed6c4542cb3b8e4184ac9456a04bf25cd7a88da50a84e",
+        "observation_id": "a672f49d3f7ae120990b1313e82ae7d1bd4b08944bd5f1b9bc782c6accfa71b8",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          152
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "actual": false,
+      "recognition": {
+        "value": false,
+        "plain": [
+          {
+            "origin": [
+              16,
+              105,
+              144
+            ],
+            "rotation": 2,
+            "mirror": false,
+            "matched_blocks": 59
+          }
+        ],
+        "trapped": [],
+        "laboratories": [],
+        "connected": [],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "3792726330709425179",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "settings_sha256": "4ea250712da557c8d6f87e5ed6c49d2f682f152a9a0f293f438c7b4fa89da3d6",
+      "source_report_sha256": "ee5357ea92aa65691797d61c6f307e4bc57da1ad10647503ee679871994c6cb2",
+      "scope": "actual BDS blocks",
+      "prior_unknowns_preserved": true,
+      "cumulative_world_requests": 9,
+      "cumulative_world_seconds": 54.479195871041156
+    }
+  ],
+  "bds_budget": {
+    "protocol_sha256": "7c0127bbc3e0f3d7b8a17ba9677251d1485791555aafc683731058138ef410ca",
+    "charged_seconds": 283.5292337500723,
+    "attempted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "active": null,
+    "output_bytes": 31811231,
+    "followup_attempted": [
+      0,
+      3,
+      4
+    ],
+    "followups": [
+      {
+        "case": 0,
+        "seconds": 43.69887506903615,
+        "cumulative_world_seconds": 53.31236226903275,
+        "cumulative_world_requests": 8,
+        "status": "observed"
+      },
+      {
+        "case": 3,
+        "seconds": 13.446560560027137,
+        "cumulative_world_seconds": 59.89377556205727,
+        "cumulative_world_requests": 9,
+        "status": "observed"
+      },
+      {
+        "case": 4,
+        "seconds": 12.022484639077447,
+        "cumulative_world_seconds": 54.479195871041156,
+        "cumulative_world_requests": 9,
+        "status": "observed"
+      }
+    ]
+  },
+  "method": "Pinned independent positive laboratory signatures and positive plain-top template; no absence-only labels. Snow template ID minecraft:snow_block maps to observed Bedrock minecraft:snow; snow_layer remains distinct.",
+  "original_unknowns_retained": true
+}

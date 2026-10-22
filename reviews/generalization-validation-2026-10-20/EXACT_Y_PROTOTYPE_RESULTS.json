@@ -1,0 +1,14 @@
+{
+  "integer_quart_identical": true,
+  "cases": 98000,
+  "legacy_sha256": "1dbd7b1ca26663150bc2de0acdfa702f553fc01b69087b8ae302a859773245e8",
+  "prototype_sha256": "1dbd7b1ca26663150bc2de0acdfa702f553fc01b69087b8ae302a859773245e8",
+  "scope": "Prototype only: biome, climate vector/search-cache; five flag settings, four versions, five seeds; no primary code change",
+  "preparation_failure": "Initial wrapper tried prototype binary before compiling it; no test result from that attempt",
+  "status": "isolated_prototype_only",
+  "primary_native_changed": false,
+  "retained_historical_positives": 51,
+  "retained_historical_negatives": 2,
+  "restored_bds_exact_new_positives": 3,
+  "bds_manifest_sha256": "bbc14d21fba0455ed8f7cfe66099f34b6734575dfb7d8ffbcb00337eced72f1c"
+}

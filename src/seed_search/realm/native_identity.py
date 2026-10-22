@@ -1,8 +1,31 @@
-"""Fail closed when a private native artifact predates this source checkout."""
+"""Validate native identity at load/job boundaries, without hashing per seed.
+
+Backend construction caches successful validation for an immutable loaded runtime
+in this process. Source edits during a session require explicit native_runtime()
+preflight at the next job boundary; this cache cannot monitor later disk edits.
+Wheels without C sources require a well-formed embedded build digest, rather than
+claiming comparison with an unavailable checkout. No implicit rebuild occurs.
+"""
 import hashlib
+import os
 from pathlib import Path
+import re
+import threading
 
 ROOT = Path(__file__).resolve().parents[3]
+_VALIDATION_LOCK = threading.RLock()
+# Strong references prevent id reuse from accepting a different ffi/lib pair.
+_VALIDATED_RUNTIMES = {}
+
+
+def _after_fork():
+    global _VALIDATION_LOCK, _VALIDATED_RUNTIMES
+    _VALIDATION_LOCK = threading.RLock()
+    _VALIDATED_RUNTIMES = {}
+
+
+if hasattr(os, 'register_at_fork'):
+    os.register_at_fork(after_in_child=_after_fork)
 
 
 def native_source_fingerprint():
@@ -17,11 +40,31 @@ def native_source_fingerprint():
     return hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()
 
 
-def validate_compiled_sources(ffi, lib):
-    expected=native_source_fingerprint()
-    actual=ffi.string(lib.ss_source_fingerprint()).decode() if hasattr(lib,'ss_source_fingerprint') else ''
-    if len(actual)!=64 or (expected is not None and actual!=expected):
-        raise ValueError('Compiled native sources changed; rebuild the active engine')
+def validate_compiled_sources(ffi, lib, *, force=True):
+    """Fresh explicit preflight by default; invalidate even if validation raises.
+
+    Holding one lock through validation prevents concurrent forced validation and
+    cached constructors from racing. The hot path only checks process/object IDs.
+    """
+    key = (os.getpid(), id(ffi), id(lib))
+    with _VALIDATION_LOCK:
+        if not force and key in _VALIDATED_RUNTIMES:
+            return
+        _VALIDATED_RUNTIMES.pop(key, None)
+        expected = native_source_fingerprint()
+        try:
+            ptr = lib.ss_source_fingerprint()
+            actual = ffi.string(ptr).decode('ascii') if ptr != ffi.NULL else ''
+        except (AttributeError, TypeError, UnicodeError):
+            actual = ''
+        if not re.fullmatch(r'[0-9a-fA-F]{64}', actual) or (expected is not None and actual != expected):
+            raise ValueError('Compiled native sources changed; rebuild the active engine')
+        _VALIDATED_RUNTIMES[key] = (ffi, lib)
+
+
+def ensure_runtime_validated(ffi, lib):
+    """Validate once per loaded runtime/process; failures are never cached."""
+    validate_compiled_sources(ffi, lib, force=False)
 
 
 def validate_native_sources(identity):

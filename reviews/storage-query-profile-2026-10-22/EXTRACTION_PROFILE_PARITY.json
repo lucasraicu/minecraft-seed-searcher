@@ -1,0 +1,30 @@
+{
+  "status": "PROFILE_PERTURBED_BOUNDED_SEARCH",
+  "identical": [
+    "identity",
+    "anchors",
+    "biome_names",
+    "biomes",
+    "bounds",
+    "coverage",
+    "errors",
+    "structures",
+    "realm.inventory",
+    "realm.evaluation",
+    "realm.native_pin"
+  ],
+  "differences": [
+    {
+      "path": "realm.larger_sizes.sizes.8192.candidates_evaluated",
+      "baseline": 552,
+      "profiled": 362
+    },
+    {
+      "path": "realm.larger_sizes.sizes.8192.search_budget_exhausted",
+      "baseline": false,
+      "profiled": true
+    }
+  ],
+  "selected_larger_realm_results_identical": true,
+  "interpretation": "Whole extraction profile is diagnostic,not equal-work speed measurement;fixed frozen-observation replay provides exact snapshot parity separately"
+}

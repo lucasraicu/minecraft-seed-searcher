@@ -1,0 +1,35 @@
+{
+  "seed": "-3509659830737203357",
+  "build": "BDS 1.26.52.3",
+  "predicted": 28,
+  "exact_matches": 27,
+  "mismatches": [
+    {
+      "query": [
+        -296,
+        -312
+      ],
+      "returned": [
+        -888,
+        136
+      ]
+    }
+  ],
+  "grid_queries": 64,
+  "novel_grid_locations_inside_scope": [],
+  "followup_queries": 25,
+  "followup_returns": [
+    [
+      -888,
+      136
+    ]
+  ],
+  "clean_shutdown": true,
+  "owned_containers_removed": true,
+  "wall_seconds": [
+    8.928429188090377,
+    5.588602987932973
+  ],
+  "exhaustive_count": null,
+  "physical_generation_verified": false
+}

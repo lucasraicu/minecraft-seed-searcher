@@ -18,21 +18,61 @@ DEFAULT_OUTPUT=ROOT/'runs/count-bits-2026-10-11/native'
 UNITS=['noise','biomes','layers','biomenoise','cave','generator','finders','util','quadbase','mt']
 
 
+def _c_function_source(source, declaration):
+    """Extract one definition, ignoring braces in C comments and literals.
+
+    Slicing to the next named function can accidentally capture newly inserted
+    helpers. Fail closed on an absent/incomplete definition instead.
+    """
+    if source.count(declaration) != 1:
+        raise ValueError('Mineshaft extraction requires one function definition')
+    start = source.index(declaration)
+    index, depth, state, opened = start, 0, 'code', False
+    while index < len(source):
+        char = source[index]
+        pair = source[index:index + 2]
+        if state == 'line':
+            if char == '\n': state = 'code'
+        elif state == 'block':
+            if pair == '*/': state = 'code'; index += 1
+        elif state in ('"', "'"):
+            if char == '\\': index += 1
+            elif char == state: state = 'code'
+        elif pair == '//': state = 'line'; index += 1
+        elif pair == '/*': state = 'block'; index += 1
+        elif char in ('"', "'"): state = char
+        elif char == '{': depth += 1; opened = True
+        elif char == '}':
+            depth -= 1
+            if opened and depth == 0: return source[start:index + 1] + '\n'
+            if depth < 0: break
+        elif char == ';' and not opened:
+            break
+        index += 1
+    raise ValueError('Mineshaft extraction found an incomplete function definition')
+
+
 def mineshaft_source(filters):
     """Derive a private cap-limited query without depending on first's meaning.
 
     Production first=0 means complete inventory. The pilot instead retains at
     most cap raw/qualified witnesses. Returning immediately after each emit
     prevents the next successful start from overflowing that retained prefix.
-    Assert both compiler branches were transformed; fail rather than silently
+    Assert every known compiler emission path was transformed; fail rather than silently
     compile a diagnostic with changed semantics after future source edits.
     """
-    start=filters.index('static int ss_mineshaft_query(')
-    end=filters.index('\nint ss_mineshaft_first(',start)
-    body=filters[start:end].replace('ss_mineshaft_query','pc_mineshaft_query')
+    body=_c_function_source(filters,'static int ss_mineshaft_query(').replace('ss_mineshaft_query','pc_mineshaft_query')
+    # Legacy source has one vector and one scalar emit. Current source also
+    # contains AVX2 eight-lane and four-lane tail emits: three vector + one scalar.
+    # Recognize these exact layouts rather than accepting an arbitrary site count.
+    vector_sites = 3 if '#if defined(__AVX2__)' in body else 1
+    vector_emit = 'n=emit((Pos){x*16+8,zz*16+8},xz,n,cap);'
+    scalar_emit = 'n=emit(p,xz,n,cap);'
+    if body.count(vector_emit) != vector_sites or body.count(scalar_emit) != 1:
+        raise ValueError('Mineshaft extraction changed known emit sites')
     body,count=re.subn(r'n\s*=\s*emit\([^;]+;',lambda match:match.group(0)+'if(n>=cap)return n;',body)
-    if count!=2:
-        raise ValueError(f'Mineshaft extraction expected two emit sites, found {count}')
+    if count != vector_sites + 1:
+        raise ValueError(f'Mineshaft extraction expected {vector_sites + 1} emit sites, found {count}')
     return body
 
 
@@ -49,7 +89,8 @@ def build_source(root=ROOT):
             'if(allow) {stats[2]++;int id=ss_biome(ctx,0,p.x,y,p.z);if(id<0 || id>=256 || !allow[id])continue;}\n            n=emit(p,xz,n,cap);',
     }
     for old,new in replacements.items():
-        if qualified.count(old)!=1:raise ValueError('Mineshaft qualifier emit site changed')
+        expected = (3 if '#if defined(__AVX2__)' in qualified else 1) if '(Pos)' in old else 1
+        if qualified.count(old)!=expected:raise ValueError('Mineshaft qualifier emit site changed')
         qualified=qualified.replace(old,new)
     return '#include "bridge.c"\n'+mineshaft+'\n'+qualified+'\n'+(root/'native/count_pilot.inc').read_text()
 

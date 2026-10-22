@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-10-22T10:36:54Z",
+  "source_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/spawn-correction-approved-20261021/catalog",
+  "destination_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/biome-expansion-approved-20261022/catalog-corrected",
+  "world_count": 222,
+  "checks": {
+    "source_revision": true,
+    "dest_revision": true,
+    "world_count_222": true,
+    "receipts_evaluations_identical": true,
+    "historical_snapshots_preserved": true
+  },
+  "counts": {
+    "summaries_audited": 54615,
+    "features_audited": 4041510,
+    "memberships_audited": 109438
+  },
+  "failures": [],
+  "status": "PASS",
+  "coordinate_proof_chain": {
+    "prior_audit": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/biome-expansion-approved-20261022/independent-migration-audit.json",
+    "prior_snapshot": "41b5b801c1cba9ad9de3e624f4479a18c4cf1ccd87effa2c5b009ac06ee96f2f",
+    "method": "Every final feature block and sampling identity equals the fully audited prior block; legacy payloads checked independently per mode. No skipped changed numeric data."
+  },
+  "elapsed_seconds": 329.7
+}

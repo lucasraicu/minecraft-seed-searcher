@@ -42,6 +42,12 @@ void sampleTerrainShape(
     double *offset,
     double *factor);
 
+/* Preliminary structure-biome query height for the pinned 1.26.50 research
+ * model. Quart coordinates refer to the chunk origin, not its center.
+ * This is not actual terrain elevation. The engaged-short no-hit value is 32767. */
+int getPreliminarySurfaceLevel(const BiomeNoise *bn, const TerrainShaper *ts,
+                              int biomeX, int biomeZ);
+
 /**
  * Density at block (x,y,z); caves/aquifers not included.
  * >0 means solid.

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "extraction_seconds_charged": 342.13756299600936,
+  "extraction_cap_seconds": 600,
+  "failed_attempt_seconds_included": true,
+  "private_current_logical_bytes": 1906105873,
+  "new_worker_snapshot_bytes": {
+    "c27d5a82c593": 157905574,
+    "8ff74cff4f2a": 157905343,
+    "048cd901ee8c": 157565696,
+    "200e3433e2de": 157460470
+  },
+  "workspace_new_or_modified_bytes": 77478483,
+  "owned_remaining_pytest_bytes": 8019033,
+  "current_total_logical_bytes": 2622440472,
+  "conservative_sampled_peak_including_static_extras": 2641849655,
+  "logical_disk_cap_bytes": 3221225472,
+  "observed_aggregate_rss_peak_bytes": 2131521536,
+  "aggregate_rss_cap_bytes": 4294967296,
+  "scope": "Observed benchmark trees plus actual final static worker/workspace/temp outputs; initial worker RSS peaks preserved separately. No deleted evidence or recycled allocations"
+}

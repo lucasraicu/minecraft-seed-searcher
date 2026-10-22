@@ -315,6 +315,7 @@ static inline int nb_clamp_i32(int val,int lo,int hi) {
 
 static int nb_dynamic_v3_core_bonus(const int *counts,int strong) {
     static const int temple_lut[4] = {0, 25, 45, 60};
+    static const int jt_lut[4]     = {0, 20, 40, 50};
     static const int wm_lut[3]     = {0, 45, 70};
     static const int ac_lut[5]     = {0, 20, 40, 55, 65};
     static const int sh_lut[3]     = {0, 30, 50};
@@ -322,12 +323,12 @@ static int nb_dynamic_v3_core_bonus(const int *counts,int strong) {
     static const int ba_lut[4]     = {0, 20, 35, 50};
     static const int ft_lut[4]     = {0, 20, 35, 50};
     static const int vi_lut[6]     = {0, 10, 20, 30, 40, 50};
-    static const int op_lut[4]     = {0, 15, 30, 40};
+    static const int op_lut[4]     = {0, 20, 40, 50};
     static const int tc_lut[6]     = {0, 10, 20, 30, 38, 45};
 
     int score = 0;
     score += wm_lut[nb_clamp_i32(counts[0] - 1, 0, 2)];
-    score += temple_lut[nb_clamp_i32(counts[1] - 1, 0, 3)];
+    score += jt_lut[nb_clamp_i32(counts[1], 0, 3)];
     score += temple_lut[nb_clamp_i32(counts[2] - 1, 0, 3)];
     score += om_lut[nb_clamp_i32(counts[3] - 1, 0, 3)];
     score += ac_lut[nb_clamp_i32(counts[4] - 2, 0, 4)];
@@ -709,6 +710,156 @@ static int nb_dynamic_optional(NBWorker *w,const int *bounds,int slot,NBObservat
     }
     return nb_copy(w,&o->viable,w->scratch,n);
 }
+/* Bounded 8-block count raster: exact rectangle differences, not a lossy
+ * occupancy bitmask (multiple structures can share a raster cell). */
+#define NB_REF_SIDE 245
+#define NB_REF_STRIDE 246
+#define NB_REF_PLANE (NB_REF_STRIDE*NB_REF_STRIDE)
+#define NB_REF_CENTERS (NB_REF_SIDE*NB_REF_SIDE)
+static int nb_refine_reader(const NBRefinementInput *in,NBWorker *reader) {
+    if(!in||!in->policy||!in->macro||!in->optional||!in->strong||
+       !in->palette_prefix||!in->nether_prefix||!in->scenic_river||
+       in->policy->overworld_half!=1024||in->policy->nether_half!=512||
+       !in->policy->dynamic_v2||in->bastion_count<0||in->bastion_count>32||
+       in->bastion_count!=in->macro[11].viable.n||
+       (in->bastion_count&&!in->bastion_variants))return -1;
+    memset(reader,0,sizeof(*reader));reader->p=in->policy;
+    reader->dyn_scenic_river=(int*)in->scenic_river;
+    reader->dyn_village_sep=(unsigned char*)in->village_sep;
+    reader->dyn_bastion_n=in->bastion_count;
+    for(int i=0;i<in->bastion_count;i++)reader->dyn_bastion_variants[i]=in->bastion_variants[i];
+    for(int k=0;k<19;k++) {
+        const NBPoints *p=k<13?&in->macro[k].viable:k==13?in->strong:&in->optional[k-14].viable;
+        if(p->n<0||p->n>100000||(p->n&&!p->xz))return -1;
+        if(k==0&&p->n&&!in->macro[0].mansion_ids)return -1;
+        for(int i=0;i<p->n;i++)if(p->xz[2*i]<-1000000||p->xz[2*i]>1000000||p->xz[2*i+1]<-1000000||p->xz[2*i+1]>1000000)return -1;
+    }
+    if(in->macro[5].viable.n>=3&&!in->village_sep)return -1;
+    return 0;
+}
+static void nb_refine_counts(const NBRefinementInput *in,int *raster,int threads) {
+#ifdef _OPENMP
+    #pragma omp parallel for schedule(static) num_threads(threads) if(!omp_in_parallel() && threads>1)
+#endif
+    for(int k=0;k<19;k++) {
+        const NBPoints *p=k<13?&in->macro[k].viable:k==13?in->strong:&in->optional[k-14].viable;
+        int *a=raster+k*NB_REF_PLANE,nether=k==10||k==11;
+        for(int i=0;i<p->n;i++) {
+            if(k==0&&in->macro[0].mansion_ids[i]!=in->policy->dark_id)continue;
+            int px=p->xz[2*i],pz=p->xz[2*i+1];
+            int half=nether?4096:1024,scale=nether?8:1;
+            int lx=-floordiv(-(scale*px-half+1+976),8),hx=floordiv(scale*px+half+976,8);
+            int lz=-floordiv(-(scale*pz-half+1+976),8),hz=floordiv(scale*pz+half+976,8);
+            if(lx<0)lx=0;if(lz<0)lz=0;if(hx>=NB_REF_SIDE)hx=NB_REF_SIDE-1;if(hz>=NB_REF_SIDE)hz=NB_REF_SIDE-1;
+            if(lx>hx||lz>hz)continue;
+            a[lx*NB_REF_STRIDE+lz]++;a[(hx+1)*NB_REF_STRIDE+lz]--;
+            a[lx*NB_REF_STRIDE+hz+1]--;a[(hx+1)*NB_REF_STRIDE+hz+1]++;
+        }
+        for(int ix=0;ix<NB_REF_SIDE;ix++)for(int iz=0;iz<NB_REF_SIDE;iz++) {
+            int j=ix*NB_REF_STRIDE+iz;
+            if(ix)a[j]+=a[j-NB_REF_STRIDE];if(iz)a[j]+=a[j-1];
+            if(ix&&iz)a[j]-=a[j-NB_REF_STRIDE-1];
+        }
+    }
+}
+static NBRefinementResult nb_refine_point(const NBRefinementInput *in,NBWorker *reader,
+                                         const int *raster,int x,int z) {
+    NBRefinementResult r={0};r.x=x;r.z=z;r.grid_step=(x%16||z%16)?8:16;
+    if(x < -976||x>976||z < -976||z>976||x%8||z%8)return r;
+    int counts[13],opt[5],strong,at=((x+976)/8)*NB_REF_STRIDE+(z+976)/8;
+    strong=raster[13*NB_REF_PLANE+at];if(!strong)return r;
+    for(int k=0;k<13;k++) {
+        counts[k]=raster[k*NB_REF_PLANE+at];
+        int goal=k<10?in->policy->goals[k]:k==10?in->policy->nether_goal:k==11?in->policy->bastion_goal:in->policy->outpost_goal;
+        if(counts[k]<in->policy->floors[k]||counts[k]<goal)return r;
+    }
+    unsigned int mask=nb_dynamic_palette_mask(in->palette_prefix,x,z,1024);
+    if(!nb_biomes_ok(reader,mask)||!nb_dynamic_nether_ok(in->nether_prefix,x,z,512))return r;
+    for(int k=0;k<5;k++)opt[k]=raster[(14+k)*NB_REF_PLANE+at];
+    r.score=nb_dynamic_v3_core_bonus(counts,strong)+nb_dynamic_v3_optional(opt)+
+        nb_dynamic_v3_biome_bonus(mask>>13)+nb_dynamic_v3_hub(in->macro,x,z,NULL,1024)+
+        nb_dynamic_v3_nether_core(in->macro,x,z)+
+        25*nb_dynamic_check_scenic_pair(reader,x,z,NULL,NULL,1024)+
+        25*nb_dynamic_check_village_spread(reader,&in->macro[5].viable,x,z,NULL,1024)+
+        20*nb_dynamic_check_treasure_bastion(reader,&in->macro[11].viable,x,z);
+    int64_t sx,sz;int weight;
+    nb_dynamic_centroid(in->macro,in->strong,x,z,&sx,&sz,&weight,in->policy->dark_id,nb_centroid_weights_v3,1024);
+    r.radial=nb_dynamic_radial(in->macro,in->strong,x,z,weight,in->policy->dark_id,nb_centroid_weights_v3,1024);
+    r.radial_key=(int)floor(r.radial*1e6+0.5);r.found=1;return r;
+}
+static int nb_refine_better(const NBRefinementResult *a,const NBRefinementResult *b) {
+    if(!a->found)return 0;if(!b->found)return 1;
+    if(a->score!=b->score)return a->score>b->score;
+    if(a->radial_key!=b->radial_key)return a->radial_key<b->radial_key;
+    int64_t da=(int64_t)a->x*a->x+(int64_t)a->z*a->z,db=(int64_t)b->x*b->x+(int64_t)b->z*b->z;
+    if(da!=db)return da<db;
+    return a->x!=b->x?a->x<b->x:a->z<b->z;
+}
+static int nb_refine_impl(const NBRefinementInput *in,int step,int threads,
+                          NBRefinementResult *out,NBWorker *owner) {
+    NBWorker reader;double started=nb_time();
+    if(!out||(step!=0&&step!=8&&step!=16)||threads<1||threads>36||nb_refine_reader(in,&reader))return -1;
+    memset(out,0,sizeof(*out));
+    size_t bytes=19*(size_t)NB_REF_PLANE*sizeof(int);
+    int *raster=owner?nb_alloc(owner,bytes,1):calloc(19*NB_REF_PLANE,sizeof(int));
+    if(!raster)return -3;
+    nb_refine_counts(in,raster,threads);
+    NBRefinementResult *results=owner?nb_alloc(owner,NB_REF_CENTERS*sizeof(*results),1):calloc(NB_REF_CENTERS,sizeof(*results));
+    unsigned char *fine=owner?nb_alloc(owner,NB_REF_CENTERS,1):calloc(NB_REF_CENTERS,1);
+    if(!results||!fine){free(raster);free(results);free(fine);return -3;}
+    int coarse=0,nfine=0;
+    /* Readers share immutable caches only. Never nest OMP inside a seed worker. */
+#ifdef _OPENMP
+    #pragma omp parallel for schedule(static) num_threads(threads) if(!omp_in_parallel() && threads>1)
+#endif
+    for(int j=0;j<NB_REF_CENTERS;j++) {
+        int ix=j/NB_REF_SIDE,iz=j%NB_REF_SIDE,x=-976+ix*8,z=-976+iz*8;
+        if(step!=8&&(x%16||z%16))continue;
+        results[j]=nb_refine_point(in,&reader,raster,x,z);
+    }
+    for(int j=0;j<NB_REF_CENTERS;j++) {
+        int x=-976+(j/NB_REF_SIDE)*8,z=-976+(j%NB_REF_SIDE)*8;
+        if(step!=8&&(x%16||z%16))continue;
+        coarse++;if(nb_refine_better(results+j,out))*out=results[j];
+    }
+    /* Explicit local search around every coarse center within two score points.
+     * This is a union of local windows, never advertised as global 8-grid optimal. */
+    if(step==0&&out->found) {
+        int peaks=0;
+        for(int j=0;j<NB_REF_CENTERS;j++)if(results[j].found&&results[j].score>=out->score-2)peaks++;
+        if(peaks>1) {
+            for(int j=0;j<NB_REF_CENTERS;j++)if(results[j].found&&results[j].score>=out->score-2) {
+                int ix=j/NB_REF_SIDE,iz=j%NB_REF_SIDE;
+                for(int dx=-3;dx<=4;dx++)for(int dz=-3;dz<=4;dz++) {
+                    int xx=ix+dx,zz=iz+dz;
+                    if(xx>=0&&xx<NB_REF_SIDE&&zz>=0&&zz<NB_REF_SIDE&&((xx&1)||(zz&1)))fine[xx*NB_REF_SIDE+zz]=1;
+                }
+            }
+#ifdef _OPENMP
+            #pragma omp parallel for schedule(static) num_threads(threads) if(!omp_in_parallel() && threads>1)
+#endif
+            for(int j=0;j<NB_REF_CENTERS;j++)if(fine[j])
+                results[j]=nb_refine_point(in,&reader,raster,-976+(j/NB_REF_SIDE)*8,-976+(j%NB_REF_SIDE)*8);
+            for(int j=0;j<NB_REF_CENTERS;j++)if(fine[j]) {
+                nfine++;if(nb_refine_better(results+j,out))*out=results[j];
+            }
+        }
+    }
+    out->coarse_points=coarse;out->fine_points=nfine;out->seconds=nb_time()-started;
+    free(raster);free(results);free(fine);return 0;
+}
+int nb_dynamic_v3_refine_center(const NBRefinementInput *in,int step,int threads,NBRefinementResult *out) {
+    return nb_refine_impl(in,step,threads,out,NULL);
+}
+int nb_dynamic_v3_score_centers(const NBRefinementInput *in,const int *xz,int count,NBRefinementResult *out) {
+    NBWorker reader;
+    if(!xz||!out||count<1||count>60025||nb_refine_reader(in,&reader))return -1;
+    int *raster=calloc(19*NB_REF_PLANE,sizeof(int));if(!raster)return -3;
+    nb_refine_counts(in,raster,1);
+    for(int i=0;i<count;i++)out[i]=nb_refine_point(in,&reader,raster,xz[2*i],xz[2*i+1]);
+    free(raster);return 0;
+}
+
 /* Raw starts are a superset of viable starts. Explore ALL raw co-window cells,
  * then use only their enclosing union bounds as an OW scan upper bound. A
  * single arbitrarily chosen pair would incorrectly discard valid alternatives. */
@@ -1020,6 +1171,17 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     static const int remaining_ow_order[5] = {5, 8, 6, 7, 9};
     for(int i=0;i<5;i++) {
         int k=remaining_ow_order[i];
+        if(k==9 && !w->p->refine_centers && w->p->cutoff_score > 0 && w->p->dynamic_v2) {
+            int macro_counts[13];
+            for(int m=0;m<13;m++) macro_counts[m] = macro[m].viable.n;
+            macro_counts[9] = 20; /* Maximum possible mineshaft score saturation */
+            int max_core = is_v3 ? nb_dynamic_v3_core_bonus(macro_counts, r->discovery.n)
+                                 : nb_dynamic_v2_core_bonus(macro_counts, r->discovery.n);
+            int max_potential = max_core + (is_v3 ? 600 : 389);
+            if(max_potential < w->p->cutoff_score) {
+                goto done;
+            }
+        }
         stage=nb_time();code=nb_pair(w,k,feasible,&macro[k]);if(code)goto done;
         r->stage_seconds[k+1]+=nb_time()-stage;
         if(macro[k].viable.n<w->p->floors[k])goto done;
@@ -1029,7 +1191,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
 #endif
     g_diag_pass_all_structures_macro++;
     stage=nb_time();
-    if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
+    if(!w->p->refine_centers && w->p->cutoff_score > 0 && w->p->dynamic_v2) {
         int macro_counts[13];
         for(int k=0;k<13;k++) macro_counts[k] = macro[k].viable.n;
         int max_core = is_v3 ? nb_dynamic_v3_core_bonus(macro_counts, r->discovery.n)
@@ -1117,7 +1279,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         if(fatal||deficit>w->p->max_misses)continue;
         int cell_core = is_v3 ? nb_dynamic_v3_core_bonus(counts, strong)
                               : nb_dynamic_v2_core_bonus(counts, strong);
-        if(w->p->cutoff_score > 0 && w->p->dynamic_v2) {
+        if(!w->p->refine_centers && w->p->cutoff_score > 0 && w->p->dynamic_v2) {
             int cell_max_potential = cell_core + (is_v3 ? 600 : 389);
             if(cell_max_potential < w->p->cutoff_score) continue;
         }
@@ -1139,7 +1301,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
         seed_had_biome=1;
         if(w->p->dynamic_v2) {
             int lux=is_v3 ? nb_dynamic_v3_biome_bonus(mask>>13) : nb_dynamic_v2_biome_bonus(mask>>13);
-            if(w->p->cutoff_score > 0) {
+            if(!w->p->refine_centers && w->p->cutoff_score > 0) {
                 int max_rem = is_v3 ? 335 : (129 + 95);
                 if(cell_core + lux + max_rem < w->p->cutoff_score) continue;
             }
@@ -1150,7 +1312,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             int opt_counts[5];
             for(int k=0;k<5;k++)opt_counts[k]=nb_dynamic_count(&optional[k].viable,x,z,ow_half,0,NULL,0);
             int opt=is_v3 ? nb_dynamic_v3_optional(opt_counts) : 0;
-            if(w->p->cutoff_score > 0 && is_v3) {
+            if(!w->p->refine_centers && w->p->cutoff_score > 0 && is_v3) {
                 if(cell_core + lux + opt + 135 < w->p->cutoff_score) continue;
             }
             if(!scenic_cached) {
@@ -1186,7 +1348,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             } else {
                 total_score=core+opt+lux+hub+(scenic?20:0)+(spread?15:0)-penalty;
             }
-            if(w->p->cutoff_score > 0 && total_score < w->p->cutoff_score) continue;
+            if(!w->p->refine_centers && w->p->cutoff_score > 0 && total_score < w->p->cutoff_score) continue;
             cells[ncells++]=(NBDynamicCell){x,z,def_count,total_score,
                 nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id,weights,ow_half)};
         } else {
@@ -1194,7 +1356,7 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
             int score=nb_dynamic_score_values(counts,strong,mask>>13,hub);
             const int optional_points[5]={20,15,15,10,10};
             for(int k=0;k<5;k++)score+=optional_points[k]*nb_dynamic_count(&optional[k].viable,x,z,ow_half,0,NULL,0);
-            if(w->p->cutoff_score > 0 && score < w->p->cutoff_score) continue;
+            if(!w->p->refine_centers && w->p->cutoff_score > 0 && score < w->p->cutoff_score) continue;
             cells[ncells++]=(NBDynamicCell){x,z,deficit,score,
                 nb_dynamic_radial(macro,&r->discovery,x,z,weight,w->p->dark_id,weights,ow_half)};
         }
@@ -1218,6 +1380,18 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     } else {
         for(int i=1;i<ncells;i++) if(nb_dynamic_cellcmp(&cells[i],&cells[best])<0) best=i;
     }
+    NBDynamicCell original=cells[best];
+    NBRefinementResult refined={0};
+    if(is_v3 && w->p->refine_centers) {
+        NBRefinementInput input={w->p,macro,optional,&r->discovery,prefix,nether_prefix,
+            w->dyn_scenic_river,w->dyn_village_sep,w->dyn_bastion_variants,w->dyn_bastion_n};
+        code=nb_refine_impl(&input,0,1,&refined,w);if(code)goto done;
+        if(refined.found) {
+            NBDynamicCell candidate={refined.x,refined.z,0,refined.score,refined.radial};
+            if(nb_dynamic_cellcmp_v2(&candidate,&cells[best])<0)cells[best]=candidate;
+        }
+        if(cells[best].score<w->p->cutoff_score)goto done;
+    }
     r->stage_seconds[13]+=nb_time()-stage;
     stage=nb_time();
     int chosen=best;
@@ -1226,6 +1400,13 @@ static int nb_eval_dynamic(NBWorker *w,uint64_t seed,NBResult *r) {
     stage=nb_time();
     r->anchors=nb_alloc(w,sizeof(NBAnchor),1);if(!r->anchors){code=-3;goto done;}
     r->nanchors=1;NBAnchor *a=r->anchors;a->x=cells[chosen].x;a->z=cells[chosen].z;
+    if(is_v3 && w->p->refine_centers) {
+        a->centroid_x=original.x;a->centroid_z=original.z;a->centroid_score=original.score;
+        a->refinement_grid_step=(a->x%16||a->z%16)?8:16;
+        a->refinement_coarse_points=refined.coarse_points;
+        a->refinement_fine_points=refined.fine_points;
+        a->refinement_seconds=refined.seconds;
+    }
 #ifdef _OPENMP
     #pragma omp atomic
 #endif

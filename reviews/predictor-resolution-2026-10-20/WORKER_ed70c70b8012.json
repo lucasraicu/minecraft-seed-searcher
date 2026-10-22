@@ -1,0 +1,19 @@
+{
+  "task_id": "ed70c70b8012",
+  "role": "review",
+  "state": "failed",
+  "created": 1792533801.73837,
+  "updated": 1792533805.918255,
+  "worker_id": "gemini-1",
+  "objective": "TOOL-FREE independent High critique of user-approved four-step predictor resolution plan. Focus biome cave-selection and separate village/outpost/static-stronghold mismatches: identify missing cases, plausible source-level causes and falsifiable minimal experiment design, avoiding overfit or blanket",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "error": "Context files exceed 30,000 bytes; select narrower context",
+    "completed": 1792533805.9181309
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/ed70c70b8012",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

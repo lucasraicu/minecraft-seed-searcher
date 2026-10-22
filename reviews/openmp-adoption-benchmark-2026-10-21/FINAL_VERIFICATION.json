@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "new_personal_pid": 77988,
+  "old_personal_pid": 60144,
+  "selected_native": {
+    "path": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-corrected-openmp-2026-10-21",
+    "digest": "3fbb286e4f06a4726e3c1e7216a5aad4d30f2abc6b0bf7b97532bf085b372687",
+    "loaded": false,
+    "source": "selected_on_disk"
+  },
+  "personal_run": "web-sweep-20261020-143452-e5161c27",
+  "personal_seed": "-3336796033057908633",
+  "personal_score": 336.0,
+  "personal_status": "completed",
+  "personal_run_files_unchanged": 2,
+  "catalog_files_unchanged": 2494,
+  "catalog_snapshot": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+  "query_workers": {
+    "limit": 2,
+    "ready": 2,
+    "busy": 0,
+    "starting": 0,
+    "restart_exhausted": false,
+    "pids": [
+      77100,
+      77101
+    ],
+    "startup_seconds": 0.26392690499778837
+  },
+  "proxy_passed": true,
+  "benchmark_phases_terminal": true,
+  "scope": "Restart and bounded replay benchmarking only;personal saved run remainsselected;no livecatalog publication or source/binary changes"
+}

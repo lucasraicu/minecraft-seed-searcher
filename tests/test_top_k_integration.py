@@ -91,14 +91,25 @@ def test_top_k_pruning_admissibility():
     with proto.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=0) as b_full:
         recs_full = b_full.records()
         observed_score = recs_full[0]['anchors'][0]['baseline_score_observed']
-        assert observed_score == 479
+        from seed_search.realm.blueprint import dynamic_v3_score
+        anchor = recs_full[0]['anchors'][0]
+        counts = {name: len(row['coordinates'])
+                  for group in ('required_structures', 'required_nether_structures')
+                  for name, row in anchor[group].items()}
+        optional = {name: len(row['coordinates']) for name, row in anchor['optional_structures'].items()}
+        independent = dynamic_v3_score(counts, anchor['biomes']['raw_names'],
+            hub=anchor['hub_bonus'], scenic=anchor['scenic_bonus'],
+            village_spread=anchor['village_spread_bonus'], treasure_bastion=anchor['treasure_bastion'],
+            optional_counts=optional, targets=anchor['configured_targets'],
+            nether_core=anchor['nether_core_bonus'])[0]
+        assert observed_score == independent == 484
 
-    # 2. Sweep with tracker seeded with candidate: cutoff = 479
+    # 2. Seed the tracker from the independently verified current fixture.
     tracker = Top50Tracker(capacity=1)
     tracker.observe(recs_full[0])
-    assert tracker.cutoff_score() == 479
+    assert tracker.cutoff_score() == observed_score
 
-    # A seed that can achieve >= 479 is retained
+    # A seed meeting the independently verified cutoff is retained
     with proto.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score()) as b_retained:
         recs_retained = b_retained.records()
         assert len(recs_retained[0]['anchors']) == 1

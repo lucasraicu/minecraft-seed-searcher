@@ -102,7 +102,7 @@ def test_v3_floors_and_zero_misses():
     assert floors['trial_chamber'] == 8
     assert floors['ancient_city'] == 2
     assert floors['desert_pyramid'] == 1
-    assert floors['jungle_temple'] == 1
+    assert 'jungle_temple' not in floors or floors['jungle_temple'] == 0
     assert floors['monument'] == 1
     assert floors['ruined_portal'] == 8
     assert floors['shipwreck'] == 4
@@ -120,7 +120,7 @@ def test_v3_dynamic_scoring_pure_additive():
     baseline_counts = {
         'stronghold': 1, 'mansion': 1, 'monument': 1, 'village': 6,
         'trial_chamber': 8, 'ancient_city': 2, 'desert_pyramid': 1,
-        'jungle_temple': 1, 'outpost': 1, 'fortress': 1, 'bastion': 2,
+        'jungle_temple': 0, 'outpost': 1, 'fortress': 1, 'bastion': 2,
         'ruined_portal': 8, 'shipwreck': 4, 'mineshaft': 10
     }
     score, comp, defs = dynamic_v3_score(baseline_counts)
@@ -156,22 +156,22 @@ def test_v3_dynamic_scoring_pure_additive():
     s, _, _ = dynamic_v3_score(counts)
     assert s == 50
 
-    # 4. Outpost (F=1): 2nd = +15, 3rd = +15, 4th+ = +10 (+40 max)
+    # 4. Outpost (F=1): 2nd = +20, 3rd = +20, 4th+ = +10 (+50 max)
     counts = dict(baseline_counts, outpost=1)
     s, _, _ = dynamic_v3_score(counts)
     assert s == 0
     counts = dict(baseline_counts, outpost=2)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 15
+    assert s == 20
     counts = dict(baseline_counts, outpost=3)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 30
+    assert s == 40
     counts = dict(baseline_counts, outpost=4)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 40
+    assert s == 50
     counts = dict(baseline_counts, outpost=5)
     s, _, _ = dynamic_v3_score(counts)
-    assert s == 40
+    assert s == 50
 
     # 5. Fortress: 2nd = +20, 3rd = +15, 4th+ = +15 (+50 max)
     counts = dict(baseline_counts, fortress=1)
@@ -225,8 +225,8 @@ def test_v3_dynamic_scoring_pure_additive():
         s, _, _ = dynamic_v3_score(counts)
         assert s == expected_pts
 
-    # 11. Jungle Temple: 2nd = +25, 3rd = +20, 4th+ = +15 (Max +60)
-    jt_ladder = [(1, 0), (2, 25), (3, 45), (4, 60), (5, 60)]
+    # 11. Jungle Temple: 1st = +20, 2nd = +20, 3rd+ = +10 (Max +50)
+    jt_ladder = [(0, 0), (1, 20), (2, 40), (3, 50), (4, 50)]
     for jt_cnt, expected_pts in jt_ladder:
         counts = dict(baseline_counts, jungle_temple=jt_cnt)
         s, _, _ = dynamic_v3_score(counts)
@@ -414,7 +414,7 @@ def test_v3_cutoff_score_pruning():
         assert len(records) == 1
         assert len(records[0]['anchors']) == 1
         observed_score = records[0]['anchors'][0]['baseline_score_observed']
-        assert observed_score == 479
+        assert observed_score == 484
 
     # Exact boundary: cutoff == observed_score must retain
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=observed_score) as batch:
@@ -436,7 +436,7 @@ def test_v3_cutoff_score_pruning():
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() or 0) as batch:
         records = batch.records()
         tracker.observe(records[0])
-    assert tracker.cutoff_score() == 479
+    assert tracker.cutoff_score() == 484
 
     # Next sweep with tracker's cutoff score prunes anything strictly less than 479
     with p.sweep([456], fixtures=[(0, 0, -1)], cutoff_score=tracker.cutoff_score() + 1) as batch:
@@ -460,7 +460,6 @@ def test_v3_candidate_rescore_idempotence():
             'trial_chamber': {'predicted_viable': [[i * 50, i * 50] for i in range(1, 10)]},
             'ancient_city': {'predicted_viable': [[200, 200], [400, 400], [600, 600]]},
             'desert_pyramid': {'predicted_viable': [[150, 150], [300, 300]]},
-            'jungle_temple': {'predicted_viable': [[250, 250]]},
             'monument': {'predicted_viable': [[350, 350]]},
             'outpost': {'predicted_viable': [[450, 450]]},
             'ruined_portal': {'predicted_viable': [[i * 40, -i * 40] for i in range(1, 13)]},
@@ -472,6 +471,7 @@ def test_v3_candidate_rescore_idempotence():
             'bastion': {'predicted_viable': [[20, 20], [60, 60]]},
         },
         'optional_structures': {
+            'jungle_temple': {'predicted_viable': []},
             'swamp_hut': {'predicted_viable': []},
             'trail_ruins': {'predicted_viable': []},
             'igloo': {'predicted_viable': []},
@@ -624,7 +624,7 @@ def test_v3_outpost_floor_one_qualification_and_scoring():
     baseline_counts = {
         'stronghold': 1, 'mansion': 1, 'monument': 1, 'village': 6,
         'trial_chamber': 8, 'ancient_city': 2, 'desert_pyramid': 1,
-        'jungle_temple': 1, 'outpost': 1, 'fortress': 1, 'bastion': 2,
+        'jungle_temple': 0, 'outpost': 1, 'fortress': 1, 'bastion': 2,
         'ruined_portal': 8, 'shipwreck': 4, 'mineshaft': 10
     }
     # Meeting floor gives 0 bonus points
@@ -632,25 +632,25 @@ def test_v3_outpost_floor_one_qualification_and_scoring():
     assert s1 == 0
     assert defs1 == []
 
-    # 2nd outpost = +15
+    # 2nd outpost = +20
     s2, comp2, _ = dynamic_v3_score(dict(baseline_counts, outpost=2))
-    assert s2 == 15
-    assert comp2['core_surplus'] == 15
+    assert s2 == 20
+    assert comp2['core_surplus'] == 20
 
-    # 3rd outpost = +15 (30 total)
+    # 3rd outpost = +20 (40 total)
     s3, comp3, _ = dynamic_v3_score(dict(baseline_counts, outpost=3))
-    assert s3 == 30
-    assert comp3['core_surplus'] == 30
+    assert s3 == 40
+    assert comp3['core_surplus'] == 40
 
-    # 4th outpost = +10 (40 total)
+    # 4th outpost = +10 (50 total)
     s4, comp4, _ = dynamic_v3_score(dict(baseline_counts, outpost=4))
-    assert s4 == 40
-    assert comp4['core_surplus'] == 40
+    assert s4 == 50
+    assert comp4['core_surplus'] == 50
 
-    # 5th outpost capped at 40
+    # 5th outpost capped at 50
     s5, comp5, _ = dynamic_v3_score(dict(baseline_counts, outpost=5))
-    assert s5 == 40
-    assert comp5['core_surplus'] == 40
+    assert s5 == 50
+    assert comp5['core_surplus'] == 50
 
 
 def test_top50_tracker_seed_deduplication_and_deepcopy():

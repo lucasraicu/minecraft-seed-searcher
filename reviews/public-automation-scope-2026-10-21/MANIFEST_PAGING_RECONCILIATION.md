@@ -1,0 +1,16 @@
+GeminiHigh274b63ced4c4 succeeded,771.24s provider,exit0/denied[],22declared
+storechecks pass. Baselineownedfiles unchanged; patchSHA52ec682ceea367bfdc3f5844b5c4a7e800ca656cc80c233cab55347ef3f33d27
+reviewedand integrated. LegacyCatalogStore prefixunchanged.
+
+Codexfound/correctedadditional issues: approximate80-bytepageheader could reject
+validexact-boundarypages; nowactualcanonicalheader/count/comma length. Reader
+nowenforces4MiBpagecap andstrictintegerpagecounts, rejects emptyindexes. Index
+pagecap enforcedbeforeeachCASwrite. Reusingpendinggenerationbinding validates
+exactschemaandactualresolvedlogicaldigest BEFOREpublishingpointer, preventing
+corruptmetadata re-publication. Newboundary/pendingbinding/counter regressions
+plusoldstore/paging/query suite:29tests pass. Immutablehistory/pins/resumables,
+allpageGCrootsandfaultwindows retained. PagedlogicalSHA stable;16MiBCAScap
+unchanged, page<=4MiB,<=2048rows,<=1024refs. No newdatabaseengine/service.
+
+Actual500world/load/queryvalidationstillpending. Priorreview's250ms/200MB
+claims areestimateswithoutmeasurementandarenotacceptedreportedperformance.

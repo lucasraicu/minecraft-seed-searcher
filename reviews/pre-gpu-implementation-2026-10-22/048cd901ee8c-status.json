@@ -1,0 +1,31 @@
+{
+  "task_id": "048cd901ee8c",
+  "role": "review",
+  "state": "failed",
+  "created": 1792696713.613309,
+  "updated": 1792696900.571744,
+  "worker_id": "gemini-1",
+  "objective": "High independent TOOL-FREE source critique of SERVING_SOURCE_REVIEW.md. Inspect exact embedded source, identify concrete numerical/cursor/integrity/recovery/cache correctness or resource risks. No tools/commands/file reads beyond context, no edits/tests/notification. Do not assume design correct; co",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 180,
+    "effective_timeout_seconds": 180,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "e37c72dd5c8b6b46b98fe975232f1dc07cd5cf6b8616b8e89ea6a0e4dffd9199",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792696720.069924,
+    "error": "timeout",
+    "timeout_phase": "model",
+    "elapsed_seconds": 180.507,
+    "completed": 1792696900.571351,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 179470336
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/048cd901ee8c",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

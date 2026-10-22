@@ -11,7 +11,11 @@ ALIASES={
     'cold_taiga':'snowy_taiga','cold_taiga_hills':'snowy_taiga','cold_taiga_mutated':'snowy_taiga',
     'mega_taiga':'old_growth_pine_taiga','mega_taiga_hills':'old_growth_pine_taiga',
     'mega_spruce_taiga':'old_growth_spruce_taiga','mega_spruce_taiga_mutated':'old_growth_spruce_taiga',
-    'mega_taiga_mutated':'taiga','redwood_taiga_mutated':'taiga','redwood_taiga_hills_mutated':'taiga','taiga_mutated':'taiga',
+    'mega_taiga_mutated':'taiga','taiga_mutated':'taiga',
+    # Mojang's mega + mutated + forest + taiga tags identify Old Growth Spruce
+    # Taiga (also explicit in vanilla wolf's chestnut variant filter).
+    'redwood_taiga_mutated':'old_growth_spruce_taiga',
+    'redwood_taiga_hills_mutated':'old_growth_spruce_taiga',
     'jungle_mutated':'jungle','jungle_edge_mutated':'sparse_jungle',
     'extreme_hills_plus_trees':'windswept_forest','extreme_hills_plus_trees_mutated':'windswept_forest',
     'extreme_hills':'windswept_hills','extreme_hills_mutated':'windswept_gravelly_hills',

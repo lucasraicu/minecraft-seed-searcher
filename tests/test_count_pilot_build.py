@@ -15,11 +15,11 @@ def test_mineshaft_extraction_caps_both_compiler_paths_independent_of_first_poli
     old_filters=filters.replace('n<0 || (first && n>=first)','n<0 || first')
     for source in (filters,old_filters):
         fragment=mineshaft_source(source)
-        assert fragment.count('if(n>=cap)return n;')==2
+        assert fragment.count('if(n>=cap)return n;')==4
         assert '#if defined(__GNUC__) || defined(__clang__)' in fragment
-    with pytest.raises(ValueError,match='two emit sites'):
+    with pytest.raises(ValueError,match='emit sites'):
         mineshaft_source(filters.replace('n=emit(p,xz,n,cap);','n=0;'))
-    assert build_source().count('if(n>=cap)return n;')==4
+    assert build_source().count('if(n>=cap)return n;')==8
 
 
 def test_fresh_count_pilot_build_preserves_positive_mineshaft_caps(tmp_path):
@@ -72,3 +72,32 @@ print(json.dumps(dict(checked=checked,positive_over_cap=positive,qualified_over_
     assert evidence['positive_over_cap']>0 and evidence['qualified_over_cap']>0
     (output/'parity.json').write_text(json.dumps(evidence,indent=2)+'\n')
     if frozen_before is not None:assert frozen.read_bytes()==frozen_before
+
+
+def test_extraction_ignores_intervening_helper_comments_and_literal_braces():
+    source = r'''static int ss_mineshaft_query(void) {
+    const char *label = "brace } and escaped \" quote";
+    /* A misleading closing brace: } */
+    // And another: }
+    #if defined(__GNUC__) || defined(__clang__)
+    n=emit((Pos){x*16+8,zz*16+8},xz,n,cap);
+    #else
+    n=emit(p,xz,n,cap);
+    #endif
+    return n;
+}
+static int unrelated_helper(void) { n=emit(p,xz,n,cap); return n; }
+int ss_mineshaft_first(void) { return 0; }
+'''
+    fragment = mineshaft_source(source)
+    assert fragment.count('if(n>=cap)return n;') == 2
+    assert 'unrelated_helper' not in fragment
+    assert 'ss_mineshaft_first' not in fragment
+
+
+@pytest.mark.parametrize('source', ['', 'static int ss_mineshaft_query(void);',
+                                   'static int ss_mineshaft_query(void) { /* }',
+                                   'static int ss_mineshaft_query(void) { "}";'])
+def test_extraction_fails_closed_for_incomplete_function(source):
+    with pytest.raises(ValueError, match='Mineshaft extraction'):
+        mineshaft_source(source)

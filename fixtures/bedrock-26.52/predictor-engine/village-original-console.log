@@ -1,0 +1,238 @@
+NO LOG FILE! - setting up server logging...
+[2026-10-20 17:43:10:940 INFO] Starting Server
+[2026-10-20 17:43:10:940 INFO] Version: 1.26.52.3
+[2026-10-20 17:43:10:940 INFO] Session ID: 65485811-ebd9-4e3d-88fd-5baee8afeb25
+[2026-10-20 17:43:10:940 INFO] Build ID: 51798919
+[2026-10-20 17:43:10:940 INFO] Branch: r/26_u5
+[2026-10-20 17:43:10:940 INFO] Commit ID: 54116bb5ee0b7aee0b5591efbcc8bc3cf64f168a
+[2026-10-20 17:43:10:940 INFO] Configuration: Publish
+[2026-10-20 17:43:10:941 INFO] Contents of server.properties: {}
+[2026-10-20 17:43:10:941 INFO] Level Name: spawn_audit
+[2026-10-20 17:43:10:941 INFO] Profiler config ('bootstrap.json') load result: success=1, errorMessage=(null)
+[2026-10-20 17:43:10:944 INFO] No CDN config file found at: cdn_config.json for dedicated server
+[2026-10-20 17:43:10:944 INFO] Game mode: 0 Survival
+[2026-10-20 17:43:10:944 INFO] Difficulty: 0 PEACEFUL
+[2026-10-20 17:43:10:946 INFO] Content logging to console is enabled.
+[2026-10-20 17:43:10:949 INFO] 
+
+#####################################################
+#                                                   #
+#              CREATING VANILLA WORLD               #
+#                                                   #
+#####################################################
+[2026-10-20 17:43:12:046 INFO] Content logging to disk is enabled. Writing log to: ContentLog2026-10-20_17-43-12
+[2026-10-20 17:43:12:048 INFO] Opening level 'worlds/spawn_audit/db'
+[2026-10-20 17:43:12:222 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer
+[2026-10-20 17:43:13:712 INFO] Signed in to signaling service successfully
+[2026-10-20 17:43:13:871 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-20 17:43:13:871 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-20 17:43:13:918 INFO] Server started.
+[2026-10-20 17:43:13:918 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+[2026-10-20 17:43:13:918 ERROR] Your current connection type is not set to NetherNet. In this release, NetherNet is the only supported transport type.
+[2026-10-20 17:43:13:918 ERROR] Players will not be able to connect to your game without NetherNet.
+[2026-10-20 17:43:13:918 ERROR] 
+[2026-10-20 17:43:13:918 ERROR] To switch, set 'transport=nethernet' in server.properties.
+[2026-10-20 17:43:13:918 ERROR] 
+[2026-10-20 17:43:13:918 ERROR] For more information, please reference the included bedrock_server_how_to.html file.
+[2026-10-20 17:43:13:918 ERROR] =======================================================
+[2026-10-20 17:43:13:918 INFO] ================ TELEMETRY MESSAGE ===================
+[2026-10-20 17:43:13:918 INFO] Server Telemetry is currently not enabled. 
+[2026-10-20 17:43:13:918 INFO] Enabling this telemetry helps us improve the game.
+[2026-10-20 17:43:13:918 INFO] 
+[2026-10-20 17:43:13:918 INFO] To enable this feature, add the line 'emit-server-telemetry=true'
+[2026-10-20 17:43:13:918 INFO] to the server.properties file in the handheld/src-server directory
+[2026-10-20 17:43:13:918 INFO] ======================================================
+[2026-10-20 17:43:13:938 WARN] [Scripting] SPAWN_AUDIT {"phase":"world_load","tick":0,"seed":"-3509659830737203357","defaultSpawn":{"x":7,"y":32767,"z":23},"players":0,"spawnRadius":10,"reference":"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation"}
+
+AUDIT_INPUT execute positioned -1816 100 264 run locate structure minecraft:village false
+[2026-10-20 17:43:14:177 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (0 blocks away)
+AUDIT_INPUT execute positioned -1480 100 -344 run locate structure minecraft:village false
+[2026-10-20 17:43:14:223 INFO] The nearest minecraft:village is at block -1480, (y?), -344 (0 blocks away)
+AUDIT_INPUT execute positioned -1464 100 248 run locate structure minecraft:village false
+[2026-10-20 17:43:14:273 INFO] The nearest minecraft:village is at block -1464, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute positioned -1448 100 -744 run locate structure minecraft:village false
+[2026-10-20 17:43:14:323 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (0 blocks away)
+AUDIT_INPUT execute positioned -1432 100 1256 run locate structure minecraft:village false
+[2026-10-20 17:43:14:373 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (0 blocks away)
+AUDIT_INPUT execute positioned -1416 100 -1400 run locate structure minecraft:village false
+[2026-10-20 17:43:14:423 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (0 blocks away)
+AUDIT_INPUT execute positioned -904 100 840 run locate structure minecraft:village false
+[2026-10-20 17:43:14:473 INFO] The nearest minecraft:village is at block -904, (y?), 840 (0 blocks away)
+AUDIT_INPUT execute positioned -888 100 136 run locate structure minecraft:village false
+[2026-10-20 17:43:14:523 INFO] The nearest minecraft:village is at block -888, (y?), 136 (0 blocks away)
+AUDIT_INPUT execute positioned -760 100 1272 run locate structure minecraft:village false
+[2026-10-20 17:43:14:573 INFO] The nearest minecraft:village is at block -760, (y?), 1272 (0 blocks away)
+AUDIT_INPUT execute positioned -504 100 1848 run locate structure minecraft:village false
+[2026-10-20 17:43:14:623 INFO] The nearest minecraft:village is at block -504, (y?), 1848 (0 blocks away)
+AUDIT_INPUT execute positioned -360 100 248 run locate structure minecraft:village false
+[2026-10-20 17:43:14:673 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute positioned -344 100 712 run locate structure minecraft:village false
+[2026-10-20 17:43:14:723 INFO] The nearest minecraft:village is at block -344, (y?), 712 (0 blocks away)
+AUDIT_INPUT execute positioned -296 100 -1528 run locate structure minecraft:village false
+[2026-10-20 17:43:14:773 INFO] The nearest minecraft:village is at block -296, (y?), -1528 (0 blocks away)
+AUDIT_INPUT execute positioned -296 100 -312 run locate structure minecraft:village false
+[2026-10-20 17:43:14:823 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)
+AUDIT_INPUT execute positioned -248 100 1320 run locate structure minecraft:village false
+[2026-10-20 17:43:14:878 INFO] The nearest minecraft:village is at block -248, (y?), 1320 (0 blocks away)
+AUDIT_INPUT execute positioned -232 100 -904 run locate structure minecraft:village false
+[2026-10-20 17:43:14:928 INFO] The nearest minecraft:village is at block -232, (y?), -904 (0 blocks away)
+AUDIT_INPUT execute positioned 40 100 -1880 run locate structure minecraft:village false
+[2026-10-20 17:43:14:978 INFO] The nearest minecraft:village is at block 40, (y?), -1880 (0 blocks away)
+AUDIT_INPUT execute positioned 88 100 1880 run locate structure minecraft:village false
+[2026-10-20 17:43:14:993 WARN] [Scripting] SPAWN_AUDIT {"phase":"world_tick20","tick":20,"seed":"-3509659830737203357","defaultSpawn":{"x":7,"y":32767,"z":23},"players":0,"spawnRadius":10,"reference":"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation"}
+
+[2026-10-20 17:43:15:028 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (0 blocks away)
+AUDIT_INPUT execute positioned 136 100 -1608 run locate structure minecraft:village false
+[2026-10-20 17:43:15:078 INFO] The nearest minecraft:village is at block 136, (y?), -1608 (0 blocks away)
+AUDIT_INPUT execute positioned 264 100 -872 run locate structure minecraft:village false
+[2026-10-20 17:43:15:128 INFO] The nearest minecraft:village is at block 264, (y?), -872 (0 blocks away)
+AUDIT_INPUT execute positioned 760 100 -920 run locate structure minecraft:village false
+[2026-10-20 17:43:15:178 INFO] The nearest minecraft:village is at block 760, (y?), -920 (0 blocks away)
+AUDIT_INPUT execute positioned 824 100 -1512 run locate structure minecraft:village false
+[2026-10-20 17:43:15:228 INFO] The nearest minecraft:village is at block 824, (y?), -1512 (0 blocks away)
+AUDIT_INPUT execute positioned 1144 100 1272 run locate structure minecraft:village false
+[2026-10-20 17:43:15:278 INFO] The nearest minecraft:village is at block 1144, (y?), 1272 (0 blocks away)
+AUDIT_INPUT execute positioned 1176 100 -792 run locate structure minecraft:village false
+[2026-10-20 17:43:15:328 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (0 blocks away)
+AUDIT_INPUT execute positioned 1176 100 -376 run locate structure minecraft:village false
+[2026-10-20 17:43:15:378 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (0 blocks away)
+AUDIT_INPUT execute positioned 1256 100 -1480 run locate structure minecraft:village false
+[2026-10-20 17:43:15:428 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (0 blocks away)
+AUDIT_INPUT execute positioned 1320 100 792 run locate structure minecraft:village false
+[2026-10-20 17:43:15:478 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (0 blocks away)
+AUDIT_INPUT execute positioned 1832 100 40 run locate structure minecraft:village false
+[2026-10-20 17:43:15:528 INFO] The nearest minecraft:village is at block 1832, (y?), 40 (0 blocks away)
+AUDIT_INPUT execute positioned -1750 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:578 INFO] The nearest minecraft:village is at block -1896, (y?), -2072 (353 blocks away)
+AUDIT_INPUT execute positioned -1250 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:628 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (231 blocks away)
+AUDIT_INPUT execute positioned -750 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:678 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (685 blocks away)
+AUDIT_INPUT execute positioned -250 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:729 INFO] The nearest minecraft:village is at block -200, (y?), -2472 (723 blocks away)
+AUDIT_INPUT execute positioned 250 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:777 INFO] The nearest minecraft:village is at block 40, (y?), -1880 (246 blocks away)
+AUDIT_INPUT execute positioned 750 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:828 INFO] The nearest minecraft:village is at block 840, (y?), -1944 (213 blocks away)
+AUDIT_INPUT execute positioned 1250 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:878 INFO] The nearest minecraft:village is at block 744, (y?), -2456 (868 blocks away)
+AUDIT_INPUT execute positioned 1750 100 -1750 run locate structure minecraft:village false
+[2026-10-20 17:43:15:928 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (562 blocks away)
+AUDIT_INPUT execute positioned -1750 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:15:984 INFO] The nearest minecraft:village is at block -1896, (y?), -2072 (834 blocks away)
+AUDIT_INPUT execute positioned -1250 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:15:993 WARN] [Scripting] SPAWN_AUDIT {"phase":"world_tick40","tick":40,"seed":"-3509659830737203357","defaultSpawn":{"x":7,"y":32767,"z":23},"players":0,"spawnRadius":10,"reference":"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation"}
+
+[2026-10-20 17:43:16:032 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (223 blocks away)
+AUDIT_INPUT execute positioned -750 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:082 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (939 blocks away)
+AUDIT_INPUT execute positioned -250 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:132 INFO] The nearest minecraft:village is at block -296, (y?), -1528 (281 blocks away)
+AUDIT_INPUT execute positioned 250 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:182 INFO] The nearest minecraft:village is at block 136, (y?), -1608 (375 blocks away)
+AUDIT_INPUT execute positioned 750 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:232 INFO] The nearest minecraft:village is at block 824, (y?), -1512 (272 blocks away)
+AUDIT_INPUT execute positioned 1250 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:282 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (230 blocks away)
+AUDIT_INPUT execute positioned 1750 100 -1250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:333 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (544 blocks away)
+AUDIT_INPUT execute positioned -1750 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:383 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (730 blocks away)
+AUDIT_INPUT execute positioned -1250 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:432 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (198 blocks away)
+AUDIT_INPUT execute positioned -750 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:482 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (930 blocks away)
+AUDIT_INPUT execute positioned -250 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:532 INFO] The nearest minecraft:village is at block -232, (y?), -904 (155 blocks away)
+AUDIT_INPUT execute positioned 250 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:582 INFO] The nearest minecraft:village is at block 264, (y?), -872 (122 blocks away)
+AUDIT_INPUT execute positioned 750 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:632 INFO] The nearest minecraft:village is at block 760, (y?), -920 (170 blocks away)
+AUDIT_INPUT execute positioned 1250 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:682 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (85 blocks away)
+AUDIT_INPUT execute positioned 1750 100 -750 run locate structure minecraft:village false
+[2026-10-20 17:43:16:733 INFO] The nearest minecraft:village is at block 1880, (y?), -968 (253 blocks away)
+AUDIT_INPUT execute positioned -1750 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:783 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (518 blocks away)
+AUDIT_INPUT execute positioned -1250 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:832 INFO] The nearest minecraft:village is at block -1480, (y?), -344 (248 blocks away)
+AUDIT_INPUT execute positioned -750 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:882 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (855 blocks away)
+AUDIT_INPUT execute positioned -250 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:932 INFO] The nearest minecraft:village is at block -888, (y?), 136 (745 blocks away)
+AUDIT_INPUT execute positioned 250 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:16:988 INFO] The nearest minecraft:village is at block -232, (y?), -904 (812 blocks away)
+AUDIT_INPUT execute positioned 750 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:038 INFO] The nearest minecraft:village is at block 264, (y?), -872 (789 blocks away)
+AUDIT_INPUT execute positioned 1250 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:087 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (146 blocks away)
+AUDIT_INPUT execute positioned 1750 100 -250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:138 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (789 blocks away)
+AUDIT_INPUT execute positioned -1750 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:187 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (67 blocks away)
+AUDIT_INPUT execute positioned -1250 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:238 INFO] The nearest minecraft:village is at block -1464, (y?), 248 (214 blocks away)
+AUDIT_INPUT execute positioned -750 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:287 INFO] The nearest minecraft:village is at block -888, (y?), 136 (178 blocks away)
+AUDIT_INPUT execute positioned -250 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:337 INFO] The nearest minecraft:village is at block -360, (y?), 248 (110 blocks away)
+AUDIT_INPUT execute positioned 250 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:388 INFO] The nearest minecraft:village is at block -360, (y?), 248 (610 blocks away)
+AUDIT_INPUT execute positioned 750 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:438 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (757 blocks away)
+AUDIT_INPUT execute positioned 1250 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:488 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (630 blocks away)
+AUDIT_INPUT execute positioned 1750 100 250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:537 INFO] The nearest minecraft:village is at block 1832, (y?), 40 (225 blocks away)
+AUDIT_INPUT execute positioned -1750 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:589 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (490 blocks away)
+AUDIT_INPUT execute positioned -1250 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:638 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (746 blocks away)
+AUDIT_INPUT execute positioned -750 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:687 INFO] The nearest minecraft:village is at block -904, (y?), 840 (178 blocks away)
+AUDIT_INPUT execute positioned -250 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:737 INFO] The nearest minecraft:village is at block -344, (y?), 712 (101 blocks away)
+AUDIT_INPUT execute positioned 250 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:787 INFO] The nearest minecraft:village is at block -360, (y?), 248 (790 blocks away)
+AUDIT_INPUT execute positioned 750 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:838 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (571 blocks away)
+AUDIT_INPUT execute positioned 1250 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:887 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (81 blocks away)
+AUDIT_INPUT execute positioned 1750 100 750 run locate structure minecraft:village false
+[2026-10-20 17:43:17:938 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (432 blocks away)
+AUDIT_INPUT execute positioned -1750 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:17:988 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (318 blocks away)
+AUDIT_INPUT execute positioned -1250 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:037 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (182 blocks away)
+AUDIT_INPUT execute positioned -750 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:087 INFO] The nearest minecraft:village is at block -760, (y?), 1272 (24 blocks away)
+AUDIT_INPUT execute positioned -250 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:137 INFO] The nearest minecraft:village is at block -248, (y?), 1320 (70 blocks away)
+AUDIT_INPUT execute positioned 250 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:187 INFO] The nearest minecraft:village is at block -344, (y?), 712 (801 blocks away)
+AUDIT_INPUT execute positioned 750 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:243 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (913 blocks away)
+AUDIT_INPUT execute positioned 1250 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:293 INFO] The nearest minecraft:village is at block 1144, (y?), 1272 (108 blocks away)
+AUDIT_INPUT execute positioned 1750 100 1250 run locate structure minecraft:village false
+[2026-10-20 17:43:18:343 INFO] The nearest minecraft:village is at block 1720, (y?), 1368 (121 blocks away)
+AUDIT_INPUT execute positioned -1750 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:394 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (587 blocks away)
+AUDIT_INPUT execute positioned -1250 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:444 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (526 blocks away)
+AUDIT_INPUT execute positioned -750 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:494 INFO] The nearest minecraft:village is at block -872, (y?), 1848 (156 blocks away)
+AUDIT_INPUT execute positioned -250 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:543 INFO] The nearest minecraft:village is at block -504, (y?), 1848 (272 blocks away)
+AUDIT_INPUT execute positioned 250 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:593 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (207 blocks away)
+AUDIT_INPUT execute positioned 750 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:643 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (674 blocks away)
+AUDIT_INPUT execute positioned 1250 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:694 INFO] The nearest minecraft:village is at block 632, (y?), 2312 (835 blocks away)
+AUDIT_INPUT execute positioned 1750 100 1750 run locate structure minecraft:village false
+[2026-10-20 17:43:18:743 INFO] The nearest minecraft:village is at block 1848, (y?), 1688 (115 blocks away)
+AUDIT_INPUT stop
+[2026-10-20 17:43:18:793 INFO] Server stop requested.
+[2026-10-20 17:43:18:841 INFO] Stopping server...
+Quit correctly

@@ -1,0 +1,69 @@
+NO LOG FILE! - setting up server logging...
+[2026-10-20 23:45:53:729 INFO] Starting Server
+[2026-10-20 23:45:53:729 INFO] Version: 1.26.52.3
+[2026-10-20 23:45:53:729 INFO] Session ID: d76585e8-9047-4e70-8216-be79ac210e3d
+[2026-10-20 23:45:53:729 INFO] Build ID: 51798919
+[2026-10-20 23:45:53:729 INFO] Branch: r/26_u5
+[2026-10-20 23:45:53:729 INFO] Commit ID: 54116bb5ee0b7aee0b5591efbcc8bc3cf64f168a
+[2026-10-20 23:45:53:729 INFO] Configuration: Publish
+[2026-10-20 23:45:53:730 INFO] Contents of server.properties: {}
+[2026-10-20 23:45:53:731 INFO] Level Name: spawn_audit
+[2026-10-20 23:45:53:731 INFO] Profiler config ('bootstrap.json') load result: success=1, errorMessage=(null)
+[2026-10-20 23:45:53:733 INFO] No CDN config file found at: cdn_config.json for dedicated server
+[2026-10-20 23:45:53:733 INFO] Game mode: 0 Survival
+[2026-10-20 23:45:53:733 INFO] Difficulty: 0 PEACEFUL
+[2026-10-20 23:45:53:735 INFO] Content logging to console is enabled.
+[2026-10-20 23:45:53:739 INFO] 
+
+#####################################################
+#                                                   #
+#               LOADING VANILLA WORLD               #
+#                                                   #
+#####################################################
+[2026-10-20 23:45:54:859 INFO] Content logging to disk is enabled. Writing log to: ContentLog2026-10-20_23-45-54
+[2026-10-20 23:45:54:862 INFO] Experiment(s) active: gtst
+[2026-10-20 23:45:54:862 INFO] Opening level 'worlds/spawn_audit/db'
+[2026-10-20 23:45:55:064 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer
+[2026-10-20 23:45:56:561 INFO] Signed in to signaling service successfully
+[2026-10-20 23:45:56:727 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-20 23:45:56:727 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-20 23:45:56:782 INFO] Server started.
+[2026-10-20 23:45:56:782 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+[2026-10-20 23:45:56:782 ERROR] Your current connection type is not set to NetherNet. In this release, NetherNet is the only supported transport type.
+[2026-10-20 23:45:56:782 ERROR] Players will not be able to connect to your game without NetherNet.
+[2026-10-20 23:45:56:782 ERROR] 
+[2026-10-20 23:45:56:782 ERROR] To switch, set 'transport=nethernet' in server.properties.
+[2026-10-20 23:45:56:782 ERROR] 
+[2026-10-20 23:45:56:782 ERROR] For more information, please reference the included bedrock_server_how_to.html file.
+[2026-10-20 23:45:56:782 ERROR] =======================================================
+[2026-10-20 23:45:56:782 INFO] ================ TELEMETRY MESSAGE ===================
+[2026-10-20 23:45:56:782 INFO] Server Telemetry is currently not enabled. 
+[2026-10-20 23:45:56:782 INFO] Enabling this telemetry helps us improve the game.
+[2026-10-20 23:45:56:782 INFO] 
+[2026-10-20 23:45:56:782 INFO] To enable this feature, add the line 'emit-server-telemetry=true'
+[2026-10-20 23:45:56:782 INFO] to the server.properties file in the handheld/src-server directory
+[2026-10-20 23:45:56:782 INFO] ======================================================
+[2026-10-20 23:45:56:801 WARN] [Scripting] TARGET_IDENTITY {"seed":"-3509659830737203357","api":"2.11.0-beta","players":0}
+
+AUDIT_INPUT execute in overworld positioned -296 100 -312 run locate structure minecraft:village false
+[2026-10-20 23:45:56:967 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)
+AUDIT_INPUT execute in overworld positioned -360 100 248 run locate structure minecraft:village false
+[2026-10-20 23:45:56:988 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 528 100 512 run locate structure minecraft:pillager_outpost false
+[2026-10-20 23:45:57:039 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (1531 blocks away)
+AUDIT_INPUT execute in overworld positioned -1008 100 400 run locate structure minecraft:pillager_outpost false
+[2026-10-20 23:45:57:087 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (11 blocks away)
+AUDIT_INPUT scriptevent predictor_audit:observe {"points":[[-296,63,-312],[-296,77,-312],[-296,80,-312],[-296,96,-312],[-296,120,-312],[-296,160,-312],[-360,63,248],[-360,100,248],[-360,122,248],[-360,128,248],[-360,144,248],[536,63,520],[536,100,520],[536,163,520],[536,170,520],[536,180,520],[536,200,520],[-1000,63,408],[-1000,70,408],[-1000,80,408],[-1000,90,408],[-1000,100,408],[-1000,120,408]],"columns":[[-296,-312],[-360,248],[536,520],[-1000,408]]}
+[2026-10-20 23:45:57:137 INFO] Script event predictor_audit:observe has been sent
+[2026-10-20 23:46:18:632 WARN] [Scripting] TARGET_RESULT {"rows":[{"x":-296,"y":63,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:stone","structures":[]},{"x":-296,"y":77,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:snow_layer","structures":[]},{"x":-296,"y":80,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:air","structures":[]},{"x":-296,"y":96,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:air","structures":[]},{"x":-296,"y":120,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:air","structures":[]},{"x":-296,"y":160,"z":-312,"id":"minecraft:ice_plains","block":"minecraft:air","structures":[]},{"x":-360,"y":63,"z":248,"id":"minecraft:cold_taiga","block":"minecraft:stone","structures":[]},{"x":-360,"y":100,"z":248,"id":"minecraft:cold_taiga","block":"minecraft:stone","structures":["minecraft:village"]},{"x":-360,"y":122,"z":248,"id":"minecraft:cold_taiga","block":"minecraft:snow_layer","structures":[]},{"x":-360,"y":128,"z":248,"id":"minecraft:cold_taiga","block":"minecraft:air","structures":[]},{"x":-360,"y":144,"z":248,"id":"minecraft:cold_taiga","block":"minecraft:air","structures":[]},{"x":536,"y":63,"z":520,"id":"minecraft:dripstone_caves","block":"minecraft:stone","structures":[]},{"x":536,"y":100,"z":520,"id":"minecraft:dripstone_caves","block":"minecraft:stone","structures":[]},{"x":536,"y":163,"z":520,"id":"minecraft:frozen_peaks","block":"minecraft:stone","structures":[]},{"x":536,"y":170,"z":520,"id":"minecraft:frozen_peaks","block":"minecraft:stone","structures":[]},{"x":536,"y":180,"z":520,"id":"minecraft:frozen_peaks","block":"minecraft:air","structures":[]},{"x":536,"y":200,"z":520,"id":"minecraft:frozen_peaks","block":"minecraft:air","structures":[]},{"x":-1000,"y":63,"z":408,"id":"minecraft:taiga","block":"minecraft:grass_block","structures":[]},{"x":-1000,"y":70,"z":408,"id":"minecraft:taiga","block":"minecraft:birch_planks","structures":["minecraft:pillager_outpost"]},{"x":-1000,"y":80,"z":408,"id":"minecraft:taiga","block":"minecraft:air","structures":["minecraft:pillager_outpost"]},{"x":-1000,"y":90,"z":408,"id":"minecraft:taiga","block":"minecraft:air","structures":[]},{"x":-1000,"y":100,"z":408,"id":"minecraft:taiga","block":"minecraft:air","structures":[]},{"x":-1000,"y":120,"z":408,"id":"minecraft:taiga","block":"minecraft:air","structures":[]}],"columns":[{"x":-296,"z":-312,"top":{"y":77,"block":"minecraft:snow_layer"},"policy":"highest_nonair_including_water_and_canopy","above":{"y":78,"id":"minecraft:ice_plains","block":"minecraft:air"}},{"x":-360,"z":248,"top":{"y":122,"block":"minecraft:snow_layer"},"policy":"highest_nonair_including_water_and_canopy","above":{"y":123,"id":"minecraft:cold_taiga","block":"minecraft:air"}},{"x":536,"z":520,"top":{"y":175,"block":"minecraft:ice"},"policy":"highest_nonair_including_water_and_canopy","above":{"y":176,"id":"minecraft:frozen_peaks","block":"minecraft:air"}},{"x":-1000,"z":408,"top":{"y":85,"block":"minecraft:dark_oak_planks"},"policy":"highest_nonair_including_water_and_canopy","above":{"y":86,"id":"minecraft:taiga","block":"minecraft:air"}}],"blockReads":852,"biomeReads":27,"tickingAreas":4,"chunks":4,"membershipColumns":[{"x":-296,"z":-312,"intervals":[{"from":-64,"to":-53,"structures":[]},{"from":-52,"to":-22,"structures":["minecraft:ancient_city"]},{"from":-21,"to":319,"structures":[]}]},{"x":-360,"z":248,"intervals":[{"from":-64,"to":74,"structures":[]},{"from":75,"to":118,"structures":["minecraft:village"]},{"from":119,"to":319,"structures":[]}]},{"x":536,"z":520,"intervals":[{"from":-64,"to":-53,"structures":[]},{"from":-52,"to":-22,"structures":["minecraft:ancient_city"]},{"from":-21,"to":319,"structures":[]}]},{"x":-1000,"z":408,"intervals":[{"from":-64,"to":64,"structures":[]},{"from":65,"to":86,"structures":["minecraft:pillager_outpost"]},{"from":87,"to":319,"structures":[]}]}],"membershipReads":1559}
+
+AUDIT_INPUT save hold
+AUDIT_INPUT save query
+[2026-10-20 23:46:18:675 INFO] Saving...
+[2026-10-20 23:46:18:721 INFO] Data saved. Files are now ready to be copied.
+spawn_audit/db/000006.log:2092, spawn_audit/db/000005.ldb:72899, spawn_audit/db/CURRENT:16, spawn_audit/db/MANIFEST-000004:93, spawn_audit/level.dat:3052, spawn_audit/level.dat_old:3052, spawn_audit/levelname.txt:11
+AUDIT_INPUT save resume
+[2026-10-20 23:46:18:771 INFO] Changes to the world are resumed.
+[2026-10-20 23:46:18:821 INFO] Server stop requested.
+[2026-10-20 23:46:18:870 INFO] Stopping server...
+Quit correctly

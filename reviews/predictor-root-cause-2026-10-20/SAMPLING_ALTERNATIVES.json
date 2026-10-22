@@ -1,0 +1,425 @@
+{
+  "groups": {
+    "cohort": {
+      "points": 330,
+      "matches": {
+        "quart": 311,
+        "block": 292,
+        "depth_zero": 310,
+        "quart_y319": 310
+      }
+    },
+    "pilot": {
+      "points": 256,
+      "matches": {
+        "quart": 253,
+        "block": 239,
+        "depth_zero": 239,
+        "quart_y319": 239
+      }
+    },
+    "vertical": {
+      "points": 28,
+      "matches": {
+        "quart": 25,
+        "block": 21,
+        "depth_zero": 25,
+        "quart_y319": 25
+      }
+    }
+  },
+  "disagreements_and_underground_controls": [
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": -576,
+      "y": 63,
+      "z": 64,
+      "observed": "minecraft:forest",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "forest",
+        "quart_y319": "forest"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": 448,
+      "y": 63,
+      "z": -704,
+      "observed": "minecraft:plains",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "plains",
+        "quart_y319": "plains"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": -1216,
+      "y": 63,
+      "z": 512,
+      "observed": "minecraft:jungle",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "lush_caves",
+        "depth_zero": "jungle",
+        "quart_y319": "jungle"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": -448,
+      "y": 63,
+      "z": -2752,
+      "observed": "minecraft:meadow",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "meadow",
+        "depth_zero": "meadow",
+        "quart_y319": "meadow"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": 1920,
+      "y": 63,
+      "z": 256,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": 2048,
+      "y": 63,
+      "z": 192,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": -2368,
+      "y": 63,
+      "z": -1728,
+      "observed": "minecraft:pale_garden",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "pale_garden",
+        "depth_zero": "pale_garden",
+        "quart_y319": "pale_garden"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": 1344,
+      "y": 63,
+      "z": 2112,
+      "observed": "minecraft:jungle",
+      "modes": {
+        "quart": "sulfur_caves",
+        "block": "sulfur_caves",
+        "depth_zero": "jungle",
+        "quart_y319": "jungle"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-9103892851552028103",
+      "x": 1344,
+      "y": 63,
+      "z": 2240,
+      "observed": "minecraft:jungle",
+      "modes": {
+        "quart": "sulfur_caves",
+        "block": "sulfur_caves",
+        "depth_zero": "jungle",
+        "quart_y319": "jungle"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-4565879772552070118",
+      "x": -256,
+      "y": 63,
+      "z": 768,
+      "observed": "minecraft:dappled_forest",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dappled_forest",
+        "depth_zero": "dappled_forest",
+        "quart_y319": "dappled_forest"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-4565879772552070118",
+      "x": 128,
+      "y": 63,
+      "z": 1216,
+      "observed": "minecraft:mega_taiga",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "lush_caves",
+        "depth_zero": "old_growth_pine_taiga",
+        "quart_y319": "old_growth_pine_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-4565879772552070118",
+      "x": 384,
+      "y": 63,
+      "z": 256,
+      "observed": "minecraft:meadow",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "meadow",
+        "depth_zero": "meadow",
+        "quart_y319": "meadow"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-4565879772552070118",
+      "x": -1024,
+      "y": 63,
+      "z": 640,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "-4565879772552070118",
+      "x": 1280,
+      "y": 63,
+      "z": 64,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "3477702448211353566",
+      "x": 256,
+      "y": 63,
+      "z": 1664,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "3477702448211353566",
+      "x": 448,
+      "y": 63,
+      "z": 1664,
+      "observed": "minecraft:redwood_taiga_mutated",
+      "modes": {
+        "quart": "old_growth_spruce_taiga",
+        "block": "old_growth_spruce_taiga",
+        "depth_zero": "old_growth_spruce_taiga",
+        "quart_y319": "old_growth_spruce_taiga"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "3477702448211353566",
+      "x": -448,
+      "y": 63,
+      "z": 1344,
+      "observed": "minecraft:roofed_forest",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "pale_garden",
+        "depth_zero": "dark_forest",
+        "quart_y319": "dark_forest"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "3477702448211353566",
+      "x": -64,
+      "y": 63,
+      "z": 0,
+      "observed": "minecraft:plains",
+      "modes": {
+        "quart": "savanna",
+        "block": "plains",
+        "depth_zero": "savanna",
+        "quart_y319": "savanna"
+      }
+    },
+    {
+      "group": "cohort",
+      "seed": "3477702448211353566",
+      "x": 64,
+      "y": 63,
+      "z": -256,
+      "observed": "minecraft:savanna_plateau",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "savanna_plateau",
+        "depth_zero": "savanna_plateau",
+        "quart_y319": "savanna_plateau"
+      }
+    },
+    {
+      "group": "pilot",
+      "seed": "-3509659830737203357",
+      "x": -256,
+      "y": 63,
+      "z": -256,
+      "observed": "minecraft:ice_plains",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "snowy_plains",
+        "quart_y319": "snowy_plains"
+      }
+    },
+    {
+      "group": "pilot",
+      "seed": "-3509659830737203357",
+      "x": -448,
+      "y": 63,
+      "z": 320,
+      "observed": "minecraft:cold_taiga",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "lush_caves",
+        "depth_zero": "snowy_taiga",
+        "quart_y319": "snowy_taiga"
+      }
+    },
+    {
+      "group": "pilot",
+      "seed": "-3509659830737203357",
+      "x": -64,
+      "y": 63,
+      "z": 320,
+      "observed": "minecraft:snowy_slopes",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "snowy_slopes",
+        "quart_y319": "snowy_slopes"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -256,
+      "y": -48,
+      "z": -256,
+      "observed": "minecraft:deep_dark",
+      "modes": {
+        "quart": "deep_dark",
+        "block": "deep_dark",
+        "depth_zero": "snowy_plains",
+        "quart_y319": "snowy_plains"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -256,
+      "y": 63,
+      "z": -256,
+      "observed": "minecraft:ice_plains",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "snowy_plains",
+        "quart_y319": "snowy_plains"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -448,
+      "y": -48,
+      "z": 320,
+      "observed": "minecraft:deep_dark",
+      "modes": {
+        "quart": "deep_dark",
+        "block": "deep_dark",
+        "depth_zero": "snowy_taiga",
+        "quart_y319": "snowy_taiga"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -448,
+      "y": 63,
+      "z": 320,
+      "observed": "minecraft:cold_taiga",
+      "modes": {
+        "quart": "lush_caves",
+        "block": "lush_caves",
+        "depth_zero": "snowy_taiga",
+        "quart_y319": "snowy_taiga"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -64,
+      "y": -48,
+      "z": 320,
+      "observed": "minecraft:deep_dark",
+      "modes": {
+        "quart": "deep_dark",
+        "block": "deep_dark",
+        "depth_zero": "snowy_slopes",
+        "quart_y319": "snowy_slopes"
+      }
+    },
+    {
+      "group": "vertical",
+      "seed": "-3509659830737203357",
+      "x": -64,
+      "y": 63,
+      "z": 320,
+      "observed": "minecraft:snowy_slopes",
+      "modes": {
+        "quart": "dripstone_caves",
+        "block": "dripstone_caves",
+        "depth_zero": "snowy_slopes",
+        "quart_y319": "snowy_slopes"
+      }
+    }
+  ]
+}

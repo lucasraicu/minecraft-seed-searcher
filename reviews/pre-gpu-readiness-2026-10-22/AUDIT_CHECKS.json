@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "name": "catalog-collection",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/catalog",
+        "--collect-only",
+        "-q"
+      ],
+      "exit_status": 0,
+      "seconds": 0.9176417520502582,
+      "tail": "metadata_initialization_failure_closes_owned_workers\ntests/catalog/test_view_evaluation.py::test_immutable_view_matches_checked_query_and_defends_mutation\ntests/catalog/test_view_evaluation.py::test_shared_retention_profile_matches_existing_query\ntests/catalog/test_view_evaluation.py::test_heldout_is_fixed_and_covers_scope\ntests/catalog/test_view_evaluation.py::test_metrics_exclude_empty_and_expose_no_result_penalty\n\n638 tests collected in 0.55s\n"
+    },
+    {
+      "name": "legacy-contracts",
+      "command": [
+        "python3",
+        "docs/catalog/v1/validate_spec.py"
+      ],
+      "exit_status": 0,
+      "seconds": 0.07832987501751631,
+      "tail": "{\n  \"passed\": true,\n  \"categories\": 8,\n  \"features\": 23,\n  \"border_sides\": [\n    2048,\n    4096,\n    8192\n  ],\n  \"retention_slot_bound\": 83944,\n  \"fixed_feature_payload_bytes\": 364\n}\n"
+    },
+    {
+      "name": "gpu-inventory",
+      "command": [
+        "system_profiler",
+        "-json",
+        "SPDisplaysDataType"
+      ],
+      "exit_status": 0,
+      "seconds": 0.44348569901194423,
+      "tail": "rsion\" : \"113-D05001A1XL-018\",\n      \"spdisplays_pcie_width\" : \"x16\",\n      \"spdisplays_revision-id\" : \"0x0000\",\n      \"spdisplays_rom-revision\" : \"113-D0500D-114\",\n      \"spdisplays_vbios-version\" : \"113-D05001A1XL-018\",\n      \"spdisplays_vendor\" : \"sppci_vendor_amd\",\n      \"spdisplays_vram\" : \"8 GB\",\n      \"sppci_bus\" : \"spdisplays_pcie_device\",\n      \"sppci_device_type\" : \"spdisplays_gpu\",\n      \"sppci_model\" : \"Radeon Pro Vega 56\"\n    }\n  ]\n}"
+    },
+    {
+      "name": "focused-invariants",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_personal_reserve.py",
+        "tests/test_native_runtime_guard.py",
+        "tests/catalog/test_finalization_scopes.py",
+        "tests/catalog/test_verified_query_index.py"
+      ],
+      "exit_status": 0,
+      "seconds": 6.726317808032036,
+      "tail": "  [100%]\n=============================== warnings summary ===============================\ntests/test_native_runtime_guard.py::test_fork_resets_lock_and_runtime_validation\n  /Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_native_runtime_guard.py:195: DeprecationWarning: This process (pid=29046) is multi-threaded, use of fork() may lead to deadlocks in the child.\n    pid=os.fork()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n26 passed, 1 warning in 6.37s\n"
+    }
+  ],
+  "current_source_build_state_matches_profile": true,
+  "protected_source_files": 208,
+  "processes": "17880 node /Users/lucasraicu/Downloads/minecraft-seed-searcher/web-ui/node_modules/.bin/vite --host 127.0.0.1 --port 5173\n22035 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.catalog.http_server --root /Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog --port 3001 --query-processes 2\n91321 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.web.server 3000\n"
+}

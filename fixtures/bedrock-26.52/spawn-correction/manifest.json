@@ -1,0 +1,157 @@
+{
+  "revision": "bedrock-spawn-correction-evidence-v1",
+  "archive": "spawn-evidence.tar.gz",
+  "archive_sha256": "f27140a669971649a0a861ee33fcba1134818386d818bfadc713f98cca6dd88d",
+  "files": {
+    "frozen-protocol.json": {
+      "bytes": 1134,
+      "sha256": "5a4a62d2323288a3a6ae38446cc8648e867aa5c4e50660eacf9c30941ee0ca21"
+    },
+    "helper.build.json": {
+      "bytes": 8608,
+      "sha256": "b30d38f82749190c7cdd981c53ab418798ff5fa98dc7f8b8bde28317c4fc00a9"
+    },
+    "level-0.dat": {
+      "bytes": 3013,
+      "sha256": "5b3464f727a9d23cd644b745aee7adc33ca391cafccd2bd51ff515dfbe6b961a"
+    },
+    "level-1.dat": {
+      "bytes": 3013,
+      "sha256": "e689eba3c4fba6b64c6d2692f2df7ba44d8f7e3c822fcd471a643442a86726bc"
+    },
+    "level-2.dat": {
+      "bytes": 3013,
+      "sha256": "e0057eb0071d892b6dba3cf1a8f77678300da0219580ca865af4376ad42af829"
+    },
+    "level-3.dat": {
+      "bytes": 3013,
+      "sha256": "0e8820fa1289117a512656317073890765224d3c3e68ceca3822024330164b9d"
+    },
+    "level-4.dat": {
+      "bytes": 3013,
+      "sha256": "093ced5ce9afc1db7de7aa49a0a8e2656e8abf669177c1efc64539eeb4542a24"
+    },
+    "level-5.dat": {
+      "bytes": 3013,
+      "sha256": "a4e5735772659d4e258f9fa74174983b6594f9fd8cb3d13c9b3fc963044e37e6"
+    },
+    "level-6.dat": {
+      "bytes": 3013,
+      "sha256": "af220f60328e9320c6882fd6f431b9d56b204dae52dac73e38e34c9fb8cbc0ee"
+    },
+    "level-7.dat": {
+      "bytes": 3013,
+      "sha256": "184c2a780f87bb5ad013eb2045b83c514221c87624ee885b4dfdac2450921253"
+    },
+    "observer.js": {
+      "bytes": 1233,
+      "sha256": "2ce1490ab71321eea676fd512109c91b886708482c878809abfa9a1761d357c3"
+    },
+    "predictions.json": {
+      "bytes": 1097,
+      "sha256": "cf3691f75a485cb35c827e860c42c4ad4963ba6ea5a6365657d9173316409260"
+    },
+    "results.json": {
+      "bytes": 13101,
+      "sha256": "54b892200aed3ae1684b215bf79d3b62ea8946e06c9b10226ae34b4ee3b6ebdf"
+    },
+    "summary.json": {
+      "bytes": 439,
+      "sha256": "2ac784477461c9ae0abfa4393ecef997a6c24a8a496dc0e4af5d923404030875"
+    },
+    "validation-source.py": {
+      "bytes": 8672,
+      "sha256": "f24f91eb524f0e6bad1ebb1273476c25cf936d8cce0b003ebd5d2bd0533a7b13"
+    },
+    "worlds/3db0fe5901c7-0/console.log": {
+      "bytes": 4043,
+      "sha256": "265daca27cb0021bdc9b930586e213d49e3389a9772b80879f793a4384b9e23f"
+    },
+    "worlds/3db0fe5901c7-0/server.properties": {
+      "bytes": 561,
+      "sha256": "63fccb9f8ad4b49c768be090aee7ae50f3b695a9e03de3713683879330e8a2aa"
+    },
+    "worlds/3db0fe5901c7-1/console.log": {
+      "bytes": 4040,
+      "sha256": "2ed4ed07a73b6b315a19beb40848bbc1097dad005c92d3afd54588e003bde241"
+    },
+    "worlds/3db0fe5901c7-1/server.properties": {
+      "bytes": 562,
+      "sha256": "5c06e36a2e997fe0917c53a1885ed603d38f7f642babf612e10a6776d7a7a83c"
+    },
+    "worlds/3db0fe5901c7-2/console.log": {
+      "bytes": 4046,
+      "sha256": "5a33e36c2450d2aacf19b5fcdf260ac361048177f0adb9ee0ced376b438c17e5"
+    },
+    "worlds/3db0fe5901c7-2/server.properties": {
+      "bytes": 561,
+      "sha256": "fb0bcaeabeff0bc4e244f086a5a555401baece444514626a1f6e84d9cc26a3bc"
+    },
+    "worlds/3db0fe5901c7-3/console.log": {
+      "bytes": 4037,
+      "sha256": "f1bdb0b2affc055d899f67444225a550eee04ac44e6393030ff6dc5381809a8a"
+    },
+    "worlds/3db0fe5901c7-3/server.properties": {
+      "bytes": 561,
+      "sha256": "eda7d33d79b000fc31ca8e79ac086a8589605925ed5ad7a22bdec72e4cdcf5c9"
+    },
+    "worlds/3db0fe5901c7-4/console.log": {
+      "bytes": 4040,
+      "sha256": "cafbfca9abbcf25bb724f5b4acbddfd5088d2c2cc8d6fd49625349e85d7ae210"
+    },
+    "worlds/3db0fe5901c7-4/server.properties": {
+      "bytes": 562,
+      "sha256": "9f7e16abe50462cf4274afa32aa31e3b82b8d7767fe4d9379c601fc9dc2c1658"
+    },
+    "worlds/3db0fe5901c7-5/console.log": {
+      "bytes": 4043,
+      "sha256": "579040a6a31776ad4488e7e3bb69a933db83fbaa9819cb6ef3e4aea2e65b227a"
+    },
+    "worlds/3db0fe5901c7-5/server.properties": {
+      "bytes": 562,
+      "sha256": "2850346eb832f7e9f438c9426222f5abc8b54cec871e600dd7bd9dac8fefafdc"
+    },
+    "worlds/3db0fe5901c7-6/console.log": {
+      "bytes": 4040,
+      "sha256": "dd018069fd0f90fa1a3fc9caa8ba592a6208f485312c300a692c7cf16fef492b"
+    },
+    "worlds/3db0fe5901c7-6/server.properties": {
+      "bytes": 562,
+      "sha256": "090cdbaa6c0912972f8cd7e2fadbae510a9461857523ac8a7f68adfedf26a0b3"
+    },
+    "worlds/3db0fe5901c7-7/console.log": {
+      "bytes": 4046,
+      "sha256": "a2eb54ad1353c3b392403117cdcd24b9dd758947f0d81acf9cec6d661c39678d"
+    },
+    "worlds/3db0fe5901c7-7/server.properties": {
+      "bytes": 561,
+      "sha256": "fbb7af17b78dc321b78c19611ca6ee940668fa531b51195e1c6ca2f0028952b0"
+    }
+  },
+  "new_worlds": 8,
+  "initial_failed_attempts": [
+    {
+      "revision": "fresh-spawn-controls-result-v1",
+      "protocol_sha256": "e71ac72232920056ca2ba5ccfcf4dc3bbf0db8afac1ad053788c69871b4d3d99",
+      "estimator_sha256": "7763211a78bf626caaa645a19b9293af6d9cd4eec14f9a88c2039728f8a27704",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "completed": 0,
+      "matches": 0,
+      "error": "CalledProcessError: Command '['/Users/lucasraicu/.docker/bin/docker', 'inspect', 'codex-spawn-audit-7d76e4851390-0']' returned non-zero exit status 1.",
+      "owned_containers_removed": true,
+      "seconds": 5.587613997980952
+    },
+    {
+      "revision": "fresh-spawn-controls-result-v1",
+      "protocol_sha256": "e71ac72232920056ca2ba5ccfcf4dc3bbf0db8afac1ad053788c69871b4d3d99",
+      "estimator_sha256": "7763211a78bf626caaa645a19b9293af6d9cd4eec14f9a88c2039728f8a27704",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "completed": 0,
+      "matches": 0,
+      "error": "RuntimeError: BDS exited: docker: Error response from daemon: failed to create task for container: failed to initialize logging driver: compression cannot be enabled when max file count is 1\n\nRun 'docker run --help' for more information\n",
+      "owned_containers_removed": true,
+      "seconds": 1.2862728260224685
+    }
+  ],
+  "initial_attempts_generated_world_data": false
+}

@@ -1,0 +1,87 @@
+{
+  "files": {
+    "build.json": {
+      "bytes": 5123,
+      "sha256": "9836bb6b4173c549b51244d7bce17f724f57aa6bce1430a92c56b4773dc3da24"
+    },
+    "coarse-parent-results.json": {
+      "bytes": 4646,
+      "sha256": "7e3c5bd05c06723c98e833564965f50a53c31e2c7d087c61bfc712ab7633f127"
+    },
+    "direct-comparison.json": {
+      "bytes": 7286,
+      "sha256": "4e969b0ea22f0042e153efce64c3f9951f0700861ad211972cf92ff901502d48"
+    },
+    "direct-frozen.json": {
+      "bytes": 2088,
+      "sha256": "334e0835649c429d670f9a1365f8fd4325e5578311956149dd74f1b5feb25fd4"
+    },
+    "direct-observer.js": {
+      "bytes": 3581,
+      "sha256": "a3e90840c24078a8e8c44eb891c23b87adb0503c226bcf13883d4b9b3448e6b2"
+    },
+    "direct-source-preservation.json": {
+      "bytes": 1989,
+      "sha256": "a7a6d91ea519a580bc177bb384807e6b6b278a81ebe7ba24e1c54edec3b8f3e3"
+    },
+    "direct-world-0-console.log": {
+      "bytes": 5017,
+      "sha256": "f10af90b3c526cad8d3cf5b8c374c4be247e3f9d883be2cdd30c27dfd790ba6f"
+    },
+    "direct-world-0-report.json": {
+      "bytes": 4893,
+      "sha256": "b6dd495dd88e17a8966f40808d345c6c698d6be24e2a5ef57f391b44667b97ad"
+    },
+    "direct-world-0-server.properties": {
+      "bytes": 562,
+      "sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a"
+    },
+    "direct-world-1-console.log": {
+      "bytes": 5699,
+      "sha256": "c18ae756933ea3dc2d5693b4805e1796acbe4bd78e9824201466019f9a4fff43"
+    },
+    "direct-world-1-report.json": {
+      "bytes": 7018,
+      "sha256": "c63596cb1b93e079d89ea20446d90ff5547472955dc969f076070cdc3f71a066"
+    },
+    "direct-world-1-server.properties": {
+      "bytes": 562,
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a"
+    },
+    "domain.json": {
+      "bytes": 665,
+      "sha256": "f9d11e3835f3119ad3a504dd7b2ff5875c4b7635ef28fa68681cc680ba75a4fe"
+    },
+    "findings.json": {
+      "bytes": 13646,
+      "sha256": "fd303a61e11d24b863ddd444cf78b9db591e4f8344f3d3053037eb908e6c8a74"
+    },
+    "nodes.txt": {
+      "bytes": 269033,
+      "sha256": "993c7aa50a5260fc4d408595c65ac62fad2c1c34e02dcfc35abcdf683e37f73f"
+    },
+    "original-build.json": {
+      "bytes": 6864,
+      "sha256": "ce7b38377c3dcaac86a98fdc69f0dda230af756990aa8020f83858ac4c80236d"
+    },
+    "original-probe.c": {
+      "bytes": 941,
+      "sha256": "0ab40118a0ffc6a35a1c9d43400dbb1fef91d06d3cb2eec8e1692a9d827d85a7"
+    },
+    "start-footprint-results.json": {
+      "bytes": 3035,
+      "sha256": "931fcdf2b0bea99c09b68b82018f2d9f651122e25b68373369233d8da921f4b9"
+    },
+    "tree-fitness-results.json": {
+      "bytes": 3686,
+      "sha256": "293fe7ca3797ef1b97e8c6dbb45553af69e3fb0e35cb8e83d2abb7fa346cf390"
+    },
+    "witness-model-results.json": {
+      "bytes": 10877,
+      "sha256": "2274f15956a5d1cd1b04aa26c67998492704431f777aa0e5c997d782965bd508"
+    }
+  },
+  "interpretation": "Historical model counterexamples against saved Data3D. All8originalwitnesses directly confirmed in stableBDS copies;25total exactreads. Per-world name associations, no globalnumeric map, no generalnativefix/exhaustivecount.",
+  "parent_resolution_manifest_sha256": "ace2b5f9e1f86f2333d0ebccab04951cc23fab9c3cd774a1af34ded2fb5fc2c0",
+  "revision": "predictor-mechanism-regressions-v1"
+}

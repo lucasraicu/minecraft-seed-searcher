@@ -1,0 +1,3187 @@
+{
+  "features": {
+    "biome.exact.ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1152,
+            63,
+            256
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "ocean",
+          "predicted": "ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -768,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "ocean",
+          "predicted": "ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.deep_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1408,
+            63,
+            384
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "deep_ocean",
+          "predicted": "deep_ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -976,
+            63,
+            976
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_ocean",
+          "predicted": "deep_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.warm_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 12,
+      "examples": [
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -768,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "warm_ocean",
+          "predicted": "warm_ocean"
+        },
+        {
+          "seed": "4613350367979055430",
+          "position": [
+            5071,
+            63,
+            5071
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-02/report.json",
+          "report_sha256": "3c8e848f5991831f596955afe05383b862dfd66262d2036dea3f167453fe3ff1",
+          "observed": "warm_ocean",
+          "predicted": "warm_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.lukewarm_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 20,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            5071,
+            63,
+            5071
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "lukewarm_ocean",
+          "predicted": "lukewarm_ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -768,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "lukewarm_ocean",
+          "predicted": "lukewarm_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.deep_lukewarm_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 18,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -2176,
+            63,
+            -1856
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "deep_lukewarm_ocean",
+          "predicted": "deep_lukewarm_ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -256,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_lukewarm_ocean",
+          "predicted": "deep_lukewarm_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.cold_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 25,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -5072,
+            63,
+            -5072
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "cold_ocean",
+          "predicted": "cold_ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1024,
+            63,
+            -1536
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "cold_ocean",
+          "predicted": "cold_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.deep_cold_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -384,
+            63,
+            -64
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            0,
+            63,
+            0
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "forest",
+          "predicted": "forest"
+        }
+      ]
+    },
+    "biome.exact.frozen_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 20,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            320,
+            63,
+            -256
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "frozen_ocean",
+          "predicted": "frozen_ocean"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            512,
+            63,
+            768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "frozen_ocean",
+          "predicted": "frozen_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.deep_frozen_ocean": {
+      "status": "predicted_enabled",
+      "positive_worlds": 18,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            976,
+            63,
+            -976
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "deep_frozen_ocean",
+          "predicted": "deep_frozen_ocean"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            768,
+            63,
+            1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "deep_frozen_ocean",
+          "predicted": "deep_frozen_ocean"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.river": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            0,
+            63,
+            128
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "river",
+          "predicted": "river"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1536,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "river",
+          "predicted": "river"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.frozen_river": {
+      "status": "predicted_enabled",
+      "positive_worlds": 21,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            384,
+            63,
+            -192
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "frozen_river",
+          "predicted": "frozen_river"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1280,
+            63,
+            768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "frozen_river",
+          "predicted": "frozen_river"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.beach": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            0,
+            63,
+            64
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "beach",
+          "predicted": "beach"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1280,
+            63,
+            -768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "beach",
+          "predicted": "beach"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.snowy_beach": {
+      "status": "predicted_enabled",
+      "positive_worlds": 17,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            256,
+            63,
+            -320
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "snowy_beach",
+          "predicted": "snowy_beach"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            256,
+            63,
+            1536
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "snowy_beach",
+          "predicted": "snowy_beach"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.stony_shore": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1408,
+            63,
+            1152
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "stony_shore",
+          "predicted": "stony_shore"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1536,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "stony_shore",
+          "predicted": "stony_shore"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.dark_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1856,
+            63,
+            1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "dark_forest",
+          "predicted": "dark_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -2048,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "dark_forest",
+          "predicted": "dark_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.pale_garden": {
+      "status": "predicted_enabled",
+      "positive_worlds": 10,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            3904,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "pale_garden",
+          "predicted": "pale_garden"
+        },
+        {
+          "seed": "8158115981218670659",
+          "position": [
+            -768,
+            63,
+            1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-06/report.json",
+          "report_sha256": "62c4ea73a6526721fbc46497d7b2e4428f3250a94d8c562cd6c59956473b3b8e",
+          "observed": "pale_garden",
+          "predicted": "pale_garden"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.dappled_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 17,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1088,
+            63,
+            -64
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "dappled_forest",
+          "predicted": "dappled_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1792,
+            63,
+            -256
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "dappled_forest",
+          "predicted": "dappled_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.taiga": {
+      "status": "predicted_enabled",
+      "positive_worlds": 25,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            192,
+            63,
+            64
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "taiga",
+          "predicted": "taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            768,
+            63,
+            -1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "taiga",
+          "predicted": "taiga"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.old_growth_pine_taiga": {
+      "status": "predicted_enabled",
+      "positive_worlds": 18,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -128,
+            63,
+            192
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "old_growth_pine_taiga",
+          "predicted": "old_growth_pine_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            2048,
+            63,
+            1024
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "old_growth_pine_taiga",
+          "predicted": "old_growth_pine_taiga"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.old_growth_spruce_taiga": {
+      "status": "predicted_enabled",
+      "positive_worlds": 21,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -256,
+            63,
+            192
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "old_growth_spruce_taiga",
+          "predicted": "old_growth_spruce_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            5071,
+            63,
+            5071
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "old_growth_spruce_taiga",
+          "predicted": "old_growth_spruce_taiga"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.windswept_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 13,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -832,
+            63,
+            -704
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "windswept_forest",
+          "predicted": "windswept_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1792,
+            63,
+            1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "windswept_forest",
+          "predicted": "windswept_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.jungle": {
+      "status": "predicted_enabled",
+      "positive_worlds": 20,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -2624,
+            63,
+            -1216
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "jungle",
+          "predicted": "jungle"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            2048,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "jungle",
+          "predicted": "jungle"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.sparse_jungle": {
+      "status": "predicted_enabled",
+      "positive_worlds": 19,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            3456,
+            63,
+            -960
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "sparse_jungle",
+          "predicted": "sparse_jungle"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1280,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "sparse_jungle",
+          "predicted": "sparse_jungle"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.savanna": {
+      "status": "predicted_enabled",
+      "positive_worlds": 20,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -1600,
+            63,
+            -3136
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "savanna",
+          "predicted": "savanna"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1536,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "savanna",
+          "predicted": "savanna"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.savanna_plateau": {
+      "status": "predicted_enabled",
+      "positive_worlds": 12,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -3520,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "savanna_plateau",
+          "predicted": "savanna_plateau"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1024,
+            63,
+            -1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "savanna_plateau",
+          "predicted": "savanna_plateau"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.windswept_savanna": {
+      "status": "predicted_enabled",
+      "positive_worlds": 11,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -256,
+            63,
+            2944
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "windswept_savanna",
+          "predicted": "windswept_savanna"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            1792,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "windswept_savanna",
+          "predicted": "windswept_savanna"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.swamp": {
+      "status": "predicted_enabled",
+      "positive_worlds": 20,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -320,
+            63,
+            -384
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "swamp",
+          "predicted": "swamp"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -512,
+            63,
+            512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "swamp",
+          "predicted": "swamp"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.windswept_hills": {
+      "status": "predicted_enabled",
+      "positive_worlds": 18,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            0,
+            63,
+            -640
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "windswept_hills",
+          "predicted": "windswept_hills"
+        },
+        {
+          "seed": "4613350367979055430",
+          "position": [
+            -768,
+            63,
+            0
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-02/report.json",
+          "report_sha256": "3c8e848f5991831f596955afe05383b862dfd66262d2036dea3f167453fe3ff1",
+          "observed": "windswept_hills",
+          "predicted": "windswept_hills"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.windswept_gravelly_hills": {
+      "status": "predicted_enabled",
+      "positive_worlds": 16,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -128,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "windswept_gravelly_hills",
+          "predicted": "windswept_gravelly_hills"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1024,
+            63,
+            512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "windswept_gravelly_hills",
+          "predicted": "windswept_gravelly_hills"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.jagged_peaks": {
+      "status": "predicted_enabled",
+      "positive_worlds": 12,
+      "examples": [
+        {
+          "seed": "3157310834591421270",
+          "position": [
+            1536,
+            63,
+            768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-07/report.json",
+          "report_sha256": "327517ca537858451964bcfb5a8a51bf268563ca2575a0639fc1e256507c858e",
+          "observed": "jagged_peaks",
+          "predicted": "jagged_peaks"
+        },
+        {
+          "seed": "7148668282259992612",
+          "position": [
+            -1536,
+            63,
+            -768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-13/report.json",
+          "report_sha256": "8772f095cefaa066d81e06c664a57d2c9d73b371072953b6cb39b296a2ee5891",
+          "observed": "jagged_peaks",
+          "predicted": "jagged_peaks"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.frozen_peaks": {
+      "status": "predicted_enabled",
+      "positive_worlds": 12,
+      "examples": [
+        {
+          "seed": "4613350367979055430",
+          "position": [
+            256,
+            63,
+            -1536
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-02/report.json",
+          "report_sha256": "3c8e848f5991831f596955afe05383b862dfd66262d2036dea3f167453fe3ff1",
+          "observed": "frozen_peaks",
+          "predicted": "frozen_peaks"
+        },
+        {
+          "seed": "2706853909057002900",
+          "position": [
+            1536,
+            63,
+            -1536
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-04/report.json",
+          "report_sha256": "53c85959c3edc18d1dc583aec909cdcd4d1f7e3493e35dfcb79cf73ad98d8788",
+          "observed": "frozen_peaks",
+          "predicted": "frozen_peaks"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.stony_peaks": {
+      "status": "predicted_enabled",
+      "positive_worlds": 15,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -3584,
+            63,
+            -1856
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "stony_peaks",
+          "predicted": "stony_peaks"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1280,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "stony_peaks",
+          "predicted": "stony_peaks"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.grove": {
+      "status": "predicted_enabled",
+      "positive_worlds": 22,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -896,
+            63,
+            1088
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "grove",
+          "predicted": "grove"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1280,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "grove",
+          "predicted": "grove"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.lush_caves": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -512,
+            63,
+            448
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "lush_caves",
+          "predicted": "lush_caves"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            512,
+            63,
+            1536
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "lush_caves",
+          "predicted": "lush_caves"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            -48,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.dripstone_caves": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -64,
+            63,
+            896
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "dripstone_caves",
+          "predicted": "dripstone_caves"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            512,
+            0,
+            512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "dripstone_caves",
+          "predicted": "dripstone_caves"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            -48,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.deep_dark": {
+      "status": "predicted_enabled",
+      "positive_worlds": 5,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -928,
+            0,
+            736
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "deep_dark",
+          "predicted": "deep_dark"
+        },
+        {
+          "seed": "6920486254874801760",
+          "position": [
+            -512,
+            -48,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-05/report.json",
+          "report_sha256": "20852478ed58443cf0beb1f070e64ffa779b73433c2cec572adb9d0cf136e3fa",
+          "observed": "deep_dark",
+          "predicted": "deep_dark"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            -48,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.sulfur_caves": {
+      "status": "predicted_enabled",
+      "positive_worlds": 13,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -512,
+            0,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "sulfur_caves",
+          "predicted": "sulfur_caves"
+        },
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            -9,
+            0,
+            -1
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "sulfur_caves",
+          "predicted": "sulfur_caves"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            -48,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.badlands": {
+      "status": "predicted_enabled",
+      "positive_worlds": 10,
+      "examples": [
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            976,
+            63,
+            -976
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "badlands",
+          "predicted": "badlands"
+        },
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            1792,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "badlands",
+          "predicted": "badlands"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.eroded_badlands": {
+      "status": "predicted_enabled",
+      "positive_worlds": 8,
+      "examples": [
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            1536,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "eroded_badlands",
+          "predicted": "eroded_badlands"
+        },
+        {
+          "seed": "5050725658938791990",
+          "position": [
+            1728,
+            63,
+            -256
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-16/report.json",
+          "report_sha256": "8a2bc2b02adf38a32a380e1f556c0e753ef949d76750da18238c8aa2229c1416",
+          "observed": "eroded_badlands",
+          "predicted": "eroded_badlands"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.wooded_badlands": {
+      "status": "predicted_enabled",
+      "positive_worlds": 10,
+      "examples": [
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            256,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "wooded_badlands",
+          "predicted": "wooded_badlands"
+        },
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            1792,
+            63,
+            -1024
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "wooded_badlands",
+          "predicted": "wooded_badlands"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.snowy_plains": {
+      "status": "predicted_enabled",
+      "positive_worlds": 22,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            64,
+            63,
+            -256
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "snowy_plains",
+          "predicted": "snowy_plains"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1280,
+            63,
+            1024
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "snowy_plains",
+          "predicted": "snowy_plains"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.snowy_slopes": {
+      "status": "predicted_enabled",
+      "positive_worlds": 15,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -832,
+            63,
+            1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "snowy_slopes",
+          "predicted": "snowy_slopes"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1792,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "snowy_slopes",
+          "predicted": "snowy_slopes"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.snowy_taiga": {
+      "status": "predicted_enabled",
+      "positive_worlds": 21,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1536,
+            63,
+            -768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "forest",
+          "predicted": "forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.ice_spikes": {
+      "status": "predicted_enabled",
+      "positive_worlds": 15,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            2560,
+            63,
+            -2112
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "ice_spikes",
+          "predicted": "ice_spikes"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1792,
+            63,
+            0
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "ice_spikes",
+          "predicted": "ice_spikes"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "forest",
+          "predicted": "forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            0,
+            63,
+            0
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "forest",
+          "predicted": "forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.birch_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 23,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            192,
+            63,
+            1408
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "birch_forest",
+          "predicted": "birch_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1024,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "birch_forest",
+          "predicted": "birch_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.flower_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 19,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            256,
+            63,
+            704
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "flower_forest",
+          "predicted": "flower_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            1792,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "flower_forest",
+          "predicted": "flower_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.old_growth_birch_forest": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1600,
+            63,
+            0
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "old_growth_birch_forest",
+          "predicted": "old_growth_birch_forest"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1536,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "old_growth_birch_forest",
+          "predicted": "old_growth_birch_forest"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.plains": {
+      "status": "predicted_enabled",
+      "positive_worlds": 24,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            512,
+            63,
+            512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "plains",
+          "predicted": "plains"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1280,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "plains",
+          "predicted": "plains"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.sunflower_plains": {
+      "status": "predicted_enabled",
+      "positive_worlds": 16,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            192,
+            63,
+            832
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "sunflower_plains",
+          "predicted": "sunflower_plains"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -1024,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "sunflower_plains",
+          "predicted": "sunflower_plains"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.meadow": {
+      "status": "predicted_enabled",
+      "positive_worlds": 17,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            704,
+            63,
+            832
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "meadow",
+          "predicted": "meadow"
+        },
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1792,
+            63,
+            -1792
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "meadow",
+          "predicted": "meadow"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.cherry_grove": {
+      "status": "predicted_enabled",
+      "positive_worlds": 10,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            576,
+            63,
+            576
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "cherry_grove",
+          "predicted": "cherry_grove"
+        },
+        {
+          "seed": "2706853909057002900",
+          "position": [
+            1536,
+            63,
+            -1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-04/report.json",
+          "report_sha256": "53c85959c3edc18d1dc583aec909cdcd4d1f7e3493e35dfcb79cf73ad98d8788",
+          "observed": "cherry_grove",
+          "predicted": "cherry_grove"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.mushroom_fields": {
+      "status": "predicted_enabled",
+      "positive_worlds": 11,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            1664,
+            63,
+            -1408
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "mushroom_fields",
+          "predicted": "mushroom_fields"
+        },
+        {
+          "seed": "3157310834591421270",
+          "position": [
+            512,
+            63,
+            1280
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-07/report.json",
+          "report_sha256": "327517ca537858451964bcfb5a8a51bf268563ca2575a0639fc1e256507c858e",
+          "observed": "mushroom_fields",
+          "predicted": "mushroom_fields"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.bamboo_jungle": {
+      "status": "predicted_enabled",
+      "positive_worlds": 13,
+      "examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            -3008,
+            63,
+            -960
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-20/report.json",
+          "report_sha256": "8b07268264269ab22bf5e57c9538fabef706d6a7adbd678249c1cf22246d40ec",
+          "observed": "bamboo_jungle",
+          "predicted": "bamboo_jungle"
+        },
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            1536,
+            63,
+            -768
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "bamboo_jungle",
+          "predicted": "bamboo_jungle"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.desert": {
+      "status": "predicted_enabled",
+      "positive_worlds": 13,
+      "examples": [
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            -1024,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "desert",
+          "predicted": "desert"
+        },
+        {
+          "seed": "4027938806717471239",
+          "position": [
+            1536,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-03/report.json",
+          "report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+          "observed": "desert",
+          "predicted": "desert"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    },
+    "biome.exact.mangrove_swamp": {
+      "status": "predicted_enabled",
+      "positive_worlds": 11,
+      "examples": [
+        {
+          "seed": "4377409027841199710",
+          "position": [
+            1536,
+            63,
+            -2048
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-01/report.json",
+          "report_sha256": "69be3ca88540038021dd87d5bd49237325d4c7f5ee801fcf84307f5070c19285",
+          "observed": "mangrove_swamp",
+          "predicted": "mangrove_swamp"
+        },
+        {
+          "seed": "8158115981218670659",
+          "position": [
+            -1792,
+            63,
+            1024
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-06/report.json",
+          "report_sha256": "62c4ea73a6526721fbc46497d7b2e4428f3250a94d8c562cd6c59956473b3b8e",
+          "observed": "mangrove_swamp",
+          "predicted": "mangrove_swamp"
+        }
+      ],
+      "exact_xyz_negative_examples": [
+        {
+          "seed": "7370389603366252746",
+          "position": [
+            248,
+            63,
+            -312
+          ],
+          "source": "accuracy-expansion/accuracy-evidence-v2.tar.gz:fresh/04/report.json",
+          "report_sha256": "29165826d64a79a5598b4774d5f11fa5d582fcae663d151116da458896bb5adc",
+          "observed": "snowy_taiga",
+          "predicted": "snowy_taiga"
+        },
+        {
+          "seed": "-4604339825072288470",
+          "position": [
+            -512,
+            63,
+            -512
+          ],
+          "source": "generalization/audit-evidence-v1.tar.gz:cohort/world-00/report.json",
+          "report_sha256": "ae4cd11e53f1b8aa881767814c929c142db3aea97a9dfa66b81dd42a57da4989",
+          "observed": "deep_cold_ocean",
+          "predicted": "deep_cold_ocean"
+        }
+      ]
+    }
+  },
+  "auxiliary": {
+    "structure.igloo_with_basement": {
+      "status": "gated",
+      "independent_variant_control_worlds": 0
+    },
+    "structure.bastion_treasure": {
+      "status": "gated",
+      "independent_variant_control_worlds": 0
+    }
+  },
+  "known_height_disagreements": [
+    {
+      "seed": "7370389603366252746",
+      "dimension": "overworld",
+      "position": [
+        248,
+        96,
+        -312
+      ],
+      "observed": "snowy_beach",
+      "raw_name": "minecraft:cold_beach",
+      "source": "generalization/audit-evidence-v1.tar.gz:biome-recheck/overworld/report.json",
+      "report_sha256": "0c300c3c4467dbe066ad4d7dc38aac0ca5d992293e7a95ecccbb398e2a8e36de",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "group": "targeted",
+      "predicted": "snowy_taiga",
+      "matches": false
+    },
+    {
+      "seed": "7370389603366252746",
+      "dimension": "overworld",
+      "position": [
+        248,
+        160,
+        -312
+      ],
+      "observed": "snowy_beach",
+      "raw_name": "minecraft:cold_beach",
+      "source": "generalization/audit-evidence-v1.tar.gz:biome-recheck/overworld/report.json",
+      "report_sha256": "0c300c3c4467dbe066ad4d7dc38aac0ca5d992293e7a95ecccbb398e2a8e36de",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "group": "targeted",
+      "predicted": "snowy_taiga",
+      "matches": false
+    }
+  ],
+  "negative_control_claim": "Nonmember biome observed at exact eligible XYZ; no world-wide absence inference. Geometry/window boundary controls are independent synthetic oracle tests."
+}

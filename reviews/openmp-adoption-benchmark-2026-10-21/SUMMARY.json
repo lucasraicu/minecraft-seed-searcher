@@ -1,0 +1,35 @@
+{
+  "personal_only_median": 61874.944780158694,
+  "handoff_median": 62149.95350757631,
+  "personal_kernel_median": 69192.73020357972,
+  "registration_pair_wall_ratios": [
+    0.9825425579988638,
+    0.995575077503733,
+    1.0587304063325038
+  ],
+  "active_baseline_median": 67070.82316777391,
+  "active_catalog_median": 60914.23777207974,
+  "active_pair_wall_ratios": [
+    1.075073105809878,
+    1.104579577229366,
+    1.0700963657309404
+  ],
+  "active_pair_median_extra_wall_percent": 7.507310580987792,
+  "active_query_seconds": [
+    4.387121400912292,
+    4.401460497989319,
+    4.483528912998736,
+    4.481972138979472,
+    4.245256852940656,
+    4.243359145941213
+  ],
+  "catalog_seconds_per_record": 3.88491729949601,
+  "historical_personal_median": 107428.15093417917,
+  "historical_observed_rate_change_percent": -42.403416383784496,
+  "historical_confounds": [
+    "compiler flags differ:historical hostnative/AVX2/FMA/LTO,current portableO3",
+    "predictor correctness changed",
+    "different measurementdate/systemload",
+    "historical directpersist_pipeline vs current productionAPIpreflight;both exclude interpreterstartup"
+  ]
+}

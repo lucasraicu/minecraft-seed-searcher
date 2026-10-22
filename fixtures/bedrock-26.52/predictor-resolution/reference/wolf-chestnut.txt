@@ -1,0 +1,24 @@
+            // Chestnut Wolf: Old Growth Spruce Taiga only.
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "value": "mega"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "value": "taiga"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "value": "forest"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "value": "mutated"
+                }
+              ]
+            },
+            "add": {
+              "component_groups": [ "minecraft:wolf_chestnut" ]
+            }

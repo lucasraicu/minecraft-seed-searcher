@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "statistics": "SUMMARY.json",
+  "receipt_audit": "RECEIPT_AUDIT.json",
+  "preservation": "PRESERVATION.json",
+  "report_links_checked": 15,
+  "newly_changed_runtime_or_native_files": 0,
+  "source_changes": "None; benchmark harness and results plus README/review navigation/handoff documentation only",
+  "worker_review": {
+    "task_id": "f43a4356b66c",
+    "state": "succeeded",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [],
+    "codex_reconciled": true
+  },
+  "limits": {
+    "wall_seconds": 600,
+    "owned_rss_bytes": 4294967296,
+    "new_output_bytes": 1073741824
+  },
+  "limitations": [
+    "Short bounded screening cohorts; one predicted survivor, no full-heap stress",
+    "Serial diagnostic had nice19 child; main active figures use verified nice10",
+    "No current222-world incremental publication/fleet/sustained thermal benchmark"
+  ]
+}

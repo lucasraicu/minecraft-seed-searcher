@@ -1,0 +1,31 @@
+{
+  "task_id": "0e6d54f154d1",
+  "role": "review",
+  "state": "failed",
+  "created": 1792667739.777544,
+  "updated": 1792668046.15974,
+  "worker_id": "gemini-2",
+  "objective": "High read-only investigation and neutral plan critique for igloo-basement and treasure-bastion gates. Inspect current Realm auxiliary inventories, native ss_igloo_basement/ss_bastion_variant, vendor getVariant and archived controls/tests. Use scoped readers only. No shell, BDS, scans, builds, edits,",
+  "result": {
+    "worker_id": "gemini-2",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 300,
+    "effective_timeout_seconds": 300,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "1efe3739ebfdaf7f11e536c281ebe72f3463cfb52436a1c4741764d57481419e",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792667745.566808,
+    "error": "timeout",
+    "timeout_phase": "model",
+    "elapsed_seconds": 300.6,
+    "completed": 1792668046.159273,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 234954752
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/0e6d54f154d1",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

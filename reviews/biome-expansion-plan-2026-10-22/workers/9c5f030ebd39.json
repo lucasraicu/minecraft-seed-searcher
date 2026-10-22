@@ -1,0 +1,19 @@
+{
+  "task_id": "9c5f030ebd39",
+  "role": "review",
+  "state": "failed",
+  "created": 1792664939.772254,
+  "updated": 1792664945.802882,
+  "worker_id": "gemini-1",
+  "objective": "High read-only narrow review of scripts/reindex_catalog_biomes.py, especially the new durable deferred bulk merge and bounded four-process immutable CAS conversion. Existing approved work, no new plan. Do not run migration or any shell. Find concrete rank/dedup/replay/publication/source-binding erro",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "error": "Context files exceed 30,000 bytes; select narrower context",
+    "completed": 1792664945.802761
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/9c5f030ebd39",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

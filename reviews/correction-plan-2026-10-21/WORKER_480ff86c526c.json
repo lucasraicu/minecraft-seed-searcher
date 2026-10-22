@@ -1,0 +1,26 @@
+{
+  "task_id": "480ff86c526c",
+  "role": "code",
+  "state": "failed",
+  "created": 1792566783.830382,
+  "updated": 1792567269.247078,
+  "worker_id": "gemini-1",
+  "objective": "APPROVED High reasoning runtime guard implementation. Read RUNTIME_IMPLEMENTATION_CONTEXT.md; command allowlist uses python3 via exact run-command wrappers (not absolute exe). Own backend.py, native_identity.py, new tests only. No build/BDS/network/delegates/notification. Final <=700words start RUNT",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "baseline_digest": "6a54bbc0d12c0c7c84b841921ffb4ee0b7ef5103e60fc53234aabc860f654f3a",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792566788.6296802,
+    "error": "timeout",
+    "completed": 1792567269.246227,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 278769664
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/480ff86c526c",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

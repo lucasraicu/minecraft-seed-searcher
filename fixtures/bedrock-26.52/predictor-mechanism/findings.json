@@ -1,0 +1,674 @@
+{
+  "revision": "dense-mechanism-v3-direct-point-associations",
+  "copied_associations": [
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        536,
+        163,
+        520
+      ],
+      "stored_id": 183,
+      "name": "frozen_peaks",
+      "report": "membership/world-0/report.json"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        820,
+        8,
+        -1708
+      ],
+      "stored_id": 188,
+      "name": "dripstone_caves",
+      "report": "membership/world-1/report.json"
+    }
+  ],
+  "native_nodes": 3920,
+  "columns": 128,
+  "observed_points": 8320,
+  "quart_neighbor_bounds": "floor(block/4)+[-1,1] each axis; covers normal -2 and removed-bias corner conventions only, not arbitrary zoomers",
+  "python_java_selection_parity": 614,
+  "numeric_name_associations": {
+    "-3509659830737203357": {
+      "190": "deep_dark",
+      "12": "snowy_plains",
+      "188": "dripstone_caves",
+      "30": "snowy_taiga",
+      "187": "lush_caves",
+      "184": "snowy_slopes",
+      "185": "grove",
+      "5": "taiga",
+      "183": "frozen_peaks"
+    },
+    "-9103892851552028103": {
+      "21": "jungle",
+      "35": "savanna",
+      "188": "dripstone_caves",
+      "1": "plains"
+    }
+  },
+  "missing_carrier_count": 30,
+  "build_sha256": "de01f818db1db25c1a5e11d909b5627467aef807f7741246e53e5745290c43f5",
+  "fixture_manifest_sha256": "ace2b5f9e1f86f2333d0ebccab04951cc23fab9c3cd774a1af34ded2fb5fc2c0",
+  "wall_seconds": 0.49536709301173687,
+  "direct_comparison_points": 25,
+  "primary_witnesses_directly_confirmed": 8,
+  "mapped_points": 8320,
+  "unmapped_points": 0,
+  "name_association_scope": "Each original world and its hash-linked copies, including directly read unknown storedID1. Not a global ID table.",
+  "historical_v2_groups": {
+    "world0:-16,-16:discovery": {
+      "points": 2080,
+      "mapped_points": 2080,
+      "raw_quart_matches": 1947,
+      "java_matches": 1911,
+      "no_bias_matches": 1925,
+      "any_27_carrier": 2080
+    },
+    "world0:-28,20:discovery": {
+      "points": 2080,
+      "mapped_points": 2080,
+      "raw_quart_matches": 1914,
+      "java_matches": 1889,
+      "no_bias_matches": 1890,
+      "any_27_carrier": 2078
+    },
+    "world0:-4,20:spatial_holdout": {
+      "points": 2080,
+      "mapped_points": 2080,
+      "raw_quart_matches": 1859,
+      "java_matches": 1868,
+      "no_bias_matches": 1863,
+      "any_27_carrier": 2079
+    },
+    "world1:6,-127:seed_holdout": {
+      "points": 2080,
+      "mapped_points": 1909,
+      "raw_quart_matches": 1846,
+      "java_matches": 1831,
+      "no_bias_matches": 1826,
+      "any_27_carrier": 1904,
+      "unmapped_stored_id": 171
+    }
+  },
+  "groups": {
+    "-3509659830737203357/discovery": {
+      "points": 4160,
+      "raw_quart_matches": 3861,
+      "java_matches": 3800,
+      "no_bias_matches": 3815,
+      "any_27_carrier": 4158
+    },
+    "-3509659830737203357/spatial_holdout": {
+      "points": 2080,
+      "raw_quart_matches": 1859,
+      "java_matches": 1868,
+      "no_bias_matches": 1863,
+      "any_27_carrier": 2079
+    },
+    "-9103892851552028103/seed_holdout": {
+      "points": 2080,
+      "raw_quart_matches": 1846,
+      "java_matches": 1838,
+      "no_bias_matches": 1903,
+      "any_27_carrier": 2053
+    }
+  },
+  "primary_witnesses": [
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        332
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "neighbor_labels": [
+        "lush_caves"
+      ],
+      "role": "discovery"
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        335
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "neighbor_labels": [
+        "lush_caves"
+      ],
+      "role": "discovery"
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -64,
+        51,
+        328
+      ],
+      "observed": "snowy_slopes",
+      "stored_id": 184,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "spatial_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        41,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    }
+  ],
+  "primary_missing_carrier_count": 8,
+  "missing_carrier_witnesses": [
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        332
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "neighbor_labels": [
+        "lush_caves"
+      ],
+      "role": "discovery"
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        335
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "neighbor_labels": [
+        "lush_caves"
+      ],
+      "role": "discovery"
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -64,
+        51,
+        328
+      ],
+      "observed": "snowy_slopes",
+      "stored_id": 184,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "spatial_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        96,
+        41,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        96,
+        42,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        96,
+        43,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        43,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        44,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        45,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        46,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        47,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        48,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        49,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        54,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        40,
+        -2020
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        41,
+        -2020
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        42,
+        -2020
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        43,
+        -2020
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        40,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        41,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        42,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        101,
+        43,
+        -2017
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        106,
+        52,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        106,
+        53,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        106,
+        66,
+        -2022
+      ],
+      "observed": "plains",
+      "stored_id": 1,
+      "neighbor_labels": [
+        "savanna"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        41,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "neighbor_labels": [
+        "dripstone_caves"
+      ],
+      "role": "seed_holdout"
+    }
+  ],
+  "directly_confirmed_missing_carriers": 9
+}

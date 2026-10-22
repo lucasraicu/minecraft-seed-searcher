@@ -1,0 +1,418 @@
+{
+  "structures": {
+    "structure.trial_chamber": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-17, -17)": 1,
+        "(-17, 1)": 3,
+        "(1, -17)": 2,
+        "(1, 1)": 3
+      }
+    },
+    "structure.stronghold": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-2, -2)": 8,
+        "(-722, -322)": 1
+      }
+    },
+    "structure.mineshaft": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-8, -8)": 9
+      }
+    },
+    "structure.ancient_city": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.village": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.ruined_portal": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.shipwreck": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.monument": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.outpost": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(8, 8)": 9
+      }
+    },
+    "structure.fortress": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-8, -8)": 9
+      }
+    },
+    "structure.bastion": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.desert_pyramid": {
+      "queries": 8,
+      "exact": 7,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-448, -448)": 1
+      }
+    },
+    "structure.jungle_temple": {
+      "queries": 9,
+      "exact": 8,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-688, 1344)": 1
+      }
+    },
+    "structure.swamp_hut": {
+      "queries": 8,
+      "exact": 6,
+      "coordinate_difference": 2,
+      "no_location": 0,
+      "offsets": {
+        "(-592, -64)": 1,
+        "(112, -624)": 1
+      }
+    },
+    "structure.igloo": {
+      "queries": 8,
+      "exact": 7,
+      "coordinate_difference": 1,
+      "no_location": 0,
+      "offsets": {
+        "(-416, 304)": 1
+      }
+    },
+    "structure.ocean_ruin": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.mansion": {
+      "queries": 7,
+      "exact": 7,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.buried_treasure": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.trail_ruins": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 9,
+      "no_location": 0,
+      "offsets": {
+        "(-5, -11)": 2,
+        "(-10, -6)": 2,
+        "(-10, -10)": 1,
+        "(-5, -5)": 1,
+        "(-11, -11)": 2,
+        "(-6, -6)": 1
+      }
+    },
+    "structure.abandoned_camp": {
+      "queries": 9,
+      "exact": 0,
+      "coordinate_difference": 0,
+      "no_location": 9,
+      "offsets": {}
+    },
+    "structure.ruined_portal_nether": {
+      "queries": 9,
+      "exact": 9,
+      "coordinate_difference": 0,
+      "no_location": 0,
+      "offsets": {}
+    },
+    "structure.end_city": {
+      "queries": 9,
+      "exact": 4,
+      "coordinate_difference": 5,
+      "no_location": 0,
+      "offsets": {
+        "(-320, 0)": 1,
+        "(-320, -288)": 1,
+        "(-240, -16)": 1,
+        "(336, 16)": 1,
+        "(288, 16)": 1
+      }
+    }
+  },
+  "biome_block_disagreements": [
+    {
+      "predicted": "dripstone_caves",
+      "observed": "forest",
+      "n": 2
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "forest",
+      "observed": "river",
+      "n": 1
+    },
+    {
+      "predicted": "frozen_peaks",
+      "observed": "forest",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "jungle",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "bamboo_jungle",
+      "n": 1
+    },
+    {
+      "predicted": "old_growth_birch_forest",
+      "observed": "river",
+      "n": 1
+    },
+    {
+      "predicted": "old_growth_pine_taiga",
+      "observed": "windswept_forest",
+      "n": 1
+    },
+    {
+      "predicted": "old_growth_spruce_taiga",
+      "observed": "taiga",
+      "n": 6
+    },
+    {
+      "predicted": "snowy_taiga",
+      "observed": "snowy_plains",
+      "n": 1
+    },
+    {
+      "predicted": "sparse_jungle",
+      "observed": "river",
+      "n": 1
+    },
+    {
+      "predicted": "sulfur_caves",
+      "observed": "jungle",
+      "n": 2
+    },
+    {
+      "predicted": "taiga",
+      "observed": "cold_ocean",
+      "n": 1
+    },
+    {
+      "predicted": "windswept_forest",
+      "observed": "old_growth_pine_taiga",
+      "n": 1
+    },
+    {
+      "predicted": "beach",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "cherry_grove",
+      "observed": "dripstone_caves",
+      "n": 1
+    },
+    {
+      "predicted": "deep_lukewarm_ocean",
+      "observed": "lukewarm_ocean",
+      "n": 1
+    },
+    {
+      "predicted": "lukewarm_ocean",
+      "observed": "beach",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "old_growth_pine_taiga",
+      "n": 1
+    },
+    {
+      "predicted": "old_growth_pine_taiga",
+      "observed": "taiga",
+      "n": 1
+    },
+    {
+      "predicted": "windswept_gravelly_hills",
+      "observed": "windswept_hills",
+      "n": 1
+    },
+    {
+      "predicted": "dappled_forest",
+      "observed": "sunflower_plains",
+      "n": 1
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "birch_forest",
+      "n": 1
+    },
+    {
+      "predicted": "jagged_peaks",
+      "observed": "dripstone_caves",
+      "n": 1
+    },
+    {
+      "predicted": "pale_garden",
+      "observed": "dark_forest",
+      "n": 1
+    },
+    {
+      "predicted": "snowy_slopes",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "snowy_taiga",
+      "observed": "frozen_river",
+      "n": 1
+    },
+    {
+      "predicted": "stony_peaks",
+      "observed": "forest",
+      "n": 1
+    },
+    {
+      "predicted": "sunflower_plains",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "taiga",
+      "observed": "forest",
+      "n": 1
+    },
+    {
+      "predicted": "warm_ocean",
+      "observed": "desert",
+      "n": 1
+    }
+  ],
+  "biome_quart_disagreements": [
+    {
+      "predicted": "dripstone_caves",
+      "observed": "forest",
+      "n": 1
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "jungle",
+      "n": 1
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "meadow",
+      "n": 2
+    },
+    {
+      "predicted": "old_growth_spruce_taiga",
+      "observed": "taiga",
+      "n": 6
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "pale_garden",
+      "n": 1
+    },
+    {
+      "predicted": "sulfur_caves",
+      "observed": "jungle",
+      "n": 2
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "dappled_forest",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "old_growth_pine_taiga",
+      "n": 1
+    },
+    {
+      "predicted": "lush_caves",
+      "observed": "dark_forest",
+      "n": 1
+    },
+    {
+      "predicted": "savanna",
+      "observed": "plains",
+      "n": 1
+    },
+    {
+      "predicted": "dripstone_caves",
+      "observed": "savanna_plateau",
+      "n": 1
+    }
+  ],
+  "known_seeds": [
+    "-9103892851552028103",
+    "-4565879772552070118",
+    "3477702448211353566"
+  ]
+}

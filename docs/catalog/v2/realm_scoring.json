@@ -1,0 +1,27 @@
+{
+  "revision": "catalog-realm-score-budgets-v2",
+  "baseline_revision": "dynamic-envelope-2048-v3",
+  "total": 1250,
+  "groups": {
+    "overworld": 845,
+    "luxury_biomes": 265,
+    "nether": 140
+  },
+  "nether_side": 1024,
+  "sizes": {
+    "2048": {
+      "policy": "existing_personal_blueprint",
+      "calibration_required": false
+    },
+    "4096": {
+      "policy": "frozen_empirical_count_schedule_v1",
+      "calibration_required": true,
+      "calibration_artifact": "realm_calibration.json"
+    },
+    "8192": {
+      "policy": "frozen_empirical_count_schedule_v1",
+      "calibration_required": true,
+      "calibration_artifact": "realm_calibration.json"
+    }
+  }
+}

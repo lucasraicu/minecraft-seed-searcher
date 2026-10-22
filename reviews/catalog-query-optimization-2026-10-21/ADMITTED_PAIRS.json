@@ -1,0 +1,42 @@
+[
+  {
+    "case": "previous_failed_admitted_pair",
+    "requests": [
+      {
+        "query_id": 5,
+        "status": 503,
+        "seconds": 10.039695132058114,
+        "code": "query_timeout"
+      },
+      {
+        "query_id": 10,
+        "status": 503,
+        "seconds": 10.013279389007948,
+        "code": "query_timeout"
+      }
+    ],
+    "passed": false,
+    "query_seconds": 10,
+    "execution_limit": 2
+  },
+  {
+    "case": "two_broad_recommended",
+    "requests": [
+      {
+        "query_id": 3,
+        "status": 503,
+        "seconds": 10.034933864022605,
+        "code": "query_timeout"
+      },
+      {
+        "query_id": 15,
+        "status": 503,
+        "seconds": 10.037903412943706,
+        "code": "query_timeout"
+      }
+    ],
+    "passed": false,
+    "query_seconds": 10,
+    "execution_limit": 2
+  }
+]

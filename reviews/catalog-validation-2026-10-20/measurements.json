@@ -1,0 +1,1344 @@
+{
+  "controls": {
+    "build": {
+      "heldout_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+      "identity": {
+        "edition": "bedrock",
+        "extractor_revision": "cpu-catalog-reference-v1",
+        "game_build_id": "research:26.50",
+        "model_id": "26.50",
+        "native_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+        "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+        "source_sha256": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+        "world_settings_id": "default"
+      },
+      "source_sha256": {
+        "scripts/catalog_reference.py": "4c57147a4d3fb47fd3a64bd7b83cf1ea056848264ba459beeab16ac663785921",
+        "scripts/catalog_validate.py": "32f92c0de28a74d538dc4bd4fcce90312d81401a9869759b7b35fb1b9cdcbb5c",
+        "src/seed_search/backend.py": "bbdd9b83f7ab76e6b4b2b5619dbd13b975099538b256b1396162e7c15274a662",
+        "src/seed_search/catalog/__init__.py": "c6778d1c6dd199825211e5bdaa71625010f9c94f95a9c32f5f4bceccb373374b",
+        "src/seed_search/catalog/artifacts.py": "486434007674b2fe9a64cec7d259fed0a240078f5b7223b579f802b03638928b",
+        "src/seed_search/catalog/capabilities.py": "f94316217756ab62d65fdf397720d45ffbac2afb0664e729536f40392987077f",
+        "src/seed_search/catalog/codec.py": "fcde3c7019e6bb8826e349fcd8a62c5f686854bd40d94ff6bbb1c9973bc1901b",
+        "src/seed_search/catalog/coverage.py": "0552bb4870a134d18de440586be6066091c6f5e23736f587345a1e5b3d27ca29",
+        "src/seed_search/catalog/evaluation.py": "c38a6000fe3789892a548a67a4117710d705108585a0b71cfd68db007464a4d4",
+        "src/seed_search/catalog/extract.py": "119bc8e85b4db7ed4e8985f10d2e725b44cf79a60c19a04b01332c112f9b9727",
+        "src/seed_search/catalog/geometry.py": "9ced7b55b10b20740583b1cc779081257691e2a5451b09c7ff0f7d6e79ac72d2",
+        "src/seed_search/catalog/ingestion.py": "55da74864207f73c126907f6a35078ab43f65dfb38a9e9efd6c71bdb501eb91f",
+        "src/seed_search/catalog/models.py": "07be80f1e9a55bb566582654c385884a6cb4923cc1c8cdb8869e5cc4344a2bae",
+        "src/seed_search/catalog/query.py": "65c610bb02c6e2ffec1805aab248548ad08aa212b340480a4b7ac71b3a66ae3b",
+        "src/seed_search/catalog/registry.py": "b9e0d7808fcb743b97b3aa23ec5d629192b4ce10bad8902b198317a87b2fdec0",
+        "src/seed_search/catalog/request.py": "c63fa020e9b0cee963be5570a98af3eeab323ebdbc7ebbe596b94bf607434a08",
+        "src/seed_search/catalog/retention.py": "34dee16690a65ff08a4a273bdc5db86df736d2bf19d9e2b05fdea65731b63b0c",
+        "src/seed_search/catalog/retention_oracle.py": "a1fc6ada5acf0b64357eaeca9344dbea5a74948bd90b0b7fb80230b7aba7cc38",
+        "src/seed_search/catalog/scoring.py": "3e50fdf1993f4a77e49242f6d203d95981e4ac77914f0a443312f47893571d29",
+        "src/seed_search/catalog/store.py": "3c73c47d794fa84aeacdc5af8e280fe960f832e635ccc3570cd46cb5aaa6a6fd",
+        "src/seed_search/catalog/summaries.py": "6a0b43285a7eaf90a63c21efacd077e035203f1babfbbf5ae56d9d9d72317642",
+        "src/seed_search/catalog/validation_contracts.py": "913fcc62d8079326d216f66f1a0f25c6780e05ef30327dcd58bb1678da367b0c",
+        "src/seed_search/catalog/validation_synthetic.py": "8db581d81e46df29332793b9ee968d14f898a444a7e2ca9923ab73a2e36bf2db",
+        "src/seed_search/catalog/view.py": "15f7cd1b87be1a503f3c9add96ce0763d1b0c23d326569f400999e744e38c9b8",
+        "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+        "src/seed_search/seeds.py": "18db63920f310af50b5813a539f50b03002ddefcf801ec881e3a6759ad368665"
+      }
+    },
+    "cohort": [
+      "454251624725559791",
+      "6029797511067161308",
+      "4610389233549312181",
+      "-6876467861644254884",
+      "3395443539695373455",
+      "-7484687180031818558",
+      "-7317935324372896967",
+      "7602709984646794612",
+      "8447206642816232002",
+      "5283498780078892907",
+      "-9037391848063581383",
+      "3393413021771018576",
+      "-3479419587471717310",
+      "3746798692801944365",
+      "290353446078574595",
+      "1958797439716871619",
+      "8886532717472813680",
+      "1945992401171986963",
+      "-6400697532893997705",
+      "4610313159496720331",
+      "-4002945563327305021",
+      "2598558115935957467",
+      "3216670240836333064",
+      "377012827724440711",
+      "4368694989079322414",
+      "-8679028096580363023",
+      "1311219104560004911",
+      "6585226642760667160",
+      "-3364584094719047948",
+      "-2844688998735882084",
+      "4051045600416184484",
+      "5936653135965493564",
+      "2998270508531207599",
+      "7486790262472894905",
+      "1223001350727808791",
+      "5720322538977185426",
+      "-684468786708858615",
+      "7718778666102679555",
+      "-2555697007023072480",
+      "1173893400057484456",
+      "2700807781439577956",
+      "-3312359235815413065",
+      "-8911597154906399337",
+      "-8837545033374115540",
+      "7174869924664152602",
+      "-3814814949616778765",
+      "5050725658938791990",
+      "2347828515852016279",
+      "-9103892851552028103",
+      "2806576204187855417",
+      "1041028745761917715",
+      "-833554250224558871",
+      "5102506606625430688",
+      "2055722858998793234",
+      "3932218082504197706",
+      "4907165118633936246",
+      "243105066747199579",
+      "3044066904603561429",
+      "-3528991217311607010",
+      "135012492859509680",
+      "3797950206876515874",
+      "7831746918042998104",
+      "-5999689871192382716",
+      "3840748270672286963",
+      "1372239888906548435",
+      "214799322524162186",
+      "-8325418395632371739",
+      "4106131612506254206",
+      "-4442996248857059339",
+      "-6386599163275261629",
+      "5146348698578810752",
+      "-347580053263252472",
+      "4806592242671741669",
+      "-1921129364593947113",
+      "-5637531690073898235",
+      "-1459545017967765202",
+      "-6707610188060423555",
+      "-2459087134066269668",
+      "6308236705071342798",
+      "-7351687866974407042",
+      "-149056030249800742",
+      "2178723509531488303",
+      "4557512907329149542",
+      "3081585955551192291",
+      "5749331319043622448",
+      "-2349587005258585842",
+      "-8410690564536847826",
+      "-2752169031939379076",
+      "-4073009784939834702",
+      "-4845049267940030326",
+      "8728552797295745824",
+      "8374411556991299772",
+      "-6460100566899239044",
+      "-7667488726446349983",
+      "543007879814298509",
+      "-2586484612194236733",
+      "-942874108371336591",
+      "-1263193777240927608",
+      "2804977658925793400",
+      "-7545282871828256812"
+    ],
+    "extract_seconds": 900,
+    "job_seconds": 1800,
+    "output_bytes": 2147483648,
+    "policy_sha256": "787cf3c5306dbc651bc7f8ac91f1d98eab36dd283939b2795899249aa0c0512e",
+    "preflight": 10,
+    "record_seconds": 30,
+    "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+    "rss_bytes": 4294967296,
+    "schema": "catalog-validation-v1",
+    "threads": 1
+  },
+  "cumulative_validation_budget": {
+    "charged_seconds": 545.0136614030343
+  },
+  "experiments": {
+    "defaults": {
+      "corpus_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+      "discriminating": false,
+      "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+      "groups": {
+        "border:2048": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 60,
+          "queries": 72,
+          "reference_empty": 12,
+          "reference_nonempty": 60
+        },
+        "border:4096": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 56,
+          "queries": 64,
+          "reference_empty": 8,
+          "reference_nonempty": 56
+        },
+        "border:8192": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 50,
+          "queries": 64,
+          "reference_empty": 14,
+          "reference_nonempty": 50
+        },
+        "category:adventure": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:biomes": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:builders": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 21,
+          "queries": 25,
+          "reference_empty": 4,
+          "reference_nonempty": 21
+        },
+        "category:general": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:ocean": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 20,
+          "queries": 25,
+          "reference_empty": 5,
+          "reference_nonempty": 20
+        },
+        "category:rare": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 17,
+          "queries": 25,
+          "reference_empty": 8,
+          "reference_nonempty": 17
+        },
+        "category:survival": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "category:technical": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 19,
+          "queries": 25,
+          "reference_empty": 6,
+          "reference_nonempty": 19
+        },
+        "mode:origin": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 81,
+          "queries": 104,
+          "reference_empty": 23,
+          "reference_nonempty": 81
+        },
+        "mode:recommended": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 85,
+          "queries": 96,
+          "reference_empty": 11,
+          "reference_nonempty": 85
+        }
+      },
+      "population_worlds": 100,
+      "query_timings_by_mode": {
+        "origin": {
+          "reference_seconds": {
+            "maximum": 0.010497391980607063,
+            "mean": 0.005269574582388696,
+            "median": 0.004926564026391134,
+            "minimum": 0.003803919011261314,
+            "n": 104,
+            "p95": 0.0076979760196991265,
+            "total": 0.5480357565684244
+          },
+          "retained_seconds": {
+            "maximum": 0.010381733998656273,
+            "mean": 0.005217544698657898,
+            "median": 0.004862824484007433,
+            "minimum": 0.003754011995624751,
+            "n": 104,
+            "p95": 0.008043515961617231,
+            "total": 0.5426246486604214
+          }
+        },
+        "recommended": {
+          "reference_seconds": {
+            "maximum": 0.2646126130130142,
+            "mean": 0.05814593500326737,
+            "median": 0.05264587502460927,
+            "minimum": 0.009716383006889373,
+            "n": 96,
+            "p95": 0.1245285960030742,
+            "total": 5.582009760313667
+          },
+          "retained_seconds": {
+            "maximum": 1.5674312009941787,
+            "mean": 0.07317360633229934,
+            "median": 0.051909050496760756,
+            "minimum": 0.009674555971287191,
+            "n": 96,
+            "p95": 0.24452793295495212,
+            "total": 7.0246662079007365
+          }
+        }
+      },
+      "retained_identity_worlds": 100,
+      "retained_queryable_worlds": 100,
+      "retained_unqueryable_worlds": 0,
+      "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+      "summary": {
+        "mean_normalized_score_regret": 0.0,
+        "mean_top10_recall": 1.0,
+        "nonempty_preservation": 1.0,
+        "preserved_nonempty": 166,
+        "queries": 200,
+        "reference_empty": 34,
+        "reference_nonempty": 166
+      }
+    },
+    "reduced_k1": {
+      "corpus_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+      "discriminating": true,
+      "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+      "groups": {
+        "border:2048": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.99,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 60,
+          "queries": 72,
+          "reference_empty": 12,
+          "reference_nonempty": 60
+        },
+        "border:4096": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9821428571428571,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 56,
+          "queries": 64,
+          "reference_empty": 8,
+          "reference_nonempty": 56
+        },
+        "border:8192": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.99,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 50,
+          "queries": 64,
+          "reference_empty": 14,
+          "reference_nonempty": 50
+        },
+        "category:adventure": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:biomes": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:builders": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9904761904761905,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 21,
+          "queries": 25,
+          "reference_empty": 4,
+          "reference_nonempty": 21
+        },
+        "category:general": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:ocean": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.955,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 20,
+          "queries": 25,
+          "reference_empty": 5,
+          "reference_nonempty": 20
+        },
+        "category:rare": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 17,
+          "queries": 25,
+          "reference_empty": 8,
+          "reference_nonempty": 17
+        },
+        "category:survival": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9565217391304348,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "category:technical": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 19,
+          "queries": 25,
+          "reference_empty": 6,
+          "reference_nonempty": 19
+        },
+        "mode:origin": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9950617283950617,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 81,
+          "queries": 104,
+          "reference_empty": 23,
+          "reference_nonempty": 81
+        },
+        "mode:recommended": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.98,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 85,
+          "queries": 96,
+          "reference_empty": 11,
+          "reference_nonempty": 85
+        }
+      },
+      "population_worlds": 100,
+      "query_timings_by_mode": {
+        "origin": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 0.00922521500615403,
+            "mean": 0.005492795473681047,
+            "median": 0.005111456499435008,
+            "minimum": 0.004096098011359572,
+            "n": 104,
+            "p95": 0.00837493600556627,
+            "total": 0.5712507292628288
+          }
+        },
+        "recommended": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 1.7044627590221353,
+            "mean": 0.0745352648136759,
+            "median": 0.05288149949046783,
+            "minimum": 0.010272493003867567,
+            "n": 96,
+            "p95": 0.23693180503323674,
+            "total": 7.155385422112886
+          }
+        }
+      },
+      "retained_identity_worlds": 96,
+      "retained_queryable_worlds": 96,
+      "retained_unqueryable_worlds": 0,
+      "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+      "summary": {
+        "mean_normalized_score_regret": 0.0,
+        "mean_top10_recall": 0.9873493975903614,
+        "nonempty_preservation": 1.0,
+        "preserved_nonempty": 166,
+        "queries": 200,
+        "reference_empty": 34,
+        "reference_nonempty": 166
+      }
+    },
+    "reduced_k2": {
+      "corpus_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+      "discriminating": true,
+      "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+      "groups": {
+        "border:2048": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9966666666666667,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 60,
+          "queries": 72,
+          "reference_empty": 12,
+          "reference_nonempty": 60
+        },
+        "border:4096": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9928571428571429,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 56,
+          "queries": 64,
+          "reference_empty": 8,
+          "reference_nonempty": 56
+        },
+        "border:8192": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.998,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 50,
+          "queries": 64,
+          "reference_empty": 14,
+          "reference_nonempty": 50
+        },
+        "category:adventure": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:biomes": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:builders": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9952380952380953,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 21,
+          "queries": 25,
+          "reference_empty": 4,
+          "reference_nonempty": 21
+        },
+        "category:general": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:ocean": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.995,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 20,
+          "queries": 25,
+          "reference_empty": 5,
+          "reference_nonempty": 20
+        },
+        "category:rare": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 17,
+          "queries": 25,
+          "reference_empty": 8,
+          "reference_nonempty": 17
+        },
+        "category:survival": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9782608695652174,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "category:technical": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 19,
+          "queries": 25,
+          "reference_empty": 6,
+          "reference_nonempty": 19
+        },
+        "mode:origin": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 81,
+          "queries": 104,
+          "reference_empty": 23,
+          "reference_nonempty": 81
+        },
+        "mode:recommended": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.991764705882353,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 85,
+          "queries": 96,
+          "reference_empty": 11,
+          "reference_nonempty": 85
+        }
+      },
+      "population_worlds": 100,
+      "query_timings_by_mode": {
+        "origin": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 0.009301762969698757,
+            "mean": 0.0053396038744652355,
+            "median": 0.005133266502525657,
+            "minimum": 0.003926835022866726,
+            "n": 104,
+            "p95": 0.008271769038401544,
+            "total": 0.5553188029443845
+          }
+        },
+        "recommended": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 0.2689853300107643,
+            "mean": 0.05862275397460811,
+            "median": 0.05515695147914812,
+            "minimum": 0.009462831018026918,
+            "n": 96,
+            "p95": 0.12839153996901587,
+            "total": 5.627784381562378
+          }
+        }
+      },
+      "retained_identity_worlds": 99,
+      "retained_queryable_worlds": 99,
+      "retained_unqueryable_worlds": 0,
+      "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+      "summary": {
+        "mean_normalized_score_regret": 0.0,
+        "mean_top10_recall": 0.9957831325301205,
+        "nonempty_preservation": 1.0,
+        "preserved_nonempty": 166,
+        "queries": 200,
+        "reference_empty": 34,
+        "reference_nonempty": 166
+      }
+    },
+    "synthetic": {
+      "corpus_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+      "discriminating": true,
+      "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+      "fixture": "FABRICATED identical spatial facts, 64 distinct identities, 3 anchors x3 borders; not real Minecraft worlds",
+      "groups": {
+        "border:2048": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 66,
+          "queries": 72,
+          "reference_empty": 6,
+          "reference_nonempty": 66
+        },
+        "border:4096": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 59,
+          "queries": 64,
+          "reference_empty": 5,
+          "reference_nonempty": 59
+        },
+        "border:8192": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 59,
+          "queries": 64,
+          "reference_empty": 5,
+          "reference_nonempty": 59
+        },
+        "category:adventure": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "category:biomes": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "category:builders": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 24,
+          "queries": 25,
+          "reference_empty": 1,
+          "reference_nonempty": 24
+        },
+        "category:general": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:ocean": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:rare": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 22,
+          "queries": 25,
+          "reference_empty": 3,
+          "reference_nonempty": 22
+        },
+        "category:survival": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 25,
+          "queries": 25,
+          "reference_empty": 0,
+          "reference_nonempty": 25
+        },
+        "category:technical": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 23,
+          "queries": 25,
+          "reference_empty": 2,
+          "reference_nonempty": 23
+        },
+        "mode:origin": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 95,
+          "queries": 104,
+          "reference_empty": 9,
+          "reference_nonempty": 95
+        },
+        "mode:recommended": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 89,
+          "queries": 96,
+          "reference_empty": 7,
+          "reference_nonempty": 89
+        }
+      },
+      "population_worlds": 64,
+      "query_timings_by_mode": {
+        "origin": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 0.00043377396650612354,
+            "mean": 0.0002816876988687839,
+            "median": 0.0002758369955699891,
+            "minimum": 0.00016604101983830333,
+            "n": 104,
+            "p95": 0.00039360899245366454,
+            "total": 0.029295520682353526
+          }
+        },
+        "recommended": {
+          "reference_seconds": "cached, excluded",
+          "retained_seconds": {
+            "maximum": 0.0008966730092652142,
+            "mean": 0.00043849449684785213,
+            "median": 0.00040411451482214034,
+            "minimum": 0.00019282096764072776,
+            "n": 96,
+            "p95": 0.000780000991653651,
+            "total": 0.042095471697393805
+          }
+        }
+      },
+      "retained_identity_worlds": 6,
+      "retained_queryable_worlds": 6,
+      "retained_unqueryable_worlds": 0,
+      "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+      "summary": {
+        "mean_normalized_score_regret": 0.0,
+        "mean_top10_recall": 0.2,
+        "nonempty_preservation": 1.0,
+        "preserved_nonempty": 184,
+        "queries": 200,
+        "reference_empty": 16,
+        "reference_nonempty": 184
+      }
+    }
+  },
+  "extraction": {
+    "feature_coverage": {
+      "biome.badlands": {
+        "complete": 100
+      },
+      "biome.bamboo_jungle": {
+        "complete": 100
+      },
+      "biome.cherry_grove": {
+        "complete": 100
+      },
+      "biome.desert": {
+        "complete": 100
+      },
+      "biome.forest": {
+        "complete": 100
+      },
+      "biome.mangrove_swamp": {
+        "complete": 100
+      },
+      "biome.mushroom_fields": {
+        "complete": 100
+      },
+      "biome.plains": {
+        "complete": 100
+      },
+      "biome.snowy": {
+        "complete": 100
+      },
+      "structure.ancient_city": {
+        "complete": 100
+      },
+      "structure.desert_pyramid": {
+        "complete": 100
+      },
+      "structure.igloo": {
+        "complete": 100
+      },
+      "structure.jungle_temple": {
+        "complete": 100
+      },
+      "structure.mansion": {
+        "complete": 100
+      },
+      "structure.mineshaft": {
+        "complete": 100
+      },
+      "structure.monument": {
+        "complete": 100
+      },
+      "structure.outpost": {
+        "complete": 100
+      },
+      "structure.ruined_portal": {
+        "complete": 100
+      },
+      "structure.shipwreck": {
+        "complete": 100
+      },
+      "structure.swamp_hut": {
+        "complete": 100
+      },
+      "structure.trail_ruins": {
+        "complete": 100
+      },
+      "structure.trial_chamber": {
+        "complete": 100
+      },
+      "structure.village": {
+        "complete": 100
+      }
+    },
+    "native_feature_seconds": {
+      "biome_plane": {
+        "cpu_seconds": {
+          "maximum": 1.688691,
+          "mean": 1.56540466,
+          "median": 1.560229,
+          "minimum": 1.5261270000000002,
+          "n": 100,
+          "p95": 1.6186619999999998,
+          "total": 156.540466
+        },
+        "wall_seconds": {
+          "maximum": 1.6978420810191892,
+          "mean": 1.574586934291292,
+          "median": 1.5685044530255254,
+          "minimum": 1.5345131710055284,
+          "n": 100,
+          "p95": 1.6264960300177336,
+          "total": 157.4586934291292
+        }
+      },
+      "structure.ancient_city": {
+        "cpu_seconds": {
+          "maximum": 0.008833999999999953,
+          "mean": 0.007440210000000001,
+          "median": 0.007356000000000029,
+          "minimum": 0.006916000000000033,
+          "n": 100,
+          "p95": 0.008112999999999981,
+          "total": 0.7440210000000002
+        },
+        "wall_seconds": {
+          "maximum": 0.008842203998938203,
+          "mean": 0.00744709096616134,
+          "median": 0.007364849967416376,
+          "minimum": 0.006916350976098329,
+          "n": 100,
+          "p95": 0.00811260100454092,
+          "total": 0.744709096616134
+        }
+      },
+      "structure.desert_pyramid": {
+        "cpu_seconds": {
+          "maximum": 0.004056999999999977,
+          "mean": 0.0033504800000000003,
+          "median": 0.003341999999999984,
+          "minimum": 0.003086999999999951,
+          "n": 100,
+          "p95": 0.0036060000000000536,
+          "total": 0.335048
+        },
+        "wall_seconds": {
+          "maximum": 0.004056329955346882,
+          "mean": 0.0033519238320877777,
+          "median": 0.0033419954997953027,
+          "minimum": 0.00308687100186944,
+          "n": 100,
+          "p95": 0.0036071190261282027,
+          "total": 0.33519238320877776
+        }
+      },
+      "structure.igloo": {
+        "cpu_seconds": {
+          "maximum": 0.004020999999999997,
+          "mean": 0.0033787999999999978,
+          "median": 0.00337599999999999,
+          "minimum": 0.003053000000000028,
+          "n": 100,
+          "p95": 0.00357799999999997,
+          "total": 0.3378799999999998
+        },
+        "wall_seconds": {
+          "maximum": 0.004020781023427844,
+          "mean": 0.0033826126804342494,
+          "median": 0.0033827229926828295,
+          "minimum": 0.0030530590447597206,
+          "n": 100,
+          "p95": 0.0036096920375712216,
+          "total": 0.33826126804342493
+        }
+      },
+      "structure.jungle_temple": {
+        "cpu_seconds": {
+          "maximum": 0.004033000000000009,
+          "mean": 0.0034077300000000003,
+          "median": 0.003393000000000007,
+          "minimum": 0.0030689999999999884,
+          "n": 100,
+          "p95": 0.003705000000000014,
+          "total": 0.34077300000000005
+        },
+        "wall_seconds": {
+          "maximum": 0.004033564997371286,
+          "mean": 0.003412072638166137,
+          "median": 0.0033971639932133257,
+          "minimum": 0.0030696270405314863,
+          "n": 100,
+          "p95": 0.0037084739888086915,
+          "total": 0.3412072638166137
+        }
+      },
+      "structure.mansion": {
+        "cpu_seconds": {
+          "maximum": 0.004435000000000022,
+          "mean": 0.0017801,
+          "median": 0.0012980000000000214,
+          "minimum": 0.0011349999999999971,
+          "n": 100,
+          "p95": 0.0031300000000000217,
+          "total": 0.17801
+        },
+        "wall_seconds": {
+          "maximum": 0.004433790978509933,
+          "mean": 0.0017829630116466433,
+          "median": 0.001300773030379787,
+          "minimum": 0.0011338809854350984,
+          "n": 100,
+          "p95": 0.00313091796124354,
+          "total": 0.17829630116466433
+        }
+      },
+      "structure.mineshaft": {
+        "cpu_seconds": {
+          "maximum": 0.16795300000000002,
+          "mean": 0.14694839,
+          "median": 0.146151,
+          "minimum": 0.14356099999999994,
+          "n": 100,
+          "p95": 0.15182600000000002,
+          "total": 14.694839
+        },
+        "wall_seconds": {
+          "maximum": 0.16927193402079865,
+          "mean": 0.14703961477032862,
+          "median": 0.1461832869972568,
+          "minimum": 0.14356114499969408,
+          "n": 100,
+          "p95": 0.1518542470294051,
+          "total": 14.703961477032863
+        }
+      },
+      "structure.monument": {
+        "cpu_seconds": {
+          "maximum": 0.09700399999999998,
+          "mean": 0.04378449,
+          "median": 0.04187199999999999,
+          "minimum": 0.013160000000000005,
+          "n": 100,
+          "p95": 0.066768,
+          "total": 4.378449
+        },
+        "wall_seconds": {
+          "maximum": 0.09700337098911405,
+          "mean": 0.043810825385153296,
+          "median": 0.041949771490180865,
+          "minimum": 0.013163622992578894,
+          "n": 100,
+          "p95": 0.06676831096410751,
+          "total": 4.381082538515329
+        }
+      },
+      "structure.outpost": {
+        "cpu_seconds": {
+          "maximum": 0.0008619999999999739,
+          "mean": 0.000701409999999999,
+          "median": 0.0006934999999999858,
+          "minimum": 0.0006069999999999687,
+          "n": 100,
+          "p95": 0.0008050000000000002,
+          "total": 0.0701409999999999
+        },
+        "wall_seconds": {
+          "maximum": 0.0008625660557299852,
+          "mean": 0.0007014861598145217,
+          "median": 0.0006936530116945505,
+          "minimum": 0.0006066919886507094,
+          "n": 100,
+          "p95": 0.0008048989693634212,
+          "total": 0.07014861598145217
+        }
+      },
+      "structure.ruined_portal": {
+        "cpu_seconds": {
+          "maximum": 0.0012400000000000189,
+          "mean": 0.0010346300000000019,
+          "median": 0.0010144999999999738,
+          "minimum": 0.0009279999999999844,
+          "n": 100,
+          "p95": 0.0011669999999999736,
+          "total": 0.1034630000000002
+        },
+        "wall_seconds": {
+          "maximum": 0.001266615989152342,
+          "mean": 0.0010353491187561304,
+          "median": 0.0010158139921259135,
+          "minimum": 0.0009279809892177582,
+          "n": 100,
+          "p95": 0.0011716929730027914,
+          "total": 0.10353491187561303
+        }
+      },
+      "structure.shipwreck": {
+        "cpu_seconds": {
+          "maximum": 0.12786699999999995,
+          "mean": 0.08208324,
+          "median": 0.08199050000000002,
+          "minimum": 0.049684000000000006,
+          "n": 100,
+          "p95": 0.10531499999999999,
+          "total": 8.208324
+        },
+        "wall_seconds": {
+          "maximum": 0.12787657795706764,
+          "mean": 0.08213287259102799,
+          "median": 0.0819908820267301,
+          "minimum": 0.04988072701962665,
+          "n": 100,
+          "p95": 0.10532387404236943,
+          "total": 8.213287259102799
+        }
+      },
+      "structure.swamp_hut": {
+        "cpu_seconds": {
+          "maximum": 0.00392300000000001,
+          "mean": 0.0033460899999999995,
+          "median": 0.003304499999999988,
+          "minimum": 0.003022999999999998,
+          "n": 100,
+          "p95": 0.0036539999999999906,
+          "total": 0.33460899999999993
+        },
+        "wall_seconds": {
+          "maximum": 0.00392208102857694,
+          "mean": 0.003349917521700263,
+          "median": 0.003316716494737193,
+          "minimum": 0.0030232430435717106,
+          "n": 100,
+          "p95": 0.003660977992694825,
+          "total": 0.3349917521700263
+        }
+      },
+      "structure.trail_ruins": {
+        "cpu_seconds": {
+          "maximum": 0.003475999999999979,
+          "mean": 0.002884300000000003,
+          "median": 0.0028709999999999847,
+          "minimum": 0.0025900000000000367,
+          "n": 100,
+          "p95": 0.003143000000000007,
+          "total": 0.2884300000000003
+        },
+        "wall_seconds": {
+          "maximum": 0.0034767480101436377,
+          "mean": 0.002889961886103265,
+          "median": 0.0028737440006807446,
+          "minimum": 0.0025829969672486186,
+          "n": 100,
+          "p95": 0.0031541410135105252,
+          "total": 0.2889961886103265
+        }
+      },
+      "structure.trial_chamber": {
+        "cpu_seconds": {
+          "maximum": 0.005953999999999959,
+          "mean": 0.004598109999999998,
+          "median": 0.004529500000000006,
+          "minimum": 0.004247999999999974,
+          "n": 100,
+          "p95": 0.0049739999999999784,
+          "total": 0.4598109999999998
+        },
+        "wall_seconds": {
+          "maximum": 0.0061061730375513434,
+          "mean": 0.004602648268919438,
+          "median": 0.0045385429984889925,
+          "minimum": 0.0042475389782339334,
+          "n": 100,
+          "p95": 0.004982557031325996,
+          "total": 0.4602648268919438
+        }
+      },
+      "structure.village": {
+        "cpu_seconds": {
+          "maximum": 0.009218000000000004,
+          "mean": 0.00713422,
+          "median": 0.007108500000000004,
+          "minimum": 0.005912000000000001,
+          "n": 100,
+          "p95": 0.00823500000000002,
+          "total": 0.713422
+        },
+        "wall_seconds": {
+          "maximum": 0.00921827502315864,
+          "mean": 0.007137617922853679,
+          "median": 0.007108899473678321,
+          "minimum": 0.005913129018153995,
+          "n": 100,
+          "p95": 0.008234715962316841,
+          "total": 0.7137617922853678
+        }
+      }
+    },
+    "receipt_cpu_seconds": {
+      "maximum": 3.6345,
+      "mean": 3.401902,
+      "median": 3.39275,
+      "minimum": 3.2668,
+      "n": 100,
+      "p95": 3.5619,
+      "total": 340.1902
+    },
+    "receipt_wall_seconds": {
+      "maximum": 2.6522,
+      "mean": 2.452607,
+      "median": 2.4514,
+      "minimum": 2.3448,
+      "n": 100,
+      "p95": 2.5437,
+      "total": 245.26069999999999
+    },
+    "structure_points_per_world": {
+      "maximum": 2756,
+      "mean": 2584.82,
+      "median": 2582.0,
+      "minimum": 2446,
+      "n": 100,
+      "p95": 2658,
+      "total": 258482
+    }
+  },
+  "hardware": {
+    "background": "Existing web server PID60144 kept running; no full pytest during timed run; start load averages2.05/2.68/2.54",
+    "cpu": "Intel Xeon W-2191B @2.30GHz",
+    "logical_cpus": 36,
+    "memory_bytes": 68719476736,
+    "native_threads": 1,
+    "physical_cores": 18
+  },
+  "limits": "100 declared predictor worlds, not production-capacity recall, true biome absence or generated-game accuracy",
+  "preflight": {
+    "active": 0,
+    "completed": 10,
+    "cumulative_extract_seconds": 24.3935,
+    "cumulative_job_seconds": 24.3935,
+    "failed": 0,
+    "partial": 0,
+    "pending": 90,
+    "stopped_reason": "stop_after",
+    "total_seeds": 100
+  },
+  "raw_evidence_sha256": {
+    "controls.json": "ee37bd0304408a549c16633ec62ebab77877b9363d9af085cc29841b334dc18e",
+    "defaults-evaluation.json": "798a6f4d11034984efeeeb96f04700301fc2ed02dafa9658a3903ced2d440ea5",
+    "heldout.json": "51c6d41f474faed4888ff8a5c980f7ff887f67cc7fa89364d8e799362b79d6c4",
+    "ingestion/ledger.json": "ecfdf2c57682bbe24f59e36f1e164be051be5d3b3a6c8ad878a721637bfde8d5",
+    "job-budget.json": "6356224ea234d55c29d9241acd7c35ffa6c9454ecea9876ed280f028245c7d1d",
+    "reduced_k1-evaluation.json": "08b3f69f6473cbb96e033af715fb90157ebdc2b090838b64a575ed0e559703c3",
+    "reduced_k2-evaluation.json": "e5bdbae56b8549675c9545ed590375ba9ff7cff20c822eba5210aafccfa11b21",
+    "report.json": "6bd57c923c855ffd2496e215daaa12105076ccfd36dffe5e2aa206b32949ba6d",
+    "saved-verification.json": "4c0840e2ca903e5a111be2007ba703316b05b56e05920db26115a555195a2a9c",
+    "supervision.json": "6feb39eda1565bf6a61389969429ca292a4eb70b149ede73d405856ea9923761",
+    "synthetic-evaluation.json": "9f9751ecce48232e09db56a0eb943f10f4895bdbc64cd90497b9dd94921a9900"
+  },
+  "report": {
+    "backup_restore": true,
+    "heldout_sha256": "2a9b0fdb379077907c6cd9d4b1bffe7df4cb4b3ab487c009977f5b5069d5958f",
+    "ingestion_summary": {
+      "active": 0,
+      "completed": 100,
+      "cumulative_extract_seconds": 245.261,
+      "cumulative_job_seconds": 245.261,
+      "failed": 0,
+      "partial": 0,
+      "pending": 0,
+      "stopped_reason": null,
+      "total_seeds": 100
+    },
+    "ingestion_wall_seconds": 263.8612204050296,
+    "invalid_checkpoints": [],
+    "layouts": 24300,
+    "missing_indices": [],
+    "partial_indices": [],
+    "partition_merge_parity": true,
+    "publication_seconds": 39.82387959398329,
+    "retention_oracle_parity": true,
+    "retention_oracle_seconds": 22.975578720972408,
+    "retention_seconds": {
+      "defaults": 10.642805577022955,
+      "reduced_k1": 11.051495163992513,
+      "reduced_k2": 10.91223448497476
+    },
+    "schema": "catalog100-validation-report-v1",
+    "scope": "Declared100-world predictor corpus; no four-pillar/world certification, public launch, GPU or production recall proof",
+    "snapshot_id": "50d6935290393476a803247d5bdbe1f3efb90642b760d8fa65005fc43bdb8807",
+    "status": "complete",
+    "summary_seconds": 46.47341882204637,
+    "synthetic_seconds": 7.643853630986996,
+    "verified_view_seconds": 16.68844163400354,
+    "worlds": 100
+  },
+  "run_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-validation-20261020",
+  "saved_verification": {
+    "completed_worlds": 100,
+    "ledger_sha256": "ecfdf2c57682bbe24f59e36f1e164be051be5d3b3a6c8ad878a721637bfde8d5",
+    "ledger_unchanged": true,
+    "new_extraction_dispatches": 0,
+    "passed": true,
+    "polled_peak_rss_bytes": 790130688,
+    "rebuilt_view_query_cases": [
+      0,
+      8
+    ],
+    "scope": "Saved observations only; no native calls or new seed inputs",
+    "snapshot_id": "50d6935290393476a803247d5bdbe1f3efb90642b760d8fa65005fc43bdb8807",
+    "verified_reconstruction_seconds": 16.959705882996786,
+    "verified_view_build_seconds": 15.744325548002962,
+    "zero_extraction_resume_seconds": 7.823890324041713
+  },
+  "storage": {
+    "all_artifact_compressed_bytes": 11890573,
+    "all_artifact_uncompressed_bytes": 55547815,
+    "all_artifacts_count": 101,
+    "layouts": 24300,
+    "note": "SQLite includes identifiers, metadata, indexes and364-byte payloads; output also includes checkpoints, selections, reports and validated backup",
+    "observation_compressed_bytes": 9140900,
+    "observation_json_bytes": 50656342,
+    "output_bytes": 150776768,
+    "packed_payload_bytes": 8845200,
+    "sqlite_bytes": 35622912
+  },
+  "supervision": {
+    "exit_status": 0,
+    "output_bytes": 150743229,
+    "polled_peak_rss_bytes": 2400821248,
+    "stop_reason": null,
+    "wall_seconds": 503.77987419301644
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "rows": [
+    {
+      "seed": "-9037391848063581383",
+      "extraction_checkpoint_seconds": 2.9954597550677136,
+      "biome_points": 25600,
+      "structure_points": 2573,
+      "features": 23,
+      "native_threads": 1,
+      "numeric_threads": 1,
+      "summary_publication_seconds": 0.8122229049913585,
+      "snapshot": "fd5480199b08bc387288b8f5a25d0e9a7a4c690f81dd634793a9dcfa2c76b27d"
+    },
+    {
+      "seed": "8395430397596713336",
+      "extraction_checkpoint_seconds": 2.966891158022918,
+      "biome_points": 25600,
+      "structure_points": 2566,
+      "features": 23,
+      "native_threads": 1,
+      "numeric_threads": 1,
+      "summary_publication_seconds": 0.8334614650812,
+      "snapshot": "19eabb70731f56010fe2374a1ddf86dfed174c646c31d2efdd934582d8953c37"
+    }
+  ],
+  "elapsed_seconds": 7.76983459899202,
+  "records_per_second": 0.2574057368299011,
+  "seconds_per_record": 3.88491729949601,
+  "drain": {
+    "revision": "catalog-harvest-drain-v1",
+    "completed": 2,
+    "failed": 0,
+    "deferred": 0,
+    "stop_reason": "max_worlds",
+    "elapsed_seconds": 7.7670410859864205,
+    "queue": {
+      "revision": "catalog-harvest-status-v1",
+      "jobs": {
+        "complete": 2
+      },
+      "campaigns": [
+        {
+          "id": "352d8a896675466d5036a9ca1331ef70b1c8b36466c87e2e570f0cf4b373c5ca",
+          "state": "active",
+          "scheduled_samples": 2,
+          "target_count": "2"
+        }
+      ]
+    }
+  },
+  "scope": "Two existing natural-catalog seeds replayed into fresh disposable root;serial extraction+durable checkpoints+243summaries/world+checksummed compressed observation/index publication. No existing live catalog changes. Current23features,not generated world/BDS verification or every possible game feature."
+}

@@ -1,0 +1,90 @@
+{
+  "revision": "predictor-engine-regressions-v1",
+  "build": "1.26.52.3",
+  "script_api": "2.10.0",
+  "pinned_binary_sha256": "0a490c711d4a2ce075debcd979e8862b7eaba008373f9970f0edbb67f98f9207",
+  "parent_resolution_manifest_sha256": "ace2b5f9e1f86f2333d0ebccab04951cc23fab9c3cd774a1af34ded2fb5fc2c0",
+  "files": {
+    "fresh/report.json": {
+      "bytes": 11370,
+      "sha256": "34296c162c08721ab79e7d0853cd158d58b78b12e24f75968eadf1e3b1d4b39c"
+    },
+    "fresh/console.log": {
+      "bytes": 7352,
+      "sha256": "1021fc625eebe09936b2447e3b16e123d2fbf374e833193eb7a678b8fd3b9439"
+    },
+    "fresh/export.json": {
+      "bytes": 12181,
+      "sha256": "1a6b10bb8e578b236993a80876a0f3dc784d9df485a2f6d595d6d1f83b721b5f"
+    },
+    "fresh/server.properties": {
+      "bytes": 562,
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a"
+    },
+    "reload/report.json": {
+      "bytes": 11796,
+      "sha256": "5b9167e5e3e8d103ae574a1e8f02ec7e7c12a11859de0922d1a6b0b495b34bcb"
+    },
+    "reload/console.log": {
+      "bytes": 7285,
+      "sha256": "f9a03df922ba8f302265a7e7ae0bfef41a4001b9fe75778cb8cefbfc0677bcb7"
+    },
+    "reload/export.json": {
+      "bytes": 12272,
+      "sha256": "538dcc288abaa964df1e34794797a69508f8a20cc4c56e482cf7e0b16e512a93"
+    },
+    "reload/server.properties": {
+      "bytes": 562,
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a"
+    },
+    "retained_copy/report.json": {
+      "bytes": 11799,
+      "sha256": "f6faf537975434d90652d7ef0fc0df80640bd7476615f50e766da0e77c2226bc"
+    },
+    "retained_copy/console.log": {
+      "bytes": 7285,
+      "sha256": "be849c5e7ed76c87d06031e81fdf8937a13c6e6dc8254cd9a0ecfffaf3aa7507"
+    },
+    "retained_copy/export.json": {
+      "bytes": 28760,
+      "sha256": "aab4556f9c470b9411d1c52097f866f6e1fd2746b3cbdfb0f63fbec884326529"
+    },
+    "retained_copy/server.properties": {
+      "bytes": 562,
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a"
+    },
+    "frozen.json": {
+      "bytes": 1728,
+      "sha256": "9c156cbb1acd27a2e1e7a0d5fa36c89f1bc62e22f0fc2660bb4e438c97e82f37"
+    },
+    "observer.js": {
+      "bytes": 4813,
+      "sha256": "e04cf12680dfae0d9a9e9dc7d6ca7f76f391395d5dd78851aeab5725d368e14e"
+    },
+    "heldout-biome-cohort.json": {
+      "bytes": 107376,
+      "sha256": "1d6a774ce38ebefeee0688e1d424a21aa8c75a4ea5abba8472d408d50172f3d2"
+    },
+    "heldout-structure-controls.json": {
+      "bytes": 10921,
+      "sha256": "17f071ce4c41466bec610b48c1e9cc42b987148e9d7d58c233eefba9b631ffd3"
+    },
+    "village-preliminary-controls.json": {
+      "bytes": 8039,
+      "sha256": "b152b8ecce7fb5edea5b41fb6486f04210e1ce9fbe474ba13f04805830e381cd"
+    },
+    "dense-ceiling-comparison.json": {
+      "bytes": 347,
+      "sha256": "0206aeb0a0b61ae3bb2b948288889cda07472b75de649e539c0fead104effe41"
+    },
+    "village-original-report.json": {
+      "bytes": 27282,
+      "sha256": "64a41effe0f27d327b92f447a041bb5a4604bc80723d70263c821e17ee2a801b"
+    },
+    "village-original-console.log": {
+      "bytes": 22210,
+      "sha256": "c8c1841ec17353d9b11de488fa3b26d22c94b1911087af13f124954852bb1d04"
+    }
+  },
+  "scope": "Frozen BDS observations and diagnostic results; not population certification or new native build evidence."
+}

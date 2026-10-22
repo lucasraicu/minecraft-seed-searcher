@@ -1,0 +1,26 @@
+[
+  {
+    "case": "two_broad_recommended_cpu_measurement",
+    "requests": [
+      {
+        "query_id": 3,
+        "status": 200,
+        "seconds": 7.678806514013559,
+        "code": null
+      },
+      {
+        "query_id": 15,
+        "status": 200,
+        "seconds": 7.655760025954805,
+        "code": null
+      }
+    ],
+    "passed": true,
+    "query_seconds": 10,
+    "execution_limit": 2,
+    "child_cpu_seconds": 15.309999999999999,
+    "pair_wall_seconds": 7.683019669959322,
+    "child_cpu_percent": 199.27060788171923,
+    "startup_seconds": 0.2286395999835804
+  }
+]

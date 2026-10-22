@@ -1,0 +1,7348 @@
+{
+  "ok": true,
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "request_sha256": "8b3e91b2cee555020e375ba9a7f50bba427faaf2e1dd0500c6fe05c99aa35a3f",
+  "results": [
+    {
+      "world_id": "8ba078e4303883fd26951f1c479cab3ad88adcc4fdc447c3629ac47f62e098c5",
+      "seed": "-4448602725700497049",
+      "layout_id": "1c87b39a00616ab094751d0d669a017bc2fb9865feaf1ef97d648d07ea02a54d",
+      "anchor": [
+        0,
+        0
+      ],
+      "nether_anchor": [
+        0,
+        0
+      ],
+      "border_side": 2048,
+      "border": 2048,
+      "bounds": [
+        -1024,
+        -1024,
+        1024,
+        1024
+      ],
+      "score": 71.50101112615901,
+      "utility_units": 6183865,
+      "distance_tie": 321168,
+      "contributions": [
+        {
+          "feature": "V",
+          "coefficient": 2,
+          "utility_units": 600600.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "T",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "A",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "O",
+          "coefficient": 1,
+          "utility_units": 360360.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "E",
+          "coefficient": 2,
+          "utility_units": 463320.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "B",
+          "coefficient": 2,
+          "utility_units": 270270.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "H",
+          "coefficient": 2,
+          "utility_units": 496482.5243307193,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "R",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        }
+      ],
+      "counts": [
+        [
+          0,
+          2,
+          5,
+          6
+        ],
+        [
+          1,
+          1,
+          12,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          5,
+          5
+        ],
+        [
+          0,
+          2,
+          8,
+          11
+        ],
+        [
+          0,
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          27,
+          31
+        ]
+      ],
+      "structure_nearest_d2": [
+        101504,
+        24704,
+        74880,
+        4294967295,
+        4294967295,
+        774656,
+        4294967295,
+        4294967295,
+        4294967295,
+        108160,
+        164480,
+        109696,
+        894592,
+        141952
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4096,
+        4294967295,
+        8192,
+        16384
+      ],
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "feature_counts": {
+        "structure.village": [
+          0,
+          2,
+          5,
+          6
+        ],
+        "structure.trial_chamber": [
+          1,
+          1,
+          12,
+          15
+        ],
+        "structure.ancient_city": [
+          0,
+          1,
+          2,
+          2
+        ],
+        "structure.mansion": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.monument": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.outpost": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.desert_pyramid": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.jungle_temple": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.swamp_hut": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.igloo": [
+          0,
+          1,
+          3,
+          3
+        ],
+        "structure.trail_ruins": [
+          0,
+          2,
+          5,
+          5
+        ],
+        "structure.ruined_portal": [
+          0,
+          2,
+          8,
+          11
+        ],
+        "structure.shipwreck": [
+          0,
+          0,
+          3,
+          4
+        ],
+        "structure.mineshaft": [
+          0,
+          3,
+          27,
+          31
+        ],
+        "structure.stronghold": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.fortress": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.bastion": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "structure.igloo_with_basement": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "structure.bastion_treasure": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.nether_wastes": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.crimson_forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.warped_forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.soul_sand_valley": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.basalt_deltas": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.group.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.group.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.warm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.deep_cold_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.frozen_ocean": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.frozen_river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.beach": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_beach": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.stony_shore": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.dark_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.pale_garden": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.dappled_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.windswept_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.sparse_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna_plateau": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jagged_peaks": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.frozen_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.stony_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.grove": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.lush_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dripstone_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_dark": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sulfur_caves": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.eroded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.wooded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.snowy_slopes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ice_spikes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.birch_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.flower_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.plains": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sunflower_plains": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.meadow": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "feature_complete": {
+        "structure.village": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trial_chamber": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ancient_city": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mansion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.monument": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.outpost": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.desert_pyramid": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.jungle_temple": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.swamp_hut": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trail_ruins": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ruined_portal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.shipwreck": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mineshaft": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.stronghold": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "structure.fortress": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo_with_basement": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion_treasure": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "biome.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.nether_wastes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.crimson_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.warped_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.soul_sand_valley": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.basalt_deltas": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.warm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_shore": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dark_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.pale_garden": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dappled_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sparse_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna_plateau": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jagged_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lush_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dripstone_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_dark": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sulfur_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.eroded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.wooded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_slopes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ice_spikes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.flower_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sunflower_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.meadow": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        12881,
+        4294967295,
+        12721,
+        12878
+      ]
+    },
+    {
+      "world_id": "4a5fe648a1b1f36ca411dac24eeeb0f4f3623db3f97c97b3d1dbc3429d152fa2",
+      "seed": "6029797511067161308",
+      "layout_id": "940ef0bd6333977452a44c9f93ab43524d0d8e3dfcbf23cb830f462077fe72a4",
+      "anchor": [
+        0,
+        0
+      ],
+      "nether_anchor": [
+        0,
+        0
+      ],
+      "border_side": 2048,
+      "border": 2048,
+      "bounds": [
+        -1024,
+        -1024,
+        1024,
+        1024
+      ],
+      "score": 70.56533123153754,
+      "utility_units": 6102941,
+      "distance_tie": 682957,
+      "contributions": [
+        {
+          "feature": "V",
+          "coefficient": 2,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "T",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "A",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "O",
+          "coefficient": 1,
+          "utility_units": 120120.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "E",
+          "coefficient": 2,
+          "utility_units": 463320.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "B",
+          "coefficient": 2,
+          "utility_units": 270270.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "H",
+          "coefficient": 2,
+          "utility_units": 456020.73151162424,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "R",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        }
+      ],
+      "counts": [
+        [
+          0,
+          2,
+          8,
+          9
+        ],
+        [
+          0,
+          3,
+          10,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          2,
+          5,
+          6
+        ],
+        [
+          1,
+          2,
+          10,
+          12
+        ],
+        [
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          3,
+          22,
+          37
+        ]
+      ],
+      "structure_nearest_d2": [
+        141440,
+        139392,
+        116352,
+        4294967295,
+        1132160,
+        803840,
+        4294967295,
+        4294967295,
+        4294967295,
+        489088,
+        181376,
+        43136,
+        228992,
+        95360
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        53248,
+        4294967295,
+        167936,
+        294912
+      ],
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "feature_counts": {
+        "structure.village": [
+          0,
+          2,
+          8,
+          9
+        ],
+        "structure.trial_chamber": [
+          0,
+          3,
+          10,
+          15
+        ],
+        "structure.ancient_city": [
+          0,
+          1,
+          2,
+          2
+        ],
+        "structure.mansion": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.monument": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "structure.outpost": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "structure.desert_pyramid": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.jungle_temple": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.swamp_hut": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.igloo": [
+          0,
+          0,
+          4,
+          4
+        ],
+        "structure.trail_ruins": [
+          0,
+          2,
+          5,
+          6
+        ],
+        "structure.ruined_portal": [
+          1,
+          2,
+          10,
+          12
+        ],
+        "structure.shipwreck": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "structure.mineshaft": [
+          0,
+          3,
+          22,
+          37
+        ],
+        "structure.stronghold": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.fortress": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "structure.bastion": [
+          0,
+          0,
+          0,
+          3
+        ],
+        "structure.igloo_with_basement": [
+          0,
+          0,
+          3,
+          3
+        ],
+        "structure.bastion_treasure": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.nether_wastes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.crimson_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.warped_forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.soul_sand_valley": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.basalt_deltas": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.group.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.group.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.warm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.deep_cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_ocean": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.river": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.frozen_river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.beach": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_beach": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.stony_shore": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dark_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.pale_garden": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.dappled_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.windswept_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.sparse_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna_plateau": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jagged_peaks": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.stony_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.grove": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.lush_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dripstone_caves": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_dark": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sulfur_caves": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.eroded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.wooded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_plains": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.snowy_slopes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ice_spikes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.birch_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.flower_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.sunflower_plains": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.meadow": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "feature_complete": {
+        "structure.village": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trial_chamber": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ancient_city": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mansion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.monument": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.outpost": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.desert_pyramid": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.jungle_temple": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.swamp_hut": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trail_ruins": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ruined_portal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.shipwreck": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mineshaft": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.stronghold": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "structure.fortress": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo_with_basement": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion_treasure": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "biome.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.nether_wastes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.crimson_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.warped_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.soul_sand_valley": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.basalt_deltas": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.warm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_shore": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dark_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.pale_garden": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dappled_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sparse_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna_plateau": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jagged_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lush_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dripstone_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_dark": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sulfur_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.eroded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.wooded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_slopes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ice_spikes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.flower_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sunflower_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.meadow": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        13358,
+        4294967295,
+        13676,
+        13846
+      ]
+    },
+    {
+      "world_id": "5d48ab8709fa80c50a5752554d053385e5d163e547533dfb19d0e408c5a9b89b",
+      "seed": "7051174176506959447",
+      "layout_id": "4ced9f4de17eee1b5eafed7d070e493504886a71592a7f401781726877fc1648",
+      "anchor": [
+        0,
+        0
+      ],
+      "nether_anchor": [
+        0,
+        0
+      ],
+      "border_side": 2048,
+      "border": 2048,
+      "bounds": [
+        -1024,
+        -1024,
+        1024,
+        1024
+      ],
+      "score": 69.99837711136163,
+      "utility_units": 6053907,
+      "distance_tie": 177121,
+      "contributions": [
+        {
+          "feature": "V",
+          "coefficient": 2,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "T",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "A",
+          "coefficient": 1,
+          "utility_units": 0.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "O",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "E",
+          "coefficient": 2,
+          "utility_units": 463320.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "B",
+          "coefficient": 2,
+          "utility_units": 180180.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "H",
+          "coefficient": 2,
+          "utility_units": 581653.8211020334,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "R",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        }
+      ],
+      "counts": [
+        [
+          1,
+          3,
+          8,
+          10
+        ],
+        [
+          0,
+          3,
+          10,
+          14
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          3,
+          7,
+          11
+        ],
+        [
+          0,
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          25,
+          39
+        ]
+      ],
+      "structure_nearest_d2": [
+        39040,
+        76928,
+        4294967295,
+        4294967295,
+        548480,
+        467200,
+        4294967295,
+        4294967295,
+        4294967295,
+        32896,
+        227456,
+        109696,
+        542848,
+        109184
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4096,
+        4294967295,
+        1134592,
+        593920
+      ],
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "feature_counts": {
+        "structure.village": [
+          1,
+          3,
+          8,
+          10
+        ],
+        "structure.trial_chamber": [
+          0,
+          3,
+          10,
+          14
+        ],
+        "structure.ancient_city": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.mansion": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.monument": [
+          0,
+          0,
+          3,
+          3
+        ],
+        "structure.outpost": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "structure.desert_pyramid": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.jungle_temple": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.swamp_hut": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.igloo": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "structure.trail_ruins": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "structure.ruined_portal": [
+          0,
+          3,
+          7,
+          11
+        ],
+        "structure.shipwreck": [
+          0,
+          0,
+          3,
+          4
+        ],
+        "structure.mineshaft": [
+          0,
+          2,
+          25,
+          39
+        ],
+        "structure.stronghold": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.fortress": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.bastion": [
+          0,
+          1,
+          1,
+          4
+        ],
+        "structure.igloo_with_basement": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "structure.bastion_treasure": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.nether_wastes": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.crimson_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.warped_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.soul_sand_valley": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.basalt_deltas": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.group.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.group.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.group.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.warm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.deep_cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_ocean": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.river": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.frozen_river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.beach": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.snowy_beach": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.stony_shore": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.dark_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.pale_garden": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.dappled_forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.taiga": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.sparse_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna_plateau": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_hills": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jagged_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.frozen_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.stony_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lush_caves": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dripstone_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_dark": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.sulfur_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.eroded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.wooded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.snowy_slopes": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_taiga": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ice_spikes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.birch_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.flower_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.sunflower_plains": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.meadow": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "feature_complete": {
+        "structure.village": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trial_chamber": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ancient_city": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mansion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.monument": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.outpost": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.desert_pyramid": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.jungle_temple": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.swamp_hut": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trail_ruins": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ruined_portal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.shipwreck": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mineshaft": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.stronghold": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "structure.fortress": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo_with_basement": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion_treasure": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "biome.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.nether_wastes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.crimson_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.warped_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.soul_sand_valley": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.basalt_deltas": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.warm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_shore": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dark_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.pale_garden": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dappled_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sparse_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna_plateau": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jagged_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lush_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dripstone_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_dark": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sulfur_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.eroded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.wooded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_slopes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ice_spikes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.flower_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sunflower_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.meadow": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        12720,
+        4294967295,
+        11426,
+        14151
+      ]
+    },
+    {
+      "world_id": "40b0cbd78e20ebf32f23790fa23951f8a23bb36ec938db1298a127d70f26b986",
+      "seed": "-4786410124490972928",
+      "layout_id": "3389418ca4b47175dfeb13516c2f9008b1d30dfd50885d27fa06104abcf75a48",
+      "anchor": [
+        0,
+        0
+      ],
+      "nether_anchor": [
+        0,
+        0
+      ],
+      "border_side": 2048,
+      "border": 2048,
+      "bounds": [
+        -1024,
+        -1024,
+        1024,
+        1024
+      ],
+      "score": 69.52222032368988,
+      "utility_units": 6012726,
+      "distance_tie": 744199,
+      "contributions": [
+        {
+          "feature": "V",
+          "coefficient": 2,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "T",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "A",
+          "coefficient": 1,
+          "utility_units": 360360.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "O",
+          "coefficient": 1,
+          "utility_units": 120120.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "E",
+          "coefficient": 2,
+          "utility_units": 463320.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "B",
+          "coefficient": 2,
+          "utility_units": 270270.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "H",
+          "coefficient": 2,
+          "utility_units": 591093.2779013863,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "R",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        }
+      ],
+      "counts": [
+        [
+          1,
+          3,
+          6,
+          7
+        ],
+        [
+          2,
+          4,
+          11,
+          15
+        ],
+        [
+          0,
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          6
+        ],
+        [
+          0,
+          1,
+          3,
+          5
+        ],
+        [
+          0,
+          2,
+          7,
+          9
+        ],
+        [
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          4,
+          22,
+          39
+        ]
+      ],
+      "structure_nearest_d2": [
+        33920,
+        61568,
+        156800,
+        4294967295,
+        4294967295,
+        805120,
+        4294967295,
+        4294967295,
+        4294967295,
+        389248,
+        146560,
+        127616,
+        460928,
+        80000
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        20480,
+        4294967295,
+        16384,
+        0
+      ],
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "feature_counts": {
+        "structure.village": [
+          1,
+          3,
+          6,
+          7
+        ],
+        "structure.trial_chamber": [
+          2,
+          4,
+          11,
+          15
+        ],
+        "structure.ancient_city": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "structure.mansion": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.monument": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.outpost": [
+          0,
+          0,
+          2,
+          3
+        ],
+        "structure.desert_pyramid": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.jungle_temple": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.swamp_hut": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.igloo": [
+          0,
+          0,
+          4,
+          6
+        ],
+        "structure.trail_ruins": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "structure.ruined_portal": [
+          0,
+          2,
+          7,
+          9
+        ],
+        "structure.shipwreck": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "structure.mineshaft": [
+          0,
+          4,
+          22,
+          39
+        ],
+        "structure.stronghold": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.fortress": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.bastion": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "structure.igloo_with_basement": [
+          0,
+          0,
+          2,
+          3
+        ],
+        "structure.bastion_treasure": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.nether_wastes": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.crimson_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.warped_forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.soul_sand_valley": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.basalt_deltas": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.group.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.group.snowy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.group.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.deep_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.warm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lukewarm_ocean": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.cold_ocean": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_cold_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_ocean": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.frozen_river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.beach": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.snowy_beach": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.stony_shore": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dark_forest": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.pale_garden": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.dappled_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.taiga": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.windswept_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.sparse_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.savanna_plateau": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_savanna": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_hills": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jagged_peaks": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_peaks": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.stony_peaks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.grove": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.lush_caves": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dripstone_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_dark": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sulfur_caves": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.eroded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.wooded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.snowy_slopes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_taiga": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ice_spikes": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.forest": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.birch_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.flower_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sunflower_plains": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.meadow": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.bamboo_jungle": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "feature_complete": {
+        "structure.village": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trial_chamber": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ancient_city": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mansion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.monument": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.outpost": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.desert_pyramid": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.jungle_temple": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.swamp_hut": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trail_ruins": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ruined_portal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.shipwreck": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mineshaft": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.stronghold": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "structure.fortress": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo_with_basement": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion_treasure": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "biome.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.nether_wastes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.crimson_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.warped_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.soul_sand_valley": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.basalt_deltas": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.warm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_shore": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dark_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.pale_garden": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dappled_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sparse_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna_plateau": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jagged_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lush_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dripstone_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_dark": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sulfur_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.eroded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.wooded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_slopes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ice_spikes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.flower_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sunflower_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.meadow": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        12718,
+        4294967295,
+        12560,
+        12880
+      ]
+    },
+    {
+      "world_id": "1e3ecb46c43ee5ea26215d20a84d4a72e352c8f4b108b1a60954e295c4858fea",
+      "seed": "-942874108371336591",
+      "layout_id": "5b0e5afe6824b70bfaa2877abf12695fb8ec7665ce3475866f4a2f2af45a84a1",
+      "anchor": [
+        0,
+        0
+      ],
+      "nether_anchor": [
+        0,
+        0
+      ],
+      "border_side": 2048,
+      "border": 2048,
+      "bounds": [
+        -1024,
+        -1024,
+        1024,
+        1024
+      ],
+      "score": 69.08636472020603,
+      "utility_units": 5975030,
+      "distance_tie": 997372,
+      "contributions": [
+        {
+          "feature": "V",
+          "coefficient": 2,
+          "utility_units": 480480.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "T",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "A",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "O",
+          "coefficient": 1,
+          "utility_units": 480480.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "E",
+          "coefficient": 2,
+          "utility_units": 463320.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "B",
+          "coefficient": 2,
+          "utility_units": 360360.0,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "H",
+          "coefficient": 2,
+          "utility_units": 362035.4868688136,
+          "max_units": 720720,
+          "status": "known"
+        },
+        {
+          "feature": "R",
+          "coefficient": 1,
+          "utility_units": 720720.0,
+          "max_units": 720720,
+          "status": "known"
+        }
+      ],
+      "counts": [
+        [
+          0,
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          3,
+          11,
+          13
+        ],
+        [
+          1,
+          1,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          8,
+          11
+        ],
+        [
+          0,
+          2,
+          4,
+          4
+        ],
+        [
+          1,
+          4,
+          26,
+          41
+        ]
+      ],
+      "structure_nearest_d2": [
+        259712,
+        8320,
+        28288,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        771200,
+        4294967295,
+        1043072,
+        46720,
+        77440,
+        190592,
+        47744
+      ],
+      "biome_nearest_d2": [
+        4294967295,
+        4294967295,
+        32768,
+        4294967295,
+        1134592,
+        819200,
+        4294967295,
+        163840,
+        4096
+      ],
+      "complete": [
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "feature_counts": {
+        "structure.village": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "structure.trial_chamber": [
+          1,
+          3,
+          11,
+          13
+        ],
+        "structure.ancient_city": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "structure.mansion": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.monument": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.outpost": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.desert_pyramid": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.jungle_temple": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.swamp_hut": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.igloo": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.trail_ruins": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "structure.ruined_portal": [
+          0,
+          2,
+          8,
+          11
+        ],
+        "structure.shipwreck": [
+          0,
+          2,
+          4,
+          4
+        ],
+        "structure.mineshaft": [
+          1,
+          4,
+          26,
+          41
+        ],
+        "structure.stronghold": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "structure.fortress": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "structure.bastion": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "structure.igloo_with_basement": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "structure.bastion_treasure": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.cherry_grove": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.bamboo_jungle": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.badlands": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.snowy": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.nether_wastes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.crimson_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.warped_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.soul_sand_valley": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.basalt_deltas": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.group.badlands": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.group.snowy": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.group.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.group.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.ocean": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_ocean": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.warm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.lukewarm_ocean": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.cold_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_cold_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.frozen_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.river": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.frozen_river": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.beach": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_beach": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.stony_shore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dark_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.pale_garden": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.dappled_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_forest": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jungle": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sparse_jungle": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.savanna": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.savanna_plateau": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.windswept_savanna": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.swamp": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.jagged_peaks": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.frozen_peaks": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.stony_peaks": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.grove": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.lush_caves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.dripstone_caves": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.deep_dark": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sulfur_caves": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.eroded_badlands": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.wooded_badlands": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "biome.exact.snowy_plains": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.snowy_slopes": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.snowy_taiga": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.ice_spikes": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.birch_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.flower_forest": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.plains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.sunflower_plains": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.meadow": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.cherry_grove": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "biome.exact.mushroom_fields": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.bamboo_jungle": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "biome.exact.desert": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "biome.exact.mangrove_swamp": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "feature_complete": {
+        "structure.village": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trial_chamber": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ancient_city": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mansion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.monument": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.outpost": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.desert_pyramid": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.jungle_temple": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.swamp_hut": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.trail_ruins": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.ruined_portal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.shipwreck": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.mineshaft": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.stronghold": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "structure.fortress": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.igloo_with_basement": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "structure.bastion_treasure": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "biome.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.nether_wastes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.crimson_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.warped_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.soul_sand_valley": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.basalt_deltas": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.snowy": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.group.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.warm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_lukewarm_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_cold_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_frozen_ocean": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_river": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_beach": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_shore": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dark_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.pale_garden": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dappled_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_pine_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_spruce_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sparse_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.savanna_plateau": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_savanna": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.swamp": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.windswept_gravelly_hills": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.jagged_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.frozen_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.stony_peaks": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.lush_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.dripstone_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.deep_dark": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sulfur_caves": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.eroded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.wooded_badlands": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_slopes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.snowy_taiga": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.ice_spikes": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.flower_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.old_growth_birch_forest": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.sunflower_plains": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.meadow": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.cherry_grove": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mushroom_fields": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.bamboo_jungle": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.desert": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "biome.exact.mangrove_swamp": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "biome_witness_refs": [
+        4294967295,
+        4294967295,
+        13202,
+        4294967295,
+        11426,
+        14490,
+        4294967295,
+        11918,
+        12720
+      ]
+    }
+  ],
+  "next_cursor": "eyJleHBpcmVzIjoxNzkyNjc1NzA5Ljc0NzM1NzgsImxhc3QiOlsiLTU5NzUwMzAuOTczNzM3NjI3MTQxNDc5NjQ4NjYxIiwiOTk3MzcyIiwiMTc1MDM4Njk5NjUzMzgyMTUwMjUiLCIwIiwiMCIsIjViMGU1YWZlNjgyNGI3MGJmYWEyODc3YWJmMTI2OTVmYjhlYzc2NjVjZTM0NzU4NjZmNGEyZjJhZjQ1YTg0YTEiXSwicG9saWN5IjoiMWIzZmY3YjljZDE4OTc0NDRmZjM3NDc4MjVjN2YxYWM2ZWJhNGNjYmNjNTQ0YjJhMGY2ZmYyM2EzOTgzNWU5YiIsInJlcXVlc3QiOiI4YjNlOTFiMmNlZTU1NTAyMGUzNzViYTlhN2Y1MGJiYTQyN2ZhYWYyZTFkZDA1MDBjNmZlMDVjOTlhYTM1YTNmIiwicmV2aXNpb24iOiJhdXRvbWF0aW9uLWN1cnNvci12MiIsInNpemUiOjUsInNuYXBzaG90IjoiY2Q3NjM2N2NiZDdhNjc5MzIyMDQ4ZDUzNDgyMWYzMDE3ZTk4YzlkN2Y1N2U3NTY5NTY4ZjY1MTgzMDc0MTA5ZCJ9.7475d297fd8c98ff08914a4587eb105c0c8bd7b847dd51a5e77b70d0f4cdf96a",
+  "truncated": false,
+  "matched_worlds": 37,
+  "unresolved_worlds": 0,
+  "unresolved_candidates": [],
+  "evidence_label": "Predicted structure starts and biome witnesses at declared heights; no physical-count, player-landing, portal-safety or exact-absence certification.",
+  "stats": {
+    "wall_seconds": 2.1918170849094167,
+    "result_cache_hit": false,
+    "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+  }
+}

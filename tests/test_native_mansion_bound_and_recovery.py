@@ -76,7 +76,12 @@ def test_top_k_resume_rebuilds_from_committed_candidates(tmp_path, checkpoint, n
     assert leaders == committed_leaders
     assert leaders[0]['seed'] == str(SURVIVOR)
     with sqlite3.connect(run/'realm.sqlite') as db:
-        assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), 311)
+        from seed_search.realm.blueprint import evaluate_dynamic_seed
+        # Validate the current fixture with fresh Python observations, rather than
+        # preserve a pre-refinement golden value from a different source revision.
+        oracle = evaluate_dynamic_seed(0, SURVIVOR, cfg)['anchors'][0]
+        assert oracle['baseline_score_observed'] == 336
+        assert db.execute('SELECT seed,score FROM top_candidates').fetchone() == (str(SURVIVOR), oracle['baseline_score_observed'])
         assert db.execute('SELECT count(*) FROM candidates').fetchone()[0] == 1
 
 

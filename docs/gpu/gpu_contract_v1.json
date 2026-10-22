@@ -1,0 +1,298 @@
+{
+  "contract_revision": "seed-search-gpu-contract-v1",
+  "status": "defined-contract-only-no-gpu-implementation",
+  "date": "2026-10-22",
+  "cpu_reference": {
+    "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+    "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+    "feature_count": 93,
+    "feature_kinds": {
+      "structure_count": 19,
+      "biome_witness": 74
+    },
+    "source_freeze": "reviews/pre-gpu-implementation-2026-10-22/REFERENCE_FREEZE.json",
+    "vectors": "reviews/pre-gpu-implementation-2026-10-22/CPU_REFERENCE_VECTORS.json",
+    "vectors_sha256": "0e0545c74208aa9514deb09cc982b0e7df184d9fdb6a539baf774d50f06d5c94",
+    "native_pin": {
+      "extension_sha256": "3fbb286e4f06a4726e3c1e7216a5aad4d30f2abc6b0bf7b97532bf085b372687",
+      "policy_sha256": "4472d9225853df396bb8fb236516f46c1fbcf555547882df5913d19401eadb02",
+      "record_adapter_sha256": "6620bd89e2d3622976ec8d29fea12aaca39c64b4dff3b9e02ed18fb73b4db382",
+      "record_sources_sha256": {
+        "native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808",
+        "native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49"
+      },
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6"
+    },
+    "native_identity": {
+      "edition": "bedrock",
+      "extractor_revision": "cpu-catalog-reference-v1",
+      "game_build_id": "research:26.50",
+      "model_id": "26.50",
+      "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+      "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+      "seed": "0",
+      "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+      "world_settings_id": "default"
+    },
+    "new_derivation_pin": {
+      "revision": "catalog-derivation-v3-int64-v1",
+      "source_sha256": "ca14b7a704f686bf5c90bcc163879dd7d80bf2dcf6f8760093c8fd02914e9412"
+    }
+  },
+  "hardware": {
+    "observed_host_gpu": "AMD Radeon Pro Vega 56",
+    "observed_vram_gib": 8,
+    "target_host": null,
+    "target_device": null,
+    "target_toolchain": null
+  },
+  "numerics": {
+    "seed_external": "canonical signed decimal string",
+    "seed_bits": "uint64 little endian",
+    "seed_min": "-9223372036854775808",
+    "seed_max": "9223372036854775807",
+    "input_index": "uint64 finite range",
+    "coordinate": "int32 within declared codec/provider bounds",
+    "distance_squared": "int64 within codec bounds",
+    "ranking_intermediate": "wide integer or CPU bigint; no uint64 overflow",
+    "nether_transform": "mathematical floor divide by8",
+    "border": "half-open",
+    "radius": "inclusive squared circle intersected with border",
+    "overworld_sides": [
+      2048,
+      4096,
+      8192
+    ],
+    "nether_side": 1024,
+    "overworld_radii": [
+      256,
+      512,
+      1024
+    ],
+    "nether_radii": [
+      64,
+      128,
+      256
+    ],
+    "v3_count_max": 200000,
+    "ui_threshold_max": 32,
+    "score_budgets": [
+      845,
+      265,
+      140
+    ],
+    "run_key_external": "Preserve CPU configuration parsing; normalize signed run key to uint64 bits for wire"
+  },
+  "admission": {
+    "public_population": "explicit source-bound sampler/range/manifest",
+    "personal_filter_can_reject_public_selected_seed": false,
+    "unknown_can_prove_rejection": false,
+    "public_pruning": "conservative all-targeted-objective bound including tie keys",
+    "unsampled": "unvisited, not absent"
+  },
+  "retention": {
+    "personal_primary": 50,
+    "personal_retained_new_runs": 100,
+    "historical_capacity_preserved": true,
+    "public_objectives": 7543,
+    "public_primary_slots": 115964,
+    "public_retained_slots": 231928
+  },
+  "transport": {
+    "binary_abi_status": "defined gpu-batch-frame-v1; no runtime/device implementation",
+    "required_header_fields": [
+      "contract_digest",
+      "run_id",
+      "batch_id",
+      "cpu_build_id",
+      "gpu_build_id",
+      "compiler_flags",
+      "policy_id",
+      "registry_id",
+      "provider_id",
+      "profile_id",
+      "sequence",
+      "input_start",
+      "input_count",
+      "output_capacity",
+      "operation",
+      "sections",
+      "methods",
+      "height_profiles",
+      "input_selection_receipt"
+    ],
+    "required_per_input_fields": [
+      "original_index",
+      "seed_bits",
+      "personal_verdict",
+      "public_verdict",
+      "error_flags",
+      "completeness_flags"
+    ],
+    "verdicts": [
+      "not_selected",
+      "forward_cpu",
+      "rejected_proven",
+      "pending",
+      "error"
+    ],
+    "sparse_output_requires_disposition_bitmap": true,
+    "overflow": "bounded deterministic subdivision or pending/error; no silent dropping",
+    "frame": {
+      "magic_ascii_with_nul": "SSGPUV1\\0",
+      "prefix_struct": "<8sIQ32s32s",
+      "prefix_bytes": 84,
+      "header": "canonical finite UTF8 JSON",
+      "header_max_bytes": 65536,
+      "frame_max_bytes": 4194304,
+      "prefix_fields": [
+        "magic",
+        "header_length_u32",
+        "payload_length_u64",
+        "header_sha256_bytes32",
+        "payload_sha256_bytes32"
+      ],
+      "endianness": "little",
+      "padding": "none",
+      "trailing_bytes_allowed": false
+    },
+    "sections": {
+      "inputs": {
+        "record_struct": "<QQII",
+        "record_bytes": 24,
+        "fields": [
+          "original_index_u64",
+          "seed_bits_u64",
+          "selection_flags_u32",
+          "reserved_zero_u32"
+        ]
+      },
+      "verdicts": {
+        "record_struct": "<QQBBHI",
+        "record_bytes": 24,
+        "fields": [
+          "original_index_u64",
+          "seed_bits_u64",
+          "personal_verdict_u8",
+          "public_verdict_u8",
+          "error_flags_u16",
+          "stage_completeness_u32"
+        ]
+      },
+      "facts": {
+        "record_struct": "<IHBBiiiI",
+        "record_bytes": 24,
+        "fields": [
+          "input_ordinal_u32",
+          "feature_slot_u16",
+          "evidence_kind_u8",
+          "dimension_u8",
+          "x_i32",
+          "y_i32",
+          "z_i32",
+          "value_u32"
+        ]
+      },
+      "coverage": {
+        "record_struct": "<IHBBiiiiBBHI",
+        "record_bytes": 32,
+        "fields": [
+          "input_ordinal_u32",
+          "feature_slot_u16",
+          "stage_u8",
+          "dimension_u8",
+          "x0_i32",
+          "z0_i32",
+          "x1_i32",
+          "z1_i32",
+          "status_u8",
+          "method_slot_u8",
+          "height_profile_slot_u16",
+          "reserved_zero_u32"
+        ]
+      }
+    },
+    "max_inputs_per_frame": 16384,
+    "input_selection_flags": {
+      "personal_enabled": 1,
+      "public_selected": 2
+    },
+    "verdict_codes": {
+      "not_selected": 0,
+      "forward_cpu": 1,
+      "rejected_proven": 2,
+      "pending": 3,
+      "error": 4
+    },
+    "dimension_codes": {
+      "overworld": 0,
+      "nether": 1
+    },
+    "coverage_status_codes": {
+      "unknown": 0,
+      "partial": 1,
+      "complete_for_declared_method_bounds": 2,
+      "failed": 3
+    },
+    "undefined_structure_y": -2147483648,
+    "initial_operations": [
+      "seed-map-full64",
+      "seed-map-strided",
+      "raw-village-attempt"
+    ],
+    "initial_evidence_kind_codes": {
+      "raw_structure_attempt": 1
+    },
+    "initial_stage_bits": {
+      "raw_region_complete": 1
+    },
+    "initial_rejected_proven_allowed": false,
+    "section_rules": [
+      "offset/count/record_bytes match exact packed length",
+      "nonoverlapping sections entirely within payload",
+      "verdict originalindices cover inputs exactly once",
+      "facts/coverage inputordinals and feature/provider slots valid",
+      "reserved fields zero; unknown enums rejected",
+      "publicselected inputs cannot become not_selected or rejected_proven"
+    ],
+    "min_inputs_per_frame": 1
+  },
+  "durability": {
+    "acknowledge": "after complete source-bound branch outcomes and durable ownership/budget receipt",
+    "retries": "idempotent by run/batch/range/source",
+    "progress": "contiguous acknowledged prefix or explicit complete ranges",
+    "max_inflight_batches": 2,
+    "max_inflight_bytes": 8388608,
+    "backpressure": "pause emitter or bounded durable replay",
+    "acknowledged_loss_allowed": false,
+    "budget_reset_allowed": false
+  },
+  "initial_kernel_candidates": [
+    "finite full64/strided seed mapping",
+    "raw village region placement"
+  ],
+  "authoritative_cpu_stages": [
+    "viability",
+    "biome classification unless separately ported",
+    "scoring/ranking",
+    "public admission",
+    "durable retention/publication"
+  ],
+  "acceptance_gates": [
+    "confirmed device/toolchain",
+    "CPU vectors and signed/coordinate boundaries",
+    "fixed-work exact parity for ported claims",
+    "overflow/reorder/duplicate/device-loss recovery",
+    "bounded queue/memory/disk/budgets",
+    "full end-to-end useful throughput including transfer and CPU work",
+    "CPU fallback and rollback"
+  ],
+  "not_implemented": [
+    "GPU kernel",
+    "binary transport implementation",
+    "device benchmark",
+    "fleet integration",
+    "new storage engine",
+    "live restart or migration"
+  ]
+}

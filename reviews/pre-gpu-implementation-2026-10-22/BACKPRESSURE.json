@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "input_existing_worlds": 32,
+  "independent_descriptors": 8,
+  "expand_calls": 32,
+  "pending_cap": 4,
+  "saturated": {
+    "revision": "catalog-harvest-status-v1",
+    "jobs": {
+      "pending": 4
+    },
+    "campaigns": [
+      {
+        "id": "1c9be140657096aee9d1e0b9086172a5d85722a3e218ed11a931f34317d0b46c",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "2be121b260a11fcdb90a9d7fd8ac74c9d583f96f27cb57c7355fb6014f991a01",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "56ac52a6b830dfb65d7941d5b1920a53d98a0bcfd2d20de3070284d8db2cf1c0",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "66b96a52054b0ea3e9784c86de2c0dfcb313344b2931d9815d3afe610552503d",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "7c4a05df9a83566942bf41573eb748025245ace013ac56b9b441c98fdaba9ef7",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "ca8c864fe3157f726c0315303551abfcf1cf3d2995acb15a1879ae119778e94f",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "d17cb4064119ac9169ae5f35979ad6246354a0fc34e371e1796861d8f0d3f0fd",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "f1778516106003ddb42a27d651f9363ad064d608de8477ab99629e8c7ab0c3af",
+        "state": "active",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      }
+    ]
+  },
+  "cancelled": {
+    "revision": "catalog-harvest-status-v1",
+    "jobs": {
+      "cancelled": 4
+    },
+    "campaigns": [
+      {
+        "id": "1c9be140657096aee9d1e0b9086172a5d85722a3e218ed11a931f34317d0b46c",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "2be121b260a11fcdb90a9d7fd8ac74c9d583f96f27cb57c7355fb6014f991a01",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "56ac52a6b830dfb65d7941d5b1920a53d98a0bcfd2d20de3070284d8db2cf1c0",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "66b96a52054b0ea3e9784c86de2c0dfcb313344b2931d9815d3afe610552503d",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "7c4a05df9a83566942bf41573eb748025245ace013ac56b9b441c98fdaba9ef7",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "ca8c864fe3157f726c0315303551abfcf1cf3d2995acb15a1879ae119778e94f",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "d17cb4064119ac9169ae5f35979ad6246354a0fc34e371e1796861d8f0d3f0fd",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      },
+      {
+        "id": "f1778516106003ddb42a27d651f9363ad064d608de8477ab99629e8c7ab0c3af",
+        "state": "cancelled",
+        "scheduled_samples": 4,
+        "target_count": "32"
+      }
+    ]
+  },
+  "sustained_handoff_after_expand": {
+    "revision": "catalog-harvest-status-v1",
+    "jobs": {
+      "pending": 2
+    },
+    "campaigns": [
+      {
+        "id": "ad175de53a362769713d828ef01272a11120a09cd9f01ba56a35e17965951577",
+        "state": "active",
+        "scheduled_samples": 2,
+        "target_count": "262144"
+      }
+    ]
+  },
+  "sustained_handoff_retired": {
+    "revision": "catalog-harvest-status-v1",
+    "jobs": {
+      "cancelled": 2
+    },
+    "campaigns": [
+      {
+        "id": "ad175de53a362769713d828ef01272a11120a09cd9f01ba56a35e17965951577",
+        "state": "cancelled",
+        "scheduled_samples": 2,
+        "target_count": "262144"
+      }
+    ]
+  },
+  "scope": "Private metadata pressure/cancellation fixture using existing frozen seeds;no extractor/no new seed search;all earlier files retained"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Synthetic conservative-prefilter correctness controls only;not saved game evidence",
+  "checks": [
+    {
+      "name": "ALL must share the same anchor",
+      "candidate_rows": 0,
+      "matched": 0,
+      "unresolved": 0
+    },
+    {
+      "name": "Unknown remains pending",
+      "candidate_rows": 1,
+      "matched": 0,
+      "unresolved": 1
+    },
+    {
+      "name": "Known negative can be excluded",
+      "candidate_rows": 0,
+      "matched": 0,
+      "unresolved": 0
+    },
+    {
+      "name": "Positive retained",
+      "candidate_rows": 1,
+      "matched": 1,
+      "unresolved": 0
+    }
+  ]
+}

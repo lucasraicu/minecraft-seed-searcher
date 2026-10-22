@@ -1,0 +1,1297 @@
+{
+  "status": "PASS",
+  "context_cache_prime": {
+    "wall_seconds": 3.0679282780038193,
+    "cpu_seconds": 3.066175
+  },
+  "cases": [
+    {
+      "name": "origin",
+      "request": {
+        "request_revision": "catalog-query-v3",
+        "evidence_policy": "predicted_observations_v3",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "origin",
+        "border_side": 2048,
+        "fallback_profile": "balanced_survival",
+        "rows": []
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "result_cold": {
+            "wall_seconds": 2.4026721878908575,
+            "cpu_seconds": 2.364151
+          },
+          "result_warm": {
+            "wall_seconds": 0.10646869195625186,
+            "cpu_seconds": 0.10647099999999998
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 1,
+          "result_cold": {
+            "wall_seconds": 2.2153308839770034,
+            "cpu_seconds": 2.2153169999999998
+          },
+          "result_warm": {
+            "wall_seconds": 0.10092323494609445,
+            "cpu_seconds": 0.10092500000000015
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 2,
+          "result_cold": {
+            "wall_seconds": 2.2461585010169074,
+            "cpu_seconds": 2.245792
+          },
+          "result_warm": {
+            "wall_seconds": 0.1027415549615398,
+            "cpu_seconds": 0.10274199999999922
+          },
+          "matched_worlds": 222
+        }
+      ],
+      "predecoded_row_count": 222,
+      "predecoded_score": {
+        "wall_seconds": 0.06521198502741754,
+        "cpu_seconds": 0.06516300000000008
+      }
+    },
+    {
+      "name": "broad-recommended",
+      "request": {
+        "request_revision": "catalog-query-v3",
+        "evidence_policy": "predicted_observations_v3",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "fallback_profile": "balanced_survival",
+        "rows": []
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "result_cold": {
+            "wall_seconds": 4.566535969963297,
+            "cpu_seconds": 4.5664
+          },
+          "result_warm": {
+            "wall_seconds": 0.10364935302641243,
+            "cpu_seconds": 0.1036520000000003
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 1,
+          "result_cold": {
+            "wall_seconds": 4.780915884999558,
+            "cpu_seconds": 4.778827000000003
+          },
+          "result_warm": {
+            "wall_seconds": 0.10240444308146834,
+            "cpu_seconds": 0.102406000000002
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 2,
+          "result_cold": {
+            "wall_seconds": 4.587742069968954,
+            "cpu_seconds": 4.586631000000001
+          },
+          "result_warm": {
+            "wall_seconds": 0.10076272394508123,
+            "cpu_seconds": 0.1007649999999991
+          },
+          "matched_worlds": 222
+        }
+      ],
+      "predecoded_row_count": 17983,
+      "predecoded_score": {
+        "wall_seconds": 1.84853310091421,
+        "cpu_seconds": 1.848119999999998
+      }
+    },
+    {
+      "name": "mixed-variants",
+      "request": {
+        "request_revision": "catalog-query-v3",
+        "evidence_policy": "predicted_observations_v3",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "fallback_profile": "balanced_survival",
+        "rows": [
+          {
+            "rule": "required",
+            "kind": "structure_count",
+            "feature": "structure.igloo_with_basement",
+            "at_least": 1,
+            "scope": {
+              "kind": "near_base",
+              "radius": 1024
+            }
+          },
+          {
+            "rule": "required",
+            "kind": "structure_count",
+            "feature": "structure.bastion_treasure",
+            "at_least": 1,
+            "scope": {
+              "kind": "near_base",
+              "radius": 256
+            }
+          }
+        ]
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "result_cold": {
+            "wall_seconds": 3.340587251004763,
+            "cpu_seconds": 3.339985999999996
+          },
+          "result_warm": {
+            "wall_seconds": 0.0708166160620749,
+            "cpu_seconds": 0.07081800000000271
+          },
+          "matched_worlds": 17
+        },
+        {
+          "trial": 1,
+          "result_cold": {
+            "wall_seconds": 3.2844977430067956,
+            "cpu_seconds": 3.2841080000000034
+          },
+          "result_warm": {
+            "wall_seconds": 0.07249887799844146,
+            "cpu_seconds": 0.07249900000000054
+          },
+          "matched_worlds": 17
+        },
+        {
+          "trial": 2,
+          "result_cold": {
+            "wall_seconds": 3.364134284085594,
+            "cpu_seconds": 3.3639340000000004
+          },
+          "result_warm": {
+            "wall_seconds": 0.07065303693525493,
+            "cpu_seconds": 0.07065500000000213
+          },
+          "matched_worlds": 17
+        }
+      ],
+      "predecoded_row_count": 17983,
+      "predecoded_score": {
+        "wall_seconds": 0.08349325298331678,
+        "cpu_seconds": 0.08349299999999715
+      }
+    },
+    {
+      "name": "biome-or",
+      "request": {
+        "request_revision": "catalog-query-v3",
+        "evidence_policy": "predicted_observations_v3",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "fallback_profile": "balanced_survival",
+        "rows": [
+          {
+            "rule": "required",
+            "kind": "biome_witness",
+            "any_of": [
+              "biome.exact.forest",
+              "biome.exact.cherry_grove"
+            ],
+            "scope": {
+              "kind": "near_base",
+              "radius": 1024
+            }
+          },
+          {
+            "rule": "preferred",
+            "kind": "structure_count",
+            "feature": "structure.village",
+            "at_least": 1,
+            "scope": {
+              "kind": "near_base",
+              "radius": 1024
+            },
+            "importance": 3
+          }
+        ]
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "result_cold": {
+            "wall_seconds": 4.236390386009589,
+            "cpu_seconds": 4.236225999999995
+          },
+          "result_warm": {
+            "wall_seconds": 0.10304375796113163,
+            "cpu_seconds": 0.10304500000000161
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 1,
+          "result_cold": {
+            "wall_seconds": 4.209914486971684,
+            "cpu_seconds": 4.209806999999998
+          },
+          "result_warm": {
+            "wall_seconds": 0.10041490406729281,
+            "cpu_seconds": 0.1004170000000002
+          },
+          "matched_worlds": 222
+        },
+        {
+          "trial": 2,
+          "result_cold": {
+            "wall_seconds": 4.232791997026652,
+            "cpu_seconds": 4.231357000000003
+          },
+          "result_warm": {
+            "wall_seconds": 0.0972421959741041,
+            "cpu_seconds": 0.09724299999999886
+          },
+          "matched_worlds": 222
+        }
+      ],
+      "predecoded_row_count": 17983,
+      "predecoded_score": {
+        "wall_seconds": 1.392783288960345,
+        "cpu_seconds": 1.392629999999997
+      }
+    },
+    {
+      "name": "selective",
+      "request": {
+        "request_revision": "catalog-query-v3",
+        "evidence_policy": "predicted_observations_v3",
+        "edition": "bedrock",
+        "game_build_id": "research:26.50",
+        "catalog_snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "world_settings_id": "default",
+        "dimension": "overworld",
+        "anchor_mode": "recommended",
+        "border_side": 8192,
+        "fallback_profile": "balanced_survival",
+        "rows": [
+          {
+            "rule": "required",
+            "kind": "structure_count",
+            "feature": "structure.village",
+            "at_least": 3,
+            "scope": {
+              "kind": "near_base",
+              "radius": 256
+            }
+          },
+          {
+            "rule": "required",
+            "kind": "structure_count",
+            "feature": "structure.bastion_treasure",
+            "at_least": 1,
+            "scope": {
+              "kind": "near_base",
+              "radius": 64
+            }
+          }
+        ]
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "result_cold": {
+            "wall_seconds": 3.455686614033766,
+            "cpu_seconds": 3.4549049999999966
+          },
+          "result_warm": {
+            "wall_seconds": 0.07018485199660063,
+            "cpu_seconds": 0.07018599999999253
+          },
+          "matched_worlds": 0
+        },
+        {
+          "trial": 1,
+          "result_cold": {
+            "wall_seconds": 3.4624524579849094,
+            "cpu_seconds": 3.462418999999997
+          },
+          "result_warm": {
+            "wall_seconds": 0.07377076300326735,
+            "cpu_seconds": 0.07377300000000275
+          },
+          "matched_worlds": 0
+        },
+        {
+          "trial": 2,
+          "result_cold": {
+            "wall_seconds": 3.6750647680601105,
+            "cpu_seconds": 3.6740449999999925
+          },
+          "result_warm": {
+            "wall_seconds": 0.08199990005232394,
+            "cpu_seconds": 0.08194799999999702
+          },
+          "matched_worlds": 0
+        }
+      ],
+      "predecoded_row_count": 17983,
+      "predecoded_score": {
+        "wall_seconds": 0.053601730964146554,
+        "cpu_seconds": 0.05360199999999793
+      }
+    }
+  ],
+  "products": [
+    {
+      "request": {
+        "revision": "catalog-product-request-v2",
+        "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "product_id": "record.v2.bastion_density",
+        "page_size": 5,
+        "view": "primary"
+      },
+      "trials": [
+        {
+          "wall_seconds": 3.1476934340316802,
+          "cpu_seconds": 3.1469260000000077
+        },
+        {
+          "wall_seconds": 3.384563890984282,
+          "cpu_seconds": 3.384140000000002
+        },
+        {
+          "wall_seconds": 3.251068393001333,
+          "cpu_seconds": 3.25103
+        }
+      ],
+      "results": {
+        "ok": true,
+        "revision": "catalog-product-results-v2",
+        "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "product_id": "record.v2.bastion_density",
+        "primary_count": 100,
+        "reserve_count": 100,
+        "view": "primary",
+        "reserve_policy": {
+          "evidence_status": "predicted",
+          "historically_complete": false,
+          "primary_slots": 115964,
+          "reserve_factor": 2,
+          "retained_slots": 231928
+        },
+        "results": [
+          {
+            "anchor": {
+              "coordinate": [
+                0,
+                0
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                0,
+                0
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                0,
+                0
+              ],
+              "source_id": "97465b14165bd8008a1f6e76c4ef0f3f8975bc313415e7940ef19e3f036b55c2"
+            },
+            "metric": {
+              "count": 4,
+              "count_complete": true
+            },
+            "observation_id": "a627bedcfeacdffdd2d4580c9c8d2b338a295288df01664f0b023d5e04174d42",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -4
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-3814814949616778765",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  216,
+                  null,
+                  -120
+                ],
+                "dimension": "nether",
+                "distance_squared": 61056,
+                "feature": "structure.bastion",
+                "observation_id": "a627bedcfeacdffdd2d4580c9c8d2b338a295288df01664f0b023d5e04174d42",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "bc1369d2f40909253c3607629242bb3592e1371fdc34d29246354cb088eee3be"
+              },
+              {
+                "coordinate": [
+                  -280,
+                  null,
+                  -168
+                ],
+                "dimension": "nether",
+                "distance_squared": 106624,
+                "feature": "structure.bastion",
+                "observation_id": "a627bedcfeacdffdd2d4580c9c8d2b338a295288df01664f0b023d5e04174d42",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "86a3a71ea6a6fc13e204845cb11c138d30d8da93c58f4d3c0be8520b544c8a0f"
+              },
+              {
+                "coordinate": [
+                  328,
+                  null,
+                  296
+                ],
+                "dimension": "nether",
+                "distance_squared": 195200,
+                "feature": "structure.bastion",
+                "observation_id": "a627bedcfeacdffdd2d4580c9c8d2b338a295288df01664f0b023d5e04174d42",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "f6d713425dbb776375610cb0f2654f112afbb805a07eb4bf1bd1a2d33e2cbdbd"
+              },
+              {
+                "coordinate": [
+                  -456,
+                  null,
+                  168
+                ],
+                "dimension": "nether",
+                "distance_squared": 236160,
+                "feature": "structure.bastion",
+                "observation_id": "a627bedcfeacdffdd2d4580c9c8d2b338a295288df01664f0b023d5e04174d42",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "19781c2245d5fe75647f4cbb8f7895ac75abdb974b970bf555180ccec6a08ab8"
+              }
+            ],
+            "world_id": "15ad4e667e3e801e154461a7cf8471497635e3c682f7c2f95fa4e688b74797ec",
+            "candidate_role": "primary",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                9,
+                0
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                9,
+                0
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                72,
+                6
+              ],
+              "source_id": "c1236c6b9b1d2430f8841a8fce11df08f6cd17e8f8d1bd24da76d50549089df7"
+            },
+            "metric": {
+              "count": 4,
+              "count_complete": true
+            },
+            "observation_id": "44f088f9f6e7570d79a220018bc6c3beb5d183ebbf2fe545d3469038b33649c0",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -4
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-7155299933101706646",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  40,
+                  null,
+                  392
+                ],
+                "dimension": "nether",
+                "distance_squared": 154625,
+                "feature": "structure.bastion",
+                "observation_id": "44f088f9f6e7570d79a220018bc6c3beb5d183ebbf2fe545d3469038b33649c0",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "f1b19e929cf040a355c0476627aef7f43310530031602556ba28f384e73e6ab9"
+              },
+              {
+                "coordinate": [
+                  104,
+                  null,
+                  -392
+                ],
+                "dimension": "nether",
+                "distance_squared": 162689,
+                "feature": "structure.bastion",
+                "observation_id": "44f088f9f6e7570d79a220018bc6c3beb5d183ebbf2fe545d3469038b33649c0",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "0462f8fde943763341a7acda01da45e90dd54d1af0c111fe59f978cfeb634c53"
+              },
+              {
+                "coordinate": [
+                  -72,
+                  null,
+                  408
+                ],
+                "dimension": "nether",
+                "distance_squared": 173025,
+                "feature": "structure.bastion",
+                "observation_id": "44f088f9f6e7570d79a220018bc6c3beb5d183ebbf2fe545d3469038b33649c0",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "009a6c85cc328cc683da15522fa570c83c829ea6a527609ba0180e499dfe1a2e"
+              },
+              {
+                "coordinate": [
+                  -72,
+                  null,
+                  -440
+                ],
+                "dimension": "nether",
+                "distance_squared": 200161,
+                "feature": "structure.bastion",
+                "observation_id": "44f088f9f6e7570d79a220018bc6c3beb5d183ebbf2fe545d3469038b33649c0",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "4532dccc7082dce8f9a8d48a04fa19008241a682c9a50fcc74db0f324426a172"
+              }
+            ],
+            "world_id": "21ac95e028e81e26574b220080f2d6c62429957354076f904a29f4fb8cca52a7",
+            "candidate_role": "primary",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                0,
+                0
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                0,
+                0
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                0,
+                0
+              ],
+              "source_id": "e096ed8c5b9e5c0af952edc408e6ee96b3e48207aab1ea9f7c0dadafcff1ff84"
+            },
+            "metric": {
+              "count": 4,
+              "count_complete": true
+            },
+            "observation_id": "c449d8b73cf8c5ab43fc835a27d2351b8d143d80ff88b4018b041f2396221bee",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -4
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-1263193777240927608",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  -72,
+                  null,
+                  104
+                ],
+                "dimension": "nether",
+                "distance_squared": 16000,
+                "feature": "structure.bastion",
+                "observation_id": "c449d8b73cf8c5ab43fc835a27d2351b8d143d80ff88b4018b041f2396221bee",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "c022dab81919f0871d3015b15bbd173e883cc6c099e149dd56b061124a5996a7"
+              },
+              {
+                "coordinate": [
+                  120,
+                  null,
+                  88
+                ],
+                "dimension": "nether",
+                "distance_squared": 22144,
+                "feature": "structure.bastion",
+                "observation_id": "c449d8b73cf8c5ab43fc835a27d2351b8d143d80ff88b4018b041f2396221bee",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "f91f394ddcbaed1cab596e9c9c3c436db1f5d6b2d53b736715a1021a7e6a8c9c"
+              },
+              {
+                "coordinate": [
+                  8,
+                  null,
+                  -216
+                ],
+                "dimension": "nether",
+                "distance_squared": 46720,
+                "feature": "structure.bastion",
+                "observation_id": "c449d8b73cf8c5ab43fc835a27d2351b8d143d80ff88b4018b041f2396221bee",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "4c5abe73044eada30a1a6fbf6a8ebfaa5d5c6cb9517d0ea61965c52d8ea40b9b"
+              },
+              {
+                "coordinate": [
+                  -104,
+                  null,
+                  -216
+                ],
+                "dimension": "nether",
+                "distance_squared": 57472,
+                "feature": "structure.bastion",
+                "observation_id": "c449d8b73cf8c5ab43fc835a27d2351b8d143d80ff88b4018b041f2396221bee",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "5daf148b88b699cbe20b520e78234bf7eb93258581eeb3078eff68ad1907ea20"
+              }
+            ],
+            "world_id": "38c1048e02eacb685bafc09f627e8f92d1d59240297c5c92f9e6c7919d352f73",
+            "candidate_role": "primary",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                -62,
+                -27
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                -62,
+                -27
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                -489,
+                -211
+              ],
+              "source_id": "ca87ce357814c48053c3b108f2d2783bd7fe185eacc4699ccef661a63243a734"
+            },
+            "metric": {
+              "count": 4,
+              "count_complete": true
+            },
+            "observation_id": "d3a730206b3cfaa68734ab2cbb21124f1023a53d8b4a87adb3b8a8201e61ac4f",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -4
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-2555697007023072480",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  56,
+                  null,
+                  200
+                ],
+                "dimension": "nether",
+                "distance_squared": 65453,
+                "feature": "structure.bastion",
+                "observation_id": "d3a730206b3cfaa68734ab2cbb21124f1023a53d8b4a87adb3b8a8201e61ac4f",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "75579977c6c1148ac252f8a9a45c8275267411f66351cebb560c6e31a59fbc27"
+              },
+              {
+                "coordinate": [
+                  -136,
+                  null,
+                  -296
+                ],
+                "dimension": "nether",
+                "distance_squared": 77837,
+                "feature": "structure.bastion",
+                "observation_id": "d3a730206b3cfaa68734ab2cbb21124f1023a53d8b4a87adb3b8a8201e61ac4f",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "d970d138f9179b83f3084b86fce4785a06753ca8cb316b67a87abcf00737ee12"
+              },
+              {
+                "coordinate": [
+                  24,
+                  null,
+                  -376
+                ],
+                "dimension": "nether",
+                "distance_squared": 129197,
+                "feature": "structure.bastion",
+                "observation_id": "d3a730206b3cfaa68734ab2cbb21124f1023a53d8b4a87adb3b8a8201e61ac4f",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "26fa259f01a493a24c5145457065388167b755a89e5b118c9d02ffa41992a42f"
+              },
+              {
+                "coordinate": [
+                  -424,
+                  null,
+                  136
+                ],
+                "dimension": "nether",
+                "distance_squared": 157613,
+                "feature": "structure.bastion",
+                "observation_id": "d3a730206b3cfaa68734ab2cbb21124f1023a53d8b4a87adb3b8a8201e61ac4f",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "4cd4d5eaf221ae80a94d1fbcc5023b2e8462ef3ac8df8450d007d158d6766880"
+              }
+            ],
+            "world_id": "720a1d242f7dc7e68c032cf10c2d34ba161ba7bc3aa685bdc9cb25f6436b6e5b",
+            "candidate_role": "primary",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                -2,
+                -5
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                -2,
+                -5
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                -13,
+                -38
+              ],
+              "source_id": "030b9b42f265847f676263d55f4fce9544bbc46fe7a2378103f64ec96978b1d6"
+            },
+            "metric": {
+              "count": 4,
+              "count_complete": true
+            },
+            "observation_id": "fc24efdaf54db45b838c3aff5527b96cc5774731d083444af26dfd3b9ddd0dd6",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -4
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-8911597154906399337",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  -200,
+                  null,
+                  -184
+                ],
+                "dimension": "nether",
+                "distance_squared": 71245,
+                "feature": "structure.bastion",
+                "observation_id": "fc24efdaf54db45b838c3aff5527b96cc5774731d083444af26dfd3b9ddd0dd6",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "b826755c080cdc93d2ea9b33a927ffd975d3d959cb467ba5f4b80c01659b0bd1"
+              },
+              {
+                "coordinate": [
+                  -152,
+                  null,
+                  232
+                ],
+                "dimension": "nether",
+                "distance_squared": 78669,
+                "feature": "structure.bastion",
+                "observation_id": "fc24efdaf54db45b838c3aff5527b96cc5774731d083444af26dfd3b9ddd0dd6",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "847c88ea7dd8be3be3f6188dd51919ff63cbff0a60641642338952dfc9e1ab39"
+              },
+              {
+                "coordinate": [
+                  152,
+                  null,
+                  232
+                ],
+                "dimension": "nether",
+                "distance_squared": 79885,
+                "feature": "structure.bastion",
+                "observation_id": "fc24efdaf54db45b838c3aff5527b96cc5774731d083444af26dfd3b9ddd0dd6",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "fc3052dbdae784aef0c5701c84e83407291b59fb39772e8e3e793ab3dde17d2f"
+              },
+              {
+                "coordinate": [
+                  296,
+                  null,
+                  -200
+                ],
+                "dimension": "nether",
+                "distance_squared": 126829,
+                "feature": "structure.bastion",
+                "observation_id": "fc24efdaf54db45b838c3aff5527b96cc5774731d083444af26dfd3b9ddd0dd6",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "794bebddfefbc2e417e9362d84acedb92e849467ea9e00d3c7202aa32083971d"
+              }
+            ],
+            "world_id": "7648a685d8351d7c6aa2fd835d80b0badea0ed1ac454b1b572377bbc9f3b5a5a",
+            "candidate_role": "primary",
+            "evidence_status": "predicted"
+          }
+        ],
+        "matched_worlds": 100,
+        "next_cursor": "eyJleHBpcmVzIjoxNzkyNjkwNDA0LjYwMzg3OSwib2Zmc2V0Ijo1LCJwb2xpY3kiOiIxYjNmZjdiOWNkMTg5NzQ0NGZmMzc0NzgyNWM3ZjFhYzZlYmE0Y2NiY2M1NDRiMmEwZjZmZjIzYTM5ODM1ZTliIiwicHJvZHVjdCI6InJlY29yZC52Mi5iYXN0aW9uX2RlbnNpdHkiLCJyZXZpc2lvbiI6ImNhdGFsb2ctcHJvZHVjdC1jdXJzb3ItdjIiLCJzaXplIjo1LCJzbmFwc2hvdCI6ImNkNzYzNjdjYmQ3YTY3OTMyMjA0OGQ1MzQ4MjFmMzAxN2U5OGM5ZDdmNTdlNzU2OTU2OGY2NTE4MzA3NDEwOWQiLCJ2aWV3IjoicHJpbWFyeSJ9.f607ae85d8e6008dbb0441593f4af2a9f518b8313ba56c93477cae45b5281b10",
+        "scope": {
+          "dimension": "nether",
+          "anchor": "projected_world_spawn",
+          "radius": 500,
+          "scope_type": "closed_horizontal_circle"
+        },
+        "population_worlds": 222,
+        "evaluation_counts": {
+          "match": 207,
+          "no_match": 14,
+          "pending": 1
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "evidence_label": "Predicted structure starts and biome witnesses at declared heights; no physical-count, player-landing, portal-safety or exact-absence certification."
+      }
+    },
+    {
+      "request": {
+        "revision": "catalog-product-request-v2",
+        "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "product_id": "record.v2.bastion_density",
+        "page_size": 5,
+        "view": "reserve"
+      },
+      "trials": [
+        {
+          "wall_seconds": 3.2977874618954957,
+          "cpu_seconds": 3.2976759999999956
+        },
+        {
+          "wall_seconds": 3.205726905958727,
+          "cpu_seconds": 3.2056249999999977
+        },
+        {
+          "wall_seconds": 3.4293236549710855,
+          "cpu_seconds": 3.429181
+        }
+      ],
+      "results": {
+        "ok": true,
+        "revision": "catalog-product-results-v2",
+        "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+        "product_id": "record.v2.bastion_density",
+        "primary_count": 100,
+        "reserve_count": 100,
+        "view": "reserve",
+        "reserve_policy": {
+          "evidence_status": "predicted",
+          "historically_complete": false,
+          "primary_slots": 115964,
+          "reserve_factor": 2,
+          "retained_slots": 231928
+        },
+        "results": [
+          {
+            "anchor": {
+              "coordinate": [
+                0,
+                2
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                0,
+                2
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                7,
+                23
+              ],
+              "source_id": "7443dc02cfc6bc276a2330d795cd5f30025c9702c30b6e518db7b1a24845a808"
+            },
+            "metric": {
+              "count": 2,
+              "count_complete": true
+            },
+            "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -2
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "3629856058375408595",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  -120,
+                  null,
+                  248
+                ],
+                "dimension": "nether",
+                "distance_squared": 74916,
+                "feature": "structure.bastion",
+                "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "b8f7108398e91d74571be4b1c0dde9822c7d9766a304de294913c8db18a8f19c"
+              },
+              {
+                "coordinate": [
+                  56,
+                  null,
+                  376
+                ],
+                "dimension": "nether",
+                "distance_squared": 143012,
+                "feature": "structure.bastion",
+                "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "c61d7bd31f8c53fab45dacb3dcea19dbdb336bba8012f749d05b552c9d9b4eb1"
+              }
+            ],
+            "world_id": "57466c6152954445a821f86b806baf2a599751d071d34dd4edba3ed66a72f2dd",
+            "candidate_role": "reserve",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                0,
+                18
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                0,
+                18
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                0,
+                151
+              ],
+              "source_id": "684f9ab8fa1074fa325675c9d5407db078ed54bb397270fa4ef69e1447b3e440"
+            },
+            "metric": {
+              "count": 2,
+              "count_complete": true
+            },
+            "observation_id": "23b6ef14787e7883a6b5fb7954080c11dcdd42d62ea09a4ddeeba166741c8cca",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -2
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-4306858323867991297",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  152,
+                  null,
+                  216
+                ],
+                "dimension": "nether",
+                "distance_squared": 62308,
+                "feature": "structure.bastion",
+                "observation_id": "23b6ef14787e7883a6b5fb7954080c11dcdd42d62ea09a4ddeeba166741c8cca",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "3cb21b13a04bb87048f80d853520be56f6c9e2225885fd5b1ae0ab3518c59f8e"
+              },
+              {
+                "coordinate": [
+                  56,
+                  null,
+                  -408
+                ],
+                "dimension": "nether",
+                "distance_squared": 184612,
+                "feature": "structure.bastion",
+                "observation_id": "23b6ef14787e7883a6b5fb7954080c11dcdd42d62ea09a4ddeeba166741c8cca",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "b8fa54c8786d85955a11e8fda27834fddb5d5233926aa647b7b2a324a6162e25"
+              }
+            ],
+            "world_id": "5791f7b666e3afa48d2c67eefe6ca0ca7b7911c850ba09234f13a319dac7e867",
+            "candidate_role": "reserve",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                73,
+                57
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                73,
+                57
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                584,
+                461
+              ],
+              "source_id": "e02da0186107e715820c6a85a9e86aa4c13d67197f82c6add1ee00427843cab8"
+            },
+            "metric": {
+              "count": 2,
+              "count_complete": true
+            },
+            "observation_id": "42111b13f5c8305d9d6166e7a32e3fab61f36802887bc06d4e182be1f90130b7",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -2
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "4803960713225841134",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  168,
+                  null,
+                  -184
+                ],
+                "dimension": "nether",
+                "distance_squared": 67106,
+                "feature": "structure.bastion",
+                "observation_id": "42111b13f5c8305d9d6166e7a32e3fab61f36802887bc06d4e182be1f90130b7",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "13eb1208f8591b6f193834021b8eec36e866e61fbeb666259710eee3faf26a02"
+              },
+              {
+                "coordinate": [
+                  -264,
+                  null,
+                  312
+                ],
+                "dimension": "nether",
+                "distance_squared": 178594,
+                "feature": "structure.bastion",
+                "observation_id": "42111b13f5c8305d9d6166e7a32e3fab61f36802887bc06d4e182be1f90130b7",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "90820086e4b96df2e8f1eaca0416f3f5d3da7d95f1817b8cc6840518de01c729"
+              }
+            ],
+            "world_id": "5bcc423ebfbe119bccd992c97dfcd25b2037be583a9b3ae46cc31098adf6ecfd",
+            "candidate_role": "reserve",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                5,
+                9
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                5,
+                9
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                43,
+                76
+              ],
+              "source_id": "54ace1df20028fdcadb22aaa14f8ca3d2a2d4eb3004f7efb72030c924929cae6"
+            },
+            "metric": {
+              "count": 2,
+              "count_complete": true
+            },
+            "observation_id": "26ded03f8ba4437299d5e52ae6acc409857a3d6cd2850933c4b320c4293d1fe8",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -2
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "6133279538938288237",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  184,
+                  null,
+                  -184
+                ],
+                "dimension": "nether",
+                "distance_squared": 69290,
+                "feature": "structure.bastion",
+                "observation_id": "26ded03f8ba4437299d5e52ae6acc409857a3d6cd2850933c4b320c4293d1fe8",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "a0dae7b81c6a965f1a4e4ff1dac17e3cce814b07224d15637fe23f1c230adb89"
+              },
+              {
+                "coordinate": [
+                  184,
+                  null,
+                  248
+                ],
+                "dimension": "nether",
+                "distance_squared": 89162,
+                "feature": "structure.bastion",
+                "observation_id": "26ded03f8ba4437299d5e52ae6acc409857a3d6cd2850933c4b320c4293d1fe8",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "886ade60246cf7046bc337ccf1984e9e65b16ac03d09e706332e03f307a933c6"
+              }
+            ],
+            "world_id": "5c32f64117588f28525e07f53bd99a07665dc842aca2479b0a719c10a3232578",
+            "candidate_role": "reserve",
+            "evidence_status": "predicted"
+          },
+          {
+            "anchor": {
+              "coordinate": [
+                2,
+                10
+              ],
+              "dimension": "nether",
+              "mode": "world_spawn_estimated",
+              "nether": [
+                2,
+                10
+              ],
+              "nether_reference": "projected_overworld_anchor_nether",
+              "overworld": [
+                18,
+                86
+              ],
+              "source_id": "6e3050e81ffc77bfea21e98ef432c03c03392ccd0cc2ab1ba63374d6465c7c45"
+            },
+            "metric": {
+              "count": 2,
+              "count_complete": true
+            },
+            "observation_id": "5c01809b97df784a801c58d275405e65b3ed2e4a6723567fe9a51b2999b15307",
+            "product_id": "record.v2.bastion_density",
+            "rank": [
+              -2
+            ],
+            "reason": null,
+            "scope": {
+              "dimension": "nether",
+              "radius": 500
+            },
+            "seed": "-3839012144583123786",
+            "status": "match",
+            "witnesses": [
+              {
+                "coordinate": [
+                  200,
+                  null,
+                  8
+                ],
+                "dimension": "nether",
+                "distance_squared": 39208,
+                "feature": "structure.bastion",
+                "observation_id": "5c01809b97df784a801c58d275405e65b3ed2e4a6723567fe9a51b2999b15307",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "4f6a939ccf049f003725ba5702d9436c5d44afd1932fc71af2474cbe79562639"
+              },
+              {
+                "coordinate": [
+                  24,
+                  null,
+                  -360
+                ],
+                "dimension": "nether",
+                "distance_squared": 137384,
+                "feature": "structure.bastion",
+                "observation_id": "5c01809b97df784a801c58d275405e65b3ed2e4a6723567fe9a51b2999b15307",
+                "provider": "predictor_viable_starts_v1",
+                "witness_id": "a44d216a1cf5c255cc2c4bc6410d572c67f8ea3d9961c33019303909b3f1d93d"
+              }
+            ],
+            "world_id": "5dd1b7651e2de38aa5c9e08c500546ecf2cb6ca0f2d64d018895387645ef3e65",
+            "candidate_role": "reserve",
+            "evidence_status": "predicted"
+          }
+        ],
+        "matched_worlds": 100,
+        "next_cursor": "eyJleHBpcmVzIjoxNzkyNjkwNDE0LjUyNjU4Mywib2Zmc2V0Ijo1LCJwb2xpY3kiOiIxYjNmZjdiOWNkMTg5NzQ0NGZmMzc0NzgyNWM3ZjFhYzZlYmE0Y2NiY2M1NDRiMmEwZjZmZjIzYTM5ODM1ZTliIiwicHJvZHVjdCI6InJlY29yZC52Mi5iYXN0aW9uX2RlbnNpdHkiLCJyZXZpc2lvbiI6ImNhdGFsb2ctcHJvZHVjdC1jdXJzb3ItdjIiLCJzaXplIjo1LCJzbmFwc2hvdCI6ImNkNzYzNjdjYmQ3YTY3OTMyMjA0OGQ1MzQ4MjFmMzAxN2U5OGM5ZDdmNTdlNzU2OTU2OGY2NTE4MzA3NDEwOWQiLCJ2aWV3IjoicmVzZXJ2ZSJ9.0d8aa30d664f5910f1fc81fc67982b1f299ed689929280238e53cb55a9e14a11",
+        "scope": {
+          "dimension": "nether",
+          "anchor": "projected_world_spawn",
+          "radius": 500,
+          "scope_type": "closed_horizontal_circle"
+        },
+        "population_worlds": 222,
+        "evaluation_counts": {
+          "match": 207,
+          "no_match": 14,
+          "pending": 1
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "evidence_label": "Predicted structure starts and biome witnesses at declared heights; no physical-count, player-landing, portal-safety or exact-absence certification."
+      }
+    }
+  ],
+  "detail": [
+    {
+      "wall_seconds": 4.8739691289374605,
+      "cpu_seconds": 4.871349000000009
+    },
+    {
+      "wall_seconds": 4.5802169310627505,
+      "cpu_seconds": 4.5779759999999925
+    }
+  ],
+  "profile_scope": "Offline increased deadline120s only for instrumentation;unprofiled queries use10s;application cache cold/result warm are not disk-cold"
+}

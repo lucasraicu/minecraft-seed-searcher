@@ -1,0 +1,3277 @@
+{
+  "controls": {
+    "harness_sha256": "f6f158cb3f9e1ba173f2db66b421b25cb77b1ff97677aec30abdf4b3c733a43e",
+    "observer_sha256": "6f25fe59430e6bb4348b873c56224c2b3a933607baba467a778d431aa29b8994",
+    "cases_sha256": "6d8629f46d11d3ba45c01d34f110dcf059580b929de3f24270281bf9d12c58f7",
+    "settings_sha256": "a6a630af2faca71f956ea38dde8c25547a8c01c7c8824ce69c553e6c882fa13e",
+    "seed": "-4565879772552070118",
+    "prediction": {
+      "seed": "-4565879772552070118",
+      "world_id": "41c0cb400ffb659ec7f51769f41ba566c3d5b91ff0b9da0b2122693e7eadb557",
+      "observation_id": "897caf9353317bc1c4865d9f8e1c74530e126ae26d3ba48cee37ac980d4df373"
+    },
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "container": "codex-types-check-af0d21387ea3",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 600,
+    "output_bytes": 8589934592,
+    "network": "bridge",
+    "published_ports": [],
+    "query_cap": 1000,
+    "role": "Actual Bedrock locate outputs; not proof of exhaustive census or physical footprints"
+  },
+  "status": "observed",
+  "queries": [
+    {
+      "index": 0,
+      "kind": "structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        216,
+        88
+      ],
+      "output": [
+        "",
+        "[2026-10-20 18:04:37:005 INFO] The nearest minecraft:trial_chambers is at block 217, (y?), 89 (1 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        -456,
+        56
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:041 INFO] The nearest minecraft:trial_chambers is at block -455, (y?), 57 (1 blocks away)"
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        248,
+        -440
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:091 INFO] The nearest minecraft:trial_chambers is at block 231, (y?), -439 (17 blocks away)"
+      ]
+    },
+    {
+      "index": 3,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        372,
+        1236
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:147 INFO] The nearest minecraft:stronghold is at block 370, (y?), 1234 (2 blocks away)"
+      ]
+    },
+    {
+      "index": 4,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        1348,
+        -1324
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:191 INFO] The nearest minecraft:stronghold is at block 1346, (y?), -1326 (2 blocks away)"
+      ]
+    },
+    {
+      "index": 5,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        -908,
+        -1900
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:241 INFO] The nearest minecraft:stronghold is at block -910, (y?), -1902 (2 blocks away)"
+      ]
+    },
+    {
+      "index": 6,
+      "kind": "structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        -488,
+        88
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:291 INFO] The nearest minecraft:mineshaft is at block -496, (y?), 80 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 7,
+      "kind": "structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        504,
+        -72
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:341 INFO] The nearest minecraft:mineshaft is at block 496, (y?), -80 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 8,
+      "kind": "structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        200,
+        -472
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:396 INFO] The nearest minecraft:mineshaft is at block 192, (y?), -480 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 9,
+      "kind": "structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        456,
+        888
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:446 INFO] The nearest minecraft:ancient_city is at block 456, (y?), 888 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 10,
+      "kind": "structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        824,
+        792
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:496 INFO] The nearest minecraft:ancient_city is at block 824, (y?), 792 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 11,
+      "kind": "structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        920,
+        -2168
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:546 INFO] The nearest minecraft:ancient_city is at block 920, (y?), -2168 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 12,
+      "kind": "structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -856,
+        -312
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:596 INFO] The nearest minecraft:village is at block -856, (y?), -312 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 13,
+      "kind": "structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        376,
+        1240
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:646 INFO] The nearest minecraft:village is at block 376, (y?), 1240 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 14,
+      "kind": "structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -1320,
+        88
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:696 INFO] The nearest minecraft:village is at block -1320, (y?), 88 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 15,
+      "kind": "structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        312,
+        200
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:746 INFO] The nearest minecraft:ruined_portal is at block 312, (y?), 200 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 16,
+      "kind": "structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        -296,
+        248
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:796 INFO] The nearest minecraft:ruined_portal is at block -296, (y?), 248 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 17,
+      "kind": "structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        232,
+        -376
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:846 INFO] The nearest minecraft:ruined_portal is at block 232, (y?), -376 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 18,
+      "kind": "structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        -1480,
+        -1352
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:902 INFO] The nearest minecraft:shipwreck is at block -1480, (y?), -1352 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 19,
+      "kind": "structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        2056,
+        -88
+      ],
+      "output": [
+        "[2026-10-20 18:04:37:952 INFO] The nearest minecraft:shipwreck is at block 2056, (y?), -88 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 20,
+      "kind": "structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        -1256,
+        -1656
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:001 INFO] The nearest minecraft:shipwreck is at block -1256, (y?), -1656 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 21,
+      "kind": "structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        -1368,
+        -1704
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:058 INFO] The nearest minecraft:monument is at block -1368, (y?), -1704 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 22,
+      "kind": "structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        1368,
+        1752
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:109 INFO] The nearest minecraft:monument is at block 1368, (y?), 1752 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 23,
+      "kind": "structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        -1864,
+        -1288
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:159 INFO] The nearest minecraft:monument is at block -1864, (y?), -1288 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 24,
+      "kind": "structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        -432,
+        656
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:196 INFO] The nearest minecraft:pillager_outpost is at block -424, (y?), 664 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 25,
+      "kind": "structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        208,
+        1728
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:246 INFO] The nearest minecraft:pillager_outpost is at block 216, (y?), 1736 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 26,
+      "kind": "structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        -816,
+        -1968
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:296 INFO] The nearest minecraft:pillager_outpost is at block -808, (y?), -1960 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 27,
+      "kind": "structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        -440,
+        280
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:346 INFO] The nearest minecraft:fortress is at block -448, (y?), 272 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 28,
+      "kind": "structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        632,
+        168
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:396 INFO] The nearest minecraft:fortress is at block 624, (y?), 160 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 29,
+      "kind": "structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        -920,
+        -152
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:446 INFO] The nearest minecraft:fortress is at block -928, (y?), -160 (11 blocks away)"
+      ]
+    },
+    {
+      "index": 30,
+      "kind": "structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        104,
+        -88
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:501 INFO] The nearest minecraft:bastion_remnant is at block 104, (y?), -88 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 31,
+      "kind": "structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        88,
+        264
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:551 INFO] The nearest minecraft:bastion_remnant is at block 88, (y?), 264 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 32,
+      "kind": "structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        -200,
+        -328
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:601 INFO] The nearest minecraft:bastion_remnant is at block -200, (y?), -328 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 33,
+      "kind": "structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -1240,
+        -1192
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:657 INFO] The nearest minecraft:temple is at block -1240, (y?), -1192 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 34,
+      "kind": "structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        2264,
+        3672
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:706 INFO] The nearest minecraft:temple is at block 2264, (y?), 3672 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 35,
+      "kind": "structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        2616,
+        3768
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:756 INFO] The nearest minecraft:temple is at block 2616, (y?), 3768 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 36,
+      "kind": "structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        24,
+        -728
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:807 INFO] The nearest minecraft:temple is at block 24, (y?), -728 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 37,
+      "kind": "structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -200,
+        -1304
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:857 INFO] The nearest minecraft:temple is at block -200, (y?), -1304 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 38,
+      "kind": "structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        264,
+        -1896
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:907 INFO] The nearest minecraft:temple is at block 264, (y?), -1896 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 39,
+      "kind": "structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        600,
+        -456
+      ],
+      "output": [
+        "[2026-10-20 18:04:38:957 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 40,
+      "kind": "structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1192,
+        -392
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:013 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (595 blocks away)"
+      ]
+    },
+    {
+      "index": 41,
+      "kind": "structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1096,
+        -696
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:057 INFO] The nearest minecraft:temple is at block 1096, (y?), -696 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 42,
+      "kind": "structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        2088,
+        -1224
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:109 INFO] The nearest minecraft:temple is at block 2088, (y?), -1224 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 43,
+      "kind": "structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -4840,
+        3768
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:157 INFO] The nearest minecraft:temple is at block -4840, (y?), 3768 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 44,
+      "kind": "structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        -808,
+        360
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:201 INFO] The nearest minecraft:ruins is at block -808, (y?), 360 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 45,
+      "kind": "structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        -792,
+        1672
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:252 INFO] The nearest minecraft:ruins is at block -792, (y?), 1672 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 46,
+      "kind": "structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        1400,
+        1288
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:302 INFO] The nearest minecraft:ruins is at block 1400, (y?), 1288 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 47,
+      "kind": "structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        -936,
+        3880
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:371 INFO] The nearest minecraft:mansion is at block -936, (y?), 3880 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 48,
+      "kind": "structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        600,
+        4328
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:419 INFO] The nearest minecraft:mansion is at block 600, (y?), 4328 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 49,
+      "kind": "structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        24,
+        -184
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:451 INFO] The nearest minecraft:buried_treasure is at block 24, (y?), -184 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 50,
+      "kind": "structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        -104,
+        -184
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:501 INFO] The nearest minecraft:buried_treasure is at block -104, (y?), -184 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 51,
+      "kind": "structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        -248,
+        -248
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:551 INFO] The nearest minecraft:buried_treasure is at block -248, (y?), -248 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 52,
+      "kind": "structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        408,
+        680
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:609 INFO] The nearest minecraft:trail_ruins is at block 398, (y?), 670 (14 blocks away)"
+      ]
+    },
+    {
+      "index": 53,
+      "kind": "structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        216,
+        -968
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:662 INFO] The nearest minecraft:trail_ruins is at block 211, (y?), -973 (7 blocks away)"
+      ]
+    },
+    {
+      "index": 54,
+      "kind": "structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        216,
+        1256
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:712 INFO] The nearest minecraft:trail_ruins is at block 205, (y?), 1245 (15 blocks away)"
+      ]
+    },
+    {
+      "index": 55,
+      "kind": "structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        240,
+        352
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:756 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 56,
+      "kind": "structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        -432,
+        0
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:39:806 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 57,
+      "kind": "structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        64,
+        720
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:39:856 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 58,
+      "kind": "structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        152,
+        40
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:39:906 INFO] The nearest minecraft:ruined_portal is at block 152, (y?), 40 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 59,
+      "kind": "structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        232,
+        -296
+      ],
+      "output": [
+        "[2026-10-20 18:04:39:956 INFO] The nearest minecraft:ruined_portal is at block 232, (y?), -296 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 60,
+      "kind": "structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        -376,
+        88
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:006 INFO] The nearest minecraft:ruined_portal is at block -376, (y?), 88 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 61,
+      "kind": "structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        -616,
+        -872
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:061 INFO] The nearest minecraft:end_city is at block -936, (y?), -1160 (430 blocks away)"
+      ]
+    },
+    {
+      "index": 62,
+      "kind": "structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        -952,
+        -568
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:112 INFO] The nearest minecraft:end_city is at block -1192, (y?), -584 (240 blocks away)"
+      ]
+    },
+    {
+      "index": 63,
+      "kind": "structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        376,
+        1064
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:159 INFO] The nearest minecraft:end_city is at block 376, (y?), 1064 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 64,
+      "kind": "discovery.structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:206 INFO] The nearest minecraft:trial_chambers is at block -1383, (y?), -1577 (158 blocks away)"
+      ]
+    },
+    {
+      "index": 65,
+      "kind": "discovery.structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:256 INFO] The nearest minecraft:trial_chambers is at block -455, (y?), 57 (458 blocks away)"
+      ]
+    },
+    {
+      "index": 66,
+      "kind": "discovery.structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:306 INFO] The nearest minecraft:trial_chambers is at block 231, (y?), -439 (290 blocks away)"
+      ]
+    },
+    {
+      "index": 67,
+      "kind": "discovery.structure.trial_chamber",
+      "dimension": "overworld",
+      "command_id": "trial_chambers",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:356 INFO] The nearest minecraft:trial_chambers is at block 1287, (y?), 1369 (299 blocks away)"
+      ]
+    },
+    {
+      "index": 68,
+      "kind": "discovery.structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:406 INFO] The nearest minecraft:stronghold is at block -910, (y?), -1902 (725 blocks away)"
+      ]
+    },
+    {
+      "index": 69,
+      "kind": "discovery.structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:456 INFO] The nearest minecraft:stronghold is at block 370, (y?), 1234 (1139 blocks away)"
+      ]
+    },
+    {
+      "index": 70,
+      "kind": "discovery.structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:506 INFO] The nearest minecraft:stronghold is at block 1346, (y?), -1326 (1165 blocks away)"
+      ]
+    },
+    {
+      "index": 71,
+      "kind": "discovery.structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:556 INFO] The nearest minecraft:stronghold is at block 370, (y?), 1234 (1204 blocks away)"
+      ]
+    },
+    {
+      "index": 72,
+      "kind": "discovery.structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:606 INFO] The nearest minecraft:mineshaft is at block -1520, (y?), -1552 (22 blocks away)"
+      ]
+    },
+    {
+      "index": 73,
+      "kind": "discovery.structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:659 INFO] The nearest minecraft:mineshaft is at block -848, (y?), 752 (412 blocks away)"
+      ]
+    },
+    {
+      "index": 74,
+      "kind": "discovery.structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:706 INFO] The nearest minecraft:mineshaft is at block 464, (y?), -640 (136 blocks away)"
+      ]
+    },
+    {
+      "index": 75,
+      "kind": "discovery.structure.mineshaft",
+      "dimension": "overworld",
+      "command_id": "mineshaft",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:761 INFO] The nearest minecraft:mineshaft is at block 1520, (y?), 1552 (22 blocks away)"
+      ]
+    },
+    {
+      "index": 76,
+      "kind": "discovery.structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:817 INFO] The nearest minecraft:ancient_city is at block -1416, (y?), -2296 (769 blocks away)"
+      ]
+    },
+    {
+      "index": 77,
+      "kind": "discovery.structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:876 INFO] The nearest minecraft:ancient_city is at block 456, (y?), 888 (1038 blocks away)"
+      ]
+    },
+    {
+      "index": 78,
+      "kind": "discovery.structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:927 INFO] The nearest minecraft:ancient_city is at block 456, (y?), 888 (1401 blocks away)"
+      ]
+    },
+    {
+      "index": 79,
+      "kind": "discovery.structure.ancient_city",
+      "dimension": "overworld",
+      "command_id": "ancient_city",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:40:965 INFO] The nearest minecraft:ancient_city is at block 824, (y?), 792 (1029 blocks away)"
+      ]
+    },
+    {
+      "index": 80,
+      "kind": "discovery.structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:013 INFO] The nearest minecraft:village is at block -1880, (y?), -1896 (497 blocks away)"
+      ]
+    },
+    {
+      "index": 81,
+      "kind": "discovery.structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:063 INFO] The nearest minecraft:village is at block -856, (y?), -312 (892 blocks away)"
+      ]
+    },
+    {
+      "index": 82,
+      "kind": "discovery.structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:114 INFO] The nearest minecraft:village is at block -856, (y?), -312 (1382 blocks away)"
+      ]
+    },
+    {
+      "index": 83,
+      "kind": "discovery.structure.village",
+      "dimension": "overworld",
+      "command_id": "village",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:162 INFO] The nearest minecraft:village is at block 840, (y?), 1256 (750 blocks away)"
+      ]
+    },
+    {
+      "index": 84,
+      "kind": "discovery.structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:211 INFO] The nearest minecraft:ruined_portal is at block -1752, (y?), -1688 (264 blocks away)"
+      ]
+    },
+    {
+      "index": 85,
+      "kind": "discovery.structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:261 INFO] The nearest minecraft:ruined_portal is at block -296, (y?), 248 (341 blocks away)"
+      ]
+    },
+    {
+      "index": 86,
+      "kind": "discovery.structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:311 INFO] The nearest minecraft:ruined_portal is at block 232, (y?), -376 (311 blocks away)"
+      ]
+    },
+    {
+      "index": 87,
+      "kind": "discovery.structure.ruined_portal",
+      "dimension": "overworld",
+      "command_id": "ruined_portal",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:361 INFO] The nearest minecraft:ruined_portal is at block 1656, (y?), 1464 (139 blocks away)"
+      ]
+    },
+    {
+      "index": 88,
+      "kind": "discovery.structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:415 INFO] The nearest minecraft:shipwreck is at block -1480, (y?), -1352 (192 blocks away)"
+      ]
+    },
+    {
+      "index": 89,
+      "kind": "discovery.structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:484 INFO] The nearest minecraft:shipwreck is at block -2120, (y?), -1128 (2296 blocks away)"
+      ]
+    },
+    {
+      "index": 90,
+      "kind": "discovery.structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:529 INFO] The nearest minecraft:shipwreck is at block -696, (y?), -2264 (2128 blocks away)"
+      ]
+    },
+    {
+      "index": 91,
+      "kind": "discovery.structure.shipwreck",
+      "dimension": "overworld",
+      "command_id": "shipwreck",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:566 INFO] The nearest minecraft:shipwreck is at block 1816, (y?), 1800 (384 blocks away)"
+      ]
+    },
+    {
+      "index": 92,
+      "kind": "discovery.structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:624 INFO] The nearest minecraft:monument is at block -1864, (y?), -1288 (411 blocks away)"
+      ]
+    },
+    {
+      "index": 93,
+      "kind": "discovery.structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:690 INFO] The nearest minecraft:monument is at block -888, (y?), 2328 (1854 blocks away)"
+      ]
+    },
+    {
+      "index": 94,
+      "kind": "discovery.structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:739 INFO] The nearest minecraft:monument is at block -1368, (y?), -1704 (2226 blocks away)"
+      ]
+    },
+    {
+      "index": 95,
+      "kind": "discovery.structure.monument",
+      "dimension": "overworld",
+      "command_id": "monument",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:778 INFO] The nearest minecraft:monument is at block 1368, (y?), 1752 (273 blocks away)"
+      ]
+    },
+    {
+      "index": 96,
+      "kind": "discovery.structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:816 INFO] The nearest minecraft:pillager_outpost is at block -2248, (y?), -2168 (952 blocks away)"
+      ]
+    },
+    {
+      "index": 97,
+      "kind": "discovery.structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:866 INFO] The nearest minecraft:pillager_outpost is at block -424, (y?), 664 (175 blocks away)"
+      ]
+    },
+    {
+      "index": 98,
+      "kind": "discovery.structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:916 INFO] The nearest minecraft:pillager_outpost is at block -808, (y?), -1960 (1959 blocks away)"
+      ]
+    },
+    {
+      "index": 99,
+      "kind": "discovery.structure.outpost",
+      "dimension": "overworld",
+      "command_id": "pillager_outpost",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:41:967 INFO] The nearest minecraft:pillager_outpost is at block 216, (y?), 1736 (1335 blocks away)"
+      ]
+    },
+    {
+      "index": 100,
+      "kind": "discovery.structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:017 INFO] The nearest minecraft:fortress is at block -1664, (y?), -1248 (315 blocks away)"
+      ]
+    },
+    {
+      "index": 101,
+      "kind": "discovery.structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:067 INFO] The nearest minecraft:fortress is at block -448, (y?), 272 (248 blocks away)"
+      ]
+    },
+    {
+      "index": 102,
+      "kind": "discovery.structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:120 INFO] The nearest minecraft:fortress is at block 480, (y?), -1040 (528 blocks away)"
+      ]
+    },
+    {
+      "index": 103,
+      "kind": "discovery.structure.fortress",
+      "dimension": "nether",
+      "command_id": "fortress",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:169 INFO] The nearest minecraft:fortress is at block 1072, (y?), 2032 (679 blocks away)"
+      ]
+    },
+    {
+      "index": 104,
+      "kind": "discovery.structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:216 INFO] The nearest minecraft:bastion_remnant is at block -1688, (y?), -1704 (226 blocks away)"
+      ]
+    },
+    {
+      "index": 105,
+      "kind": "discovery.structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:266 INFO] The nearest minecraft:bastion_remnant is at block -584, (y?), 616 (126 blocks away)"
+      ]
+    },
+    {
+      "index": 106,
+      "kind": "discovery.structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:316 INFO] The nearest minecraft:bastion_remnant is at block 616, (y?), -920 (421 blocks away)"
+      ]
+    },
+    {
+      "index": 107,
+      "kind": "discovery.structure.bastion",
+      "dimension": "nether",
+      "command_id": "bastion_remnant",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:366 INFO] The nearest minecraft:bastion_remnant is at block 1848, (y?), 1752 (379 blocks away)"
+      ]
+    },
+    {
+      "index": 108,
+      "kind": "discovery.structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:421 INFO] The nearest minecraft:temple is at block -1240, (y?), -1192 (453 blocks away)"
+      ]
+    },
+    {
+      "index": 109,
+      "kind": "discovery.structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:481 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (1474 blocks away)"
+      ]
+    },
+    {
+      "index": 110,
+      "kind": "discovery.structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:521 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (104 blocks away)"
+      ]
+    },
+    {
+      "index": 111,
+      "kind": "discovery.structure.desert_pyramid",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:588 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (2200 blocks away)"
+      ]
+    },
+    {
+      "index": 112,
+      "kind": "discovery.structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:626 INFO] The nearest minecraft:temple is at block -1240, (y?), -1192 (453 blocks away)"
+      ]
+    },
+    {
+      "index": 113,
+      "kind": "discovery.structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:676 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (1474 blocks away)"
+      ]
+    },
+    {
+      "index": 114,
+      "kind": "discovery.structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:727 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (104 blocks away)"
+      ]
+    },
+    {
+      "index": 115,
+      "kind": "discovery.structure.jungle_temple",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:777 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (2200 blocks away)"
+      ]
+    },
+    {
+      "index": 116,
+      "kind": "discovery.structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:826 INFO] The nearest minecraft:temple is at block -1240, (y?), -1192 (453 blocks away)"
+      ]
+    },
+    {
+      "index": 117,
+      "kind": "discovery.structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:876 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (1474 blocks away)"
+      ]
+    },
+    {
+      "index": 118,
+      "kind": "discovery.structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:926 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (104 blocks away)"
+      ]
+    },
+    {
+      "index": 119,
+      "kind": "discovery.structure.swamp_hut",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:42:976 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (2200 blocks away)"
+      ]
+    },
+    {
+      "index": 120,
+      "kind": "discovery.structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:026 INFO] The nearest minecraft:temple is at block -1240, (y?), -1192 (453 blocks away)"
+      ]
+    },
+    {
+      "index": 121,
+      "kind": "discovery.structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:076 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (1474 blocks away)"
+      ]
+    },
+    {
+      "index": 122,
+      "kind": "discovery.structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:126 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (104 blocks away)"
+      ]
+    },
+    {
+      "index": 123,
+      "kind": "discovery.structure.igloo",
+      "dimension": "overworld",
+      "command_id": "temple",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:176 INFO] The nearest minecraft:temple is at block 600, (y?), -456 (2200 blocks away)"
+      ]
+    },
+    {
+      "index": 124,
+      "kind": "discovery.structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:222 INFO] The nearest minecraft:ruins is at block -1592, (y?), -1528 (56 blocks away)"
+      ]
+    },
+    {
+      "index": 125,
+      "kind": "discovery.structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:272 INFO] The nearest minecraft:ruins is at block -808, (y?), 360 (332 blocks away)"
+      ]
+    },
+    {
+      "index": 126,
+      "kind": "discovery.structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:341 INFO] The nearest minecraft:ruins is at block -808, (y?), 360 (1582 blocks away)"
+      ]
+    },
+    {
+      "index": 127,
+      "kind": "discovery.structure.ocean_ruin",
+      "dimension": "overworld",
+      "command_id": "ruins",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:371 INFO] The nearest minecraft:ruins is at block 1400, (y?), 1288 (282 blocks away)"
+      ]
+    },
+    {
+      "index": 128,
+      "kind": "discovery.structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:493 INFO] The nearest minecraft:mansion is at block -936, (y?), 3880 (5449 blocks away)"
+      ]
+    },
+    {
+      "index": 129,
+      "kind": "discovery.structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:545 INFO] The nearest minecraft:mansion is at block -936, (y?), 3880 (3394 blocks away)"
+      ]
+    },
+    {
+      "index": 130,
+      "kind": "discovery.structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:604 INFO] The nearest minecraft:mansion is at block -936, (y?), 3880 (4624 blocks away)"
+      ]
+    },
+    {
+      "index": 131,
+      "kind": "discovery.structure.mansion",
+      "dimension": "overworld",
+      "command_id": "mansion",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:646 INFO] The nearest minecraft:mansion is at block -936, (y?), 3880 (3406 blocks away)"
+      ]
+    },
+    {
+      "index": 132,
+      "kind": "discovery.structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:691 INFO] The nearest minecraft:buried_treasure is at block -1448, (y?), -1064 (480 blocks away)"
+      ]
+    },
+    {
+      "index": 133,
+      "kind": "discovery.structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:733 INFO] The nearest minecraft:buried_treasure is at block -824, (y?), 200 (441 blocks away)"
+      ]
+    },
+    {
+      "index": 134,
+      "kind": "discovery.structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:797 INFO] The nearest minecraft:buried_treasure is at block 24, (y?), -184 (587 blocks away)"
+      ]
+    },
+    {
+      "index": 135,
+      "kind": "discovery.structure.buried_treasure",
+      "dimension": "overworld",
+      "command_id": "buried_treasure",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:43:828 INFO] The nearest minecraft:buried_treasure is at block 1624, (y?), 1416 (148 blocks away)"
+      ]
+    },
+    {
+      "index": 136,
+      "kind": "discovery.structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:090 INFO] The nearest minecraft:trail_ruins is at block -3134, (y?), -322 (2006 blocks away)"
+      ]
+    },
+    {
+      "index": 137,
+      "kind": "discovery.structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:145 INFO] The nearest minecraft:trail_ruins is at block -925, (y?), 765 (484 blocks away)"
+      ]
+    },
+    {
+      "index": 138,
+      "kind": "discovery.structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:206 INFO] The nearest minecraft:trail_ruins is at block 211, (y?), -973 (550 blocks away)"
+      ]
+    },
+    {
+      "index": 139,
+      "kind": "discovery.structure.trail_ruins",
+      "dimension": "overworld",
+      "command_id": "trail_ruins",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:247 INFO] The nearest minecraft:trail_ruins is at block 589, (y?), 1645 (953 blocks away)"
+      ]
+    },
+    {
+      "index": 140,
+      "kind": "discovery.structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:276 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 141,
+      "kind": "discovery.structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:44:326 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 142,
+      "kind": "discovery.structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:44:376 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 143,
+      "kind": "discovery.structure.abandoned_camp",
+      "dimension": "overworld",
+      "command_id": "abandoned_camp",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:44:426 ERROR] No valid structure found within a reasonable distance"
+      ]
+    },
+    {
+      "index": 144,
+      "kind": "discovery.structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "Failed to execute 'locate' as [Null]",
+        "[2026-10-20 18:04:44:476 INFO] The nearest minecraft:ruined_portal is at block -1464, (y?), -1544 (72 blocks away)"
+      ]
+    },
+    {
+      "index": 145,
+      "kind": "discovery.structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:526 INFO] The nearest minecraft:ruined_portal is at block -760, (y?), 568 (254 blocks away)"
+      ]
+    },
+    {
+      "index": 146,
+      "kind": "discovery.structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:576 INFO] The nearest minecraft:ruined_portal is at block 616, (y?), -792 (298 blocks away)"
+      ]
+    },
+    {
+      "index": 147,
+      "kind": "discovery.structure.ruined_portal_nether",
+      "dimension": "nether",
+      "command_id": "ruined_portal",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:631 INFO] The nearest minecraft:ruined_portal is at block 1240, (y?), 1256 (407 blocks away)"
+      ]
+    },
+    {
+      "index": 148,
+      "kind": "discovery.structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        -1536,
+        -1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:686 INFO] The nearest minecraft:end_city is at block -1896, (y?), -1176 (509 blocks away)"
+      ]
+    },
+    {
+      "index": 149,
+      "kind": "discovery.structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        -512,
+        512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:737 INFO] The nearest minecraft:end_city is at block -888, (y?), 1000 (616 blocks away)"
+      ]
+    },
+    {
+      "index": 150,
+      "kind": "discovery.structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        512,
+        -512
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:792 INFO] The nearest minecraft:end_city is at block 1048, (y?), -536 (536 blocks away)"
+      ]
+    },
+    {
+      "index": 151,
+      "kind": "discovery.structure.end_city",
+      "dimension": "the_end",
+      "command_id": "end_city",
+      "query": [
+        1536,
+        1536
+      ],
+      "output": [
+        "[2026-10-20 18:04:44:837 INFO] The nearest minecraft:end_city is at block 1640, (y?), 984 (561 blocks away)"
+      ]
+    }
+  ],
+  "biome_batches": [
+    {
+      "id": "overworld_0",
+      "rows": [
+        {
+          "x": -1024,
+          "y": 63,
+          "z": -1216,
+          "id": "minecraft:mesa",
+          "loaded": true,
+          "predicted": "badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -960,
+          "y": 63,
+          "z": -1344,
+          "id": "minecraft:mesa",
+          "loaded": true,
+          "predicted": "badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 64,
+          "y": 63,
+          "z": -576,
+          "id": "minecraft:bamboo_jungle",
+          "loaded": true,
+          "predicted": "bamboo_jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": -704,
+          "id": "minecraft:bamboo_jungle",
+          "loaded": true,
+          "predicted": "bamboo_jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": -128,
+          "id": "minecraft:plains",
+          "loaded": true,
+          "predicted": "beach",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -192,
+          "id": "minecraft:beach",
+          "loaded": true,
+          "predicted": "beach",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:birch_forest",
+          "loaded": true,
+          "predicted": "birch_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 64,
+          "id": "minecraft:birch_forest",
+          "loaded": true,
+          "predicted": "birch_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": 512,
+          "id": "minecraft:cherry_grove",
+          "loaded": true,
+          "predicted": "cherry_grove",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:dripstone_caves",
+          "loaded": true,
+          "predicted": "cherry_grove",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -576,
+          "y": 63,
+          "z": 512,
+          "id": "minecraft:cold_ocean",
+          "loaded": true,
+          "predicted": "cold_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -704,
+          "y": 63,
+          "z": 512,
+          "id": "minecraft:cold_ocean",
+          "loaded": true,
+          "predicted": "cold_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": 768,
+          "id": "minecraft:dappled_forest",
+          "loaded": true,
+          "predicted": "dappled_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -320,
+          "y": 63,
+          "z": 896,
+          "id": "minecraft:dappled_forest",
+          "loaded": true,
+          "predicted": "dappled_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 192,
+          "y": 63,
+          "z": -576,
+          "id": "minecraft:roofed_forest",
+          "loaded": true,
+          "predicted": "dark_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 320,
+          "y": 63,
+          "z": -640,
+          "id": "minecraft:roofed_forest",
+          "loaded": true,
+          "predicted": "dark_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_1",
+      "rows": [
+        {
+          "x": -832,
+          "y": 63,
+          "z": 2048,
+          "id": "minecraft:deep_cold_ocean",
+          "loaded": true,
+          "predicted": "deep_cold_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1472,
+          "y": 63,
+          "z": -1792,
+          "id": "minecraft:deep_cold_ocean",
+          "loaded": true,
+          "predicted": "deep_cold_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1664,
+          "y": 63,
+          "z": -1792,
+          "id": "minecraft:deep_frozen_ocean",
+          "loaded": true,
+          "predicted": "deep_frozen_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1792,
+          "y": 63,
+          "z": -1792,
+          "id": "minecraft:deep_frozen_ocean",
+          "loaded": true,
+          "predicted": "deep_frozen_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1280,
+          "y": 63,
+          "z": -1600,
+          "id": "minecraft:deep_lukewarm_ocean",
+          "loaded": true,
+          "predicted": "deep_lukewarm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:lukewarm_ocean",
+          "loaded": true,
+          "predicted": "deep_lukewarm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1472,
+          "y": 63,
+          "z": 1472,
+          "id": "minecraft:deep_ocean",
+          "loaded": true,
+          "predicted": "deep_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1408,
+          "y": 63,
+          "z": 1600,
+          "id": "minecraft:deep_ocean",
+          "loaded": true,
+          "predicted": "deep_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1088,
+          "y": 63,
+          "z": -960,
+          "id": "minecraft:desert",
+          "loaded": true,
+          "predicted": "desert",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1024,
+          "y": 63,
+          "z": -1088,
+          "id": "minecraft:desert",
+          "loaded": true,
+          "predicted": "desert",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": 192,
+          "id": "minecraft:dripstone_caves",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": 192,
+          "id": "minecraft:forest",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 3008,
+          "y": 63,
+          "z": -4032,
+          "id": "minecraft:mesa_bryce",
+          "loaded": true,
+          "predicted": "eroded_badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2944,
+          "y": 63,
+          "z": -4160,
+          "id": "minecraft:mesa_bryce",
+          "loaded": true,
+          "predicted": "eroded_badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -320,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:flower_forest",
+          "loaded": true,
+          "predicted": "flower_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1216,
+          "y": 63,
+          "z": -2880,
+          "id": "minecraft:flower_forest",
+          "loaded": true,
+          "predicted": "flower_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_2",
+      "rows": [
+        {
+          "x": 0,
+          "y": 63,
+          "z": 128,
+          "id": "minecraft:forest",
+          "loaded": true,
+          "predicted": "forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -128,
+          "y": 63,
+          "z": 128,
+          "id": "minecraft:forest",
+          "loaded": true,
+          "predicted": "forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1792,
+          "y": 63,
+          "z": -1216,
+          "id": "minecraft:frozen_ocean",
+          "loaded": true,
+          "predicted": "frozen_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1728,
+          "y": 63,
+          "z": -1408,
+          "id": "minecraft:frozen_ocean",
+          "loaded": true,
+          "predicted": "frozen_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 576,
+          "y": 63,
+          "z": 1024,
+          "id": "minecraft:frozen_peaks",
+          "loaded": true,
+          "predicted": "frozen_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1024,
+          "y": 63,
+          "z": 1216,
+          "id": "minecraft:frozen_peaks",
+          "loaded": true,
+          "predicted": "frozen_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2112,
+          "y": 63,
+          "z": -1024,
+          "id": "minecraft:frozen_river",
+          "loaded": true,
+          "predicted": "frozen_river",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1920,
+          "y": 63,
+          "z": -1600,
+          "id": "minecraft:frozen_river",
+          "loaded": true,
+          "predicted": "frozen_river",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1408,
+          "y": 63,
+          "z": -2176,
+          "id": "minecraft:grove",
+          "loaded": true,
+          "predicted": "grove",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -320,
+          "y": 63,
+          "z": -2688,
+          "id": "minecraft:grove",
+          "loaded": true,
+          "predicted": "grove",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1984,
+          "y": 63,
+          "z": -960,
+          "id": "minecraft:ice_plains_spikes",
+          "loaded": true,
+          "predicted": "ice_spikes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2048,
+          "y": 63,
+          "z": -1088,
+          "id": "minecraft:ice_plains_spikes",
+          "loaded": true,
+          "predicted": "ice_spikes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 832,
+          "y": 63,
+          "z": 1728,
+          "id": "minecraft:jagged_peaks",
+          "loaded": true,
+          "predicted": "jagged_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 896,
+          "y": 63,
+          "z": 1856,
+          "id": "minecraft:jagged_peaks",
+          "loaded": true,
+          "predicted": "jagged_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -448,
+          "id": "minecraft:jungle",
+          "loaded": true,
+          "predicted": "jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -576,
+          "id": "minecraft:jungle",
+          "loaded": true,
+          "predicted": "jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_3",
+      "rows": [
+        {
+          "x": -960,
+          "y": 63,
+          "z": -128,
+          "id": "minecraft:beach",
+          "loaded": true,
+          "predicted": "lukewarm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1280,
+          "y": 63,
+          "z": -192,
+          "id": "minecraft:lukewarm_ocean",
+          "loaded": true,
+          "predicted": "lukewarm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1088,
+          "y": 63,
+          "z": 448,
+          "id": "minecraft:lush_caves",
+          "loaded": true,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": 1216,
+          "id": "minecraft:mega_taiga",
+          "loaded": true,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -2176,
+          "y": 63,
+          "z": -576,
+          "id": "minecraft:mangrove_swamp",
+          "loaded": true,
+          "predicted": "mangrove_swamp",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -2304,
+          "y": 63,
+          "z": -448,
+          "id": "minecraft:mangrove_swamp",
+          "loaded": true,
+          "predicted": "mangrove_swamp",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": 384,
+          "id": "minecraft:meadow",
+          "loaded": true,
+          "predicted": "meadow",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 384,
+          "y": 63,
+          "z": 256,
+          "id": "minecraft:meadow",
+          "loaded": true,
+          "predicted": "meadow",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -2304,
+          "y": 63,
+          "z": 2432,
+          "id": "minecraft:mushroom_island",
+          "loaded": true,
+          "predicted": "mushroom_fields",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -2432,
+          "y": 63,
+          "z": 2496,
+          "id": "minecraft:mushroom_island",
+          "loaded": true,
+          "predicted": "mushroom_fields",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:ocean",
+          "loaded": true,
+          "predicted": "ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -192,
+          "y": 63,
+          "z": -192,
+          "id": "minecraft:ocean",
+          "loaded": true,
+          "predicted": "ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": -448,
+          "id": "minecraft:birch_forest_mutated",
+          "loaded": true,
+          "predicted": "old_growth_birch_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -512,
+          "y": 63,
+          "z": -128,
+          "id": "minecraft:birch_forest_mutated",
+          "loaded": true,
+          "predicted": "old_growth_birch_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1088,
+          "y": 63,
+          "z": 256,
+          "id": "minecraft:mega_taiga",
+          "loaded": true,
+          "predicted": "old_growth_pine_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -960,
+          "y": 63,
+          "z": 576,
+          "id": "minecraft:taiga",
+          "loaded": true,
+          "predicted": "old_growth_pine_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_4",
+      "rows": [
+        {
+          "x": -1024,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1280,
+          "y": 63,
+          "z": 64,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1344,
+          "y": 63,
+          "z": 704,
+          "id": "minecraft:pale_garden",
+          "loaded": true,
+          "predicted": "pale_garden",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1408,
+          "y": 63,
+          "z": 576,
+          "id": "minecraft:pale_garden",
+          "loaded": true,
+          "predicted": "pale_garden",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -64,
+          "id": "minecraft:plains",
+          "loaded": true,
+          "predicted": "plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 64,
+          "y": 63,
+          "z": 64,
+          "id": "minecraft:plains",
+          "loaded": true,
+          "predicted": "plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": 0,
+          "id": "minecraft:river",
+          "loaded": true,
+          "predicted": "river",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "z": -128,
+          "id": "minecraft:river",
+          "loaded": true,
+          "predicted": "river",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": -320,
+          "id": "minecraft:savanna",
+          "loaded": true,
+          "predicted": "savanna",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -384,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:savanna",
+          "loaded": true,
+          "predicted": "savanna",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -640,
+          "y": 63,
+          "z": -1856,
+          "id": "minecraft:savanna_plateau",
+          "loaded": true,
+          "predicted": "savanna_plateau",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -768,
+          "y": 63,
+          "z": -1856,
+          "id": "minecraft:savanna_plateau",
+          "loaded": true,
+          "predicted": "savanna_plateau",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1856,
+          "y": 63,
+          "z": -1600,
+          "id": "minecraft:cold_beach",
+          "loaded": true,
+          "predicted": "snowy_beach",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2048,
+          "y": 63,
+          "z": -1472,
+          "id": "minecraft:cold_beach",
+          "loaded": true,
+          "predicted": "snowy_beach",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1856,
+          "y": 63,
+          "z": -1088,
+          "id": "minecraft:ice_plains",
+          "loaded": true,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1728,
+          "y": 63,
+          "z": -1344,
+          "id": "minecraft:ice_plains",
+          "loaded": true,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_5",
+      "rows": [
+        {
+          "x": 1024,
+          "y": 63,
+          "z": 1152,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1152,
+          "y": 63,
+          "z": 1152,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2048,
+          "y": 63,
+          "z": -1408,
+          "id": "minecraft:cold_taiga",
+          "loaded": true,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2176,
+          "y": 63,
+          "z": -1344,
+          "id": "minecraft:cold_taiga",
+          "loaded": true,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -576,
+          "y": 63,
+          "z": -192,
+          "id": "minecraft:jungle_edge",
+          "loaded": true,
+          "predicted": "sparse_jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -704,
+          "y": 63,
+          "z": -128,
+          "id": "minecraft:jungle_edge",
+          "loaded": true,
+          "predicted": "sparse_jungle",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1408,
+          "y": 63,
+          "z": -2240,
+          "id": "minecraft:stony_peaks",
+          "loaded": true,
+          "predicted": "stony_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1536,
+          "y": 63,
+          "z": -2240,
+          "id": "minecraft:stony_peaks",
+          "loaded": true,
+          "predicted": "stony_peaks",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1664,
+          "y": 63,
+          "z": 960,
+          "id": "minecraft:stone_beach",
+          "loaded": true,
+          "predicted": "stony_shore",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1920,
+          "y": 63,
+          "z": 576,
+          "id": "minecraft:stone_beach",
+          "loaded": true,
+          "predicted": "stony_shore",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1664,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:sulfur_caves",
+          "loaded": true,
+          "predicted": "sulfur_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -3264,
+          "y": 63,
+          "z": 192,
+          "id": "minecraft:sulfur_caves",
+          "loaded": true,
+          "predicted": "sulfur_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:sunflower_plains",
+          "loaded": true,
+          "predicted": "sunflower_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1728,
+          "y": 63,
+          "z": 1408,
+          "id": "minecraft:sunflower_plains",
+          "loaded": true,
+          "predicted": "sunflower_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 576,
+          "y": 63,
+          "z": -448,
+          "id": "minecraft:swampland",
+          "loaded": true,
+          "predicted": "swamp",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 448,
+          "y": 63,
+          "z": -704,
+          "id": "minecraft:swampland",
+          "loaded": true,
+          "predicted": "swamp",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_6",
+      "rows": [
+        {
+          "x": 320,
+          "y": 63,
+          "z": 768,
+          "id": "minecraft:taiga",
+          "loaded": true,
+          "predicted": "taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 512,
+          "y": 63,
+          "z": 768,
+          "id": "minecraft:taiga",
+          "loaded": true,
+          "predicted": "taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1152,
+          "y": 63,
+          "z": -1536,
+          "id": "minecraft:warm_ocean",
+          "loaded": true,
+          "predicted": "warm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1984,
+          "y": 63,
+          "z": 3456,
+          "id": "minecraft:warm_ocean",
+          "loaded": true,
+          "predicted": "warm_ocean",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 832,
+          "y": 63,
+          "z": -320,
+          "id": "minecraft:extreme_hills_plus_trees",
+          "loaded": true,
+          "predicted": "windswept_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 640,
+          "y": 63,
+          "z": -768,
+          "id": "minecraft:extreme_hills_plus_trees",
+          "loaded": true,
+          "predicted": "windswept_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 896,
+          "y": 63,
+          "z": -768,
+          "id": "minecraft:extreme_hills",
+          "loaded": true,
+          "predicted": "windswept_gravelly_hills",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 960,
+          "y": 63,
+          "z": -896,
+          "id": "minecraft:extreme_hills_mutated",
+          "loaded": true,
+          "predicted": "windswept_gravelly_hills",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 576,
+          "y": 63,
+          "z": -320,
+          "id": "minecraft:extreme_hills",
+          "loaded": true,
+          "predicted": "windswept_hills",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 512,
+          "y": 63,
+          "z": -448,
+          "id": "minecraft:extreme_hills",
+          "loaded": true,
+          "predicted": "windswept_hills",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1600,
+          "y": 63,
+          "z": 448,
+          "id": "minecraft:savanna_mutated",
+          "loaded": true,
+          "predicted": "windswept_savanna",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 1728,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:savanna_mutated",
+          "loaded": true,
+          "predicted": "windswept_savanna",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1088,
+          "y": 63,
+          "z": -1216,
+          "id": "minecraft:mesa_plateau_stone",
+          "loaded": true,
+          "predicted": "wooded_badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 2368,
+          "y": 63,
+          "z": 3840,
+          "id": "minecraft:mesa_plateau_stone",
+          "loaded": true,
+          "predicted": "wooded_badlands",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "nether_0",
+      "rows": [
+        {
+          "x": -2048,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:basalt_deltas",
+          "loaded": true,
+          "predicted": "basalt_deltas",
+          "dimension": "nether",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1792,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:soulsand_valley",
+          "loaded": true,
+          "predicted": "soul_sand_valley",
+          "dimension": "nether",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1280,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:hell",
+          "loaded": true,
+          "predicted": "nether_wastes",
+          "dimension": "nether",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -1152,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:warped_forest",
+          "loaded": true,
+          "predicted": "warped_forest",
+          "dimension": "nether",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -512,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:crimson_forest",
+          "loaded": true,
+          "predicted": "crimson_forest",
+          "dimension": "nether",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "the_end_0",
+      "rows": [
+        {
+          "x": -2048,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:the_end",
+          "loaded": true,
+          "predicted": "small_end_islands",
+          "dimension": "the_end",
+          "internal_terrain_class": true
+        },
+        {
+          "x": -1792,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:the_end",
+          "loaded": true,
+          "predicted": "end_barrens",
+          "dimension": "the_end",
+          "internal_terrain_class": true
+        },
+        {
+          "x": -1664,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:the_end",
+          "loaded": true,
+          "predicted": "end_midlands",
+          "dimension": "the_end",
+          "internal_terrain_class": true
+        },
+        {
+          "x": -1024,
+          "y": 63,
+          "z": -2048,
+          "id": "minecraft:the_end",
+          "loaded": true,
+          "predicted": "end_highlands",
+          "dimension": "the_end",
+          "internal_terrain_class": true
+        },
+        {
+          "x": -384,
+          "y": 63,
+          "z": -896,
+          "id": "minecraft:the_end",
+          "loaded": true,
+          "predicted": "the_end",
+          "dimension": "the_end",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    }
+  ],
+  "world_identity": {
+    "seed": "-4565879772552070118",
+    "players": 0,
+    "api": "2.10.0",
+    "generatedStructures": "undefined"
+  },
+  "features_without_prediction": [],
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 289.658017957001
+}

@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE",
+  "source_and_live_preservation": "PASS",
+  "unprofiled_query_matrix": "PASS",
+  "finite_readmodel_ordered_semantic_parity": "PASS",
+  "unknown_and_sameanchor_synthetic_controls": "PASS",
+  "fixed_observation_snapshot_identity": "PASS",
+  "full_extraction_profile_semantics": "PERTURBED_8192_SEARCH_BUDGET_DIAGNOSTIC_ONLY",
+  "query_phase_original_exit": 1,
+  "query_export_recovered_without_retiming": true,
+  "total_new_logical_bytes_including_private_copy_and_review_evidence": 1403737271,
+  "measured_subprocess_seconds": 320.5351817170158,
+  "reviewers": [
+    {
+      "task_id": "4cafb9086b5d",
+      "effort": "high",
+      "process_exit": 0,
+      "denied_actions": [],
+      "codex_reconciled": true
+    },
+    {
+      "task_id": "5952ca57ff8b",
+      "effort": "high",
+      "process_exit": 0,
+      "denied_actions": [],
+      "codex_reconciled": true
+    }
+  ],
+  "workers_running": 0,
+  "account_pause": null,
+  "production_runtime_changes": false,
+  "custom_engine_selected": false,
+  "recommendation": "SQLite control+snapshot-bound indexedreadmodels next;typedcolumnar andDuckDB are futurebenchmarks,notmeasured enginewinners",
+  "link_checks": 42
+}

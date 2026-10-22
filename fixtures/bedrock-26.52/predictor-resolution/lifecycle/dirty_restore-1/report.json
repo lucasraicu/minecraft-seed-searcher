@@ -1,0 +1,234 @@
+{
+  "controls": {
+    "seed": "-9103892851552028103",
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "script_api": "2.10.0",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 240,
+    "output_bytes": 4294967296,
+    "manifest_sha256": "22c17d3ac4c2af9aa4a3dd0d060aaaf121fda5a2f4f2d52c90bc230cc6067c73",
+    "observer_sha256": "e04cf12680dfae0d9a9e9dc7d6ca7f76f391395d5dd78851aeab5725d368e14e",
+    "harness_sha256": "d154441e2cca970c19294e90a1b323310f3f83edef4db5a2d2db7d7fc7720ca3",
+    "settings_sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a",
+    "container": "codex-targeted-f2bc555876a4",
+    "prediction": {
+      "seed": "-9103892851552028103",
+      "world_id": "569fb8ca2a84c899da4c07788550528341b784cee7d467587d58deb3691ad510",
+      "observation_id": "784cdb233199ab5aaa1e4298fa36a17a21bb2c0a4629315529363ec437c26811"
+    },
+    "role": "Targeted API/storage observations; not an exhaustive or physical structure census"
+  },
+  "status": "observed",
+  "queries": [
+    {
+      "index": 0,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        820,
+        -1708
+      ],
+      "output": [
+        "[2026-10-20 22:10:59:886 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (790 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "structure.stronghold",
+      "dimension": "overworld",
+      "command_id": "stronghold",
+      "query": [
+        100,
+        -2028
+      ],
+      "output": [
+        "[2026-10-20 22:10:59:912 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (2 blocks away)"
+      ]
+    }
+  ],
+  "biome_batches": [
+    {
+      "id": "target",
+      "rows": [
+        {
+          "x": 820,
+          "y": -48,
+          "z": -1708,
+          "id": "minecraft:jungle",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": 820,
+          "y": 63,
+          "z": -1708,
+          "id": "minecraft:jungle",
+          "block": "minecraft:dirt"
+        },
+        {
+          "x": 820,
+          "y": 319,
+          "z": -1708,
+          "id": "minecraft:jungle",
+          "block": "minecraft:air"
+        },
+        {
+          "x": 100,
+          "y": -48,
+          "z": -2028,
+          "id": "minecraft:savanna",
+          "block": "minecraft:deepslate"
+        },
+        {
+          "x": 100,
+          "y": 63,
+          "z": -2028,
+          "id": "minecraft:savanna",
+          "block": "minecraft:dirt"
+        },
+        {
+          "x": 100,
+          "y": 319,
+          "z": -2028,
+          "id": "minecraft:savanna",
+          "block": "minecraft:air"
+        }
+      ],
+      "ticking_areas_held": 2
+    }
+  ],
+  "world_identity": {
+    "seed": "-9103892851552028103",
+    "api": "2.10.0",
+    "players": 0
+  },
+  "target_result": {
+    "rows": [
+      {
+        "x": 820,
+        "y": -48,
+        "z": -1708,
+        "id": "minecraft:jungle",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": 820,
+        "y": 63,
+        "z": -1708,
+        "id": "minecraft:jungle",
+        "block": "minecraft:dirt"
+      },
+      {
+        "x": 820,
+        "y": 319,
+        "z": -1708,
+        "id": "minecraft:jungle",
+        "block": "minecraft:air"
+      },
+      {
+        "x": 100,
+        "y": -48,
+        "z": -2028,
+        "id": "minecraft:savanna",
+        "block": "minecraft:deepslate"
+      },
+      {
+        "x": 100,
+        "y": 63,
+        "z": -2028,
+        "id": "minecraft:savanna",
+        "block": "minecraft:dirt"
+      },
+      {
+        "x": 100,
+        "y": 319,
+        "z": -2028,
+        "id": "minecraft:savanna",
+        "block": "minecraft:air"
+      }
+    ],
+    "columns": [
+      {
+        "x": 820,
+        "z": -1708,
+        "top": {
+          "y": 77,
+          "block": "minecraft:vine"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 78,
+          "id": "minecraft:jungle",
+          "block": "minecraft:air"
+        }
+      },
+      {
+        "x": 100,
+        "z": -2028,
+        "top": {
+          "y": 66,
+          "block": "minecraft:grass_block"
+        },
+        "policy": "highest_nonair_including_water_and_canopy",
+        "above": {
+          "y": 67,
+          "id": "minecraft:savanna",
+          "block": "minecraft:air"
+        }
+      }
+    ],
+    "blockReads": 511,
+    "biomeReads": 8,
+    "tickingAreas": 2,
+    "chunks": 2,
+    "persistenceMode": "dirty_restore",
+    "dwellTicks": 200,
+    "mutations": [
+      {
+        "x": 820,
+        "y": 319,
+        "z": -1708,
+        "before": "minecraft:air",
+        "after": "minecraft:air",
+        "restored": true
+      },
+      {
+        "x": 100,
+        "y": 319,
+        "z": -2028,
+        "before": "minecraft:air",
+        "after": "minecraft:air",
+        "restored": true
+      }
+    ]
+  },
+  "post_generation_queries": [
+    {
+      "index": 0,
+      "kind": "structure.stronghold",
+      "query": [
+        820,
+        -1708
+      ],
+      "output": [
+        "[2026-10-20 22:11:18:937 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (790 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "structure.stronghold",
+      "query": [
+        100,
+        -2028
+      ],
+      "output": [
+        "[2026-10-20 22:11:18:987 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (2 blocks away)"
+      ]
+    }
+  ],
+  "save_confirmed": true,
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 23.798248089966364
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "1ff842502952",
+  "role": "review",
+  "state": "succeeded",
+  "created": 1792689110.473952,
+  "updated": 1792689158.475262,
+  "worker_id": "gemini-1",
+  "objective": "High neutral tool-free critique of proposed pre-GPU readiness plan, focused correctness/recovery/admission. User requested audit+plan only. Identify missing cases, unsafe assumptions, circular gates, checkpoint/index parity or budget-contract problems, and false current gaps. Do not implement, edit,",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 150,
+    "effective_timeout_seconds": 150,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "147c5994818113daf39c98cbd443dedb4d199de1594870fc7080479927f209c7",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792689117.777986,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "### High Independent Review: Pre-GPU Readiness Plan Critique\n\n`<=650words; concrete corrections to proposed plan; don't automatically accept current sequencing.`\n\n**Outcome:** Conditional objection. The proposed plan establishes a sound audit baseline but contains circular sequencing gates, unrepresentative benchmark envelopes, and underspecified checkpoint recovery semantics.\n\n#### Must-Fix Objections\n\n1. **Circular & Inverted Sequencing (Stages B/C vs. E):**\n   - *Problem:* Section 2.E gates the GPU contract and one-device native kernel prototype behind Stage D (which requires B and C integration). In Section 2.F, the plan contradicts itself by stating GPU prototyping and engine benchmarks can run in parallel after their own dependencies.\n   - *Correction:* Decouple Step E's mathematical specification from Steps B, C, and D. Freezing signed 64-bit coordinate/PRNG arithmetic, 845/265/140 scoring formulas, and isolated native CFFI/kernel bounds does not depend on SQLite read views or manifest serialization. Formulate and review the GPU mathematical contract concurrently with Stage A.\n\n2. **Public Admission Early-Rejection Invariant:**\n   - *Problem:* Section 2.E notes that the superseded personal rejection gate must not discard public candidates, but lacks an explicit formal multi-objective invariant.\n   - *Correction:* Formalize the admission invariant: zero candidate seeds may be pruned on GPU unless provably failing all 7,543 active public objective thresholds across all dimensions and anchors. If public and personal searches share candidate generation, candidate evaluation must strictly bifurcate before applying cutoff policies.\n\n3. **Checkpoint Delta Recovery & Generation Pinning:**\n   - *Problem:* Stage B proposes versioned delta progress records without defining replay recovery bounds. Stage C introduces precomputed boards without explicit snapshot generation pinning during cursor pagination.\n   - *Correction:*\n     - **Stage B:** Bound crash-recovery replays ($N \\le \\text{batch\\_size}$) and require deterministic rollback to the last full snapshot upon detecting delta corruption.\n     - **Stage C:** Enforce generation-pinned cursors (`snapshot_id` + transaction sequence) to ensure concurrent atomic publications do not produce torn, inconsistent, or duplicate reads during client board pagination.\n\n4. **Statistically Flawed CPU Benchmark Envelope:**\n   - *Problem:* Section 3 restricts CPU acceptance comparisons to $\\le 5$ existing worlds.\n   - *Correction:* Five worlds cannot representative test reserve promotion edge cases, tie-breaking, or coverage distributions across 7,543 objectives (56 biomes, 28 structures). Expand validation to a stratified cohort of at least 25–30 diverse saved worlds (spanning sparse, dense, and boundary coordinate regimes), staying within the 600s cumulative CPU extraction cap by subsampling candidate seeds per world.\n\n#### Optional / De-scoped Improvements\n\n1. **Defer Storage Engine Benchmarks (Stage F):**\n   - *Finding:* SQLite is currently 111.8MB; reachable CAS is 241MB. Benchmarking DuckDB, Arrow IPC, or Parquet is premature optimization.\n   - *Recommendation:* Drop Stage F from the pre-GPU critical path. Retain SQLite control/receipt state until physical write-lock contention or B-tree scaling limits are observed under target loads.\n\n2. **Bound Retention Stress Testing in Stage D:**\n   - *Finding:* Oversubscribed unit mechanics already pass (`test_personal_reserve.py`).\n   - *Recommendation:* Restrict Stage D retention testing to deterministic cutoff propagation under load rather than unneeded large-scale synthetic recall runs.\n\n#### Concrete Sequencing Corrections\n- **Track 1 (GPU Readiness):** Stage A (Reference Freeze) $\\rightarrow$ Stage E (GPU Mathematical Contract & 1-Device Native Kernel Prototype).\n- **Track 2 (Catalog Serving):** Concurrently execute Stage B (Serialization & Checkpoint Deltas) $\\rightarrow$ Stage C (Read Views) $\\rightarrow$ Stage D (Ingestion Recovery & Backpressure).\n- Tracks 1 and 2 integrate only when the GPU batch emitter is ready to feed Stage B's refined ingestion boundary.\n\n---\n**Evidence Considered:** `docs/PRE_GPU_READINESS_PLAN.md`, `reviews/pre-gpu-readiness-2026-10-22/AUDIT_MATRIX.md`.  \n**Changed Files:** None (review role).  \n**Tests Run:** None (tool-free critique).  \n**Remaining Limitations:** Physical GPU hardware target and toolchain compatibility remain unverified on the current AMD Vega 56 host.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 16569,
+          "output_tokens": 4174,
+          "thinking_tokens": 3187,
+          "cache_read_tokens": 0,
+          "total_tokens": 20743
+        },
+        "conversation_id": "14d5eca1-f366-45b5-a2cc-38dcaa967a1f",
+        "duration_seconds": 36.553814,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 16569,
+      "output_tokens": 4174,
+      "thinking_tokens": 3187,
+      "cache_read_tokens": 0,
+      "total_tokens": 20743
+    },
+    "response": "### High Independent Review: Pre-GPU Readiness Plan Critique\n\n`<=650words; concrete corrections to proposed plan; don't automatically accept current sequencing.`\n\n**Outcome:** Conditional objection. The proposed plan establishes a sound audit baseline but contains circular sequencing gates, unrepresentative benchmark envelopes, and underspecified checkpoint recovery semantics.\n\n#### Must-Fix Objections\n\n1. **Circular & Inverted Sequencing (Stages B/C vs. E):**\n   - *Problem:* Section 2.E gates the GPU contract and one-device native kernel prototype behind Stage D (which requires B and C integration). In Section 2.F, the plan contradicts itself by stating GPU prototyping and engine benchmarks can run in parallel after their own dependencies.\n   - *Correction:* Decouple Step E's mathematical specification from Steps B, C, and D. Freezing signed 64-bit coordinate/PRNG arithmetic, 845/265/140 scoring formulas, and isolated native CFFI/kernel bounds does not depend on SQLite read views or manifest serialization. Formulate and review the GPU mathematical contract concurrently with Stage A.\n\n2. **Public Admission Early-Rejection Invariant:**\n   - *Problem:* Section 2.E notes that the superseded personal rejection gate must not discard public candidates, but lacks an explicit formal multi-objective invariant.\n   - *Correction:* Formalize the admission invariant: zero candidate seeds may be pruned on GPU unless provably failing all 7,543 active public objective thresholds across all dimensions and anchors. If public and personal searches share candidate generation, candidate evaluation must strictly bifurcate before applying cutoff policies.\n\n3. **Checkpoint Delta Recovery & Generation Pinning:**\n   - *Problem:* Stage B proposes versioned delta progress records without defining replay recovery bounds. Stage C introduces precomputed boards without explicit snapshot generation pinning during cursor pagination.\n   - *Correction:*\n     - **Stage B:** Bound crash-recovery replays ($N \\le \\text{batch\\_size}$) and require deterministic rollback to the last full snapshot upon detecting delta corruption.\n     - **Stage C:** Enforce generation-pinned cursors (`snapshot_id` + transaction sequence) to ensure concurrent atomic publications do not produce torn, inconsistent, or duplicate reads during client board pagination.\n\n4. **Statistically Flawed CPU Benchmark Envelope:**\n   - *Problem:* Section 3 restricts CPU acceptance comparisons to $\\le 5$ existing worlds.\n   - *Correction:* Five worlds cannot representative test reserve promotion edge cases, tie-breaking, or coverage distributions across 7,543 objectives (56 biomes, 28 structures). Expand validation to a stratified cohort of at least 25–30 diverse saved worlds (spanning sparse, dense, and boundary coordinate regimes), staying within the 600s cumulative CPU extraction cap by subsampling candidate seeds per world.\n\n#### Optional / De-scoped Improvements\n\n1. **Defer Storage Engine Benchmarks (Stage F):**\n   - *Finding:* SQLite is currently 111.8MB; reachable CAS is 241MB. Benchmarking DuckDB, Arrow IPC, or Parquet is premature optimization.\n   - *Recommendation:* Drop Stage F from the pre-GPU critical path. Retain SQLite control/receipt state until physical write-lock contention or B-tree scaling limits are observed under target loads.\n\n2. **Bound Retention Stress Testing in Stage D:**\n   - *Finding:* Oversubscribed unit mechanics already pass (`test_personal_reserve.py`).\n   - *Recommendation:* Restrict Stage D retention testing to deterministic cutoff propagation under load rather than unneeded large-scale synthetic recall runs.\n\n#### Concrete Sequencing Corrections\n- **Track 1 (GPU Readiness):** Stage A (Reference Freeze) $\\rightarrow$ Stage E (GPU Mathematical Contract & 1-Device Native Kernel Prototype).\n- **Track 2 (Catalog Serving):** Concurrently execute Stage B (Serialization & Checkpoint Deltas) $\\rightarrow$ Stage C (Read Views) $\\rightarrow$ Stage D (Ingestion Recovery & Backpressure).\n- Tracks 1 and 2 integrate only when the GPU batch emitter is ready to feed Stage B's refined ingestion boundary.\n\n---\n**Evidence Considered:** `docs/PRE_GPU_READINESS_PLAN.md`, `reviews/pre-gpu-readiness-2026-10-22/AUDIT_MATRIX.md`.  \n**Changed Files:** None (review role).  \n**Tests Run:** None (tool-free critique).  \n**Remaining Limitations:** Physical GPU hardware target and toolchain compatibility remain unverified on the current AMD Vega 56 host.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "response_truncated": false,
+    "checks": [],
+    "changed_files": [],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed": 1792689158.473384,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 205176832
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/1ff842502952",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

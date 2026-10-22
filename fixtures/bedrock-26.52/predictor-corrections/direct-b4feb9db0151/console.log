@@ -1,0 +1,192 @@
+NO LOG FILE! - setting up server logging...
+[2026-10-20 17:56:25:326 INFO] Starting Server
+[2026-10-20 17:56:25:326 INFO] Version: 1.26.52.3
+[2026-10-20 17:56:25:326 INFO] Session ID: 219de452-697a-4430-be90-e3ccd9b858ca
+[2026-10-20 17:56:25:326 INFO] Build ID: 51798919
+[2026-10-20 17:56:25:326 INFO] Branch: r/26_u5
+[2026-10-20 17:56:25:326 INFO] Commit ID: 54116bb5ee0b7aee0b5591efbcc8bc3cf64f168a
+[2026-10-20 17:56:25:326 INFO] Configuration: Publish
+[2026-10-20 17:56:25:327 INFO] Contents of server.properties: {}
+[2026-10-20 17:56:25:327 INFO] Level Name: spawn_audit
+[2026-10-20 17:56:25:328 INFO] Profiler config ('bootstrap.json') load result: success=1, errorMessage=(null)
+[2026-10-20 17:56:25:331 INFO] No CDN config file found at: cdn_config.json for dedicated server
+[2026-10-20 17:56:25:331 INFO] Game mode: 0 Survival
+[2026-10-20 17:56:25:331 INFO] Difficulty: 0 PEACEFUL
+[2026-10-20 17:56:25:335 INFO] Content logging to console is enabled.
+[2026-10-20 17:56:25:344 INFO] 
+
+#####################################################
+#                                                   #
+#              CREATING VANILLA WORLD               #
+#                                                   #
+#####################################################
+[2026-10-20 17:56:26:871 INFO] Content logging to disk is enabled. Writing log to: ContentLog2026-10-20_17-56-26
+[2026-10-20 17:56:26:875 INFO] Opening level 'worlds/spawn_audit/db'
+[2026-10-20 17:56:27:277 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer
+[2026-10-20 17:56:29:202 INFO] Signed in to signaling service successfully
+[2026-10-20 17:56:29:383 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-20 17:56:29:383 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-20 17:56:29:444 INFO] Server started.
+[2026-10-20 17:56:29:444 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+[2026-10-20 17:56:29:444 ERROR] Your current connection type is not set to NetherNet. In this release, NetherNet is the only supported transport type.
+[2026-10-20 17:56:29:444 ERROR] Players will not be able to connect to your game without NetherNet.
+[2026-10-20 17:56:29:444 ERROR] 
+[2026-10-20 17:56:29:444 ERROR] To switch, set 'transport=nethernet' in server.properties.
+[2026-10-20 17:56:29:444 ERROR] 
+[2026-10-20 17:56:29:444 ERROR] For more information, please reference the included bedrock_server_how_to.html file.
+[2026-10-20 17:56:29:444 ERROR] =======================================================
+[2026-10-20 17:56:29:444 INFO] ================ TELEMETRY MESSAGE ===================
+[2026-10-20 17:56:29:444 INFO] Server Telemetry is currently not enabled. 
+[2026-10-20 17:56:29:444 INFO] Enabling this telemetry helps us improve the game.
+[2026-10-20 17:56:29:444 INFO] 
+[2026-10-20 17:56:29:444 INFO] To enable this feature, add the line 'emit-server-telemetry=true'
+[2026-10-20 17:56:29:444 INFO] to the server.properties file in the handheld/src-server directory
+[2026-10-20 17:56:29:444 INFO] ======================================================
+[2026-10-20 17:56:29:472 WARN] [Scripting] SPAWN_AUDIT {"seed":"-3509659830737203357","players":0,"api":"2.10.0","generatedStructures":"undefined"}
+
+AUDIT_INPUT execute positioned 168 100 120 run locate structure minecraft:ancient_city false
+[2026-10-20 17:56:29:722 INFO] The nearest minecraft:ancient_city is at block -248, (y?), -200 (524 blocks away)
+AUDIT_INPUT execute positioned -248 100 -200 run locate structure minecraft:ancient_city false
+[2026-10-20 17:56:29:749 INFO] The nearest minecraft:ancient_city is at block -248, (y?), -200 (0 blocks away)
+AUDIT_INPUT execute positioned 456 100 488 run locate structure minecraft:ancient_city false
+[2026-10-20 17:56:29:798 INFO] The nearest minecraft:ancient_city is at block 456, (y?), 488 (0 blocks away)
+AUDIT_INPUT execute positioned -1928 100 -4952 run locate structure minecraft:temple false
+[2026-10-20 17:56:29:856 INFO] The nearest minecraft:temple is at block -1928, (y?), -4952 (0 blocks away)
+AUDIT_INPUT execute positioned 3896 100 4296 run locate structure minecraft:temple false
+[2026-10-20 17:56:29:909 INFO] The nearest minecraft:temple is at block 3112, (y?), 3912 (872 blocks away)
+AUDIT_INPUT execute positioned 3368 100 4792 run locate structure minecraft:temple false
+[2026-10-20 17:56:29:953 INFO] The nearest minecraft:temple is at block 3368, (y?), 4792 (0 blocks away)
+AUDIT_INPUT execute positioned -408 100 104 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:006 INFO] The nearest minecraft:temple is at block -408, (y?), 104 (0 blocks away)
+AUDIT_INPUT execute positioned -472 100 -408 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:054 INFO] The nearest minecraft:temple is at block -472, (y?), -408 (0 blocks away)
+AUDIT_INPUT execute positioned -664 100 248 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:105 INFO] The nearest minecraft:temple is at block -664, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute positioned 3112 100 3912 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:153 INFO] The nearest minecraft:temple is at block 3112, (y?), 3912 (0 blocks away)
+AUDIT_INPUT execute positioned 3928 100 3896 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:203 INFO] The nearest minecraft:temple is at block 3928, (y?), 3896 (0 blocks away)
+AUDIT_INPUT execute positioned -4520 100 4824 run locate structure minecraft:temple false
+[2026-10-20 17:56:30:255 INFO] The nearest minecraft:temple is at block -4520, (y?), 4824 (0 blocks away)
+AUDIT_INPUT execute positioned -152 100 40 run locate structure minecraft:mineshaft false
+[2026-10-20 17:56:30:303 INFO] The nearest minecraft:mineshaft is at block -160, (y?), 32 (11 blocks away)
+AUDIT_INPUT execute positioned 168 100 296 run locate structure minecraft:mineshaft false
+[2026-10-20 17:56:30:353 INFO] The nearest minecraft:mineshaft is at block 160, (y?), 288 (11 blocks away)
+AUDIT_INPUT execute positioned -456 100 40 run locate structure minecraft:mineshaft false
+[2026-10-20 17:56:30:403 INFO] The nearest minecraft:mineshaft is at block -464, (y?), 32 (11 blocks away)
+AUDIT_INPUT execute positioned 3272 100 -840 run locate structure minecraft:monument false
+[2026-10-20 17:56:30:465 INFO] The nearest minecraft:monument is at block 3272, (y?), -840 (0 blocks away)
+AUDIT_INPUT execute positioned -3368 100 -888 run locate structure minecraft:monument false
+[2026-10-20 17:56:30:515 INFO] The nearest minecraft:monument is at block -3368, (y?), -888 (0 blocks away)
+AUDIT_INPUT execute positioned 2408 100 2856 run locate structure minecraft:monument false
+[2026-10-20 17:56:30:565 INFO] The nearest minecraft:monument is at block 2408, (y?), 2856 (0 blocks away)
+AUDIT_INPUT execute positioned 64 100 -640 run locate structure minecraft:pillager_outpost false
+[2026-10-20 17:56:30:603 INFO] The nearest minecraft:pillager_outpost is at block 72, (y?), -632 (11 blocks away)
+AUDIT_INPUT execute positioned 528 100 512 run locate structure minecraft:pillager_outpost false
+[2026-10-20 17:56:30:654 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (1531 blocks away)
+AUDIT_INPUT execute positioned -1008 100 400 run locate structure minecraft:pillager_outpost false
+[2026-10-20 17:56:30:703 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (11 blocks away)
+AUDIT_INPUT execute positioned 232 100 40 run locate structure minecraft:ruined_portal false
+[2026-10-20 17:56:30:753 INFO] The nearest minecraft:ruined_portal is at block 232, (y?), 40 (0 blocks away)
+AUDIT_INPUT execute positioned 152 100 -296 run locate structure minecraft:ruined_portal false
+[2026-10-20 17:56:30:803 INFO] The nearest minecraft:ruined_portal is at block 152, (y?), -296 (0 blocks away)
+AUDIT_INPUT execute positioned -472 100 152 run locate structure minecraft:ruined_portal false
+[2026-10-20 17:56:30:853 INFO] The nearest minecraft:ruined_portal is at block -472, (y?), 152 (0 blocks away)
+AUDIT_INPUT execute positioned -1304 100 472 run locate structure minecraft:shipwreck false
+[2026-10-20 17:56:30:907 INFO] The nearest minecraft:shipwreck is at block -1304, (y?), 472 (0 blocks away)
+AUDIT_INPUT execute positioned -488 100 -1512 run locate structure minecraft:shipwreck false
+[2026-10-20 17:56:30:959 INFO] The nearest minecraft:shipwreck is at block -584, (y?), -1656 (173 blocks away)
+AUDIT_INPUT execute positioned -1448 100 808 run locate structure minecraft:shipwreck false
+[2026-10-20 17:56:31:005 INFO] The nearest minecraft:shipwreck is at block -1304, (y?), 472 (365 blocks away)
+AUDIT_INPUT execute positioned -2264 100 88 run locate structure minecraft:temple false
+[2026-10-20 17:56:31:059 INFO] The nearest minecraft:temple is at block -2264, (y?), 88 (0 blocks away)
+AUDIT_INPUT execute positioned 3864 100 520 run locate structure minecraft:temple false
+[2026-10-20 17:56:31:107 INFO] The nearest minecraft:temple is at block 3864, (y?), 520 (0 blocks away)
+AUDIT_INPUT execute positioned 3352 100 2216 run locate structure minecraft:temple false
+[2026-10-20 17:56:31:158 INFO] The nearest minecraft:temple is at block 3352, (y?), 2216 (0 blocks away)
+AUDIT_INPUT execute positioned -440 100 216 run locate structure minecraft:trail_ruins false
+[2026-10-20 17:56:31:208 INFO] The nearest minecraft:trail_ruins is at block -446, (y?), 206 (11 blocks away)
+AUDIT_INPUT execute positioned -888 100 200 run locate structure minecraft:trail_ruins false
+[2026-10-20 17:56:31:258 INFO] The nearest minecraft:trail_ruins is at block -899, (y?), 195 (12 blocks away)
+AUDIT_INPUT execute positioned -312 100 -920 run locate structure minecraft:trail_ruins false
+[2026-10-20 17:56:31:310 INFO] The nearest minecraft:trail_ruins is at block -317, (y?), -931 (12 blocks away)
+AUDIT_INPUT execute positioned 184 100 104 run locate structure minecraft:trial_chambers false
+[2026-10-20 17:56:31:353 INFO] The nearest minecraft:trial_chambers is at block 167, (y?), 105 (17 blocks away)
+AUDIT_INPUT execute positioned 216 100 -232 run locate structure minecraft:trial_chambers false
+[2026-10-20 17:56:31:403 INFO] The nearest minecraft:trial_chambers is at block 217, (y?), -249 (17 blocks away)
+AUDIT_INPUT execute positioned -488 100 8 run locate structure minecraft:trial_chambers false
+[2026-10-20 17:56:31:453 INFO] The nearest minecraft:trial_chambers is at block -505, (y?), 9 (17 blocks away)
+AUDIT_INPUT execute positioned -296 100 -312 run locate structure minecraft:village false
+[2026-10-20 17:56:31:509 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)
+AUDIT_INPUT execute positioned -360 100 248 run locate structure minecraft:village false
+[2026-10-20 17:56:31:558 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute positioned -344 100 712 run locate structure minecraft:village false
+[2026-10-20 17:56:31:609 INFO] The nearest minecraft:village is at block -344, (y?), 712 (0 blocks away)
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b0","points":[[-512,63,-512],[-448,63,-512],[-384,63,-512],[-320,63,-512],[-256,63,-512],[-192,63,-512],[-128,63,-512],[-64,63,-512],[0,63,-512],[64,63,-512],[128,63,-512],[192,63,-512],[256,63,-512],[320,63,-512],[384,63,-512],[448,63,-512]]}
+[2026-10-20 17:56:31:658 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:56:46:644 WARN] [Scripting] BIOME_AUDIT {"id":"b0","rows":[{"x":-512,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":-448,"y":63,"z":-512,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-512,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":-512,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":-192,"y":63,"z":-512,"id":"minecraft:frozen_river","loaded":true},{"x":-128,"y":63,"z":-512,"id":"minecraft:frozen_river","loaded":true},{"x":-64,"y":63,"z":-512,"id":"minecraft:frozen_river","loaded":true},{"x":0,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":64,"y":63,"z":-512,"id":"minecraft:dripstone_caves","loaded":true},{"x":128,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":256,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":320,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":true},{"x":384,"y":63,"z":-512,"id":"minecraft:ice_plains","loaded":true},{"x":448,"y":63,"z":-512,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b1","points":[[-512,63,-448],[-448,63,-448],[-384,63,-448],[-320,63,-448],[-256,63,-448],[-192,63,-448],[-128,63,-448],[-64,63,-448],[0,63,-448],[64,63,-448],[128,63,-448],[192,63,-448],[256,63,-448],[320,63,-448],[384,63,-448],[448,63,-448]]}
+[2026-10-20 17:56:46:673 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:57:01:052 WARN] [Scripting] BIOME_AUDIT {"id":"b1","rows":[{"x":-512,"y":63,"z":-448,"id":"minecraft:ice_plains","loaded":true},{"x":-448,"y":63,"z":-448,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-448,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":-448,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":-448,"id":"minecraft:frozen_river","loaded":true},{"x":-192,"y":63,"z":-448,"id":"minecraft:cold_taiga","loaded":true},{"x":-128,"y":63,"z":-448,"id":"minecraft:cold_taiga","loaded":true},{"x":-64,"y":63,"z":-448,"id":"minecraft:ice_plains","loaded":true},{"x":0,"y":63,"z":-448,"id":"minecraft:ice_plains","loaded":true},{"x":64,"y":63,"z":-448,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":-448,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":192,"y":63,"z":-448,"id":"minecraft:snowy_slopes","loaded":true},{"x":256,"y":63,"z":-448,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":320,"y":63,"z":-448,"id":"minecraft:snowy_slopes","loaded":true},{"x":384,"y":63,"z":-448,"id":"minecraft:snowy_slopes","loaded":true},{"x":448,"y":63,"z":-448,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b2","points":[[-512,63,-384],[-448,63,-384],[-384,63,-384],[-320,63,-384],[-256,63,-384],[-192,63,-384],[-128,63,-384],[-64,63,-384],[0,63,-384],[64,63,-384],[128,63,-384],[192,63,-384],[256,63,-384],[320,63,-384],[384,63,-384],[448,63,-384]]}
+[2026-10-20 17:57:01:086 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:57:14:902 WARN] [Scripting] BIOME_AUDIT {"id":"b2","rows":[{"x":-512,"y":63,"z":-384,"id":"minecraft:ice_plains","loaded":true},{"x":-448,"y":63,"z":-384,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-384,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":-384,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":-384,"id":"minecraft:frozen_river","loaded":true},{"x":-192,"y":63,"z":-384,"id":"minecraft:cold_taiga","loaded":true},{"x":-128,"y":63,"z":-384,"id":"minecraft:cold_taiga","loaded":true},{"x":-64,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":0,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":64,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":128,"y":63,"z":-384,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":192,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":256,"y":63,"z":-384,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":320,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":384,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true},{"x":448,"y":63,"z":-384,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b3","points":[[-512,63,-320],[-448,63,-320],[-384,63,-320],[-320,63,-320],[-256,63,-320],[-192,63,-320],[-128,63,-320],[-64,63,-320],[0,63,-320],[64,63,-320],[128,63,-320],[192,63,-320],[256,63,-320],[320,63,-320],[384,63,-320],[448,63,-320]]}
+[2026-10-20 17:57:14:936 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:57:30:851 WARN] [Scripting] BIOME_AUDIT {"id":"b3","rows":[{"x":-512,"y":63,"z":-320,"id":"minecraft:ice_plains","loaded":true},{"x":-448,"y":63,"z":-320,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-320,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":-320,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":-320,"id":"minecraft:ice_plains","loaded":true},{"x":-192,"y":63,"z":-320,"id":"minecraft:ice_plains","loaded":true},{"x":-128,"y":63,"z":-320,"id":"minecraft:ice_plains","loaded":true},{"x":-64,"y":63,"z":-320,"id":"minecraft:cold_taiga","loaded":true},{"x":0,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true},{"x":64,"y":63,"z":-320,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":-320,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":256,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true},{"x":320,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true},{"x":384,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true},{"x":448,"y":63,"z":-320,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b4","points":[[-512,63,-256],[-448,63,-256],[-384,63,-256],[-320,63,-256],[-256,63,-256],[-192,63,-256],[-128,63,-256],[-64,63,-256],[0,63,-256],[64,63,-256],[128,63,-256],[192,63,-256],[256,63,-256],[320,63,-256],[384,63,-256],[448,63,-256]]}
+[2026-10-20 17:57:30:895 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:57:48:052 WARN] [Scripting] BIOME_AUDIT {"id":"b4","rows":[{"x":-512,"y":63,"z":-256,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":-256,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-256,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":-256,"id":"minecraft:dripstone_caves","loaded":true},{"x":-256,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":true},{"x":-192,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":true},{"x":-128,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":true},{"x":-64,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":true},{"x":0,"y":63,"z":-256,"id":"minecraft:frozen_river","loaded":true},{"x":64,"y":63,"z":-256,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":-256,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":192,"y":63,"z":-256,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":256,"y":63,"z":-256,"id":"minecraft:snowy_slopes","loaded":true},{"x":320,"y":63,"z":-256,"id":"minecraft:snowy_slopes","loaded":true},{"x":384,"y":63,"z":-256,"id":"minecraft:snowy_slopes","loaded":true},{"x":448,"y":63,"z":-256,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b5","points":[[-512,63,-192],[-448,63,-192],[-384,63,-192],[-320,63,-192],[-256,63,-192],[-192,63,-192],[-128,63,-192],[-64,63,-192],[0,63,-192],[64,63,-192],[128,63,-192],[192,63,-192],[256,63,-192],[320,63,-192],[384,63,-192],[448,63,-192]]}
+[2026-10-20 17:57:48:070 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:58:05:601 WARN] [Scripting] BIOME_AUDIT {"id":"b5","rows":[{"x":-512,"y":63,"z":-192,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":-192,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-192,"id":"minecraft:frozen_river","loaded":true},{"x":-320,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":-256,"y":63,"z":-192,"id":"minecraft:jagged_peaks","loaded":true},{"x":-192,"y":63,"z":-192,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":-192,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":0,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":64,"y":63,"z":-192,"id":"minecraft:frozen_river","loaded":true},{"x":128,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":192,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":256,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":320,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":384,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true},{"x":448,"y":63,"z":-192,"id":"minecraft:ice_plains","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b6","points":[[-512,63,-128],[-448,63,-128],[-384,63,-128],[-320,63,-128],[-256,63,-128],[-192,63,-128],[-128,63,-128],[-64,63,-128],[0,63,-128],[64,63,-128],[128,63,-128],[192,63,-128],[256,63,-128],[320,63,-128],[384,63,-128],[448,63,-128]]}
+[2026-10-20 17:58:05:659 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:58:20:800 WARN] [Scripting] BIOME_AUDIT {"id":"b6","rows":[{"x":-512,"y":63,"z":-128,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":-128,"id":"minecraft:frozen_river","loaded":true},{"x":-384,"y":63,"z":-128,"id":"minecraft:ice_plains","loaded":true},{"x":-320,"y":63,"z":-128,"id":"minecraft:grove","loaded":true},{"x":-256,"y":63,"z":-128,"id":"minecraft:grove","loaded":true},{"x":-192,"y":63,"z":-128,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":-128,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":-128,"id":"minecraft:jagged_peaks","loaded":true},{"x":0,"y":63,"z":-128,"id":"minecraft:snowy_slopes","loaded":true},{"x":64,"y":63,"z":-128,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":-128,"id":"minecraft:frozen_river","loaded":true},{"x":192,"y":63,"z":-128,"id":"minecraft:ice_plains","loaded":true},{"x":256,"y":63,"z":-128,"id":"minecraft:stone_beach","loaded":true},{"x":320,"y":63,"z":-128,"id":"minecraft:stone_beach","loaded":true},{"x":384,"y":63,"z":-128,"id":"minecraft:stone_beach","loaded":true},{"x":448,"y":63,"z":-128,"id":"minecraft:stone_beach","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b7","points":[[-512,63,-64],[-448,63,-64],[-384,63,-64],[-320,63,-64],[-256,63,-64],[-192,63,-64],[-128,63,-64],[-64,63,-64],[0,63,-64],[64,63,-64],[128,63,-64],[192,63,-64],[256,63,-64],[320,63,-64],[384,63,-64],[448,63,-64]]}
+[2026-10-20 17:58:20:829 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:58:35:599 WARN] [Scripting] BIOME_AUDIT {"id":"b7","rows":[{"x":-512,"y":63,"z":-64,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":-64,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":-64,"id":"minecraft:frozen_river","loaded":true},{"x":-320,"y":63,"z":-64,"id":"minecraft:grove","loaded":true},{"x":-256,"y":63,"z":-64,"id":"minecraft:grove","loaded":true},{"x":-192,"y":63,"z":-64,"id":"minecraft:jagged_peaks","loaded":true},{"x":-128,"y":63,"z":-64,"id":"minecraft:jagged_peaks","loaded":true},{"x":-64,"y":63,"z":-64,"id":"minecraft:grove","loaded":true},{"x":0,"y":63,"z":-64,"id":"minecraft:snowy_slopes","loaded":true},{"x":64,"y":63,"z":-64,"id":"minecraft:snowy_slopes","loaded":true},{"x":128,"y":63,"z":-64,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":-64,"id":"minecraft:frozen_river","loaded":true},{"x":256,"y":63,"z":-64,"id":"minecraft:frozen_river","loaded":true},{"x":320,"y":63,"z":-64,"id":"minecraft:stone_beach","loaded":true},{"x":384,"y":63,"z":-64,"id":"minecraft:frozen_river","loaded":true},{"x":448,"y":63,"z":-64,"id":"minecraft:ice_plains","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b8","points":[[-512,63,0],[-448,63,0],[-384,63,0],[-320,63,0],[-256,63,0],[-192,63,0],[-128,63,0],[-64,63,0],[0,63,0],[64,63,0],[128,63,0],[192,63,0],[256,63,0],[320,63,0],[384,63,0],[448,63,0]]}
+[2026-10-20 17:58:35:638 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:58:51:299 WARN] [Scripting] BIOME_AUDIT {"id":"b8","rows":[{"x":-512,"y":63,"z":0,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":0,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":0,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":0,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":0,"id":"minecraft:grove","loaded":true},{"x":-192,"y":63,"z":0,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":0,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":0,"id":"minecraft:grove","loaded":true},{"x":0,"y":63,"z":0,"id":"minecraft:grove","loaded":true},{"x":64,"y":63,"z":0,"id":"minecraft:snowy_slopes","loaded":true},{"x":128,"y":63,"z":0,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":0,"id":"minecraft:snowy_slopes","loaded":true},{"x":256,"y":63,"z":0,"id":"minecraft:frozen_river","loaded":true},{"x":320,"y":63,"z":0,"id":"minecraft:ice_plains","loaded":true},{"x":384,"y":63,"z":0,"id":"minecraft:frozen_river","loaded":true},{"x":448,"y":63,"z":0,"id":"minecraft:stone_beach","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b9","points":[[-512,63,64],[-448,63,64],[-384,63,64],[-320,63,64],[-256,63,64],[-192,63,64],[-128,63,64],[-64,63,64],[0,63,64],[64,63,64],[128,63,64],[192,63,64],[256,63,64],[320,63,64],[384,63,64],[448,63,64]]}
+[2026-10-20 17:58:51:350 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:59:07:748 WARN] [Scripting] BIOME_AUDIT {"id":"b9","rows":[{"x":-512,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":64,"id":"minecraft:frozen_river","loaded":true},{"x":-192,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":0,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":64,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":128,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":192,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":64,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":64,"id":"minecraft:frozen_river","loaded":true},{"x":384,"y":63,"z":64,"id":"minecraft:cold_taiga","loaded":true},{"x":448,"y":63,"z":64,"id":"minecraft:grove","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b10","points":[[-512,63,128],[-448,63,128],[-384,63,128],[-320,63,128],[-256,63,128],[-192,63,128],[-128,63,128],[-64,63,128],[0,63,128],[64,63,128],[128,63,128],[192,63,128],[256,63,128],[320,63,128],[384,63,128],[448,63,128]]}
+[2026-10-20 17:59:07:757 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:59:23:197 WARN] [Scripting] BIOME_AUDIT {"id":"b10","rows":[{"x":-512,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":128,"id":"minecraft:dripstone_caves","loaded":true},{"x":-384,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":-192,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":-128,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":0,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":64,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":128,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":192,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":128,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":128,"id":"minecraft:frozen_river","loaded":true},{"x":384,"y":63,"z":128,"id":"minecraft:cold_taiga","loaded":true},{"x":448,"y":63,"z":128,"id":"minecraft:grove","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b11","points":[[-512,63,192],[-448,63,192],[-384,63,192],[-320,63,192],[-256,63,192],[-192,63,192],[-128,63,192],[-64,63,192],[0,63,192],[64,63,192],[128,63,192],[192,63,192],[256,63,192],[320,63,192],[384,63,192],[448,63,192]]}
+[2026-10-20 17:59:23:216 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:59:37:347 WARN] [Scripting] BIOME_AUDIT {"id":"b11","rows":[{"x":-512,"y":63,"z":192,"id":"minecraft:taiga","loaded":true},{"x":-448,"y":63,"z":192,"id":"minecraft:dripstone_caves","loaded":true},{"x":-384,"y":63,"z":192,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":-256,"y":63,"z":192,"id":"minecraft:cold_taiga","loaded":true},{"x":-192,"y":63,"z":192,"id":"minecraft:cold_taiga","loaded":true},{"x":-128,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":192,"id":"minecraft:dripstone_caves","loaded":true},{"x":0,"y":63,"z":192,"id":"minecraft:dripstone_caves","loaded":true},{"x":64,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":128,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":192,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":384,"y":63,"z":192,"id":"minecraft:grove","loaded":true},{"x":448,"y":63,"z":192,"id":"minecraft:grove","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b12","points":[[-512,63,256],[-448,63,256],[-384,63,256],[-320,63,256],[-256,63,256],[-192,63,256],[-128,63,256],[-64,63,256],[0,63,256],[64,63,256],[128,63,256],[192,63,256],[256,63,256],[320,63,256],[384,63,256],[448,63,256]]}
+[2026-10-20 17:59:37:371 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 17:59:51:297 WARN] [Scripting] BIOME_AUDIT {"id":"b12","rows":[{"x":-512,"y":63,"z":256,"id":"minecraft:taiga","loaded":true},{"x":-448,"y":63,"z":256,"id":"minecraft:lush_caves","loaded":true},{"x":-384,"y":63,"z":256,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":-256,"y":63,"z":256,"id":"minecraft:cold_taiga","loaded":true},{"x":-192,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":256,"id":"minecraft:dripstone_caves","loaded":true},{"x":0,"y":63,"z":256,"id":"minecraft:dripstone_caves","loaded":true},{"x":64,"y":63,"z":256,"id":"minecraft:snowy_slopes","loaded":true},{"x":128,"y":63,"z":256,"id":"minecraft:cold_taiga","loaded":true},{"x":192,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":384,"y":63,"z":256,"id":"minecraft:grove","loaded":true},{"x":448,"y":63,"z":256,"id":"minecraft:grove","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b13","points":[[-512,63,320],[-448,63,320],[-384,63,320],[-320,63,320],[-256,63,320],[-192,63,320],[-128,63,320],[-64,63,320],[0,63,320],[64,63,320],[128,63,320],[192,63,320],[256,63,320],[320,63,320],[384,63,320],[448,63,320]]}
+[2026-10-20 17:59:51:321 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:00:06:046 WARN] [Scripting] BIOME_AUDIT {"id":"b13","rows":[{"x":-512,"y":63,"z":320,"id":"minecraft:taiga","loaded":true},{"x":-448,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":true},{"x":-192,"y":63,"z":320,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":320,"id":"minecraft:grove","loaded":true},{"x":-64,"y":63,"z":320,"id":"minecraft:snowy_slopes","loaded":true},{"x":0,"y":63,"z":320,"id":"minecraft:dripstone_caves","loaded":true},{"x":64,"y":63,"z":320,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":320,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":320,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":320,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":320,"id":"minecraft:cold_taiga","loaded":true},{"x":384,"y":63,"z":320,"id":"minecraft:grove","loaded":true},{"x":448,"y":63,"z":320,"id":"minecraft:grove","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b14","points":[[-512,63,384],[-448,63,384],[-384,63,384],[-320,63,384],[-256,63,384],[-192,63,384],[-128,63,384],[-64,63,384],[0,63,384],[64,63,384],[128,63,384],[192,63,384],[256,63,384],[320,63,384],[384,63,384],[448,63,384]]}
+[2026-10-20 18:00:06:080 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:00:22:346 WARN] [Scripting] BIOME_AUDIT {"id":"b14","rows":[{"x":-512,"y":63,"z":384,"id":"minecraft:taiga","loaded":true},{"x":-448,"y":63,"z":384,"id":"minecraft:taiga","loaded":true},{"x":-384,"y":63,"z":384,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":384,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":384,"id":"minecraft:cold_taiga","loaded":true},{"x":-192,"y":63,"z":384,"id":"minecraft:grove","loaded":true},{"x":-128,"y":63,"z":384,"id":"minecraft:snowy_slopes","loaded":true},{"x":-64,"y":63,"z":384,"id":"minecraft:dripstone_caves","loaded":true},{"x":0,"y":63,"z":384,"id":"minecraft:dripstone_caves","loaded":true},{"x":64,"y":63,"z":384,"id":"minecraft:snowy_slopes","loaded":true},{"x":128,"y":63,"z":384,"id":"minecraft:snowy_slopes","loaded":true},{"x":192,"y":63,"z":384,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":384,"id":"minecraft:grove","loaded":true},{"x":320,"y":63,"z":384,"id":"minecraft:grove","loaded":true},{"x":384,"y":63,"z":384,"id":"minecraft:grove","loaded":true},{"x":448,"y":63,"z":384,"id":"minecraft:dripstone_caves","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"b15","points":[[-512,63,448],[-448,63,448],[-384,63,448],[-320,63,448],[-256,63,448],[-192,63,448],[-128,63,448],[-64,63,448],[0,63,448],[64,63,448],[128,63,448],[192,63,448],[256,63,448],[320,63,448],[384,63,448],[448,63,448]]}
+[2026-10-20 18:00:22:396 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:00:39:795 WARN] [Scripting] BIOME_AUDIT {"id":"b15","rows":[{"x":-512,"y":63,"z":448,"id":"minecraft:cold_taiga","loaded":true},{"x":-448,"y":63,"z":448,"id":"minecraft:cold_taiga","loaded":true},{"x":-384,"y":63,"z":448,"id":"minecraft:cold_taiga","loaded":true},{"x":-320,"y":63,"z":448,"id":"minecraft:cold_taiga","loaded":true},{"x":-256,"y":63,"z":448,"id":"minecraft:ice_plains","loaded":true},{"x":-192,"y":63,"z":448,"id":"minecraft:dripstone_caves","loaded":true},{"x":-128,"y":63,"z":448,"id":"minecraft:dripstone_caves","loaded":true},{"x":-64,"y":63,"z":448,"id":"minecraft:dripstone_caves","loaded":true},{"x":0,"y":63,"z":448,"id":"minecraft:snowy_slopes","loaded":true},{"x":64,"y":63,"z":448,"id":"minecraft:ice_plains","loaded":true},{"x":128,"y":63,"z":448,"id":"minecraft:ice_plains","loaded":true},{"x":192,"y":63,"z":448,"id":"minecraft:grove","loaded":true},{"x":256,"y":63,"z":448,"id":"minecraft:cold_taiga","loaded":true},{"x":320,"y":63,"z":448,"id":"minecraft:grove","loaded":true},{"x":384,"y":63,"z":448,"id":"minecraft:grove","loaded":true},{"x":448,"y":63,"z":448,"id":"minecraft:dripstone_caves","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT stop
+[2026-10-20 18:00:39:818 INFO] Server stop requested.
+[2026-10-20 18:00:39:868 INFO] Stopping server...
+Quit correctly

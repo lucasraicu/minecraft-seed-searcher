@@ -1,0 +1,37 @@
+{
+  "command": [
+    "cc",
+    "-O2",
+    "-std=c11",
+    "-fwrapv",
+    "-I",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/biome_scale_probe.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/noise.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomes.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomenoise.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/cave.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/generator.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/util.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/quadbase.c",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/mt.c",
+    "-lm",
+    "-o",
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/biome_scale_probe"
+  ],
+  "source_sha256": {
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-all-predictions-audit-20261020/biome_scale_probe.c": "2dc4d7eed956525d9ec035796fdfff315c551ac14e186df20df7a1b4019b80c4",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/noise.c": "2494ccfe8a02aa37252d806623595831ae1a166c4e6dde2e272d362edd2858db",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/biomenoise.c": "90f571a731665fde0ecbdcf274eeb2ce77f57e16e12be5a59174fc6be4447a33",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/generator.c": "4123a3a28c1298af8449cd11de1c4687ed4bcd87329b200a189fec9d665b6247",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/finders.c": "7a76a74fdb412673d54cdbb5bb35336e119d33085ae22b79fd2e42635d1d0315",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+    "/Users/lucasraicu/Downloads/minecraft-seed-searcher/vendor/cubiomes-bedrock/mt.c": "d7ac7183f7816654815488624c29bc86c458bd9ae41f9b355d1171b83ef10fe0"
+  }
+}

@@ -91,6 +91,15 @@ int *allocCache(const Generator *g, Range r);
  * The return value is zero upon success.
  */
 int genBiomes(const Generator *g, int *cache, Range r);
+/** Bedrock 1.26.50 research model: block XYZ to the selected raw quart node.
+ * Only the jitter uses the lower 32 seed bits. Noise retains the full seed.
+ * Returns zero, or -1 for a null output. No stored-chunk ceiling is inferred. */
+int getBedrockBiomeQuart(uint64_t seed, int x, int y, int z, int out[3]);
+/** Bedrock 26.50 Nether Pos2d block XZ to a raw quart node, using the full
+ * 64-bit seed. Y does not participate. Returns -1 for null output or coordinates
+ * too close to signed-int edges for the source's subtract-two/corner arithmetic.
+ * Normal Minecraft world coordinates are supported. */
+int getBedrockNetherQuart(uint64_t seed, int x, int z, int out[2]);
 /**
  * Gets the biome for a specified scaled position. Note that the scale should
  * be either 1 or 4, for block or biome coordinates respectively.

@@ -1,0 +1,35 @@
+{
+  "schema": "catalog-terrain-product-removal-validation-v1",
+  "old_catalog_pid": 91320,
+  "catalog_pid": 94782,
+  "query_pids": [
+    94784,
+    94785
+  ],
+  "personal_process_unchanged": true,
+  "snapshot_id": "3d5b0d69a3afda2a6af3333b9860c3ef5b71c45ac4e8d2a5fc72d2a7a0e69232",
+  "policy_revision": "a813926d24dfd090ec411d11983af3bfe0743431af3eb2a8efd8eeb0510596c7",
+  "snapshot_pointer_bytes_unchanged": true,
+  "configuration_bytes_unchanged": true,
+  "public_control_unchanged": true,
+  "new_seed_campaigns": 0,
+  "presets": 16,
+  "records": 17,
+  "realm_boards": 3,
+  "legacy_ids_preserved": true,
+  "removed_ids": [
+    "record.badlands_spine",
+    "record.deep_dark_void",
+    "record.direct_drop",
+    "record.mega_cherry",
+    "record.triple_mineshaft"
+  ],
+  "runtime_log_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-product-removal-vaxaub1p",
+  "tests": {
+    "accuracy_baseline": "19 passed",
+    "product_api_query": "22 passed",
+    "node_catalog_suites": "9 passed",
+    "current_real_registry_react": "17 passed",
+    "frontend_build": "passed"
+  }
+}

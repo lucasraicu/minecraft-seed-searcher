@@ -1,0 +1,61 @@
+{
+  "revision": "bedrock-storage-regressions-v1",
+  "game_build": "1.26.52.3",
+  "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+  "files": {
+    "world-0/export.json": {
+      "sha256": "b29b455f89d054f81720f6c36ab3529f70070d6f0e02a4027b738d1a60b998fc",
+      "bytes": 49992
+    },
+    "world-0/comparison.json": {
+      "bytes": 17209,
+      "sha256": "452873e717f4781d78b2ec73dff4fd7794ccc6a76bcf558913e822b92774abb7"
+    },
+    "world-0/report.json": {
+      "sha256": "2bcd7ca662725dc923bed0643a5813f1db02d1576729fb295faf072445eb3137",
+      "bytes": 17027
+    },
+    "world-0/console.log": {
+      "sha256": "190920402aed318c5da0fd8e24383d4c17f5bca19dc124c5d1650f3089426d50",
+      "bytes": 10103
+    },
+    "world-0/server.properties": {
+      "sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+      "bytes": 562
+    },
+    "world-1/export.json": {
+      "sha256": "57da1a4a4398105cb490ee73beec253752ce35689b9fcfdb15726c6b7a664e6d",
+      "bytes": 12481
+    },
+    "world-1/comparison.json": {
+      "bytes": 3287,
+      "sha256": "bcfb5a3f0476ad3f56be69536ae74005c34dce8cb9816a86f804e9356454d9f1"
+    },
+    "world-1/report.json": {
+      "sha256": "d08a483a67f90d2d4432dcd8e522b5f2b3b49b7161d306338ea20eb76d788f09",
+      "bytes": 4664
+    },
+    "world-1/console.log": {
+      "sha256": "8665575c11801b80825d12951d32c8843fbc592c34f4003aa12e9b43a8fd8f82",
+      "bytes": 5513
+    },
+    "world-1/server.properties": {
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a",
+      "bytes": 562
+    },
+    "decoder-oracle.json": {
+      "sha256": "fcf864e407c80168a19f2e92e26c3fdc01e90baa455afc3efad0ac39a4416230",
+      "bytes": 21254
+    },
+    "cases.json": {
+      "sha256": "3ecc8b605a21fd2de7085f9d3dee64e58b98339d9eb8eb70405898b8f1074e65",
+      "bytes": 4531
+    }
+  },
+  "limitations": [
+    "Stored numeric IDs are not predictor IDs.",
+    "Unknown and missing Data3D records are not biome absence.",
+    "Checksums detect changes, not source authenticity.",
+    "Locate and column observations do not certify physical structure completeness."
+  ]
+}

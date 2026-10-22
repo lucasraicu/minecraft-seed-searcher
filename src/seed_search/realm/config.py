@@ -395,13 +395,14 @@ def dynamic_v3_blueprint_config():
                       'nether_bounds':[-634,-634,634,634]}
     cfg['structures']['minimum_counts'].update(
         village=6,trial_chamber=8,ancient_city=2,desert_pyramid=1,
-        jungle_temple=1,monument=1,ruined_portal=8,shipwreck=4,
+        monument=1,ruined_portal=8,shipwreck=4,
         mineshaft=10,outpost=1,mansion=1
     )
+    cfg['structures']['minimum_counts'].pop('jungle_temple',None)
     cfg['structures']['nether_minimum_counts']={'fortress':1,'bastion':2}
     cfg['structures']['hard_floors']={
         'stronghold':1,'mansion':1,'village':6,'trial_chamber':8,
-        'ancient_city':2,'desert_pyramid':1,'jungle_temple':1,
+        'ancient_city':2,'desert_pyramid':1,
         'monument':1,'ruined_portal':8,'shipwreck':4,'mineshaft':10,
         'outpost':1,'fortress':1,'bastion':2
     }

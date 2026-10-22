@@ -1,0 +1,254 @@
+{
+  "revision": "generalization-positive-counterexamples-v1",
+  "bds_build": "1.26.52.3",
+  "manifest_sha256": "bbc14d21fba0455ed8f7cfe66099f34b6734575dfb7d8ffbcb00337eced72f1c",
+  "rows": [
+    {
+      "seed": "4613350367979055430",
+      "case": {
+        "case_id": "2-68",
+        "command_id": "village",
+        "dimension": "overworld",
+        "disposition": "rejected",
+        "origin": [
+          -472,
+          -328
+        ],
+        "predicted": [
+          -472,
+          -328
+        ],
+        "structure_type": "village"
+      },
+      "query": {
+        "case_id": "2-68",
+        "dimension": "overworld",
+        "query": [
+          -472,
+          -328
+        ],
+        "command_id": "village",
+        "output": [
+          "[2026-10-21 05:21:35:482 INFO] The nearest minecraft:village is at block -472, (y?), -328 (0 blocks away)"
+        ]
+      },
+      "interpretation": "Game locate agrees with predicted reference; not a physical census; possible over-rejection: retain and investigate this candidate",
+      "original_report_sha256": "3c8e848f5991831f596955afe05383b862dfd66262d2036dea3f167453fe3ff1",
+      "original_console_sha256": "3cabd59396d719d9d46ca14fcb45966b5317a4e60131d35926dbc06a8422b2da",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "4613350367979055430",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "f02ceb5d9b8e9c419b7c0d94ef7951ebb44a54d54d740cda1e8592aaee13aef5",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-02/report.json"
+    },
+    {
+      "seed": "5050725658938791990",
+      "case": {
+        "case_id": "16-70",
+        "command_id": "village",
+        "dimension": "overworld",
+        "disposition": "rejected",
+        "origin": [
+          -1048,
+          -1432
+        ],
+        "predicted": [
+          -1048,
+          -1432
+        ],
+        "structure_type": "village"
+      },
+      "query": {
+        "case_id": "16-70",
+        "dimension": "overworld",
+        "query": [
+          -1048,
+          -1432
+        ],
+        "command_id": "village",
+        "output": [
+          "[2026-10-21 04:58:10:053 INFO] The nearest minecraft:village is at block -1048, (y?), -1432 (0 blocks away)"
+        ]
+      },
+      "interpretation": "Game locate agrees with predicted reference; not a physical census; possible over-rejection: retain and investigate this candidate",
+      "original_report_sha256": "8a2bc2b02adf38a32a380e1f556c0e753ef949d76750da18238c8aa2229c1416",
+      "original_console_sha256": "1404fb549006b436fab4570756b5a1986db1e03c1ab4593ce38719263bd210bc",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "5050725658938791990",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "bf71cf1692fc6a21828361425b966542be61756fec9b1ead8487004fe72e869a",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-16-repair-1/report.json"
+    },
+    {
+      "seed": "5050725658938791990",
+      "case": {
+        "case_id": "16-71",
+        "command_id": "village",
+        "dimension": "overworld",
+        "disposition": "rejected",
+        "origin": [
+          2888,
+          -2616
+        ],
+        "predicted": [
+          2888,
+          -2616
+        ],
+        "structure_type": "village"
+      },
+      "query": {
+        "case_id": "16-71",
+        "dimension": "overworld",
+        "query": [
+          2888,
+          -2616
+        ],
+        "command_id": "village",
+        "output": [
+          "[2026-10-21 04:58:10:103 INFO] The nearest minecraft:village is at block 2888, (y?), -2616 (0 blocks away)"
+        ]
+      },
+      "interpretation": "Game locate agrees with predicted reference; not a physical census; possible over-rejection: retain and investigate this candidate",
+      "original_report_sha256": "8a2bc2b02adf38a32a380e1f556c0e753ef949d76750da18238c8aa2229c1416",
+      "original_console_sha256": "1404fb549006b436fab4570756b5a1986db1e03c1ab4593ce38719263bd210bc",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "5050725658938791990",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "bf71cf1692fc6a21828361425b966542be61756fec9b1ead8487004fe72e869a",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-16-repair-1/report.json"
+    },
+    {
+      "seed": "4027938806717471239",
+      "case": {
+        "case_id": "3-10",
+        "command_id": "ancient_city",
+        "dimension": "overworld",
+        "disposition": "discovery",
+        "origin": [
+          -1536,
+          -1536
+        ],
+        "predicted": null,
+        "structure_type": "ancient_city"
+      },
+      "query": {
+        "case_id": "3-10",
+        "dimension": "overworld",
+        "query": [
+          -1536,
+          -1536
+        ],
+        "command_id": "ancient_city",
+        "output": [
+          "[2026-10-21 05:25:56:248 INFO] The nearest minecraft:ancient_city is at block 72, (y?), -2600 (1928 blocks away)"
+        ]
+      },
+      "interpretation": "Independent game-located reference; not an instance census",
+      "original_report_sha256": "80cfe7ca15a637bc244ba4602fad7141b5887b21fcdc34cb023dd7d736211178",
+      "original_console_sha256": "e4ab2e06d97121a482f56b393801098ce4747be20a5dddf36b10c74f3b9dc220",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "4027938806717471239",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "0da8eb0a75f80ddd60081b38f07ec0324f2851d7bb971477478b1805f9d95c7f",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-03/report.json"
+    },
+    {
+      "seed": "2706853909057002900",
+      "case": {
+        "case_id": "4-35",
+        "command_id": "bastion_remnant",
+        "dimension": "nether",
+        "disposition": "discovery",
+        "origin": [
+          1536,
+          1536
+        ],
+        "predicted": null,
+        "structure_type": "bastion"
+      },
+      "query": {
+        "case_id": "4-35",
+        "dimension": "nether",
+        "query": [
+          1536,
+          1536
+        ],
+        "command_id": "bastion_remnant",
+        "output": [
+          "[2026-10-21 05:29:02:906 INFO] The nearest minecraft:bastion_remnant is at block 1464, (y?), 1800 (273 blocks away)"
+        ]
+      },
+      "interpretation": "Independent game-located reference; not an instance census",
+      "original_report_sha256": "53c85959c3edc18d1dc583aec909cdcd4d1f7e3493e35dfcb79cf73ad98d8788",
+      "original_console_sha256": "7b65cb4390f505759d4638a07984172bd0bae301ca292978048b598508b8bd9c",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "2706853909057002900",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "b716c8175f5540f7204e332ba0e99c1efedd7935e16c8af0bb7cb9f0cb7c689e",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-04/report.json"
+    },
+    {
+      "seed": "219044158440418215",
+      "case": {
+        "case_id": "17-35",
+        "command_id": "bastion_remnant",
+        "dimension": "nether",
+        "disposition": "discovery",
+        "origin": [
+          1536,
+          1536
+        ],
+        "predicted": null,
+        "structure_type": "bastion"
+      },
+      "query": {
+        "case_id": "17-35",
+        "dimension": "nether",
+        "query": [
+          1536,
+          1536
+        ],
+        "command_id": "bastion_remnant",
+        "output": [
+          "[2026-10-21 05:17:29:988 INFO] The nearest minecraft:bastion_remnant is at block 1640, (y?), 1672 (171 blocks away)"
+        ]
+      },
+      "interpretation": "Independent game-located reference; not an instance census",
+      "original_report_sha256": "a91718b3a5b4d36ace35222956f7bb6467fdc55661294195a4fb80ba33de254e",
+      "original_console_sha256": "b8e9441d84f64b8908f3f8f5520c04db92375b1c76816249883dd81a7cb3525a",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "world_identity": {
+        "seed": "219044158440418215",
+        "api": "2.10.0",
+        "players": 0,
+        "membershipAvailable": false
+      },
+      "settings_sha256": "4bd0c2249ba2ab5d433929742e7fb9aab5e8f4636edf387eed3b7e6740d16e1e",
+      "source_report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/generalization-validation-20261020/game/world-17/report.json"
+    }
+  ],
+  "limitations": [
+    "Exact engine locate references; not physical instance totals.",
+    "Original game observations/predictions remain immutable; no production exclusions changed."
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/measure_world.py", line 61, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/measure_world.py", line 22, in main
+    assert automation.configuration(root)['policy_revision']==cfg['policy_revision']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

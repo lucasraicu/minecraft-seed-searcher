@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "village",
+    "x": -296,
+    "z": -312,
+    "negative": true,
+    "sky_biome": "snowy_plains",
+    "variant": {
+      "rotation": 1,
+      "start": 2,
+      "offset": [
+        -8,
+        0
+      ],
+      "size": [
+        9,
+        11
+      ],
+      "abandoned": 0
+    },
+    "predicted_piece_bounds": [
+      -304,
+      -312,
+      -295,
+      -301
+    ],
+    "footprint_samples": 72,
+    "missing_footprint_samples": 27,
+    "covered_heightmap_min": 127,
+    "covered_heightmap_max": 151,
+    "covered_delta": 24,
+    "whole_chunk_heightmap_delta": 33,
+    "interpretation": "Raw stored header values, not calibrated terrain heights. Positive structures can alter heightmaps. Coverage incomplete where adjacent chunks are absent."
+  },
+  {
+    "kind": "village",
+    "x": -360,
+    "z": 248,
+    "negative": false,
+    "sky_biome": "snowy_taiga",
+    "variant": {
+      "rotation": 2,
+      "start": 1,
+      "offset": [
+        -21,
+        -17
+      ],
+      "size": [
+        22,
+        18
+      ],
+      "abandoned": 0
+    },
+    "predicted_piece_bounds": [
+      -381,
+      231,
+      -359,
+      249
+    ],
+    "footprint_samples": 81,
+    "missing_footprint_samples": 315,
+    "covered_heightmap_min": 174,
+    "covered_heightmap_max": 187,
+    "covered_delta": 13,
+    "whole_chunk_heightmap_delta": 13,
+    "interpretation": "Raw stored header values, not calibrated terrain heights. Positive structures can alter heightmaps. Coverage incomplete where adjacent chunks are absent."
+  },
+  {
+    "kind": "outpost",
+    "x": 528,
+    "z": 512,
+    "negative": true,
+    "sky_biome": "frozen_peaks",
+    "variant": {
+      "rotation": 1,
+      "start": 255,
+      "offset": [
+        -14,
+        0
+      ],
+      "size": [
+        15,
+        15
+      ],
+      "abandoned": 0
+    },
+    "predicted_piece_bounds": [
+      514,
+      512,
+      529,
+      527
+    ],
+    "footprint_samples": 15,
+    "missing_footprint_samples": 210,
+    "covered_heightmap_min": 224,
+    "covered_heightmap_max": 240,
+    "covered_delta": 16,
+    "whole_chunk_heightmap_delta": 28,
+    "interpretation": "Raw stored header values, not calibrated terrain heights. Positive structures can alter heightmaps. Coverage incomplete where adjacent chunks are absent."
+  },
+  {
+    "kind": "outpost",
+    "x": -1008,
+    "z": 400,
+    "negative": false,
+    "sky_biome": "taiga",
+    "variant": {
+      "rotation": 0,
+      "start": 255,
+      "offset": [
+        0,
+        0
+      ],
+      "size": [
+        15,
+        15
+      ],
+      "abandoned": 0
+    },
+    "predicted_piece_bounds": [
+      -1008,
+      400,
+      -993,
+      415
+    ],
+    "footprint_samples": 225,
+    "missing_footprint_samples": 0,
+    "covered_heightmap_min": 128,
+    "covered_heightmap_max": 150,
+    "covered_delta": 22,
+    "whole_chunk_heightmap_delta": 22,
+    "interpretation": "Raw stored header values, not calibrated terrain heights. Positive structures can alter heightmaps. Coverage incomplete where adjacent chunks are absent."
+  }
+]

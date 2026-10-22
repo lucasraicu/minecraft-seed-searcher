@@ -1,0 +1,63 @@
+{
+  "task_id": "49563015a5f6",
+  "role": "review",
+  "state": "succeeded",
+  "created": 1792664119.656627,
+  "updated": 1792664343.549077,
+  "worker_id": "gemini-1",
+  "objective": "High narrow read-only source review of CORRECTION_SOURCE_REVIEW.md. TOOL-FREE, no execution or edits. Existing approved correction only. Find concrete correctness/legacy parity/sourcebinding/budget/publication faults. Especially missing data in packed roundtrip, immutable CAS trust, cumulative3600se",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "timeout_seconds": 300,
+    "effective_timeout_seconds": 300,
+    "acceptance_reserve_seconds": 0,
+    "baseline_digest": "a009c74d89bf9f333c110e1dac58694862be427e9441a6a3dd5d05848961e425",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792664126.116221,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "<=600words concise findings or no concrete findings; no source restatement.\n\n### Outcome\nRead-only review completed. Identified 5 concrete defects in [CORRECTION_SOURCE_REVIEW.md](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/49563015a5f6/workspace/reviews/biome-expansion-plan-2026-10-22/CORRECTION_SOURCE_REVIEW.md) spanning data corruption in packing, legacy offer crashes, source binding assumptions, budget exhaustion, and root isolation.\n\n---\n\n### Concrete Findings\n\n1. **Packed Roundtrip Data Loss (`_pack_query_rows` / `_unpack_query_rows`)**\n   In `_pack_query_rows`, `counts` for `biome_witness` is compressed into a 4-bit mask using `int(bool(n)) << i`. During unpacking in `_unpack_query_rows`, `counts` is reconstructed via `count_bits` as binary `0` or `1` integers (`counts = list(count_bits[counts])`). The original quantitative sample counts are irreversibly destroyed. Consequently, on any untrusted or validator-mismatch fallback path, `validate_summary_v3` will fail numeric validation.\n\n2. **`KeyError` on Legacy Grid Lookup and Truncated Modes (`run`)**\n   In `correction CLI`, `legacy_rows` is populated with legacy payloads: `legacy_rows.extend(r['legacy'] for r in original_rows if 'recommended' in r['anchor_modes'])`.\n   Subsequent line `grid = {r['layout_id']: r for r in legacy_rows}` unconditionally accesses `r['layout_id']` on `r['legacy']`, which raises `KeyError: 'layout_id'` because legacy payloads lack V3 layout IDs. Furthermore, filtering only `if 'recommended' in r['anchor_modes']` drops all other modes (`origin`, `world_spawn_*`), violating the requirement to restore all legacy mode offers.\n\n3. **Source Binding and Key Assumptions on Legacy Store (`run`)**\n   `legacy_store._projection(old_entry, side)` assumes `old_entry` contains `summary_artifacts`. For original V2 snapshots lacking projection artifacts, this immediately raises `KeyError: 'summary_artifacts'` instead of falling back to raw bundles via `_bundle()`. In addition, original V2 rows lack `r['legacy']` and `r['anchor_modes']`, causing `KeyError` when creating `by_mode`.\n\n4. **Hardcoded Cumulative Budget Lockout (`run`)**\n   Line 149 hardcodes `state['consumed_seconds'] = 3600` before snapshot publication and manifest writing (lines 150–154). Subsequent calls to `guard()` or any process restart evaluate `spent() >= 3600` and raise `TimeoutError`, permanently deadlocking completion. Additionally, preemptive increments (`spent() + 15`, `spent() + 8`) inflate `consumed_seconds` across retries.\n\n5. **Root Isolation Violation and Aggregate Tree Cap Breach (`run`)**\n   `path = root / 'automation/biome-projection-progress.json'` mutates the supposedly immutable `root` instead of `destination`. Furthermore, `guard()` enforces `tree_bytes(root) + tree_bytes(destination) > 2<<30`; because `copy_history` duplicates history into `destination`, any `root` exceeding ~950 MiB causes an immediate preflight/guard abort.\n\n---\n\n### Changed Files\n- None (read-only review; tool-free contract honored).\n\n### Tests Actually Run\n- None (tool-free review contract; no execution permitted).\n\n### Remaining Limitations\n- Code modifications to fix these 5 defects must be applied and tested by Codex or an implementation worker with write permissions.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 15500,
+          "output_tokens": 32268,
+          "thinking_tokens": 31410,
+          "cache_read_tokens": 0,
+          "total_tokens": 47768
+        },
+        "conversation_id": "2f22c9a1-192c-4e77-a3d3-229c7eeae736",
+        "duration_seconds": 213.26936,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 15500,
+      "output_tokens": 32268,
+      "thinking_tokens": 31410,
+      "cache_read_tokens": 0,
+      "total_tokens": 47768
+    },
+    "response": "<=600words concise findings or no concrete findings; no source restatement.\n\n### Outcome\nRead-only review completed. Identified 5 concrete defects in [CORRECTION_SOURCE_REVIEW.md](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/49563015a5f6/workspace/reviews/biome-expansion-plan-2026-10-22/CORRECTION_SOURCE_REVIEW.md) spanning data corruption in packing, legacy offer crashes, source binding assumptions, budget exhaustion, and root isolation.\n\n---\n\n### Concrete Findings\n\n1. **Packed Roundtrip Data Loss (`_pack_query_rows` / `_unpack_query_rows`)**\n   In `_pack_query_rows`, `counts` for `biome_witness` is compressed into a 4-bit mask using `int(bool(n)) << i`. During unpacking in `_unpack_query_rows`, `counts` is reconstructed via `count_bits` as binary `0` or `1` integers (`counts = list(count_bits[counts])`). The original quantitative sample counts are irreversibly destroyed. Consequently, on any untrusted or validator-mismatch fallback path, `validate_summary_v3` will fail numeric validation.\n\n2. **`KeyError` on Legacy Grid Lookup and Truncated Modes (`run`)**\n   In `correction CLI`, `legacy_rows` is populated with legacy payloads: `legacy_rows.extend(r['legacy'] for r in original_rows if 'recommended' in r['anchor_modes'])`.\n   Subsequent line `grid = {r['layout_id']: r for r in legacy_rows}` unconditionally accesses `r['layout_id']` on `r['legacy']`, which raises `KeyError: 'layout_id'` because legacy payloads lack V3 layout IDs. Furthermore, filtering only `if 'recommended' in r['anchor_modes']` drops all other modes (`origin`, `world_spawn_*`), violating the requirement to restore all legacy mode offers.\n\n3. **Source Binding and Key Assumptions on Legacy Store (`run`)**\n   `legacy_store._projection(old_entry, side)` assumes `old_entry` contains `summary_artifacts`. For original V2 snapshots lacking projection artifacts, this immediately raises `KeyError: 'summary_artifacts'` instead of falling back to raw bundles via `_bundle()`. In addition, original V2 rows lack `r['legacy']` and `r['anchor_modes']`, causing `KeyError` when creating `by_mode`.\n\n4. **Hardcoded Cumulative Budget Lockout (`run`)**\n   Line 149 hardcodes `state['consumed_seconds'] = 3600` before snapshot publication and manifest writing (lines 150–154). Subsequent calls to `guard()` or any process restart evaluate `spent() >= 3600` and raise `TimeoutError`, permanently deadlocking completion. Additionally, preemptive increments (`spent() + 15`, `spent() + 8`) inflate `consumed_seconds` across retries.\n\n5. **Root Isolation Violation and Aggregate Tree Cap Breach (`run`)**\n   `path = root / 'automation/biome-projection-progress.json'` mutates the supposedly immutable `root` instead of `destination`. Furthermore, `guard()` enforces `tree_bytes(root) + tree_bytes(destination) > 2<<30`; because `copy_history` duplicates history into `destination`, any `root` exceeding ~950 MiB causes an immediate preflight/guard abort.\n\n---\n\n### Changed Files\n- None (read-only review; tool-free contract honored).\n\n### Tests Actually Run\n- None (tool-free review contract; no execution permitted).\n\n### Remaining Limitations\n- Code modifications to fix these 5 defects must be applied and tested by Codex or an implementation worker with write permissions.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "response_truncated": false,
+    "checks": [],
+    "changed_files": [],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed": 1792664343.546554,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 211091456
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/49563015a5f6",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

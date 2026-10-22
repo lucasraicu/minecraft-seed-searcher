@@ -145,6 +145,16 @@ export interface SeedCandidate {
   provenance?: 'reference' | 'live' | 'unknown';
 }
 
+export type ConnectionStatus = 'connecting' | 'live' | 'stale' | 'disconnected';
+
+export interface RuntimeIdentity {
+  processStartedAt?: number;
+  processStartedAtSource?: string;
+  pid?: number;
+  loadedServerSourceSha256?: string;
+  nativeBuild?: { path?: string; digest?: string | null; source?: string; loaded?: boolean };
+}
+
 export interface TelemetryState {
   status: 'idle' | 'running' | 'paused' | 'completed' | 'bds_verifying' | 'error';
   seedsPerSec: number;
@@ -158,10 +168,46 @@ export interface TelemetryState {
   sweepProgress: number; // 0 to 100
   history: number[]; // Last 20 data points for sparkline
   runId?: string;
+  progressReadError?: string | null;
+  progressUpdatedAt?: number | null;
+  statusSchemaVersion?: number;
+  runtimeIdentity?: RuntimeIdentity | null;
+  generation?: number;
+  lastContactTime?: number | null;
+  candidatePageUrl?: string;
+  isStale?: boolean;
+}
 
+export interface BackendStatusResponse {
+  progressReadError?: string | null;
+  progressUpdatedAt?: number | null;
+  statusSchemaVersion?: number;
+  runtimeIdentity?: RuntimeIdentity | null;
+  generation?: number;
+  status: 'idle' | 'running' | 'paused' | 'completed' | 'bds_verifying' | 'error';
+  seedsPerSec?: number;
+  totalScanned?: number;
+  targetCount?: number;
+  candidatesFound?: number;
+  elapsedSeconds?: number;
+  currentStage?: string;
+  memoryRssGib?: number | null;
+  activeThreads?: number | null;
+  sweepProgress?: number;
+  history?: number[];
+  runId?: string;
+  logs?: string[];
+  effectiveConfig?: any;
+  launch?: LaunchReceipt | null;
+  candidates?: unknown[]; // deprecated []
+  candidatePageUrl?: string;
+  error?: string | null;
+  ok?: boolean;
 }
 
 export interface SearchConfig {
+  publicCatalogHarvest?: boolean;
+  publicCatalogRoot?: string;
   profile: SearchProfileName;
   requiredStructures: string[];
   structureFloorCounts: Record<string, number>;
@@ -183,5 +229,5 @@ export interface LaunchReceipt {
   shellCommand: string;
   cwd: string;
   policyYaml: string;
-  controls: { count: number; start_index: string; threads: number; batch_size: number | null; max_misses: number; profile?: string };
+  controls: { catalog_enabled?:boolean; catalog_root?:string|null; count: number; start_index: string; threads: number; batch_size: number | null; max_misses: number; profile?: string };
 }

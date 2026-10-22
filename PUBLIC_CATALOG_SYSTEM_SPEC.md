@@ -1,6 +1,24 @@
 # Personal search and public catalog: proposed system specification
 
-Date: 2026-10-17. Status: **design artifacts only; runtime, public filters, GPU catalog kernels, billing, and hosting are not implemented or activated by this work**.
+Original design date: 2026-10-17. Public activation, exact game-build acceptance,
+GPU catalog kernels, billing and hosting remain gated. A private research runtime
+now implements the query/storage vocabulary described below.
+
+Implementation update2026-10-20: the private pilot implements separate segmented
+SQLite/artifacts, selective indexes, a pinned query/detail API and a Catalog tab
+in Sweep. It contains200 natural worlds/48,600 layouts; [measured results](reviews/catalog-private-pilot-2026-10-20/REPORT.md)
+include raw-fact/index parity and recovery checks. Browser QA is deferred at Lucas's
+request. See [the private guide](docs/catalog/PRIVATE_PILOT.md). Four-pillar screens,
+versioned product gates and five offline Origin-circle research lists are now
+implemented, together with an opt-in CPU campaign handoff for NEW native scans
+and an explicitly drained independent queue. The running personal sweep is not
+attached or restarted. See [usage and recovery](docs/catalog/FOUR_PILLARS_AND_HARVEST.md).
+This does not change v1 query semantics or activate public/billing capabilities.
+
+The [reconciled master plan](docs/catalog/proposals/Public_Catalog_Master_Plan.md) defines the four product
+pillars, independent branch/checkpoint contract and staged roadmap. This document
+and v1 artifacts retain current query/storage authority; later geometry, feature,
+score and entitlement changes require explicit versioned contracts.
 
 This is the current consolidated proposal. It replaces conflicting public-catalog details and speculative scale claims in the earlier catalog/GPU drafts. [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md) remains the personal policy authority. Exact contract data is in [docs/catalog/v1](docs/catalog/v1/README.md).
 
@@ -394,4 +412,4 @@ Before declaring success, verify negative coordinates, half-open positive edges,
 
 The companion validator checks the generated contracts, registry/preset references, request schema/example, exact three-size configuration, retention capacity arithmetic, coverage/payload sizes, prototype SQL execution, seed identities, coordinate/tile formulas and independent anchor geometry using small examples. It is a specification consistency check, not an implemented catalog test or performance proof.
 
-The spawn audit independently validated the estimated default-world-spawn reference on 108 BDS worlds and recorded local routine timings. Exact initial-player placement remains unvalidated after failed client-authentication experiments. No public extractor, GPU kernel, full UI, checkout, database migration, live scan or public deployment was executed. Unknown demand, full extraction cost, compression and index latency remain explicit experiments.
+The spawn audit independently validated the estimated default-world-spawn reference on 108 BDS worlds and recorded local routine timings. Exact initial-player placement remains unvalidated after failed client-authentication experiments. The original specification work executed no public extractor, GPU kernel, full UI, checkout, database migration, live scan or public deployment. The subsequent October20 CPU reference tested two independently selected seeds; it is not a production campaign or game-world accuracy audit. Unknown demand, representative full extraction cost, compression and index latency remain explicit experiments.

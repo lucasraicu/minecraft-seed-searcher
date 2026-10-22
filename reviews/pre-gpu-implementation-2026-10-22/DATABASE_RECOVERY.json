@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "crash_recovery": [
+    {
+      "engine": "sqlite",
+      "acknowledged_commit": false,
+      "owned_crash_exit": -9,
+      "expected_rows_recovered": true,
+      "idempotent_retry": true
+    },
+    {
+      "engine": "sqlite",
+      "acknowledged_commit": true,
+      "owned_crash_exit": -9,
+      "expected_rows_recovered": true,
+      "idempotent_retry": true
+    },
+    {
+      "engine": "duckdb",
+      "acknowledged_commit": false,
+      "owned_crash_exit": -9,
+      "expected_rows_recovered": true,
+      "idempotent_retry": true
+    },
+    {
+      "engine": "duckdb",
+      "acknowledged_commit": true,
+      "owned_crash_exit": -9,
+      "expected_rows_recovered": true,
+      "idempotent_retry": true
+    }
+  ],
+  "sqlite_concurrent_read_snapshot": true,
+  "sqlite_second_writer_wait_seconds": 0.06653560500126332,
+  "duckdb_conflicting_writer_rejected": true,
+  "duckdb_reader_snapshot": true,
+  "index_source_binding_and_hashes_match": true,
+  "corrupt_index_detected": true,
+  "scope": "Disposable local engine tables;notprojectqueueproof ornetworkfleet/Quack/PostgreSQLtests"
+}

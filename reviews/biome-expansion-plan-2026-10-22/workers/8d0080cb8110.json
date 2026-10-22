@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"task_id\": \"8d0080cb8110\",\n  \"role\": \"review\",\n  \"state\": \"failed\",\n  \"created\": 1792660036.885366,\n  \"updated\": 1792660042.873046,\n  \"worker_id\": \"gemini-1\",\n  \"objective\": \"Read-only High reasoning review of authoritative source embedded in UI_FINAL_SOURCE_REVIEW.md. Tool-free reasoning only, no edits/commands. Find concrete defects in snapshot-bound v3 negotiation, gates, strict query bounds, retained-union search and product reserve paging. Existing implementation is\",\n  \"result\": {\n    \"worker_id\": \"gemini-1\",\n    \"model\": \"gemini-3.8-flash-high\",\n    \"reasoning_effort\": \"high\",\n    \"error\": \"Context files exceed 30,000 bytes; select narrower context\",\n    \"completed\": 1792660042.872926\n  },\n  \"artifacts\": \"/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/8d0080cb8110\",\n  \"needs_codex_review\": true,\n  \"integration_status\": \"not_integrated\"\n}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,957 @@
+--- a/src/seed_search/catalog/ingestion.py
++++ b/src/seed_search/catalog/ingestion.py
+@@ -95,11 +95,17 @@
+ 
+ def atomic_json(path: Path | str, value: Any) -> None:
+     """Write strict finite JSON value atomically via temporary file and replace."""
++    atomic_bytes(path, strict_json_dumps(value))
++
++
++def atomic_bytes(path: Path | str, encoded: bytes) -> None:
++    """Publish already-encoded immutable bytes with the same durable boundary."""
++    if not isinstance(encoded, bytes):
++        raise TypeError('Atomic payload must be immutable bytes')
+     target = verify_no_symlinks(path)
+     target.parent.mkdir(parents=True, exist_ok=True)
+     verify_no_symlinks(target.parent)
+ 
+-    encoded = strict_json_dumps(value)
+     tmp_path = target.with_name(f".{target.name}.tmp.{os.getpid()}.{time.time_ns()}")
+     try:
+         with open(tmp_path, 'wb') as f:
+--- a/src/seed_search/catalog/harvest_native.py
++++ b/src/seed_search/catalog/harvest_native.py
+@@ -10,7 +10,7 @@
+ import threading
+ import time
+ 
+-from .ingestion import atomic_json, verify_no_symlinks, tree_bytes, _get_aggregate_rss
++from .ingestion import atomic_json, atomic_bytes, verify_no_symlinks, tree_bytes, _get_aggregate_rss
+ from .models import validate_observation, world_id
+ from .registry import FEATURE_IDS, ENVELOPE, digest
+ 
+@@ -39,7 +39,14 @@
+ 
+ 
+ def save_checkpoint(path,value):
+-    atomic_json(path,dict(sha256=digest(value),observation=value))
++    # Hash and embed the exact same canonical bytes. Previously the full survey
++    # was encoded once for its digest and again with expensive pretty indentation.
++    # The envelope and reader stay compatible; every progress callback still
++    # flushes/fsyncs its file and parent directory before returning.
++    from .registry import canonical_json
++    raw=canonical_json(value)
++    checksum=hashlib.sha256(raw).hexdigest().encode('ascii')
++    atomic_bytes(path,b'{"observation":'+raw+b',"sha256":"'+checksum+b'"}')
+ 
+ 
+ def require_complete(observation, expected):
+@@ -146,7 +153,7 @@
+                 '--child', str(checkpoint)], stdin=subprocess.PIPE, stdout=output, stderr=output,
+                 env=env, start_new_session=True)
+             process.stdin.write(json.dumps(dict(identity=job['identity'], seconds=seconds,parent_pid=os.getpid(),
+-                protocol=protocol,options=options or {})).encode())
++                protocol=protocol,options={k:v for k,v in (options or {}).items()if k!='derivation'})).encode())
+             process.stdin.close()
+             last_beat = started
+             while process.poll() is None:
+--- a/src/seed_search/catalog/automation.py
++++ b/src/seed_search/catalog/automation.py
+@@ -11,6 +11,13 @@
+ from .models import validate_identity, validate_observation_v2, world_id
+ from .registry import digest
+ from .retention import automation_objectives, automation_policy_revision, automation_offers
++
++
++def derivation_pin():
++    """Bind the additive accelerator without changing historical policy sources."""
++    import hashlib
++    path=Path(__file__).with_name('summaries_fast.py')
++    return dict(revision='catalog-derivation-v3-int64-v1',source_sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+ 
+ 
+ def _configuration_path(root):
+@@ -30,8 +37,10 @@
+     validate_identity(value['identity'])
+     if value['identity']['seed']!='0':raise ValueError('Expected seed-independent identity template')
+     options=value['options']
+-    if not isinstance(options,dict) or set(options)-{'spawn','native_build','native_pin'} or not isinstance(options.get('spawn'),dict):
++    if not isinstance(options,dict) or set(options)-{'spawn','native_build','native_pin','derivation'} or not isinstance(options.get('spawn'),dict):
+         raise ValueError('Missing pinned spawn configuration')
++    if 'derivation'in options and (not v3 or options['derivation']!=derivation_pin()):
++        raise ValueError('Derivation source differs; rebuild in a new policy workspace')
+     if set(options['spawn'])!={'executable','binary_sha256','source_sha256'}:raise ValueError('Invalid spawn configuration')
+     if not isinstance(options.get('native_pin'),dict):raise ValueError('Missing private Realm runtime pin')
+     if v3:
+@@ -54,6 +63,12 @@
+     SpawnEstimator(**options['spawn'])
+     if options['spawn']['source_sha256']!=identity['source_sha256']:raise ValueError('Estimator source differs')
+     options=dict(options,native_pin=realm_runtime_pin(options.get('native_build')))
++    if catalog_registry is not None and 'derivation'not in options:
++        # Existing roots retain their exact declared implementation. New roots
++        # explicitly bind the faster numerical-equivalent implementation.
++        existing=configuration(root)
++        if existing is None:options['derivation']=derivation_pin()
++        elif 'derivation'in existing['options']:options['derivation']=existing['options']['derivation']
+     value=dict(revision='catalog-automation-config-v2',identity=identity,options=options,
+                policy_revision=digest([automation_policy_revision(),identity,options]))
+     if catalog_registry is not None:
+@@ -294,6 +309,8 @@
+                     v3=config['revision']=='catalog-automation-config-v3';reg=policy_registry(root,config);extension=None
+                     if v3:
+                         from .summaries import summarize_v3
++                        if 'derivation'in config['options']:
++                            from .summaries_fast import summarize_v3
+                         from .biome_extension import extract_extension
+                         from ..backend import Backend,biome_name,configure_native_threads
+                         from ..realm.biomes import canonical
+--- a/src/seed_search/catalog/service.py
++++ b/src/seed_search/catalog/service.py
+@@ -236,6 +236,7 @@
+         refs=[binding['artifact']]
+         if value['revision'].startswith('catalog-snapshot-index-'):
+             refs.extend(page['artifact'] for page in value['pages'])
++        self._save_board_view(manifest,binding,refs)
+         context={k:v for k,v in manifest.items() if k!='memberships'}
+         # Store the query context as immutable bytes; callers receive independent
+         # decoded objects and cannot mutate a future query's verified metadata.
+@@ -250,6 +251,58 @@
+                 while self.cache_size>self.cache_bytes:
+                     _,(_,removed)=self.cache.popitem(last=False);self.cache_size-=removed
+         return context
++
++    def _read_view_get(self,key):
++        """Independent decoded metadata plus immutable typed columns."""
++        with self.cache_lock:
++            found=self.cache.pop(key,None)
++            if found is None:return None
++            self.cache[key]=found
++            header,columns=found[0]
++        return json.loads(header),columns
++
++    def _read_view_put(self,key,value):
++        header,columns=value
++        header=canonical_json(header)
++        if not isinstance(columns,bytes):raise TypeError('Read-view columns must be immutable')
++        size=len(header)+len(columns)+len(canonical_json(key))
++        with self.cache_lock:
++            old=self.cache.pop(key,None)
++            if old:self.cache_size-=old[1]
++            if size>self.cache_bytes:return
++            self.cache[key]=((header,columns),size);self.cache_size+=size
++            while self.cache_size>self.cache_bytes:
++                _,(_,removed)=self.cache.popitem(last=False);self.cache_size-=removed
++
++    def _save_board_view(self,manifest,binding,refs):
++        from .products import product_registry_v2
++        products={p['id']for p in product_registry_v2()['products']}
++        members={pid:[]for pid in products}
++        for row in manifest['memberships']:
++            if row['objective_id']in members:members[row['objective_id']].append(row['member'])
++        context={k:v for k,v in manifest.items()if k not in ('worlds','memberships','registry','policy_contract')}
++        context['board_members']=members
++        self._read_view_put(('verified-board-view-v1',binding['snapshot_id']),
++            (dict(context=context,binding=binding,artifacts=refs),b''))
++
++    def _board_snapshot(self,store,sid):
++        key=('verified-board-view-v1',sid);found=self._read_view_get(key)
++        if found is not None:
++            cached,_=found
++            if store._binding(sid)!=cached['binding']:raise ValueError('Cached snapshot binding changed')
++            for reference in cached['artifacts']:store.artifacts._read_verified_raw(reference)
++            return cached['context']
++        # A cold or evicted view always derives from the full original verifier.
++        # It is ephemeral; queries never publish files or regenerate an index.
++        manifest=store.snapshot(sid);binding=store._binding(sid)
++        value=store.artifacts.get_json(binding['artifact']);refs=[binding['artifact']]
++        if value['revision'].startswith('catalog-snapshot-index-'):
++            refs.extend(page['artifact']for page in value['pages'])
++        self._save_board_view(manifest,binding,refs)
++        found=self._read_view_get(key)
++        if found is not None:return found[0]['context']
++        # A zero/tiny cache is valid; don't require retention to serve correctly.
++        return dict(manifest,board_members={})
+ 
+     def _cached_index(self,layouts):
+         from .index import build_index,index_identity
+--- a/src/seed_search/catalog/automation_query.py
++++ b/src/seed_search/catalog/automation_query.py
+@@ -68,9 +68,8 @@
+             ranked=cached['ranked'];matched=cached['matched'];extra=cached['extra']
+         else:
+             def layouts():
+-                for row in store.iter_query_summaries(manifest,req['border_side'],req['anchor_mode'],lazy_features=True):
+-                    check()
+-                    yield row
++                from .read_views import filtered_summaries
++                yield from filtered_summaries(service,store,manifest,req,check)
+             if v3:
+                 from .query import rank_v3
+                 result=rank_v3(layouts(),req,limit=1000,keep_keys=True,registry=manifest['registry'])
+@@ -113,8 +112,10 @@
+     if product is None:raise ServiceError('Product unavailable','product_gated',409)
+     if not available(service.root,sid):raise ServiceError('Snapshot has no v2 product memberships','product_gated',409)
+     with service._slot():
+-        manifest=_store(service).snapshot(sid)
+-        results=[row['member'] for row in manifest['memberships'] if row['objective_id']==pid]
++        manifest=service._board_snapshot(_store(service),sid)
++        if 'memberships'in manifest:
++            results=[row['member']for row in manifest['memberships']if row['objective_id']==pid]
++        else:results=manifest['board_members'].get(pid,[])
+         # Publisher preserves numeric ledger ordering; never sort JSON/string ranks.
+         extra={}
+         if manifest['revision']=='catalog-snapshot-v3':
+--- /dev/null
++++ b/src/seed_search/catalog/summaries_fast.py
+@@ -0,0 +1,397 @@
++"""Versioned exact V3 derivation accelerator; historical summary source stays frozen.
++
++Configured through a source-bound derivation pin in new policy workspaces only.
++"""
++from .summaries import (
++    canonical_biome_name, _validate_obs_v2, legacy_observation_v2, summarize,
++    summarize_at, SIDES, REGISTRY_V3, SAMPLING_PROFILE_REVISION_V3,
++    SAMPLING_PROFILES_V3, digest, world_id, parse_seed, anchors, contains,
++    validate_summary_v3,
++)
++
++def _biome_arrays(points_by_feature):
++    """One call-local integer index; never retain a mutable observation globally."""
++    import numpy as np
++    return {fid: np.asarray(points,dtype=np.int64) for fid,points in points_by_feature.items()
++            if len(points)>64}
++
++
++def _indexed_biome_summary(points, cx, cz, box, radii):
++    """Exact integer distances and lexicographic XYZ ties, matching the V3 loop."""
++    import numpy as np
++    lo_x,hi_x,lo_z,hi_z=box
++    selected=points[(points[:,0]>=lo_x)&(points[:,0]<hi_x)&
++                    (points[:,2]>=lo_z)&(points[:,2]<hi_z)]
++    if not len(selected):return [0,0,0,0],None,None
++    d2=(selected[:,0]-cx)**2+(selected[:,2]-cz)**2
++    nearest=int(d2.min());tied=selected[d2==nearest]
++    index=np.lexsort((tied[:,2],tied[:,1],tied[:,0]))[0]
++    witness=[int(n) for n in tied[index,:3]]
++    return [int(nearest<=r*r) for r in radii]+[1],nearest,witness
++
++
++def summarize_v3(obs, *, extension=None, base_summaries=None, registry=None):
++    """Additive summaries preserving legacy payload and anchor modes.
++
++    Fields same as v2 plus source_extension_id (nullable), sampling_profile_revision.
++    Layout ID binds revision/base/extension/profile/registry/anchor/modes/side.
++    Reuses base_summaries v2 when supplied to avoid recomputation.
++    """
++    _validate_obs_v2(obs)
++    obs_id = digest(obs)
++    w_id = world_id(obs['identity'])
++    seed_str = str(parse_seed(obs['identity']['seed']))
++
++    active_registry = registry if registry is not None else REGISTRY_V3
++    active_features = active_registry['features']
++    active_feature_by_id = {f['id']: f for f in active_features}
++    reg_rev = digest(active_registry)
++
++    # 1. Validate extension if provided
++    source_extension_id = None
++    sampling_prof_rev = SAMPLING_PROFILE_REVISION_V3
++    ext_ow_biomes = []
++    ext_nether_biomes = []
++    ext_biome_names = {}
++
++    if extension is not None:
++        from .biome_extension import validate_extension
++        validate_extension(extension,obs)
++        source_extension_id=digest(extension)
++        ext_ow_biomes=extension['biomes']['overworld']
++        ext_biome_names=extension['biome_names']
++
++    # 2. Preserve per-mode legacy payloads when spawn overlaps a grid coordinate.
++    legacy_by_modes = {}
++    if base_summaries is not None:
++        anchor_rows = []
++        seen_anchor_keys = set()
++        legacy_by_coord_side = {}
++        from .codec import validate_summary_v2
++        for s in base_summaries:
++            validate_summary_v2(s)
++            if s['source_observation_id']!=obs_id or s['world_id']!=w_id:raise ValueError('Base summary source differs')
++            for mode in ('world_spawn_estimated','world_spawn_observed'):
++                if mode in s['anchor_modes'] and not any(a['mode']==mode and a['coordinate']==s['anchor'] for a in obs['anchors']):raise ValueError('Base summary spawn differs')
++            coord = list(s['anchor'])
++            modes = list(s['anchor_modes'])
++            side = s['border_side']
++            key = (coord[0], coord[1], tuple(modes))
++            if key not in seen_anchor_keys:
++                seen_anchor_keys.add(key)
++                anchor_rows.append((coord, modes))
++            legacy_by_modes[(tuple(coord), side, tuple(modes))] = s['legacy']
++            legacy_by_coord_side[(tuple(coord), side)] = s['legacy']
++    else:
++        legacy_obs = legacy_observation_v2(obs)
++        anchor_rows = []
++        for coord in anchors():
++            ax, az = coord
++            if ax == 0 and az == 0:
++                modes = ['origin', 'recommended']
++            else:
++                modes = ['recommended']
++            anchor_rows.append(([ax, az], modes))
++
++        seen_spawns = set()
++        for a in obs.get('anchors', []):
++            mode = a.get('mode')
++            if mode in ('world_spawn_estimated', 'world_spawn_observed'):
++                coord = [int(a['coordinate'][0]), int(a['coordinate'][1])]
++                spawn_key = (coord[0], coord[1], mode)
++                if spawn_key not in seen_spawns:
++                    seen_spawns.add(spawn_key)
++                    anchor_rows.append((coord, [mode]))
++
++        for a in obs.get('anchors', []):
++            if a.get('mode') == 'recommended' and not any(coord == a.get('coordinate') and 'recommended' in modes for coord, modes in anchor_rows):
++                anchor_rows.append((list(a['coordinate']), ['recommended']))
++
++        unique_anchor_coords = []
++        seen_coords = set()
++        for coord, _ in anchor_rows:
++            key = (coord[0], coord[1])
++            if key not in seen_coords:
++                seen_coords.add(key)
++                unique_anchor_coords.append(coord)
++
++        legacy_by_coord_side = {(tuple(row['anchor']), row['border_side']): row for row in summarize(legacy_obs)}
++        for coord in unique_anchor_coords:
++            if (tuple(coord), SIDES[0]) in legacy_by_coord_side:
++                continue
++            legacy_list = summarize_at(legacy_obs, coord)
++            for l_sum in legacy_list:
++                legacy_by_coord_side[(tuple(coord), l_sum['border_side'])] = l_sum
++
++    # 3. Structures
++    struct_points_by_feature = {}
++    for f in active_features:
++        if f['kind'] == 'structure_count':
++            feat_id = f['id']
++            ext_key = f.get('extractor_key')
++            starts = obs.get('structures', {}).get(feat_id)
++            if starts is None and ext_key:
++                starts = obs.get('structures', {}).get(ext_key)
++            struct_points_by_feature[feat_id] = starts or []
++            if feat_id in ('structure.igloo_with_basement','structure.bastion_treasure'):
++                inventory=(obs.get('realm') or {}).get('inventory',{})
++                key='igloo_basement' if feat_id=='structure.igloo_with_basement' else 'bastion_variant'
++                entry=inventory.get(key,{})
++                parent='structure.igloo' if key=='igloo_basement' else 'structure.bastion'
++                parents={tuple(p) for p in obs['structures'].get(parent,[])}
++                struct_points_by_feature[feat_id]=sorted({tuple(p[:2]) for p in entry.get('points',[]) if (key=='igloo_basement' or p[2]==2) and tuple(p[:2]) in parents})
++
++
++    # 4. Biomes with full overlap preservation across exact, group, and legacy features
++    canonical = canonical_biome_name
++
++    name_to_features = {}
++    for f in active_features:
++        if f['kind'] == 'biome_witness':
++            feat_id = f['id']
++            members = set(f.get('canonical_members', ()))
++            if feat_id.startswith('biome.exact.'):
++                cname = feat_id.removeprefix('biome.exact.')
++                members.add(cname)
++            for atom_id in f.get('atomic_members', ()):
++                if atom_id.startswith('biome.exact.'):
++                    members.add(atom_id.removeprefix('biome.exact.'))
++                else:
++                    members.add(atom_id)
++            for m in members:
++                c_m = canonical(m)
++                name_to_features.setdefault(c_m, set()).add(feat_id)
++                name_to_features.setdefault(m, set()).add(feat_id)
++
++    raw_biomes = obs.get('biomes', {})
++    if isinstance(raw_biomes, dict):
++        base_ow = raw_biomes.get('overworld', [])
++        base_nether = raw_biomes.get('nether', [])
++    elif isinstance(raw_biomes, list):
++        base_ow = raw_biomes
++        base_nether = []
++    else:
++        base_ow = []
++        base_nether = []
++
++    all_names = dict(obs.get('biome_names', {}))
++    all_names.update(ext_biome_names)
++
++    biome_points_by_feature = {f['id']: [] for f in active_features if f['kind'] == 'biome_witness'}
++
++    # Process Overworld samples (base Y63 + extension samples)
++    all_ow_samples = list(base_ow) + list(ext_ow_biomes)
++    for idx, pt in enumerate(all_ow_samples):
++        x, y, z = int(pt[0]), int(pt[1]), int(pt[2])
++        raw_val = pt[3]
++        bname = all_names.get(str(raw_val), str(raw_val))
++        cname = canonical(bname)
++
++        matching_fids = name_to_features.get(cname, set()) | name_to_features.get(bname, set())
++        for fid in matching_fids:
++            fdef = active_feature_by_id[fid]
++            if fdef['dimension'] != 'overworld':
++                continue
++            # Legacy aliases remain v2 Y63 even when exact features multi-height
++            is_legacy_alias = fid.startswith('biome.') and not fid.startswith('biome.exact.') and not fid.startswith('biome.group.')
++            if is_legacy_alias:
++                if y != 63:
++                    continue
++            else:
++                eligible_y = fdef.get('eligible_y')
++                if eligible_y and y not in eligible_y:
++                    continue
++            biome_points_by_feature[fid].append((x, y, z, idx))
++
++    # Process Nether samples (base Y64 + extension samples)
++    all_nether_samples = list(base_nether) + list(ext_nether_biomes)
++    for idx, pt in enumerate(all_nether_samples):
++        x, y, z = int(pt[0]), int(pt[1]), int(pt[2])
++        raw_val = pt[3]
++        bname = all_names.get(str(raw_val), str(raw_val))
++        cname = canonical(bname)
++
++        matching_fids = name_to_features.get(cname, set()) | name_to_features.get(bname, set())
++        for fid in matching_fids:
++            fdef = active_feature_by_id[fid]
++            if fdef['dimension'] != 'nether':
++                continue
++            is_legacy_alias = fid.startswith('biome.') and not fid.startswith('biome.exact.') and not fid.startswith('biome.group.')
++            if is_legacy_alias:
++                if y != 64:
++                    continue
++            else:
++                eligible_y = fdef.get('eligible_y')
++                if eligible_y and y not in eligible_y:
++                    continue
++            biome_points_by_feature[fid].append((x, y, z, idx))
++
++    for f in active_features:
++        if f['id'].startswith('biome.group.'):
++            points=set()
++            for member in f['atomic_members']:
++                if active_feature_by_id[member].get('available',True):
++                    points.update(biome_points_by_feature[member])
++            biome_points_by_feature[f['id']]=sorted(points)
++
++    ow_radii = tuple(active_registry.get('overworld_radii', (256, 512, 1024)))
++    nether_radii = tuple(active_registry.get('nether_radii', (64, 128, 256)))
++
++    summaries_v3_list = []
++    biome_arrays = _biome_arrays(biome_points_by_feature)
++    for anchor, anchor_modes in anchor_rows:
++        ax, az = anchor
++        nether_anchor = [ax // 8, az // 8]
++        nax, naz = nether_anchor
++
++        for side in SIDES:
++            ow_lo_x = ax - side // 2
++            ow_hi_x = ax + side // 2
++            ow_lo_z = az - side // 2
++            ow_hi_z = az + side // 2
++
++            n_lo_x = nax - 1024 // 2
++            n_hi_x = nax + 1024 // 2
++            n_lo_z = naz - 1024 // 2
++            n_hi_z = naz + 1024 // 2
++
++            row_features = {}
++            for f in active_features:
++                feat_id = f['id']
++                dim = f['dimension']
++                kind = f['kind']
++
++                if dim == 'overworld':
++                    cx, cz = ax, az
++                    lo_x, hi_x, lo_z, hi_z = ow_lo_x, ow_hi_x, ow_lo_z, ow_hi_z
++                    radii = ow_radii
++                else:
++                    cx, cz = nax, naz
++                    lo_x, hi_x, lo_z, hi_z = n_lo_x, n_hi_x, n_lo_z, n_hi_z
++                    radii = nether_radii
++
++                r0_sq = radii[0] * radii[0]
++                r1_sq = radii[1] * radii[1]
++                r2_sq = radii[2] * radii[2]
++
++                if kind == 'structure_count':
++                    pts = struct_points_by_feature[feat_id]
++                    c0 = c1 = c2 = cInside = 0
++                    min_d2 = None
++                    witness = None
++                    for pt in pts:
++                        x, z = int(pt[0]), int(pt[1])
++                        if lo_x <= x < hi_x and lo_z <= z < hi_z:
++                            d2 = (x - cx) ** 2 + (z - cz) ** 2
++                            cInside += 1
++                            if d2 <= r2_sq:
++                                c2 += 1
++                                if d2 <= r1_sq:
++                                    c1 += 1
++                                    if d2 <= r0_sq:
++                                        c0 += 1
++                            if min_d2 is None or d2 < min_d2:
++                                min_d2 = d2
++                                if len(pt) >= 3:
++                                    witness = [int(pt[0]), int(pt[1]), int(pt[2])]
++                                else:
++                                    witness = [x, None, z]
++                    counts = [c0, c1, c2, cInside]
++                    nearest_d2 = min_d2
++
++                    cov = obs.get('coverage', {}).get(feat_id)
++                    if feat_id in ('structure.igloo_with_basement','structure.bastion_treasure'):
++                        key='igloo_basement' if feat_id=='structure.igloo_with_basement' else 'bastion_variant'
++                        entry=(obs.get('realm') or {}).get('inventory',{}).get(key,{})
++                        parent='structure.igloo' if key=='igloo_basement' else 'structure.bastion'
++                        parent_cov=obs.get('coverage',{}).get(parent,{})
++                        cov=entry if entry.get('status')=='complete' and parent_cov.get('status')=='complete' else None
++                    if cov and cov.get('status') == 'complete' and cov.get('bounds') and len(cov['bounds']) == 4:
++                        cov_bounds = cov['bounds']
++                        box3 = (lo_x, lo_z, hi_x, hi_z)
++                        comp3 = contains(cov_bounds, box3)
++                        box2 = (max(lo_x, cx - radii[2]), max(lo_z, cz - radii[2]),
++                                min(hi_x, cx + radii[2]+1), min(hi_z, cz + radii[2]+1))
++                        comp2 = contains(cov_bounds, box2)
++                        box1 = (max(lo_x, cx - radii[1]), max(lo_z, cz - radii[1]),
++                                min(hi_x, cx + radii[1]+1), min(hi_z, cz + radii[1]+1))
++                        comp1 = contains(cov_bounds, box1)
++                        box0 = (max(lo_x, cx - radii[0]), max(lo_z, cz - radii[0]),
++                                min(hi_x, cx + radii[0]+1), min(hi_z, cz + radii[0]+1))
++                        comp0 = contains(cov_bounds, box0)
++                        complete = [comp0, comp1, comp2, comp3]
++                    else:
++                        complete = [False, False, False, False]
++
++                else:
++                    if feat_id in biome_arrays:
++                        counts,nearest_d2,witness=_indexed_biome_summary(
++                            biome_arrays[feat_id],cx,cz,(lo_x,hi_x,lo_z,hi_z),radii)
++                        row_features[feat_id]=dict(dimension=dim,counts=counts,
++                            complete=[False]*4,nearest_d2=nearest_d2,witness=witness)
++                        continue
++                    pts = biome_points_by_feature[feat_id]
++                    c0 = c1 = c2 = cInside = 0
++                    best_d2 = None
++                    best_idx = None
++                    witness = None
++                    for x, y, z, idx in pts:
++                        if lo_x <= x < hi_x and lo_z <= z < hi_z:
++                            d2 = (x - cx) ** 2 + (z - cz) ** 2
++                            cInside = 1
++                            if d2 <= r2_sq:
++                                c2 = 1
++                                if d2 <= r1_sq:
++                                    c1 = 1
++                                    if d2 <= r0_sq:
++                                        c0 = 1
++                            if best_d2 is None or (d2,x,y,z) < (best_d2,*witness):
++                                best_d2 = d2
++                                best_idx = idx
++                                witness = [x, y, z]
++                    counts = [c0, c1, c2, cInside]
++                    nearest_d2 = best_d2
++                    complete = [False, False, False, False]
++
++                row_features[feat_id] = {
++                    'dimension': dim,
++                    'counts': counts,
++                    'complete': complete,
++                    'nearest_d2': nearest_d2,
++                    'witness': witness,
++                }
++
++            lid = digest([
++                'catalog-summary-v3',
++                obs_id,
++                source_extension_id,
++                sampling_prof_rev,
++                reg_rev,
++                list(anchor),
++                list(anchor_modes),
++                side
++            ])
++            legacy = legacy_by_modes.get((tuple(anchor), side, tuple(anchor_modes)), legacy_by_coord_side[(tuple(anchor), side)])
++
++            summary = {
++                'revision': 'catalog-summary-v3',
++                'registry_revision': reg_rev,
++                'source_observation_id': obs_id,
++                'source_extension_id': source_extension_id,
++                'sampling_profile_revision': sampling_prof_rev,
++                'world_id': w_id,
++                'seed': seed_str,
++                'anchor': list(anchor),
++                'nether_anchor': list(nether_anchor),
++                'anchor_modes': list(anchor_modes),
++                'border_side': side,
++                'layout_id': lid,
++                'features': row_features,
++                'legacy': legacy,
++            }
++            validate_summary_v3(summary, registry=active_registry)
++            summaries_v3_list.append(summary)
++
++    return summaries_v3_list
++
++
+--- /dev/null
++++ b/src/seed_search/catalog/read_views.py
+@@ -0,0 +1,95 @@
++"""Ephemeral immutable read models; original CAS and scorer remain authoritative.
++
++No query writes an index or starts extraction. Read models share CatalogService's
++existing serialized-cache allowance and are expendable after a process restart.
++"""
++import struct
++from .registry import canonical_json,digest
++
++
++def structure_rules(request,registry):
++    """Only proven complete structure failures can remove an anchor.
++
++    Missing biome witnesses always remain unknown; a biome ANY row cannot exclude
++    anything. Preferences cannot exclude anything either.
++    """
++    by_id={f['id']:f for f in registry['features']};rules=[]
++    for row in request['rows']:
++        if row['rule']!='required' or row['kind']!='structure_count':continue
++        fid=row['feature'];dimension=by_id[fid]['dimension'];scope=row['scope']
++        radii=registry.get('nether_radii',(64,128,256))if dimension=='nether'else registry.get('overworld_radii',(256,512,1024))
++        index=3 if scope['kind']=='inside_border'else list(radii).index(scope['radius'])
++        rules.append((fid,index,row['at_least']))
++    return rules
++
++
++def pack_masks(rows,registry):
++    features=[f['id']for f in registry['features']if f['kind']=='structure_count']
++    # Counts are factual uint32 values, never clipped to the UI maximum 32.
++    stride=len(rows)*20;parts=[]
++    for fid in features:
++        for row in rows:
++            blocks=getattr(row['features'],'blocks',None)
++            if blocks is not None:
++                slot,_=row['features'].slots[fid]
++                counts,complete,_,_=blocks[slot]
++            else:
++                block=row['features'][fid];counts=block['counts']
++                complete=sum(int(bool(v))<<i for i,v in enumerate(block['complete']))
++            parts.append(struct.pack('<5I',*counts,complete))
++    return dict(features=features,layouts=[r['layout_id']for r in rows],stride=stride),b''.join(parts)
++
++
++def candidate_layouts(header,columns,rules):
++    slots={fid:i for i,fid in enumerate(header['features'])};allowed=[]
++    for i,lid in enumerate(header['layouts']):
++        keep=True
++        for fid,scope,minimum in rules:
++            offset=slots[fid]*header['stride']+i*20
++            count=struct.unpack_from('<I',columns,offset+scope*4)[0]
++            complete=struct.unpack_from('<I',columns,offset+16)[0]
++            if count<minimum and complete&(1<<scope):keep=False;break
++        if keep:allowed.append(lid)
++    return set(allowed)
++
++
++def filtered_summaries(service,store,manifest,request,check):
++    """Warm typed masks avoid JSON decoding worlds with no possible anchor.
++
++    Every reused mask rehashes its bound projection, even when no rows survive.
++    Snapshot pages/bindings have already been checked by _query_snapshot. Cold
++    masks come through the original projection validation and are request-local.
++    """
++    registry=manifest.get('registry')
++    if registry is None:
++        from .registry import REGISTRY_V2
++        registry=REGISTRY_V2
++    rules=structure_rules(request,registry)
++    side=request['border_side'];mode=request['anchor_mode']
++    if not rules:
++        for row in store.iter_query_summaries(manifest,side,mode,lazy_features=True):check();yield row
++        return
++    validator=store._query_validator_id()
++    for entry in manifest['worlds']:
++        check()
++        if 'summary_artifacts'not in entry:
++            # Old immutable snapshots retain the original fully verified path.
++            for row in store.iter_query_summaries(dict(manifest,worlds=[entry]),side,mode,lazy_features=True):yield row
++            continue
++        reference=entry['summary_artifacts'][str(side)]
++        key=('typed-structure-mask-v1',digest([entry,side,mode,validator]))
++        cached=service._read_view_get(key)
++        rows=None
++        if cached is not None:
++            # Includes length/SHA and symlink checks. Never trust stat/mtime alone.
++            store.artifacts._read_verified_raw(reference)
++            header,columns=cached
++        else:
++            rows=store._projection(entry,side,mode,lazy_features=True)
++            header,columns=pack_masks(rows,registry)
++            service._read_view_put(key,(header,columns))
++        selected=candidate_layouts(header,columns,rules)
++        if not selected:continue
++        if rows is None:rows=store._projection(entry,side,mode,lazy_features=True)
++        for row in rows:
++            if row['layout_id']in selected:check();yield row
+--- /dev/null
++++ b/tests/catalog/test_ingestion_optimization.py
+@@ -0,0 +1,72 @@
++"""Durable, compatible checkpoint encoding and exact integer derivation indexes."""
++import copy
++import json
++import random
++import pytest
++from seed_search.catalog import ingestion,harvest_native
++from seed_search.catalog.registry import canonical_json,digest
++from seed_search.catalog.models import empty_observation_v2,identity
++from seed_search.catalog.summaries_fast import _biome_arrays,_indexed_biome_summary
++
++
++def observation():
++ return empty_observation_v2(identity(0,model_id='MC_26_50',native_sha256='a'*64,source_sha256='b'*64))
++
++
++def test_checkpoint_one_encoding_compatible_with_old_reader(tmp_path,monkeypatch):
++ obs=observation();path=tmp_path/'new.json';calls=[]
++ import seed_search.catalog.registry as registry
++ original=registry.canonical_json
++ def encode(value):calls.append(value);return original(value)
++ monkeypatch.setattr(registry,'canonical_json',encode)
++ harvest_native.save_checkpoint(path,obs)
++ assert calls==[obs]
++ expected={'sha256':digest(obs),'observation':obs}
++ assert json.loads(path.read_bytes())==expected
++ assert harvest_native.checkpoint_observation(path,protocol=2)==obs
++ legacy=tmp_path/'legacy.json';ingestion.atomic_json(legacy,expected)
++ assert harvest_native.checkpoint_observation(legacy,protocol=2)==obs
++ value=json.loads(path.read_bytes());value['observation']['metrics']['tampered']=1
++ path.write_text(json.dumps(value))
++ with pytest.raises(ValueError,match='checksum'):harvest_native.checkpoint_observation(path,protocol=2)
++
++
++def test_checkpoint_replace_failure_preserves_acknowledged_bytes(tmp_path,monkeypatch):
++ obs=observation();path=tmp_path/'checkpoint.json';harvest_native.save_checkpoint(path,obs);before=path.read_bytes()
++ calls=[];real_fsync=ingestion.os.fsync
++ def fsync(fd):calls.append(fd);return real_fsync(fd)
++ monkeypatch.setattr(ingestion.os,'fsync',fsync)
++ def fail(*args):raise OSError('disk/pointer failure')
++ monkeypatch.setattr(ingestion.os,'replace',fail)
++ obs['metrics']['later']=1
++ with pytest.raises(OSError):harvest_native.save_checkpoint(path,obs)
++ assert path.read_bytes()==before and len(calls)==1
++ assert not list(tmp_path.glob('.*.tmp.*'))
++
++
++def test_checkpoint_durability_boundaries_and_nan_rejection(tmp_path,monkeypatch):
++ calls=[];real=ingestion.os.fsync
++ monkeypatch.setattr(ingestion.os,'fsync',lambda fd:(calls.append(fd),real(fd))[1])
++ obs=observation();path=tmp_path/'checkpoint.json';harvest_native.save_checkpoint(path,obs)
++ assert len(calls)==2
++ raw=path.read_bytes();obs['metrics']['bad']=float('nan')
++ with pytest.raises(ValueError):harvest_native.save_checkpoint(path,obs)
++ assert path.read_bytes()==raw
++ with pytest.raises(TypeError):ingestion.atomic_bytes(path,bytearray(b'bad'))
++
++
++def test_integer_index_matches_independent_scalar_boundaries_and_xyz_ties():
++ rng=random.Random(7)
++ pts=[[rng.randrange(-10000,10000),rng.choice([-48,0,63,160]),rng.randrange(-10000,10000),i]for i in range(400)]
++ pts += [[-8,160,0,999],[-8,-48,0,998],[8,0,0,997],[0,0,8,996]]
++ original=copy.deepcopy(pts);arrays=_biome_arrays({'x':pts,'empty':[]})
++ for cx,cz in [(-1,-1),(0,0),(512,-512)]:
++  for half in [8,512,4096,8192]:
++   box=(cx-half,cx+half,cz-half,cz+half);radii=[64,128,256]
++   inside=[p for p in pts if box[0]<=p[0]<box[1]and box[2]<=p[2]<box[3]]
++   if inside:
++    best=min(inside,key=lambda p:((p[0]-cx)**2+(p[2]-cz)**2,*p[:3]));d=(best[0]-cx)**2+(best[2]-cz)**2
++    expected=([int(d<=r*r)for r in radii]+[1],d,best[:3])
++   else:expected=([0]*4,None,None)
++   assert _indexed_biome_summary(arrays['x'],cx,cz,box,radii)==expected
++ assert pts==original
+--- /dev/null
++++ b/tests/catalog/test_guarded_read_views.py
+@@ -0,0 +1,92 @@
++"""Read models keep source integrity and same-anchor unknown semantics."""
++import copy
++import pytest
++from test_automation_query import catalog,request
++from seed_search.catalog.store import AutomationStore
++from seed_search.catalog.registry import digest,REGISTRY_V2
++from seed_search.catalog.ingestion import atomic_json
++from seed_search.catalog.read_views import pack_masks,candidate_layouts,structure_rules,filtered_summaries
++from seed_search.catalog.query import rank_v2
++from seed_search.catalog.service import CatalogService
++
++
++def paged(catalog):
++ service,sid=catalog;store=AutomationStore(service.root);m=store.snapshot(sid);m['generation']+=1;sid=digest(m)
++ store._PAGE_THRESHOLD_BYTES=1;store._PAGE_ITEM_LIMIT=1
++ artifact=store._write_manifest(m,compression_level=1)
++ atomic_json(store.snapshots_dir/(sid+'.json'),dict(revision='catalog-snapshot-binding-v2',snapshot_id=sid,generation=m['generation'],artifact=artifact))
++ return service,sid,store,m
++
++
++def test_board_warm_view_verifies_unrelated_pages_and_isolates_response(catalog,monkeypatch):
++ service,sid,store,m=paged(catalog)
++ body=dict(revision='catalog-product-request-v2',snapshot_id=sid,product_id='preset.v2.nether_duo',page_size=1)
++ original=service.product_results(body);assert len(original['results'])==1
++ original['results'][0]['seed']='mutated'
++ monkeypatch.setattr(AutomationStore,'snapshot',lambda *_:pytest.fail('Warm board reparsed full manifest'))
++ assert service.product_results(body)['results'][0]['seed']=='1'
++ metadata,_=service._read_view_get(('verified-board-view-v1',sid));refs=metadata['artifacts'];assert len(refs)>1
++ ref=refs[-1];p=store.artifacts.root/ref['relative_key'];wire=p.read_bytes();p.write_bytes(wire[:-1]+bytes([wire[-1]^1]))
++ with pytest.raises(ValueError,match='sha256 mismatch'):service.product_results(body)
++
++
++def test_boards_reject_rebound_snapshot_and_tiny_cache_falls_back(catalog):
++ service,sid=catalog;store=AutomationStore(service.root)
++ body=dict(revision='catalog-product-request-v2',snapshot_id=sid,product_id='preset.v2.nether_duo')
++ expected=service.product_results(body)
++ tiny=CatalogService(service.root,cache_bytes=1);assert tiny.product_results(body)==expected;assert tiny.cache_size==0
++ binding=store._binding(sid);binding['generation']+=1;atomic_json(store.snapshots_dir/(sid+'.json'),binding)
++ with pytest.raises(ValueError,match='binding changed'):service.product_results(body)
++
++
++def test_masks_keep_unknown_and_require_same_anchor():
++ features=[f for f in REGISTRY_V2['features']if f['kind']=='structure_count'];a=features[0]['id'];b=features[1]['id']
++ rows=[]
++ for lid,ca,cb,complete in [('x',5,0,True),('y',0,5,True),('pending',0,0,False),('both',5,5,True)]:
++  rows.append(dict(layout_id=lid,features={f['id']:dict(counts=[ca if f['id']==a else cb if f['id']==b else 0]*4,complete=[complete]*4)for f in features}))
++ h,c=pack_masks(rows,REGISTRY_V2)
++ assert candidate_layouts(h,c,[(a,0,1),(b,0,1)])=={'pending','both'}
++ assert candidate_layouts(h,c,[(a,3,33)])=={'pending'}
++ rows[-1]['features'][a]['counts']=[300]*4;h,c=pack_masks(rows,REGISTRY_V2)
++ assert 'both'in candidate_layouts(h,c,[(a,0,200)])
++
++
++def test_prefilter_full_original_scorer_parity_and_rehash_warm_projection(catalog):
++ service,sid=catalog;store=AutomationStore(service.root);m=service._query_snapshot(store,sid);req=request(service,sid)
++ oracle=rank_v2(store.iter_query_summaries(m,2048,'world_spawn_estimated',lazy_features=True),req,keep_keys=True)
++ for _ in range(2):assert rank_v2(filtered_summaries(service,store,m,req,lambda:None),req,keep_keys=True)==oracle
++ assert any(k[0]=='typed-structure-mask-v1'for k in service.cache)
++ entry=m['worlds'][0];ref=entry['summary_artifacts']['2048'];p=store.artifacts.root/ref['relative_key'];wire=p.read_bytes();p.write_bytes(wire[:-1]+bytes([wire[-1]^1]))
++ with pytest.raises(ValueError,match='sha256 mismatch'):list(filtered_summaries(service,store,m,req,lambda:None))
++
++
++def test_unknown_biome_any_and_preferences_never_exclude(catalog):
++ service,sid=catalog;req=request(service,sid)
++ req['rows']=[dict(rule='required',kind='biome_witness',any_of=['biome.forest','biome.plains'],scope={'kind':'near_base','radius':256}),dict(req['rows'][0],rule='preferred',importance=3)]
++ assert structure_rules(req,REGISTRY_V2)==[]
++ store=AutomationStore(service.root);m=service._query_snapshot(store,sid)
++ a=rank_v2(store.iter_query_summaries(m,2048,'world_spawn_estimated',lazy_features=True),req,keep_keys=True)
++ b=rank_v2(filtered_summaries(service,store,m,req,lambda:None),req,keep_keys=True)
++ assert a==b and b['unresolved_worlds']==2
++
++
++def test_read_view_serialized_budget_and_mutation_isolation():
++ service=CatalogService(cache_bytes=2048)
++ for i in range(100):service._read_view_put(('view',i),({'ids':[i]*15},b'x'*100))
++ assert service.cache_size<=service.cache_bytes
++ h,c=service._read_view_get(('view',99));h['ids'][0]=-1
++ assert service._read_view_get(('view',99))[0]['ids'][0]==99
++ assert service._read_view_get(('view',0))is None
++
++
++def test_pinned_board_cursor_survives_concurrent_current_publication(catalog):
++ service,sid=catalog;store=AutomationStore(service.root)
++ body=dict(revision='catalog-product-request-v2',snapshot_id=sid,product_id='preset.v2.nether_duo',page_size=1)
++ first=service.product_results(body);assert first['next_cursor']
++ m=store.snapshot(sid);m['generation']+=1;new_sid=digest(m);artifact=store._write_manifest(m)
++ binding=dict(revision='catalog-snapshot-binding-v2',snapshot_id=new_sid,generation=m['generation'],artifact=artifact)
++ atomic_json(store.snapshots_dir/(new_sid+'.json'),binding);atomic_json(store.current_path,binding)
++ old_second=service.product_results(dict(body,cursor=first['next_cursor']))
++ assert old_second['snapshot_id']==sid and old_second['results'][0]['seed']=='2'
++ from seed_search.catalog.service import ServiceError
++ with pytest.raises(ServiceError,match='Cursor'):service.product_results(dict(body,snapshot_id=new_sid,cursor=first['next_cursor']))
+--- /dev/null
++++ b/tests/catalog/test_versioned_derivation.py
+@@ -0,0 +1,50 @@
++"""Additive optimization must never rewrite an existing source-bound policy."""
++import copy
++import pytest
++from seed_search.catalog import automation,spawn_estimator,harvest_native
++from seed_search.catalog.models import identity
++from seed_search.catalog.registry import REGISTRY_V3,digest
++from seed_search.catalog.retention import automation_policy_revision_v3
++from seed_search.catalog.ingestion import atomic_json
++from test_expansion_storage import observation,extension
++from seed_search.catalog.summaries import summarize_v2,summarize_v3
++from seed_search.catalog.summaries_fast import summarize_v3 as fast
++
++
++def setup(monkeypatch):
++ monkeypatch.setattr(spawn_estimator,'SpawnEstimator',lambda **kw:None)
++ monkeypatch.setattr(harvest_native,'realm_runtime_pin',lambda *a,**kw:{'test_sha256':'f'*64})
++ return identity('0',model_id='MC_26_50',native_sha256='a'*64,source_sha256='b'*64),dict(spawn=dict(executable='/mock',binary_sha256='c'*64,source_sha256='b'*64))
++
++
++def test_new_policy_pins_accelerator_and_rejects_changed_source(tmp_path,monkeypatch):
++ ident,options=setup(monkeypatch);automation.configure(tmp_path,ident,options,catalog_registry=REGISTRY_V3)
++ cfg=automation.configuration(tmp_path);assert cfg['options']['derivation']==automation.derivation_pin()
++ old=copy.deepcopy(cfg);automation.configure(tmp_path,ident,options,catalog_registry=REGISTRY_V3)
++ assert automation.configuration(tmp_path)==old
++ monkeypatch.setattr(automation,'derivation_pin',lambda:{'revision':'catalog-derivation-v3-int64-v1','source_sha256':'0'*64})
++ with pytest.raises(ValueError,match='Derivation source differs'):automation.configuration(tmp_path)
++
++
++def test_existing_legacy_policy_is_not_silently_upgraded(tmp_path,monkeypatch):
++ ident,options=setup(monkeypatch);automation.configure(tmp_path,ident,options,catalog_registry=REGISTRY_V3)
++ cfg=automation.configuration(tmp_path);cfg['options'].pop('derivation')
++ cfg['policy_revision']=digest([automation_policy_revision_v3(registry=REGISTRY_V3),ident,cfg['options'],cfg['policy_contract'],digest(REGISTRY_V3)])
++ legacy=tmp_path/'legacy'
++ from seed_search.catalog.store import AutomationStore
++ assert AutomationStore(legacy).artifacts.put_json(REGISTRY_V3)==cfg['registry_artifact']
++ atomic_json(automation._configuration_path(legacy),cfg)
++ from seed_search.catalog.harvest import HarvestQueue
++ with HarvestQueue(legacy)as q:
++  ledger=automation._ledger(q,cfg)
++  prior=ledger.generation()
++ automation.configure(legacy,ident,options,catalog_registry=REGISTRY_V3)
++ assert automation.configuration(legacy)==cfg and 'derivation'not in cfg['options']
++ with HarvestQueue(legacy)as q:assert automation._ledger(q,cfg).generation()==prior
++
++
++def test_fast_derivation_full_summary_parity_extension_groups_and_base_summaries():
++ obs=observation();obs['biomes']['overworld'] += [[x,63,64,4]for x in range(-4096,4096,64)]
++ ext=extension(obs);base=summarize_v2(obs)
++ for kwargs in ({},{'extension':ext},{'extension':ext,'base_summaries':base}):
++  assert fast(obs,**kwargs)==summarize_v3(obs,**kwargs)
+--- /dev/null
++++ b/tests/test_readiness_reserve_capacity.py
+@@ -0,0 +1,30 @@
++"""Full production 100-capacity synthetic ranking/persistence acceptance."""
++import json
++import sqlite3
++from test_personal_reserve import record,oracle
++from seed_search.realm.top_tracker import Top50Tracker
++from seed_search.realm.reserve import selection_policy
++
++
++def test_full100_distinct_retained_candidates_durable_primary_reserve_and_cutoff(tmp_path):
++ policy=selection_policy(50);tracker=Top50Tracker(capacity=100,winner_limit=50,reserve_policy=policy)
++ rows=[record(i,(i*17)%83,i%4)for i in range(300)]+[record(3,999),record(3,998)]
++ for i,row in enumerate(rows):
++  tracker.observe(row)
++  if i<99:assert tracker.cutoff_score()is None
++ expected=oracle(rows)[:100];assert tracker.top_records()==expected
++ assert tracker.cutoff_score()==expected[-1]['anchors'][0]['baseline_score_observed']
++ tracker.save_to_json(str(tmp_path/'top50.json'))
++ primary=json.loads((tmp_path/'top50.json').read_text());reserve=json.loads((tmp_path/'reserves.json').read_text())
++ assert primary==expected[:50]and reserve==expected[50:]and len({r['seed']for r in primary+reserve})==100
++ with sqlite3.connect(tmp_path/'capacity.sqlite')as db:
++  tracker.flush(db);assert db.execute('select count(*)from top_candidates').fetchone()[0]==100
++ # Simulate canonical checkpoint recovery by offering retained records in reverse.
++ restored=Top50Tracker(capacity=100,winner_limit=50,reserve_policy=policy)
++ for row in reversed(primary+reserve):restored.observe(row)
++ assert restored.top_records()==expected and restored.cutoff_score()==tracker.cutoff_score()
++ # Promotion selects the best retained reserve after a certified primary fails.
++ remaining=primary[1:]+reserve
++ promoted=Top50Tracker(capacity=100,winner_limit=50,reserve_policy=policy)
++ for row in remaining:promoted.observe(row)
++ assert promoted.top_records()[:50]==expected[1:51]

@@ -7,6 +7,7 @@ from collections import OrderedDict
 import numpy as np
 from .seeds import parse_seed, MASK64
 from ._native import ffi, lib
+from .realm.native_identity import ensure_runtime_validated
 
 STRUCTURES = ("trial_chamber", "stronghold", "mineshaft", "ancient_city", "village",
               "ruined_portal", "shipwreck", "monument", "outpost", "fortress", "bastion",
@@ -76,6 +77,7 @@ def biome_name(biome: int) -> str:
 
 def biome_catalog():
     """Distinguish version-active IDs from legacy names and internal End classes."""
+    ensure_runtime_validated(ffi, lib)
     result=[]
     for value in range(256):
         dimension=ffi.new('int[1]');generates=ffi.new('int[1]')
@@ -103,6 +105,7 @@ def sweep_raw(start,count,families,threads=1,mode="reference"):
         raise ValueError('Invalid raw native thread count')
     if not 1<=len(families)<=8 or any(name not in RAW_MT_TYPES for name,bounds in families):
         raise ValueError('Raw sweep supports 1–8 reviewed MT families')
+    ensure_runtime_validated(ffi, lib)
     types=np.array([structure_type(name) for name,bounds in families],np.int32)
     bounds=np.array([[ _int(v) for v in b] for name,b in families],np.int32)
     if bounds.shape!=(len(families),4):raise ValueError('Raw bounds need four inclusive coordinates')
@@ -120,6 +123,7 @@ class Backend:
         if isinstance(raw_cache_entries,bool) or not isinstance(raw_cache_entries,int) or not 0<=raw_cache_entries<=256:
             raise ValueError('Raw layout cache must contain 0–256 entries')
         self.raw_cache_entries=raw_cache_entries
+        ensure_runtime_validated(ffi, lib)
         with _LOCK:
             ptr = lib.ss_create(self.seed & MASK64)
             if ptr != ffi.NULL and _NATIVE_THREADS>1:
@@ -145,6 +149,7 @@ class Backend:
     def _handle(self):
         if self._ctx is None:
             raise RuntimeError("Backend is closed")
+        ensure_runtime_validated(ffi, lib)
         return self._ctx
 
     def biome(self, x: int, y: int, z: int, dimension: int = 0) -> int:
@@ -331,6 +336,27 @@ class Backend:
         if value<0:raise RuntimeError('Bastion variant prediction is unavailable')
         return int(value)
 
+    def stronghold_portal_details(self, x, z):
+        self._handle()
+        has_portal = ffi.new('int*')
+        portal_eyes = ffi.new('int*')
+        bb = ffi.new('int[6]')
+        valid_depth = ffi.new('int*')
+        with _LOCK:
+            code = lib.ss_stronghold_portal_details(
+                self._handle(), _int(x), _int(z),
+                has_portal, portal_eyes, bb, valid_depth
+            )
+        if code < 0:
+            raise RuntimeError('Stronghold portal analysis failed')
+        return {
+            'has_portal_room': bool(has_portal[0]),
+            'portal_eyes': int(portal_eyes[0]),
+            'bounding_box': [int(bb[i]) for i in range(6)],
+            'valid_depth': bool(valid_depth[0]),
+        }
+
+
 
 def model_metadata():
     return {"model": ffi.string(lib.ss_model_name()).decode(),
@@ -353,6 +379,7 @@ def raw_layout(low32,name,bounds):
     if name not in RAW_MT_TYPES:raise ValueError('Raw layout adapter accepts only the eight verified MT families')
     x0,z0,x1,z1=map(_int,bounds)
     if x0>x1 or z0>z1 or x1-x0>14000 or z1-z0>14000:raise ValueError('Invalid or oversized structure bounds')
+    ensure_runtime_validated(ffi, lib)
     cap=((x1-x0)//16+3)*((z1-z0)//16+3)+20;out=np.empty((cap,2),np.int32)
     with _LOCK:
         n=lib.ss_raw_layout(low32,structure_type(name),x0,z0,x1,z1,_buffer(out,'int[]'),cap)

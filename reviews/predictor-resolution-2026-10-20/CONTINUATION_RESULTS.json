@@ -1,0 +1,112 @@
+{
+  "direct_evidence": {
+    "all_dense_points_mapped": 8320,
+    "direct_points": 25,
+    "directly_confirmed_missing_carriers": 9,
+    "game": {
+      "all_clean": true,
+      "biome_reads": 25,
+      "block_reads": 28,
+      "locates": 0,
+      "wall_seconds": 28.09884469700046,
+      "worlds": 2
+    },
+    "groups": {
+      "-3509659830737203357/discovery": {
+        "any_27_carrier": 4158,
+        "java_matches": 3800,
+        "no_bias_matches": 3815,
+        "points": 4160,
+        "raw_quart_matches": 3861
+      },
+      "-3509659830737203357/spatial_holdout": {
+        "any_27_carrier": 2079,
+        "java_matches": 1868,
+        "no_bias_matches": 1863,
+        "points": 2080,
+        "raw_quart_matches": 1859
+      },
+      "-9103892851552028103/seed_holdout": {
+        "any_27_carrier": 2053,
+        "java_matches": 1838,
+        "no_bias_matches": 1903,
+        "points": 2080,
+        "raw_quart_matches": 1846
+      }
+    },
+    "missing_carrier_count": 30,
+    "original_witnesses_confirmed": 8,
+    "unmapped_points": 0
+  },
+  "new_catalog_generation": false,
+  "new_production_algorithm": false,
+  "preservation": {
+    "catalog_preview_processes": "Former28283and28302absent;notrestarted",
+    "catalog_snapshot_unchanged": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "changed_baseline_paths": [
+      "docs/catalog/PREDICTOR_DIAGNOSTICS.md",
+      "scripts/build_biome_sampling_probe.py"
+    ],
+    "final_source_check": true,
+    "head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "missing_paths": [],
+    "native_and_production_source_unchanged": true,
+    "personal_run": "web-sweep-20261020-143452-e5161c27",
+    "personal_score": 336.0,
+    "personal_seed": "-3336796033057908633"
+  },
+  "probe_checks": {
+    "accepted_limit_rows": 4096,
+    "node_output_parity": 3920,
+    "rejected_cases": {
+      "bad-seed": 3,
+      "bad-y": 3,
+      "too-many": 3,
+      "trailing": 3
+    }
+  },
+  "remaining": [
+    "Establish model/game version compatibility and Bedrock cave/depth/zoom mechanism",
+    "Establish general village/outpost rejection with original-terrain held-out controls",
+    "Validate any future causal native fix before another catalog refresh"
+  ],
+  "stage": "Bounded diagnostic continuation completed; general native fixes unresolved",
+  "verification": {
+    "final_source_seconds": 1.71,
+    "focused_tests": 85,
+    "independent_java_selection_parity": 614,
+    "native_nodes_portable_parity": 3920,
+    "standard_library_replay": "passed",
+    "subtests": 14
+  },
+  "workers": [
+    {
+      "id": "a75dfc5dffed",
+      "reasoning": "high",
+      "role": "biome research/critique",
+      "status": "succeeded",
+      "tokens": 20712
+    },
+    {
+      "id": "bf13fec4f23f",
+      "reasoning": "high",
+      "role": "structure research/critique",
+      "status": "succeeded",
+      "tokens": 23823
+    },
+    {
+      "id": "00f7e89fedeb",
+      "reasoning": "high",
+      "role": "direct BDS plan review",
+      "status": "succeeded",
+      "tokens": 13195
+    },
+    {
+      "id": "9b20307c3367",
+      "reasoning": "high",
+      "role": "code/regression review",
+      "status": "succeeded",
+      "tokens": 20340
+    }
+  ]
+}

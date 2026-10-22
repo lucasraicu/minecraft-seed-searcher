@@ -1,0 +1,110 @@
+[
+  {
+    "seed": "-3509659830737203357",
+    "wall_seconds": 38.63979952398222,
+    "status": "observed",
+    "clean_shutdown": true,
+    "save_confirmed": true,
+    "owned_container_removed": true,
+    "block_reads": 1548,
+    "biome_reads": 46,
+    "locates": [
+      {
+        "index": 0,
+        "kind": "structure.village",
+        "dimension": "overworld",
+        "command_id": "village",
+        "query": [
+          -296,
+          -312
+        ],
+        "output": [
+          "[2026-10-20 21:48:39:407 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)"
+        ]
+      },
+      {
+        "index": 1,
+        "kind": "structure.village",
+        "dimension": "overworld",
+        "command_id": "village",
+        "query": [
+          -360,
+          248
+        ],
+        "output": [
+          "[2026-10-20 21:48:39:428 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)"
+        ]
+      },
+      {
+        "index": 2,
+        "kind": "structure.outpost",
+        "dimension": "overworld",
+        "command_id": "pillager_outpost",
+        "query": [
+          528,
+          512
+        ],
+        "output": [
+          "[2026-10-20 21:48:39:479 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (1531 blocks away)"
+        ]
+      },
+      {
+        "index": 3,
+        "kind": "structure.outpost",
+        "dimension": "overworld",
+        "command_id": "pillager_outpost",
+        "query": [
+          -1008,
+          400
+        ],
+        "output": [
+          "[2026-10-20 21:48:39:528 INFO] The nearest minecraft:pillager_outpost is at block -1000, (y?), 408 (11 blocks away)"
+        ]
+      }
+    ],
+    "stored_points": 24,
+    "unknown_points": 22,
+    "source_world_unchanged": true
+  },
+  {
+    "seed": "-9103892851552028103",
+    "wall_seconds": 14.642316709971055,
+    "status": "observed",
+    "clean_shutdown": true,
+    "save_confirmed": true,
+    "owned_container_removed": true,
+    "block_reads": 507,
+    "biome_reads": 8,
+    "locates": [
+      {
+        "index": 0,
+        "kind": "structure.stronghold",
+        "dimension": "overworld",
+        "command_id": "stronghold",
+        "query": [
+          820,
+          -1708
+        ],
+        "output": [
+          "[2026-10-20 21:49:12:935 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (790 blocks away)"
+        ]
+      },
+      {
+        "index": 1,
+        "kind": "structure.stronghold",
+        "dimension": "overworld",
+        "command_id": "stronghold",
+        "query": [
+          100,
+          -2028
+        ],
+        "output": [
+          "[2026-10-20 21:49:12:966 INFO] The nearest minecraft:stronghold is at block 98, (y?), -2030 (2 blocks away)"
+        ]
+      }
+    ],
+    "stored_points": 3,
+    "unknown_points": 5,
+    "source_world_unchanged": true
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "ok": true,
+  "snapshot_id": "9637bc21753fa249775f0b11e84ec7a9a92d3872d7982f8e3dfd9a2be4859421",
+  "public_pid": 18349,
+  "personal_pid": 91321,
+  "first_readiness_observation_seconds": 49.024001121520996,
+  "worker_startup_seconds": 6.769449982908554,
+  "status_seconds": 0.09298009099438787,
+  "snapshot_listing_seconds": 0.5502107020001858,
+  "snapshot_count": 36,
+  "live_query_seconds": 4.837103583966382,
+  "detail_seconds": 4.6737868040800095,
+  "matches": 216,
+  "unresolved": 6,
+  "vite_proxy_correct": true,
+  "automation": {
+    "ok": true,
+    "catalog_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/biome-expansion-approved-20261022/catalog-corrected",
+    "configured": true,
+    "state": "active",
+    "consumed": 0.0,
+    "reason": null,
+    "queue": {
+      "revision": "catalog-harvest-status-v1",
+      "jobs": {},
+      "campaigns": []
+    },
+    "generation": 156,
+    "population_worlds": 222,
+    "retained_worlds": 222,
+    "policy_revision": "19d814fc5ca3ca9d5b131f14f3c50abd3e912da11bcfef1ed8709ec012b7c75f",
+    "total_budget_seconds": 600
+  }
+}

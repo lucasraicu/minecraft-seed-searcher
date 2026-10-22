@@ -1,0 +1,136 @@
+{
+  "phase": "before",
+  "source": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/query-optimization-20261021/baseline-source",
+  "cold_definition": "fresh service/result/index caches; OS file cache not flushed",
+  "cases": [
+    {
+      "case": "500-origin",
+      "samples": [
+        {
+          "cold_seconds": 6.236730329925194,
+          "warm_seconds": 0.028517851955257356,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 6.234014694928192
+          }
+        },
+        {
+          "cold_seconds": 5.950492603937164,
+          "warm_seconds": 0.026902209036052227,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 5.947776769986376
+          }
+        },
+        {
+          "cold_seconds": 5.985458777984604,
+          "warm_seconds": 0.02728975296486169,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 500,
+            "eligible_layouts": 500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 5.982825177023187
+          }
+        }
+      ],
+      "median_cold_seconds": 5.985458777984604,
+      "median_warm_seconds": 0.02728975296486169,
+      "worlds": 500,
+      "result_sha256": "bb1533b00f7b275c9641b07b210eb13f27da16311bfdee3e2c8ef3267fe42440",
+      "peak_rss_bytes": 85319680
+    },
+    {
+      "case": "500-recommended",
+      "samples": [
+        {
+          "cold_seconds": 13.37218792294152,
+          "warm_seconds": 0.02774212195072323,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 13.369383789016865
+          }
+        },
+        {
+          "cold_seconds": 13.318841237924062,
+          "warm_seconds": 0.027118945959955454,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 13.315508506959304
+          }
+        },
+        {
+          "cold_seconds": 13.415204151067883,
+          "warm_seconds": 0.0285642760572955,
+          "stats": {
+            "segments": 500,
+            "decoded_layouts": 40500,
+            "eligible_layouts": 40500,
+            "index_cache_hits": 500,
+            "result_cache_hit": false,
+            "wall_seconds": 13.412263629958034
+          }
+        }
+      ],
+      "median_cold_seconds": 13.37218792294152,
+      "median_warm_seconds": 0.02774212195072323,
+      "worlds": 500,
+      "result_sha256": "ee7e26e4ce8a41e2de4263b673984f13a040eda47187676fe4087b5b16a18923",
+      "peak_rss_bytes": 109363200
+    },
+    {
+      "case": "200-accuracy-recommended",
+      "samples": [
+        {
+          "cold_seconds": 7.496750105987303,
+          "warm_seconds": 0.11073759302962571,
+          "stats": {
+            "wall_seconds": 7.418864402920008,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        },
+        {
+          "cold_seconds": 7.0906274310546,
+          "warm_seconds": 0.10448051593266428,
+          "stats": {
+            "wall_seconds": 7.040788991958834,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        },
+        {
+          "cold_seconds": 7.186878926004283,
+          "warm_seconds": 0.10239933000411838,
+          "stats": {
+            "wall_seconds": 7.136413990985602,
+            "accuracy_layouts": 16200,
+            "result_cache_hit": false
+          }
+        }
+      ],
+      "median_cold_seconds": 7.186878926004283,
+      "median_warm_seconds": 0.10448051593266428,
+      "worlds": 200,
+      "result_sha256": "ba94101b454ff910a4a5a1fd0cf58a05fea5b7e8733dd81a546a2badad257182",
+      "peak_rss_bytes": 259346432
+    }
+  ]
+}

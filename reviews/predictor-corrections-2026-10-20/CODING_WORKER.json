@@ -1,0 +1,74 @@
+{
+  "task_id": "3eada2ff2fcb",
+  "role": "code",
+  "state": "succeeded",
+  "created": 1792530701.655573,
+  "updated": 1792531079.937495,
+  "worker_id": "gemini-1",
+  "objective": "APPROVED implementation of reviews/predictor-corrections-2026-10-20/PLAN.md. High reasoning. Own ONLY new src/seed_search/realm/structure_coordinates.py and tests/test_structure_coordinates.py in isolated snapshot. Build pure stdlib, frozen immutable dataclass NavigationProjection plus project_navig",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "baseline_digest": "3f375ff870a2bdb6a9260fb794bcf4efe62f387168d2b3386e2913158605d0b4",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792530705.647508,
+    "attempts": [
+      {
+        "kind": "ok",
+        "process_exit": 0,
+        "status": "SUCCESS",
+        "response": "### IMPLEMENTED\n\n#### Changed Files (owned paths only)\n- [`src/seed_search/realm/structure_coordinates.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py):\n  - Pure stdlib module defining frozen immutable dataclass [`NavigationProjection`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py#L46-L92) and function [`project_navigation_reference`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py#L95-L161).\n  - Strict pinned version guards (`prediction_revision=\"cubiomes-bedrock-26.50\"`, `bds_build=\"1.26.52.3\"`).\n  - Exact structure and dimension whitelist:\n    - `outpost` (+8, +8 in `overworld`) -> `bedrock_26_52_outpost_p8_p8`\n    - `mineshaft` (-8, -8 in `overworld`) -> `bedrock_26_52_mineshaft_m8_m8`\n    - `fortress` (-8, -8 in `nether`) -> `bedrock_26_52_fortress_m8_m8`\n  - Strict coordinate validation rejecting boolean and non-integer types without input mutation.\n  - Retains raw `candidate_x`/`candidate_z`, `navigation_x`/`navigation_z`, `dimension`, `convention_id`, and `observed_build_scope` (with alias `observed_build`).\n  - Explains coordinate constants as empirically tested conventions from BDS 1.26.52.3 locate observations, not universal Bedrock guarantees; makes no generation, verification, or border/count claims.\n- [`tests/test_structure_coordinates.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/tests/test_structure_coordinates.py):\n  - 13 pure stdlib `unittest` cases covering:\n    - Positive quadrant whitelist projections for outpost, mineshaft, fortress.\n    - Keyword and positional invocation modes.\n    - All 4 negative quadrants and origin.\n    - Retention of raw boundary-crossing candidate coordinates across sign and chunk boundaries.\n    - Missing and mismatched build/revision strings returning `None`.\n    - Dimension checks and absence of Nether 8x coordinate scaling.\n    - Dataclass immutability (`FrozenInstanceError`), hashability, and `asdict` output.\n    - Unsupported structures (`stronghold`, `trial_chamber`, `trail_ruins`, `village`, etc.) and namespace/alias guessing returning `None`.\n    - Coordinate boolean and non-integer type rejection.\n    - Absence of verification or generation claims.\n    - Input argument immutability.\n\n#### Tests Actually Run\n- Command: `/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/run-command 0` (`python3 -B tests/test_structure_coordinates.py`)\n- Result: 13 passed in 0.001s (`OK`).\n\n#### Limitations\n- Scope is strictly restricted to the 3 whitelisted types under `bds_build='1.26.52.3'` and `prediction_revision='cubiomes-bedrock-26.50'`.\n- Strongholds remain diagnostic-only with no production navigation projection due to documented remote locate discrepancies (e.g. -722, -322).\n- Trial chambers and trail ruins remain unsupported pending orientation-aware piece rules.\n- Navigation projections represent in-game locate conventions and do not prove physical structure generation in world geometry.\n",
+        "denied_actions": [],
+        "usage": {
+          "input_tokens": 188009,
+          "output_tokens": 45300,
+          "thinking_tokens": 27956,
+          "cache_read_tokens": 1220754,
+          "total_tokens": 233309
+        },
+        "conversation_id": "986d1cce-10b4-49b9-a6b2-b66824c7824f",
+        "duration_seconds": 369.815633,
+        "response_truncated": false
+      }
+    ],
+    "usage": {
+      "input_tokens": 188009,
+      "output_tokens": 45300,
+      "thinking_tokens": 27956,
+      "cache_read_tokens": 1220754,
+      "total_tokens": 233309
+    },
+    "response": "### IMPLEMENTED\n\n#### Changed Files (owned paths only)\n- [`src/seed_search/realm/structure_coordinates.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py):\n  - Pure stdlib module defining frozen immutable dataclass [`NavigationProjection`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py#L46-L92) and function [`project_navigation_reference`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/src/seed_search/realm/structure_coordinates.py#L95-L161).\n  - Strict pinned version guards (`prediction_revision=\"cubiomes-bedrock-26.50\"`, `bds_build=\"1.26.52.3\"`).\n  - Exact structure and dimension whitelist:\n    - `outpost` (+8, +8 in `overworld`) -> `bedrock_26_52_outpost_p8_p8`\n    - `mineshaft` (-8, -8 in `overworld`) -> `bedrock_26_52_mineshaft_m8_m8`\n    - `fortress` (-8, -8 in `nether`) -> `bedrock_26_52_fortress_m8_m8`\n  - Strict coordinate validation rejecting boolean and non-integer types without input mutation.\n  - Retains raw `candidate_x`/`candidate_z`, `navigation_x`/`navigation_z`, `dimension`, `convention_id`, and `observed_build_scope` (with alias `observed_build`).\n  - Explains coordinate constants as empirically tested conventions from BDS 1.26.52.3 locate observations, not universal Bedrock guarantees; makes no generation, verification, or border/count claims.\n- [`tests/test_structure_coordinates.py`](file:///Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/workspace/tests/test_structure_coordinates.py):\n  - 13 pure stdlib `unittest` cases covering:\n    - Positive quadrant whitelist projections for outpost, mineshaft, fortress.\n    - Keyword and positional invocation modes.\n    - All 4 negative quadrants and origin.\n    - Retention of raw boundary-crossing candidate coordinates across sign and chunk boundaries.\n    - Missing and mismatched build/revision strings returning `None`.\n    - Dimension checks and absence of Nether 8x coordinate scaling.\n    - Dataclass immutability (`FrozenInstanceError`), hashability, and `asdict` output.\n    - Unsupported structures (`stronghold`, `trial_chamber`, `trail_ruins`, `village`, etc.) and namespace/alias guessing returning `None`.\n    - Coordinate boolean and non-integer type rejection.\n    - Absence of verification or generation claims.\n    - Input argument immutability.\n\n#### Tests Actually Run\n- Command: `/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb/run-command 0` (`python3 -B tests/test_structure_coordinates.py`)\n- Result: 13 passed in 0.001s (`OK`).\n\n#### Limitations\n- Scope is strictly restricted to the 3 whitelisted types under `bds_build='1.26.52.3'` and `prediction_revision='cubiomes-bedrock-26.50'`.\n- Strongholds remain diagnostic-only with no production navigation projection due to documented remote locate discrepancies (e.g. -722, -322).\n- Trial chambers and trail ruins remain unsupported pending orientation-aware piece rules.\n- Navigation projections represent in-game locate conventions and do not prove physical structure generation in world geometry.\n",
+    "denied_actions": [],
+    "process_exit": 0,
+    "provider_status": "SUCCESS",
+    "checks": [
+      {
+        "argv": [
+          "python3",
+          "-B",
+          "tests/test_structure_coordinates.py"
+        ],
+        "exit_status": 0,
+        "stdout_tail": "",
+        "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.001s\n\nOK\n"
+      }
+    ],
+    "response_truncated": false,
+    "changed_files": [
+      "src/seed_search/realm/structure_coordinates.py",
+      "tests/test_structure_coordinates.py"
+    ],
+    "patch_sha256": "85db36ac1c58277cfed7a76b67fa3b462185657f1bfb0603353a0bcbb98af5ab",
+    "completed": 1792531079.9367712,
+    "semantic_acceptance": "Pending Codex review; execution and declared automatic checks passed",
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 286052352
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/3eada2ff2fcb",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

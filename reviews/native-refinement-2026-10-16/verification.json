@@ -1,0 +1,31 @@
+{
+  "source_fingerprint": "07d73031ceccea6ad6a79c6dc2d1ca692413f6dc4a38482a61085073e9dadd0a",
+  "selected_web_build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-refinement-2026-10-16",
+  "packaged_extension_sha256": "3f0968c3593a4f4044133f501a3074819192279cd82cb30fae905961f9e2781c",
+  "openmp_extension_sha256": "9836561ff72266a10ae35b64ea19e2024313c07414dcf83e6763285c0cd3a534",
+  "source_sha256": {
+    "native/blueprint_batch.h": "4bf9dd342c24ba22ff08ffa46baa2ad34ee0dde1cd0feeffb99f8c2a9b82263a",
+    "native/blueprint_batch.inc": "59ed540b8aef13e85b8f3be4b6085f63a6a0c23ca684e84ab583968d0d90ad23",
+    "native/blueprint_dynamic.inc": "feff407fcb81935442d2ccea4b55901d315dbdbd43080771e0e8d27552fe48b5",
+    "src/seed_search/realm/native_batch.py": "96c8077f05b1bb04dd49a381e026e4a2b328a7e8d45a019e5c65950bed99a268",
+    "src/seed_search/realm/blueprint.py": "f2be2addfab39a9c149822cb49e5382c0c8138817eb208b8192b4c8308c16edb",
+    "src/seed_search/realm/runner.py": "a000428cbec22a867887a7a6eaa895b76d78769bca512f3833ad70677ddd7163",
+    "src/seed_search/web/server.py": "d242ed8c1659a6e8437195f81abe88b104d25bd103e5d2e58c5712b169f2ae6c",
+    "tests/test_native_refinement_parity.py": "efbe6015711c1ae741ce36a5967c7262140572181b3fd2146e4248299048b9e4",
+    "tests/test_v3_optimizations_parity.py": "739aaf90b2cc10d0b306b36c94eada0d82afa98c9638ec84859cd4b71cb1ff28"
+  },
+  "checks": {
+    "full_run": {
+      "passed": 1218,
+      "skipped": 1,
+      "seconds": 426.01
+    },
+    "final_recheck": {
+      "passed": 32,
+      "skipped": 0,
+      "seconds": 22.9
+    },
+    "currently_collected": 1221,
+    "all_cases_covered": true
+  }
+}

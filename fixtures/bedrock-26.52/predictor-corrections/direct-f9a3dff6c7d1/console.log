@@ -1,0 +1,217 @@
+NO LOG FILE! - setting up server logging...
+[2026-10-20 18:02:25:234 INFO] Starting Server
+[2026-10-20 18:02:25:234 INFO] Version: 1.26.52.3
+[2026-10-20 18:02:25:234 INFO] Session ID: 122a240d-3ef4-473d-a193-32520f32a50f
+[2026-10-20 18:02:25:234 INFO] Build ID: 51798919
+[2026-10-20 18:02:25:234 INFO] Branch: r/26_u5
+[2026-10-20 18:02:25:234 INFO] Commit ID: 54116bb5ee0b7aee0b5591efbcc8bc3cf64f168a
+[2026-10-20 18:02:25:234 INFO] Configuration: Publish
+[2026-10-20 18:02:25:235 INFO] Contents of server.properties: {}
+[2026-10-20 18:02:25:235 INFO] Level Name: spawn_audit
+[2026-10-20 18:02:25:235 INFO] Profiler config ('bootstrap.json') load result: success=1, errorMessage=(null)
+[2026-10-20 18:02:25:237 INFO] No CDN config file found at: cdn_config.json for dedicated server
+[2026-10-20 18:02:25:237 INFO] Game mode: 0 Survival
+[2026-10-20 18:02:25:237 INFO] Difficulty: 0 PEACEFUL
+[2026-10-20 18:02:25:240 INFO] Content logging to console is enabled.
+[2026-10-20 18:02:25:243 INFO] 
+
+#####################################################
+#                                                   #
+#              CREATING VANILLA WORLD               #
+#                                                   #
+#####################################################
+[2026-10-20 18:02:26:389 INFO] Content logging to disk is enabled. Writing log to: ContentLog2026-10-20_18-02-26
+[2026-10-20 18:02:26:392 INFO] Opening level 'worlds/spawn_audit/db'
+[2026-10-20 18:02:26:561 INFO] Pack Stack - [00] Read-only spawn audit (id: 0d7797c3-65e9-4710-ac5e-e966fa32685e, version: 1.0.0) @ behavior_packs/spawn_observer
+[2026-10-20 18:02:28:174 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-20 18:02:28:174 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-20 18:02:28:216 INFO] Signed in to signaling service successfully
+[2026-10-20 18:02:28:220 INFO] Server started.
+[2026-10-20 18:02:28:220 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+[2026-10-20 18:02:28:220 ERROR] Your current connection type is not set to NetherNet. In this release, NetherNet is the only supported transport type.
+[2026-10-20 18:02:28:220 ERROR] Players will not be able to connect to your game without NetherNet.
+[2026-10-20 18:02:28:220 ERROR] 
+[2026-10-20 18:02:28:220 ERROR] To switch, set 'transport=nethernet' in server.properties.
+[2026-10-20 18:02:28:220 ERROR] 
+[2026-10-20 18:02:28:220 ERROR] For more information, please reference the included bedrock_server_how_to.html file.
+[2026-10-20 18:02:28:220 ERROR] =======================================================
+[2026-10-20 18:02:28:220 INFO] ================ TELEMETRY MESSAGE ===================
+[2026-10-20 18:02:28:220 INFO] Server Telemetry is currently not enabled. 
+[2026-10-20 18:02:28:220 INFO] Enabling this telemetry helps us improve the game.
+[2026-10-20 18:02:28:220 INFO] 
+[2026-10-20 18:02:28:220 INFO] To enable this feature, add the line 'emit-server-telemetry=true'
+[2026-10-20 18:02:28:220 INFO] to the server.properties file in the handheld/src-server directory
+[2026-10-20 18:02:28:220 INFO] ======================================================
+[2026-10-20 18:02:28:238 WARN] [Scripting] SPAWN_AUDIT {"seed":"3477702448211353566","players":0,"api":"2.10.0","generatedStructures":"undefined"}
+
+AUDIT_INPUT execute in overworld positioned 24 100 -280 run locate structure minecraft:trial_chambers false
+[2026-10-20 18:02:28:398 INFO] The nearest minecraft:trial_chambers is at block 7, (y?), -279 (17 blocks away)
+AUDIT_INPUT execute in overworld positioned 312 100 168 run locate structure minecraft:trial_chambers false
+[2026-10-20 18:02:28:424 INFO] The nearest minecraft:trial_chambers is at block 313, (y?), 151 (17 blocks away)
+AUDIT_INPUT execute in overworld positioned -440 100 152 run locate structure minecraft:trial_chambers false
+[2026-10-20 18:02:28:474 INFO] The nearest minecraft:trial_chambers is at block -439, (y?), 153 (1 blocks away)
+AUDIT_INPUT execute in overworld positioned 820 100 -188 run locate structure minecraft:stronghold false
+[2026-10-20 18:02:28:534 INFO] The nearest minecraft:stronghold is at block 818, (y?), -190 (2 blocks away)
+AUDIT_INPUT execute in overworld positioned -1036 100 -252 run locate structure minecraft:stronghold false
+[2026-10-20 18:02:28:573 INFO] The nearest minecraft:stronghold is at block -1038, (y?), -254 (2 blocks away)
+AUDIT_INPUT execute in overworld positioned 2916 100 1332 run locate structure minecraft:stronghold false
+[2026-10-20 18:02:28:623 INFO] The nearest minecraft:stronghold is at block 2914, (y?), 1330 (2 blocks away)
+AUDIT_INPUT execute in overworld positioned 408 100 232 run locate structure minecraft:mineshaft false
+[2026-10-20 18:02:28:673 INFO] The nearest minecraft:mineshaft is at block 400, (y?), 224 (11 blocks away)
+AUDIT_INPUT execute in overworld positioned 392 100 -264 run locate structure minecraft:mineshaft false
+[2026-10-20 18:02:28:723 INFO] The nearest minecraft:mineshaft is at block 384, (y?), -272 (11 blocks away)
+AUDIT_INPUT execute in overworld positioned 168 100 -648 run locate structure minecraft:mineshaft false
+[2026-10-20 18:02:28:773 INFO] The nearest minecraft:mineshaft is at block 160, (y?), -656 (11 blocks away)
+AUDIT_INPUT execute in overworld positioned -2104 100 120 run locate structure minecraft:ancient_city false
+[2026-10-20 18:02:28:824 INFO] The nearest minecraft:ancient_city is at block -2104, (y?), 120 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -2584 100 -1064 run locate structure minecraft:ancient_city false
+[2026-10-20 18:02:28:879 INFO] The nearest minecraft:ancient_city is at block -2584, (y?), -1064 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -952 100 -2952 run locate structure minecraft:ancient_city false
+[2026-10-20 18:02:28:928 INFO] The nearest minecraft:ancient_city is at block -952, (y?), -2952 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -200 100 40 run locate structure minecraft:village false
+[2026-10-20 18:02:28:979 INFO] The nearest minecraft:village is at block -200, (y?), 40 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 312 100 104 run locate structure minecraft:village false
+[2026-10-20 18:02:29:028 INFO] The nearest minecraft:village is at block 312, (y?), 104 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 328 100 -200 run locate structure minecraft:village false
+[2026-10-20 18:02:29:079 INFO] The nearest minecraft:village is at block 328, (y?), -200 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 136 100 -248 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:29:128 INFO] The nearest minecraft:ruined_portal is at block 136, (y?), -248 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 392 100 248 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:29:178 INFO] The nearest minecraft:ruined_portal is at block 392, (y?), 248 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -328 100 -440 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:29:228 INFO] The nearest minecraft:ruined_portal is at block -328, (y?), -440 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -216 100 392 run locate structure minecraft:shipwreck false
+[2026-10-20 18:02:29:280 INFO] The nearest minecraft:shipwreck is at block -216, (y?), 392 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 296 100 -1032 run locate structure minecraft:shipwreck false
+[2026-10-20 18:02:29:333 INFO] The nearest minecraft:shipwreck is at block 296, (y?), -1032 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 1032 100 -312 run locate structure minecraft:shipwreck false
+[2026-10-20 18:02:29:383 INFO] The nearest minecraft:shipwreck is at block 1032, (y?), -312 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 1192 100 -184 run locate structure minecraft:monument false
+[2026-10-20 18:02:29:441 INFO] The nearest minecraft:monument is at block 1192, (y?), -184 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 1656 100 600 run locate structure minecraft:monument false
+[2026-10-20 18:02:29:491 INFO] The nearest minecraft:monument is at block 1656, (y?), 600 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 1752 100 360 run locate structure minecraft:monument false
+[2026-10-20 18:02:29:541 INFO] The nearest minecraft:monument is at block 1752, (y?), 360 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -832 100 512 run locate structure minecraft:pillager_outpost false
+[2026-10-20 18:02:29:579 INFO] The nearest minecraft:pillager_outpost is at block -824, (y?), 520 (11 blocks away)
+AUDIT_INPUT execute in overworld positioned 224 100 1344 run locate structure minecraft:pillager_outpost false
+[2026-10-20 18:02:29:628 INFO] The nearest minecraft:pillager_outpost is at block 232, (y?), 1352 (11 blocks away)
+AUDIT_INPUT execute in overworld positioned -1856 100 -528 run locate structure minecraft:pillager_outpost false
+[2026-10-20 18:02:29:679 INFO] The nearest minecraft:pillager_outpost is at block -1848, (y?), -520 (11 blocks away)
+AUDIT_INPUT execute in nether positioned -664 100 -152 run locate structure minecraft:fortress false
+[2026-10-20 18:02:29:729 INFO] The nearest minecraft:fortress is at block -672, (y?), -160 (11 blocks away)
+AUDIT_INPUT execute in nether positioned 344 100 -776 run locate structure minecraft:fortress false
+[2026-10-20 18:02:29:778 INFO] The nearest minecraft:fortress is at block 336, (y?), -784 (11 blocks away)
+AUDIT_INPUT execute in nether positioned -200 100 -1304 run locate structure minecraft:fortress false
+[2026-10-20 18:02:29:828 INFO] The nearest minecraft:fortress is at block -208, (y?), -1312 (11 blocks away)
+AUDIT_INPUT execute in nether positioned -168 100 200 run locate structure minecraft:bastion_remnant false
+[2026-10-20 18:02:29:883 INFO] The nearest minecraft:bastion_remnant is at block -168, (y?), 200 (0 blocks away)
+AUDIT_INPUT execute in nether positioned -312 100 -152 run locate structure minecraft:bastion_remnant false
+[2026-10-20 18:02:29:933 INFO] The nearest minecraft:bastion_remnant is at block -312, (y?), -152 (0 blocks away)
+AUDIT_INPUT execute in nether positioned 8 100 -424 run locate structure minecraft:bastion_remnant false
+[2026-10-20 18:02:29:983 INFO] The nearest minecraft:bastion_remnant is at block 8, (y?), -424 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 184 100 -968 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:039 INFO] The nearest minecraft:temple is at block 184, (y?), -968 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 856 100 -1384 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:089 INFO] The nearest minecraft:temple is at block 856, (y?), -1384 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -808 100 -328 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:139 INFO] The nearest minecraft:temple is at block -808, (y?), -328 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -264 100 -2472 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:189 INFO] The nearest minecraft:temple is at block -264, (y?), -2472 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 3224 100 -2024 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:240 INFO] The nearest minecraft:temple is at block 3224, (y?), -2024 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 664 100 -3496 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:288 INFO] The nearest minecraft:temple is at block 664, (y?), -3496 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -5032 100 2216 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:340 INFO] The nearest minecraft:temple is at block -4920, (y?), 1592 (633 blocks away)
+AUDIT_INPUT execute in overworld positioned 760 100 1800 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:395 INFO] The nearest minecraft:temple is at block 344, (y?), 2104 (515 blocks away)
+AUDIT_INPUT execute in overworld positioned 344 100 2104 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:438 INFO] The nearest minecraft:temple is at block 344, (y?), 2104 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 1160 100 1832 run locate structure minecraft:temple false
+[2026-10-20 18:02:30:489 INFO] The nearest minecraft:temple is at block 1160, (y?), 1832 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 120 100 376 run locate structure minecraft:ruins false
+[2026-10-20 18:02:30:534 INFO] The nearest minecraft:ruins is at block 120, (y?), 376 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 392 100 504 run locate structure minecraft:ruins false
+[2026-10-20 18:02:30:584 INFO] The nearest minecraft:ruins is at block 392, (y?), 504 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -632 100 -152 run locate structure minecraft:ruins false
+[2026-10-20 18:02:30:634 INFO] The nearest minecraft:ruins is at block -632, (y?), -152 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -632 100 1544 run locate structure minecraft:mansion false
+[2026-10-20 18:02:30:701 INFO] The nearest minecraft:mansion is at block -632, (y?), 1544 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -600 100 -3256 run locate structure minecraft:mansion false
+[2026-10-20 18:02:30:752 INFO] The nearest minecraft:mansion is at block -600, (y?), -3256 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -4744 100 2792 run locate structure minecraft:mansion false
+[2026-10-20 18:02:30:800 INFO] The nearest minecraft:mansion is at block -4744, (y?), 2792 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -56 100 216 run locate structure minecraft:buried_treasure false
+[2026-10-20 18:02:30:833 INFO] The nearest minecraft:buried_treasure is at block -56, (y?), 216 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -184 100 328 run locate structure minecraft:buried_treasure false
+[2026-10-20 18:02:30:883 INFO] The nearest minecraft:buried_treasure is at block -184, (y?), 328 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned -376 100 24 run locate structure minecraft:buried_treasure false
+[2026-10-20 18:02:30:939 INFO] The nearest minecraft:buried_treasure is at block -376, (y?), 24 (0 blocks away)
+AUDIT_INPUT execute in overworld positioned 248 100 760 run locate structure minecraft:trail_ruins false
+[2026-10-20 18:02:30:994 INFO] The nearest minecraft:trail_ruins is at block 242, (y?), 754 (8 blocks away)
+AUDIT_INPUT execute in overworld positioned -824 100 -344 run locate structure minecraft:trail_ruins false
+[2026-10-20 18:02:31:044 INFO] The nearest minecraft:trail_ruins is at block -835, (y?), -355 (15 blocks away)
+AUDIT_INPUT execute in overworld positioned -152 100 1176 run locate structure minecraft:trail_ruins false
+[2026-10-20 18:02:31:093 INFO] The nearest minecraft:trail_ruins is at block -157, (y?), 1165 (12 blocks away)
+AUDIT_INPUT execute in overworld positioned 176 100 -224 run locate structure minecraft:abandoned_camp false
+[2026-10-20 18:02:31:138 ERROR] No valid structure found within a reasonable distance
+Failed to execute 'locate' as [Null]
+AUDIT_INPUT execute in overworld positioned -864 100 176 run locate structure minecraft:abandoned_camp false
+[2026-10-20 18:02:31:188 ERROR] No valid structure found within a reasonable distance
+Failed to execute 'locate' as [Null]
+AUDIT_INPUT execute in overworld positioned -880 100 -384 run locate structure minecraft:abandoned_camp false
+[2026-10-20 18:02:31:238 ERROR] No valid structure found within a reasonable distance
+Failed to execute 'locate' as [Null]
+AUDIT_INPUT execute in nether positioned 72 100 88 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:31:288 INFO] The nearest minecraft:ruined_portal is at block 72, (y?), 88 (0 blocks away)
+AUDIT_INPUT execute in nether positioned -216 100 104 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:31:338 INFO] The nearest minecraft:ruined_portal is at block -216, (y?), 104 (0 blocks away)
+AUDIT_INPUT execute in nether positioned -248 100 -200 run locate structure minecraft:ruined_portal false
+[2026-10-20 18:02:31:388 INFO] The nearest minecraft:ruined_portal is at block -248, (y?), -200 (0 blocks away)
+AUDIT_INPUT execute in the_end positioned 88 100 1032 run locate structure minecraft:end_city false
+[2026-10-20 18:02:31:441 INFO] The nearest minecraft:end_city is at block 88, (y?), 1032 (0 blocks away)
+AUDIT_INPUT execute in the_end positioned -248 100 1016 run locate structure minecraft:end_city false
+[2026-10-20 18:02:31:493 INFO] The nearest minecraft:end_city is at block 88, (y?), 1032 (336 blocks away)
+AUDIT_INPUT execute in the_end positioned 1016 100 408 run locate structure minecraft:end_city false
+[2026-10-20 18:02:31:543 INFO] The nearest minecraft:end_city is at block 1304, (y?), 424 (288 blocks away)
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_0","dimension":"overworld","points":[[192,63,-448],[0,63,-576],[-384,63,-128],[-384,63,-320],[-64,63,192],[-128,63,320],[704,63,640],[384,63,960],[-2048,63,-1024],[-2176,63,-1088],[-64,63,1728],[1472,63,1088],[-2176,63,-1152],[-2304,63,-1152],[768,63,384],[768,63,512]]}
+[2026-10-20 18:02:31:588 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:03:05:313 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_0","rows":[{"x":192,"y":63,"z":-448,"id":"minecraft:mesa","loaded":true},{"x":0,"y":63,"z":-576,"id":"minecraft:mesa","loaded":true},{"x":-384,"y":63,"z":-128,"id":"minecraft:bamboo_jungle","loaded":true},{"x":-384,"y":63,"z":-320,"id":"minecraft:bamboo_jungle","loaded":true},{"x":-64,"y":63,"z":192,"id":"minecraft:beach","loaded":true},{"x":-128,"y":63,"z":320,"id":"minecraft:beach","loaded":true},{"x":704,"y":63,"z":640,"id":"minecraft:birch_forest","loaded":true},{"x":384,"y":63,"z":960,"id":"minecraft:birch_forest","loaded":true},{"x":-2048,"y":63,"z":-1024,"id":"minecraft:cherry_grove","loaded":true},{"x":-2176,"y":63,"z":-1088,"id":"minecraft:cherry_grove","loaded":true},{"x":-64,"y":63,"z":1728,"id":"minecraft:cold_ocean","loaded":true},{"x":1472,"y":63,"z":1088,"id":"minecraft:cold_ocean","loaded":true},{"x":-2176,"y":63,"z":-1152,"id":"minecraft:sunflower_plains","loaded":true},{"x":-2304,"y":63,"z":-1152,"id":"minecraft:dappled_forest","loaded":true},{"x":768,"y":63,"z":384,"id":"minecraft:roofed_forest","loaded":true},{"x":768,"y":63,"z":512,"id":"minecraft:roofed_forest","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_1","dimension":"overworld","points":[[2048,63,576],[-1728,63,1408],[2688,63,704],[2752,63,832],[704,63,-576],[704,63,-704],[1088,63,128],[1152,63,256],[256,63,-448],[256,63,-576],[768,63,1472],[-1664,63,-448],[0,63,-768],[-128,63,-768],[-1216,63,128],[-1280,63,256]]}
+[2026-10-20 18:03:05:366 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:03:42:013 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_1","rows":[{"x":2048,"y":63,"z":576,"id":"minecraft:deep_cold_ocean","loaded":true},{"x":-1728,"y":63,"z":1408,"id":"minecraft:deep_cold_ocean","loaded":true},{"x":2688,"y":63,"z":704,"id":"minecraft:deep_frozen_ocean","loaded":true},{"x":2752,"y":63,"z":832,"id":"minecraft:deep_frozen_ocean","loaded":true},{"x":704,"y":63,"z":-576,"id":"minecraft:deep_lukewarm_ocean","loaded":true},{"x":704,"y":63,"z":-704,"id":"minecraft:deep_lukewarm_ocean","loaded":true},{"x":1088,"y":63,"z":128,"id":"minecraft:deep_ocean","loaded":true},{"x":1152,"y":63,"z":256,"id":"minecraft:deep_ocean","loaded":true},{"x":256,"y":63,"z":-448,"id":"minecraft:desert","loaded":true},{"x":256,"y":63,"z":-576,"id":"minecraft:desert","loaded":true},{"x":768,"y":63,"z":1472,"id":"minecraft:dripstone_caves","loaded":true},{"x":-1664,"y":63,"z":-448,"id":"minecraft:birch_forest","loaded":true},{"x":0,"y":63,"z":-768,"id":"minecraft:mesa_bryce","loaded":true},{"x":-128,"y":63,"z":-768,"id":"minecraft:mesa_bryce","loaded":true},{"x":-1216,"y":63,"z":128,"id":"minecraft:flower_forest","loaded":true},{"x":-1280,"y":63,"z":256,"id":"minecraft:flower_forest","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_2","dimension":"overworld","points":[[0,63,128],[-64,63,-128],[256,63,2240],[128,63,2432],[-1024,63,-3072],[2816,63,1984],[832,63,1792],[448,63,1984],[2688,63,1984],[2624,63,2112],[896,63,2368],[1024,63,2368],[-3264,63,1088],[-3392,63,1280],[-256,63,-192],[-256,63,256]]}
+[2026-10-20 18:03:42:031 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:04:27:460 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_2","rows":[{"x":0,"y":63,"z":128,"id":"minecraft:forest","loaded":true},{"x":-64,"y":63,"z":-128,"id":"minecraft:forest","loaded":true},{"x":256,"y":63,"z":2240,"id":"minecraft:frozen_ocean","loaded":true},{"x":128,"y":63,"z":2432,"id":"minecraft:frozen_ocean","loaded":true},{"x":-1024,"y":63,"z":-3072,"id":"minecraft:frozen_peaks","loaded":true},{"x":2816,"y":63,"z":1984,"id":"minecraft:frozen_peaks","loaded":true},{"x":832,"y":63,"z":1792,"id":"minecraft:frozen_river","loaded":true},{"x":448,"y":63,"z":1984,"id":"minecraft:frozen_river","loaded":true},{"x":2688,"y":63,"z":1984,"id":"minecraft:grove","loaded":true},{"x":2624,"y":63,"z":2112,"id":"minecraft:grove","loaded":true},{"x":896,"y":63,"z":2368,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":1024,"y":63,"z":2368,"id":"minecraft:ice_plains_spikes","loaded":true},{"x":-3264,"y":63,"z":1088,"id":"minecraft:dripstone_caves","loaded":true},{"x":-3392,"y":63,"z":1280,"id":"minecraft:jagged_peaks","loaded":true},{"x":-256,"y":63,"z":-192,"id":"minecraft:jungle","loaded":true},{"x":-256,"y":63,"z":256,"id":"minecraft:jungle","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_3","dimension":"overworld","points":[[0,63,192],[128,63,192],[-512,63,1344],[-448,63,1472],[-704,63,-1920],[-512,63,-1984],[448,63,1088],[320,63,1152],[-1600,63,-4160],[640,63,512],[576,63,704],[768,63,320],[704,63,448],[384,63,1664],[128,63,1728],[256,63,1664]]}
+[2026-10-20 18:04:27:499 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:05:05:709 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_3","rows":[{"x":0,"y":63,"z":192,"id":"minecraft:lukewarm_ocean","loaded":true},{"x":128,"y":63,"z":192,"id":"minecraft:lukewarm_ocean","loaded":true},{"x":-512,"y":63,"z":1344,"id":"minecraft:lush_caves","loaded":true},{"x":-448,"y":63,"z":1472,"id":"minecraft:lush_caves","loaded":true},{"x":-704,"y":63,"z":-1920,"id":"minecraft:mangrove_swamp","loaded":true},{"x":-512,"y":63,"z":-1984,"id":"minecraft:mangrove_swamp","loaded":true},{"x":448,"y":63,"z":1088,"id":"minecraft:meadow","loaded":true},{"x":320,"y":63,"z":1152,"id":"minecraft:meadow","loaded":true},{"x":-1600,"y":63,"z":-4160,"id":"minecraft:mushroom_island","loaded":true},{"x":640,"y":63,"z":512,"id":"minecraft:ocean","loaded":true},{"x":576,"y":63,"z":704,"id":"minecraft:ocean","loaded":true},{"x":768,"y":63,"z":320,"id":"minecraft:birch_forest_mutated","loaded":true},{"x":704,"y":63,"z":448,"id":"minecraft:birch_forest_mutated","loaded":true},{"x":384,"y":63,"z":1664,"id":"minecraft:mega_taiga","loaded":true},{"x":128,"y":63,"z":1728,"id":"minecraft:mega_taiga","loaded":true},{"x":256,"y":63,"z":1664,"id":"minecraft:redwood_taiga_mutated","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_4","dimension":"overworld","points":[[448,63,1664],[512,63,1024],[-448,63,1344],[-64,63,0],[-128,63,128],[-64,63,-64],[-64,63,64],[0,63,0],[0,63,-128],[64,63,-256],[640,63,-192],[64,63,2368],[192,63,2368],[896,63,1856],[1088,63,1792],[2560,63,2432]]}
+[2026-10-20 18:05:05:728 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:05:43:458 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_4","rows":[{"x":448,"y":63,"z":1664,"id":"minecraft:redwood_taiga_mutated","loaded":true},{"x":512,"y":63,"z":1024,"id":"minecraft:pale_garden","loaded":true},{"x":-448,"y":63,"z":1344,"id":"minecraft:roofed_forest","loaded":true},{"x":-64,"y":63,"z":0,"id":"minecraft:plains","loaded":true},{"x":-128,"y":63,"z":128,"id":"minecraft:plains","loaded":true},{"x":-64,"y":63,"z":-64,"id":"minecraft:river","loaded":true},{"x":-64,"y":63,"z":64,"id":"minecraft:river","loaded":true},{"x":0,"y":63,"z":0,"id":"minecraft:savanna","loaded":true},{"x":0,"y":63,"z":-128,"id":"minecraft:savanna","loaded":true},{"x":64,"y":63,"z":-256,"id":"minecraft:savanna_plateau","loaded":true},{"x":640,"y":63,"z":-192,"id":"minecraft:savanna_plateau","loaded":true},{"x":64,"y":63,"z":2368,"id":"minecraft:cold_beach","loaded":true},{"x":192,"y":63,"z":2368,"id":"minecraft:cold_beach","loaded":true},{"x":896,"y":63,"z":1856,"id":"minecraft:ice_plains","loaded":true},{"x":1088,"y":63,"z":1792,"id":"minecraft:ice_plains","loaded":true},{"x":2560,"y":63,"z":2432,"id":"minecraft:snowy_slopes","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_5","dimension":"overworld","points":[[-1088,63,-3456],[704,63,1856],[576,63,1920],[-192,63,128],[-256,63,0],[4224,63,-1344],[4992,63,-832],[576,63,-128],[576,63,256],[-768,63,704],[-128,63,-2304],[-1152,63,256],[-1152,63,384],[2816,63,-192],[320,63,-2816],[768,63,1344]]}
+[2026-10-20 18:05:43:471 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:06:27:556 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_5","rows":[{"x":-1088,"y":63,"z":-3456,"id":"minecraft:plains","loaded":true},{"x":704,"y":63,"z":1856,"id":"minecraft:frozen_river","loaded":true},{"x":576,"y":63,"z":1920,"id":"minecraft:cold_taiga","loaded":true},{"x":-192,"y":63,"z":128,"id":"minecraft:jungle_edge","loaded":true},{"x":-256,"y":63,"z":0,"id":"minecraft:jungle_edge","loaded":true},{"x":4224,"y":63,"z":-1344,"id":"minecraft:stony_peaks","loaded":true},{"x":4992,"y":63,"z":-832,"id":"minecraft:forest","loaded":true},{"x":576,"y":63,"z":-128,"id":"minecraft:stone_beach","loaded":true},{"x":576,"y":63,"z":256,"id":"minecraft:stone_beach","loaded":true},{"x":-768,"y":63,"z":704,"id":"minecraft:sulfur_caves","loaded":true},{"x":-128,"y":63,"z":-2304,"id":"minecraft:sulfur_caves","loaded":true},{"x":-1152,"y":63,"z":256,"id":"minecraft:sunflower_plains","loaded":true},{"x":-1152,"y":63,"z":384,"id":"minecraft:plains","loaded":true},{"x":2816,"y":63,"z":-192,"id":"minecraft:swampland","loaded":true},{"x":320,"y":63,"z":-2816,"id":"minecraft:swampland","loaded":true},{"x":768,"y":63,"z":1344,"id":"minecraft:forest","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"overworld_6","dimension":"overworld","points":[[512,63,1472],[320,63,-512],[384,63,-640],[1536,63,-2560],[1664,63,-2624],[-1920,63,3648],[1472,63,-2560],[2688,63,-1280],[-896,63,576],[-128,63,-2112],[576,63,-1280],[704,63,-1216]]}
+[2026-10-20 18:06:27:589 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:06:56:604 WARN] [Scripting] BIOME_AUDIT {"id":"overworld_6","rows":[{"x":512,"y":63,"z":1472,"id":"minecraft:taiga","loaded":true},{"x":320,"y":63,"z":-512,"id":"minecraft:warm_ocean","loaded":true},{"x":384,"y":63,"z":-640,"id":"minecraft:desert","loaded":true},{"x":1536,"y":63,"z":-2560,"id":"minecraft:extreme_hills_plus_trees","loaded":true},{"x":1664,"y":63,"z":-2624,"id":"minecraft:extreme_hills_plus_trees","loaded":true},{"x":-1920,"y":63,"z":3648,"id":"minecraft:extreme_hills_mutated","loaded":true},{"x":1472,"y":63,"z":-2560,"id":"minecraft:extreme_hills","loaded":true},{"x":2688,"y":63,"z":-1280,"id":"minecraft:extreme_hills","loaded":true},{"x":-896,"y":63,"z":576,"id":"minecraft:savanna_mutated","loaded":true},{"x":-128,"y":63,"z":-2112,"id":"minecraft:savanna_mutated","loaded":true},{"x":576,"y":63,"z":-1280,"id":"minecraft:mesa_plateau_stone","loaded":true},{"x":704,"y":63,"z":-1216,"id":"minecraft:mesa_plateau_stone","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"nether_0","dimension":"nether","points":[[-2048,63,-2048],[-1920,63,-2048],[-1536,63,-2048],[-1024,63,-2048],[1280,63,-2048]]}
+[2026-10-20 18:06:56:623 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:07:00:504 WARN] [Scripting] BIOME_AUDIT {"id":"nether_0","rows":[{"x":-2048,"y":63,"z":-2048,"id":"minecraft:crimson_forest","loaded":true},{"x":-1920,"y":63,"z":-2048,"id":"minecraft:hell","loaded":true},{"x":-1536,"y":63,"z":-2048,"id":"minecraft:basalt_deltas","loaded":true},{"x":-1024,"y":63,"z":-2048,"id":"minecraft:soulsand_valley","loaded":true},{"x":1280,"y":63,"z":-2048,"id":"minecraft:warped_forest","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT scriptevent all_audit:biomes {"id":"the_end_0","dimension":"the_end","points":[[-2048,63,-2048],[-1920,63,-2048],[-1792,63,-2048],[-128,63,-2048],[0,63,-1024]]}
+[2026-10-20 18:07:00:539 INFO] Script event all_audit:biomes has been sent
+[2026-10-20 18:07:02:704 WARN] [Scripting] BIOME_AUDIT {"id":"the_end_0","rows":[{"x":-2048,"y":63,"z":-2048,"id":"minecraft:the_end","loaded":true},{"x":-1920,"y":63,"z":-2048,"id":"minecraft:the_end","loaded":true},{"x":-1792,"y":63,"z":-2048,"id":"minecraft:the_end","loaded":true},{"x":-128,"y":63,"z":-2048,"id":"minecraft:the_end","loaded":true},{"x":0,"y":63,"z":-1024,"id":"minecraft:the_end","loaded":true}],"chunksAfterUnload":0}
+
+AUDIT_INPUT stop
+[2026-10-20 18:07:02:754 INFO] Server stop requested.
+[2026-10-20 18:07:02:800 INFO] Stopping server...
+Quit correctly

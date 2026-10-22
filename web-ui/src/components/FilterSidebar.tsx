@@ -155,6 +155,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         {activeTab === 'engine' && <>
           <p className="text-xs text-emerald-300">Compact retention: saves surviving candidates and range checkpoints, not rejected seeds. Billion-seed runs are supported; actual disk usage is checked before each write.</p>
           <fieldset disabled={sweepRunning} className="space-y-4 disabled:opacity-60">
+            <label className="block text-xs space-y-2 rounded border border-emerald-900 p-3">
+              <span className="flex gap-2"><input type="checkbox" checked={config.publicCatalogHarvest||false}
+                onChange={e=>onChangeConfig({...config,publicCatalogHarvest:e.target.checked})} />Also harvest the public catalog</span>
+              <span className="block text-slate-400">Keeps up to 100 independent samples for a public campaign before personal rejection. Public harvesting has separate pause and budget controls; stopping this sweep leaves it running.</span>
+              {config.publicCatalogHarvest&&<input aria-label="Public catalog folder" type="text" value={config.publicCatalogRoot||''}
+                onChange={e=>onChangeConfig({...config,publicCatalogRoot:e.target.value})} placeholder="Configured catalog folder (or server default)"
+                className="w-full rounded bg-slate-800 p-2" />}
+            </label>
             <label className="block text-xs space-y-1"><span>Seed count</span>
               <input aria-label="Seed count" type="number" min="1" max={Number.MAX_SAFE_INTEGER} step="1" value={config.sweepSeedCount || ''} onChange={(e) => onChangeConfig({ ...config, sweepSeedCount: Number(e.target.value) })} className="w-full rounded bg-slate-800 p-2 font-mono" />
             </label>

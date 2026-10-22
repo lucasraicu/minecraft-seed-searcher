@@ -1,0 +1,330 @@
+{
+  "controls": {
+    "harness_sha256": "f6f158cb3f9e1ba173f2db66b421b25cb77b1ff97677aec30abdf4b3c733a43e",
+    "observer_sha256": "3f04175b9f91ca89b9b25191ff4bfa58cfc8b51074488f32f3f9f7595156af9f",
+    "cases_sha256": "749a11d246416bc5bebd7b636a639ac0fcfb8d6d1d061b093d5eee71c629fc83",
+    "settings_sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+    "seed": "-3509659830737203357",
+    "prediction": {
+      "seed": "-3509659830737203357",
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412",
+      "observation_id": "2dabc38e81e77f174d4edace2239c5c8b6ee4ecf6b65c91fc351acd0bd40bb11"
+    },
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "container": "codex-types-check-73e0c6645652",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 600,
+    "output_bytes": 8589934592,
+    "network": "bridge",
+    "published_ports": [],
+    "query_cap": 1000,
+    "role": "Actual Bedrock locate outputs; not proof of exhaustive census or physical footprints"
+  },
+  "status": "observed",
+  "queries": [],
+  "biome_batches": [
+    {
+      "id": "overworld_0",
+      "rows": [
+        {
+          "x": -256,
+          "y": -48,
+          "z": -256,
+          "id": "minecraft:deep_dark",
+          "loaded": true,
+          "predicted": "deep_dark",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 0,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 120,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 180,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 256,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -256,
+          "y": 319,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": -48,
+          "z": 320,
+          "id": "minecraft:deep_dark",
+          "loaded": true,
+          "predicted": "deep_dark",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 0,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 120,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 180,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 256,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -448,
+          "y": 319,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "snowy_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": -48,
+          "z": 320,
+          "id": "minecraft:deep_dark",
+          "loaded": true,
+          "predicted": "deep_dark",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": 0,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    },
+    {
+      "id": "overworld_1",
+      "rows": [
+        {
+          "x": -64,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": 120,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": 180,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": 256,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": -64,
+          "y": 319,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 446,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 447,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 448,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 449,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 450,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 451,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        },
+        {
+          "x": 452,
+          "y": 63,
+          "z": -512,
+          "id": "minecraft:snowy_slopes",
+          "loaded": false,
+          "predicted": "snowy_slopes",
+          "dimension": "overworld",
+          "internal_terrain_class": false
+        }
+      ],
+      "chunksAfterUnload": 0
+    }
+  ],
+  "world_identity": {
+    "seed": "-3509659830737203357",
+    "players": 0,
+    "api": "2.10.0",
+    "generatedStructures": "undefined"
+  },
+  "features_without_prediction": [],
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 20.212153741973452
+}

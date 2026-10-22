@@ -1,0 +1,59 @@
+{
+  "revision": "catalog-sampling-profiles-v3",
+  "profiles": {
+    "core_stride64": {
+      "dimensions": {
+        "overworld": {
+          "y": [
+            63
+          ],
+          "stride": 64,
+          "bounds": [
+            -5120,
+            -5120,
+            5120,
+            5120
+          ]
+        },
+        "nether": {
+          "y": [
+            64
+          ],
+          "stride": 64,
+          "bounds": [
+            -640,
+            -640,
+            640,
+            640
+          ]
+        }
+      },
+      "provider_bound": true
+    },
+    "height_extension_stride256": {
+      "dimensions": {
+        "overworld": {
+          "mountain_y": [
+            96,
+            160,
+            224
+          ],
+          "cave_y": [
+            -48,
+            0
+          ],
+          "stride": 256,
+          "bounds": [
+            -5120,
+            -5120,
+            5120,
+            5120
+          ]
+        }
+      },
+      "provider_bound": true,
+      "bounds_semantics": "same_saved_observation_envelope",
+      "max_new_points": 8000
+    }
+  }
+}

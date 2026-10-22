@@ -4,7 +4,7 @@
 
 **Document Version:** 1.1  
 **Target Architecture:** Minecraft Seed Searcher (Bedrock 1.21.x / Dynamic v3)  
-**Status:** Fully Implemented & Verified (All 3 Pillars Complete)  
+**Status:** Historical plan; native refinement implemented, physical-world verification and empirical player calibration remain incomplete
 **Date:** October 16, 2026  
 
 ---
@@ -236,16 +236,16 @@ To maintain optimal speed and resolution:
 
 | Task ID | Component | Status | File Targets | Deliverable |
 |---|---|---|---|---|
-| **T1.1** | Native Grid Refiner | **COMPLETE** | `native/blueprint_dynamic.inc`, `native/blueprint_batch.h` | C function `nb_dynamic_v3_refine_center()` with OpenMP acceleration (<5ms). |
+| **T1.1** | Native Grid Refiner | **COMPLETE** | `native/blueprint_dynamic.inc`, `native/blueprint_batch.h` | C function `nb_dynamic_v3_refine_center()` with OpenMP; historical fixture medians are not a universal <5ms bound. |
 | **T1.2** | Pipeline Integration | **COMPLETE** | `src/seed_search/realm/native_batch.py`, `src/seed_search/realm/runner.py` | Automatic refinement on candidate promotion before Top-K insertion. |
 | **T1.3** | Parity & Regression Tests | **COMPLETE** | `tests/test_native_refinement_parity.py` | 12/12 passing tests verifying exact C vs Python match across grid centers. |
-| **T2.1** | Stronghold Piece Checker | **COMPLETE** | `native/bridge.h`, `native/bridge.c`, `src/seed_search/backend.py` | Portal room piece ($piece\_id=12$) and Eye count extraction in C/Python. |
-| **T2.2** | Village Slope Heuristic | **COMPLETE** | `src/seed_search/realm/structure_accuracy.py` | Grade delta $\Delta Y_{grade} \le 16\text{m}$ and flood risk detection. |
-| **T2.3** | Headless BDS Oracle | **COMPLETE** | `scripts/bds_verify_finalist.py` | Ground-truth verification oracle script with Tier A & Tier B Docker BDS hook. |
+| **T2.1** | Stronghold Piece Checker | **COMPLETE** | `native/bridge.h`, `native/bridge.c`, `src/seed_search/backend.py` | Pinned predictor portal-room layout/eye extraction; no actual generated-block integrity validation. |
+| **T2.2** | Village Slope Heuristic | **COMPLETE** | `src/seed_search/realm/structure_accuracy.py` | Five-point predicted height heuristic, not observed flooding or a habitability guarantee. |
+| **T2.3** | Headless BDS Oracle | **NOT IMPLEMENTED** | `scripts/bds_verify_finalist.py` | Predictive report only; Docker readiness is not a generated-world observation. |
 | **T3.1** | Preference Metric Extractor | **COMPLETE** | `scripts/extract_player_metrics.py` | Objective metric calculator for $D_{\text{daily}}$, $D_{\text{milestone}}$, $A_{\text{build}}$, $R_{\text{diversity}}$. |
-| **T3.2** | Blinded A/B Web Viewer | **COMPLETE** | `src/seed_search/web/server.py` | Standardized pairwise comparison schemas and dataset generators. |
-| **T3.3** | Bradley-Terry Fitting | **COMPLETE** | `scripts/calibrate_player_weights.py` | Convex optimization solver fitting empirical utility weights $\mathbf{\beta}^*$ (100% accuracy). |
-| **T3.4** | Testing & Certification | **COMPLETE** | `tests/test_structure_accuracy.py`, `tests/test_player_calibration.py` | 6/6 dedicated unit and integration tests passing. |
+| **T3.2** | Blinded A/B Web Viewer | **NOT VERIFIED** | `src/seed_search/web/server.py` | No evidence here of a shipped blinded viewer or collected held-out player cohort. |
+| **T3.3** | Bradley-Terry Fitting | **RESEARCH PROTOTYPE** | `scripts/calibrate_player_weights.py` | Offline fit with synthetic demonstration data; training accuracy is not held-out validation or authority to promote weights. |
+| **T3.4** | Testing & Certification | **PREDICTOR TESTS ONLY** | `tests/test_structure_accuracy.py`, `tests/test_player_calibration.py` | Historical predictor/API tests do not establish Bedrock structure accuracy or held-out preference quality. |
 
 ---
 

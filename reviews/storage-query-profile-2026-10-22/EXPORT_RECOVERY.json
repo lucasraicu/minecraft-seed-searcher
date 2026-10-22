@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "original_error": "Final ORACLES JSON export could not serialize exact Decimal sort keys; all query timing/parity checks already passed",
+  "repair": "Rebuilt full original-scorer oracles during read-model stage; exact Decimal values persisted as tagged decimal strings; direct Python equality checks retain full sort precision"
+}

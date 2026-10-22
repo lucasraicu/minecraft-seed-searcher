@@ -1,0 +1,130 @@
+[
+  {
+    "task_id": "e45dab129e51",
+    "state": "failed",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [
+      {
+        "action": "command",
+        "display_name": "RunCommand"
+      }
+    ],
+    "usage": {
+      "input_tokens": 59163,
+      "output_tokens": 1530,
+      "thinking_tokens": 1089,
+      "cache_read_tokens": 58298,
+      "total_tokens": 60693
+    },
+    "error": "Antigravity result rejected: permission_denied",
+    "scope": "extraction (failed; Codex implemented)"
+  },
+  {
+    "task_id": "fde7cc492717",
+    "state": "succeeded",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [],
+    "changed_files": [
+      "src/seed_search/catalog/artifacts.py",
+      "src/seed_search/catalog/store.py",
+      "tests/catalog/test_store.py"
+    ],
+    "checks": [
+      {
+        "argv": [
+          "python3",
+          "-c",
+          "import sys,os;sys.dont_write_bytecode=True;sys.path.insert(0,'src');sys.path.insert(0,'/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-deps');os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1';import pytest;raise SystemExit(pytest.main(['tests/catalog/test_store.py','-q','-p','no:cacheprovider','--basetemp',os.environ['TMPDIR']+'/checks']))"
+        ],
+        "exit_status": 0,
+        "stdout_tail": "............                                                             [100%]\n12 passed in 0.19s\n",
+        "stderr_tail": ""
+      }
+    ],
+    "usage": {
+      "input_tokens": 148751,
+      "output_tokens": 65178,
+      "thinking_tokens": 45483,
+      "cache_read_tokens": 1368256,
+      "total_tokens": 213929
+    },
+    "scope": "storage"
+  },
+  {
+    "task_id": "0f6ca51da4b8",
+    "state": "succeeded",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [],
+    "changed_files": [
+      "src/seed_search/catalog/query.py",
+      "src/seed_search/catalog/summaries.py",
+      "tests/catalog/test_query.py"
+    ],
+    "checks": [
+      {
+        "argv": [
+          "python3",
+          "-c",
+          "import sys,os;sys.dont_write_bytecode=True;sys.path.insert(0,'src');sys.path.insert(0,'/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-deps');os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1';import pytest;raise SystemExit(pytest.main(['tests/catalog/test_query.py','-q','-p','no:cacheprovider','--basetemp',os.environ['TMPDIR']+'/checks']))"
+        ],
+        "exit_status": 0,
+        "stdout_tail": ".............                                                            [100%]\n13 passed in 9.50s\n",
+        "stderr_tail": ""
+      }
+    ],
+    "usage": {
+      "input_tokens": 196119,
+      "output_tokens": 72324,
+      "thinking_tokens": 51982,
+      "cache_read_tokens": 3327621,
+      "total_tokens": 268443
+    },
+    "scope": "summaries/query"
+  },
+  {
+    "task_id": "8c467d607100",
+    "state": "failed",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [
+      {
+        "action": "command",
+        "display_name": "RunCommand"
+      }
+    ],
+    "usage": {
+      "input_tokens": 33272,
+      "output_tokens": 689,
+      "thinking_tokens": 553,
+      "cache_read_tokens": 0,
+      "total_tokens": 33961
+    },
+    "error": "Antigravity result rejected: permission_denied",
+    "scope": "next-stage plan critique"
+  },
+  {
+    "task_id": "617ed6a13c38",
+    "state": "succeeded",
+    "model": "gemini-3.8-flash-high",
+    "effort": "high",
+    "process_exit": 0,
+    "denied_actions": [],
+    "changed_files": [],
+    "checks": [],
+    "usage": {
+      "input_tokens": 17026,
+      "output_tokens": 3148,
+      "thinking_tokens": 2192,
+      "cache_read_tokens": 0,
+      "total_tokens": 20174
+    },
+    "scope": "next-stage plan critique"
+  }
+]

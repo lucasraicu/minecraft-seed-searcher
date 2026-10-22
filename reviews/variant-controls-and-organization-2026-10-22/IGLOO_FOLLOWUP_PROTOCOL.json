@@ -1,0 +1,887 @@
+{
+  "revision": "igloo-observer-correction-v1",
+  "original_protocol_sha256": "7c0127bbc3e0f3d7b8a17ba9677251d1485791555aafc683731058138ef410ca",
+  "status": "frozen_before_followup_labels",
+  "cases": [
+    {
+      "case": {
+        "id": 0,
+        "seed": "-4442996248857059339",
+        "world_id": "a35f39394a285b599b1ed187f35415d5f28ec2eb628bbe277bc7b136389e529e",
+        "observation_id": "06ed690fa60fb20488b1c0cade6bf011b57f2dfd7d9ab8a73912ee7270128135",
+        "selection": "ordinary_fixed_world_hash",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          -200,
+          24
+        ],
+        "predicted": true,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "requests": [
+        {
+          "id": 0,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            8,
+            -192,
+            112,
+            11
+          ],
+          "chunks": [
+            [
+              -14,
+              0
+            ],
+            [
+              -13,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            11,
+            -192,
+            112,
+            14
+          ],
+          "chunks": [
+            [
+              -14,
+              0
+            ],
+            [
+              -13,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            14,
+            -192,
+            112,
+            17
+          ],
+          "chunks": [
+            [
+              -14,
+              0
+            ],
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              0
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            17,
+            -192,
+            112,
+            20
+          ],
+          "chunks": [
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            20,
+            -192,
+            112,
+            23
+          ],
+          "chunks": [
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            23,
+            -192,
+            112,
+            26
+          ],
+          "chunks": [
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            26,
+            -192,
+            112,
+            29
+          ],
+          "chunks": [
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "dimension": "overworld",
+          "volume": [
+            -216,
+            0,
+            29,
+            -192,
+            112,
+            32
+          ],
+          "chunks": [
+            [
+              -14,
+              1
+            ],
+            [
+              -13,
+              1
+            ]
+          ]
+        }
+      ],
+      "prior_seconds": 9.613487199996598,
+      "prior_requests": 0,
+      "prior_report_sha256": "b3c4c3e4438bf39a64f42753723ef215b9f3321ec40d1f4e5276c8c8ef092fc4"
+    },
+    {
+      "case": {
+        "id": 3,
+        "seed": "3629856058375408595",
+        "world_id": "57466c6152954445a821f86b806baf2a599751d071d34dd4edba3ed66a72f2dd",
+        "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          56
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "requests": [
+        {
+          "id": 0,
+          "dimension": "overworld",
+          "volume": null,
+          "chunks": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "points": [
+            [
+              9,
+              66,
+              50
+            ],
+            [
+              9,
+              66,
+              51
+            ],
+            [
+              9,
+              66,
+              52
+            ],
+            [
+              10,
+              66,
+              49
+            ],
+            [
+              10,
+              66,
+              50
+            ],
+            [
+              10,
+              66,
+              51
+            ],
+            [
+              10,
+              66,
+              52
+            ],
+            [
+              10,
+              66,
+              53
+            ],
+            [
+              10,
+              67,
+              50
+            ],
+            [
+              10,
+              67,
+              51
+            ],
+            [
+              10,
+              67,
+              52
+            ],
+            [
+              11,
+              66,
+              48
+            ],
+            [
+              11,
+              66,
+              49
+            ],
+            [
+              11,
+              66,
+              50
+            ],
+            [
+              11,
+              66,
+              51
+            ],
+            [
+              11,
+              66,
+              52
+            ],
+            [
+              11,
+              66,
+              53
+            ],
+            [
+              11,
+              66,
+              54
+            ],
+            [
+              11,
+              67,
+              49
+            ],
+            [
+              11,
+              67,
+              50
+            ],
+            [
+              11,
+              67,
+              51
+            ],
+            [
+              11,
+              67,
+              52
+            ],
+            [
+              11,
+              67,
+              53
+            ],
+            [
+              12,
+              66,
+              48
+            ],
+            [
+              12,
+              66,
+              49
+            ],
+            [
+              12,
+              66,
+              50
+            ],
+            [
+              12,
+              66,
+              51
+            ],
+            [
+              12,
+              66,
+              52
+            ],
+            [
+              12,
+              66,
+              53
+            ],
+            [
+              12,
+              66,
+              54
+            ],
+            [
+              12,
+              67,
+              48
+            ],
+            [
+              12,
+              67,
+              49
+            ],
+            [
+              12,
+              67,
+              50
+            ],
+            [
+              12,
+              67,
+              51
+            ],
+            [
+              12,
+              67,
+              52
+            ],
+            [
+              12,
+              67,
+              53
+            ],
+            [
+              12,
+              67,
+              54
+            ],
+            [
+              13,
+              66,
+              48
+            ],
+            [
+              13,
+              66,
+              49
+            ],
+            [
+              13,
+              66,
+              50
+            ],
+            [
+              13,
+              66,
+              51
+            ],
+            [
+              13,
+              66,
+              52
+            ],
+            [
+              13,
+              66,
+              53
+            ],
+            [
+              13,
+              66,
+              54
+            ],
+            [
+              13,
+              67,
+              49
+            ],
+            [
+              13,
+              67,
+              50
+            ],
+            [
+              13,
+              67,
+              51
+            ],
+            [
+              13,
+              67,
+              52
+            ],
+            [
+              14,
+              66,
+              49
+            ],
+            [
+              14,
+              66,
+              50
+            ],
+            [
+              14,
+              66,
+              51
+            ],
+            [
+              14,
+              66,
+              52
+            ],
+            [
+              14,
+              66,
+              53
+            ],
+            [
+              15,
+              66,
+              50
+            ],
+            [
+              15,
+              66,
+              51
+            ],
+            [
+              15,
+              66,
+              52
+            ],
+            [
+              16,
+              66,
+              50
+            ],
+            [
+              16,
+              66,
+              51
+            ],
+            [
+              16,
+              66,
+              52
+            ]
+          ]
+        }
+      ],
+      "prior_seconds": 46.447215002030134,
+      "prior_requests": 8,
+      "prior_report_sha256": "90e39712bd990394c6b460201dc575f9dba6212e2ee6e225d0a8bde8d5357250"
+    },
+    {
+      "case": {
+        "id": 4,
+        "seed": "3792726330709425179",
+        "world_id": "bda23177a86e687d876ed6c4542cb3b8e4184ac9456a04bf25cd7a88da50a84e",
+        "observation_id": "a672f49d3f7ae120990b1313e82ae7d1bd4b08944bd5f1b9bc782c6accfa71b8",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          152
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "requests": [
+        {
+          "id": 0,
+          "dimension": "overworld",
+          "volume": null,
+          "chunks": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              8
+            ]
+          ],
+          "points": [
+            [
+              10,
+              105,
+              139
+            ],
+            [
+              10,
+              105,
+              140
+            ],
+            [
+              10,
+              105,
+              141
+            ],
+            [
+              10,
+              106,
+              140
+            ],
+            [
+              11,
+              105,
+              138
+            ],
+            [
+              11,
+              105,
+              139
+            ],
+            [
+              11,
+              105,
+              140
+            ],
+            [
+              11,
+              105,
+              141
+            ],
+            [
+              11,
+              105,
+              142
+            ],
+            [
+              11,
+              106,
+              139
+            ],
+            [
+              11,
+              106,
+              140
+            ],
+            [
+              12,
+              105,
+              137
+            ],
+            [
+              12,
+              105,
+              138
+            ],
+            [
+              12,
+              105,
+              139
+            ],
+            [
+              12,
+              105,
+              140
+            ],
+            [
+              12,
+              105,
+              141
+            ],
+            [
+              12,
+              105,
+              142
+            ],
+            [
+              12,
+              105,
+              143
+            ],
+            [
+              12,
+              105,
+              144
+            ],
+            [
+              12,
+              106,
+              138
+            ],
+            [
+              12,
+              106,
+              139
+            ],
+            [
+              12,
+              106,
+              140
+            ],
+            [
+              12,
+              106,
+              141
+            ],
+            [
+              13,
+              105,
+              137
+            ],
+            [
+              13,
+              105,
+              138
+            ],
+            [
+              13,
+              105,
+              139
+            ],
+            [
+              13,
+              105,
+              140
+            ],
+            [
+              13,
+              105,
+              141
+            ],
+            [
+              13,
+              105,
+              142
+            ],
+            [
+              13,
+              105,
+              143
+            ],
+            [
+              13,
+              105,
+              144
+            ],
+            [
+              13,
+              106,
+              138
+            ],
+            [
+              13,
+              106,
+              139
+            ],
+            [
+              13,
+              106,
+              140
+            ],
+            [
+              13,
+              106,
+              141
+            ],
+            [
+              14,
+              105,
+              137
+            ],
+            [
+              14,
+              105,
+              138
+            ],
+            [
+              14,
+              105,
+              139
+            ],
+            [
+              14,
+              105,
+              140
+            ],
+            [
+              14,
+              105,
+              141
+            ],
+            [
+              14,
+              105,
+              142
+            ],
+            [
+              14,
+              105,
+              143
+            ],
+            [
+              14,
+              105,
+              144
+            ],
+            [
+              14,
+              106,
+              138
+            ],
+            [
+              14,
+              106,
+              139
+            ],
+            [
+              14,
+              106,
+              140
+            ],
+            [
+              14,
+              106,
+              141
+            ],
+            [
+              15,
+              105,
+              138
+            ],
+            [
+              15,
+              105,
+              139
+            ],
+            [
+              15,
+              105,
+              140
+            ],
+            [
+              15,
+              105,
+              141
+            ],
+            [
+              15,
+              105,
+              142
+            ],
+            [
+              15,
+              106,
+              139
+            ],
+            [
+              15,
+              106,
+              140
+            ],
+            [
+              15,
+              106,
+              141
+            ],
+            [
+              16,
+              105,
+              139
+            ],
+            [
+              16,
+              105,
+              140
+            ],
+            [
+              16,
+              105,
+              141
+            ],
+            [
+              16,
+              106,
+              140
+            ]
+          ]
+        }
+      ],
+      "prior_seconds": 42.45671123196371,
+      "prior_requests": 8,
+      "prior_report_sha256": "6cade364be1ccb74d369cbcd4651f32f2e2f9c121cff3774e1b7d5fba982b733"
+    }
+  ],
+  "amendment": "Cases3/4 exactlyoneextra request59reads each; execute requires explicit approval. Case0 uses existingunusedrequests/time. Sameownedworlddirectories, cumulative original1200s/180s-world2CPU2GiB2GiBoutput.",
+  "recognition": "Strict unchanged59-block positive no-trapdoor top for negative. Laboratory exclusive unopened igloo_chest plus BrewingStand at pinned transformed displacement and anchored surface furniture for positive. Missing/clipped/conflicting UNKNOWN. Originalunknowns retained."
+}

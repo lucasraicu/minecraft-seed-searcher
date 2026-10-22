@@ -1,0 +1,1224 @@
+{
+  "status": "PASS",
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "worlds": 222,
+  "memberships": 109918,
+  "manifest_load": {
+    "wall_seconds": 3.0606818880187348,
+    "cpu_seconds": 3.048105
+  },
+  "current_snapshot_artifacts": {
+    "manifest-index": {
+      "files": 1,
+      "compressed_bytes": 7826,
+      "uncompressed_json_bytes": 42334
+    },
+    "manifest-worlds": {
+      "files": 1,
+      "compressed_bytes": 92237,
+      "uncompressed_json_bytes": 416620
+    },
+    "manifest-memberships": {
+      "files": 55,
+      "compressed_bytes": 21618766,
+      "uncompressed_json_bytes": 79425305
+    },
+    "world-bundles": {
+      "files": 222,
+      "compressed_bytes": 167807583,
+      "uncompressed_json_bytes": 1305065312
+    },
+    "query-projections": {
+      "files": 666,
+      "compressed_bytes": 51738239,
+      "uncompressed_json_bytes": 232265871
+    }
+  },
+  "current_reachable_compressed_bytes": 241264651,
+  "all_automation_object_bytes": 1036457363,
+  "other_historical_shared_unreferenced_bytes": 795192712,
+  "current_fraction": 0.23277817266082754,
+  "layer_bytes": {
+    "harvest.lock": {
+      "files": 1,
+      "bytes": 0
+    },
+    "harvest.sqlite": {
+      "files": 1,
+      "bytes": 111800320
+    },
+    "pilot.sqlite": {
+      "files": 1,
+      "bytes": 4386816
+    },
+    "harvest-drain.lock": {
+      "files": 1,
+      "bytes": 0
+    },
+    "accuracy/publication.lock": {
+      "files": 1,
+      "bytes": 0
+    },
+    "accuracy/9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f.json": {
+      "files": 1,
+      "bytes": 500
+    },
+    "accuracy/18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93.latest.json": {
+      "files": 1,
+      "bytes": 500
+    },
+    "product-previews": {
+      "files": 4,
+      "bytes": 3930038
+    },
+    "automation/configuration.json": {
+      "files": 1,
+      "bytes": 2135
+    },
+    "automation/current.json": {
+      "files": 1,
+      "bytes": 432
+    },
+    "automation/snapshots": {
+      "files": 15,
+      "bytes": 6499
+    },
+    "automation/generations": {
+      "files": 15,
+      "bytes": 6499
+    },
+    "automation/objects": {
+      "files": 6098,
+      "bytes": 1036457363
+    },
+    "accuracy/objects": {
+      "files": 1,
+      "bytes": 129023
+    },
+    "evidence/3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a": {
+      "files": 4,
+      "bytes": 81667
+    },
+    "evidence/18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93": {
+      "files": 4,
+      "bytes": 81236
+    },
+    "evidence/ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da": {
+      "files": 4,
+      "bytes": 81591
+    },
+    "evidence/b48a7932a54a4e69b1ba28dc56f9ec5f973f9706399a2c483f7ecb6e9e8e66ae": {
+      "files": 4,
+      "bytes": 81383
+    },
+    "artifacts/61": {
+      "files": 9,
+      "bytes": 293020
+    },
+    "artifacts/0d": {
+      "files": 8,
+      "bytes": 294675
+    },
+    "artifacts/95": {
+      "files": 7,
+      "bytes": 238740
+    },
+    "artifacts/59": {
+      "files": 16,
+      "bytes": 660428
+    },
+    "artifacts/92": {
+      "files": 11,
+      "bytes": 697511
+    },
+    "artifacts/0c": {
+      "files": 11,
+      "bytes": 651384
+    },
+    "artifacts/66": {
+      "files": 9,
+      "bytes": 555990
+    },
+    "artifacts/3e": {
+      "files": 9,
+      "bytes": 467505
+    },
+    "artifacts/50": {
+      "files": 7,
+      "bytes": 326100
+    },
+    "artifacts/68": {
+      "files": 11,
+      "bytes": 515137
+    },
+    "artifacts/57": {
+      "files": 8,
+      "bytes": 425786
+    },
+    "artifacts/3b": {
+      "files": 17,
+      "bytes": 705382
+    },
+    "artifacts/6f": {
+      "files": 11,
+      "bytes": 476084
+    },
+    "artifacts/03": {
+      "files": 9,
+      "bytes": 560532
+    },
+    "artifacts/9b": {
+      "files": 10,
+      "bytes": 520457
+    },
+    "artifacts/9e": {
+      "files": 7,
+      "bytes": 466789
+    },
+    "artifacts/04": {
+      "files": 9,
+      "bytes": 511159
+    },
+    "artifacts/6a": {
+      "files": 6,
+      "bytes": 195431
+    },
+    "artifacts/32": {
+      "files": 10,
+      "bytes": 381978
+    },
+    "artifacts/35": {
+      "files": 14,
+      "bytes": 312838
+    },
+    "artifacts/69": {
+      "files": 6,
+      "bytes": 240268
+    },
+    "artifacts/3c": {
+      "files": 13,
+      "bytes": 838930
+    },
+    "artifacts/56": {
+      "files": 11,
+      "bytes": 529058
+    },
+    "artifacts/51": {
+      "files": 8,
+      "bytes": 292751
+    },
+    "artifacts/3d": {
+      "files": 12,
+      "bytes": 438511
+    },
+    "artifacts/58": {
+      "files": 13,
+      "bytes": 310937
+    },
+    "artifacts/67": {
+      "files": 8,
+      "bytes": 297284
+    },
+    "artifacts/0b": {
+      "files": 12,
+      "bytes": 306359
+    },
+    "artifacts/93": {
+      "files": 19,
+      "bytes": 970187
+    },
+    "artifacts/94": {
+      "files": 13,
+      "bytes": 527533
+    },
+    "artifacts/0e": {
+      "files": 13,
+      "bytes": 652501
+    },
+    "artifacts/60": {
+      "files": 13,
+      "bytes": 529558
+    },
+    "artifacts/34": {
+      "files": 10,
+      "bytes": 480188
+    },
+    "artifacts/5a": {
+      "files": 5,
+      "bytes": 238221
+    },
+    "artifacts/5f": {
+      "files": 14,
+      "bytes": 534341
+    },
+    "artifacts/33": {
+      "files": 15,
+      "bytes": 718162
+    },
+    "artifacts/05": {
+      "files": 3,
+      "bytes": 187296
+    },
+    "artifacts/9d": {
+      "files": 11,
+      "bytes": 474491
+    },
+    "artifacts/9c": {
+      "files": 8,
+      "bytes": 376157
+    },
+    "artifacts/02": {
+      "files": 13,
+      "bytes": 792592
+    },
+    "artifacts/a4": {
+      "files": 8,
+      "bytes": 379474
+    },
+    "artifacts/a3": {
+      "files": 7,
+      "bytes": 329034
+    },
+    "artifacts/b5": {
+      "files": 12,
+      "bytes": 660258
+    },
+    "artifacts/b2": {
+      "files": 11,
+      "bytes": 649786
+    },
+    "artifacts/d9": {
+      "files": 9,
+      "bytes": 340019
+    },
+    "artifacts/ac": {
+      "files": 16,
+      "bytes": 844606
+    },
+    "artifacts/ad": {
+      "files": 14,
+      "bytes": 535355
+    },
+    "artifacts/bb": {
+      "files": 10,
+      "bytes": 605104
+    },
+    "artifacts/d7": {
+      "files": 15,
+      "bytes": 657819
+    },
+    "artifacts/d0": {
+      "files": 10,
+      "bytes": 340996
+    },
+    "artifacts/be": {
+      "files": 13,
+      "bytes": 527957
+    },
+    "artifacts/b3": {
+      "files": 9,
+      "bytes": 382597
+    },
+    "artifacts/df": {
+      "files": 15,
+      "bytes": 757750
+    },
+    "artifacts/da": {
+      "files": 9,
+      "bytes": 514820
+    },
+    "artifacts/b4": {
+      "files": 11,
+      "bytes": 471386
+    },
+    "artifacts/a2": {
+      "files": 8,
+      "bytes": 379859
+    },
+    "artifacts/a5": {
+      "files": 15,
+      "bytes": 838631
+    },
+    "artifacts/bd": {
+      "files": 11,
+      "bytes": 516590
+    },
+    "artifacts/d1": {
+      "files": 7,
+      "bytes": 413864
+    },
+    "artifacts/d6": {
+      "files": 13,
+      "bytes": 347530
+    },
+    "artifacts/bc": {
+      "files": 9,
+      "bytes": 562675
+    },
+    "artifacts/ae": {
+      "files": 6,
+      "bytes": 325985
+    },
+    "artifacts/d8": {
+      "files": 9,
+      "bytes": 339141
+    },
+    "artifacts/ab": {
+      "files": 12,
+      "bytes": 615040
+    },
+    "artifacts/e5": {
+      "files": 9,
+      "bytes": 431306
+    },
+    "artifacts/e2": {
+      "files": 7,
+      "bytes": 285303
+    },
+    "artifacts/f4": {
+      "files": 8,
+      "bytes": 374178
+    },
+    "artifacts/f3": {
+      "files": 8,
+      "bytes": 365327
+    },
+    "artifacts/eb": {
+      "files": 14,
+      "bytes": 748097
+    },
+    "artifacts/c7": {
+      "files": 11,
+      "bytes": 524525
+    },
+    "artifacts/c0": {
+      "files": 7,
+      "bytes": 158976
+    },
+    "artifacts/ee": {
+      "files": 9,
+      "bytes": 479575
+    },
+    "artifacts/c9": {
+      "files": 7,
+      "bytes": 197341
+    },
+    "artifacts/fc": {
+      "files": 20,
+      "bytes": 943149
+    },
+    "artifacts/fd": {
+      "files": 9,
+      "bytes": 297104
+    },
+    "artifacts/f2": {
+      "files": 11,
+      "bytes": 517937
+    },
+    "artifacts/f5": {
+      "files": 4,
+      "bytes": 105276
+    },
+    "artifacts/e3": {
+      "files": 5,
+      "bytes": 278265
+    },
+    "artifacts/cf": {
+      "files": 9,
+      "bytes": 479540
+    },
+    "artifacts/ca": {
+      "files": 13,
+      "bytes": 357361
+    },
+    "artifacts/e4": {
+      "files": 10,
+      "bytes": 302034
+    },
+    "artifacts/fe": {
+      "files": 5,
+      "bytes": 149623
+    },
+    "artifacts/c8": {
+      "files": 11,
+      "bytes": 604638
+    },
+    "artifacts/fb": {
+      "files": 10,
+      "bytes": 387957
+    },
+    "artifacts/ed": {
+      "files": 10,
+      "bytes": 476359
+    },
+    "artifacts/c1": {
+      "files": 10,
+      "bytes": 299732
+    },
+    "artifacts/c6": {
+      "files": 4,
+      "bytes": 277428
+    },
+    "artifacts/ec": {
+      "files": 7,
+      "bytes": 247633
+    },
+    "artifacts/4e": {
+      "files": 19,
+      "bytes": 887231
+    },
+    "artifacts/20": {
+      "files": 9,
+      "bytes": 644075
+    },
+    "artifacts/18": {
+      "files": 6,
+      "bytes": 329361
+    },
+    "artifacts/27": {
+      "files": 9,
+      "bytes": 250532
+    },
+    "artifacts/4b": {
+      "files": 8,
+      "bytes": 510369
+    },
+    "artifacts/11": {
+      "files": 15,
+      "bytes": 751948
+    },
+    "artifacts/7d": {
+      "files": 11,
+      "bytes": 433699
+    },
+    "artifacts/29": {
+      "files": 10,
+      "bytes": 384070
+    },
+    "artifacts/7c": {
+      "files": 8,
+      "bytes": 334707
+    },
+    "artifacts/16": {
+      "files": 8,
+      "bytes": 425825
+    },
+    "artifacts/42": {
+      "files": 7,
+      "bytes": 370408
+    },
+    "artifacts/89": {
+      "files": 8,
+      "bytes": 459277
+    },
+    "artifacts/45": {
+      "files": 9,
+      "bytes": 512599
+    },
+    "artifacts/1f": {
+      "files": 9,
+      "bytes": 297260
+    },
+    "artifacts/73": {
+      "files": 17,
+      "bytes": 618287
+    },
+    "artifacts/87": {
+      "files": 10,
+      "bytes": 382302
+    },
+    "artifacts/80": {
+      "files": 6,
+      "bytes": 235835
+    },
+    "artifacts/74": {
+      "files": 11,
+      "bytes": 431419
+    },
+    "artifacts/1a": {
+      "files": 9,
+      "bytes": 431702
+    },
+    "artifacts/28": {
+      "files": 7,
+      "bytes": 330061
+    },
+    "artifacts/17": {
+      "files": 6,
+      "bytes": 293439
+    },
+    "artifacts/7b": {
+      "files": 9,
+      "bytes": 513476
+    },
+    "artifacts/8f": {
+      "files": 13,
+      "bytes": 618804
+    },
+    "artifacts/8a": {
+      "files": 3,
+      "bytes": 142453
+    },
+    "artifacts/7e": {
+      "files": 7,
+      "bytes": 288754
+    },
+    "artifacts/10": {
+      "files": 8,
+      "bytes": 555212
+    },
+    "artifacts/19": {
+      "files": 7,
+      "bytes": 381539
+    },
+    "artifacts/4c": {
+      "files": 9,
+      "bytes": 466241
+    },
+    "artifacts/26": {
+      "files": 7,
+      "bytes": 552866
+    },
+    "artifacts/21": {
+      "files": 5,
+      "bytes": 238463
+    },
+    "artifacts/4d": {
+      "files": 14,
+      "bytes": 801897
+    },
+    "artifacts/75": {
+      "files": 8,
+      "bytes": 417255
+    },
+    "artifacts/81": {
+      "files": 5,
+      "bytes": 283823
+    },
+    "artifacts/86": {
+      "files": 11,
+      "bytes": 427869
+    },
+    "artifacts/72": {
+      "files": 13,
+      "bytes": 560588
+    },
+    "artifacts/44": {
+      "files": 3,
+      "bytes": 231009
+    },
+    "artifacts/2a": {
+      "files": 11,
+      "bytes": 563795
+    },
+    "artifacts/2f": {
+      "files": 8,
+      "bytes": 426420
+    },
+    "artifacts/43": {
+      "files": 9,
+      "bytes": 468865
+    },
+    "artifacts/88": {
+      "files": 10,
+      "bytes": 428059
+    },
+    "artifacts/9f": {
+      "files": 10,
+      "bytes": 306596
+    },
+    "artifacts/6b": {
+      "files": 10,
+      "bytes": 380512
+    },
+    "artifacts/07": {
+      "files": 10,
+      "bytes": 425557
+    },
+    "artifacts/38": {
+      "files": 10,
+      "bytes": 644609
+    },
+    "artifacts/00": {
+      "files": 12,
+      "bytes": 561952
+    },
+    "artifacts/6e": {
+      "files": 7,
+      "bytes": 326473
+    },
+    "artifacts/9a": {
+      "files": 8,
+      "bytes": 333201
+    },
+    "artifacts/36": {
+      "files": 7,
+      "bytes": 287611
+    },
+    "artifacts/5c": {
+      "files": 12,
+      "bytes": 650134
+    },
+    "artifacts/09": {
+      "files": 8,
+      "bytes": 288422
+    },
+    "artifacts/5d": {
+      "files": 12,
+      "bytes": 646018
+    },
+    "artifacts/31": {
+      "files": 4,
+      "bytes": 58030
+    },
+    "artifacts/91": {
+      "files": 7,
+      "bytes": 239107
+    },
+    "artifacts/65": {
+      "files": 5,
+      "bytes": 414979
+    },
+    "artifacts/62": {
+      "files": 8,
+      "bytes": 247897
+    },
+    "artifacts/96": {
+      "files": 13,
+      "bytes": 835975
+    },
+    "artifacts/3a": {
+      "files": 6,
+      "bytes": 279224
+    },
+    "artifacts/54": {
+      "files": 10,
+      "bytes": 347049
+    },
+    "artifacts/98": {
+      "files": 11,
+      "bytes": 648484
+    },
+    "artifacts/53": {
+      "files": 8,
+      "bytes": 290304
+    },
+    "artifacts/3f": {
+      "files": 10,
+      "bytes": 513392
+    },
+    "artifacts/30": {
+      "files": 10,
+      "bytes": 427148
+    },
+    "artifacts/5e": {
+      "files": 5,
+      "bytes": 190542
+    },
+    "artifacts/5b": {
+      "files": 11,
+      "bytes": 658265
+    },
+    "artifacts/37": {
+      "files": 11,
+      "bytes": 469980
+    },
+    "artifacts/08": {
+      "files": 9,
+      "bytes": 509045
+    },
+    "artifacts/6d": {
+      "files": 11,
+      "bytes": 601116
+    },
+    "artifacts/01": {
+      "files": 9,
+      "bytes": 374687
+    },
+    "artifacts/06": {
+      "files": 12,
+      "bytes": 656086
+    },
+    "artifacts/6c": {
+      "files": 10,
+      "bytes": 384029
+    },
+    "artifacts/39": {
+      "files": 10,
+      "bytes": 475131
+    },
+    "artifacts/99": {
+      "files": 8,
+      "bytes": 247263
+    },
+    "artifacts/52": {
+      "files": 6,
+      "bytes": 278516
+    },
+    "artifacts/55": {
+      "files": 5,
+      "bytes": 282405
+    },
+    "artifacts/97": {
+      "files": 6,
+      "bytes": 288602
+    },
+    "artifacts/63": {
+      "files": 11,
+      "bytes": 823087
+    },
+    "artifacts/0f": {
+      "files": 13,
+      "bytes": 703078
+    },
+    "artifacts/0a": {
+      "files": 7,
+      "bytes": 241355
+    },
+    "artifacts/64": {
+      "files": 12,
+      "bytes": 610587
+    },
+    "artifacts/90": {
+      "files": 11,
+      "bytes": 614958
+    },
+    "artifacts/bf": {
+      "files": 11,
+      "bytes": 611812
+    },
+    "artifacts/d3": {
+      "files": 13,
+      "bytes": 655631
+    },
+    "artifacts/d4": {
+      "files": 7,
+      "bytes": 166058
+    },
+    "artifacts/ba": {
+      "files": 5,
+      "bytes": 108316
+    },
+    "artifacts/a0": {
+      "files": 14,
+      "bytes": 571578
+    },
+    "artifacts/a7": {
+      "files": 10,
+      "bytes": 389436
+    },
+    "artifacts/b8": {
+      "files": 10,
+      "bytes": 519293
+    },
+    "artifacts/b1": {
+      "files": 9,
+      "bytes": 646235
+    },
+    "artifacts/dd": {
+      "files": 14,
+      "bytes": 753724
+    },
+    "artifacts/dc": {
+      "files": 10,
+      "bytes": 476220
+    },
+    "artifacts/b6": {
+      "files": 8,
+      "bytes": 598202
+    },
+    "artifacts/a9": {
+      "files": 8,
+      "bytes": 335514
+    },
+    "artifacts/d5": {
+      "files": 4,
+      "bytes": 186033
+    },
+    "artifacts/d2": {
+      "files": 12,
+      "bytes": 875720
+    },
+    "artifacts/aa": {
+      "files": 14,
+      "bytes": 621390
+    },
+    "artifacts/af": {
+      "files": 7,
+      "bytes": 242404
+    },
+    "artifacts/b7": {
+      "files": 6,
+      "bytes": 154233
+    },
+    "artifacts/db": {
+      "files": 17,
+      "bytes": 675598
+    },
+    "artifacts/a8": {
+      "files": 5,
+      "bytes": 150236
+    },
+    "artifacts/de": {
+      "files": 13,
+      "bytes": 787585
+    },
+    "artifacts/b0": {
+      "files": 10,
+      "bytes": 381252
+    },
+    "artifacts/a6": {
+      "files": 10,
+      "bytes": 297416
+    },
+    "artifacts/b9": {
+      "files": 10,
+      "bytes": 557603
+    },
+    "artifacts/a1": {
+      "files": 11,
+      "bytes": 513137
+    },
+    "artifacts/ef": {
+      "files": 8,
+      "bytes": 251284
+    },
+    "artifacts/c3": {
+      "files": 11,
+      "bytes": 478443
+    },
+    "artifacts/c4": {
+      "files": 10,
+      "bytes": 446055
+    },
+    "artifacts/ea": {
+      "files": 12,
+      "bytes": 741180
+    },
+    "artifacts/e1": {
+      "files": 9,
+      "bytes": 474013
+    },
+    "artifacts/cd": {
+      "files": 6,
+      "bytes": 369231
+    },
+    "artifacts/cc": {
+      "files": 8,
+      "bytes": 152683
+    },
+    "artifacts/e6": {
+      "files": 13,
+      "bytes": 624005
+    },
+    "artifacts/f9": {
+      "files": 10,
+      "bytes": 383055
+    },
+    "artifacts/f0": {
+      "files": 11,
+      "bytes": 599685
+    },
+    "artifacts/f7": {
+      "files": 9,
+      "bytes": 466094
+    },
+    "artifacts/e8": {
+      "files": 9,
+      "bytes": 339066
+    },
+    "artifacts/fa": {
+      "files": 7,
+      "bytes": 285632
+    },
+    "artifacts/ff": {
+      "files": 13,
+      "bytes": 483745
+    },
+    "artifacts/c5": {
+      "files": 8,
+      "bytes": 333686
+    },
+    "artifacts/c2": {
+      "files": 12,
+      "bytes": 613754
+    },
+    "artifacts/f6": {
+      "files": 16,
+      "bytes": 715830
+    },
+    "artifacts/e9": {
+      "files": 8,
+      "bytes": 323782
+    },
+    "artifacts/f1": {
+      "files": 10,
+      "bytes": 259567
+    },
+    "artifacts/e7": {
+      "files": 5,
+      "bytes": 151972
+    },
+    "artifacts/cb": {
+      "files": 13,
+      "bytes": 828394
+    },
+    "artifacts/f8": {
+      "files": 8,
+      "bytes": 334284
+    },
+    "artifacts/ce": {
+      "files": 13,
+      "bytes": 397085
+    },
+    "artifacts/e0": {
+      "files": 9,
+      "bytes": 291244
+    },
+    "artifacts/46": {
+      "files": 8,
+      "bytes": 247994
+    },
+    "artifacts/2c": {
+      "files": 18,
+      "bytes": 591237
+    },
+    "artifacts/79": {
+      "files": 7,
+      "bytes": 332950
+    },
+    "artifacts/2d": {
+      "files": 12,
+      "bytes": 391754
+    },
+    "artifacts/41": {
+      "files": 9,
+      "bytes": 387249
+    },
+    "artifacts/83": {
+      "files": 5,
+      "bytes": 151409
+    },
+    "artifacts/1b": {
+      "files": 7,
+      "bytes": 334432
+    },
+    "artifacts/77": {
+      "files": 8,
+      "bytes": 333787
+    },
+    "artifacts/48": {
+      "files": 7,
+      "bytes": 332553
+    },
+    "artifacts/70": {
+      "files": 9,
+      "bytes": 335447
+    },
+    "artifacts/1e": {
+      "files": 5,
+      "bytes": 282520
+    },
+    "artifacts/84": {
+      "files": 9,
+      "bytes": 381152
+    },
+    "artifacts/4a": {
+      "files": 5,
+      "bytes": 237559
+    },
+    "artifacts/24": {
+      "files": 10,
+      "bytes": 556229
+    },
+    "artifacts/23": {
+      "files": 11,
+      "bytes": 647077
+    },
+    "artifacts/4f": {
+      "files": 9,
+      "bytes": 561958
+    },
+    "artifacts/8d": {
+      "files": 8,
+      "bytes": 251302
+    },
+    "artifacts/15": {
+      "files": 6,
+      "bytes": 239782
+    },
+    "artifacts/12": {
+      "files": 4,
+      "bytes": 191775
+    },
+    "artifacts/8c": {
+      "files": 3,
+      "bytes": 188320
+    },
+    "artifacts/85": {
+      "files": 9,
+      "bytes": 292494
+    },
+    "artifacts/1d": {
+      "files": 10,
+      "bytes": 385836
+    },
+    "artifacts/71": {
+      "files": 7,
+      "bytes": 552002
+    },
+    "artifacts/76": {
+      "files": 6,
+      "bytes": 328814
+    },
+    "artifacts/1c": {
+      "files": 8,
+      "bytes": 459203
+    },
+    "artifacts/82": {
+      "files": 9,
+      "bytes": 467202
+    },
+    "artifacts/49": {
+      "files": 20,
+      "bytes": 687766
+    },
+    "artifacts/40": {
+      "files": 10,
+      "bytes": 468957
+    },
+    "artifacts/2e": {
+      "files": 11,
+      "bytes": 660392
+    },
+    "artifacts/2b": {
+      "files": 13,
+      "bytes": 782389
+    },
+    "artifacts/47": {
+      "files": 5,
+      "bytes": 278323
+    },
+    "artifacts/78": {
+      "files": 14,
+      "bytes": 441792
+    },
+    "artifacts/8b": {
+      "files": 8,
+      "bytes": 462724
+    },
+    "artifacts/13": {
+      "files": 8,
+      "bytes": 288078
+    },
+    "artifacts/7f": {
+      "files": 5,
+      "bytes": 192126
+    },
+    "artifacts/7a": {
+      "files": 13,
+      "bytes": 696145
+    },
+    "artifacts/14": {
+      "files": 13,
+      "bytes": 484672
+    },
+    "artifacts/8e": {
+      "files": 17,
+      "bytes": 321563
+    },
+    "artifacts/22": {
+      "files": 12,
+      "bytes": 614878
+    },
+    "artifacts/25": {
+      "files": 11,
+      "bytes": 431545
+    }
+  },
+  "sqlite": {
+    "harvest.sqlite": {
+      "bytes": 111800320,
+      "stats": {
+        "page_size": 4096,
+        "page_count": 27295,
+        "freelist_count": 0,
+        "journal_mode": "wal",
+        "dbstat_unavailable": "no such table: dbstat"
+      },
+      "tables": {
+        "harvest_meta": 1,
+        "campaigns": 0,
+        "jobs": 0,
+        "membership": 0,
+        "automation_meta": 4,
+        "automation_receipts": 222,
+        "automation_members": 109918,
+        "automation_control": 1
+      }
+    },
+    "pilot.sqlite": {
+      "bytes": 4386816,
+      "stats": {
+        "page_size": 4096,
+        "page_count": 1071,
+        "freelist_count": 0,
+        "journal_mode": "wal",
+        "dbstat_unavailable": "no such table: dbstat"
+      },
+      "tables": {
+        "schema_meta": 1,
+        "artifact_ref": 2468,
+        "snapshot_root": 23,
+        "observation_ref": 2700,
+        "leaf_segment": 800,
+        "snapshot_membership": 2700
+      }
+    }
+  },
+  "projection_8192_microbench": [
+    {
+      "trial": 0,
+      "stage_seconds": {
+        "raw_fetch": 0.07441424974240363,
+        "hash": 0.04312253149691969,
+        "inflate": 0.12258284469135106,
+        "parse": 4.896337762242183
+      },
+      "counts": {
+        "compressed_bytes": 20318836,
+        "json_bytes": 81969837,
+        "rows": 18205
+      }
+    },
+    {
+      "trial": 1,
+      "stage_seconds": {
+        "raw_fetch": 0.031242379220202565,
+        "hash": 0.0430415547452867,
+        "inflate": 0.12226166599430144,
+        "parse": 4.799029874615371
+      },
+      "counts": {
+        "compressed_bytes": 20318836,
+        "json_bytes": 81969837,
+        "rows": 18205
+      }
+    },
+    {
+      "trial": 2,
+      "stage_seconds": {
+        "raw_fetch": 0.030488625052385032,
+        "hash": 0.04247164272237569,
+        "inflate": 0.11682123003993183,
+        "parse": 4.9406656990759075
+      },
+      "counts": {
+        "compressed_bytes": 20318836,
+        "json_bytes": 81969837,
+        "rows": 18205
+      }
+    }
+  ],
+  "scope": "Current222world snapshot;other bytes include historical/shared/orphan objects and cannot be deleted without reachability proof"
+}

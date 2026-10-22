@@ -1,0 +1,1114 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "trial": 0,
+      "arm": "active_baseline",
+      "count": 262144,
+      "start": 0,
+      "wall_seconds": 3.460377804003656,
+      "input_seeds_per_second": 75755.88991950518,
+      "cpu_seconds": 85.48907799999999,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.3745238229166716,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6152829229831696,
+        "batch_latency_p95_seconds": 0.7676022939849645,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 77683.25658860616,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000000000",
+            "00000000000000016384",
+            "complete"
+          ],
+          [
+            "00000000000000016384",
+            "00000000000000032768",
+            "complete"
+          ],
+          [
+            "00000000000000032768",
+            "00000000000000049152",
+            "complete"
+          ],
+          [
+            "00000000000000049152",
+            "00000000000000065536",
+            "complete"
+          ],
+          [
+            "00000000000000065536",
+            "00000000000000081920",
+            "complete"
+          ],
+          [
+            "00000000000000081920",
+            "00000000000000098304",
+            "complete"
+          ],
+          [
+            "00000000000000098304",
+            "00000000000000114688",
+            "complete"
+          ],
+          [
+            "00000000000000114688",
+            "00000000000000131072",
+            "complete"
+          ],
+          [
+            "00000000000000131072",
+            "00000000000000147456",
+            "complete"
+          ],
+          [
+            "00000000000000147456",
+            "00000000000000163840",
+            "complete"
+          ],
+          [
+            "00000000000000163840",
+            "00000000000000180224",
+            "complete"
+          ],
+          [
+            "00000000000000180224",
+            "00000000000000196608",
+            "complete"
+          ],
+          [
+            "00000000000000196608",
+            "00000000000000212992",
+            "complete"
+          ],
+          [
+            "00000000000000212992",
+            "00000000000000229376",
+            "complete"
+          ],
+          [
+            "00000000000000229376",
+            "00000000000000245760",
+            "complete"
+          ],
+          [
+            "00000000000000245760",
+            "00000000000000262144",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 262144,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 262144
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-0-active_baseline"
+    },
+    {
+      "trial": 0,
+      "arm": "active_catalog",
+      "count": 262144,
+      "start": 0,
+      "wall_seconds": 3.796013902989216,
+      "input_seeds_per_second": 69057.70281651804,
+      "cpu_seconds": 85.75975700000001,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.682474477100186,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6488700625486672,
+        "batch_latency_p95_seconds": 0.8262761600781232,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 71186.91565417958,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000000000",
+            "00000000000000016384",
+            "complete"
+          ],
+          [
+            "00000000000000016384",
+            "00000000000000032768",
+            "complete"
+          ],
+          [
+            "00000000000000032768",
+            "00000000000000049152",
+            "complete"
+          ],
+          [
+            "00000000000000049152",
+            "00000000000000065536",
+            "complete"
+          ],
+          [
+            "00000000000000065536",
+            "00000000000000081920",
+            "complete"
+          ],
+          [
+            "00000000000000081920",
+            "00000000000000098304",
+            "complete"
+          ],
+          [
+            "00000000000000098304",
+            "00000000000000114688",
+            "complete"
+          ],
+          [
+            "00000000000000114688",
+            "00000000000000131072",
+            "complete"
+          ],
+          [
+            "00000000000000131072",
+            "00000000000000147456",
+            "complete"
+          ],
+          [
+            "00000000000000147456",
+            "00000000000000163840",
+            "complete"
+          ],
+          [
+            "00000000000000163840",
+            "00000000000000180224",
+            "complete"
+          ],
+          [
+            "00000000000000180224",
+            "00000000000000196608",
+            "complete"
+          ],
+          [
+            "00000000000000196608",
+            "00000000000000212992",
+            "complete"
+          ],
+          [
+            "00000000000000212992",
+            "00000000000000229376",
+            "complete"
+          ],
+          [
+            "00000000000000229376",
+            "00000000000000245760",
+            "complete"
+          ],
+          [
+            "00000000000000245760",
+            "00000000000000262144",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 262144,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 262144
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-0-active_catalog",
+      "handoff": {
+        "public_worker": null,
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/active-handoff-0",
+        "sample_cap": 2,
+        "campaign_id": "80fe13f6c7f7281d01dc8f480390f7bbe5384ae4d003b3a57aa246dd1e146885",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-0-active_catalog/catalog-handoff/80fe13f6c7f7281d01dc8f480390f7bbe5384ae4d003b3a57aa246dd1e146885.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "personal_interval": [
+        690205.339959914,
+        690209.141168835
+      ],
+      "extraction_overlap_seconds": 3.8012089210096747,
+      "extraction_overlap_fraction": 1.0,
+      "query_overlap_seconds": {
+        "0": 3.8012089210096747,
+        "1": 3.8012089210096747
+      },
+      "query_overlap_fraction": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "public": {
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 690205.118367472,
+            "extraction_ended": 690229.698473627,
+            "extraction_seconds": 24.580106417066418,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.22592213901225477,
+            "extension_points": 3200,
+            "summary_seconds": 6.670283516985364,
+            "summary_rows": 246,
+            "publication_started": 690239.140105304,
+            "publication_ended": 690240.516383481,
+            "publication_seconds": 1.3762784770224243,
+            "snapshot_id": "69dd1f6805c13f96caa60024eeb53518e2bf839f2e95bb3e72ac6e4911daf540",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 35.502903670072556,
+        "seconds_per_world": 35.502903670072556,
+        "worlds_per_second": 0.028166710230041202,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 35.39861050795298,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "1fa1c61531e3c297d9b8462c4ec227f37fab1aa5b40c84f3e8372041c876b9b5",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      },
+      "queries": [
+        {
+          "client": 0,
+          "sequence": 0,
+          "started": 690205.339170431,
+          "ended": 690210.91852723,
+          "seconds": 5.579355483991094,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.549401425058022,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        },
+        {
+          "client": 1,
+          "sequence": 0,
+          "started": 690205.339780472,
+          "ended": 690210.94853746,
+          "seconds": 5.608756261994131,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.581455916981213,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "active_catalog",
+      "count": 262144,
+      "start": 262144,
+      "wall_seconds": 3.7945138360373676,
+      "input_seeds_per_second": 69085.00306689051,
+      "cpu_seconds": 86.67998500000002,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.689451790996827,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6345555110601708,
+        "batch_latency_p95_seconds": 0.7305550000164658,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 71052.29038083546,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000262144",
+            "00000000000000278528",
+            "complete"
+          ],
+          [
+            "00000000000000278528",
+            "00000000000000294912",
+            "complete"
+          ],
+          [
+            "00000000000000294912",
+            "00000000000000311296",
+            "complete"
+          ],
+          [
+            "00000000000000311296",
+            "00000000000000327680",
+            "complete"
+          ],
+          [
+            "00000000000000327680",
+            "00000000000000344064",
+            "complete"
+          ],
+          [
+            "00000000000000344064",
+            "00000000000000360448",
+            "complete"
+          ],
+          [
+            "00000000000000360448",
+            "00000000000000376832",
+            "complete"
+          ],
+          [
+            "00000000000000376832",
+            "00000000000000393216",
+            "complete"
+          ],
+          [
+            "00000000000000393216",
+            "00000000000000409600",
+            "complete"
+          ],
+          [
+            "00000000000000409600",
+            "00000000000000425984",
+            "complete"
+          ],
+          [
+            "00000000000000425984",
+            "00000000000000442368",
+            "complete"
+          ],
+          [
+            "00000000000000442368",
+            "00000000000000458752",
+            "complete"
+          ],
+          [
+            "00000000000000458752",
+            "00000000000000475136",
+            "complete"
+          ],
+          [
+            "00000000000000475136",
+            "00000000000000491520",
+            "complete"
+          ],
+          [
+            "00000000000000491520",
+            "00000000000000507904",
+            "complete"
+          ],
+          [
+            "00000000000000507904",
+            "00000000000000524288",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "baseline_pending": 0,
+          "baseline_predicted": 1,
+          "confirmed_rejections": 0,
+          "discarded_inputs": 262143,
+          "discovered_anchors": 1,
+          "evaluation_centers": 1,
+          "retained_anchors": 1,
+          "retained_inputs": 1,
+          "scanned_inputs": 262144,
+          "stronghold_anchors": 2,
+          "unresolved_discovery": 0,
+          "unresolved_stronghold_coverage": 1
+        },
+        "records": 1,
+        "records_sha256": "d00cedd0284131a888f229576ed8427df9fe41d2f7a22e84e8349614987b2bc9"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-1-active_catalog",
+      "handoff": {
+        "public_worker": null,
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/active-handoff-1",
+        "sample_cap": 2,
+        "campaign_id": "dedabc05fd3e41c8d7d29b841f5b6991b2cb10c67af37eadb24ebe10173d40a4",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-1-active_catalog/catalog-handoff/dedabc05fd3e41c8d7d29b841f5b6991b2cb10c67af37eadb24ebe10173d40a4.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "personal_interval": [
+        690241.825940156,
+        690245.641684762
+      ],
+      "extraction_overlap_seconds": 3.8157446059631184,
+      "extraction_overlap_fraction": 1.0,
+      "query_overlap_seconds": {
+        "0": 3.8157446059631184,
+        "1": 3.8157446059631184
+      },
+      "query_overlap_fraction": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "public": {
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "-9037391848063581383",
+            "extraction_started": 690241.61018928,
+            "extraction_ended": 690266.109839564,
+            "extraction_seconds": 24.49965059000533,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102496
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.20573415898252279,
+            "extension_points": 3200,
+            "summary_seconds": 6.019202647963539,
+            "summary_rows": 246,
+            "publication_started": 690274.660208923,
+            "publication_ended": 690276.02127286,
+            "publication_seconds": 1.3610645639710128,
+            "snapshot_id": "fac33f1931b1ba1f673a1a7a5dce6c67d9e8336bb8bae9393eb71f1a2046e9c0",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 34.51345170091372,
+        "seconds_per_world": 34.51345170091372,
+        "worlds_per_second": 0.028974210075126322,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 34.41172337601893,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "7120addecbe081d21e3d73a35e207c4035171b401db8f6ed6c9b0dd86fe458af",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      },
+      "queries": [
+        {
+          "client": 0,
+          "sequence": 0,
+          "started": 690241.825099323,
+          "ended": 690247.335133519,
+          "seconds": 5.510033712023869,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.495175512973219,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        },
+        {
+          "client": 1,
+          "sequence": 0,
+          "started": 690241.825691265,
+          "ended": 690247.438242456,
+          "seconds": 5.612550677964464,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.598819824983366,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "active_baseline",
+      "count": 262144,
+      "start": 262144,
+      "wall_seconds": 3.541734113008715,
+      "input_seeds_per_second": 74015.71988059481,
+      "cpu_seconds": 86.67262499999998,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.472100329003297,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.5966345284832641,
+        "batch_latency_p95_seconds": 0.700278467964381,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 75500.12245045097,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000262144",
+            "00000000000000278528",
+            "complete"
+          ],
+          [
+            "00000000000000278528",
+            "00000000000000294912",
+            "complete"
+          ],
+          [
+            "00000000000000294912",
+            "00000000000000311296",
+            "complete"
+          ],
+          [
+            "00000000000000311296",
+            "00000000000000327680",
+            "complete"
+          ],
+          [
+            "00000000000000327680",
+            "00000000000000344064",
+            "complete"
+          ],
+          [
+            "00000000000000344064",
+            "00000000000000360448",
+            "complete"
+          ],
+          [
+            "00000000000000360448",
+            "00000000000000376832",
+            "complete"
+          ],
+          [
+            "00000000000000376832",
+            "00000000000000393216",
+            "complete"
+          ],
+          [
+            "00000000000000393216",
+            "00000000000000409600",
+            "complete"
+          ],
+          [
+            "00000000000000409600",
+            "00000000000000425984",
+            "complete"
+          ],
+          [
+            "00000000000000425984",
+            "00000000000000442368",
+            "complete"
+          ],
+          [
+            "00000000000000442368",
+            "00000000000000458752",
+            "complete"
+          ],
+          [
+            "00000000000000458752",
+            "00000000000000475136",
+            "complete"
+          ],
+          [
+            "00000000000000475136",
+            "00000000000000491520",
+            "complete"
+          ],
+          [
+            "00000000000000491520",
+            "00000000000000507904",
+            "complete"
+          ],
+          [
+            "00000000000000507904",
+            "00000000000000524288",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "baseline_pending": 0,
+          "baseline_predicted": 1,
+          "confirmed_rejections": 0,
+          "discarded_inputs": 262143,
+          "discovered_anchors": 1,
+          "evaluation_centers": 1,
+          "retained_anchors": 1,
+          "retained_inputs": 1,
+          "scanned_inputs": 262144,
+          "stronghold_anchors": 2,
+          "unresolved_discovery": 0,
+          "unresolved_stronghold_coverage": 1
+        },
+        "records": 1,
+        "records_sha256": "d00cedd0284131a888f229576ed8427df9fe41d2f7a22e84e8349614987b2bc9"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-1-active_baseline"
+    },
+    {
+      "trial": 2,
+      "arm": "active_baseline",
+      "count": 262144,
+      "start": 524288,
+      "wall_seconds": 3.4644842270063236,
+      "input_seeds_per_second": 75666.0971224914,
+      "cpu_seconds": 86.36278299999998,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.399465663009323,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6189002704923041,
+        "batch_latency_p95_seconds": 0.7230217689648271,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 77113.29543712501,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000524288",
+            "00000000000000540672",
+            "complete"
+          ],
+          [
+            "00000000000000540672",
+            "00000000000000557056",
+            "complete"
+          ],
+          [
+            "00000000000000557056",
+            "00000000000000573440",
+            "complete"
+          ],
+          [
+            "00000000000000573440",
+            "00000000000000589824",
+            "complete"
+          ],
+          [
+            "00000000000000589824",
+            "00000000000000606208",
+            "complete"
+          ],
+          [
+            "00000000000000606208",
+            "00000000000000622592",
+            "complete"
+          ],
+          [
+            "00000000000000622592",
+            "00000000000000638976",
+            "complete"
+          ],
+          [
+            "00000000000000638976",
+            "00000000000000655360",
+            "complete"
+          ],
+          [
+            "00000000000000655360",
+            "00000000000000671744",
+            "complete"
+          ],
+          [
+            "00000000000000671744",
+            "00000000000000688128",
+            "complete"
+          ],
+          [
+            "00000000000000688128",
+            "00000000000000704512",
+            "complete"
+          ],
+          [
+            "00000000000000704512",
+            "00000000000000720896",
+            "complete"
+          ],
+          [
+            "00000000000000720896",
+            "00000000000000737280",
+            "complete"
+          ],
+          [
+            "00000000000000737280",
+            "00000000000000753664",
+            "complete"
+          ],
+          [
+            "00000000000000753664",
+            "00000000000000770048",
+            "complete"
+          ],
+          [
+            "00000000000000770048",
+            "00000000000000786432",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 262144,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 262144
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-2-active_baseline"
+    },
+    {
+      "trial": 2,
+      "arm": "active_catalog",
+      "count": 262144,
+      "start": 524288,
+      "wall_seconds": 3.8603032589890063,
+      "input_seeds_per_second": 67907.61823946811,
+      "cpu_seconds": 86.59325099999995,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 262144,
+        "wall_seconds": 3.7556859189644456,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6682607704424299,
+        "batch_latency_p95_seconds": 0.7757367929443717,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 69799.23392323522,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "candidate_policy": {
+        "top_k": 50,
+        "candidate_capacity": 100,
+        "reserve_factor": 2,
+        "historically_complete": true
+      },
+      "fingerprint": {
+        "completed": 262144,
+        "ranges": [
+          [
+            "00000000000000524288",
+            "00000000000000540672",
+            "complete"
+          ],
+          [
+            "00000000000000540672",
+            "00000000000000557056",
+            "complete"
+          ],
+          [
+            "00000000000000557056",
+            "00000000000000573440",
+            "complete"
+          ],
+          [
+            "00000000000000573440",
+            "00000000000000589824",
+            "complete"
+          ],
+          [
+            "00000000000000589824",
+            "00000000000000606208",
+            "complete"
+          ],
+          [
+            "00000000000000606208",
+            "00000000000000622592",
+            "complete"
+          ],
+          [
+            "00000000000000622592",
+            "00000000000000638976",
+            "complete"
+          ],
+          [
+            "00000000000000638976",
+            "00000000000000655360",
+            "complete"
+          ],
+          [
+            "00000000000000655360",
+            "00000000000000671744",
+            "complete"
+          ],
+          [
+            "00000000000000671744",
+            "00000000000000688128",
+            "complete"
+          ],
+          [
+            "00000000000000688128",
+            "00000000000000704512",
+            "complete"
+          ],
+          [
+            "00000000000000704512",
+            "00000000000000720896",
+            "complete"
+          ],
+          [
+            "00000000000000720896",
+            "00000000000000737280",
+            "complete"
+          ],
+          [
+            "00000000000000737280",
+            "00000000000000753664",
+            "complete"
+          ],
+          [
+            "00000000000000753664",
+            "00000000000000770048",
+            "complete"
+          ],
+          [
+            "00000000000000770048",
+            "00000000000000786432",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 262144,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 262144
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-2-active_catalog",
+      "handoff": {
+        "public_worker": null,
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/active-handoff-2",
+        "sample_cap": 2,
+        "campaign_id": "5f409a7e4c34f00aff6fac061de7990ee623f7c00cb7967567d41c1d39a8bfb0",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/current-framework-benchmark-20261022/personal-2-active_catalog/catalog-handoff/5f409a7e4c34f00aff6fac061de7990ee623f7c00cb7967567d41c1d39a8bfb0.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "personal_interval": [
+        690284.354218833,
+        690288.220723199
+      ],
+      "extraction_overlap_seconds": 3.8665043659275398,
+      "extraction_overlap_fraction": 1.0,
+      "query_overlap_seconds": {
+        "0": 3.8665043659275398,
+        "1": 3.8665043659275398
+      },
+      "query_overlap_fraction": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "public": {
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 690284.135819798,
+            "extraction_ended": 690309.355294859,
+            "extraction_seconds": 25.219475297955796,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.2188845679629594,
+            "extension_points": 3200,
+            "summary_seconds": 6.353933916892856,
+            "summary_rows": 246,
+            "publication_started": 690318.296861651,
+            "publication_ended": 690319.685823816,
+            "publication_seconds": 1.3889627020107582,
+            "snapshot_id": "1d5f049ac025eaf91971b8855c574ba926f8b893c8af456d7dd955d01064ca1a",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 35.655193121987395,
+        "seconds_per_world": 35.655193121987395,
+        "worlds_per_second": 0.028046405374350155,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 35.55108002200723,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "745b1f0f6e59d9e6fdf99b210a9d9190d5ae23968f2e30f4f9bbd49af658db38",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      },
+      "queries": [
+        {
+          "client": 0,
+          "sequence": 0,
+          "started": 690284.353471268,
+          "ended": 690290.042016069,
+          "seconds": 5.6885444490471855,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.675156692042947,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        },
+        {
+          "client": 1,
+          "sequence": 0,
+          "started": 690284.354009198,
+          "ended": 690290.023495025,
+          "seconds": 5.669484985992312,
+          "status": 200,
+          "matched": 222,
+          "stats": {
+            "wall_seconds": 5.655968009028584,
+            "result_cache_hit": false,
+            "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b"
+          }
+        }
+      ]
+    }
+  ],
+  "median_rates": {
+    "active_baseline": 75666.0971224914,
+    "active_catalog": 69057.70281651804
+  },
+  "paired_wall_ratios": [
+    1.096994061919259,
+    1.0713717390868496,
+    1.1142504933049475
+  ]
+}

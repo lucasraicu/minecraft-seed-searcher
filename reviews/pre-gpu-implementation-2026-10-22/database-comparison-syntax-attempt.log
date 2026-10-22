@@ -1,0 +1,4 @@
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/pre-gpu-implementation-2026-10-22/compare_databases.py", line 84
+    body=case['request'];pid=body['product_id'];view=body['view'];lo=0 if view=='primary'else caps[pid];hi=caps[pid]if view=='primary'else2*caps[pid]
+                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression

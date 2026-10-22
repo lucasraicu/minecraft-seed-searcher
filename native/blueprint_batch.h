@@ -32,6 +32,9 @@ typedef struct NBAnchor {
     int bonus_total;
     int radial_key;
     int64_t origin_distance_squared;
+    int centroid_x, centroid_z, centroid_score;
+    int refinement_grid_step, refinement_coarse_points, refinement_fine_points;
+    double refinement_seconds;
 } NBAnchor;
 typedef struct NBResult {
     uint64_t seed;
@@ -59,7 +62,32 @@ typedef struct NBPolicy {
     unsigned char is_scenic[256];
     unsigned int required_biome_mask; /* Stable 13-family bit positions; v2 only. */
     int cutoff_score;
+    int refine_centers; /* v3 only: exhaustive 16 grid plus local 8 grid. */
 } NBPolicy;
+/* Complete macro inventories and immutable caches; never selected-window replay.
+ * Prefix/cache layouts are those produced by the dynamic evaluator. */
+typedef struct NBRefinementInput {
+    const NBPolicy *policy;
+    const NBObservation *macro, *optional;
+    const NBPoints *strong;
+    const int *palette_prefix, *nether_prefix, *scenic_river;
+    const unsigned char *village_sep;
+    const int *bastion_variants;
+    int bastion_count;
+} NBRefinementInput;
+typedef struct NBRefinementResult {
+    int found, x, z, score, radial_key, grid_step;
+    int coarse_points, fine_points;
+    double radial, seconds;
+} NBRefinementResult;
+/* grid_step=0: hierarchical; 16/8: complete declared grid. No generation calls.
+ * Returns 0 on success (found may be zero), negative on invalid input/allocation.
+ * Output is deterministic across thread counts. */
+int nb_dynamic_v3_refine_center(const NBRefinementInput *input, int grid_step,
+                                int threads, NBRefinementResult *out);
+/* Diagnostic score/radial oracle for arbitrary 8-aligned centers, same checks. */
+int nb_dynamic_v3_score_centers(const NBRefinementInput *input, const int *xz,
+                              int count, NBRefinementResult *out);
 /* Zero-initialized fixed-width decision receipts are hashed without building
  * per-input Python records. They are not persisted as individual rows. */
 typedef struct NBVerdict { uint64_t seed; uint32_t anchors, retained; } NBVerdict;

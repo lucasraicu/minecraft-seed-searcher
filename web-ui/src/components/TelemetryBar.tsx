@@ -1,9 +1,12 @@
 import React from 'react';
-import type { TelemetryState } from '../types';
+import type { TelemetryState, ConnectionStatus, RuntimeIdentity } from '../types';
+import { formatLastContact } from '../utils/network';
 
 interface TelemetryBarProps {
   telemetry: TelemetryState;
-  dataMode: 'connecting' | 'live';
+  dataMode: ConnectionStatus;
+  lastContactTime?: number | null;
+  runtimeIdentity?: RuntimeIdentity | null;
   targetVolume?: number;
   onChangeTargetVolume?: (vol: number) => void;
   onToggleSweep: () => void;
@@ -17,6 +20,8 @@ interface TelemetryBarProps {
 export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   telemetry,
   dataMode,
+  lastContactTime,
+  runtimeIdentity,
   targetVolume,
   onChangeTargetVolume,
   onToggleSweep,
@@ -26,6 +31,12 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   onExport,
   onBeginBDSParity,
 }) => {
+  const [clock, setClock] = React.useState(() => Date.now());
+  React.useEffect(() => {
+    const timer = setInterval(() => setClock(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Generate sparkline path from history
   const history = telemetry.history.length > 0 ? telemetry.history : [0, 0, 0, 0, 0];
   const maxVal = Math.max(...history, 1000);
@@ -34,7 +45,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
 
   const points = history
     .map((val, idx) => {
-      const x = (idx / (history.length - 1)) * 120;
+      const x = (idx / Math.max(1, history.length - 1)) * 120;
       const y = 28 - ((val - minVal) / range) * 24;
       return `${x},${y}`;
     })
@@ -48,8 +59,66 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
 
   const remaining = Math.max(0, telemetry.targetCount - telemetry.totalScanned);
   const etaSec = telemetry.seedsPerSec > 0 ? Math.ceil(remaining / telemetry.seedsPerSec) : 0;
+  const isDisconnected = dataMode === 'disconnected';
+  const isStale = dataMode === 'stale';
+  const isConnecting = dataMode === 'connecting';
+  const isLive = dataMode === 'live';
+
   const hasLiveTelemetry =
-    dataMode === 'live' && (telemetry.status === 'running' || Boolean(telemetry.runId));
+    isLive && (telemetry.status === 'running' || Boolean(telemetry.runId));
+  const hasPreservedTelemetry =
+    (isStale || isDisconnected) && (telemetry.totalScanned > 0 || Boolean(telemetry.runId));
+
+  // Determine status pill dot & text
+  let statusDotClass = 'bg-slate-600';
+  let statusText = 'Idle';
+
+  if (isDisconnected) {
+    statusDotClass = 'bg-rose-500 shadow-[0_0_8px_#f43f5e]';
+    if (telemetry.status === 'running') {
+      statusText = 'Disconnected (was Sweeping)';
+    } else if (telemetry.status === 'paused') {
+      statusText = 'Disconnected (was Paused)';
+    } else if (telemetry.status === 'completed') {
+      statusText = 'Disconnected (last: Complete)';
+    } else if (telemetry.status === 'bds_verifying') {
+      statusText = 'Disconnected (was BDS Verifying)';
+    } else if (telemetry.status === 'error') {
+      statusText = 'Disconnected (Error)';
+    } else {
+      statusText = 'Disconnected (Offline)';
+    }
+  } else if (isConnecting) {
+    statusDotClass = 'bg-amber-400 animate-pulse';
+    statusText = 'Connecting...';
+  } else {
+    // live or stale
+    if (telemetry.status === 'running') {
+      statusDotClass = isStale
+        ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]'
+        : 'bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]';
+      statusText = isStale ? 'Sweeping Native Kernel (Stale)' : 'Sweeping Native Kernel';
+    } else if (telemetry.status === 'paused') {
+      statusDotClass = 'bg-amber-400 shadow-[0_0_8px_#f59e0b]';
+      statusText = isStale ? 'Sweep Paused (Stale)' : 'Sweep Paused';
+    } else if (telemetry.status === 'bds_verifying') {
+      statusDotClass = isStale
+        ? 'bg-amber-400'
+        : 'bg-blue-400 animate-ping shadow-[0_0_8px_#38bdf8]';
+      statusText = isStale ? 'BDS Verifying (Stale)' : 'BDS 1.26.52.3 Verifying...';
+    } else if (telemetry.status === 'error') {
+      statusDotClass = 'bg-red-500';
+      statusText = isStale ? 'Sweep Error (Stale)' : 'Sweep Error';
+    } else if (telemetry.status === 'completed') {
+      statusDotClass = isStale ? 'bg-slate-500' : 'bg-emerald-600';
+      statusText = isStale ? 'Sweep Complete (Stale)' : 'Sweep Complete';
+    } else {
+      statusDotClass = 'bg-slate-600';
+      statusText = isStale ? 'Idle (Stale)' : 'Idle';
+    }
+  }
+
+  const sparklineStroke = isLive ? '#10b981' : isStale ? '#eab308' : '#64748b';
 
   return (
     <header className="min-h-16 shrink-0 bg-slate-900 border-b border-slate-800 px-4 py-3 flex flex-wrap items-center justify-between gap-3 z-20 shadow-md">
@@ -64,42 +133,58 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
               Bedrock Seed Searcher
             </h1>
             <span className="text-[10px] text-slate-400 font-mono">
-              {dataMode === 'connecting' ? 'Connecting to local backend' : 'Live backend status'}
+              {isConnecting
+                ? 'Connecting to local backend...'
+                : isStale
+                ? 'Backend connection stale (retrying...)'
+                : isDisconnected
+                ? 'Disconnected from backend'
+                : 'Live backend connected'}
             </span>
           </div>
         </div>
 
         <div className="h-6 w-px bg-slate-800"></div>
 
-        <span className={`px-2 py-1 rounded text-[10px] font-bold tracking-wide border ${
-          dataMode === 'connecting'
-            ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
-            : 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-        }`}>
-          {dataMode === 'connecting' ? 'CONNECTING' : 'LIVE'}
+        <span
+          className={`px-2 py-1 rounded text-[10px] font-bold tracking-wide border ${
+            isConnecting
+              ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+              : isStale
+              ? 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+              : isDisconnected
+              ? 'bg-rose-500/10 text-rose-300 border-rose-500/30'
+              : 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+          }`}
+        >
+          {dataMode.toUpperCase()}
         </span>
+
+        {/* Last Contact Timestamp */}
+        {lastContactTime ? (
+          <span
+            className="text-[10px] text-slate-400 font-mono"
+            title={`Last successful backend response: ${new Date(lastContactTime).toLocaleTimeString()}`}
+          >
+            contact: {formatLastContact(lastContactTime, clock)}
+          </span>
+        ) : null}
+
+        {/* Technical Fingerprint Tooltip */}
+        {runtimeIdentity && (
+          <span
+            className="cursor-help text-[10px] text-slate-500 hover:text-slate-300 font-mono px-1.5 py-0.5 rounded bg-slate-950/80 border border-slate-800 transition-colors"
+            title={`Server Runtime Fingerprint:\n• PID: ${runtimeIdentity.pid ?? 'n/a'}\n• Started: ${runtimeIdentity.processStartedAt ? new Date(runtimeIdentity.processStartedAt * 1000).toLocaleString() : 'unknown'}\n• Source SHA: ${runtimeIdentity.loadedServerSourceSha256 ?? 'n/a'}\n• Native Build: ${runtimeIdentity.nativeBuild?.digest ?? runtimeIdentity.nativeBuild?.path ?? 'unknown'} (${runtimeIdentity.nativeBuild?.source ?? 'unverified'})${telemetry.statusSchemaVersion ? `\n• Schema Version: v${telemetry.statusSchemaVersion}` : ''}${telemetry.generation !== undefined ? `\n• Generation: ${telemetry.generation}` : ''}`}
+          >
+            v2 • {runtimeIdentity.pid ? `PID ${runtimeIdentity.pid}` : 'daemon'}
+          </span>
+        )}
 
         {/* Global Status Pill */}
         <div className="flex items-center gap-2">
-          <span
-            className={`w-2.5 h-2.5 rounded-full ${
-              telemetry.status === 'running'
-                ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]'
-                : telemetry.status === 'paused'
-                ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]'
-                : telemetry.status === 'bds_verifying'
-                ? 'bg-blue-400 animate-ping shadow-[0_0_8px_#38bdf8]'
-                : 'bg-slate-600'
-            }`}
-          ></span>
+          <span className={`w-2.5 h-2.5 rounded-full ${statusDotClass}`}></span>
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-            {telemetry.status === 'running'
-              ? 'Sweeping Native Kernel'
-              : telemetry.status === 'paused'
-              ? 'Sweep Paused'
-              : telemetry.status === 'bds_verifying'
-              ? 'BDS 1.26.52.3 Verifying...'
-              : telemetry.status === 'error' ? 'Sweep Error' : telemetry.status === 'completed' ? 'Sweep Complete' : 'Idle'}
+            {statusText}
           </span>
         </div>
       </div>
@@ -111,8 +196,23 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           <div className="flex flex-col text-right">
             <span className="text-[10px] text-slate-400 uppercase font-semibold">Throughput</span>
             <span className="font-mono text-sm font-bold text-emerald-400">
-              {hasLiveTelemetry ? telemetry.seedsPerSec.toLocaleString() : '—'}{' '}
-              <span className="text-[10px] text-slate-500 font-normal">seeds/s</span>
+              {hasLiveTelemetry ? (
+                <>
+                  {telemetry.seedsPerSec.toLocaleString()}{' '}
+                  <span className="text-[10px] text-slate-500 font-normal">seeds/s</span>
+                </>
+              ) : hasPreservedTelemetry ? (
+                <span className={isDisconnected ? 'text-slate-400' : 'text-amber-400'}>
+                  {isDisconnected ? 0 : telemetry.seedsPerSec.toLocaleString()}{' '}
+                  <span className="text-[10px] text-slate-500 font-normal">
+                    {isDisconnected ? 'seeds/s (offline)' : 'seeds/s (stale)'}
+                  </span>
+                </span>
+              ) : (
+                <>
+                  — <span className="text-[10px] text-slate-500 font-normal">seeds/s</span>
+                </>
+              )}
             </span>
           </div>
 
@@ -121,7 +221,7 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
             <svg className="w-full h-full overflow-visible" viewBox="0 0 120 28">
               <polyline
                 fill="none"
-                stroke="#10b981"
+                stroke={sparklineStroke}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -138,20 +238,29 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
           <div className="flex justify-between items-center text-[10px] text-slate-400 font-semibold mb-0.5">
             <span className="uppercase">Scanned</span>
             <span className="font-mono text-emerald-400">
-              {telemetry.targetCount > 0
+              {telemetry.targetCount > 0 && (hasLiveTelemetry || hasPreservedTelemetry)
                 ? `${((telemetry.totalScanned / telemetry.targetCount) * 100).toFixed(0)}%`
                 : '0%'}
             </span>
           </div>
           <div className="flex items-baseline gap-1.5 font-mono">
-            <span className="text-sm font-bold text-slate-200">
-              {hasLiveTelemetry ? telemetry.totalScanned.toLocaleString() : '—'}
+            <span className={`text-sm font-bold ${isDisconnected ? 'text-slate-400' : isStale ? 'text-amber-300' : 'text-slate-200'}`}>
+              {hasLiveTelemetry
+                ? telemetry.totalScanned.toLocaleString()
+                : hasPreservedTelemetry
+                ? `${telemetry.totalScanned.toLocaleString()}`
+                : '—'}
             </span>
             <span className="text-[10px] text-slate-500">
-              / {hasLiveTelemetry ? telemetry.targetCount.toLocaleString() : '—'}
+              / {hasLiveTelemetry || hasPreservedTelemetry ? telemetry.targetCount.toLocaleString() : '—'}
+              {hasPreservedTelemetry && (
+                <span className="ml-1 text-[9px] text-amber-400">
+                  [{isDisconnected ? 'offline' : 'stale'}]
+                </span>
+              )}
             </span>
           </div>
-          {telemetry.status === 'running' && etaSec > 0 && (
+          {isLive && telemetry.status === 'running' && etaSec > 0 && (
             <span className="text-[9px] font-mono text-cyan-400">ETA: ~{etaSec}s</span>
           )}
         </div>
@@ -162,10 +271,18 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
         <div className="flex flex-col">
           <span className="text-[10px] text-slate-400 uppercase font-semibold">Elapsed / RSS</span>
           <span className="font-mono text-xs font-semibold text-slate-300">
-            {hasLiveTelemetry ? formatTime(telemetry.elapsedSeconds) : '—'}{' '}
+            {hasLiveTelemetry ? (
+              formatTime(telemetry.elapsedSeconds)
+            ) : hasPreservedTelemetry ? (
+              <span className={isDisconnected ? 'text-slate-400' : 'text-amber-300'}>
+                {formatTime(telemetry.elapsedSeconds)} ({isDisconnected ? 'frozen' : 'stale'})
+              </span>
+            ) : (
+              '—'
+            )}{' '}
             <span className="text-slate-500">•</span>{' '}
             <span className="text-cyan-400">
-              {hasLiveTelemetry && telemetry.memoryRssGib !== null
+              {(hasLiveTelemetry || hasPreservedTelemetry) && telemetry.memoryRssGib !== null
                 ? `${telemetry.memoryRssGib} GB RSS`
                 : 'RSS unknown'}
             </span>

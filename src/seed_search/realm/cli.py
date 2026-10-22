@@ -268,6 +268,8 @@ def main(argv=None):
         native.add_argument('--native-batch-size',type=int)
         native.add_argument('--retention',choices=['full','survivors'],default=None,help='Compact survivors mode omits rejected per-input evidence')
         native.add_argument('--max-misses',type=int,default=None,help='Compact retention budget; v2 counts flexible deficit categories and must match the resolved policy (default B=2)')
+        native.add_argument('--catalog-root',type=Path,help='Opt in to independent catalog handoff for this native campaign; configured public automation starts independently; legacy roots require a separate drain. Personal stop does not cancel catalog work.')
+        native.add_argument('--catalog-sample-cap',type=int,default=None,help='Maximum deterministic public samples (1..100, default100); not an unbiased sample claim')
     p=sub.add_parser('inventory');p.add_argument('--run',required=True);p.add_argument('--limit',type=int)
     p.add_argument('--candidate');p.add_argument('--include-pending',action='store_true')
     p.add_argument('--all-starts',action='store_true',help='Explicit complete predictor start inventory for one candidate')
@@ -340,6 +342,16 @@ def main(argv=None):
             native_threads=args.native_threads if args.native_threads is not None else ((store.get_state('native_pipeline') or {}).get('threads',16) if store else 16)
             native_batch=args.native_batch_size if args.native_batch_size is not None else (store.get_state('batch_size') if store and execution=='native' else 4096)
             saved_retention=(store.identity or {}).get('retention',{}) if store else {}
+            saved_harvest=(store.identity or {}).get('catalog_harvest',{}) if store else {}
+            catalog_root=args.catalog_root or saved_harvest.get('root')
+            catalog_sample_cap=args.catalog_sample_cap if args.catalog_sample_cap is not None else saved_harvest.get('sample_cap',100)
+            if not 1<=catalog_sample_cap<=100:raise ValueError('Catalog sample cap must be1..100')
+            if args.catalog_sample_cap is not None and catalog_root is None:raise ValueError('--catalog-sample-cap requires --catalog-root')
+            if catalog_root is not None and execution!='native':raise ValueError('Catalog harvesting requires --executor native')
+            if resume and catalog_root is not None and not saved_harvest:
+                raise ValueError('Catalog harvesting can only be enabled when creating a new native scan')
+            if resume and saved_harvest and (str(Path(catalog_root).absolute())!=saved_harvest['root'] or catalog_sample_cap!=saved_harvest['sample_cap']):
+                raise ValueError('Catalog handoff identity cannot change on resume')
             retention=args.retention or saved_retention.get('mode','survivors' if execution=='native' else 'full')
             misses=args.max_misses if args.max_misses is not None else saved_retention.get('max_misses',(cfg['search']['max_misses'] if two_group_policy(cfg) else 1 if cfg.get('screening_revision') else 2) if retention=='survivors' else 0)
             if not resume and (execution=='native' and retention=='survivors' and two_group_policy(cfg) or getattr(args, 'sequence', None) is not None or getattr(args, 'low32', None) is not None):
@@ -357,11 +369,13 @@ def main(argv=None):
             if execution=='python' and any(v is not None for v in (args.native_build,args.native_threads,args.native_batch_size)):
                 raise ValueError('Native options require --executor native')
             execution_options={'execution':execution,'native_build':native_build,'native_threads':native_threads,'native_batch_size':native_batch,'retention':retention,'max_misses':misses} if execution=='native' else {}
+            if catalog_root is not None:execution_options.update(catalog_root=catalog_root,catalog_sample_cap=catalog_sample_cap)
             if store:store.close();store=None
             if getattr(args,'dry_run',False):
                 result={'planned_seeds':count,'start_index':first,'workers':args.workers or cfg['search']['workers'],
                         'output':str(run.resolve()),'executed_seeds':0,'qualification':'predictions only',
                         'executor':execution,'retention':retention,'max_misses':misses,'above_pilot_limit':count>cfg['search']['pilot_limit'],'requires_explicit_prediction_scale':count>cfg['search']['pilot_limit']}
+                if catalog_root is not None:result['catalog_harvest']={'root':str(Path(catalog_root).absolute()),'sample_cap':catalog_sample_cap,'state':'dry_run_no_handoff'}
             else:
                 result=run_scan(cfg,run,count,first,args.workers,resume,ident,stop_after=args.stop_after,
                                 progress=progress_printer(),allow_prediction_scale=args.prediction_scale,**execution_options)

@@ -1,0 +1,186 @@
+{
+  "categories": {
+    ".gitignore": {
+      "files": 1,
+      "bytes": 687
+    },
+    "AGENTS.md": {
+      "files": 1,
+      "bytes": 7237
+    },
+    "AUDIT_CRITICAL_CODE.md": {
+      "files": 1,
+      "bytes": 397262
+    },
+    "AUDIT_SOURCE_BUNDLE.md": {
+      "files": 1,
+      "bytes": 179663
+    },
+    "CENTER_WEIGHT_RESEARCH.md": {
+      "files": 1,
+      "bytes": 10919
+    },
+    "CODEX_HANDOFF.md": {
+      "files": 1,
+      "bytes": 13057
+    },
+    "IMPLEMENTATION_PLAN.md": {
+      "files": 1,
+      "bytes": 19968
+    },
+    "MANIFEST.in": {
+      "files": 1,
+      "bytes": 341
+    },
+    "MASTER_SEED_BLUEPRINT.md": {
+      "files": 1,
+      "bytes": 53947
+    },
+    "PUBLIC_CATALOG_AUTOMATION_PLAN.md": {
+      "files": 1,
+      "bytes": 28893
+    },
+    "PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md": {
+      "files": 1,
+      "bytes": 25772
+    },
+    "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md": {
+      "files": 1,
+      "bytes": 27502
+    },
+    "PUBLIC_CATALOG_SYSTEM_SPEC.md": {
+      "files": 1,
+      "bytes": 47270
+    },
+    "README.md": {
+      "files": 1,
+      "bytes": 58615
+    },
+    "REPO_ORGANIZATION_PLAN.md": {
+      "files": 1,
+      "bytes": 15933
+    },
+    "SERVER_SETUP_GUIDE.md": {
+      "files": 1,
+      "bytes": 38995
+    },
+    "config": {
+      "files": 7,
+      "bytes": 32192
+    },
+    "docs": {
+      "files": 119,
+      "bytes": 2597292
+    },
+    "exports": {
+      "files": 173,
+      "bytes": 12855488
+    },
+    "fixtures": {
+      "files": 182,
+      "bytes": 10158167
+    },
+    "native": {
+      "files": 12,
+      "bytes": 165394
+    },
+    "outputs": {
+      "files": 14,
+      "bytes": 1079958
+    },
+    "pyproject.toml": {
+      "files": 1,
+      "bytes": 856
+    },
+    "requirements.lock": {
+      "files": 1,
+      "bytes": 2149
+    },
+    "reviews": {
+      "files": 1079,
+      "bytes": 77825001
+    },
+    "runs": {
+      "files": 119,
+      "bytes": 41351247
+    },
+    "scripts": {
+      "files": 170,
+      "bytes": 1280145
+    },
+    "search.example.yaml": {
+      "files": 1,
+      "bytes": 6781
+    },
+    "setup.py": {
+      "files": 1,
+      "bytes": 121
+    },
+    "src": {
+      "files": 142,
+      "bytes": 1959891
+    },
+    "tests": {
+      "files": 225,
+      "bytes": 1774951
+    },
+    "vendor": {
+      "files": 45,
+      "bytes": 2811533
+    },
+    "web-ui": {
+      "files": 55,
+      "bytes": 630549
+    }
+  },
+  "archives": [
+    {
+      "path": "fixtures/bedrock-26.52/accuracy-expansion/accuracy-evidence-v1.tar.gz",
+      "members": 84,
+      "uncompressed_bytes": 13671171,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/accuracy-expansion/accuracy-evidence-v2.tar.gz",
+      "members": 101,
+      "uncompressed_bytes": 13730609,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/biome-expansion/evidence-v1.tar.gz",
+      "members": 25,
+      "uncompressed_bytes": 1415067,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/generalization/audit-evidence-v1.tar.gz",
+      "members": 163,
+      "uncompressed_bytes": 16574256,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/generalization/source-corrections-v1.tar.gz",
+      "members": 42,
+      "uncompressed_bytes": 860551,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/spawn-correction/spawn-evidence.tar.gz",
+      "members": 31,
+      "uncompressed_bytes": 95215,
+      "suspicious_names": []
+    },
+    {
+      "path": "fixtures/bedrock-26.52/variant-controls/variant-controls.tar.gz",
+      "members": 137,
+      "uncompressed_bytes": 23213969,
+      "suspicious_names": []
+    }
+  ],
+  "exclusion_policy": "Keep all current nonignored source/docs/tests/fixtures/permanent receipts, including large JSON raw oracles (<50MiB each). Existing ignored live/runtime/build/env data stays local; no new ignore rule. Historical approved document deletions are staged as renames when Git detects them.",
+  "staging_note": {
+    "staging_note": "Initial all-file pathspecs warned about already-tracked historical JSON under ignored ancestor directories. No force-add/ignore bypass performed. Independent git diff and untracked-file checks confirm every intended change is staged; unchanged historical tracked blobs were already in the index.",
+    "unstaged_paths": [],
+    "untracked_paths": []
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "controls": {
+    "seed": "-3509659830737203357",
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "script_api": "2.10.0",
+    "cpus": 2,
+    "memory_gib": 2,
+    "wall_seconds": 180,
+    "output_bytes": 4294967296,
+    "manifest_sha256": "334e0835649c429d670f9a1365f8fd4325e5578311956149dd74f1b5feb25fd4",
+    "observer_sha256": "a3e90840c24078a8e8c44eb891c23b87adb0503c226bcf13883d4b9b3448e6b2",
+    "harness_sha256": "8b153a4110f65ca1c7220c109053cf28402adaf71f8e5fcba8f31dacc718d760",
+    "settings_sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+    "container": "codex-targeted-919dd21580e2",
+    "prediction": {
+      "observation_id": "2dabc38e81e77f174d4edace2239c5c8b6ee4ecf6b65c91fc351acd0bd40bb11",
+      "seed": "-3509659830737203357",
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412"
+    },
+    "role": "Targeted API/storage observations; not an exhaustive or physical structure census"
+  },
+  "status": "observed",
+  "queries": [],
+  "biome_batches": [
+    {
+      "id": "target",
+      "rows": [
+        {
+          "x": -448,
+          "y": 51,
+          "z": 332,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 39,
+          "z": 332,
+          "id": "minecraft:lush_caves",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 332,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:air"
+        },
+        {
+          "x": -448,
+          "y": 51,
+          "z": 335,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:granite"
+        },
+        {
+          "x": -448,
+          "y": 39,
+          "z": 335,
+          "id": "minecraft:lush_caves",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 335,
+          "id": "minecraft:cold_taiga",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -64,
+          "y": 51,
+          "z": 328,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:copper_ore"
+        },
+        {
+          "x": -64,
+          "y": 39,
+          "z": 328,
+          "id": "minecraft:dripstone_caves",
+          "block": "minecraft:stone"
+        },
+        {
+          "x": -64,
+          "y": 63,
+          "z": 328,
+          "id": "minecraft:snowy_slopes",
+          "block": "minecraft:stone"
+        }
+      ],
+      "ticking_areas_held": 2
+    }
+  ],
+  "copied_world": {
+    "source": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/predictor-resolution-20261020/lifecycle/dirty_restore-0/worlds/world/worlds/spawn_audit",
+    "source_hashes": {
+      "db/000003.log": "3fdfad5884e4a8577cb65795c7078c4b8e320f45598bd1add4ab4a82ec6f3619",
+      "db/CURRENT": "1005a525006f148c86efcbfb36c6eac091b311532448010f70f7de9a68007167",
+      "db/MANIFEST-000002": "e292f241daafc3df90f3e2d339c61c6e2787a0d0739aac764e1ea9bb8544ee97",
+      "level.dat": "dc4b590270058b61706fb867b98585bc3f2ff76adba0e0c8ccc19afe712022dc"
+    },
+    "source_unchanged": true
+  },
+  "world_identity": {
+    "seed": "-3509659830737203357",
+    "api": "2.10.0",
+    "players": 0
+  },
+  "target_result": {
+    "rows": [
+      {
+        "x": -448,
+        "y": 51,
+        "z": 332,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 39,
+        "z": 332,
+        "id": "minecraft:lush_caves",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 63,
+        "z": 332,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:air"
+      },
+      {
+        "x": -448,
+        "y": 51,
+        "z": 335,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:granite"
+      },
+      {
+        "x": -448,
+        "y": 39,
+        "z": 335,
+        "id": "minecraft:lush_caves",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -448,
+        "y": 63,
+        "z": 335,
+        "id": "minecraft:cold_taiga",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -64,
+        "y": 51,
+        "z": 328,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:copper_ore"
+      },
+      {
+        "x": -64,
+        "y": 39,
+        "z": 328,
+        "id": "minecraft:dripstone_caves",
+        "block": "minecraft:stone"
+      },
+      {
+        "x": -64,
+        "y": 63,
+        "z": 328,
+        "id": "minecraft:snowy_slopes",
+        "block": "minecraft:stone"
+      }
+    ],
+    "columns": [],
+    "blockReads": 11,
+    "biomeReads": 9,
+    "tickingAreas": 2,
+    "chunks": 2
+  },
+  "save_confirmed": true,
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 16.604873260017484
+}

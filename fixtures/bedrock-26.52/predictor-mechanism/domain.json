@@ -1,0 +1,55 @@
+{
+  "block_y": [
+    16,
+    80
+  ],
+  "chunks": [
+    {
+      "cx": -16,
+      "cz": -16,
+      "role": "discovery",
+      "world": 0
+    },
+    {
+      "cx": -28,
+      "cz": 20,
+      "role": "discovery",
+      "world": 0
+    },
+    {
+      "cx": -4,
+      "cz": 20,
+      "role": "spatial_holdout",
+      "world": 0
+    },
+    {
+      "cx": 6,
+      "cz": -127,
+      "role": "seed_holdout",
+      "world": 1
+    }
+  ],
+  "local_x": [
+    0,
+    5,
+    10,
+    15
+  ],
+  "local_z": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    15
+  ],
+  "max_columns": 128,
+  "max_native_nodes": 4096,
+  "quart_parent_padding": 1,
+  "quart_y": [
+    3,
+    22
+  ]
+}

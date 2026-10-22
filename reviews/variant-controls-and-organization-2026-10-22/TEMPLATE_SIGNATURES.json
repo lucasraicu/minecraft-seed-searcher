@@ -1,0 +1,2143 @@
+[
+  {
+    "path": "igloo/igloo_bottom.nbt",
+    "sha256": "9148361ab01b50df430fe6e0e6a99dfdad74c10509718fea3e69e897ea8f5ab9",
+    "size": [
+      7,
+      6,
+      9
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          1,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'Items': ListTag([], 0), 'id': StringTag(\"minecraft:chest\"), 'Lock': StringTag(\"\")}"
+      },
+      {
+        "pos": [
+          5,
+          2,
+          6
+        ],
+        "name": "minecraft:brewing_stand",
+        "nbt": "{'Fuel': ByteTag(0), 'Items': ListTag([CompoundTag({'Slot': ByteTag(1), 'id': StringTag(\"minecraft:splash_potion\"), 'Count': ByteTag(1), 'tag': CompoundTag({'Potion': StringTag(\"minecraft:weakness\")}), 'Damage': ShortTag(0)})], 10), 'id': StringTag(\"minecraft:brewing_stand\"), 'BrewTime': ShortTag(0), 'Lock': StringTag(\"\")}"
+      },
+      {
+        "pos": [
+          5,
+          1,
+          4
+        ],
+        "name": "minecraft:cauldron",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          3,
+          2,
+          7
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          3,
+          3,
+          7
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          3,
+          4,
+          7
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          3,
+          5,
+          7
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      }
+    ]
+  },
+  {
+    "path": "igloo/igloo_middle.nbt",
+    "sha256": "e6601bfb81be75f4fd339a610c2225288562484337ff8eaa2390f4a94450108e",
+    "size": [
+      3,
+      3,
+      3
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          0,
+          1
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          1,
+          1,
+          1
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      },
+      {
+        "pos": [
+          1,
+          2,
+          1
+        ],
+        "name": "minecraft:ladder",
+        "nbt": ""
+      }
+    ]
+  },
+  {
+    "path": "igloo/igloo_top_no_trapdoor.nbt",
+    "sha256": "c07c1cf599d7a70b608d87480287eb41bc2afd950dd69695eccd0fc1fd438a24",
+    "size": [
+      7,
+      5,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "igloo/igloo_top_trapdoor.nbt",
+    "sha256": "d72239b07cb56e7ebbe92b83d6a0a5d004750ced1da137b55bcd30167b85e4a9",
+    "size": [
+      7,
+      5,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          0,
+          5
+        ],
+        "name": "minecraft:oak_trapdoor",
+        "nbt": ""
+      }
+    ]
+  },
+  {
+    "path": "bastion/blocks/air.nbt",
+    "sha256": "9db32c0e834e0b4c721624ac2f6c44e955113c32d46cd196115b700e633a1a51",
+    "size": [
+      1,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/blocks/gold.nbt",
+    "sha256": "08c45ffce11caa9b95cacbb04aceaab2f53bd2b149df69f20fdcd2e052255862",
+    "size": [
+      1,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/bridge_pieces/bridge.nbt",
+    "sha256": "0489a9864e8317e817309b599084aeded5adc52439daddc2a72849f4e1ab0ab8",
+    "size": [
+      31,
+      19,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/connectors/back_bridge_bottom.nbt",
+    "sha256": "02cabcee363c400bd49cc91b7c8a6fa1ae8f662e3b022d64b250a6977bd02d03",
+    "size": [
+      8,
+      8,
+      19
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/connectors/back_bridge_top.nbt",
+    "sha256": "9c97ecc8c2638b9971f30a006e2d4446040edca5bb916de459d183b8979d2ba4",
+    "size": [
+      8,
+      11,
+      19
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/legs/leg_0.nbt",
+    "sha256": "adc96449a5391f0b248c14cab6016f1a898c5f341437fc392ea55218937b346c",
+    "size": [
+      3,
+      22,
+      3
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/legs/leg_1.nbt",
+    "sha256": "781c29d83ffe2a0b7b354804d4353b64462ab5c85fe6b46ecb8676b268469c7b",
+    "size": [
+      3,
+      22,
+      3
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/rampart_plates/plate_0.nbt",
+    "sha256": "a2aba403ba8ea344d80a277d8f8077851dc5c8cf358591d6f51864ee299bbfae",
+    "size": [
+      2,
+      19,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/ramparts/rampart_0.nbt",
+    "sha256": "087bcdd77658e296e15f451c58186add3016725610a9592d4e08339ca6d516a6",
+    "size": [
+      16,
+      22,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          13,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/bridge/ramparts/rampart_1.nbt",
+    "sha256": "5dfe49a9c6d46fe82dddd9467db41d883ee1116f7ed592e429566ccaa41ccf48",
+    "size": [
+      16,
+      32,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          7,
+          17,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          8
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          12
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/bridge/starting_pieces/entrance.nbt",
+    "sha256": "106716a876d22022b6f2b9b9eade4754b63f77ca8ba02329d3da6db358f21d0a",
+    "size": [
+      17,
+      32,
+      32
+    ],
+    "special": [
+      {
+        "pos": [
+          9,
+          16,
+          4
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_bridge\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/bridge/starting_pieces/entrance_base.nbt",
+    "sha256": "e5bc65a1009b90b55e334ce5fc41ed831ccff77f9e28ba183886dc3376c8b215",
+    "size": [
+      16,
+      32,
+      32
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/starting_pieces/entrance_face.nbt",
+    "sha256": "0e08d32ff979ab07fa7fac1f6f0f9f10ffc2cdf86acf681f29cb9fd82ae25133",
+    "size": [
+      5,
+      24,
+      32
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/walls/wall_base_0.nbt",
+    "sha256": "8098bfda2166e5966d4bfed9f10f5cc7efa6af884014e8f8adbcab0a46e3129e",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/bridge/walls/wall_base_1.nbt",
+    "sha256": "54b0b0ec9dd240f93b3bbccb46b70ac46267d6dc1c1b5435166cbecf301e5984",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/air_base.nbt",
+    "sha256": "d68e7772a8a7bf3f03ded06bd59929505136e3485ff22779ce331d1c993ac553",
+    "size": [
+      30,
+      24,
+      48
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/connectors/end_post_connector.nbt",
+    "sha256": "3ff040f99f0281559b7cfccee7be2e7a70bad14f4ac18efaf068306215ed1d4a",
+    "size": [
+      2,
+      2,
+      22
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/inner_0.nbt",
+    "sha256": "b193adfc49b13c14cc4dd062b9342a4028b6b0931164645e28cac86bfd986e25",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/inner_1.nbt",
+    "sha256": "86862dbeea655b6944d85ee48070846cf13e90398d9d053ce58bcdc729bf4102",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/inner_2.nbt",
+    "sha256": "854014eed789c01d9a564e50948a11765d16c0faec8c67abe8314a0d0da62fbe",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/inner_3.nbt",
+    "sha256": "b941dd0a63380676019aae103977c88e96ec9ab799506e5d964a9ca4a6778253",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          1,
+          5
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_hoglin_stable\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/inner_4.nbt",
+    "sha256": "a4c6470aa720a2bc7ccf00b9f92ed202be3fc92bdb17f8f55a587d5546382d27",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/outer_0.nbt",
+    "sha256": "f33873412781032d61f8a26d6fcdcf43aaed2876f6a4c26a9e1a4b506d46a785",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/outer_1.nbt",
+    "sha256": "686c027de48ee8f31a9f2b28f7636be47e190b234f43b800294a30d1e73c4990",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/outer_2.nbt",
+    "sha256": "97fda8eeed5625f86f0c60a62ed15c1eea3bda0a05175efa7bfe3758979d6d99",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/outer_3.nbt",
+    "sha256": "11d27edfd1424c12ac2bf87397ee53c6f2488a8344644660a49c89dd8125b9d2",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/large_stables/outer_4.nbt",
+    "sha256": "426cdf76535dcd424cfe4c08f2de4f28abaa3cba85f4a46bbc4ce138201865e0",
+    "size": [
+      14,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/posts/end_post.nbt",
+    "sha256": "86f561392c95ddce22cb4332d247c6ff592bebfd5275cdd53dfeae285075e7ef",
+    "size": [
+      2,
+      24,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/posts/stair_post.nbt",
+    "sha256": "b1c4b040173297da1cbbfca6128282d2725344a3c9597bf9362e5f2fd39345ca",
+    "size": [
+      2,
+      24,
+      10
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/rampart_plates/rampart_plate_1.nbt",
+    "sha256": "8318b5a2df201f51f42241206d06221c109b7aa7fe17165f42082ceb103b906a",
+    "size": [
+      2,
+      19,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/ramparts/ramparts_1.nbt",
+    "sha256": "62911ad89d83922b8243b4f55a9e8b3156ef54e96f04fb4a24f12649be721bda",
+    "size": [
+      16,
+      32,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          7,
+          17,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          8
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          11
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/ramparts/ramparts_2.nbt",
+    "sha256": "0b09a98cfa2ab325f7d549e8d7d7404ec71c15f475da0d936b9c2f5d0fd59272",
+    "size": [
+      16,
+      21,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          12,
+          3,
+          13
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          3,
+          13,
+          9
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/ramparts/ramparts_3.nbt",
+    "sha256": "3748645219a40b8218370c5d59c99b50e384a9cc736d12bf5f4cfd884bcd2a6f",
+    "size": [
+      16,
+      12,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          6,
+          3,
+          4
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/inner_0.nbt",
+    "sha256": "50ca9edb97bcc031de83829f3b5d555e24b16bb1a9e96e0f57123e09894e99c6",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/inner_1.nbt",
+    "sha256": "87e99340310e8df5093608a11a6d605fc525290c63565b7c1cf49cdb8154cfe6",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/inner_2.nbt",
+    "sha256": "f80aaea4bef451a27b8feb8b964e7e887717c93ba92ab14c70a8ae09a3a6099e",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          1,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_hoglin_stable\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/inner_3.nbt",
+    "sha256": "c42207177ed5f7465f7127ac7a6abeee99bff3780ef184bff75bf1fce037a3de",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/outer_0.nbt",
+    "sha256": "334df5bd03cae209c42aa7ac0f2a76c05dd5d01336f564530080989b9e4dab97",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/outer_1.nbt",
+    "sha256": "cca97c8396b038c517ec574f1e24e4a96f628f9f9490ca01a5f2eb6b2a319fe6",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/outer_2.nbt",
+    "sha256": "6e323629ee8b887693278a2bcb42394db6b65ca0f3535c27ee1e22eb6f41e2c0",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/small_stables/outer_3.nbt",
+    "sha256": "93e007dd28a6fe4671a4399c0c33159a0664a16ea3b2b8215129803609db81b8",
+    "size": [
+      12,
+      6,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_1_0.nbt",
+    "sha256": "6a49b1136c65f1407b314f5682a4fd17c34f8f3fbe2a4502bda496a3bb978717",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_1_1.nbt",
+    "sha256": "518d143d9c25103d3aaf49911600de039ffcc16441797ac8585fc44620f6e649",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_1_2.nbt",
+    "sha256": "74205fe44166184a87e45139888c4f14444084b2dc5ead559010a974587f49bc",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_1_3.nbt",
+    "sha256": "f1100ae208f1fd2acd475e410c20e4d16e670840f8391ddde43e8f8fe74fd6b7",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_1_4.nbt",
+    "sha256": "55cb8e01f61ca63bf705fd75a3d51ddb36c8d346a63a3d4aa7ecb3434727edb5",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_2_0.nbt",
+    "sha256": "fd471c5953d97399cee3ed44ef1c6b20328af446cadff1baef820b3b241d7e5f",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_2_1.nbt",
+    "sha256": "6d21d4980e1040d25dd4970c146a10b78e655e37ad8a94615e9f00ea810cc97d",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_2_2.nbt",
+    "sha256": "96faa725187a80fe7d43cb3aea2534e573d53e9f15036695383c76c4519f212d",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_2_3.nbt",
+    "sha256": "b8394618bc2569adf9d4f2b5953d387f0a4ac979d334561d44404107e8591d72",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_2_4.nbt",
+    "sha256": "1ff8dc650583f744cdb71c20ceb9670dfd192f90f19a4cd1d745b5c15de79174",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_3_0.nbt",
+    "sha256": "8aa14fcdd823a7d5f69c28fd4ec6b1736d907208c97d5a206840049c9a716e36",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_3_1.nbt",
+    "sha256": "52c53502eb4ea3414228f086cf99d5dcecac52497e5c4ecb2badc1f51cd1c377",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_3_2.nbt",
+    "sha256": "5fa1e570bf22cdec5bf4e62a8392a78c79cfa5fdc3c9ad097b70f7514b083180",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_3_3.nbt",
+    "sha256": "26b810663db0c345bbe94ec8c3f6872e4ab15fe2e1949e60a2dfd32ee01166c0",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/stairs/stairs_3_4.nbt",
+    "sha256": "4e4fbbedf5d4a39c3942b33d4252275f15444e04647844bfe35ffad24aebea61",
+    "size": [
+      14,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/stairs_0_mirrored.nbt",
+    "sha256": "c60486a8c5a0a2931f582eb3dc8eab7f3cc1a3ff31416051693117831b366a51",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/stairs_1_mirrored.nbt",
+    "sha256": "a43cc830ef3ce8e8ab6e5cfcce50a3bec4f94aa03a1dd22f34d9fdd3123afe1b",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/stairs_2_mirrored.nbt",
+    "sha256": "7e8a978776c0a59fd85089424b83bbe67a8dd8893113d9b362f3059a7946ce2e",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/stairs_3_mirrored.nbt",
+    "sha256": "19baadeae4e02876ee86ac503f30f891d59e5c65f45a3f4f992ca46e10f70f2d",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/stairs_4_mirrored.nbt",
+    "sha256": "55ad9b1aa0de88680fe082d24e8a905dfab111722ec53e92c2444f18d5f5bdf8",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/starting_stairs_0.nbt",
+    "sha256": "c79113678c658d14b417ecdfd20c5a8c782659db0d70804793cbd7fbb7dc9ce0",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/starting_stairs_1.nbt",
+    "sha256": "869482a661f2970f039b108e82edb801f09713c129faa34d3d94c3658be84483",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/starting_stairs_2.nbt",
+    "sha256": "82ba51d6bb1de4a51e7949928de17d03e9fc765079468345fd4330a67f530ed3",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/starting_stairs_3.nbt",
+    "sha256": "21e0e72285afa36b6aa974265d941fe35d9d7208e083bca9b4d5449bc4d2c19b",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/starting_pieces/starting_stairs_4.nbt",
+    "sha256": "60c40205d67e4e6153e0c0af8bfc59b0715c6379fef31047a7ffdabab1458d77",
+    "size": [
+      15,
+      6,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/walls/side_wall_0.nbt",
+    "sha256": "9986e1d72c1f0486576db1f2e7a189789e5141fbf2e828bbab98cdabe266b469",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          9,
+          7,
+          9
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/hoglin_stable/walls/side_wall_1.nbt",
+    "sha256": "422495ab03e49d0082aafa77c8d68404027f90970945afd17290556fd6967334",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/hoglin_stable/walls/wall_base.nbt",
+    "sha256": "bd5691dd6032f3fc995e2f4bd1e82674bbfbc9e382147dd6538a5eb53096f96f",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          12,
+          4,
+          13
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/jigsaw_test.nbt",
+    "sha256": "bbf26db2e357a0221244a279e431769a249dde3c4fef8095c57f2fe922d4de39",
+    "size": [
+      10,
+      5,
+      15
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/mobs/empty.nbt",
+    "sha256": "e2704b4cb2545ed193af519e9f3fd3aa88d14ece221a34c014cc4e230ab2467c",
+    "size": [
+      1,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/bases/centers__center_0.nbt",
+    "sha256": "3660721671e9fc452d5b55051d897b29d7094e3168a829e95743a292e1e5dba3",
+    "size": [
+      7,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          4,
+          3,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_treasure\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/bases/centers__center_1.nbt",
+    "sha256": "4f053cf33b4cc3ebce7244870aadee1e31d739cef292483d3423d93a8b6a51d9",
+    "size": [
+      7,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          2,
+          3,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_treasure\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          4,
+          3,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_treasure\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/bases/centers__center_2.nbt",
+    "sha256": "9120dbd7d5099f631e1d44dccf3affe8d335a0879f32fecaf2fed1c151900986",
+    "size": [
+      7,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          2,
+          4
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_treasure\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/bases/centers__center_3.nbt",
+    "sha256": "2a308d09624fea49b32d5b5137b5c78aba07dbdf7583f8728864a88520331297",
+    "size": [
+      7,
+      6,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          3,
+          5
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_treasure\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/bases/lava_basin.nbt",
+    "sha256": "7d65c302faf8908332b3abdaac2b1e9317923393c2c23aee7a666e898c93738a",
+    "size": [
+      24,
+      11,
+      24
+    ],
+    "special": [
+      {
+        "pos": [
+          11,
+          7,
+          19
+        ],
+        "name": "minecraft:spawner",
+        "nbt": "{'MaxNearbyEntities': ShortTag(6), 'RequiredPlayerRange': ShortTag(16), 'SpawnCount': ShortTag(4), 'SpawnData': CompoundTag({'id': StringTag(\"minecraft:magma_cube\")}), 'MaxSpawnDelay': ShortTag(800), 'id': StringTag(\"minecraft:mob_spawner\"), 'SpawnRange': ShortTag(4), 'Delay': ShortTag(0), 'SpawnPotentials': ListTag([CompoundTag({'Entity': CompoundTag({'id': StringTag(\"minecraft:magma_cube\")}), 'Weight': IntTag(1)})], 10), 'MinSpawnDelay': ShortTag(200)}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/big_air_full.nbt",
+    "sha256": "310b93b192b494fd0ecac9a6409f13d89675c9dfe2b8940ab140e88735846f64",
+    "size": [
+      38,
+      48,
+      38
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/brains/center_brain.nbt",
+    "sha256": "84e8a2b0ab70ad5780cf5cc1ff7532bba5f992b580d7fa7dc8ae0b6c643f70cf",
+    "size": [
+      2,
+      35,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/connectors/center_to_wall_middle.nbt",
+    "sha256": "d11ac3adffcf0b7607f7e293c6954da8aa2fbb5843ab6928f4cdcbbac222b7e4",
+    "size": [
+      11,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/connectors/center_to_wall_top.nbt",
+    "sha256": "cf3e4989341902062baf4edc6fbb5579d8e06b5b623e619a484fba4d85e345c0",
+    "size": [
+      11,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/connectors/center_to_wall_top_entrance.nbt",
+    "sha256": "7f57c45deede1913a7632546cdd99bd89463ddceb79a234e187c758b801060f6",
+    "size": [
+      11,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/bottom__corner_0.nbt",
+    "sha256": "728eb7264dc4fde4bf4c87d16361aa0aa2b1420ed21e3415373a0183273d9c9e",
+    "size": [
+      5,
+      16,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/bottom__corner_1.nbt",
+    "sha256": "40da0c1396baa6e215bd2f3fadf9f7c1e516e916337399a38cae3593e10816fc",
+    "size": [
+      5,
+      16,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/edges__bottom.nbt",
+    "sha256": "111aa4287bfea972ed2b70bba7e8b1231ca649682b92b7db8ea684a8215dc1c5",
+    "size": [
+      2,
+      16,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/edges__middle.nbt",
+    "sha256": "b12b2660d17e82f125c512937beac9ad07d6416398363f90752912e896b50fe4",
+    "size": [
+      2,
+      15,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/edges__top.nbt",
+    "sha256": "f0c16b235f9c8cc57994889d458cc5e780636858fdd1e30c0d9ae899f6853e7d",
+    "size": [
+      2,
+      17,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/middle__corner_0.nbt",
+    "sha256": "3cec9103ad4a767cd956e4ec80e8a73a7199582e10a373d5da86e8e0ba888fb9",
+    "size": [
+      5,
+      15,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/middle__corner_1.nbt",
+    "sha256": "38a11a32f064abc255e61e66eabd2f702606b0c2445996a56523f4def89ec6d5",
+    "size": [
+      5,
+      15,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/top__corner_0.nbt",
+    "sha256": "8e2f126ddee78764af12d506e1912b0bf457724fe494c1040b2db0662546f352",
+    "size": [
+      5,
+      15,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/corners/top__corner_1.nbt",
+    "sha256": "002e4ceae05f9331013053cb21736900419735960f42c84af3d322a8ea43e650",
+    "size": [
+      5,
+      15,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/entrances/entrance_0.nbt",
+    "sha256": "fac5e744171cd0dcdefa0ec9e6ae78383e995ae06c2497ef018a83a91342eb3a",
+    "size": [
+      19,
+      18,
+      20
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/empty.nbt",
+    "sha256": "d40291bdf4b3ed9820b51e00341860ae430d9a30d9f2b5939940fbd7c76e7311",
+    "size": [
+      1,
+      1,
+      1
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/fire_room.nbt",
+    "sha256": "45e947d0544eef521e0c86a6564f565919b2940c1de5f7b893caf7096ba726ab",
+    "size": [
+      10,
+      10,
+      10
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/house_0.nbt",
+    "sha256": "c8fee169c32dd3063c83c60c6f43421ab90f7931fea49073db020b28037dc4ff",
+    "size": [
+      5,
+      12,
+      10
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/house_1.nbt",
+    "sha256": "b20fbf3c2ede7808ba26b2bfae23d0ea53d97d45247785958c2954977e10dc51",
+    "size": [
+      5,
+      12,
+      10
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/large_bridge_0.nbt",
+    "sha256": "a3935fb7936c1f84ada8debba3a6ba89f2fb7e382eea4e0bd9081181f23e0f52",
+    "size": [
+      4,
+      2,
+      7
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/large_bridge_1.nbt",
+    "sha256": "466610570041a6276e707df8eb22af9e59a09402bda96a85b843aa1d337a1184",
+    "size": [
+      4,
+      2,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/large_bridge_2.nbt",
+    "sha256": "c81c04d0401194d11ce97a2e67271f2e39b9aa5d33c20b771154c04095040142",
+    "size": [
+      4,
+      2,
+      11
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/large_bridge_3.nbt",
+    "sha256": "af9119b2919eff4aa93dadde28079cb8cc05d39c5d995ef19d8ec210734080c3",
+    "size": [
+      4,
+      2,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/roofed_bridge.nbt",
+    "sha256": "077e74deb5192dce93999db53feeef380ea3785fd4491db633e051426e6facd0",
+    "size": [
+      10,
+      6,
+      4
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/small_bridge_0.nbt",
+    "sha256": "535478a8b2160e485c422a0ee1191c75fc9c1259e65c1f9d8218bc447013ed64",
+    "size": [
+      3,
+      2,
+      4
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/small_bridge_1.nbt",
+    "sha256": "fba4b4b347fdac592bddc29230ad15729f2fe8583998b546946b5db8e75b0c04",
+    "size": [
+      3,
+      2,
+      7
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/small_bridge_2.nbt",
+    "sha256": "8f4a419b7e636092a03e486da6f49dafd3192c923d05d6c2222410c2d8f39921",
+    "size": [
+      3,
+      2,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/extensions/small_bridge_3.nbt",
+    "sha256": "15cb38798eb9b3e7845daa4fe2d317e1cbc16e04f8fa6f1e6e5174267403d548",
+    "size": [
+      3,
+      2,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/ramparts/bottom_wall_0.nbt",
+    "sha256": "3d39a1a69071af1ba034c52b5ec512c9ae23c3b61a727b2667754d74881c5812",
+    "size": [
+      16,
+      24,
+      14
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/ramparts/lava_basin_main.nbt",
+    "sha256": "4dd3593459486004f097a1e52277527824bf243b8bef4c9ba93ba0fc1f3c1f1f",
+    "size": [
+      19,
+      36,
+      14
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/ramparts/lava_basin_side.nbt",
+    "sha256": "45f3edf3f4b0b70222aa352d3659bff176005ded66416e931452af314cd0b1fe",
+    "size": [
+      19,
+      36,
+      14
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/ramparts/mid_wall_main.nbt",
+    "sha256": "53ec99efb92a046de98cc716691a001a3b0fdf4e5b47ac0cb782e7b10af0832f",
+    "size": [
+      17,
+      32,
+      14
+    ],
+    "special": [
+      {
+        "pos": [
+          11,
+          29,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          13,
+          29,
+          8
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/ramparts/mid_wall_side.nbt",
+    "sha256": "19f00ee791856a65314d4013920ac8b803007ef74e0d814be931d6e1d5b5b37d",
+    "size": [
+      17,
+      31,
+      14
+    ],
+    "special": [
+      {
+        "pos": [
+          11,
+          29,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          11,
+          29,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/ramparts/top_wall.nbt",
+    "sha256": "55e59fc4a921bf57cc11b578b6eb0e45ebe8b997dbfce299400a2a91252a4ed6",
+    "size": [
+      17,
+      18,
+      14
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/roofs/center_roof.nbt",
+    "sha256": "8e55f229c9d9dc427e8ca857f555da8999648852c6c2f01c48f293665a01efe8",
+    "size": [
+      24,
+      2,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/roofs/corner_roof.nbt",
+    "sha256": "61533606883df5b55d4109ce4f946d14f2be1ea7c28e135373f6b7a0873a998f",
+    "size": [
+      5,
+      2,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/roofs/wall_roof.nbt",
+    "sha256": "a7c09e74a836ca3ef1b982fa4c408e6e3ef1b1a12ccaf4aa39ad7a4221975fe6",
+    "size": [
+      5,
+      2,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/stairs/lower_stairs.nbt",
+    "sha256": "069da159355aafe3b463ede43b6bd2d2f294a952e5cae84b07b262e6e9c3caa8",
+    "size": [
+      2,
+      5,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/bottom__wall_0.nbt",
+    "sha256": "e94a15b708190cbd214babaf2eb56afd360e8dc163f00e66a796a381a646cbb6",
+    "size": [
+      5,
+      16,
+      24
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          6,
+          2
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/walls/bottom__wall_1.nbt",
+    "sha256": "575aab49231fd420a3d6c81569ef8050b1f9fd657415619192796d32214e2fe0",
+    "size": [
+      5,
+      16,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/bottom__wall_2.nbt",
+    "sha256": "292c8dada5311170655b8e3c593084d97ef298ce1826ca6a2fbd08ab2396b089",
+    "size": [
+      5,
+      16,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/bottom__wall_3.nbt",
+    "sha256": "f87638b015f3e9c26c2aa154a16aaeedd08d47be6552510707e79b96c2e55842",
+    "size": [
+      5,
+      16,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/entrance_wall.nbt",
+    "sha256": "ce8153aca5b339a564a84f35c5d8f4a59bd76d0923d29132c68d3fd4f9d2f028",
+    "size": [
+      2,
+      17,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/lava_wall.nbt",
+    "sha256": "269b27b4b2296ebee00ad0d48f939733e1f2a886a413200d49fa7acd7b7d8da2",
+    "size": [
+      2,
+      36,
+      14
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/mid__wall_0.nbt",
+    "sha256": "2b6f15247f2a24455a7aa96571199bdca57a763c58f0b59909aa7c38d92f8933",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          11,
+          22
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/treasure/walls/mid__wall_1.nbt",
+    "sha256": "52651578132a9d4f2c312a03aae53fa41d4921ffb7573bcf217fdf1b056ffd58",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/mid__wall_2.nbt",
+    "sha256": "184e819c02d244164202f06348aad9d0973ff0729f0cccfd78c49a7343a954aa",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__bottom_corner.nbt",
+    "sha256": "2cfd15e2d8f86efdf6d35aa812ff3886025a0c5cd22b78be7d732cdcf615e3b5",
+    "size": [
+      2,
+      16,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__medium_outer_wall.nbt",
+    "sha256": "646b8dc7d1a459b612f9b1e3e7d3d8b8f2eb10c0c9027ebdc775ad453bcf21f0",
+    "size": [
+      2,
+      16,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__mid_corner.nbt",
+    "sha256": "aa196b0dee338e007c9aea26e25966712c1831522c79cc301db6755a434bb933",
+    "size": [
+      5,
+      15,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__outer_wall.nbt",
+    "sha256": "6e555b4d8949b858b2ca7c97eb5eaa80d2d04043582fffaf6edd2d9ba0c41113",
+    "size": [
+      2,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__tall_outer_wall.nbt",
+    "sha256": "116e9d7f4b9e720defea7f226bcaf3c2987f6ccdd51b9b9e99737716a372d796",
+    "size": [
+      2,
+      17,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/outer__top_corner.nbt",
+    "sha256": "4b5c7cc0a9e7e604dd45ca9472dc659824d9c43a03099b042bed4d03cfb592ed",
+    "size": [
+      2,
+      17,
+      5
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/top__main_entrance.nbt",
+    "sha256": "c3c7922aeb89ff9de39cdcd89f62bc79e72bce99ff4ad67d57764940a1075efa",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/top__wall_0.nbt",
+    "sha256": "1a7792dbc03a311c17311523af574e610e2a31cf2736670e465c3b064340a235",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/treasure/walls/top__wall_1.nbt",
+    "sha256": "8387c298d6ff3c4248b490caaf22bf8e24c1b2270c1e4a36da24feadbcd6f136",
+    "size": [
+      5,
+      15,
+      24
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/air_base.nbt",
+    "sha256": "f7484340980e7c30ad28affe7e81dbc4a78766583fb3f053726904799f4ff76c",
+    "size": [
+      46,
+      24,
+      46
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/center_pieces/center_0.nbt",
+    "sha256": "ba37dc3b4afcab5b4b18f8281ba6462f313e1be3603f538d34be1d699d4d2c9f",
+    "size": [
+      11,
+      7,
+      11
+    ],
+    "special": [
+      {
+        "pos": [
+          8,
+          1,
+          3
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/center_pieces/center_1.nbt",
+    "sha256": "010928a2afbf7193a6a13846256e7836adea0d478ac34cc4b04f884a29f9eff4",
+    "size": [
+      11,
+      8,
+      11
+    ],
+    "special": [
+      {
+        "pos": [
+          6,
+          1,
+          9
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/center_pieces/center_2.nbt",
+    "sha256": "368f169af95d2cbc7d92940c58fa8d5494e095e935ec356bba5dcd946989b296",
+    "size": [
+      11,
+      8,
+      11
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          1,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/edges/edge_0.nbt",
+    "sha256": "c3dacdb948b8067189e71ba7f8c2c9e62b85f3eeee0b79be8f42874aa76a4c84",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/fillers/stage_0.nbt",
+    "sha256": "a28f11ce8fcfe9b8f3480ab8b8b3dbe156d1d77942aab1ee5b3633e999c70ad0",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/pathways/pathway_0.nbt",
+    "sha256": "f0f2d0e8d93436084a4ac51debdbc32e0304fd06139e997bab786c9f8aa83c72",
+    "size": [
+      3,
+      2,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/pathways/pathway_wall_0.nbt",
+    "sha256": "ffefa0c8c95570ad8b455942a9619bfd8a38dfc6853f67edd7e8ac7ec99aeaee",
+    "size": [
+      3,
+      2,
+      2
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/rampart_plates/plate_0.nbt",
+    "sha256": "b97b309401399d07fcf4e007cea4f030501230d5ea3a82c978102f2be45f15c0",
+    "size": [
+      5,
+      19,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/ramparts/ramparts_0.nbt",
+    "sha256": "b9dd178946f474fcbb8715d5d3db4549143d9119ba54ed3f9cd9cd4592c64c9a",
+    "size": [
+      16,
+      32,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          7,
+          17,
+          7
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          8
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          7,
+          17,
+          12
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/ramparts/ramparts_1.nbt",
+    "sha256": "d57998466d01a19db4822beab44ca30d10dc3bc00853e3fd295ccc1ad3b3a85d",
+    "size": [
+      16,
+      22,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          3,
+          13,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/ramparts/ramparts_2.nbt",
+    "sha256": "225dd9b41315f9dfa050d8c0f9dbf74587029a5954bfec85aa0b37564c9f07b9",
+    "size": [
+      16,
+      12,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/rot__stage_1_0.nbt",
+    "sha256": "ba2438bebf677c523ad6ed06489550f5615f200a9c39c4b76f63e36ca7350bae",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_0_0.nbt",
+    "sha256": "13c5efd286dd46b981f724bb9ac3489028badbde3e888fb68c8f5bf10faea054",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_0_1.nbt",
+    "sha256": "78ec8b5f9214511dabfeffddc9ef4e5c418523ecae284d74f92fda0ba413855a",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_0_2.nbt",
+    "sha256": "d4be93a20cbc21dda0e1e01914320d6577088368309c9c928b0cecf36d21ec6b",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          1,
+          4,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/stages/stage_0_3.nbt",
+    "sha256": "539d3a7ef7b4a7503b2e09249258f3bcac9d1de3f291df09b5cab15c03acd3d8",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_1_0.nbt",
+    "sha256": "42ebbce77a62a111fb264a2b3250dda7dd16d0db1296f1b50b573003a797fbab",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_1_1.nbt",
+    "sha256": "dc0e9c148f073ea8bb934ccc077e5245b0f6498dd839971be1bf9d7664ebbace",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_1_2.nbt",
+    "sha256": "24ae637fd190e2bcdb20c3c5ea4bb925d8bcbaa5e2fa169cd90fbd91f9437216",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": [
+      {
+        "pos": [
+          7,
+          1,
+          6
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  },
+  {
+    "path": "bastion/units/stages/stage_1_3.nbt",
+    "sha256": "45319d425d69d17a460d81980dbbdc800028500d30a32285f1dad29b4c0d4048",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_2_0.nbt",
+    "sha256": "ba42c64fef3d59a00b76d8f28bc12c3ba936807a519d6ec7f419fc976fbd0c79",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_2_1.nbt",
+    "sha256": "841333d1a5ee4c45cf6a1565dee8b135fee413b79ce4ef710e74e6000a9af549",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_3_0.nbt",
+    "sha256": "b9075b7a3587e966e21871e23517aca1d694df599af12784568094fadfb09970",
+    "size": [
+      12,
+      3,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_3_1.nbt",
+    "sha256": "008a3cd7b8c1b40ca4681f1e33fda894d223933489815ad85883a803cda3098d",
+    "size": [
+      12,
+      3,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_3_2.nbt",
+    "sha256": "329a4d07b3b5459ca4cf254fac2781be4e2e3368225f115afd5559e4b80c4f6c",
+    "size": [
+      12,
+      3,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/stages/stage_3_3.nbt",
+    "sha256": "b1a17e7933698f9c3e93229d3e0b6385bc26b95000b126c7e48225b5ffba1750",
+    "size": [
+      12,
+      3,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/wall_units/edge_0_large.nbt",
+    "sha256": "8e0ccafc866dc39c63748d4a215170f9313c3970d6a6399b8db31eb4e0e2fa97",
+    "size": [
+      12,
+      7,
+      9
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/wall_units/unit_0.nbt",
+    "sha256": "830bac6ccfc8fcbe40963c8006fa8a543f3b73e05282449f25f9246873edd820",
+    "size": [
+      12,
+      7,
+      8
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/walls/connected_wall.nbt",
+    "sha256": "1ef6b1e0028eefecf6aaa6805850e0548c00cb37279a0d39c2a56242c2805332",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": []
+  },
+  {
+    "path": "bastion/units/walls/wall_base.nbt",
+    "sha256": "46a9fb7fa8f6fac90d4c6c5cf3bec99757626221f133ca7fb1c1a5d7af7a030a",
+    "size": [
+      16,
+      24,
+      16
+    ],
+    "special": [
+      {
+        "pos": [
+          2,
+          4,
+          5
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      },
+      {
+        "pos": [
+          3,
+          4,
+          5
+        ],
+        "name": "minecraft:chest",
+        "nbt": "{'LootTable': StringTag(\"minecraft:chests/bastion_other\"), 'id': StringTag(\"minecraft:chest\")}"
+      }
+    ]
+  }
+]

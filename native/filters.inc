@@ -33,6 +33,24 @@ static void ss_second_third4(SSU4 seed,SSU4 *second,SSU4 *third) {
     a=(((u2&UINT32_C(0x80000000))|(u3&UINT32_C(0x7fffffff)))>>1)^((u3&1)*UINT32_C(0x9908b0df));
     *third=ss_temper4(v^a);
 }
+#if defined(__AVX2__)
+typedef uint32_t SSU8 __attribute__((vector_size(32)));
+static SSU8 ss_temper8(SSU8 y) {
+    y^=y>>11; y^=(y<<7)&UINT32_C(0x9d2c5680);
+    y^=(y<<15)&UINT32_C(0xefc60000); return y^(y>>18);
+}
+static void ss_second_third8(SSU8 seed,SSU8 *second,SSU8 *third) {
+    SSU8 u1=UINT32_C(1812433253)*(seed^(seed>>30))+1;
+    SSU8 u2=UINT32_C(1812433253)*(u1^(u1>>30))+2;
+    SSU8 u3=UINT32_C(1812433253)*(u2^(u2>>30))+3,v=u3;
+    for(uint32_t i=4;i<=398;i++)v=UINT32_C(1812433253)*(v^(v>>30))+i;
+    SSU8 a=(((u1&UINT32_C(0x80000000))|(u2&UINT32_C(0x7fffffff)))>>1)^((u2&1)*UINT32_C(0x9908b0df));
+    *second=ss_temper8(v^a);
+    v=UINT32_C(1812433253)*(v^(v>>30))+399;
+    a=(((u2&UINT32_C(0x80000000))|(u3&UINT32_C(0x7fffffff)))>>1)^((u3&1)*UINT32_C(0x9908b0df));
+    *third=ss_temper8(v^a);
+}
+#endif
 #endif
 static int ss_mineshaft_query(SeedContext *ctx,int x0,int z0,int x1,int z1,int *xz,int cap,int first) {
     if(!ctx || !xz || cap<1 || x0>x1 || z0>z1 ||
@@ -44,6 +62,37 @@ static int ss_mineshaft_query(SeedContext *ctx,int x0,int z0,int x1,int z1,int *
 #if defined(__GNUC__) || defined(__clang__)
     uint32_t world[3];ss_first3((uint32_t)ctx->seed,world);
     uint32_t a=world[0]>>1,b=world[1]>>1;
+#if defined(__AVX2__)
+    for(int x=cx0;x<=cx1;x++) {
+        int z=cz0;
+        for(;z<=cz1-7;z+=8) {
+            SSU8 seeds;
+            for(int lane=0;lane<8;lane++)seeds[lane]=((uint32_t)x*a)^((uint32_t)(z+lane)*b)^(uint32_t)ctx->seed;
+            SSU8 second,third;ss_second_third8(seeds,&second,&third);
+            for(int lane=0;lane<8;lane++) {
+                int zz=z+lane;
+                if((float)(second[lane]*(1.0/4294967296.0))<0.004 &&
+                   third[lane]%80<(uint32_t)(abs(x)>abs(zz)?abs(x):abs(zz))) {
+                    n=emit((Pos){x*16+8,zz*16+8},xz,n,cap);
+                    if(n<0 || (first && n>=first))return n;
+                }
+            }
+        }
+        for(;z<=cz1;z+=4) {
+            SSU4 seeds;
+            for(int lane=0;lane<4;lane++)seeds[lane]=((uint32_t)x*a)^((uint32_t)(z+lane)*b)^(uint32_t)ctx->seed;
+            SSU4 second,third;ss_second_third4(seeds,&second,&third);
+            for(int lane=0;lane<4 && z+lane<=cz1;lane++) {
+                int zz=z+lane;
+                if((float)(second[lane]*(1.0/4294967296.0))<0.004 &&
+                   third[lane]%80<(uint32_t)(abs(x)>abs(zz)?abs(x):abs(zz))) {
+                    n=emit((Pos){x*16+8,zz*16+8},xz,n,cap);
+                    if(n<0 || (first && n>=first))return n;
+                }
+            }
+        }
+    }
+#else
     for(int x=cx0;x<=cx1;x++)for(int z=cz0;z<=cz1;z+=4) {
         SSU4 seeds;
         for(int lane=0;lane<4;lane++)seeds[lane]=((uint32_t)x*a)^((uint32_t)(z+lane)*b)^(uint32_t)ctx->seed;
@@ -57,6 +106,7 @@ static int ss_mineshaft_query(SeedContext *ctx,int x0,int z0,int x1,int z1,int *
             }
         }
     }
+#endif
 #else
     for(int x=cx0;x<=cx1;x++)for(int z=cz0;z<=cz1;z++) {
         Pos p;

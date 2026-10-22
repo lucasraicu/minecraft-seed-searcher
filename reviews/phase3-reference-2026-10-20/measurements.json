@@ -1,0 +1,538 @@
+{
+  "first_run": {
+    "schema": "catalog-reference-report-v1",
+    "status": "complete",
+    "scope": "Research predictor only; no game certification, public activation or retention recall claim",
+    "controls": {
+      "schema": "catalog-reference-run-v1",
+      "seeds": [
+        "-5959916077745768304",
+        "454251624725559791"
+      ],
+      "threads": 1,
+      "total_extraction_wall_cap_seconds": 300,
+      "output_cap_bytes": 1073741824,
+      "child_rss_cap_bytes": 4294967296,
+      "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+      "native_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+      "native_source_sha256": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+      "reference_source_sha256": {
+        "scripts/catalog_reference.py": "4c57147a4d3fb47fd3a64bd7b83cf1ea056848264ba459beeab16ac663785921",
+        "src/seed_search/catalog/__init__.py": "c6778d1c6dd199825211e5bdaa71625010f9c94f95a9c32f5f4bceccb373374b",
+        "src/seed_search/catalog/artifacts.py": "486434007674b2fe9a64cec7d259fed0a240078f5b7223b579f802b03638928b",
+        "src/seed_search/catalog/capabilities.py": "f94316217756ab62d65fdf397720d45ffbac2afb0664e729536f40392987077f",
+        "src/seed_search/catalog/codec.py": "fcde3c7019e6bb8826e349fcd8a62c5f686854bd40d94ff6bbb1c9973bc1901b",
+        "src/seed_search/catalog/coverage.py": "0552bb4870a134d18de440586be6066091c6f5e23736f587345a1e5b3d27ca29",
+        "src/seed_search/catalog/extract.py": "119bc8e85b4db7ed4e8985f10d2e725b44cf79a60c19a04b01332c112f9b9727",
+        "src/seed_search/catalog/geometry.py": "9ced7b55b10b20740583b1cc779081257691e2a5451b09c7ff0f7d6e79ac72d2",
+        "src/seed_search/catalog/models.py": "07be80f1e9a55bb566582654c385884a6cb4923cc1c8cdb8869e5cc4344a2bae",
+        "src/seed_search/catalog/query.py": "b3ef22ddd537d86aca998e3be388732560b83a34991eff78f0be2281cfdee1c6",
+        "src/seed_search/catalog/registry.py": "b9e0d7808fcb743b97b3aa23ec5d629192b4ce10bad8902b198317a87b2fdec0",
+        "src/seed_search/catalog/request.py": "c63fa020e9b0cee963be5570a98af3eeab323ebdbc7ebbe596b94bf607434a08",
+        "src/seed_search/catalog/store.py": "3c73c47d794fa84aeacdc5af8e280fe960f832e635ccc3570cd46cb5aaa6a6fd",
+        "src/seed_search/catalog/summaries.py": "6a0b43285a7eaf90a63c21efacd077e035203f1babfbbf5ae56d9d9d72317642"
+      },
+      "selection": "fixed seed_from_index before relevance evaluation; no personal gate"
+    },
+    "jobs": [
+      {
+        "seed": "-5959916077745768304",
+        "exit_status": 0,
+        "stop_reason": null,
+        "wall_seconds": 2.434689095010981,
+        "peak_rss_bytes": 72544256,
+        "summary_seconds": 0.40421594301005825,
+        "layouts": 243
+      },
+      {
+        "seed": "454251624725559791",
+        "exit_status": 0,
+        "stop_reason": null,
+        "wall_seconds": 2.35106650396483,
+        "peak_rss_bytes": 64413696,
+        "summary_seconds": 0.36365061200922355,
+        "layouts": 243
+      }
+    ],
+    "snapshot_id": "bf452f8c158c67e10b085bae06fcf076bd18fa99bac0c989b09d91d3b3b2f56c",
+    "worlds": 2,
+    "complete_worlds": 2,
+    "partial_or_failed_worlds": 0,
+    "layouts": 486,
+    "publication_seconds": 0.734819122008048,
+    "total_wall_seconds": 6.442176089040004,
+    "extraction_wall_seconds": 4.783392763987649,
+    "new_extraction_wall_seconds": 4.783392763987649,
+    "output_bytes": 2056758,
+    "observation_bytes_uncompressed": [
+      615991,
+      613400
+    ]
+  },
+  "resume": {
+    "complete_worlds": 2,
+    "controls": {
+      "child_rss_cap_bytes": 4294967296,
+      "native_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+      "native_source_sha256": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+      "output_cap_bytes": 1073741824,
+      "reference_source_sha256": {
+        "scripts/catalog_reference.py": "4c57147a4d3fb47fd3a64bd7b83cf1ea056848264ba459beeab16ac663785921",
+        "src/seed_search/catalog/__init__.py": "c6778d1c6dd199825211e5bdaa71625010f9c94f95a9c32f5f4bceccb373374b",
+        "src/seed_search/catalog/artifacts.py": "486434007674b2fe9a64cec7d259fed0a240078f5b7223b579f802b03638928b",
+        "src/seed_search/catalog/capabilities.py": "f94316217756ab62d65fdf397720d45ffbac2afb0664e729536f40392987077f",
+        "src/seed_search/catalog/codec.py": "fcde3c7019e6bb8826e349fcd8a62c5f686854bd40d94ff6bbb1c9973bc1901b",
+        "src/seed_search/catalog/coverage.py": "0552bb4870a134d18de440586be6066091c6f5e23736f587345a1e5b3d27ca29",
+        "src/seed_search/catalog/extract.py": "119bc8e85b4db7ed4e8985f10d2e725b44cf79a60c19a04b01332c112f9b9727",
+        "src/seed_search/catalog/geometry.py": "9ced7b55b10b20740583b1cc779081257691e2a5451b09c7ff0f7d6e79ac72d2",
+        "src/seed_search/catalog/models.py": "07be80f1e9a55bb566582654c385884a6cb4923cc1c8cdb8869e5cc4344a2bae",
+        "src/seed_search/catalog/query.py": "b3ef22ddd537d86aca998e3be388732560b83a34991eff78f0be2281cfdee1c6",
+        "src/seed_search/catalog/registry.py": "b9e0d7808fcb743b97b3aa23ec5d629192b4ce10bad8902b198317a87b2fdec0",
+        "src/seed_search/catalog/request.py": "c63fa020e9b0cee963be5570a98af3eeab323ebdbc7ebbe596b94bf607434a08",
+        "src/seed_search/catalog/store.py": "3c73c47d794fa84aeacdc5af8e280fe960f832e635ccc3570cd46cb5aaa6a6fd",
+        "src/seed_search/catalog/summaries.py": "6a0b43285a7eaf90a63c21efacd077e035203f1babfbbf5ae56d9d9d72317642"
+      },
+      "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+      "schema": "catalog-reference-run-v1",
+      "seeds": [
+        "-5959916077745768304",
+        "454251624725559791"
+      ],
+      "selection": "fixed seed_from_index before relevance evaluation; no personal gate",
+      "threads": 1,
+      "total_extraction_wall_cap_seconds": 300
+    },
+    "extraction_wall_seconds": 4.783392763987649,
+    "jobs": [
+      {
+        "layouts": 243,
+        "resumed_without_extraction": true,
+        "seed": "-5959916077745768304",
+        "stop_reason": null,
+        "summary_seconds": 0.4088564730482176
+      },
+      {
+        "layouts": 243,
+        "resumed_without_extraction": true,
+        "seed": "454251624725559791",
+        "stop_reason": null,
+        "summary_seconds": 0.3702289850334637
+      }
+    ],
+    "layouts": 486,
+    "new_extraction_wall_seconds": 0.0,
+    "observation_bytes_uncompressed": [
+      615991,
+      613400
+    ],
+    "output_bytes": 2059724,
+    "partial_or_failed_worlds": 0,
+    "publication_seconds": 0.8273987479624338,
+    "schema": "catalog-reference-report-v1",
+    "scope": "Research predictor only; no game certification, public activation or retention recall claim",
+    "snapshot_id": "bf452f8c158c67e10b085bae06fcf076bd18fa99bac0c989b09d91d3b3b2f56c",
+    "status": "complete",
+    "total_wall_seconds": 1.7556685479939915,
+    "worlds": 2
+  },
+  "raw_coordinate_oracle": {
+    "status": "passed",
+    "layouts": 486,
+    "structure_scope_counts": 27216,
+    "structure_nearest_distances": 6804,
+    "biome_nearest_distances": 4374,
+    "biome_witness_refs": 4374,
+    "wall_seconds": 7.001838340016548,
+    "scope": "Independent raw-coordinate summary arithmetic; not generated-game accuracy"
+  },
+  "functional_queries_and_restore": {
+    "snapshot_id": "bf452f8c158c67e10b085bae06fcf076bd18fa99bac0c989b09d91d3b3b2f56c",
+    "queries": [
+      {
+        "border_side": 2048,
+        "mode": "origin",
+        "wall_seconds": 0.17456541204592213,
+        "results": [
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "1d3a473e6fc736edae9fc7869f36307d0e4ff9b49cff46f0d6bb7dc082d2992f",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 2048,
+            "score": 66.66666666666667,
+            "utility_units": 2402400,
+            "distance_tie": 554192,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 2,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 2402400,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "1e92f40d4323662004cd7e8effbb235cd7d1db74a8f775fc599524326f548d53",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 2048,
+            "score": 0.0,
+            "utility_units": 0,
+            "distance_tie": 1000000,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 0,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 0,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "border_side": 2048,
+        "mode": "recommended",
+        "wall_seconds": 0.1770420499960892,
+        "results": [
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "5f8120349e7112918d8e69b40d8e2a31e29a7b3c31c5bdff823102ddcabe51db",
+            "anchor": [
+              -768,
+              -768
+            ],
+            "border_side": 2048,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 310147,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "86b8d30874446bbe390b5ea33abf831f1c801e2ec3765466ee9d533b9d3e86cc",
+            "anchor": [
+              0,
+              -256
+            ],
+            "border_side": 2048,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 594982,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "border_side": 4096,
+        "mode": "origin",
+        "wall_seconds": 0.193641691992525,
+        "results": [
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "fb3e91880ee9cb79f82f4821ded15b6db821eba28ce951b50c9c8c853c4bb327",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 4096,
+            "score": 66.66666666666667,
+            "utility_units": 2402400,
+            "distance_tie": 554192,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 2,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 2402400,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "a7b19cbd5a7c93ba5326f21390e97c5a6755e897449a20fe98805284de2407e1",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 4096,
+            "score": 0.0,
+            "utility_units": 0,
+            "distance_tie": 1000000,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 0,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 0,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "border_side": 4096,
+        "mode": "recommended",
+        "wall_seconds": 0.18603116599842906,
+        "results": [
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "0ca0e305afa62629f4290be0a63c7fa57240a9bab0b2bc282fcf6b45d50b162b",
+            "anchor": [
+              -768,
+              -768
+            ],
+            "border_side": 4096,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 310147,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "b50b5f24145a8072dc72ae1c43180515d5471ebd5ecd6e1000181d5f7cf53f6a",
+            "anchor": [
+              0,
+              -256
+            ],
+            "border_side": 4096,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 594982,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "border_side": 8192,
+        "mode": "origin",
+        "wall_seconds": 0.1752023979788646,
+        "results": [
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "fd86231fd67439595a9655ac0b1491224dc85630160ff000f9077d7c9691f36a",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 8192,
+            "score": 66.66666666666667,
+            "utility_units": 2402400,
+            "distance_tie": 554192,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 2,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 2402400,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "d3f8c52fd432942a658388428bf33660e6a596ee9b08b1dd754a0447dd2b5b23",
+            "anchor": [
+              0,
+              0
+            ],
+            "border_side": 8192,
+            "score": 0.0,
+            "utility_units": 0,
+            "distance_tie": 1000000,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 0,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 0,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "border_side": 8192,
+        "mode": "recommended",
+        "wall_seconds": 0.18004147399915382,
+        "results": [
+          {
+            "world_id": "1b22ec7c52c24fe614c1e1caa24154e0bbe642f3bee1294701801d56101b79f0",
+            "seed": "454251624725559791",
+            "layout_id": "8d38718b22ec3f1e414d59b31bf58b3ca54ba348c49fac15342c8cab4ebfafe0",
+            "anchor": [
+              -768,
+              -768
+            ],
+            "border_side": 8192,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 310147,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "world_id": "9e0f10790b1edce60c6649b32db69365481cff4c65f4df626c27d8be8183dc55",
+            "seed": "-5959916077745768304",
+            "layout_id": "038541ac3b47e99fb669fcc8642d0e8d1c38a9ecf034dc7843284fb598f4c029",
+            "anchor": [
+              0,
+              -256
+            ],
+            "border_side": 8192,
+            "score": 100.0,
+            "utility_units": 3603600,
+            "distance_tie": 594982,
+            "contributions": [
+              {
+                "feature": "structure.village",
+                "rule": "preferred",
+                "kind": "structure_count",
+                "count": 3,
+                "at_least": 3,
+                "importance": 5,
+                "utility_units": 3603600,
+                "max_units": 3603600,
+                "complete": true,
+                "status": "known"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "backup_restore_verified": true
+  },
+  "artifact_sizes": [
+    {
+      "codec": "gzip",
+      "compressed_bytes": 56410,
+      "canonical_json_bytes": 98293
+    },
+    {
+      "codec": "gzip",
+      "compressed_bytes": 90728,
+      "canonical_json_bytes": 505287
+    },
+    {
+      "codec": "gzip",
+      "compressed_bytes": 91557,
+      "canonical_json_bytes": 507893
+    }
+  ],
+  "packed_layout_payload_bytes": 176904
+}

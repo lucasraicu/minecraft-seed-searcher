@@ -1,0 +1,632 @@
+{
+  "rows": [
+    {
+      "trial": 0,
+      "arm": "active_baseline",
+      "count": 65536,
+      "start": 0,
+      "wall_seconds": 0.9040442149853334,
+      "input_seeds_per_second": 72492.0296083784,
+      "cpu_seconds": 20.691911,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.8141544959507883,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.4932163925259374,
+        "batch_latency_p95_seconds": 0.590435174992308,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 80495.77853582392,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000000000",
+            "00000000000000016384",
+            "complete"
+          ],
+          [
+            "00000000000000016384",
+            "00000000000000032768",
+            "complete"
+          ],
+          [
+            "00000000000000032768",
+            "00000000000000049152",
+            "complete"
+          ],
+          [
+            "00000000000000049152",
+            "00000000000000065536",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-0-active_baseline_retry"
+    },
+    {
+      "trial": 0,
+      "arm": "active_catalog",
+      "count": 65536,
+      "start": 0,
+      "wall_seconds": 0.9719136219937354,
+      "input_seeds_per_second": 67429.86055238397,
+      "cpu_seconds": 20.650018,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.8631315800594166,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.5279154125018977,
+        "batch_latency_p95_seconds": 0.6344185920897871,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 75928.1684438989,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000000000",
+            "00000000000000016384",
+            "complete"
+          ],
+          [
+            "00000000000000016384",
+            "00000000000000032768",
+            "complete"
+          ],
+          [
+            "00000000000000032768",
+            "00000000000000049152",
+            "complete"
+          ],
+          [
+            "00000000000000049152",
+            "00000000000000065536",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-0-active_catalog_retry",
+      "handoff": {
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-0",
+        "sample_cap": 2,
+        "campaign_id": "c99e9cc7377a248fc9dbb5354c0064baa66e4ee75cd6b74ee564cbb0ad3936e1",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-0-active_catalog_retry/catalog-handoff/c99e9cc7377a248fc9dbb5354c0064baa66e4ee75cd6b74ee564cbb0ad3936e1.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "background_public": {
+        "status": "passed",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 635484.424031963,
+            "extraction_ended": 635488.063922408,
+            "extraction_checkpoint_seconds": 3.6398905919631943,
+            "biome_points": 25600,
+            "structure_points": 2566,
+            "features": 23,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "publication_started": 635488.124388223,
+            "publication_ended": 635488.990221709,
+            "summary_publication_seconds": 0.8658337820088491,
+            "snapshot": "aaa60f8cdd94a3e655f53df6c623860c8bc94a883098ded25119551076e8de72"
+          }
+        ],
+        "elapsed_seconds": 4.592937859008089,
+        "records_per_second": 0.21772556709834617,
+        "seconds_per_record": 4.592937859008089,
+        "drain": {
+          "revision": "catalog-harvest-drain-v1",
+          "completed": 1,
+          "failed": 0,
+          "deferred": 0,
+          "stop_reason": "max_worlds",
+          "elapsed_seconds": 4.5907782800495625,
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "b5633436a4feed7e490c186e213aefff25c228809ab8b9b258ea78e5b1583bcb",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              },
+              {
+                "id": "c99e9cc7377a248fc9dbb5354c0064baa66e4ee75cd6b74ee564cbb0ad3936e1",
+                "state": "active",
+                "scheduled_samples": 0,
+                "target_count": "65536"
+              }
+            ]
+          }
+        },
+        "scope": "Existing natural-catalog seeds replayed into fresh disposable root;serial extraction+durable checkpoints+243summaries/world+checksummed compressed observation/index publication. No existing live catalog changes. Current23features,not generated world/BDS verification or every possible game feature."
+      },
+      "background_queries": [
+        {
+          "side": 4096,
+          "status": 200,
+          "started": 635484.208033618,
+          "ended": 635488.595154844,
+          "seconds": 4.387121400912292,
+          "matched": 200,
+          "cold": true
+        },
+        {
+          "side": 8192,
+          "status": 200,
+          "started": 635484.208594726,
+          "ended": 635488.610055059,
+          "seconds": 4.401460497989319,
+          "matched": 200,
+          "cold": true
+        }
+      ],
+      "extract_overlap_seconds": 0.9774705609306693,
+      "query_overlap_seconds": [
+        0.9774705609306693,
+        0.9774705609306693
+      ],
+      "personal_interval": [
+        635484.611541416,
+        635485.589011977
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "active_catalog",
+      "count": 65536,
+      "start": 65536,
+      "wall_seconds": 1.0793027989566326,
+      "input_seeds_per_second": 60720.68011252632,
+      "cpu_seconds": 22.022853999999995,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.9794157119467854,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.5485826470539905,
+        "batch_latency_p95_seconds": 0.7452846340602264,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 66913.3639583278,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000065536",
+            "00000000000000081920",
+            "complete"
+          ],
+          [
+            "00000000000000081920",
+            "00000000000000098304",
+            "complete"
+          ],
+          [
+            "00000000000000098304",
+            "00000000000000114688",
+            "complete"
+          ],
+          [
+            "00000000000000114688",
+            "00000000000000131072",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-1-active_catalog_retry",
+      "handoff": {
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-1",
+        "sample_cap": 2,
+        "campaign_id": "92ad64f64678daea376256894930e1dc2593e2284588b8af3afd204423df2bd8",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-1-active_catalog_retry/catalog-handoff/92ad64f64678daea376256894930e1dc2593e2284588b8af3afd204423df2bd8.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "background_public": {
+        "status": "passed",
+        "rows": [
+          {
+            "seed": "-9037391848063581383",
+            "extraction_started": 635489.715748102,
+            "extraction_ended": 635493.441697629,
+            "extraction_checkpoint_seconds": 3.7259496769402176,
+            "biome_points": 25600,
+            "structure_points": 2573,
+            "features": 23,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "publication_started": 635493.501954007,
+            "publication_ended": 635494.380577912,
+            "summary_publication_seconds": 0.8786243430804461,
+            "snapshot": "5f8cdf9e840404e39ed76da0e70b4b00f12b5c0990418a0fee96f8a3ec25d933"
+          }
+        ],
+        "elapsed_seconds": 4.691673381021246,
+        "records_per_second": 0.2131435670789018,
+        "seconds_per_record": 4.691673381021246,
+        "drain": {
+          "revision": "catalog-harvest-drain-v1",
+          "completed": 1,
+          "failed": 0,
+          "deferred": 0,
+          "stop_reason": "max_worlds",
+          "elapsed_seconds": 4.689344376907684,
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "04a06a29f24c8f0288b3626d3972343e81fa4238f1bd4349abf3f95d33c81fd4",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              },
+              {
+                "id": "92ad64f64678daea376256894930e1dc2593e2284588b8af3afd204423df2bd8",
+                "state": "active",
+                "scheduled_samples": 0,
+                "target_count": "65536"
+              }
+            ]
+          }
+        },
+        "scope": "Existing natural-catalog seeds replayed into fresh disposable root;serial extraction+durable checkpoints+243summaries/world+checksummed compressed observation/index publication. No existing live catalog changes. Current23features,not generated world/BDS verification or every possible game feature."
+      },
+      "background_queries": [
+        {
+          "side": 4096,
+          "status": 200,
+          "started": 635489.50188985,
+          "ended": 635493.985418661,
+          "seconds": 4.483528912998736,
+          "matched": 200,
+          "cold": true
+        },
+        {
+          "side": 8192,
+          "status": 200,
+          "started": 635489.502426243,
+          "ended": 635493.984398289,
+          "seconds": 4.481972138979472,
+          "matched": 200,
+          "cold": true
+        }
+      ],
+      "extract_overlap_seconds": 1.0844147950410843,
+      "query_overlap_seconds": [
+        1.0844147950410843,
+        1.0844147950410843
+      ],
+      "personal_interval": [
+        635489.904522795,
+        635490.98893759
+      ]
+    },
+    {
+      "trial": 1,
+      "arm": "active_baseline",
+      "count": 65536,
+      "start": 65536,
+      "wall_seconds": 0.9771163809346035,
+      "input_seeds_per_second": 67070.82316777391,
+      "cpu_seconds": 21.960015999999996,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.9120221539633349,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.5078159249387681,
+        "batch_latency_p95_seconds": 0.6911746000405401,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 71857.90357745485,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000065536",
+            "00000000000000081920",
+            "complete"
+          ],
+          [
+            "00000000000000081920",
+            "00000000000000098304",
+            "complete"
+          ],
+          [
+            "00000000000000098304",
+            "00000000000000114688",
+            "complete"
+          ],
+          [
+            "00000000000000114688",
+            "00000000000000131072",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-1-active_baseline_retry"
+    },
+    {
+      "trial": 2,
+      "arm": "active_baseline",
+      "count": 65536,
+      "start": 131072,
+      "wall_seconds": 1.0053984869737178,
+      "input_seeds_per_second": 65184.104461172894,
+      "cpu_seconds": 21.765590000000003,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.9386411549057811,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.5942981059779413,
+        "batch_latency_p95_seconds": 0.7313275210326537,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 69820.0794387482,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000131072",
+            "00000000000000147456",
+            "complete"
+          ],
+          [
+            "00000000000000147456",
+            "00000000000000163840",
+            "complete"
+          ],
+          [
+            "00000000000000163840",
+            "00000000000000180224",
+            "complete"
+          ],
+          [
+            "00000000000000180224",
+            "00000000000000196608",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-2-active_baseline_retry"
+    },
+    {
+      "trial": 2,
+      "arm": "active_catalog",
+      "count": 65536,
+      "start": 131072,
+      "wall_seconds": 1.0758732670219615,
+      "input_seeds_per_second": 60914.23777207974,
+      "cpu_seconds": 21.740178,
+      "execution": {
+        "kind": "native",
+        "threads": 34,
+        "batch_size": 16384,
+        "newly_committed": 65536,
+        "wall_seconds": 0.9782417269889265,
+        "batch_latency_sample_scope": "last 4096 completed batches",
+        "batch_latency_p50_seconds": 0.6250932249822654,
+        "batch_latency_p95_seconds": 0.7539795649936423,
+        "retention": "survivors",
+        "max_misses": 0,
+        "checkpointed_scanned_inputs_per_second": 66993.66648540218,
+        "center_refinement": "native-grid-16-local-8-v1"
+      },
+      "fingerprint": {
+        "completed": 65536,
+        "ranges": [
+          [
+            "00000000000000131072",
+            "00000000000000147456",
+            "complete"
+          ],
+          [
+            "00000000000000147456",
+            "00000000000000163840",
+            "complete"
+          ],
+          [
+            "00000000000000163840",
+            "00000000000000180224",
+            "complete"
+          ],
+          [
+            "00000000000000180224",
+            "00000000000000196608",
+            "complete"
+          ]
+        ],
+        "counts": {
+          "discarded_inputs": 65536,
+          "discovered_anchors": 0,
+          "retained_anchors": 0,
+          "retained_inputs": 0,
+          "scanned_inputs": 65536
+        },
+        "records": 0,
+        "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "run": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-2-active_catalog_retry",
+      "handoff": {
+        "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/active-public-retry-2",
+        "sample_cap": 2,
+        "campaign_id": "f37c7a53944174ecc1fde2b0915203023884f5fdcaf0b73f70243a603dfd47c9",
+        "descriptor_path": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-adoption-benchmark-20261021/personal-2-active_catalog_retry/catalog-handoff/f37c7a53944174ecc1fde2b0915203023884f5fdcaf0b73f70243a603dfd47c9.json",
+        "state": "registered",
+        "reason": null,
+        "notice": "Catalog extraction requires an explicit drain command; personal stop does not cancel catalog work."
+      },
+      "background_public": {
+        "status": "passed",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 635497.110119006,
+            "extraction_ended": 635500.613003277,
+            "extraction_checkpoint_seconds": 3.5028844500193372,
+            "biome_points": 25600,
+            "structure_points": 2566,
+            "features": 23,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "publication_started": 635500.671638158,
+            "publication_ended": 635501.536955883,
+            "summary_publication_seconds": 0.8653180649271235,
+            "snapshot": "ea8a3da71222e5169336d5938b57a859a171fbe86e0d90e360fdb8c3af40d82d"
+          }
+        ],
+        "elapsed_seconds": 4.45210685103666,
+        "records_per_second": 0.22461275828704624,
+        "seconds_per_record": 4.45210685103666,
+        "drain": {
+          "revision": "catalog-harvest-drain-v1",
+          "completed": 1,
+          "failed": 0,
+          "deferred": 0,
+          "stop_reason": "max_worlds",
+          "elapsed_seconds": 4.449807920027524,
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "50665dee9fab61823d99dfa64693959cdbad1f37ec30718b61c15d44bafedfd9",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              },
+              {
+                "id": "f37c7a53944174ecc1fde2b0915203023884f5fdcaf0b73f70243a603dfd47c9",
+                "state": "active",
+                "scheduled_samples": 0,
+                "target_count": "65536"
+              }
+            ]
+          }
+        },
+        "scope": "Existing natural-catalog seeds replayed into fresh disposable root;serial extraction+durable checkpoints+243summaries/world+checksummed compressed observation/index publication. No existing live catalog changes. Current23features,not generated world/BDS verification or every possible game feature."
+      },
+      "background_queries": [
+        {
+          "side": 4096,
+          "status": 200,
+          "started": 635496.90037345,
+          "ended": 635501.145630215,
+          "seconds": 4.245256852940656,
+          "matched": 200,
+          "cold": true
+        },
+        {
+          "side": 8192,
+          "status": 200,
+          "started": 635496.900906851,
+          "ended": 635501.144265901,
+          "seconds": 4.243359145941213,
+          "matched": 200,
+          "cold": true
+        }
+      ],
+      "extract_overlap_seconds": 1.0810483180684969,
+      "query_overlap_seconds": [
+        1.0810483180684969,
+        1.0810483180684969
+      ],
+      "personal_interval": [
+        635497.289681432,
+        635498.37072975
+      ]
+    }
+  ],
+  "median_rates": {
+    "active_baseline": 67070.82316777391,
+    "active_catalog": 60914.23777207974
+  },
+  "paired_wall_ratios": [
+    1.075073105809878,
+    1.104579577229366,
+    1.0700963657309404
+  ],
+  "scope": "3counterbalanced paired65536-input trials34OMPthreads,full per-seed summary/inventory persistent semantic result equality;active personal handoff+one serial nice10 full catalog extractor/checkpoint/publication+two cold recommended accuracy queries over copied200worlds. Timed intervals actually overlap;short burst diagnostic,not sustained serverSLA or large-campaign forecast. Parent process startup excluded equally."
+}

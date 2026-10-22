@@ -96,3 +96,13 @@ The centroid minimizes weighted **squared** distances, while the existing radial
 5. Version the accepted scoring/selection change, record C/Python parity, rebuild the source-matching native binary, and reevaluate old seeds when their best center might change. Rescoring one old saved window cannot recover discarded alternatives.
 
 For each new experiment append: date, source revision/hashes, objective, exact weights, corpus and palette policy, alignment rule, resulting centers/scores/distances, player evidence, limitations and the keep/reject decision. No production weight change was made by this investigation.
+
+## October 16 follow-up: integrated native center refinement
+
+Pillar 3 now applies complete 16-block-grid refinement automatically to qualified
+native v3 production candidates, followed by labeled local 8-block searches.
+The original representative remains in the comparison, and production pull and
+score weights remain unchanged. This improves center coverage without supplying
+new evidence for player calibration. Complete global 8-block comparison remains
+available through the independent finalist command. See
+[implementation and measurements](reviews/native-refinement-2026-10-16/IMPLEMENTATION.md).

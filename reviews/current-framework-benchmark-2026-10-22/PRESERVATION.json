@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "source_build_state_files": 208,
+  "immutable_catalog_files": 6129,
+  "protected_personal_checkpoint_native_files": 199,
+  "personal_pid": 91321,
+  "public_pid": 22035,
+  "vite_pid": 17880,
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "public_automation_unchanged": {
+    "ok": true,
+    "catalog_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/treasure-activation-approved-20261022/catalog",
+    "configured": true,
+    "state": "paused",
+    "consumed": 0.0,
+    "reason": "operator pause; current world drains",
+    "queue": {
+      "revision": "catalog-harvest-status-v1",
+      "jobs": {},
+      "campaigns": []
+    },
+    "generation": 1,
+    "population_worlds": 222,
+    "retained_worlds": 222,
+    "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+    "total_budget_seconds": 600
+  },
+  "registration_queues_have_zero_jobs": true,
+  "thermal_after": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-10-22 05:43:10 -0700 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 36\n\tCPU_Speed_Limit \t= 100\n"
+}

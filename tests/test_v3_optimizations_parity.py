@@ -31,6 +31,7 @@ from seed_search.seeds import seed_from_index
 def get_v3_prototype(cfg: Dict[str, Any]) -> Prototype:
     """Helper to instantiate prototype using optimized native build."""
     candidate_dirs = [
+        ROOT / "runs/dynamic-baseline-2048/native-refinement-2026-10-16",
         ROOT / "runs/dynamic-baseline-2048/native-fixed-2026-10-16",
         ROOT / "runs/dynamic-baseline-2048/native",
         ROOT / "runs/master-implementation-2026-10-10/openmp/install",
@@ -176,7 +177,7 @@ def test_v3_scoring_component_ladders_bit_exact():
     baseline_counts = {
         "stronghold": 1, "mansion": 1, "monument": 1, "village": 6,
         "trial_chamber": 8, "ancient_city": 2, "desert_pyramid": 1,
-        "jungle_temple": 1, "outpost": 1, "fortress": 1, "bastion": 2,
+        "jungle_temple": 0, "outpost": 1, "fortress": 1, "bastion": 2,
         "ruined_portal": 8, "shipwreck": 4, "mineshaft": 10,
     }
 
@@ -199,15 +200,15 @@ def test_v3_scoring_component_ladders_bit_exact():
     s, c, _ = dynamic_v3_score(dict(baseline_counts, mansion=3))
     assert s == 70 and c["core_surplus"] == 70
 
-    # Test outpost ladder (+15, +15, +10, max 40)
+    # Test outpost ladder (+20, +20, +10, max 50)
     s, c, _ = dynamic_v3_score(dict(baseline_counts, outpost=2))
-    assert s == 15 and c["core_surplus"] == 15
+    assert s == 20 and c["core_surplus"] == 20
     s, c, _ = dynamic_v3_score(dict(baseline_counts, outpost=3))
-    assert s == 30 and c["core_surplus"] == 30
+    assert s == 40 and c["core_surplus"] == 40
     s, c, _ = dynamic_v3_score(dict(baseline_counts, outpost=4))
-    assert s == 40 and c["core_surplus"] == 40
+    assert s == 50 and c["core_surplus"] == 50
     s, c, _ = dynamic_v3_score(dict(baseline_counts, outpost=5))
-    assert s == 40 and c["core_surplus"] == 40
+    assert s == 50 and c["core_surplus"] == 50
 
     # Test bonuses: scenic (+25), village_spread (+25), treasure_bastion (+20), nether_core (+20)
     s_scenic, c_scenic, _ = dynamic_v3_score(baseline_counts, scenic=25)
@@ -235,7 +236,7 @@ def test_v3_cutoff_score_pruning_zero_false_negatives():
     with prototype.sweep([fixture_seed], fixtures=fixture, cutoff_score=0) as batch:
         anchor = batch.records()[0]["anchors"][0]
         unpruned_score = anchor["baseline_score_observed"]
-        assert unpruned_score == 479
+        assert unpruned_score == 484
 
     # Boundary 1: Cutoff exactly equal to score -> MUST be retained
     with prototype.sweep([fixture_seed], fixtures=fixture, cutoff_score=unpruned_score) as batch:

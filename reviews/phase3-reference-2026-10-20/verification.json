@@ -1,0 +1,71 @@
+{
+  "full_suite": {
+    "passed": 1342,
+    "failed": 0,
+    "seconds": 459.63
+  },
+  "catalog_tests": 68,
+  "raw_coordinate_request_oracle_cases": 220,
+  "focused_personal_regression_passed": 79,
+  "coordinator_hardening_tests": "reproduced and repaired incomplete Required/Preferred handling, artifact symlink/staging/durability/truncation flaws, payload/snapshot checksum bindings, replay corruption and identity/limit validation",
+  "preservation": {
+    "baseline_files": 1268,
+    "changed_preexisting_files": [
+      "CODEX_HANDOFF.md",
+      "docs/PROJECT_STATUS.md",
+      "MASTER_PLATFORM_SPECIFICATION.md",
+      "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "README.md",
+      "docs/catalog/v1/README.md"
+    ],
+    "other_preexisting_files_unchanged": 1262,
+    "head_unchanged": true,
+    "index_unchanged": true,
+    "native_binaries_unchanged": true,
+    "argon_document_unchanged": true,
+    "high_launches_verified": 3
+  },
+  "raw_log_sha256": {
+    "phase3-full-tests.log": "37aa93aae12b2d3feb47f8cc7957636546956fa2fca2b157ffe18940347937c1",
+    "phase3-catalog-tests.log": "8dfd47fd42e1b8efe0a29ef93791c32087ec42ce9ba93f3a54edd1c4430d565d",
+    "phase3-personal-regression.log": "6e3a488c4d16cb71b1589ab425875a84c96f1df464a442daf4cee30de8cc0e1a",
+    "phase3-reference.log": "5469a887c2e95c4e24581846f63ec4947421c70b79b8cf28e07566ce26970975",
+    "phase3-resume.log": "f0d998e6f48b14a00c9e534d4b6a12331ed058186acf40c58d9d0693527e13d4"
+  },
+  "source_sha256": {
+    "src/seed_search/catalog/__init__.py": "c6778d1c6dd199825211e5bdaa71625010f9c94f95a9c32f5f4bceccb373374b",
+    "src/seed_search/catalog/artifacts.py": "486434007674b2fe9a64cec7d259fed0a240078f5b7223b579f802b03638928b",
+    "src/seed_search/catalog/capabilities.py": "f94316217756ab62d65fdf397720d45ffbac2afb0664e729536f40392987077f",
+    "src/seed_search/catalog/codec.py": "fcde3c7019e6bb8826e349fcd8a62c5f686854bd40d94ff6bbb1c9973bc1901b",
+    "src/seed_search/catalog/coverage.py": "0552bb4870a134d18de440586be6066091c6f5e23736f587345a1e5b3d27ca29",
+    "src/seed_search/catalog/extract.py": "119bc8e85b4db7ed4e8985f10d2e725b44cf79a60c19a04b01332c112f9b9727",
+    "src/seed_search/catalog/geometry.py": "9ced7b55b10b20740583b1cc779081257691e2a5451b09c7ff0f7d6e79ac72d2",
+    "src/seed_search/catalog/models.py": "07be80f1e9a55bb566582654c385884a6cb4923cc1c8cdb8869e5cc4344a2bae",
+    "src/seed_search/catalog/query.py": "b3ef22ddd537d86aca998e3be388732560b83a34991eff78f0be2281cfdee1c6",
+    "src/seed_search/catalog/registry.py": "b9e0d7808fcb743b97b3aa23ec5d629192b4ce10bad8902b198317a87b2fdec0",
+    "src/seed_search/catalog/request.py": "c63fa020e9b0cee963be5570a98af3eeab323ebdbc7ebbe596b94bf607434a08",
+    "src/seed_search/catalog/store.py": "3c73c47d794fa84aeacdc5af8e280fe960f832e635ccc3570cd46cb5aaa6a6fd",
+    "src/seed_search/catalog/summaries.py": "6a0b43285a7eaf90a63c21efacd077e035203f1babfbbf5ae56d9d9d72317642",
+    "tests/catalog/test_cli.py": "3188db5b18d14821d3e8ac07ba41b5d9a846928ff2ecdf192f704227644912e4",
+    "tests/catalog/test_codec.py": "2eade30af6298f0abe9525552257e9f4f35d89eb4fa9cf73af65bdcec47a83b7",
+    "tests/catalog/test_contracts.py": "e9fb1edd93627af558cd06d58797bc399b98f97a50ca35613b8db4c44a7a61b2",
+    "tests/catalog/test_extract.py": "d8997c853493a7b4c2eee1d3add3ab926bff32131b21fba9ae3fbafcf9e92b4f",
+    "tests/catalog/test_oracle.py": "7d4a3787e16a4b0a98343bb1a0a9365f30cd57e4d5448d27ab8b1dc5dc1f73a3",
+    "tests/catalog/test_query.py": "8fc740666c58bada989a931ad936296fcf17c7d21f59bb548bd208e8cdfa28f5",
+    "tests/catalog/test_query_safety.py": "a61ca458a6d4008c4b00b0cdbcb1fbe6b5ae453efca893254f04b315093ea368",
+    "tests/catalog/test_storage_safety.py": "a8f74e6138b68bb2b20120761586902ca0a324f5d83354ba2028658acffd9bc9",
+    "tests/catalog/test_store.py": "8bd400748a43eb1cede4d59ce89983885490646972ec3146c49c40f5f4be7d25",
+    "scripts/catalog_reference.py": "4c57147a4d3fb47fd3a64bd7b83cf1ea056848264ba459beeab16ac663785921"
+  },
+  "run_artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/phase3-reference-20261020",
+  "scope": "Completed CPU reference only; larger validation plan prepared, no100worldrun/GPU/customengine/publicdeployment",
+  "known_limitations": [
+    "Research model/version labels only; no generated-world correctness claim",
+    "Whole-envelope feature coverage; no partial-tile query capability",
+    "Flat manifest and16MiB/artifact caps suitable for small reference, not fleet scale",
+    "Conservative crash-budget reservations; actual process-death ingestion testing is next stage",
+    "Polling child-RSS and output watchdogs are not instantaneous hard resource isolation",
+    "No orphan GC, selective retention, public API/UI, billing or GPU",
+    "Functional timings under shared host load; no production latency target established"
+  ]
+}

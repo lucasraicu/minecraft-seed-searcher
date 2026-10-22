@@ -1,0 +1,20 @@
+{
+  "legacy_ast": {
+    "src/seed_search/catalog/summaries.py": {
+      "summarize": true,
+      "summarize_v2": true,
+      "legacy_observation_v2": true
+    },
+    "src/seed_search/catalog/retention.py": {
+      "retain": true,
+      "_build_objective_ids": true,
+      "automation_offers": true,
+      "automation_objectives": true
+    },
+    "src/seed_search/realm/native_batch.py": {
+      "Prototype": true
+    }
+  },
+  "native_source_count": 57,
+  "native_source_differences": []
+}

@@ -1,0 +1,1179 @@
+{
+  "controls": {
+    "seed": "-3509659830737203357",
+    "prediction": {
+      "count": 28,
+      "scope": {
+        "anchor": [
+          0,
+          0
+        ],
+        "radius": 2000,
+        "scope_type": "origin_euclidean_circle"
+      },
+      "seed": "-3509659830737203357",
+      "witnesses": [
+        [
+          -1816,
+          264
+        ],
+        [
+          -1480,
+          -344
+        ],
+        [
+          -1464,
+          248
+        ],
+        [
+          -1448,
+          -744
+        ],
+        [
+          -1432,
+          1256
+        ],
+        [
+          -1416,
+          -1400
+        ],
+        [
+          -904,
+          840
+        ],
+        [
+          -888,
+          136
+        ],
+        [
+          -760,
+          1272
+        ],
+        [
+          -504,
+          1848
+        ],
+        [
+          -360,
+          248
+        ],
+        [
+          -344,
+          712
+        ],
+        [
+          -296,
+          -1528
+        ],
+        [
+          -296,
+          -312
+        ],
+        [
+          -248,
+          1320
+        ],
+        [
+          -232,
+          -904
+        ],
+        [
+          40,
+          -1880
+        ],
+        [
+          88,
+          1880
+        ],
+        [
+          136,
+          -1608
+        ],
+        [
+          264,
+          -872
+        ],
+        [
+          760,
+          -920
+        ],
+        [
+          824,
+          -1512
+        ],
+        [
+          1144,
+          1272
+        ],
+        [
+          1176,
+          -792
+        ],
+        [
+          1176,
+          -376
+        ],
+        [
+          1256,
+          -1480
+        ],
+        [
+          1320,
+          792
+        ],
+        [
+          1832,
+          40
+        ]
+      ],
+      "witnesses_truncated": false,
+      "world_id": "f412ebcd059ab3b7ed5a0c7f060bbda4309397e161b00e9b158c78cf78d24412"
+    },
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "container": "codex-village-check-0badfe0d6d93",
+    "cpus": 4,
+    "memory_gib": 6,
+    "wall_seconds": 900,
+    "output_bytes": 8589934592,
+    "network": "bridge",
+    "published_ports": [],
+    "query_cap": 100,
+    "role": "Actual Bedrock locate outputs; not proof of exhaustive census or physical footprints"
+  },
+  "status": "observed",
+  "queries": [
+    {
+      "index": 0,
+      "kind": "predicted",
+      "query": [
+        -1816,
+        264
+      ],
+      "output": [
+        "",
+        "[2026-10-20 17:43:14:177 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "predicted",
+      "query": [
+        -1480,
+        -344
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:223 INFO] The nearest minecraft:village is at block -1480, (y?), -344 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "predicted",
+      "query": [
+        -1464,
+        248
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:273 INFO] The nearest minecraft:village is at block -1464, (y?), 248 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 3,
+      "kind": "predicted",
+      "query": [
+        -1448,
+        -744
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:323 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 4,
+      "kind": "predicted",
+      "query": [
+        -1432,
+        1256
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:373 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 5,
+      "kind": "predicted",
+      "query": [
+        -1416,
+        -1400
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:423 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 6,
+      "kind": "predicted",
+      "query": [
+        -904,
+        840
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:473 INFO] The nearest minecraft:village is at block -904, (y?), 840 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 7,
+      "kind": "predicted",
+      "query": [
+        -888,
+        136
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:523 INFO] The nearest minecraft:village is at block -888, (y?), 136 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 8,
+      "kind": "predicted",
+      "query": [
+        -760,
+        1272
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:573 INFO] The nearest minecraft:village is at block -760, (y?), 1272 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 9,
+      "kind": "predicted",
+      "query": [
+        -504,
+        1848
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:623 INFO] The nearest minecraft:village is at block -504, (y?), 1848 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 10,
+      "kind": "predicted",
+      "query": [
+        -360,
+        248
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:673 INFO] The nearest minecraft:village is at block -360, (y?), 248 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 11,
+      "kind": "predicted",
+      "query": [
+        -344,
+        712
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:723 INFO] The nearest minecraft:village is at block -344, (y?), 712 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 12,
+      "kind": "predicted",
+      "query": [
+        -296,
+        -1528
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:773 INFO] The nearest minecraft:village is at block -296, (y?), -1528 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 13,
+      "kind": "predicted",
+      "query": [
+        -296,
+        -312
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:823 INFO] The nearest minecraft:village is at block -888, (y?), 136 (742 blocks away)"
+      ]
+    },
+    {
+      "index": 14,
+      "kind": "predicted",
+      "query": [
+        -248,
+        1320
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:878 INFO] The nearest minecraft:village is at block -248, (y?), 1320 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 15,
+      "kind": "predicted",
+      "query": [
+        -232,
+        -904
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:928 INFO] The nearest minecraft:village is at block -232, (y?), -904 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 16,
+      "kind": "predicted",
+      "query": [
+        40,
+        -1880
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:978 INFO] The nearest minecraft:village is at block 40, (y?), -1880 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 17,
+      "kind": "predicted",
+      "query": [
+        88,
+        1880
+      ],
+      "output": [
+        "[2026-10-20 17:43:14:993 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick20\",\"tick\":20,\"seed\":\"-3509659830737203357\",\"defaultSpawn\":{\"x\":7,\"y\":32767,\"z\":23},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}",
+        "",
+        "[2026-10-20 17:43:15:028 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 18,
+      "kind": "predicted",
+      "query": [
+        136,
+        -1608
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:078 INFO] The nearest minecraft:village is at block 136, (y?), -1608 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 19,
+      "kind": "predicted",
+      "query": [
+        264,
+        -872
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:128 INFO] The nearest minecraft:village is at block 264, (y?), -872 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 20,
+      "kind": "predicted",
+      "query": [
+        760,
+        -920
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:178 INFO] The nearest minecraft:village is at block 760, (y?), -920 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 21,
+      "kind": "predicted",
+      "query": [
+        824,
+        -1512
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:228 INFO] The nearest minecraft:village is at block 824, (y?), -1512 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 22,
+      "kind": "predicted",
+      "query": [
+        1144,
+        1272
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:278 INFO] The nearest minecraft:village is at block 1144, (y?), 1272 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 23,
+      "kind": "predicted",
+      "query": [
+        1176,
+        -792
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:328 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 24,
+      "kind": "predicted",
+      "query": [
+        1176,
+        -376
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:378 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 25,
+      "kind": "predicted",
+      "query": [
+        1256,
+        -1480
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:428 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 26,
+      "kind": "predicted",
+      "query": [
+        1320,
+        792
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:478 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 27,
+      "kind": "predicted",
+      "query": [
+        1832,
+        40
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:528 INFO] The nearest minecraft:village is at block 1832, (y?), 40 (0 blocks away)"
+      ]
+    },
+    {
+      "index": 28,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:578 INFO] The nearest minecraft:village is at block -1896, (y?), -2072 (353 blocks away)"
+      ]
+    },
+    {
+      "index": 29,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:628 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (231 blocks away)"
+      ]
+    },
+    {
+      "index": 30,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:678 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (685 blocks away)"
+      ]
+    },
+    {
+      "index": 31,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:729 INFO] The nearest minecraft:village is at block -200, (y?), -2472 (723 blocks away)"
+      ]
+    },
+    {
+      "index": 32,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:777 INFO] The nearest minecraft:village is at block 40, (y?), -1880 (246 blocks away)"
+      ]
+    },
+    {
+      "index": 33,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:828 INFO] The nearest minecraft:village is at block 840, (y?), -1944 (213 blocks away)"
+      ]
+    },
+    {
+      "index": 34,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:878 INFO] The nearest minecraft:village is at block 744, (y?), -2456 (868 blocks away)"
+      ]
+    },
+    {
+      "index": 35,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        -1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:928 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (562 blocks away)"
+      ]
+    },
+    {
+      "index": 36,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:984 INFO] The nearest minecraft:village is at block -1896, (y?), -2072 (834 blocks away)"
+      ]
+    },
+    {
+      "index": 37,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:15:993 WARN] [Scripting] SPAWN_AUDIT {\"phase\":\"world_tick40\",\"tick\":40,\"seed\":\"-3509659830737203357\",\"defaultSpawn\":{\"x\":7,\"y\":32767,\"z\":23},\"players\":0,\"spawnRadius\":10,\"reference\":\"BDS 1.26.52.3 Script API 2.10.0; no spawn mutation\"}",
+        "",
+        "[2026-10-20 17:43:16:032 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (223 blocks away)"
+      ]
+    },
+    {
+      "index": 38,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:082 INFO] The nearest minecraft:village is at block -1416, (y?), -1912 (939 blocks away)"
+      ]
+    },
+    {
+      "index": 39,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:132 INFO] The nearest minecraft:village is at block -296, (y?), -1528 (281 blocks away)"
+      ]
+    },
+    {
+      "index": 40,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:182 INFO] The nearest minecraft:village is at block 136, (y?), -1608 (375 blocks away)"
+      ]
+    },
+    {
+      "index": 41,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:232 INFO] The nearest minecraft:village is at block 824, (y?), -1512 (272 blocks away)"
+      ]
+    },
+    {
+      "index": 42,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:282 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (230 blocks away)"
+      ]
+    },
+    {
+      "index": 43,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        -1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:333 INFO] The nearest minecraft:village is at block 1256, (y?), -1480 (544 blocks away)"
+      ]
+    },
+    {
+      "index": 44,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:383 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (730 blocks away)"
+      ]
+    },
+    {
+      "index": 45,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:432 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (198 blocks away)"
+      ]
+    },
+    {
+      "index": 46,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:482 INFO] The nearest minecraft:village is at block -1416, (y?), -1400 (930 blocks away)"
+      ]
+    },
+    {
+      "index": 47,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:532 INFO] The nearest minecraft:village is at block -232, (y?), -904 (155 blocks away)"
+      ]
+    },
+    {
+      "index": 48,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:582 INFO] The nearest minecraft:village is at block 264, (y?), -872 (122 blocks away)"
+      ]
+    },
+    {
+      "index": 49,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:632 INFO] The nearest minecraft:village is at block 760, (y?), -920 (170 blocks away)"
+      ]
+    },
+    {
+      "index": 50,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:682 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (85 blocks away)"
+      ]
+    },
+    {
+      "index": 51,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        -750
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:733 INFO] The nearest minecraft:village is at block 1880, (y?), -968 (253 blocks away)"
+      ]
+    },
+    {
+      "index": 52,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:783 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (518 blocks away)"
+      ]
+    },
+    {
+      "index": 53,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:832 INFO] The nearest minecraft:village is at block -1480, (y?), -344 (248 blocks away)"
+      ]
+    },
+    {
+      "index": 54,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:882 INFO] The nearest minecraft:village is at block -1448, (y?), -744 (855 blocks away)"
+      ]
+    },
+    {
+      "index": 55,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:932 INFO] The nearest minecraft:village is at block -888, (y?), 136 (745 blocks away)"
+      ]
+    },
+    {
+      "index": 56,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:16:988 INFO] The nearest minecraft:village is at block -232, (y?), -904 (812 blocks away)"
+      ]
+    },
+    {
+      "index": 57,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:038 INFO] The nearest minecraft:village is at block 264, (y?), -872 (789 blocks away)"
+      ]
+    },
+    {
+      "index": 58,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:087 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (146 blocks away)"
+      ]
+    },
+    {
+      "index": 59,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        -250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:138 INFO] The nearest minecraft:village is at block 1176, (y?), -792 (789 blocks away)"
+      ]
+    },
+    {
+      "index": 60,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:187 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (67 blocks away)"
+      ]
+    },
+    {
+      "index": 61,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:238 INFO] The nearest minecraft:village is at block -1464, (y?), 248 (214 blocks away)"
+      ]
+    },
+    {
+      "index": 62,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:287 INFO] The nearest minecraft:village is at block -888, (y?), 136 (178 blocks away)"
+      ]
+    },
+    {
+      "index": 63,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:337 INFO] The nearest minecraft:village is at block -360, (y?), 248 (110 blocks away)"
+      ]
+    },
+    {
+      "index": 64,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:388 INFO] The nearest minecraft:village is at block -360, (y?), 248 (610 blocks away)"
+      ]
+    },
+    {
+      "index": 65,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:438 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (757 blocks away)"
+      ]
+    },
+    {
+      "index": 66,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:488 INFO] The nearest minecraft:village is at block 1176, (y?), -376 (630 blocks away)"
+      ]
+    },
+    {
+      "index": 67,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:537 INFO] The nearest minecraft:village is at block 1832, (y?), 40 (225 blocks away)"
+      ]
+    },
+    {
+      "index": 68,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:589 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (490 blocks away)"
+      ]
+    },
+    {
+      "index": 69,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:638 INFO] The nearest minecraft:village is at block -1816, (y?), 264 (746 blocks away)"
+      ]
+    },
+    {
+      "index": 70,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:687 INFO] The nearest minecraft:village is at block -904, (y?), 840 (178 blocks away)"
+      ]
+    },
+    {
+      "index": 71,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:737 INFO] The nearest minecraft:village is at block -344, (y?), 712 (101 blocks away)"
+      ]
+    },
+    {
+      "index": 72,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:787 INFO] The nearest minecraft:village is at block -360, (y?), 248 (790 blocks away)"
+      ]
+    },
+    {
+      "index": 73,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:838 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (571 blocks away)"
+      ]
+    },
+    {
+      "index": 74,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:887 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (81 blocks away)"
+      ]
+    },
+    {
+      "index": 75,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        750
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:938 INFO] The nearest minecraft:village is at block 1320, (y?), 792 (432 blocks away)"
+      ]
+    },
+    {
+      "index": 76,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:17:988 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (318 blocks away)"
+      ]
+    },
+    {
+      "index": 77,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:037 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (182 blocks away)"
+      ]
+    },
+    {
+      "index": 78,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:087 INFO] The nearest minecraft:village is at block -760, (y?), 1272 (24 blocks away)"
+      ]
+    },
+    {
+      "index": 79,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:137 INFO] The nearest minecraft:village is at block -248, (y?), 1320 (70 blocks away)"
+      ]
+    },
+    {
+      "index": 80,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:187 INFO] The nearest minecraft:village is at block -344, (y?), 712 (801 blocks away)"
+      ]
+    },
+    {
+      "index": 81,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:243 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (913 blocks away)"
+      ]
+    },
+    {
+      "index": 82,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:293 INFO] The nearest minecraft:village is at block 1144, (y?), 1272 (108 blocks away)"
+      ]
+    },
+    {
+      "index": 83,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        1250
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:343 INFO] The nearest minecraft:village is at block 1720, (y?), 1368 (121 blocks away)"
+      ]
+    },
+    {
+      "index": 84,
+      "kind": "independent_grid",
+      "query": [
+        -1750,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:394 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (587 blocks away)"
+      ]
+    },
+    {
+      "index": 85,
+      "kind": "independent_grid",
+      "query": [
+        -1250,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:444 INFO] The nearest minecraft:village is at block -1432, (y?), 1256 (526 blocks away)"
+      ]
+    },
+    {
+      "index": 86,
+      "kind": "independent_grid",
+      "query": [
+        -750,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:494 INFO] The nearest minecraft:village is at block -872, (y?), 1848 (156 blocks away)"
+      ]
+    },
+    {
+      "index": 87,
+      "kind": "independent_grid",
+      "query": [
+        -250,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:543 INFO] The nearest minecraft:village is at block -504, (y?), 1848 (272 blocks away)"
+      ]
+    },
+    {
+      "index": 88,
+      "kind": "independent_grid",
+      "query": [
+        250,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:593 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (207 blocks away)"
+      ]
+    },
+    {
+      "index": 89,
+      "kind": "independent_grid",
+      "query": [
+        750,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:643 INFO] The nearest minecraft:village is at block 88, (y?), 1880 (674 blocks away)"
+      ]
+    },
+    {
+      "index": 90,
+      "kind": "independent_grid",
+      "query": [
+        1250,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:694 INFO] The nearest minecraft:village is at block 632, (y?), 2312 (835 blocks away)"
+      ]
+    },
+    {
+      "index": 91,
+      "kind": "independent_grid",
+      "query": [
+        1750,
+        1750
+      ],
+      "output": [
+        "[2026-10-20 17:43:18:743 INFO] The nearest minecraft:village is at block 1848, (y?), 1688 (115 blocks away)"
+      ]
+    }
+  ],
+  "world_identity": {
+    "phase": "world_load",
+    "tick": 0,
+    "seed": "-3509659830737203357",
+    "defaultSpawn": {
+      "x": 7,
+      "y": 32767,
+      "z": 23
+    },
+    "players": 0,
+    "spawnRadius": 10,
+    "reference": "BDS 1.26.52.3 Script API 2.10.0; no spawn mutation"
+  },
+  "clean_shutdown": true,
+  "owned_container_removed": true,
+  "wall_seconds": 8.928429188090377
+}

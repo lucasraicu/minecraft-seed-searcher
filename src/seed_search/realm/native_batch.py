@@ -128,7 +128,7 @@ class Prototype:
         self.policy.nether_goal=cfg['structures']['nether_minimum_counts']['fortress']
         self.policy.discovery=native_bounds(cfg['discovery']['overworld_bounds'])
         self.policy.types=[structure_type(n) for n in NAMES]
-        self.policy.goals=[cfg['structures']['minimum_counts'][n] for n in NAMES[:10]]
+        self.policy.goals=[cfg['structures']['minimum_counts'].get(n,0) for n in NAMES[:10]]
         self.policy.y=cfg['biomes']['sample_y_levels'];self.policy.spacing=64
         self.policy.batch_size=cfg['biomes']['gate_batch_size']
         if hasattr(self.policy, 'cutoff_score'):
@@ -182,7 +182,7 @@ class Prototype:
             'policy_sha256':hashlib.sha256(bytes(self.ffi.buffer(self.policy))).hexdigest(),
             'record_computation_identity':production_identity()}
 
-    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None,cutoff_score=None):
+    def sweep(self,seeds,threads=1,*,complete=False,fixtures=None,retention="full",max_misses=None,fixture_masks=None,fixture_deltas=None,cutoff_score=None,refine_centers=False):
         is_np = hasattr(seeds, '__array_interface__') or isinstance(seeds, np.ndarray)
         if is_np:
             try:
@@ -221,6 +221,9 @@ class Prototype:
         # Independent call-local policy and buffers; shared adapters never mutate
         # a policy while CFFI releases the GIL for another call.
         policy=self.ffi.new('NBPolicy *');self.ffi.memmove(policy,self.policy,self.ffi.sizeof('NBPolicy'))
+        if type(refine_centers) is not bool or (refine_centers and not dynamic_v3_policy(self.cfg)):
+            raise ValueError('Center refinement requires a v3 policy and boolean switch')
+        policy.refine_centers=int(refine_centers)
         policy.complete=int(complete);policy.retention=int(retention=='survivors');policy.max_misses=(self.cfg['search']['max_misses'] if two_group_policy(self.cfg) and retention=='full' else max_misses)
         if cutoff_score is not None:
             if isinstance(cutoff_score, bool) or not isinstance(cutoff_score, int) or cutoff_score < 0:
@@ -415,6 +418,20 @@ class ReplayProvider:
     def __init__(self,result,prototype):
         self.native_work={};self.discovery=self.points(result.discovery)
         self.dynamic_center=(int(result.anchors[0].x),int(result.anchors[0].z)) if dynamic_policy(prototype.cfg) and result.nanchors else None
+        self.center_refinement=None
+        if self.dynamic_center is not None and result.anchors[0].refinement_coarse_points:
+            a=result.anchors[0]
+            self.center_refinement={
+                'revision':'native-grid-16-local-8-v1',
+                'centroid_unrefined':[int(a.centroid_x),int(a.centroid_z)],
+                'sweep_score':int(a.centroid_score),
+                'refinement_gain':int(a.score-a.centroid_score),
+                'grid_step':int(a.refinement_grid_step),
+                'coarse_points':int(a.refinement_coarse_points),
+                'fine_points':int(a.refinement_fine_points),
+                'scope':'all eligible 16-block centers, local 8-block windows, and original representative; pinned predictor only',
+                'global_8_grid_optimum':False}
+
         self.dynamic_no_anchor=bool(dynamic_policy(prototype.cfg) and not result.nanchors)
         self.queries={};self.ids={};self.nether_ids={};self.pairs={};self.igloo_basements=set()
         for j in range(result.nanchors):
@@ -549,10 +566,19 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         raise ValueError('Invalid stop_after')
     if retention not in ('full','survivors'):raise ValueError('Unknown retention mode')
     if isinstance(max_misses,bool) or not isinstance(max_misses,int) or not 0<=max_misses<=25 or (retention=='full' and max_misses):raise ValueError('Invalid retention threshold')
+    from seed_search.realm.reserve import resume_policy
+    selection, bind_selection = resume_policy(run, top_k, resume)
     cfg=json.loads(json.dumps(prototype.cfg));cfg['search']['run_key']=str(run_key)
     identity=identity or {'config':cfg,'prototype':prototype.identity,'count':count,'start_index':start_index,
                          'evidence_schema':'realm-full-records-v1','adapter':'owned-native-pipeline-v1'}
     identity={**identity,'retention':{'mode':retention,'max_misses':max_misses}}
+    if bind_selection:identity['top_selection']=selection
+    if resume:
+        from seed_search.realm.reserve import compatible_resume_identity
+        identity=compatible_resume_identity(run,identity)
+    if dynamic_v3_policy(cfg):
+        identity['center_refinement']='native-grid-16-local-8-v1'
+
     if production:_scale_gate(cfg,run,count,allow_prediction_scale)
     os.environ.setdefault("KMP_BLOCKTIME", "0")
     limits=disk_policy(cfg['search'],retention=retention);_,ceiling,reserve=memory_budget_gib(cfg['search'])
@@ -565,7 +591,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
     tracker=None;top50_path=None
     if top_k>0:
         from seed_search.realm.top_tracker import Top50Tracker
-        tracker=Top50Tracker(capacity=top_k)
+        tracker=Top50Tracker(capacity=selection['candidate_capacity'], winner_limit=top_k, reserve_policy=selection)
         top50_path=Path(run)/'top50.json'
     def observe_committed(rows):
         for seed_payload,candidate_payload in rows:
@@ -591,6 +617,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         cutoff=tracker.cutoff_score() if tracker is not None else None
         sweep_kw={'retention':retention,'max_misses':max_misses} if retention=='survivors' else {}
         if cutoff is not None:sweep_kw['cutoff_score']=cutoff
+        if dynamic_v3_policy(cfg):sweep_kw['refine_centers']=True
         return prototype.sweep(seeds,threads,**sweep_kw),seed_seconds
     def prepare(native_future,first,end,store):
         batch,seed_seconds=native_future.result()
@@ -625,6 +652,11 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
         previous_pipeline=store.get_state('native_pipeline') or {}
         if resume and 'top_k' in previous_pipeline and previous_pipeline['top_k']!=top_k:
             raise ValueError('Top-K capacity cannot change on resume; use a fresh run')
+        saved_selection=store.get_state('top_selection')
+        if saved_selection is not None and saved_selection!=selection:
+            raise ValueError('Candidate reserve policy cannot change on resume')
+        store.set_state('top_selection',selection)
+        store.db.commit()
         store.configure_range(start_index,start_index+count,batch_size);store.recover_assignments()
         if tracker is not None and resume:
             # The candidate table and range receipts commit together. JSON is only
@@ -633,7 +665,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 'SELECT s.result,c.result FROM candidates c JOIN seeds s ON s.idx=c.idx ORDER BY c.id')
             while rows:=cursor.fetchmany(256):
                 observe_committed(rows)
-        if tracker is not None and not top50_path.is_file():
+        if tracker is not None:
             tracker.save_to_json(str(top50_path))
         completed=store.get_state('completed_seeds')
         initial_disk=disk_status(store.run,limits,remaining_seeds=count-completed,
@@ -714,6 +746,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
                 'max_native_buffer_bytes_per_batch':int(prototype.policy.max_buffer_bytes),
                 'max_prepared_bytes':max_prepared_bytes,'service_seconds':dict(service),'batches':batches,
                 'prepare_on_writer':prepare_on_writer,'top_k':top_k,
+                'candidate_capacity':selection['candidate_capacity'],'reserve_factor':selection['reserve_factor'],
                 'retention':retention,'max_misses':max_misses,'invocation_completed_seeds':committed,'interrupted':interrupted,
                 'error':str(failure) if failure else None})
             status=store.status()
@@ -726,7 +759,7 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
             'max_outstanding_batches':max_pending,
             'max_prepared_owned_estimate_bytes':max_payload,'peak_process_tree_rss_bytes':peak,
             'status':status,'interrupted':interrupted,'encoded':encoded,'retention':retention,'max_misses':max_misses,
-            'top_k':top_k,'top_tracker':tracker,
+            'top_k':top_k,'candidate_policy':selection,'top_tracker':tracker,
             'cutoff_score':tracker.cutoff_score() if tracker is not None else None,
             'scope':('complete baseline evidence and FULL SQLite' if retention=='full' else 'C-filtered survivor/near-miss evidence and FULL SQLite range checkpoints')+', startup/drain/close included; no terrain/BDS'}
 
@@ -734,7 +767,8 @@ def persist_pipeline(prototype,run,count,*,run_key=0,threads=30,batch_size=1024,
 
 def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,native_build=None,
                     native_threads=16,native_batch_size=4096,stop_after=None,progress=None,
-                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=None):
+                    allow_prediction_scale=False,retention="full",max_misses=None,top_k=None,
+                    catalog_root=None,catalog_sample_cap=100):
     """Production opt-in; unsupported profiles fail before any input publication."""
     validate_config(cfg)
     validate_sequence_range(start_index, count, cfg['search'].get('sequence', 'permutation'))
@@ -760,15 +794,24 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
                  evaluator='seed_search.realm.native_batch:run_native_scan')
     if top_k is None:top_k=search.get('top_k',0)
     if type(top_k) is not int or not 0<=top_k<=1000:raise ValueError('top_k must be an integer in 0–1000')
+    harvest=None
+    if catalog_root is not None:
+        from ..catalog.bridge import prepare_campaign
+        harvest=prepare_campaign(search,output,start_index,count,ident,catalog_root,sample_cap=catalog_sample_cap)
+        ident['catalog_harvest']={k:harvest[k] for k in ('root','sample_cap','campaign_id')}
+        print(json.dumps({'catalog_handoff':harvest}),file=sys.stderr,flush=True)
     result=persist_pipeline(prototype,output,count,run_key=search['run_key'],threads=native_threads,
         batch_size=native_batch_size,resume=resume,stop_after=stop_after,progress=progress,
         start_index=start_index,identity=ident,allow_prediction_scale=allow_prediction_scale,production=True,retention=retention,max_misses=max_misses,
         top_k=top_k)
     status=result['status'];status['interrupted']=result['interrupted']
+    if harvest is not None:status['catalog_harvest']=harvest
     if top_k>0:
         status['top_k']=top_k
         status['cutoff_score']=result['cutoff_score']
-        status['top_candidates_count']=len(result['top_tracker']) if result['top_tracker'] is not None else 0
+        status['top_candidates_count']=min(top_k,len(result['top_tracker'])) if result['top_tracker'] is not None else 0
+        status['candidate_policy']=result['candidate_policy']
+        status['reserve_candidates_count']=max(0,len(result['top_tracker'])-top_k) if result['top_tracker'] is not None else 0
     status['execution']={'kind':'native','threads':native_threads,'batch_size':native_batch_size,
                          'newly_committed':result['newly_committed'],'wall_seconds':result['wall_seconds'],
                          'batch_latency_sample_scope':result['batch_latency_sample_scope'],
@@ -776,4 +819,6 @@ def run_native_scan(cfg,output,count,start_index=0,resume=False,identity=None,*,
                          'batch_latency_p95_seconds':sorted(result['batch_latencies_seconds'])[min(len(result['batch_latencies_seconds'])-1,int(.95*len(result['batch_latencies_seconds'])))] if result['batch_latencies_seconds'] else None,
                          'retention':retention,'max_misses':max_misses,
                          ('durably_persisted_inputs_per_second' if retention=='full' else 'checkpointed_scanned_inputs_per_second'):result['input_seeds_per_second']}
+    if dynamic_v3_policy(cfg):
+        status['execution']['center_refinement']='native-grid-16-local-8-v1'
     return status

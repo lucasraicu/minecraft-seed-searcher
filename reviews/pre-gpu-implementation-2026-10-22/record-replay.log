@@ -1,0 +1,6 @@
+0 before 35.15283019701019
+Traceback (most recent call last):
+  File "/Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/pre-gpu-implementation-2026-10-22/benchmark_records.py", line 15, in <module>
+    assert result.returncode==0,(entry,(E/f'record-{trial}-{mode}.log').read_text()[-3000:])
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: ({'trial': 0, 'mode': 'after', 'seconds': 0.9925672569079325, 'exit_status': 1, 'report': '/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-0-after.json'}, 'Traceback (most recent call last):\n  File "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/measure_world.py", line 61, in <module>\n    if __name__==\'__main__\':main()\n                            ~~~~^^\n  File "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/measure_world.py", line 22, in main\n    assert automation.configuration(root)[\'policy_revision\']==cfg[\'policy_revision\']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n')

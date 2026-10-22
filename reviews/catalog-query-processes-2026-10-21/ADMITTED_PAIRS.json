@@ -1,0 +1,42 @@
+[
+  {
+    "case": "previous_failed_admitted_pair",
+    "requests": [
+      {
+        "query_id": 5,
+        "status": 200,
+        "seconds": 6.759846786037087,
+        "code": null
+      },
+      {
+        "query_id": 10,
+        "status": 200,
+        "seconds": 3.9380615788977593,
+        "code": null
+      }
+    ],
+    "passed": true,
+    "query_seconds": 10,
+    "execution_limit": 2
+  },
+  {
+    "case": "two_broad_recommended",
+    "requests": [
+      {
+        "query_id": 3,
+        "status": 200,
+        "seconds": 7.6804220139747486,
+        "code": null
+      },
+      {
+        "query_id": 15,
+        "status": 200,
+        "seconds": 7.655321661033668,
+        "code": null
+      }
+    ],
+    "passed": true,
+    "query_seconds": 10,
+    "execution_limit": 2
+  }
+]

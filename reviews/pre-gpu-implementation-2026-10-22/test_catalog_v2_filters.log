@@ -1,0 +1,22 @@
+=== Suite 1: Constants & Vocabulary Verification ===
+  ✓ Legacy vocabulary: 14 OW structures, 9 OW biomes, radii 256/512/1024
+  ✓ V2 vocabulary: 8 new typed features (1 OW stronghold, 2 Nether structures, 5 Nether biomes)
+  ✓ V2 feature totals: 17 structures, 14 biomes, 31 total features exposed
+  ✓ Nether radii & fixed side constants
+  ✓ featureLabel resolves legacy, V2, and unknown features
+  ✓ getFeatureDimension accurately identifies Nether vs Overworld
+=== Suite 2: Pure Helper Functions & Radius Normalization ===
+  ✓ normalizeRadiusForDimension handles Overworld and Nether constraints
+  ✓ getRowDimension inspects structure and biome rows
+  ✓ switchRowFeature resets incompatible radius to 512 OW / 128 Nether, retains compatible radius & choices
+  ✓ switchBiomeDimension enforces single-dimension and normalizes radius
+  ✓ toggleBiomeSelectionInRow prevents mixed-dimension biome OR and switches dimension cleanly
+=== Suite 3: React DOM Server Render Tests ===
+  ✓ Legacy FilterBuilder (enableV2=false): never offers new features or Nether radii
+  ✓ V2 FilterBuilder (enableV2=true): exposes 31 features, groups OW/Nether, renders distinct radii and portal cleartext
+  ✓ Default enableV2 prop evaluates to false
+
+========================================
+Summary: All 14 / 14 tests passed successfully!
+========================================
+

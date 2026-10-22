@@ -258,6 +258,9 @@ void applySeedPhase2(struct Generator *g, int dim, uint64_t seed);
 void setBetaBiomeSeed(BiomeNoiseBeta *bnb, uint64_t seed);
 int sampleBiomeNoise(const BiomeNoise *bn, int64_t *np, int x, int y, int z,
     uint64_t *dat, uint32_t sample_flags);
+/* Quart X/Z with exact block Y; legacy integer-quart sampling stays separate. */
+int sampleBiomeNoiseAtBlockY(const BiomeNoise *bn, int64_t *np, int x, int blockY, int z,
+    uint64_t *dat, uint32_t sample_flags);
 int sampleBiomeNoiseBeta(const BiomeNoiseBeta *bnb, int64_t *np, double *nv,
     int x, int z);
 double approxSurfaceBeta(const BiomeNoiseBeta *bnb, const SurfaceNoiseBeta *snb,

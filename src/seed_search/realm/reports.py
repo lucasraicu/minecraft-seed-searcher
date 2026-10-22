@@ -336,7 +336,7 @@ def _candidate_rescore(candidate,policy,revision_id):
                 import math
                 center=candidate['evaluation_center']
                 required=candidate['required_structures']
-                structures={name:ob['predicted_viable'] for name,ob in required.items()}
+                structures={name:ob['predicted_viable'] for name,ob in {**required,**candidate.get('optional_structures',{})}.items()}
                 observations={**required,**candidate['required_nether_structures'],**candidate['optional_structures']}
                 counts={name:len(ob['predicted_viable']) for name,ob in observations.items()}
                 names=[s['biome'] for s in candidate['biomes']['sampling']['samples'] if s['coordinate'][1]==63]

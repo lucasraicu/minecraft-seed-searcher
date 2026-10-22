@@ -171,12 +171,15 @@ def _scale_gate(cfg, output, count, allow_prediction_scale):
 def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, identity=None,
              evaluator="seed_search.realm.baseline:evaluate_seed", stop_after=None, progress=None,
              allow_prediction_scale=False, progress_interval_seconds=10, *, execution="python",
-             native_build=None, native_threads=16, native_batch_size=4096, retention="full", max_misses=None):
+             native_build=None, native_threads=16, native_batch_size=4096, retention="full", max_misses=None,
+             catalog_root=None, catalog_sample_cap=100):
     """Run a finite interval; stop_after limits newly committed seeds in this invocation.
 
     A worker error stops dispatch, drains other submitted batches, and leaves the failed
     lease retryable. KeyboardInterrupt similarly stops dispatch and drains running work.
     No executor has more than `workers` outstanding batches.
+    The native v3 route refines qualifying centers before durable admission;
+    the Python executor remains the independent centroid/reference route.
     Progress aggregates are built at most once per interval (first commit is immediate).
     Set progress_interval_seconds=0 for a callback on every committed batch.
     """
@@ -187,7 +190,9 @@ def run_scan(cfg, output, count, start_index=0, workers=None, resume=False, iden
         from .native_batch import run_native_scan
         return run_native_scan(cfg,output,count,start_index,resume,identity,native_build=native_build,
             native_threads=native_threads,native_batch_size=native_batch_size,stop_after=stop_after,
-            progress=progress,allow_prediction_scale=allow_prediction_scale,retention=retention,max_misses=max_misses)
+            progress=progress,allow_prediction_scale=allow_prediction_scale,retention=retention,max_misses=max_misses,
+            catalog_root=catalog_root,catalog_sample_cap=catalog_sample_cap)
+    if catalog_root is not None:raise ValueError('Catalog harvesting currently requires execution=native')
     if native_build is not None or retention!='full' or max_misses:raise ValueError('Native build or compact retention requires execution=native')
     index_key(start_index)
     from ..seeds import validate_sequence_range

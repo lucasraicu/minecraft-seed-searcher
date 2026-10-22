@@ -1,0 +1,145 @@
+{
+  "revision": "catalog-biome-families-v2",
+  "features": {
+    "cherry_grove": [
+      "cherry_grove"
+    ],
+    "mushroom_fields": [
+      "mushroom_fields",
+      "mushroom_field_shore"
+    ],
+    "bamboo_jungle": [
+      "bamboo_jungle"
+    ],
+    "desert": [
+      "desert",
+      "desert_hills",
+      "desert_lakes"
+    ],
+    "badlands": [
+      "badlands",
+      "badlands_plateau",
+      "wooded_badlands_plateau",
+      "eroded_badlands",
+      "modified_badlands_plateau",
+      "modified_wooded_badlands_plateau",
+      "wooded_badlands"
+    ],
+    "snowy": [
+      "snowy_plains",
+      "snowy_mountains",
+      "ice_spikes",
+      "snowy_slopes",
+      "snowy_taiga"
+    ],
+    "mangrove_swamp": [
+      "mangrove_swamp"
+    ],
+    "forest": [
+      "forest",
+      "birch_forest",
+      "flower_forest",
+      "old_growth_birch_forest"
+    ],
+    "plains": [
+      "plains",
+      "sunflower_plains",
+      "meadow"
+    ],
+    "nether_wastes": [
+      "nether_wastes"
+    ],
+    "crimson_forest": [
+      "crimson_forest"
+    ],
+    "warped_forest": [
+      "warped_forest"
+    ],
+    "soul_sand_valley": [
+      "soul_sand_valley"
+    ],
+    "basalt_deltas": [
+      "basalt_deltas"
+    ],
+    "meadow": [
+      "meadow"
+    ],
+    "ice_spikes": [
+      "ice_spikes"
+    ]
+  },
+  "record_families": {
+    "plains": [
+      "meadow",
+      "plains",
+      "sunflower_plains"
+    ],
+    "desert": [
+      "desert",
+      "desert_hills",
+      "desert_lakes"
+    ],
+    "forest": [
+      "birch_forest",
+      "flower_forest",
+      "forest",
+      "old_growth_birch_forest"
+    ],
+    "taiga": [
+      "old_growth_pine_taiga",
+      "old_growth_spruce_taiga",
+      "taiga"
+    ],
+    "jungle": [
+      "bamboo_jungle",
+      "jungle"
+    ],
+    "swamp": [
+      "mangrove_swamp",
+      "swamp",
+      "swamp_hills"
+    ],
+    "snowy_ice": [
+      "deep_frozen_ocean",
+      "frozen_ocean",
+      "frozen_river",
+      "ice_spikes",
+      "snowy_mountains",
+      "snowy_plains",
+      "snowy_slopes"
+    ],
+    "dark_forest": [
+      "dark_forest"
+    ],
+    "peaks": [
+      "jagged_peaks",
+      "stony_peaks"
+    ],
+    "stony_shore": [
+      "stony_shore"
+    ],
+    "lush_caves": [
+      "lush_caves"
+    ],
+    "dripstone_caves": [
+      "dripstone_caves"
+    ],
+    "deep_dark": [
+      "deep_dark"
+    ],
+    "badlands": [
+      "badlands",
+      "badlands_plateau",
+      "eroded_badlands",
+      "modified_badlands_plateau",
+      "modified_wooded_badlands_plateau",
+      "wooded_badlands",
+      "wooded_badlands_plateau"
+    ]
+  },
+  "cave_families": [
+    "lush_caves",
+    "dripstone_caves",
+    "deep_dark"
+  ]
+}

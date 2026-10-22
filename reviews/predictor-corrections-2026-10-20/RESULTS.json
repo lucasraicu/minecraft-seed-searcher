@@ -1,0 +1,498 @@
+{
+  "revision": "predictor-diagnostic-report-v1",
+  "game_build": "1.26.52.3",
+  "prediction_revision": "cubiomes-bedrock-26.50",
+  "raw_structure_outcomes": {
+    "coordinate_difference": 249,
+    "located_exact": 142,
+    "no_location": 17
+  },
+  "structure_roles": {
+    "candidate_directed": {
+      "coordinate_difference": 81,
+      "located_exact": 142,
+      "no_location": 9
+    },
+    "independent_discovery": {
+      "coordinate_difference": 168,
+      "no_location": 8
+    }
+  },
+  "coordinate_projections": {
+    "candidate_directed": {
+      "fortress": {
+        "tested": 9,
+        "exact_projected_reference": 9
+      },
+      "mineshaft": {
+        "tested": 12,
+        "exact_projected_reference": 12
+      },
+      "outpost": {
+        "tested": 12,
+        "exact_projected_reference": 11
+      }
+    },
+    "independent_discovery": [
+      {
+        "seed": "-9103892851552028103",
+        "feature": "mineshaft",
+        "distinct_located": 4,
+        "exact_projected_membership": 4,
+        "unmatched": []
+      },
+      {
+        "seed": "-9103892851552028103",
+        "feature": "fortress",
+        "distinct_located": 4,
+        "exact_projected_membership": 4,
+        "unmatched": []
+      },
+      {
+        "seed": "-9103892851552028103",
+        "feature": "outpost",
+        "distinct_located": 3,
+        "exact_projected_membership": 3,
+        "unmatched": []
+      },
+      {
+        "seed": "-4565879772552070118",
+        "feature": "mineshaft",
+        "distinct_located": 4,
+        "exact_projected_membership": 4,
+        "unmatched": []
+      },
+      {
+        "seed": "-4565879772552070118",
+        "feature": "fortress",
+        "distinct_located": 4,
+        "exact_projected_membership": 4,
+        "unmatched": []
+      },
+      {
+        "seed": "-4565879772552070118",
+        "feature": "outpost",
+        "distinct_located": 4,
+        "exact_projected_membership": 4,
+        "unmatched": []
+      }
+    ],
+    "projected_differences": [
+      {
+        "seed": "-3509659830737203357",
+        "feature": "outpost",
+        "candidate": [
+          528,
+          512
+        ],
+        "projected_reference": [
+          536,
+          520
+        ],
+        "reported": [
+          -1000,
+          408
+        ],
+        "raw_outcome": "coordinate_difference"
+      }
+    ],
+    "scope": "Navigation reference only; raw mismatch outcomes and prediction counts retained."
+  },
+  "biome_comparisons": {
+    "cohort": {
+      "points": 330,
+      "matches": {
+        "direct_quart": 311,
+        "vendor_block": 292
+      },
+      "harness_created_ticking_area": 330,
+      "api_returned_without_harness_ticking_area": 0,
+      "raw_quart_differences": [
+        {
+          "x": -576,
+          "y": 63,
+          "z": 64,
+          "id": "minecraft:forest",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "observed_under_frozen_aliases": "forest"
+        },
+        {
+          "x": 448,
+          "y": 63,
+          "z": -704,
+          "id": "minecraft:plains",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "observed_under_frozen_aliases": "plains"
+        },
+        {
+          "x": -1216,
+          "y": 63,
+          "z": 512,
+          "id": "minecraft:jungle",
+          "loaded": true,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "lush_caves",
+          "vendor_block": "lush_caves",
+          "observed_under_frozen_aliases": "jungle"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": -2752,
+          "id": "minecraft:meadow",
+          "loaded": true,
+          "predicted": "meadow",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "meadow",
+          "observed_under_frozen_aliases": "meadow"
+        },
+        {
+          "x": 1920,
+          "y": 63,
+          "z": 256,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": 2048,
+          "y": 63,
+          "z": 192,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": -2368,
+          "y": 63,
+          "z": -1728,
+          "id": "minecraft:pale_garden",
+          "loaded": true,
+          "predicted": "pale_garden",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "lush_caves",
+          "vendor_block": "pale_garden",
+          "observed_under_frozen_aliases": "pale_garden"
+        },
+        {
+          "x": 1344,
+          "y": 63,
+          "z": 2112,
+          "id": "minecraft:jungle",
+          "loaded": true,
+          "predicted": "sulfur_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "sulfur_caves",
+          "vendor_block": "sulfur_caves",
+          "observed_under_frozen_aliases": "jungle"
+        },
+        {
+          "x": 1344,
+          "y": 63,
+          "z": 2240,
+          "id": "minecraft:jungle",
+          "loaded": true,
+          "predicted": "sulfur_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-9103892851552028103",
+          "direct_quart": "sulfur_caves",
+          "vendor_block": "sulfur_caves",
+          "observed_under_frozen_aliases": "jungle"
+        },
+        {
+          "x": -256,
+          "y": 63,
+          "z": 768,
+          "id": "minecraft:dappled_forest",
+          "loaded": true,
+          "predicted": "dappled_forest",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-4565879772552070118",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dappled_forest",
+          "observed_under_frozen_aliases": "dappled_forest"
+        },
+        {
+          "x": 128,
+          "y": 63,
+          "z": 1216,
+          "id": "minecraft:mega_taiga",
+          "loaded": true,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-4565879772552070118",
+          "direct_quart": "lush_caves",
+          "vendor_block": "lush_caves",
+          "observed_under_frozen_aliases": "old_growth_pine_taiga"
+        },
+        {
+          "x": 384,
+          "y": 63,
+          "z": 256,
+          "id": "minecraft:meadow",
+          "loaded": true,
+          "predicted": "meadow",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-4565879772552070118",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "meadow",
+          "observed_under_frozen_aliases": "meadow"
+        },
+        {
+          "x": -1024,
+          "y": 63,
+          "z": 640,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-4565879772552070118",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": 1280,
+          "y": 63,
+          "z": 64,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "-4565879772552070118",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": 256,
+          "y": 63,
+          "z": 1664,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "3477702448211353566",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": 448,
+          "y": 63,
+          "z": 1664,
+          "id": "minecraft:redwood_taiga_mutated",
+          "loaded": true,
+          "predicted": "old_growth_spruce_taiga",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "3477702448211353566",
+          "direct_quart": "old_growth_spruce_taiga",
+          "vendor_block": "old_growth_spruce_taiga",
+          "observed_under_frozen_aliases": "taiga"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 1344,
+          "id": "minecraft:roofed_forest",
+          "loaded": true,
+          "predicted": "pale_garden",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "3477702448211353566",
+          "direct_quart": "lush_caves",
+          "vendor_block": "pale_garden",
+          "observed_under_frozen_aliases": "dark_forest"
+        },
+        {
+          "x": -64,
+          "y": 63,
+          "z": 0,
+          "id": "minecraft:plains",
+          "loaded": true,
+          "predicted": "plains",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "3477702448211353566",
+          "direct_quart": "savanna",
+          "vendor_block": "plains",
+          "observed_under_frozen_aliases": "plains"
+        },
+        {
+          "x": 64,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:savanna_plateau",
+          "loaded": true,
+          "predicted": "savanna_plateau",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "seed": "3477702448211353566",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "savanna_plateau",
+          "observed_under_frozen_aliases": "savanna_plateau"
+        }
+      ]
+    },
+    "pilot": {
+      "points": 256,
+      "matches": {
+        "direct_quart": 253,
+        "vendor_block": 239
+      },
+      "harness_created_ticking_area": 256,
+      "api_returned_without_harness_ticking_area": 0,
+      "raw_quart_differences": [
+        {
+          "x": -256,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "seed": "-3509659830737203357",
+          "dimension": "overworld",
+          "observed_under_frozen_aliases": "snowy_plains"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": true,
+          "predicted": "lush_caves",
+          "direct_quart": "lush_caves",
+          "vendor_block": "lush_caves",
+          "seed": "-3509659830737203357",
+          "dimension": "overworld",
+          "observed_under_frozen_aliases": "snowy_taiga"
+        },
+        {
+          "x": -64,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "seed": "-3509659830737203357",
+          "dimension": "overworld",
+          "observed_under_frozen_aliases": "snowy_slopes"
+        }
+      ]
+    },
+    "vertical": {
+      "points": 28,
+      "matches": {
+        "direct_quart": 25,
+        "vendor_block": 21
+      },
+      "harness_created_ticking_area": 6,
+      "api_returned_without_harness_ticking_area": 22,
+      "raw_quart_differences": [
+        {
+          "x": -256,
+          "y": 63,
+          "z": -256,
+          "id": "minecraft:ice_plains",
+          "loaded": false,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "seed": "-3509659830737203357",
+          "observed_under_frozen_aliases": "snowy_plains"
+        },
+        {
+          "x": -448,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:cold_taiga",
+          "loaded": false,
+          "predicted": "lush_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "direct_quart": "lush_caves",
+          "vendor_block": "lush_caves",
+          "seed": "-3509659830737203357",
+          "observed_under_frozen_aliases": "snowy_taiga"
+        },
+        {
+          "x": -64,
+          "y": 63,
+          "z": 320,
+          "id": "minecraft:snowy_slopes",
+          "loaded": true,
+          "predicted": "dripstone_caves",
+          "dimension": "overworld",
+          "internal_terrain_class": false,
+          "direct_quart": "dripstone_caves",
+          "vendor_block": "dripstone_caves",
+          "seed": "-3509659830737203357",
+          "observed_under_frozen_aliases": "snowy_slopes"
+        }
+      ]
+    }
+  },
+  "loaded_field_semantics": "true = harness created a ticking area after first query threw; false = API returned directly. Not a world-generation or chunk-completeness flag. See observer.js.",
+  "limitations": [
+    "BDS locate references do not certify physical completeness or exhaustive recall.",
+    "Name normalization is the frozen current project policy, not authoritative Bedrock numeric-ID conversion.",
+    "Predictor MC26_50 and BDS1.26.52.3 differ; parity is empirical and scoped.",
+    "Checksums establish fixture integrity, not independent truth or authenticity."
+  ],
+  "verdict": "No global sampler replacement justified; saved API comparisons only.",
+  "probe_replay": {
+    "points": 614,
+    "identical_to_saved": true,
+    "differences": [],
+    "binary_sha256": "0da6fc3293a4ee7669328bf93eb92b227a591f991639255de75b82954a72cf14",
+    "stdout_sha256": "d7c6989f09c86d4981807227b5b74c4dce19757e93f6baa27167379fb91e3dd6"
+  }
+}

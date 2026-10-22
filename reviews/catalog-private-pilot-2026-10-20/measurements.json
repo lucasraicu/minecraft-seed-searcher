@@ -1,0 +1,1347 @@
+{
+  "status": "automated_milestone_finished_browser_qa_deferred_by_user",
+  "natural_new100": {
+    "backup_restore": true,
+    "experiments": {
+      "defaults": {
+        "corpus_sha256": "688299a4d3043dd14a586b651ffc1a4e34ecc711eb15c8716c0b2722db8b4812",
+        "discriminating": false,
+        "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+        "groups": {
+          "border:2048": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 70,
+            "queries": 96,
+            "reference_empty": 26,
+            "reference_nonempty": 70
+          },
+          "border:4096": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 56,
+            "queries": 80,
+            "reference_empty": 24,
+            "reference_nonempty": 56
+          },
+          "border:8192": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 61,
+            "queries": 80,
+            "reference_empty": 19,
+            "reference_nonempty": 61
+          },
+          "category:adventure": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 26,
+            "queries": 32,
+            "reference_empty": 6,
+            "reference_nonempty": 26
+          },
+          "category:biomes": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 19,
+            "queries": 32,
+            "reference_empty": 13,
+            "reference_nonempty": 19
+          },
+          "category:builders": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 21,
+            "queries": 32,
+            "reference_empty": 11,
+            "reference_nonempty": 21
+          },
+          "category:general": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:ocean": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:rare": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:survival": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:technical": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "mode:origin": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 89,
+            "queries": 128,
+            "reference_empty": 39,
+            "reference_nonempty": 89
+          },
+          "mode:recommended": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 98,
+            "queries": 128,
+            "reference_empty": 30,
+            "reference_nonempty": 98
+          }
+        },
+        "population_worlds": 100,
+        "retained_identity_worlds": 100,
+        "retained_queryable_worlds": 100,
+        "retained_unqueryable_worlds": 0,
+        "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+        "summary": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 1.0,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 187,
+          "queries": 256,
+          "reference_empty": 69,
+          "reference_nonempty": 187
+        }
+      },
+      "reduced_k1": {
+        "corpus_sha256": "688299a4d3043dd14a586b651ffc1a4e34ecc711eb15c8716c0b2722db8b4812",
+        "discriminating": true,
+        "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+        "groups": {
+          "border:2048": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.98,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 70,
+            "queries": 96,
+            "reference_empty": 26,
+            "reference_nonempty": 70
+          },
+          "border:4096": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9821428571428571,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 56,
+            "queries": 80,
+            "reference_empty": 24,
+            "reference_nonempty": 56
+          },
+          "border:8192": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9819672131147541,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 61,
+            "queries": 80,
+            "reference_empty": 19,
+            "reference_nonempty": 61
+          },
+          "category:adventure": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 26,
+            "queries": 32,
+            "reference_empty": 6,
+            "reference_nonempty": 26
+          },
+          "category:biomes": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9421052631578948,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 19,
+            "queries": 32,
+            "reference_empty": 13,
+            "reference_nonempty": 19
+          },
+          "category:builders": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9619047619047619,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 21,
+            "queries": 32,
+            "reference_empty": 11,
+            "reference_nonempty": 21
+          },
+          "category:general": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:ocean": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9478260869565217,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:rare": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9869565217391304,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:survival": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:technical": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.996,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "mode:origin": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9898876404494382,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 89,
+            "queries": 128,
+            "reference_empty": 39,
+            "reference_nonempty": 89
+          },
+          "mode:recommended": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9734693877551021,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 98,
+            "queries": 128,
+            "reference_empty": 30,
+            "reference_nonempty": 98
+          }
+        },
+        "population_worlds": 100,
+        "retained_identity_worlds": 97,
+        "retained_queryable_worlds": 97,
+        "retained_unqueryable_worlds": 0,
+        "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+        "summary": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9812834224598931,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 187,
+          "queries": 256,
+          "reference_empty": 69,
+          "reference_nonempty": 187
+        }
+      },
+      "reduced_k2": {
+        "corpus_sha256": "688299a4d3043dd14a586b651ffc1a4e34ecc711eb15c8716c0b2722db8b4812",
+        "discriminating": true,
+        "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+        "groups": {
+          "border:2048": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9971428571428571,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 70,
+            "queries": 96,
+            "reference_empty": 26,
+            "reference_nonempty": 70
+          },
+          "border:4096": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9982142857142857,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 56,
+            "queries": 80,
+            "reference_empty": 24,
+            "reference_nonempty": 56
+          },
+          "border:8192": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9967213114754099,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 61,
+            "queries": 80,
+            "reference_empty": 19,
+            "reference_nonempty": 61
+          },
+          "category:adventure": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 26,
+            "queries": 32,
+            "reference_empty": 6,
+            "reference_nonempty": 26
+          },
+          "category:biomes": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9894736842105263,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 19,
+            "queries": 32,
+            "reference_empty": 13,
+            "reference_nonempty": 19
+          },
+          "category:builders": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9952380952380953,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 21,
+            "queries": 32,
+            "reference_empty": 11,
+            "reference_nonempty": 21
+          },
+          "category:general": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:ocean": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:rare": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.991304347826087,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 23,
+            "queries": 32,
+            "reference_empty": 9,
+            "reference_nonempty": 23
+          },
+          "category:survival": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "category:technical": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 1.0,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 25,
+            "queries": 32,
+            "reference_empty": 7,
+            "reference_nonempty": 25
+          },
+          "mode:origin": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.9977528089887641,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 89,
+            "queries": 128,
+            "reference_empty": 39,
+            "reference_nonempty": 89
+          },
+          "mode:recommended": {
+            "mean_normalized_score_regret": 0.0,
+            "mean_top10_recall": 0.996938775510204,
+            "nonempty_preservation": 1.0,
+            "preserved_nonempty": 98,
+            "queries": 128,
+            "reference_empty": 30,
+            "reference_nonempty": 98
+          }
+        },
+        "population_worlds": 100,
+        "retained_identity_worlds": 99,
+        "retained_queryable_worlds": 99,
+        "retained_unqueryable_worlds": 0,
+        "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+        "summary": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.9973262032085561,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 187,
+          "queries": 256,
+          "reference_empty": 69,
+          "reference_nonempty": 187
+        }
+      }
+    },
+    "heldout_sha256": "688299a4d3043dd14a586b651ffc1a4e34ecc711eb15c8716c0b2722db8b4812",
+    "ingestion_summary": {
+      "active": 0,
+      "completed": 100,
+      "cumulative_extract_seconds": 244.4234,
+      "cumulative_job_seconds": 244.4234,
+      "failed": 0,
+      "partial": 0,
+      "pending": 0,
+      "stopped_reason": null,
+      "total_seeds": 100
+    },
+    "ingestion_wall_seconds": 263.1665255849948,
+    "invalid_checkpoints": [],
+    "layouts": 24300,
+    "missing_indices": [],
+    "partial_indices": [],
+    "partition_merge_parity": true,
+    "publication_seconds": 39.247620448004454,
+    "retention_oracle_parity": true,
+    "retention_oracle_seconds": 24.26234919897979,
+    "retention_seconds": {
+      "defaults": 10.79553488100646,
+      "reduced_k1": 11.018407744995784,
+      "reduced_k2": 10.891690068005119
+    },
+    "schema": "catalog100-validation-report-v1",
+    "scope": "Declared100-world predictor corpus; no four-pillar/world certification, public launch, GPU or production recall proof",
+    "snapshot_id": "fe0e7be511dffbf3be3093fddc9dcb992649e9d0eaa81a9c69f2db13e2b2fea8",
+    "status": "complete",
+    "summary_seconds": 45.79544768499909,
+    "synthetic": {
+      "corpus_sha256": "688299a4d3043dd14a586b651ffc1a4e34ecc711eb15c8716c0b2722db8b4812",
+      "discriminating": true,
+      "empty_retained_regret_convention": "1 when reference nonempty and retained empty; empty references excluded",
+      "fixture": "FABRICATED identical spatial facts, 64 distinct identities, 3 anchors x3 borders; not real Minecraft worlds",
+      "groups": {
+        "border:2048": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 79,
+          "queries": 96,
+          "reference_empty": 17,
+          "reference_nonempty": 79
+        },
+        "border:4096": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 69,
+          "queries": 80,
+          "reference_empty": 11,
+          "reference_nonempty": 69
+        },
+        "border:8192": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 71,
+          "queries": 80,
+          "reference_empty": 9,
+          "reference_nonempty": 71
+        },
+        "category:adventure": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 29,
+          "queries": 32,
+          "reference_empty": 3,
+          "reference_nonempty": 29
+        },
+        "category:biomes": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 29,
+          "queries": 32,
+          "reference_empty": 3,
+          "reference_nonempty": 29
+        },
+        "category:builders": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 25,
+          "queries": 32,
+          "reference_empty": 7,
+          "reference_nonempty": 25
+        },
+        "category:general": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 29,
+          "queries": 32,
+          "reference_empty": 3,
+          "reference_nonempty": 29
+        },
+        "category:ocean": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 26,
+          "queries": 32,
+          "reference_empty": 6,
+          "reference_nonempty": 26
+        },
+        "category:rare": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 25,
+          "queries": 32,
+          "reference_empty": 7,
+          "reference_nonempty": 25
+        },
+        "category:survival": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 27,
+          "queries": 32,
+          "reference_empty": 5,
+          "reference_nonempty": 27
+        },
+        "category:technical": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 29,
+          "queries": 32,
+          "reference_empty": 3,
+          "reference_nonempty": 29
+        },
+        "mode:origin": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 109,
+          "queries": 128,
+          "reference_empty": 19,
+          "reference_nonempty": 109
+        },
+        "mode:recommended": {
+          "mean_normalized_score_regret": 0.0,
+          "mean_top10_recall": 0.2,
+          "nonempty_preservation": 1.0,
+          "preserved_nonempty": 110,
+          "queries": 128,
+          "reference_empty": 18,
+          "reference_nonempty": 110
+        }
+      },
+      "population_worlds": 64,
+      "retained_identity_worlds": 6,
+      "retained_queryable_worlds": 6,
+      "retained_unqueryable_worlds": 0,
+      "scope": "Declared observation corpus only; not production capacity recall or actual-game accuracy",
+      "summary": {
+        "mean_normalized_score_regret": 0.0,
+        "mean_top10_recall": 0.2,
+        "nonempty_preservation": 1.0,
+        "preserved_nonempty": 219,
+        "queries": 256,
+        "reference_empty": 37,
+        "reference_nonempty": 219
+      }
+    },
+    "synthetic_seconds": 7.66960136097623,
+    "verified_view_seconds": 14.967764381959569,
+    "worlds": 100
+  },
+  "natural_supervision": {
+    "exit_status": 0,
+    "output_bytes": 151114740,
+    "polled_peak_rss_bytes": 2393030656,
+    "stop_reason": null,
+    "wall_seconds": 506.3785026659607
+  },
+  "cohort_nonoverlap": true,
+  "combined_import": {
+    "audit": {
+      "layouts": 48600,
+      "passed": true,
+      "snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+      "worlds": 200
+    },
+    "header": {
+      "edition": "bedrock",
+      "extractor_revision": "cpu-catalog-reference-v1",
+      "game_build_id": "research:26.50",
+      "model_id": "26.50",
+      "native_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+      "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+      "source_sha256": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+      "world_settings_id": "default"
+    },
+    "layouts": 48600,
+    "note": "Verified existing observations; no native extraction, no source migration in place",
+    "process_peak_rss_bytes": 813072384,
+    "schema": "catalog-pilot-import-v1",
+    "snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+    "source_snapshot_id": "fe0e7be511dffbf3be3093fddc9dcb992649e9d0eaa81a9c69f2db13e2b2fea8",
+    "wall_seconds": 87.71997249498963,
+    "worlds": 200
+  },
+  "raw_and_index_audit": {
+    "detail_seconds": 0.9484646450146101,
+    "exhaustive_top20_parity": true,
+    "index_semantic_parity": true,
+    "layouts": 48600,
+    "max_seconds": 5.966781531984452,
+    "measurements": [
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.4265133039443754,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 2.4244082670193166
+      },
+      {
+        "decoded_layouts": 20,
+        "eligible_layouts": 20,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.4019286209950224,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 2.401527580979746
+      },
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.4800272510037757,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 2.478005109995138
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.966781531984452,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 5.964451642008498
+      },
+      {
+        "decoded_layouts": 650,
+        "eligible_layouts": 650,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.556559730961453,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 2.5549764650058933
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.137059540022165,
+        "segments": 200,
+        "side": 2048,
+        "wall_seconds": 5.135165445972234
+      },
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.454062475997489,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 2.4518926269956864
+      },
+      {
+        "decoded_layouts": 20,
+        "eligible_layouts": 20,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.4340911349863745,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 2.4332619319902733
+      },
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.453207109007053,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 2.451279479020741
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.484017450013198,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 5.481759825022891
+      },
+      {
+        "decoded_layouts": 650,
+        "eligible_layouts": 650,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.5470961650134996,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 2.545640237047337
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.467630317027215,
+        "segments": 200,
+        "side": 4096,
+        "wall_seconds": 5.465949058998376
+      },
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.472808072983753,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 2.470639235980343
+      },
+      {
+        "decoded_layouts": 20,
+        "eligible_layouts": 20,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.3988586709601805,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 2.3980371020152234
+      },
+      {
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.470961579994764,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 2.4690663589863107
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.467866732971743,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 5.465767465997487
+      },
+      {
+        "decoded_layouts": 650,
+        "eligible_layouts": 650,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.5380884389742278,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 2.5369927680003457
+      },
+      {
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.104328919027466,
+        "segments": 200,
+        "side": 8192,
+        "wall_seconds": 5.102166261000093
+      }
+    ],
+    "note": "Fixed18 developer requests, not representative player demand or production capacity; OS cache may be warm.",
+    "offline_verification_seconds": 142.51005911501125,
+    "p50_seconds": 2.5090578449890018,
+    "p95_seconds": 5.966781531984452,
+    "query_count": 18,
+    "raw_coordinate_rederivation_layouts": 48600,
+    "schema": "catalog-pilot-query-audit-v1",
+    "snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+    "wall_seconds": 250.09959887200966,
+    "worlds": 200
+  },
+  "synthetic_scale": {
+    "audit": {
+      "layouts": 6000,
+      "passed": true,
+      "snapshot_id": "957c09ff745a6a66139d8bce37a3756627dd130449c820a46f9e4663b92b2a27",
+      "worlds": 1000
+    },
+    "fabricated": true,
+    "layouts": 6000,
+    "measurements": [
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 0,
+        "seconds": 5.243637224950362,
+        "segments": 2000,
+        "side": 2048,
+        "wall_seconds": 5.23588378803106
+      },
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 1,
+        "seconds": 5.218137675023172,
+        "segments": 2000,
+        "side": 2048,
+        "wall_seconds": 5.210300181002822
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 0,
+        "seconds": 5.462622035003733,
+        "segments": 2000,
+        "side": 2048,
+        "wall_seconds": 5.454770320968237
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 1,
+        "seconds": 5.440669003000949,
+        "segments": 2000,
+        "side": 2048,
+        "wall_seconds": 5.432625187037047
+      },
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 0,
+        "seconds": 5.286208481003996,
+        "segments": 2000,
+        "side": 4096,
+        "wall_seconds": 5.27809758100193
+      },
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 1,
+        "seconds": 5.232759972976055,
+        "segments": 2000,
+        "side": 4096,
+        "wall_seconds": 5.224648306961171
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 0,
+        "seconds": 5.525091177958529,
+        "segments": 2000,
+        "side": 4096,
+        "wall_seconds": 5.517047299013939
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 1,
+        "seconds": 5.517726626014337,
+        "segments": 2000,
+        "side": 4096,
+        "wall_seconds": 5.510207575978711
+      },
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 0,
+        "seconds": 5.286237502004951,
+        "segments": 2000,
+        "side": 8192,
+        "wall_seconds": 5.278376055008266
+      },
+      {
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "mode": "origin",
+        "repeat": 1,
+        "seconds": 5.2649733040016145,
+        "segments": 2000,
+        "side": 8192,
+        "wall_seconds": 5.2568023829953745
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 0,
+        "seconds": 5.425108498020563,
+        "segments": 2000,
+        "side": 8192,
+        "wall_seconds": 5.41655137197813
+      },
+      {
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "mode": "recommended",
+        "repeat": 1,
+        "seconds": 5.422355065005831,
+        "segments": 2000,
+        "side": 8192,
+        "wall_seconds": 5.414384653035086
+      }
+    ],
+    "note": "Fabricated identical spatial facts under distinct world identities; not natural diversity or player-demand evidence.",
+    "process_peak_rss_bytes": 96919552,
+    "publish_and_audit_seconds": 27.565510225016624,
+    "schema": "catalog-fabricated-scale-v1",
+    "wall_seconds": 94.04863504896639,
+    "worlds": 1000
+  },
+  "synthetic_supervision": {
+    "exit_status": 0,
+    "output_bytes": 42205902,
+    "parent_crash_policy": "Full reservation remains charged; child has inherited wall alarm. No automatic job retry.",
+    "polled_peak_rss_bytes": 126701568,
+    "stop_reason": null,
+    "wall_seconds": 94.52759982302086
+  },
+  "cached_queries": {
+    "service_source_sha256": "b941b107a73c2e48e5b18c0c14ef68c0891202501c644ec366c8739aa356a3fa",
+    "measurements": [
+      {
+        "corpus": "natural200",
+        "mode": "origin",
+        "repeat": 0,
+        "seconds": 2.4071884969598614,
+        "segments": 200,
+        "decoded_layouts": 200,
+        "eligible_layouts": 200,
+        "index_cache_hits": 200,
+        "result_cache_hit": false,
+        "wall_seconds": 2.4057848720112815
+      },
+      {
+        "corpus": "natural200",
+        "mode": "origin",
+        "repeat": 1,
+        "seconds": 0.012731620983686298,
+        "segments": 0,
+        "decoded_layouts": 0,
+        "eligible_layouts": 0,
+        "index_cache_hits": 0,
+        "result_cache_hit": true,
+        "wall_seconds": 0.011879656987730414
+      },
+      {
+        "corpus": "natural200",
+        "mode": "recommended",
+        "repeat": 0,
+        "seconds": 5.377562110021245,
+        "segments": 200,
+        "decoded_layouts": 16200,
+        "eligible_layouts": 16200,
+        "index_cache_hits": 200,
+        "result_cache_hit": false,
+        "wall_seconds": 5.375686576997396
+      },
+      {
+        "corpus": "natural200",
+        "mode": "recommended",
+        "repeat": 1,
+        "seconds": 0.012674255995079875,
+        "segments": 0,
+        "decoded_layouts": 0,
+        "eligible_layouts": 0,
+        "index_cache_hits": 0,
+        "result_cache_hit": true,
+        "wall_seconds": 0.011826318979728967
+      },
+      {
+        "corpus": "fabricated1000",
+        "mode": "origin",
+        "repeat": 0,
+        "seconds": 5.223677819012664,
+        "segments": 2000,
+        "decoded_layouts": 1000,
+        "eligible_layouts": 1000,
+        "index_cache_hits": 2000,
+        "result_cache_hit": false,
+        "wall_seconds": 5.21973045298364
+      },
+      {
+        "corpus": "fabricated1000",
+        "mode": "origin",
+        "repeat": 1,
+        "seconds": 0.2819481319747865,
+        "segments": 0,
+        "decoded_layouts": 0,
+        "eligible_layouts": 0,
+        "index_cache_hits": 0,
+        "result_cache_hit": true,
+        "wall_seconds": 0.2782430149964057
+      },
+      {
+        "corpus": "fabricated1000",
+        "mode": "recommended",
+        "repeat": 0,
+        "seconds": 5.3934186329715885,
+        "segments": 2000,
+        "decoded_layouts": 2000,
+        "eligible_layouts": 2000,
+        "index_cache_hits": 2000,
+        "result_cache_hit": false,
+        "wall_seconds": 5.389155510987621
+      },
+      {
+        "corpus": "fabricated1000",
+        "mode": "recommended",
+        "repeat": 1,
+        "seconds": 0.27705924498150125,
+        "segments": 0,
+        "decoded_layouts": 0,
+        "eligible_layouts": 0,
+        "index_cache_hits": 0,
+        "result_cache_hit": true,
+        "wall_seconds": 0.2727688429877162
+      }
+    ],
+    "note": "Paired exact cold-service and warm-result-cache requests; OS filesystem cache may be warm. No extraction or heavy test jobs concurrent."
+  },
+  "game_points": {
+    "points": [
+      {
+        "x": -256,
+        "y": 63,
+        "z": -256,
+        "observed": "jungle",
+        "predicted": "jungle",
+        "same_name": true,
+        "canonical_observed": "jungle",
+        "canonical_predicted": "jungle",
+        "canonical_match": true
+      },
+      {
+        "x": -256,
+        "y": 72,
+        "z": 0,
+        "observed": "jungle",
+        "predicted": "jungle",
+        "same_name": true,
+        "canonical_observed": "jungle",
+        "canonical_predicted": "jungle",
+        "canonical_match": true
+      },
+      {
+        "x": -256,
+        "y": 68,
+        "z": 256,
+        "observed": "jungle",
+        "predicted": "jungle",
+        "same_name": true,
+        "canonical_observed": "jungle",
+        "canonical_predicted": "jungle",
+        "canonical_match": true
+      },
+      {
+        "x": -256,
+        "y": 65,
+        "z": 512,
+        "observed": "forest",
+        "predicted": "forest",
+        "same_name": true,
+        "canonical_observed": "forest",
+        "canonical_predicted": "forest",
+        "canonical_match": true
+      },
+      {
+        "x": 0,
+        "y": 97,
+        "z": -256,
+        "observed": "plains",
+        "predicted": "plains",
+        "same_name": true,
+        "canonical_observed": "plains",
+        "canonical_predicted": "plains",
+        "canonical_match": true
+      },
+      {
+        "x": 0,
+        "y": 66,
+        "z": 0,
+        "observed": "mangrove_swamp",
+        "predicted": "mangrove_swamp",
+        "same_name": true,
+        "canonical_observed": "mangrove_swamp",
+        "canonical_predicted": "mangrove_swamp",
+        "canonical_match": true
+      },
+      {
+        "x": 0,
+        "y": 67,
+        "z": 256,
+        "observed": "savanna",
+        "predicted": "savanna",
+        "same_name": true,
+        "canonical_observed": "savanna",
+        "canonical_predicted": "savanna",
+        "canonical_match": true
+      },
+      {
+        "x": 0,
+        "y": 63,
+        "z": 512,
+        "observed": "plains",
+        "predicted": "plains",
+        "same_name": true,
+        "canonical_observed": "plains",
+        "canonical_predicted": "plains",
+        "canonical_match": true
+      },
+      {
+        "x": 256,
+        "y": 69,
+        "z": -256,
+        "observed": "forest",
+        "predicted": "forest",
+        "same_name": true,
+        "canonical_observed": "forest",
+        "canonical_predicted": "forest",
+        "canonical_match": true
+      },
+      {
+        "x": 256,
+        "y": 68,
+        "z": 0,
+        "observed": "savanna",
+        "predicted": "savanna",
+        "same_name": true,
+        "canonical_observed": "savanna",
+        "canonical_predicted": "savanna",
+        "canonical_match": true
+      },
+      {
+        "x": 256,
+        "y": 63,
+        "z": 256,
+        "observed": "river",
+        "predicted": "river",
+        "same_name": true,
+        "canonical_observed": "river",
+        "canonical_predicted": "river",
+        "canonical_match": true
+      },
+      {
+        "x": 256,
+        "y": 63,
+        "z": 512,
+        "observed": "jungle_edge",
+        "predicted": "sparse_jungle",
+        "same_name": false,
+        "canonical_observed": "sparse_jungle",
+        "canonical_predicted": "sparse_jungle",
+        "canonical_match": true
+      },
+      {
+        "x": 512,
+        "y": 70,
+        "z": -256,
+        "observed": "plains",
+        "predicted": "plains",
+        "same_name": true,
+        "canonical_observed": "plains",
+        "canonical_predicted": "plains",
+        "canonical_match": true
+      },
+      {
+        "x": 512,
+        "y": 66,
+        "z": 0,
+        "observed": "plains",
+        "predicted": "plains",
+        "same_name": true,
+        "canonical_observed": "plains",
+        "canonical_predicted": "plains",
+        "canonical_match": true
+      },
+      {
+        "x": 512,
+        "y": 68,
+        "z": 256,
+        "observed": "savanna",
+        "predicted": "savanna",
+        "same_name": true,
+        "canonical_observed": "savanna",
+        "canonical_predicted": "savanna",
+        "canonical_match": true
+      },
+      {
+        "x": 512,
+        "y": 71,
+        "z": 512,
+        "observed": "jungle",
+        "predicted": "jungle",
+        "same_name": true,
+        "canonical_observed": "jungle",
+        "canonical_predicted": "jungle",
+        "canonical_match": true
+      }
+    ],
+    "matches": 15,
+    "total": 16,
+    "compatibility_accepted": false,
+    "scope": "One seed,16 actual surface points; research26.50 vs BDS1.26.52.3, matching XYZ only",
+    "canonical_matches": 16,
+    "normalization_source": "src/seed_search/realm/biomes.py existing ALIASES and canonical()",
+    "normalization_source_sha256": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04"
+  },
+  "game_probe": {
+    "status": "PARTIAL",
+    "actual": true,
+    "observed": 16,
+    "missing": 0,
+    "wall_seconds": 71.07027760497294,
+    "cleanup": [
+      {
+        "container": "realm-bds-2abfa6a4d3af",
+        "removed": true
+      },
+      {
+        "removed": true,
+        "volume": "realm-bds-2abfa6a4d3af-data"
+      }
+    ],
+    "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+    "observed_build": "1.26.52.3",
+    "raw_status": "PARTIAL",
+    "first_attempt": {
+      "status": "FAILED",
+      "wall_seconds": 69.66417757299496,
+      "error": {
+        "message": "Timed out waiting for Server started.",
+        "type": "TimeoutError"
+      },
+      "cleanup": [
+        {
+          "container": "realm-bds-9bf73ae83358",
+          "removed": true
+        },
+        {
+          "removed": true,
+          "volume": "realm-bds-9bf73ae83358-data"
+        }
+      ]
+    },
+    "total_attempt_wall_seconds": 140.7344551779679,
+    "fresh_world_attempts": 2,
+    "public_compatibility_accepted": false
+  },
+  "player_usefulness": {
+    "status": "not_evaluated",
+    "reason": "No actual participant requests supplied"
+  },
+  "browser_acceptance": {
+    "status": "deferred_at_user_request",
+    "reason": "User explicitly chose Leave browser QA pending; no interactive pass claimed"
+  },
+  "browser_qa_decision": {
+    "decision": "Leave browser QA pending",
+    "source": "Explicit user reply",
+    "acceptance": "Deferred, not passed"
+  }
+}

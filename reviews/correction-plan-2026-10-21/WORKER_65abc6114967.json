@@ -1,0 +1,26 @@
+{
+  "task_id": "65abc6114967",
+  "role": "review",
+  "state": "failed",
+  "created": 1792567579.0740612,
+  "updated": 1792567744.21677,
+  "worker_id": "gemini-1",
+  "objective": "High reasoning TOOL-FREE neutral actualruntimeguard patchreview. ONLY RUNTIME_PATCH_REVIEW_CONTEXT.md. Approvedplan; Codeximplementation afterworker timeout. Lookforcacheidentity/fork/concurrency/exception/importbugs and testgaps; no tools/readers/commands/edit/network/agents. <=650words final RUNTI",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "baseline_digest": "edd9161eab50183f2811d0913cfc25ec3508f3e1cde18b3e4029bf53056b2cdf",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792567583.7289548,
+    "error": "timeout",
+    "completed": 1792567744.2162712,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 180973568
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/65abc6114967",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

@@ -1,0 +1,300 @@
+{
+  "revision": "catalog-features-v2",
+  "features": [
+    {
+      "id": "structure.village",
+      "label": "Village",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "village",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.trial_chamber",
+      "label": "Trial chamber",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "trial_chamber",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.ancient_city",
+      "label": "Ancient city",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "ancient_city",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.mansion",
+      "label": "Woodland mansion",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "mansion",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.monument",
+      "label": "Ocean monument",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "monument",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.outpost",
+      "label": "Pillager outpost",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "outpost",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.desert_pyramid",
+      "label": "Desert pyramid",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "desert_pyramid",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.jungle_temple",
+      "label": "Jungle temple",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "jungle_temple",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.swamp_hut",
+      "label": "Swamp hut",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "swamp_hut",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.igloo",
+      "label": "Igloo",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "igloo",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.trail_ruins",
+      "label": "Trail ruins",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "trail_ruins",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.ruined_portal",
+      "label": "Ruined portal",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "ruined_portal",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.shipwreck",
+      "label": "Shipwreck",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "shipwreck",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.mineshaft",
+      "label": "Mineshaft",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "mineshaft",
+      "canonical_members": []
+    },
+    {
+      "id": "biome.cherry_grove",
+      "label": "Cherry grove",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "cherry_grove"
+      ]
+    },
+    {
+      "id": "biome.mushroom_fields",
+      "label": "Mushroom fields",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "mushroom_fields",
+        "mushroom_field_shore"
+      ]
+    },
+    {
+      "id": "biome.bamboo_jungle",
+      "label": "Bamboo jungle",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "bamboo_jungle"
+      ]
+    },
+    {
+      "id": "biome.desert",
+      "label": "Desert",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "desert",
+        "desert_hills",
+        "desert_lakes"
+      ]
+    },
+    {
+      "id": "biome.badlands",
+      "label": "Badlands",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "badlands",
+        "badlands_plateau",
+        "wooded_badlands_plateau",
+        "eroded_badlands",
+        "modified_badlands_plateau",
+        "modified_wooded_badlands_plateau",
+        "wooded_badlands"
+      ]
+    },
+    {
+      "id": "biome.snowy",
+      "label": "Snowy terrain",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "snowy_plains",
+        "snowy_mountains",
+        "ice_spikes",
+        "snowy_slopes",
+        "snowy_taiga"
+      ]
+    },
+    {
+      "id": "biome.mangrove_swamp",
+      "label": "Mangrove swamp",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "mangrove_swamp"
+      ]
+    },
+    {
+      "id": "biome.forest",
+      "label": "Forest / birch",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "forest",
+        "birch_forest",
+        "flower_forest",
+        "old_growth_birch_forest"
+      ]
+    },
+    {
+      "id": "biome.plains",
+      "label": "Plains / meadow",
+      "kind": "biome_witness",
+      "dimension": "overworld",
+      "canonical_members": [
+        "plains",
+        "sunflower_plains",
+        "meadow"
+      ]
+    },
+    {
+      "id": "structure.stronghold",
+      "label": "Stronghold",
+      "kind": "structure_count",
+      "dimension": "overworld",
+      "extractor_key": "stronghold",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.fortress",
+      "label": "Nether fortress",
+      "kind": "structure_count",
+      "dimension": "nether",
+      "extractor_key": "fortress",
+      "canonical_members": []
+    },
+    {
+      "id": "structure.bastion",
+      "label": "Bastion remnant",
+      "kind": "structure_count",
+      "dimension": "nether",
+      "extractor_key": "bastion",
+      "canonical_members": []
+    },
+    {
+      "id": "biome.nether_wastes",
+      "label": "Nether Wastes",
+      "kind": "biome_witness",
+      "dimension": "nether",
+      "canonical_members": [
+        "nether_wastes"
+      ]
+    },
+    {
+      "id": "biome.crimson_forest",
+      "label": "Crimson Forest",
+      "kind": "biome_witness",
+      "dimension": "nether",
+      "canonical_members": [
+        "crimson_forest"
+      ]
+    },
+    {
+      "id": "biome.warped_forest",
+      "label": "Warped Forest",
+      "kind": "biome_witness",
+      "dimension": "nether",
+      "canonical_members": [
+        "warped_forest"
+      ]
+    },
+    {
+      "id": "biome.soul_sand_valley",
+      "label": "Soul Sand Valley",
+      "kind": "biome_witness",
+      "dimension": "nether",
+      "canonical_members": [
+        "soul_sand_valley"
+      ]
+    },
+    {
+      "id": "biome.basalt_deltas",
+      "label": "Basalt Deltas",
+      "kind": "biome_witness",
+      "dimension": "nether",
+      "canonical_members": [
+        "basalt_deltas"
+      ]
+    }
+  ],
+  "overworld_radii": [
+    256,
+    512,
+    1024
+  ],
+  "nether_radii": [
+    64,
+    128,
+    256
+  ],
+  "nether_side": 1024,
+  "biome_y": {
+    "overworld": 63,
+    "nether": 64
+  }
+}

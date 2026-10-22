@@ -1,0 +1,1381 @@
+{
+  "ok": true,
+  "revision": "catalog-products-v2",
+  "pillars": [
+    {
+      "id": "realm",
+      "label": "Realm/Server Seeds",
+      "description": "Shared survival worlds with declared qualification evidence."
+    },
+    {
+      "id": "presets",
+      "label": "Presets",
+      "description": "Sixteen fixed play-style starts."
+    },
+    {
+      "id": "personalized",
+      "label": "Personalized Selection",
+      "description": "Choose supported requirements and a settlement or Origin anchor."
+    },
+    {
+      "id": "rare",
+      "label": "Rare Seeds",
+      "description": "Unusual worlds and population-scoped research records."
+    }
+  ],
+  "products": [
+    {
+      "id": "realm.v2.qualified",
+      "pillar_id": "realm",
+      "kind": "realm",
+      "label": "Realm/Server Seeds \u00b7 2048",
+      "category": "Shared Survival",
+      "criteria_summary": "Qualify the versioned 2048 Overworld / 1024 Nether Realm blueprint at one refined center. Score out of 1250 points (845 Overworld, 265 luxury biomes, 140 Nether). ",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "realm_qualified_center",
+        "border_sides": [
+          2048
+        ]
+      },
+      "predicates": [
+        {
+          "id": "realm.v2.qualified",
+          "label": "Realm/Server Seeds \u00b7 2048",
+          "capacity": 3334,
+          "overworld_core": 2048,
+          "nether_core": 1024
+        }
+      ],
+      "ranking": {
+        "capacity": 3334,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "realm.v2.qualified_4096",
+      "pillar_id": "realm",
+      "kind": "realm",
+      "label": "Realm/Server Seeds \u00b7 4096",
+      "category": "Shared Survival",
+      "criteria_summary": "Qualify the versioned 4096 Overworld / 1024 Nether Realm blueprint at one refined center. Score out of 1250 points (845 Overworld, 265 luxury biomes, 140 Nether). Frozen size-specific count floors and bonus tiers; bounded center search. Fixed 1024 Nether square. Calibration controls validate rules, not seed-population prevalence.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "realm_qualified_center",
+        "border_sides": [
+          4096
+        ]
+      },
+      "predicates": [
+        {
+          "id": "realm.v2.qualified_4096",
+          "label": "Realm/Server Seeds \u00b7 4096",
+          "capacity": 3333,
+          "overworld_core": 4096,
+          "nether_core": 1024
+        }
+      ],
+      "ranking": {
+        "capacity": 3333,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "realm.v2.qualified_8192",
+      "pillar_id": "realm",
+      "kind": "realm",
+      "label": "Realm/Server Seeds \u00b7 8192",
+      "category": "Shared Survival",
+      "criteria_summary": "Qualify the versioned 8192 Overworld / 1024 Nether Realm blueprint at one refined center. Score out of 1250 points (845 Overworld, 265 luxury biomes, 140 Nether). Frozen size-specific count floors and bonus tiers; bounded center search. Fixed 1024 Nether square. Calibration controls validate rules, not seed-population prevalence.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "realm_qualified_center",
+        "border_sides": [
+          8192
+        ]
+      },
+      "predicates": [
+        {
+          "id": "realm.v2.qualified_8192",
+          "label": "Realm/Server Seeds \u00b7 8192",
+          "capacity": 3333,
+          "overworld_core": 8192,
+          "nether_core": 1024
+        }
+      ],
+      "ranking": {
+        "capacity": 3333,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.six_pack",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Six-Pack",
+      "category": "Jackpot & God Starts",
+      "criteria_summary": "1 village predicted start(s), 1 ruined portal predicted start(s), 1 desert pyramid predicted start(s), 1 outpost predicted start(s), 1 trial chamber predicted start(s), 1 ancient city predicted start(s) within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.six_pack",
+          "label": "Six-Pack",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.ruined_portal": 1,
+            "structure.desert_pyramid": 1,
+            "structure.outpost": 1,
+            "structure.trial_chamber": 1,
+            "structure.ancient_city": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.loot_run",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Loot Run",
+      "category": "Jackpot & God Starts",
+      "criteria_summary": "1 ancient city predicted start(s), 1 trial chamber predicted start(s) within 200 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.loot_run",
+          "label": "Loot Run",
+          "radius": 200,
+          "dimension": "overworld",
+          "structures": {
+            "structure.ancient_city": 1,
+            "structure.trial_chamber": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.mansion_village",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Mansion Village",
+      "category": "Jackpot & God Starts",
+      "criteria_summary": "1 mansion predicted start(s), 1 village predicted start(s) within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.mansion_village",
+          "label": "Mansion Village",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.mansion": 1,
+            "structure.village": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.triple_start",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Triple Start",
+      "category": "Speedrun & Fast Starts",
+      "criteria_summary": "1 village predicted start(s), 1 shipwreck predicted start(s), 1 ruined portal predicted start(s) within 200 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.triple_start",
+          "label": "Triple Start",
+          "radius": 200,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.shipwreck": 1,
+            "structure.ruined_portal": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.temple_rush",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Temple Rush",
+      "category": "Speedrun & Fast Starts",
+      "criteria_summary": "1 desert pyramid predicted start(s), 1 ruined portal predicted start(s) within 150 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 150,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.temple_rush",
+          "label": "Temple Rush",
+          "radius": 150,
+          "dimension": "overworld",
+          "structures": {
+            "structure.desert_pyramid": 1,
+            "structure.ruined_portal": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.nether_duo",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Nether Duo",
+      "category": "Speedrun & Fast Starts",
+      "criteria_summary": "1 fortress predicted start(s), 1 bastion predicted start(s) within 200 nether blocks of the Nether coordinate projected from estimated world spawn (floor X/8, Z/8). All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "nether",
+        "anchor": "projected_world_spawn",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.nether_duo",
+          "label": "Nether Duo",
+          "radius": 200,
+          "dimension": "nether",
+          "structures": {
+            "structure.fortress": 1,
+            "structure.bastion": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.cherry_haven",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Cherry Blossom Haven",
+      "category": "Builders' & Biomes",
+      "criteria_summary": "1 village predicted start(s), cherry grove biome witness within 150 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 150,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.cherry_haven",
+          "label": "Cherry Blossom Haven",
+          "radius": 150,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1
+          },
+          "biomes": [
+            "cherry_grove"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.meadow_cherry",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Meadow & Cherry",
+      "category": "Builders' & Biomes",
+      "criteria_summary": "meadow biome witness, cherry grove biome witness within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.meadow_cherry",
+          "label": "Meadow & Cherry",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {},
+          "biomes": [
+            "meadow",
+            "cherry_grove"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.bamboo_temple",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Bamboo Temple",
+      "category": "Builders' & Biomes",
+      "criteria_summary": "1 jungle temple predicted start(s), bamboo jungle biome witness within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.bamboo_temple",
+          "label": "Bamboo Temple",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.jungle_temple": 1
+          },
+          "biomes": [
+            "bamboo_jungle"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.frozen_frontier",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Frozen Frontier",
+      "category": "Builders' & Biomes",
+      "criteria_summary": "1 village predicted start(s), 1 igloo predicted start(s), 1 ruined portal predicted start(s), snowy biome witness, ice spikes biome witness within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.frozen_frontier",
+          "label": "Frozen Frontier",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.igloo": 1,
+            "structure.ruined_portal": 1
+          },
+          "biomes": [
+            "snowy",
+            "ice_spikes"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.badlands_desert",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Badlands & Desert",
+      "category": "Builders' & Biomes",
+      "criteria_summary": "1 desert pyramid predicted start(s), 1 village predicted start(s), 1 trail ruins predicted start(s), badlands biome witness within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.badlands_desert",
+          "label": "Badlands & Desert",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.desert_pyramid": 1,
+            "structure.village": 1,
+            "structure.trail_ruins": 1
+          },
+          "biomes": [
+            "badlands"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.village_two_shipwrecks",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Village & Two Shipwrecks",
+      "category": "Ocean & Aquatic",
+      "criteria_summary": "1 village predicted start(s), 2 shipwreck predicted start(s) within 200 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.village_two_shipwrecks",
+          "label": "Village & Two Shipwrecks",
+          "radius": 200,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.shipwreck": 2
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.mushroom_monument",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Mushroom & Monument",
+      "category": "Ocean & Aquatic",
+      "criteria_summary": "1 monument predicted start(s), mushroom fields biome witness within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.mushroom_monument",
+          "label": "Mushroom & Monument",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.monument": 1
+          },
+          "biomes": [
+            "mushroom_fields"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.villagers_pillagers",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Villagers & Pillagers",
+      "category": "Combat & Outposts",
+      "criteria_summary": "1 village predicted start(s), 1 outpost predicted start(s) within 300 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.villagers_pillagers",
+          "label": "Villagers & Pillagers",
+          "radius": 300,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.outpost": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.witch_next_door",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Witch Next Door",
+      "category": "Combat & Outposts",
+      "criteria_summary": "1 village predicted start(s), 1 swamp hut predicted start(s) within 200 overworld blocks of estimated world spawn. All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.witch_next_door",
+          "label": "Witch Next Door",
+          "radius": 200,
+          "dimension": "overworld",
+          "structures": {
+            "structure.village": 1,
+            "structure.swamp_hut": 1
+          },
+          "biomes": [],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "preset.v2.warped_bastion",
+      "pillar_id": "presets",
+      "kind": "preset",
+      "label": "Warped Forest & Bastion",
+      "category": "Combat & Outposts",
+      "criteria_summary": "1 bastion predicted start(s), warped forest biome witness within 200 nether blocks of the Nether coordinate projected from estimated world spawn (floor X/8, Z/8). All conditions share that reference.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "nether",
+        "anchor": "projected_world_spawn",
+        "radius": 200,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "preset.v2.warped_bastion",
+          "label": "Warped Forest & Bastion",
+          "radius": 200,
+          "dimension": "nether",
+          "structures": {
+            "structure.bastion": 1
+          },
+          "biomes": [
+            "warped_forest"
+          ],
+          "capacity": 250
+        }
+      ],
+      "ranking": {
+        "capacity": 250,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.village_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Megacity",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.village_density",
+          "label": "Megacity",
+          "kind": "density",
+          "feature": "structure.village",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.trial_chamber_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Trial Gauntlet",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.trial_chamber_density",
+          "label": "Trial Gauntlet",
+          "kind": "density",
+          "feature": "structure.trial_chamber",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.ancient_city_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Ancient City Density",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.ancient_city_density",
+          "label": "Ancient City Density",
+          "kind": "density",
+          "feature": "structure.ancient_city",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.outpost_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Outpost Siege",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.outpost_density",
+          "label": "Outpost Siege",
+          "kind": "density",
+          "feature": "structure.outpost",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.ruined_portal_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Ruined Kingdom",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.ruined_portal_density",
+          "label": "Ruined Kingdom",
+          "kind": "density",
+          "feature": "structure.ruined_portal",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.desert_pyramid_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Desert Dynasty",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.desert_pyramid_density",
+          "label": "Desert Dynasty",
+          "kind": "density",
+          "feature": "structure.desert_pyramid",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.shipwreck_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Shipwreck Density",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 2000 overworld blocks of estimated world spawn; complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.shipwreck_density",
+          "label": "Shipwreck Density",
+          "kind": "density",
+          "feature": "structure.shipwreck",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.fortress_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Fortress Empire",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 500 nether blocks of the Nether coordinate projected from estimated world spawn (floor X/8, Z/8); complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "nether",
+        "anchor": "projected_world_spawn",
+        "radius": 500,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.fortress_density",
+          "label": "Fortress Empire",
+          "kind": "density",
+          "feature": "structure.fortress",
+          "dimension": "nether",
+          "radius": 500,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.bastion_density",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Bastion Fleet",
+      "category": "Structure Density",
+      "criteria_summary": "Most distinct predicted starts within 500 nether blocks of the Nether coordinate projected from estimated world spawn (floor X/8, Z/8); complete scoped predictor inventory required.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "nether",
+        "anchor": "projected_world_spawn",
+        "radius": 500,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.bastion_density",
+          "label": "Bastion Fleet",
+          "kind": "density",
+          "feature": "structure.bastion",
+          "dimension": "nether",
+          "radius": 500,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.mansion_proximity",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Mansion Near Spawn",
+      "category": "Start Proximity",
+      "criteria_summary": "Closest predicted start within 50 overworld blocks of estimated world spawn; distance is horizontal to its start coordinate.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 50,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.mansion_proximity",
+          "label": "Mansion Near Spawn",
+          "kind": "proximity",
+          "feature": "structure.mansion",
+          "dimension": "overworld",
+          "radius": 50,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.ancient_city_proximity",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Ancient City Near Spawn",
+      "category": "Start Proximity",
+      "criteria_summary": "Closest predicted start within 50 overworld blocks of estimated world spawn; distance is horizontal to its start coordinate.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 50,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.ancient_city_proximity",
+          "label": "Ancient City Near Spawn",
+          "kind": "proximity",
+          "feature": "structure.ancient_city",
+          "dimension": "overworld",
+          "radius": 50,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.monument_proximity",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Monument Near Spawn",
+      "category": "Start Proximity",
+      "criteria_summary": "Closest predicted start within 50 overworld blocks of estimated world spawn; distance is horizontal to its start coordinate.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 50,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.monument_proximity",
+          "label": "Monument Near Spawn",
+          "kind": "proximity",
+          "feature": "structure.monument",
+          "dimension": "overworld",
+          "radius": 50,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.four_type_cluster",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Four-Type Structure Cluster",
+      "category": "Structure Clusters",
+      "criteria_summary": "Four distinct structure types, every pair at most 100 blocks apart, all within 300 overworld blocks of estimated world spawn. No physical overlap or farm-suitability claim.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 300,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.four_type_cluster",
+          "label": "Four-Type Structure Cluster",
+          "kind": "four_types",
+          "dimension": "overworld",
+          "radius": 300,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.four_hut_cluster",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Four-Hut Cluster",
+      "category": "Structure Clusters",
+      "criteria_summary": "Four swamp-hut starts inside one minimum enclosing circle of radius 128, all within 2000 overworld blocks of estimated world spawn. No physical overlap or farm-suitability claim.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.four_hut_cluster",
+          "label": "Four-Hut Cluster",
+          "kind": "four_huts",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.monument_cluster",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Double/Triple Monument Cluster",
+      "category": "Structure Clusters",
+      "criteria_summary": "Two or three monument starts inside one minimum enclosing circle of radius 128, all within 2000 overworld blocks of estimated world spawn. No physical overlap or farm-suitability claim.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 2000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.monument_cluster",
+          "label": "Double/Triple Monument Cluster",
+          "kind": "monument_cluster",
+          "dimension": "overworld",
+          "radius": 2000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.fortress_bastion",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "Close Fortress & Bastion",
+      "category": "Structure Clusters",
+      "criteria_summary": "A fortress and bastion start at most 64 Nether blocks apart, all within 500 nether blocks of the Nether coordinate projected from estimated world spawn (floor X/8, Z/8). No physical overlap or farm-suitability claim.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "nether",
+        "anchor": "projected_world_spawn",
+        "radius": 500,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.fortress_bastion",
+          "label": "Close Fortress & Bastion",
+          "kind": "nether_pair",
+          "dimension": "nether",
+          "radius": 500,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    },
+    {
+      "id": "record.v2.biome_sampler",
+      "pillar_id": "rare",
+      "kind": "record",
+      "label": "14-Family Biome Sampler",
+      "category": "Biome Exploration",
+      "criteria_summary": "Fourteen declared biome families witnessed within 1000 horizontal blocks of estimated world spawn, using declared surface/cave heights. No walking-route or absence promise.",
+      "availability_status": "predicted",
+      "missing_dependencies": [],
+      "evidence_needed": [
+        "Compatible source-bound predictor observations."
+      ],
+      "scope": {
+        "dimension": "overworld",
+        "anchor": "world_spawn_estimated",
+        "radius": 1000,
+        "scope_type": "closed_horizontal_circle"
+      },
+      "predicates": [
+        {
+          "id": "record.v2.biome_sampler",
+          "label": "14-Family Biome Sampler",
+          "kind": "biome_sampler",
+          "dimension": "overworld",
+          "radius": 1000,
+          "capacity": 100
+        }
+      ],
+      "ranking": {
+        "capacity": 100,
+        "ties": [
+          "world_id_ascending"
+        ]
+      }
+    }
+  ],
+  "evidence_label": "Predicted starts and height-specific biome witnesses; scoped evidence accompanies each result."
+}

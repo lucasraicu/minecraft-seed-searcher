@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "prime": {
+    "wall_seconds": 3.199661224964075,
+    "cpu_seconds": 3.199538
+  },
+  "cases": [
+    {
+      "name": "broad-recommended",
+      "timing": {
+        "wall_seconds": 4.270299258991145,
+        "cpu_seconds": 4.269270000000001
+      },
+      "counters": {
+        "json.loads": {
+          "calls": 226,
+          "wall_seconds": 2.2583427237113938,
+          "cpu_seconds": 2.258509999999998,
+          "input_bytes": 82414043,
+          "output_bytes": 0
+        },
+        "sha256.initial": {
+          "calls": 510,
+          "wall_seconds": 0.0987378292484209,
+          "cpu_seconds": 0.09874399999999506,
+          "input_bytes": 47285353,
+          "output_bytes": 0
+        },
+        "artifact.read_verified": {
+          "calls": 279,
+          "wall_seconds": 0.2054751116083935,
+          "cpu_seconds": 0.20547800000000382,
+          "input_bytes": 0,
+          "output_bytes": 42037665
+        },
+        "json.dumps": {
+          "calls": 229,
+          "wall_seconds": 0.10510240867733955,
+          "cpu_seconds": 0.10513600000000389,
+          "input_bytes": 0,
+          "output_bytes": 7487390
+        },
+        "zlib.decompress": {
+          "calls": 222,
+          "wall_seconds": 0.1314472594531253,
+          "cpu_seconds": 0.13151199999999807,
+          "input_bytes": 20318836,
+          "output_bytes": 81969837
+        },
+        "artifact.get_json": {
+          "calls": 222,
+          "wall_seconds": 2.569832807406783,
+          "cpu_seconds": 2.569519,
+          "input_bytes": 0,
+          "output_bytes": 0
+        }
+      },
+      "matched_worlds": 222
+    },
+    {
+      "name": "mixed-variants",
+      "timing": {
+        "wall_seconds": 3.031594036030583,
+        "cpu_seconds": 3.0307679999999992
+      },
+      "counters": {
+        "json.loads": {
+          "calls": 226,
+          "wall_seconds": 2.1655708684120327,
+          "cpu_seconds": 2.1652680000000073,
+          "input_bytes": 82414655,
+          "output_bytes": 0
+        },
+        "sha256.initial": {
+          "calls": 510,
+          "wall_seconds": 0.10129946831148118,
+          "cpu_seconds": 0.10138700000001588,
+          "input_bytes": 47285915,
+          "output_bytes": 0
+        },
+        "artifact.read_verified": {
+          "calls": 279,
+          "wall_seconds": 0.21062636270653456,
+          "cpu_seconds": 0.21065099999999948,
+          "input_bytes": 0,
+          "output_bytes": 42037665
+        },
+        "json.dumps": {
+          "calls": 229,
+          "wall_seconds": 0.06623457570094615,
+          "cpu_seconds": 0.06617399999999574,
+          "input_bytes": 0,
+          "output_bytes": 5390227
+        },
+        "zlib.decompress": {
+          "calls": 222,
+          "wall_seconds": 0.13022727926727384,
+          "cpu_seconds": 0.1302070000000004,
+          "input_bytes": 20318836,
+          "output_bytes": 81969837
+        },
+        "artifact.get_json": {
+          "calls": 222,
+          "wall_seconds": 2.4738069840241224,
+          "cpu_seconds": 2.4729920000000067,
+          "input_bytes": 0,
+          "output_bytes": 0
+        }
+      },
+      "matched_worlds": 17
+    }
+  ],
+  "scope": "Counter-only instrumentation,no cProfile;inclusive nested counters not additive"
+}

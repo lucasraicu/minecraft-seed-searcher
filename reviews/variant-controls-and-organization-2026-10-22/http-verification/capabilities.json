@@ -1,0 +1,3120 @@
+{
+  "ok": true,
+  "registry_v3": {
+    "activation_evidence": {
+      "height_cost_passed": true,
+      "height_median_increase": 0.013564918972605255,
+      "height_pilot_protocol_sha256": "4d05e69819b7cff2e0419832ee0915452fe0c4d27e0d086f3002920a74f6ac26",
+      "mountain_protocol_sha256": "35e8365ff4832e319004cb1ce3043d20ba46df4dead779c62878bc4c012e2e41",
+      "no_exhaustive_absence": true,
+      "variant_control_artifacts": {
+        "bastion_treasure": "b21b3b354e854730853f1f2cf950bc3c9b32aa43222fb4c588d83233e4984734",
+        "igloo_basement": "d5843e408f04c777167a08ddcd633a1e62efa8265380ead7c5cad1a8772d36ea"
+      },
+      "verifier_build": "1.26.52.3"
+    },
+    "biome_y": {
+      "nether": 64,
+      "overworld": 63
+    },
+    "features": [
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "village",
+        "id": "structure.village",
+        "kind": "structure_count",
+        "label": "Village",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "trial_chamber",
+        "id": "structure.trial_chamber",
+        "kind": "structure_count",
+        "label": "Trial chamber",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "ancient_city",
+        "id": "structure.ancient_city",
+        "kind": "structure_count",
+        "label": "Ancient city",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "mansion",
+        "id": "structure.mansion",
+        "kind": "structure_count",
+        "label": "Woodland mansion",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "monument",
+        "id": "structure.monument",
+        "kind": "structure_count",
+        "label": "Ocean monument",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "outpost",
+        "id": "structure.outpost",
+        "kind": "structure_count",
+        "label": "Pillager outpost",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "desert_pyramid",
+        "id": "structure.desert_pyramid",
+        "kind": "structure_count",
+        "label": "Desert pyramid",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "jungle_temple",
+        "id": "structure.jungle_temple",
+        "kind": "structure_count",
+        "label": "Jungle temple",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "swamp_hut",
+        "id": "structure.swamp_hut",
+        "kind": "structure_count",
+        "label": "Swamp hut",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "igloo",
+        "id": "structure.igloo",
+        "kind": "structure_count",
+        "label": "Igloo",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "trail_ruins",
+        "id": "structure.trail_ruins",
+        "kind": "structure_count",
+        "label": "Trail ruins",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "ruined_portal",
+        "id": "structure.ruined_portal",
+        "kind": "structure_count",
+        "label": "Ruined portal",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "shipwreck",
+        "id": "structure.shipwreck",
+        "kind": "structure_count",
+        "label": "Shipwreck",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "mineshaft",
+        "id": "structure.mineshaft",
+        "kind": "structure_count",
+        "label": "Mineshaft",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "stronghold",
+        "id": "structure.stronghold",
+        "kind": "structure_count",
+        "label": "Stronghold",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [],
+        "extractor_key": "fortress",
+        "id": "structure.fortress",
+        "kind": "structure_count",
+        "label": "Nether fortress",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [],
+        "extractor_key": "bastion",
+        "id": "structure.bastion",
+        "kind": "structure_count",
+        "label": "Bastion remnant",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [],
+        "extractor_key": "igloo_with_basement",
+        "id": "structure.igloo_with_basement",
+        "kind": "structure_count",
+        "label": "Igloo with basement",
+        "unavailable_reason": ""
+      },
+      {
+        "available": true,
+        "canonical_members": [],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [],
+        "extractor_key": "bastion_treasure",
+        "id": "structure.bastion_treasure",
+        "kind": "structure_count",
+        "label": "Bastion treasure",
+        "unavailable_reason": ""
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "cherry_grove"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.cherry_grove",
+        "kind": "biome_witness",
+        "label": "Cherry grove",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "mushroom_fields",
+          "mushroom_field_shore"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.mushroom_fields",
+        "kind": "biome_witness",
+        "label": "Mushroom fields",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "bamboo_jungle"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.bamboo_jungle",
+        "kind": "biome_witness",
+        "label": "Bamboo jungle",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "desert",
+          "desert_hills",
+          "desert_lakes"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.desert",
+        "kind": "biome_witness",
+        "label": "Desert",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "badlands",
+          "badlands_plateau",
+          "wooded_badlands_plateau",
+          "eroded_badlands",
+          "modified_badlands_plateau",
+          "modified_wooded_badlands_plateau",
+          "wooded_badlands"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.badlands",
+        "kind": "biome_witness",
+        "label": "Badlands",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "snowy_plains",
+          "snowy_mountains",
+          "ice_spikes",
+          "snowy_slopes",
+          "snowy_taiga"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.snowy",
+        "kind": "biome_witness",
+        "label": "Snowy terrain",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "mangrove_swamp"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.mangrove_swamp",
+        "kind": "biome_witness",
+        "label": "Mangrove swamp",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "forest",
+          "birch_forest",
+          "flower_forest",
+          "old_growth_birch_forest"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.forest",
+        "kind": "biome_witness",
+        "label": "Forest / birch",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "plains",
+          "sunflower_plains",
+          "meadow"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.plains",
+        "kind": "biome_witness",
+        "label": "Plains / meadow",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "nether_wastes"
+        ],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [
+          64
+        ],
+        "id": "biome.nether_wastes",
+        "kind": "biome_witness",
+        "label": "Nether Wastes",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "crimson_forest"
+        ],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [
+          64
+        ],
+        "id": "biome.crimson_forest",
+        "kind": "biome_witness",
+        "label": "Crimson Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "warped_forest"
+        ],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [
+          64
+        ],
+        "id": "biome.warped_forest",
+        "kind": "biome_witness",
+        "label": "Warped Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "soul_sand_valley"
+        ],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [
+          64
+        ],
+        "id": "biome.soul_sand_valley",
+        "kind": "biome_witness",
+        "label": "Soul Sand Valley",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "basalt_deltas"
+        ],
+        "category": "Nether",
+        "dimension": "nether",
+        "eligible_y": [
+          64
+        ],
+        "id": "biome.basalt_deltas",
+        "kind": "biome_witness",
+        "label": "Basalt Deltas",
+        "unavailable_reason": null
+      },
+      {
+        "atomic_members": [
+          "biome.exact.badlands",
+          "biome.exact.eroded_badlands",
+          "biome.exact.wooded_badlands"
+        ],
+        "available": true,
+        "canonical_members": [
+          "badlands",
+          "eroded_badlands",
+          "wooded_badlands"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.group.badlands",
+        "kind": "biome_witness",
+        "label": "Badlands group",
+        "unavailable_reason": null
+      },
+      {
+        "atomic_members": [
+          "biome.exact.snowy_plains",
+          "biome.exact.snowy_slopes",
+          "biome.exact.snowy_taiga",
+          "biome.exact.ice_spikes"
+        ],
+        "available": true,
+        "canonical_members": [
+          "snowy_plains",
+          "snowy_slopes",
+          "snowy_taiga",
+          "ice_spikes"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.group.snowy",
+        "kind": "biome_witness",
+        "label": "Snowy group",
+        "unavailable_reason": null
+      },
+      {
+        "atomic_members": [
+          "biome.exact.forest",
+          "biome.exact.birch_forest",
+          "biome.exact.flower_forest",
+          "biome.exact.old_growth_birch_forest"
+        ],
+        "available": true,
+        "canonical_members": [
+          "forest",
+          "birch_forest",
+          "flower_forest",
+          "old_growth_birch_forest"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.group.forest",
+        "kind": "biome_witness",
+        "label": "Forest group",
+        "unavailable_reason": null
+      },
+      {
+        "atomic_members": [
+          "biome.exact.plains",
+          "biome.exact.sunflower_plains",
+          "biome.exact.meadow"
+        ],
+        "available": true,
+        "canonical_members": [
+          "plains",
+          "sunflower_plains",
+          "meadow"
+        ],
+        "category": "Overworld",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "id": "biome.group.plains",
+        "kind": "biome_witness",
+        "label": "Plains group",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.ocean",
+        "kind": "biome_witness",
+        "label": "Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "deep_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.deep_ocean",
+        "kind": "biome_witness",
+        "label": "Deep Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "warm_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.warm_ocean",
+        "kind": "biome_witness",
+        "label": "Warm Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "lukewarm_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.lukewarm_ocean",
+        "kind": "biome_witness",
+        "label": "Lukewarm Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "deep_lukewarm_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.deep_lukewarm_ocean",
+        "kind": "biome_witness",
+        "label": "Deep Lukewarm Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "cold_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.cold_ocean",
+        "kind": "biome_witness",
+        "label": "Cold Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "deep_cold_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.deep_cold_ocean",
+        "kind": "biome_witness",
+        "label": "Deep Cold Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "frozen_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.frozen_ocean",
+        "kind": "biome_witness",
+        "label": "Frozen Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "deep_frozen_ocean"
+        ],
+        "category": "Oceans",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.deep_frozen_ocean",
+        "kind": "biome_witness",
+        "label": "Deep Frozen Ocean",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "river"
+        ],
+        "category": "Rivers/shores",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.river",
+        "kind": "biome_witness",
+        "label": "River",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "frozen_river"
+        ],
+        "category": "Rivers/shores",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.frozen_river",
+        "kind": "biome_witness",
+        "label": "Frozen River",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "beach"
+        ],
+        "category": "Rivers/shores",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.beach",
+        "kind": "biome_witness",
+        "label": "Beach",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "snowy_beach"
+        ],
+        "category": "Rivers/shores",
+        "dimension": "overworld",
+        "eligible_y": [
+          63
+        ],
+        "height_unavailable_reason": "Archived exact XYZ disagreements at Y96 and Y160; Y63 presence remains supported.",
+        "id": "biome.exact.snowy_beach",
+        "kind": "biome_witness",
+        "label": "Snowy Beach",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "stony_shore"
+        ],
+        "category": "Rivers/shores",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.stony_shore",
+        "kind": "biome_witness",
+        "label": "Stony Shore",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "dark_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.dark_forest",
+        "kind": "biome_witness",
+        "label": "Dark Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "pale_garden"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.pale_garden",
+        "kind": "biome_witness",
+        "label": "Pale Garden",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "dappled_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.dappled_forest",
+        "kind": "biome_witness",
+        "label": "Dappled Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "taiga"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.taiga",
+        "kind": "biome_witness",
+        "label": "Taiga",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "old_growth_pine_taiga"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.old_growth_pine_taiga",
+        "kind": "biome_witness",
+        "label": "Old Growth Pine Taiga",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "old_growth_spruce_taiga"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.old_growth_spruce_taiga",
+        "kind": "biome_witness",
+        "label": "Old Growth Spruce Taiga",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "windswept_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.windswept_forest",
+        "kind": "biome_witness",
+        "label": "Windswept Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "jungle"
+        ],
+        "category": "Jungle",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.jungle",
+        "kind": "biome_witness",
+        "label": "Jungle",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "sparse_jungle"
+        ],
+        "category": "Jungle",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.sparse_jungle",
+        "kind": "biome_witness",
+        "label": "Sparse Jungle",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "savanna"
+        ],
+        "category": "Savanna",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.savanna",
+        "kind": "biome_witness",
+        "label": "Savanna",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "savanna_plateau"
+        ],
+        "category": "Savanna",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.savanna_plateau",
+        "kind": "biome_witness",
+        "label": "Savanna Plateau",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "windswept_savanna"
+        ],
+        "category": "Savanna",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.windswept_savanna",
+        "kind": "biome_witness",
+        "label": "Windswept Savanna",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "swamp",
+          "swamp_hills"
+        ],
+        "category": "Swamp",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.swamp",
+        "kind": "biome_witness",
+        "label": "Swamp",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "windswept_hills"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.windswept_hills",
+        "kind": "biome_witness",
+        "label": "Windswept Hills",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "windswept_gravelly_hills"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.windswept_gravelly_hills",
+        "kind": "biome_witness",
+        "label": "Windswept Gravelly Hills",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "jagged_peaks"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.jagged_peaks",
+        "kind": "biome_witness",
+        "label": "Jagged Peaks",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "frozen_peaks"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.frozen_peaks",
+        "kind": "biome_witness",
+        "label": "Frozen Peaks",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "stony_peaks"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.stony_peaks",
+        "kind": "biome_witness",
+        "label": "Stony Peaks",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "grove"
+        ],
+        "category": "Mountains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.grove",
+        "kind": "biome_witness",
+        "label": "Grove",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "lush_caves"
+        ],
+        "category": "Caves",
+        "dimension": "overworld",
+        "eligible_y": [
+          -48,
+          0,
+          63
+        ],
+        "id": "biome.exact.lush_caves",
+        "kind": "biome_witness",
+        "label": "Lush Caves",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "dripstone_caves"
+        ],
+        "category": "Caves",
+        "dimension": "overworld",
+        "eligible_y": [
+          -48,
+          0,
+          63
+        ],
+        "id": "biome.exact.dripstone_caves",
+        "kind": "biome_witness",
+        "label": "Dripstone Caves",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "deep_dark"
+        ],
+        "category": "Caves",
+        "dimension": "overworld",
+        "eligible_y": [
+          -48,
+          0,
+          63
+        ],
+        "id": "biome.exact.deep_dark",
+        "kind": "biome_witness",
+        "label": "Deep Dark",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "sulfur_caves"
+        ],
+        "category": "Caves",
+        "dimension": "overworld",
+        "eligible_y": [
+          -48,
+          0,
+          63
+        ],
+        "id": "biome.exact.sulfur_caves",
+        "kind": "biome_witness",
+        "label": "Sulfur Caves",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "badlands",
+          "badlands_plateau",
+          "modified_badlands_plateau"
+        ],
+        "category": "Badlands",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.badlands",
+        "kind": "biome_witness",
+        "label": "Badlands",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "eroded_badlands"
+        ],
+        "category": "Badlands",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.eroded_badlands",
+        "kind": "biome_witness",
+        "label": "Eroded Badlands",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "wooded_badlands",
+          "wooded_badlands_plateau",
+          "modified_wooded_badlands_plateau"
+        ],
+        "category": "Badlands",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.wooded_badlands",
+        "kind": "biome_witness",
+        "label": "Wooded Badlands",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "snowy_plains",
+          "snowy_mountains"
+        ],
+        "category": "Snowy",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.snowy_plains",
+        "kind": "biome_witness",
+        "label": "Snowy Plains",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "snowy_slopes"
+        ],
+        "category": "Snowy",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.snowy_slopes",
+        "kind": "biome_witness",
+        "label": "Snowy Slopes",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "snowy_taiga"
+        ],
+        "category": "Snowy",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.snowy_taiga",
+        "kind": "biome_witness",
+        "label": "Snowy Taiga",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "ice_spikes"
+        ],
+        "category": "Snowy",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.ice_spikes",
+        "kind": "biome_witness",
+        "label": "Ice Spikes",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.forest",
+        "kind": "biome_witness",
+        "label": "Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "birch_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.birch_forest",
+        "kind": "biome_witness",
+        "label": "Birch Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "flower_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.flower_forest",
+        "kind": "biome_witness",
+        "label": "Flower Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "old_growth_birch_forest"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.old_growth_birch_forest",
+        "kind": "biome_witness",
+        "label": "Old Growth Birch Forest",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "plains"
+        ],
+        "category": "Plains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.plains",
+        "kind": "biome_witness",
+        "label": "Plains",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "sunflower_plains"
+        ],
+        "category": "Plains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.sunflower_plains",
+        "kind": "biome_witness",
+        "label": "Sunflower Plains",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "meadow"
+        ],
+        "category": "Plains",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.meadow",
+        "kind": "biome_witness",
+        "label": "Meadow",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "cherry_grove"
+        ],
+        "category": "Forest/taiga",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.cherry_grove",
+        "kind": "biome_witness",
+        "label": "Cherry Grove",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "mushroom_fields",
+          "mushroom_field_shore"
+        ],
+        "category": "Rare",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.mushroom_fields",
+        "kind": "biome_witness",
+        "label": "Mushroom Fields",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "bamboo_jungle"
+        ],
+        "category": "Jungle",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.bamboo_jungle",
+        "kind": "biome_witness",
+        "label": "Bamboo Jungle",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "desert",
+          "desert_hills",
+          "desert_lakes"
+        ],
+        "category": "Desert",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.desert",
+        "kind": "biome_witness",
+        "label": "Desert",
+        "unavailable_reason": null
+      },
+      {
+        "available": true,
+        "canonical_members": [
+          "mangrove_swamp"
+        ],
+        "category": "Swamp",
+        "dimension": "overworld",
+        "eligible_y": [
+          63,
+          96,
+          160,
+          224
+        ],
+        "id": "biome.exact.mangrove_swamp",
+        "kind": "biome_witness",
+        "label": "Mangrove Swamp",
+        "unavailable_reason": null
+      }
+    ],
+    "nether_radii": [
+      64,
+      128,
+      256
+    ],
+    "nether_side": 1024,
+    "overworld_radii": [
+      256,
+      512,
+      1024
+    ],
+    "revision": "catalog-features-v3"
+  },
+  "request_revision": "catalog-query-v3",
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "reserve_policy": {
+    "evidence_status": "predicted",
+    "historically_complete": false,
+    "primary_slots": 115964,
+    "reserve_factor": 2,
+    "retained_slots": 231928
+  },
+  "registry_v2": {
+    "revision": "catalog-features-v2",
+    "features": [
+      {
+        "id": "structure.village",
+        "label": "Village",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "village",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.trial_chamber",
+        "label": "Trial chamber",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "trial_chamber",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.ancient_city",
+        "label": "Ancient city",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "ancient_city",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.mansion",
+        "label": "Woodland mansion",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "mansion",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.monument",
+        "label": "Ocean monument",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "monument",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.outpost",
+        "label": "Pillager outpost",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "outpost",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.desert_pyramid",
+        "label": "Desert pyramid",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "desert_pyramid",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.jungle_temple",
+        "label": "Jungle temple",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "jungle_temple",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.swamp_hut",
+        "label": "Swamp hut",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "swamp_hut",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.igloo",
+        "label": "Igloo",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "igloo",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.trail_ruins",
+        "label": "Trail ruins",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "trail_ruins",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.ruined_portal",
+        "label": "Ruined portal",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "ruined_portal",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.shipwreck",
+        "label": "Shipwreck",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "shipwreck",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.mineshaft",
+        "label": "Mineshaft",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "mineshaft",
+        "canonical_members": []
+      },
+      {
+        "id": "biome.cherry_grove",
+        "label": "Cherry grove",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "cherry_grove"
+        ]
+      },
+      {
+        "id": "biome.mushroom_fields",
+        "label": "Mushroom fields",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "mushroom_fields",
+          "mushroom_field_shore"
+        ]
+      },
+      {
+        "id": "biome.bamboo_jungle",
+        "label": "Bamboo jungle",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "bamboo_jungle"
+        ]
+      },
+      {
+        "id": "biome.desert",
+        "label": "Desert",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "desert",
+          "desert_hills",
+          "desert_lakes"
+        ]
+      },
+      {
+        "id": "biome.badlands",
+        "label": "Badlands",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "badlands",
+          "badlands_plateau",
+          "wooded_badlands_plateau",
+          "eroded_badlands",
+          "modified_badlands_plateau",
+          "modified_wooded_badlands_plateau",
+          "wooded_badlands"
+        ]
+      },
+      {
+        "id": "biome.snowy",
+        "label": "Snowy terrain",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "snowy_plains",
+          "snowy_mountains",
+          "ice_spikes",
+          "snowy_slopes",
+          "snowy_taiga"
+        ]
+      },
+      {
+        "id": "biome.mangrove_swamp",
+        "label": "Mangrove swamp",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "mangrove_swamp"
+        ]
+      },
+      {
+        "id": "biome.forest",
+        "label": "Forest / birch",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "forest",
+          "birch_forest",
+          "flower_forest",
+          "old_growth_birch_forest"
+        ]
+      },
+      {
+        "id": "biome.plains",
+        "label": "Plains / meadow",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "canonical_members": [
+          "plains",
+          "sunflower_plains",
+          "meadow"
+        ]
+      },
+      {
+        "id": "structure.stronghold",
+        "label": "Stronghold",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "extractor_key": "stronghold",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.fortress",
+        "label": "Nether fortress",
+        "kind": "structure_count",
+        "dimension": "nether",
+        "extractor_key": "fortress",
+        "canonical_members": []
+      },
+      {
+        "id": "structure.bastion",
+        "label": "Bastion remnant",
+        "kind": "structure_count",
+        "dimension": "nether",
+        "extractor_key": "bastion",
+        "canonical_members": []
+      },
+      {
+        "id": "biome.nether_wastes",
+        "label": "Nether Wastes",
+        "kind": "biome_witness",
+        "dimension": "nether",
+        "canonical_members": [
+          "nether_wastes"
+        ]
+      },
+      {
+        "id": "biome.crimson_forest",
+        "label": "Crimson Forest",
+        "kind": "biome_witness",
+        "dimension": "nether",
+        "canonical_members": [
+          "crimson_forest"
+        ]
+      },
+      {
+        "id": "biome.warped_forest",
+        "label": "Warped Forest",
+        "kind": "biome_witness",
+        "dimension": "nether",
+        "canonical_members": [
+          "warped_forest"
+        ]
+      },
+      {
+        "id": "biome.soul_sand_valley",
+        "label": "Soul Sand Valley",
+        "kind": "biome_witness",
+        "dimension": "nether",
+        "canonical_members": [
+          "soul_sand_valley"
+        ]
+      },
+      {
+        "id": "biome.basalt_deltas",
+        "label": "Basalt Deltas",
+        "kind": "biome_witness",
+        "dimension": "nether",
+        "canonical_members": [
+          "basalt_deltas"
+        ]
+      }
+    ],
+    "overworld_radii": [
+      256,
+      512,
+      1024
+    ],
+    "nether_radii": [
+      64,
+      128,
+      256
+    ],
+    "nether_side": 1024,
+    "biome_y": {
+      "overworld": 63,
+      "nether": 64
+    }
+  },
+  "nether_near_radii": [
+    64,
+    128,
+    256
+  ],
+  "registry": {
+    "categories": [
+      {
+        "id": "general",
+        "label": "General catalog",
+        "default_profile": "balanced_survival"
+      },
+      {
+        "id": "builders",
+        "label": "Builders",
+        "default_profile": "biome_variety"
+      },
+      {
+        "id": "rare",
+        "label": "Rare & unusual",
+        "default_profile": "structure_collector"
+      },
+      {
+        "id": "survival",
+        "label": "Survival & realms",
+        "default_profile": "village_life"
+      },
+      {
+        "id": "adventure",
+        "label": "Adventure",
+        "default_profile": "trial_adventurer"
+      },
+      {
+        "id": "biomes",
+        "label": "Biome explorers",
+        "default_profile": "biome_variety"
+      },
+      {
+        "id": "ocean",
+        "label": "Ocean exploration",
+        "default_profile": "ocean_explorer"
+      },
+      {
+        "id": "technical",
+        "label": "Technical planning",
+        "default_profile": "archaeology"
+      }
+    ],
+    "features": [
+      {
+        "id": "structure.village",
+        "slot": 0,
+        "label": "Village",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "general",
+          "builders",
+          "survival"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "village",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 6,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.trial_chamber",
+        "slot": 1,
+        "label": "Trial chamber",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "general",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "trial_chamber",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 4,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.ancient_city",
+        "slot": 2,
+        "label": "Ancient city",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "ancient_city",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Known candidate/viability disagreement; actual generation unverified"
+      },
+      {
+        "id": "structure.mansion",
+        "slot": 3,
+        "label": "Woodland mansion",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "mansion",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 1,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.monument",
+        "slot": 4,
+        "label": "Ocean monument",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "ocean",
+          "technical"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "monument",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.outpost",
+        "slot": 5,
+        "label": "Pillager outpost",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "survival",
+          "technical"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "outpost",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.desert_pyramid",
+        "slot": 6,
+        "label": "Desert pyramid",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "desert_pyramid",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.jungle_temple",
+        "slot": 7,
+        "label": "Jungle temple",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "jungle_temple",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.swamp_hut",
+        "slot": 8,
+        "label": "Swamp hut",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "technical"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "swamp_hut",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.igloo",
+        "slot": 9,
+        "label": "Igloo",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "igloo",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.trail_ruins",
+        "slot": 10,
+        "label": "Trail ruins",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "trail_ruins",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 2,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.ruined_portal",
+        "slot": 11,
+        "label": "Ruined portal",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "general",
+          "survival"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "ruined_portal",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 6,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.shipwreck",
+        "slot": 12,
+        "label": "Shipwreck",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "ocean",
+          "adventure"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "shipwreck",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 4,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "structure.mineshaft",
+        "slot": 13,
+        "label": "Mineshaft",
+        "kind": "structure_count",
+        "dimension": "overworld",
+        "category_tags": [
+          "adventure",
+          "technical"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "extractor_key": "mineshaft",
+        "semantics": "distinct_viable_predicted_start",
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "count_min": 1,
+        "count_max": 16,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Predicted structure start",
+        "complete_negative_evidence": false,
+        "specialist_reference_target": 8,
+        "known_caveat": "Actual generation unverified"
+      },
+      {
+        "id": "biome.cherry_grove",
+        "slot": 0,
+        "label": "Cherry grove",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "cherry_grove"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.mushroom_fields",
+        "slot": 1,
+        "label": "Mushroom fields",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "mushroom_fields",
+          "mushroom_field_shore"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.bamboo_jungle",
+        "slot": 2,
+        "label": "Bamboo jungle",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "bamboo_jungle"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.desert",
+        "slot": 3,
+        "label": "Desert",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "desert",
+          "desert_hills",
+          "desert_lakes"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.badlands",
+        "slot": 4,
+        "label": "Badlands",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "rare",
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "badlands",
+          "badlands_plateau",
+          "wooded_badlands_plateau",
+          "eroded_badlands",
+          "modified_badlands_plateau",
+          "modified_wooded_badlands_plateau",
+          "wooded_badlands"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.snowy",
+        "slot": 5,
+        "label": "Snowy terrain",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "snowy_plains",
+          "snowy_mountains",
+          "ice_spikes",
+          "snowy_slopes",
+          "snowy_taiga"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.mangrove_swamp",
+        "slot": 6,
+        "label": "Mangrove swamp",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "builders",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "mangrove_swamp"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.forest",
+        "slot": 7,
+        "label": "Forest / birch",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "general",
+          "builders",
+          "survival",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "forest",
+          "birch_forest",
+          "flower_forest",
+          "old_growth_birch_forest"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      },
+      {
+        "id": "biome.plains",
+        "slot": 8,
+        "label": "Plains / meadow",
+        "kind": "biome_witness",
+        "dimension": "overworld",
+        "category_tags": [
+          "general",
+          "builders",
+          "survival",
+          "biomes"
+        ],
+        "contract_status": "planned_filter",
+        "runtime_enabled": false,
+        "canonical_members": [
+          "plains",
+          "sunflower_plains",
+          "meadow"
+        ],
+        "canonicalizer": "seed_search.realm.biomes.canonical",
+        "method": "predictor_world_lattice_y63_stride64_v1",
+        "sample_y": 63,
+        "sample_stride": 64,
+        "supported_rules": [
+          "required",
+          "preferred"
+        ],
+        "supported_scopes": [
+          "near_base",
+          "inside_border"
+        ],
+        "supports_any_of": true,
+        "importance": [
+          1,
+          3,
+          5
+        ],
+        "evidence_label": "Sampled biome observation",
+        "surface_claim": false,
+        "complete_negative_evidence": false
+      }
+    ]
+  },
+  "presets": [
+    {
+      "id": "general",
+      "label": "General catalog",
+      "fallback_profile": "balanced_survival",
+      "rows": [],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "builders",
+      "label": "Builders",
+      "fallback_profile": "biome_variety",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.cherry_grove"
+          ],
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 256
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.village",
+          "at_least": 1,
+          "importance": 1,
+          "scope": {
+            "kind": "near_base",
+            "radius": 512
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "rare",
+      "label": "Rare & unusual",
+      "fallback_profile": "structure_collector",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.mushroom_fields"
+          ],
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.mansion",
+          "at_least": 1,
+          "importance": 3,
+          "scope": {
+            "kind": "inside_border"
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "survival",
+      "label": "Survival & realms",
+      "fallback_profile": "village_life",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.village",
+          "at_least": 1,
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 512
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.ruined_portal",
+          "at_least": 1,
+          "importance": 3,
+          "scope": {
+            "kind": "near_base",
+            "radius": 512
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.plains"
+          ],
+          "importance": 1,
+          "scope": {
+            "kind": "near_base",
+            "radius": 512
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "adventure",
+      "label": "Adventure",
+      "fallback_profile": "trial_adventurer",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.trial_chamber",
+          "at_least": 2,
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.ancient_city",
+          "at_least": 1,
+          "importance": 3,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.desert_pyramid",
+          "at_least": 1,
+          "importance": 1,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "biomes",
+      "label": "Biome explorers",
+      "fallback_profile": "biome_variety",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.forest",
+            "biome.plains"
+          ],
+          "importance": 1,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.cherry_grove",
+            "biome.mushroom_fields"
+          ],
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "biome_witness",
+          "any_of": [
+            "biome.mangrove_swamp",
+            "biome.bamboo_jungle"
+          ],
+          "importance": 3,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "ocean",
+      "label": "Ocean exploration",
+      "fallback_profile": "ocean_explorer",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.monument",
+          "at_least": 1,
+          "importance": 5,
+          "scope": {
+            "kind": "inside_border"
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.shipwreck",
+          "at_least": 2,
+          "importance": 3,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    },
+    {
+      "id": "technical",
+      "label": "Technical planning",
+      "fallback_profile": "archaeology",
+      "rows": [
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.outpost",
+          "at_least": 1,
+          "importance": 5,
+          "scope": {
+            "kind": "near_base",
+            "radius": 1024
+          }
+        },
+        {
+          "rule": "preferred",
+          "kind": "structure_count",
+          "feature": "structure.swamp_hut",
+          "at_least": 1,
+          "importance": 3,
+          "scope": {
+            "kind": "inside_border"
+          }
+        }
+      ],
+      "editable": true,
+      "adds_hidden_requirements": false
+    }
+  ],
+  "profiles": [
+    {
+      "id": "balanced_survival"
+    },
+    {
+      "id": "village_life"
+    },
+    {
+      "id": "trial_adventurer"
+    },
+    {
+      "id": "ancient_city_explorer"
+    },
+    {
+      "id": "ocean_explorer"
+    },
+    {
+      "id": "biome_variety"
+    },
+    {
+      "id": "structure_collector"
+    },
+    {
+      "id": "archaeology"
+    },
+    {
+      "id": "compact_starter"
+    },
+    {
+      "id": "village_and_trials"
+    },
+    {
+      "id": "village_and_ocean"
+    },
+    {
+      "id": "village_and_biomes"
+    },
+    {
+      "id": "cities_and_trials"
+    },
+    {
+      "id": "ocean_and_biomes"
+    },
+    {
+      "id": "rare_and_biomes"
+    },
+    {
+      "id": "multiplayer_variety"
+    }
+  ],
+  "border_sides": [
+    2048,
+    4096,
+    8192
+  ],
+  "near_radii": [
+    256,
+    512,
+    1024
+  ],
+  "anchor_modes": [
+    "recommended",
+    "origin"
+  ],
+  "max_rows": 12,
+  "max_compare": 4,
+  "evidence_label": "Research predictions: structure starts and sampled Y63/stride64 biome witnesses. Generated structures and exact player spawn are unverified."
+}

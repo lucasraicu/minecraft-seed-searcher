@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "snapshot_id": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+  "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f",
+  "queries": [
+    {
+      "mode": "origin",
+      "side": 2048,
+      "cold_seconds": 1.5594860640121624,
+      "warm_seconds": 0.11181363696232438,
+      "matched": 200
+    },
+    {
+      "mode": "origin",
+      "side": 4096,
+      "cold_seconds": 1.3263236199272797,
+      "warm_seconds": 0.11503737606108189,
+      "matched": 200
+    },
+    {
+      "mode": "origin",
+      "side": 8192,
+      "cold_seconds": 1.3094154440332204,
+      "warm_seconds": 0.11821464798413217,
+      "matched": 200
+    },
+    {
+      "mode": "recommended",
+      "side": 2048,
+      "cold_seconds": 3.5618785170372576,
+      "warm_seconds": 0.11135700403247029,
+      "matched": 200
+    },
+    {
+      "mode": "recommended",
+      "side": 4096,
+      "cold_seconds": 3.544491913053207,
+      "warm_seconds": 0.11039092298597097,
+      "matched": 200
+    },
+    {
+      "mode": "recommended",
+      "side": 8192,
+      "cold_seconds": 3.628406996023841,
+      "warm_seconds": 0.11267832398880273,
+      "matched": 200
+    },
+    {
+      "mode": "world_spawn_estimated",
+      "side": 2048,
+      "cold_seconds": 0.1237900200067088,
+      "warm_seconds": 0.11189757206011564,
+      "matched": 200
+    },
+    {
+      "mode": "world_spawn_estimated",
+      "side": 4096,
+      "cold_seconds": 0.12210005801171064,
+      "warm_seconds": 0.10947172902524471,
+      "matched": 200
+    },
+    {
+      "mode": "world_spawn_estimated",
+      "side": 8192,
+      "cold_seconds": 0.12517997901886702,
+      "warm_seconds": 0.12166642991360277,
+      "matched": 200
+    },
+    {
+      "mode": "world_spawn_observed",
+      "side": 2048,
+      "cold_seconds": 0.10047227295581251,
+      "warm_seconds": 0.09641894302330911,
+      "matched": 3
+    },
+    {
+      "mode": "world_spawn_observed",
+      "side": 4096,
+      "cold_seconds": 0.10031379293650389,
+      "warm_seconds": 0.09603001503273845,
+      "matched": 3
+    },
+    {
+      "mode": "world_spawn_observed",
+      "side": 8192,
+      "cold_seconds": 0.10495191207155585,
+      "warm_seconds": 0.0986748430877924,
+      "matched": 3
+    }
+  ],
+  "pagination_unique_worlds": 200,
+  "scope_http_queries": 18,
+  "seconds": 19.031755100004375
+}

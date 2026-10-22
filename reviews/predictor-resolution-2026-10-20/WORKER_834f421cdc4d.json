@@ -1,0 +1,19 @@
+{
+  "task_id": "834f421cdc4d",
+  "role": "review",
+  "state": "failed",
+  "created": 1792533797.542026,
+  "updated": 1792533801.733567,
+  "worker_id": "gemini-1",
+  "objective": "TOOL-FREE independent High critique of user-approved four-step predictor resolution plan. Focus missing saved Data3D records: review reader/key parsing, observer ticking-area lifecycle, save acknowledgement, exported controls. Identify alternative causes and minimal decisive tests, concerns with cau",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "error": "Context files exceed 30,000 bytes; select narrower context",
+    "completed": 1792533801.7334652
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/834f421cdc4d",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

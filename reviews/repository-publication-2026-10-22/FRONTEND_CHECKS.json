@@ -1,0 +1,104 @@
+[
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_accuracy_ui.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.6356473439373076,
+    "output_tail": "Accuracy UI checks passed: version/generation binding, unavailable-mode reset, unresolved separation, favorites and spawn semantics.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_biome_expansion.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.7679011990549043,
+    "output_tail": "meSelectionInRow enforces 16-alternative ceiling in V3\n  \u2713 selectBiomeGroupInRow adds group choice towards the 16 limit\n  \u2713 filterBiomesBySearch filters biomes by keyword across label, id and category\n=== Suite 4: React SSR Rendering Verification ===\n  \u2713 FilterBuilder renders in V3 mode with expandable groups, search bar and gated notices\n  \u2713 FilterBuilder renders in V2 and V1 legacy modes for full backwards compatibility\n  \u2713 DetailModal renders witness XYZ coordinates and height evidence states\n  \u2713 validateProductResultsV2 accepts V3 responses with primary and reserve counts\n  \u2713 LaunchProductList renders witnesses with XYZ coordinates and height state column\n  \u2713 Snapshot metadata enables validated mountain choices and can gate a named group\n  \u2713 Personal reserve selector is explicit and hidden for historical runs\n  \u2713 Candidate page rejects malformed reserve metadata\n\n========================================\nAll 25/25 tests passed successfully!\n========================================\n\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_evidence_integration.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.579680729075335,
+    "output_tail": "Integrated Rare list: scoped BDS evidence, research ranking and missing-evidence fallback passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_evidence_ui.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.36324783600866795,
+    "output_tail": "All SSR render tests passed successfully.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_evidence_validation.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.32641701598186046,
+    "output_tail": "Evidence count/provenance decoder checks passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_pillar_interactions.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.3992633660091087,
+    "output_tail": "Pillar handler checks passed: criteria focus, Escape/close, scoped copy, text coordinates, snapshot states.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_pillars.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.47805563593283296,
+    "output_tail": "Four-pillar rendering passed: all defined cards, fixed scopes and honest criteria gates.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_ui_contracts.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.4361317940056324,
+    "output_tail": "Catalog UI contracts passed: signed64 identities, malformed favorites, deduplication and canonical request serialization.\nCatalog card rendering passed: full seed, complete bounds and explicit unknown coverage.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_v2_filters.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.545195018989034,
+    "output_tail": "olves legacy, V2, and unknown features\n  \u2713 getFeatureDimension accurately identifies Nether vs Overworld\n=== Suite 2: Pure Helper Functions & Radius Normalization ===\n  \u2713 normalizeRadiusForDimension handles Overworld and Nether constraints\n  \u2713 getRowDimension inspects structure and biome rows\n  \u2713 switchRowFeature resets incompatible radius to 512 OW / 128 Nether, retains compatible radius & choices\n  \u2713 switchBiomeDimension enforces single-dimension and normalizes radius\n  \u2713 toggleBiomeSelectionInRow prevents mixed-dimension biome OR and switches dimension cleanly\n=== Suite 3: React DOM Server Render Tests ===\n  \u2713 Legacy FilterBuilder (enableV2=false): never offers new features or Nether radii\n  \u2713 V2 FilterBuilder (enableV2=true): exposes 31 features, groups OW/Nether, renders distinct radii and portal cleartext\n  \u2713 Default enableV2 prop evaluates to false\n\n========================================\nSummary: All 14 / 14 tests passed successfully!\n========================================\n\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_catalog_v2_products.cjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.7547848540125415,
+    "output_tail": "tched_worlds or non-array results\nPASS: formatRankItem handles numbers, rational fractions and unknowns\nPASS: PillarNavigation renders all 4 pillars with correct labels and accessibility\nPASS: ProductPillar renders historical registry payloads including gated records\nPASS: Current backend registry renders seventeen records without terrain-heavy cards\nPASS: Optional product evaluation counts are checked and displayed\nPASS: Larger Realm boards show their own scope and fixed Nether budget\nPASS: ProductPillar renders chosen gated product criteria and dependencies\nPASS: LaunchProductList renders loading and error states cleanly\nPASS: LaunchProductList renders empty results state\nPASS: LaunchProductList renders 20 rows with signed64 strings, witnesses, metrics, disclaimers, and pagination\nPASS: response guards reject unsafe source rows and preserve signed64 boundaries\n\n========================================\n17 Catalog V2 UI tests passed; 0 failed.\n========================================\n\n"
+  },
+  {
+    "command": [
+      "npm",
+      "--prefix",
+      "web-ui",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "seconds": 5.267152009066194,
+    "output_tail": "\n> web-ui@0.0.0 build\n> tsc -b && vite build\n\nvite v8.3.4 building client environment for production...\ntransforming...\n\u2713 54 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                             0.49 kB \u2502 gzip:   0.32 kB\ndist/assets/index-CvQYe8-B.css             64.47 kB \u2502 gzip:  10.45 kB\ndist/assets/CatalogWorkspace-ELAxYw7u.js  149.27 kB \u2502 gzip:  34.35 kB\ndist/assets/index-DBVqxJ2p.js             383.85 kB \u2502 gzip: 109.92 kB\n\n\u2713 built in 322ms\n"
+  }
+]

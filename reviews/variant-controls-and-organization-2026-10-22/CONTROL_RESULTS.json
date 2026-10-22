@@ -1,0 +1,483 @@
+{
+  "revision": "variant-control-results-v1",
+  "bds_budget": {
+    "protocol_sha256": "7c0127bbc3e0f3d7b8a17ba9677251d1485791555aafc683731058138ef410ca",
+    "charged_seconds": 214.36131348193157,
+    "attempted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "active": null,
+    "output_bytes": 30804251
+  },
+  "controls": [
+    {
+      "case": {
+        "id": 0,
+        "seed": "-4442996248857059339",
+        "world_id": "a35f39394a285b599b1ed187f35415d5f28ec2eb628bbe277bc7b136389e529e",
+        "observation_id": "06ed690fa60fb20488b1c0cade6bf011b57f2dfd7d9ab8a73912ee7270128135",
+        "selection": "ordinary_fixed_world_hash",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          -200,
+          24
+        ],
+        "predicted": true,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "status": "failed",
+      "actual": null,
+      "recognition": {
+        "value": null,
+        "reason": "ValueError: Locate unavailable"
+      },
+      "identity": {
+        "seed": "-4442996248857059339",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": null,
+      "locate_matches": null,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 9.613487199996598,
+      "report_sha256": "b3c4c3e4438bf39a64f42753723ef215b9f3321ec40d1f4e5276c8c8ef092fc4",
+      "entities_sha256": null
+    },
+    {
+      "case": {
+        "id": 1,
+        "seed": "1376883455019105238",
+        "world_id": "ee4750b898350cc61480c4e9de70625e60359b7af1ad4bf3197bdb88dac574d7",
+        "observation_id": "f417e0c30904faf1eb08d2598b059057ae2c12f9ecce53587f1b0450b0caab04",
+        "selection": "ordinary_fixed_world_hash",
+        "feature": "bastion_treasure",
+        "dimension": "nether",
+        "start": [
+          40,
+          408
+        ],
+        "predicted": false,
+        "predicted_variant": 1,
+        "method_id": "predictor_bastion_variant_v1"
+      },
+      "status": "observed",
+      "actual": false,
+      "recognition": {
+        "value": false,
+        "treasure_signals": [],
+        "other_subtype_signals": [
+          {
+            "position": [
+              33,
+              51,
+              413
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              33,
+              39,
+              413
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              33,
+              33,
+              437
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              58,
+              39,
+              409
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              58,
+              45,
+              433
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              58,
+              33,
+              433
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_hoglin_stable.json",
+            "spawn_entity": ""
+          }
+        ],
+        "reason": "matched explicit other-subtype signature"
+      },
+      "identity": {
+        "seed": "1376883455019105238",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": [
+        40,
+        408
+      ],
+      "locate_matches": true,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 20.196581126074307,
+      "report_sha256": "7793b4bf24958b3ec2dd89d9f27ba946fa45da418efc2109ac54090c00088773",
+      "entities_sha256": "fdd4052e1769dd90908d339da00e4f3cdac09159c63c71d7d6ca7d32731b9756"
+    },
+    {
+      "case": {
+        "id": 2,
+        "seed": "4368694989079322414",
+        "world_id": "25ff2880b2038ad7a804df141965395e4baa6d08b55260fd19cdc6832099a5d8",
+        "observation_id": "15069e608432a52ac11fa746db2e95af102d13c201787114ba18cd87d1b32c5d",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          -152,
+          24
+        ],
+        "predicted": true,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "status": "observed",
+      "actual": null,
+      "recognition": {
+        "value": null,
+        "plain": [],
+        "trapped": [],
+        "laboratories": [],
+        "connected": [],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "4368694989079322414",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": null,
+      "locate_matches": false,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 33.28352910792455,
+      "report_sha256": "318309b9d98f81fc426e61119697634e6521db2cb5317a5f96864a91797678dc",
+      "entities_sha256": "47c9e68d5b1f3d9cfd4af7ce69484ababcb3af5493083586cbf08a1552d251ac"
+    },
+    {
+      "case": {
+        "id": 3,
+        "seed": "3629856058375408595",
+        "world_id": "57466c6152954445a821f86b806baf2a599751d071d34dd4edba3ed66a72f2dd",
+        "observation_id": "453d6fd4045fad3fed0e9c482f92c0235d3ca55869af24d3eb86da4fd2922a89",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          56
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "status": "observed",
+      "actual": null,
+      "recognition": {
+        "value": null,
+        "plain": [],
+        "trapped": [],
+        "laboratories": [],
+        "connected": [],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "3629856058375408595",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": null,
+      "locate_matches": false,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 46.447215002030134,
+      "report_sha256": "90e39712bd990394c6b460201dc575f9dba6212e2ee6e225d0a8bde8d5357250",
+      "entities_sha256": "c37eb4bffc95c6fb94087e23a5c602e5b804ff0959544882b5ddaefbeedbb301"
+    },
+    {
+      "case": {
+        "id": 4,
+        "seed": "3792726330709425179",
+        "world_id": "bda23177a86e687d876ed6c4542cb3b8e4184ac9456a04bf25cd7a88da50a84e",
+        "observation_id": "a672f49d3f7ae120990b1313e82ae7d1bd4b08944bd5f1b9bc782c6accfa71b8",
+        "selection": "targeted_frozen_prediction",
+        "feature": "igloo_basement",
+        "dimension": "overworld",
+        "start": [
+          24,
+          152
+        ],
+        "predicted": false,
+        "method_id": "predictor_igloo_basement_v1"
+      },
+      "status": "observed",
+      "actual": null,
+      "recognition": {
+        "value": null,
+        "plain": [],
+        "trapped": [],
+        "laboratories": [],
+        "connected": [],
+        "reason": "positive template signatures; missing/clipped/conflicting signatures UNKNOWN"
+      },
+      "identity": {
+        "seed": "3792726330709425179",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": null,
+      "locate_matches": false,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 42.45671123196371,
+      "report_sha256": "6cade364be1ccb74d369cbcd4651f32f2e2f9c121cff3774e1b7d5fba982b733",
+      "entities_sha256": "05c278113f6f5aacd61ad84de65aa2f1b160dd4ac09ae8424b40830da04d68aa"
+    },
+    {
+      "case": {
+        "id": 5,
+        "seed": "-7351687866974407042",
+        "world_id": "c7719aa2c64aa879834025cf493d7075b3fd6f0490d250a9b852c21e7754c0cf",
+        "observation_id": "352be121e5185fc51ef51622103aa7e54a45cc578ff518405ce8686f9450fd7a",
+        "selection": "targeted_frozen_prediction",
+        "feature": "bastion_treasure",
+        "dimension": "nether",
+        "start": [
+          8,
+          8
+        ],
+        "predicted": true,
+        "predicted_variant": 2,
+        "method_id": "predictor_bastion_variant_v1"
+      },
+      "status": "observed",
+      "actual": true,
+      "recognition": {
+        "value": true,
+        "treasure_signals": [
+          {
+            "position": [
+              20,
+              36,
+              -18
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_treasure.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              26,
+              39,
+              -18
+            ],
+            "id": "MobSpawner",
+            "loot_table": "",
+            "spawn_entity": "minecraft:magma_cube"
+          }
+        ],
+        "other_subtype_signals": [],
+        "reason": "matched treasure signature"
+      },
+      "identity": {
+        "seed": "-7351687866974407042",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": [
+        8,
+        8
+      ],
+      "locate_matches": true,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 20.76801695697941,
+      "report_sha256": "a6f417ed9a875997ff75e99a2bfdf52a5cf26d0eb552dfcaab16031fa301fc6a",
+      "entities_sha256": "cfd79401c0edf64eac640398ebe0a69acb14881184f487ece3002c655e680091"
+    },
+    {
+      "case": {
+        "id": 6,
+        "seed": "1180700333375763740",
+        "world_id": "6bec95e96f03d8cafde5a015aba5f72e27b7eaedeb79612c264ad8a1c38ce162",
+        "observation_id": "ebdaff3dfcfd3d3ed95531bb1386baeb8602541511546a8ade6bb4d20e75ea5e",
+        "selection": "targeted_frozen_prediction",
+        "feature": "bastion_treasure",
+        "dimension": "nether",
+        "start": [
+          24,
+          40
+        ],
+        "predicted": true,
+        "predicted_variant": 2,
+        "method_id": "predictor_bastion_variant_v1"
+      },
+      "status": "observed",
+      "actual": true,
+      "recognition": {
+        "value": true,
+        "treasure_signals": [
+          {
+            "position": [
+              -10,
+              39,
+              50
+            ],
+            "id": "MobSpawner",
+            "loot_table": "",
+            "spawn_entity": "minecraft:magma_cube"
+          },
+          {
+            "position": [
+              -5,
+              36,
+              49
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_treasure.json",
+            "spawn_entity": ""
+          },
+          {
+            "position": [
+              -5,
+              36,
+              51
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_treasure.json",
+            "spawn_entity": ""
+          }
+        ],
+        "other_subtype_signals": [],
+        "reason": "matched treasure signature"
+      },
+      "identity": {
+        "seed": "1180700333375763740",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": [
+        24,
+        40
+      ],
+      "locate_matches": true,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 21.075205181958154,
+      "report_sha256": "2d6589f04ef724df7a0fcdaaf6e7adc5ca892e0d6220fea2266b88cfdf59af4c",
+      "entities_sha256": "545f57d9a86a14955a1ac6acbd991d64e947b2459249d02198716e26d37fa1b4"
+    },
+    {
+      "case": {
+        "id": 7,
+        "seed": "1372239888906548435",
+        "world_id": "fff015b2cbc44c613598fe1c484d4ffdab994513dc9464a767a8cc6bf28d2543",
+        "observation_id": "d63e28ba120380c23b33f5f348fae6bdcef213a723ca47fbb2517105e28098bf",
+        "selection": "targeted_frozen_prediction",
+        "feature": "bastion_treasure",
+        "dimension": "nether",
+        "start": [
+          8,
+          8
+        ],
+        "predicted": false,
+        "predicted_variant": 3,
+        "method_id": "predictor_bastion_variant_v1"
+      },
+      "status": "observed",
+      "actual": false,
+      "recognition": {
+        "value": false,
+        "treasure_signals": [],
+        "other_subtype_signals": [
+          {
+            "position": [
+              -4,
+              80,
+              9
+            ],
+            "id": "Chest",
+            "loot_table": "loot_tables/chests/bastion_bridge.json",
+            "spawn_entity": ""
+          }
+        ],
+        "reason": "matched explicit other-subtype signature"
+      },
+      "identity": {
+        "seed": "1372239888906548435",
+        "api": "2.10.0",
+        "players": 0
+      },
+      "actual_start": [
+        8,
+        8
+      ],
+      "locate_matches": true,
+      "build_verified": true,
+      "clean_shutdown": true,
+      "removed": true,
+      "seconds": 20.520567675004713,
+      "report_sha256": "066d4e756d4464da73636e29fb26cb1d08096261272585725603d09b3daf0767",
+      "entities_sha256": "37f7b3a4915aef59107e29e8f2db4b93e8efcf7fd356a6d16fc385f4bb8ae279"
+    }
+  ],
+  "activation": {
+    "bastion_treasure": {
+      "pass_controls": true,
+      "positive_worlds": 2,
+      "negative_worlds": 2
+    },
+    "igloo_basement": {
+      "pass_controls": false,
+      "positive_worlds": 0,
+      "negative_worlds": 0,
+      "unknown_worlds": 4
+    }
+  },
+  "limitations": "Targeted bounded controls, not population accuracy/census. No igloo predictor defect established from missing signatures. Generic igloo locate identifier not a subtype proof; retain raw failures. Housing-units subtype0 not directly controlled. Equal coordinates across distinct exact signed seeds are independent worlds. Comparisons of successor memberships are modulo deterministic V3 layout-ID rebinding."
+}

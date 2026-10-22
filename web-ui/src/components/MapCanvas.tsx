@@ -1,6 +1,7 @@
 import { playableBounds } from '../utils/geometry';
 import type { SearchProfileName } from '../constants/baselinePolicy';
 import { spawnEvidenceLabel } from '../utils/spawn';
+import { requestJson } from '../utils/network';
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import type {
   SeedCandidate,
@@ -198,38 +199,73 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
   // Biome Grid State & Fetching
   const [biomeGrid, setBiomeGrid] = useState<BiomeGridData | null>(null);
   const [isLoadingBiomeGrid, setIsLoadingBiomeGrid] = useState<boolean>(false);
+  const [biomeGridError, setBiomeGridError] = useState<string | null>(null);
+  const [biomeGridRetryCount, setBiomeGridRetryCount] = useState<number>(0);
   const biomeGridCacheRef = useRef<Map<string, BiomeGridData>>(new Map());
   const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const offscreenGridKeyRef = useRef<string>('');
 
   useEffect(() => {
-    if (!candidate?.seed || !showBiomes) return;
-    const cacheKey = `${candidate.seed}_${dimension}_${gridCenterX}_${gridCenterZ}_${gridSide}`;
+    if (!candidate?.seed || !showBiomes) {
+      setBiomeGrid(null);
+      setBiomeGridError(null);
+      setIsLoadingBiomeGrid(false);
+      offscreenGridKeyRef.current = '';
+      offscreenCanvasRef.current = null;
+      return;
+    }
+    const currentSeed = candidate.seed;
+    const cacheKey = `${currentSeed}_${dimension}_${gridCenterX}_${gridCenterZ}_${gridSide}`;
     const cached = biomeGridCacheRef.current.get(cacheKey);
     if (cached) {
       setBiomeGrid(cached);
+      setBiomeGridError(null);
+      setIsLoadingBiomeGrid(false);
       return;
     }
-    let isCancelled = false;
+
+    const controller = new AbortController();
+    // Stale map from other seed must not reappear: clear previous grid immediately
     setBiomeGrid(null);
+    setBiomeGridError(null);
     setIsLoadingBiomeGrid(true);
-    fetch(`/api/candidate/biome-grid?seed=${encodeURIComponent(candidate.seed)}&dimension=${dimension}&centerX=${gridCenterX}&centerZ=${gridCenterZ}&side=${gridSide}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!isCancelled && data && data.ok) {
-          if (biomeGridCacheRef.current.size >= 20) biomeGridCacheRef.current.delete(biomeGridCacheRef.current.keys().next().value!);
+    offscreenGridKeyRef.current = '';
+
+    requestJson<BiomeGridData & { ok?: boolean; error?: string }>(
+      `/api/candidate/biome-grid?seed=${encodeURIComponent(currentSeed)}&dimension=${dimension}&centerX=${gridCenterX}&centerZ=${gridCenterZ}&side=${gridSide}`,
+      {
+        timeoutMs: 8000,
+        signal: controller.signal,
+      }
+    )
+      .then((result) => {
+        if (controller.signal.aborted || candidate?.seed !== currentSeed) return;
+        const data = result.data;
+        if (data && data.ok) {
+          if (biomeGridCacheRef.current.size >= 20) {
+            biomeGridCacheRef.current.delete(biomeGridCacheRef.current.keys().next().value!);
+          }
           biomeGridCacheRef.current.set(cacheKey, data);
           setBiomeGrid(data);
+          setBiomeGridError(null);
+        } else {
+          setBiomeGridError(data?.error || 'Failed to generate biome grid');
         }
       })
-      .catch(() => {})
+      .catch((err) => {
+        if (controller.signal.aborted || candidate?.seed !== currentSeed) return;
+        setBiomeGridError(err instanceof Error ? err.message : String(err));
+      })
       .finally(() => {
-        if (!isCancelled) setIsLoadingBiomeGrid(false);
+        if (!controller.signal.aborted && candidate?.seed === currentSeed) {
+          setIsLoadingBiomeGrid(false);
+        }
       });
+
     return () => {
-      isCancelled = true;
+      controller.abort();
     };
-  }, [candidate?.seed, dimension, showBiomes, gridCenterX, gridCenterZ, gridSide]);
+  }, [candidate?.seed, dimension, showBiomes, gridCenterX, gridCenterZ, gridSide, biomeGridRetryCount]);
 
   const [hoveredStructure, setHoveredStructure] = useState<StructureMarker | null>(null);
   const [hoveredRavine, setHoveredRavine] = useState<RavineMarker | null>(null);
@@ -1685,25 +1721,39 @@ export const MapCanvas: React.FC<MapCanvasProps> = ({
         </div>
       )}
 
-      {/* Biome Status Overlay */}
+      {/* Biome Status Overlay & Error with Retry */}
       {showBiomes && candidate && !activeFeature && (
-        <div className="absolute top-16 left-3 z-10 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-xs shadow-xl pointer-events-none">
+        <div className="absolute top-16 left-3 z-10 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-xs shadow-xl">
           {isLoadingBiomeGrid ? (
-            <>
+            <div className="flex items-center gap-2 pointer-events-none">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
               <span className="text-cyan-300 font-mono text-[11px]">Sampling model biomes (2,048×2,048)...</span>
-            </>
+            </div>
+          ) : biomeGridError ? (
+            <div className="flex items-center gap-2 text-rose-300">
+              <span className="text-rose-400">⚠️</span>
+              <span className="font-mono text-[11px] max-w-xs truncate" title={biomeGridError}>
+                Biome load failed: {biomeGridError}
+              </span>
+              <button
+                onClick={() => setBiomeGridRetryCount((c) => c + 1)}
+                className="px-2 py-0.5 rounded bg-rose-600/30 hover:bg-rose-600/60 border border-rose-500/50 text-[10px] font-bold text-white transition-all shadow-sm"
+                title="Retry loading biome grid"
+              >
+                🔄 Retry
+              </button>
+            </div>
           ) : biomeGrid ? (
-            <>
+            <div className="flex items-center gap-2 pointer-events-none">
               <span>🌿</span>
               <span className="text-emerald-300 font-semibold text-[11px]">Predicted Bedrock Biome Map</span>
               <span className="text-[10px] text-slate-400 font-mono">({Object.keys(biomeGrid.names).length} Biomes Active)</span>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="flex items-center gap-2 pointer-events-none">
               <span className="text-slate-400">🗺️</span>
               <span className="text-slate-300 text-[11px]">Biome overlay active</span>
-            </>
+            </div>
           )}
         </div>
       )}

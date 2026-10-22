@@ -1,0 +1,126 @@
+{
+  "isolated_verification": {
+    "exact_unaffected_numeric_payloads": 48357,
+    "independently_counted_corrected_layouts": 243,
+    "layouts": 48600,
+    "old_snapshot_retained": true,
+    "origin_circle_new_villages": 27,
+    "origin_circle_old_villages": 28,
+    "rebound_audit_worlds": 4,
+    "serving_top20_parity": [
+      {
+        "mode": "origin",
+        "rows": 20,
+        "side": 2048
+      },
+      {
+        "mode": "recommended",
+        "rows": 20,
+        "side": 4096
+      },
+      {
+        "mode": "origin",
+        "rows": 20,
+        "side": 8192
+      }
+    ],
+    "snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "source_snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+    "sqlite_integrity": "ok",
+    "village_evidence": {
+      "coordinate_difference": 0,
+      "errors": 0,
+      "exhaustive_count": null,
+      "feature_id": "structure.village",
+      "generated_count": null,
+      "grouped_command": false,
+      "located_exact": 27,
+      "no_location": 0,
+      "predicted_count": 27,
+      "revision": "catalog-structure-evidence-summary-v1",
+      "tested_count": 27,
+      "untested_count": 0,
+      "verifier_game_build_id": "1.26.52.3"
+    },
+    "wall_seconds": 111.47496603801847,
+    "worlds": 200
+  },
+  "limitations": [
+    "No exhaustive physical village count",
+    "General cave-boundary rule unresolved",
+    "General village/outpost rejection rule unresolved",
+    "No native serving change",
+    "No public-game acceptance or spawn promotion"
+  ],
+  "live_verification": {
+    "all_original_files_preserved": true,
+    "immutable_files_compared_to_rehearsal": 1272,
+    "live_http_ports": [
+      3001,
+      5173
+    ],
+    "live_transition_errors": 0,
+    "live_transition_samples": 103,
+    "new_detail_excludes_both_bad_starts": true,
+    "new_product_27": true,
+    "new_village_locate_matches": 27,
+    "no_exhaustive_claim": true,
+    "old_pinned_product_28": true,
+    "old_snapshot_row_unchanged": true,
+    "personal_view_preserved": true,
+    "snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+    "source_snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+    "sql_membership_matches_rehearsal": true,
+    "sqlite_integrity": "ok"
+  },
+  "preservation": {
+    "all_other_baseline_files_unchanged": true,
+    "head_unchanged": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "missing_paths": [],
+    "native_sources_and_binaries_unchanged": true,
+    "preexisting_changed_paths": [
+      "src/seed_search/catalog/product_views.py",
+      "src/seed_search/catalog/segments.py",
+      "src/seed_search/catalog/coverage.py",
+      "src/seed_search/catalog/summaries.py",
+      "src/seed_search/realm/biomes.py",
+      "src/seed_search/realm/bedrock_biome_storage.py",
+      "scripts/predictor_targeted_bds.py",
+      "scripts/predictor_storage_probe.py",
+      "scripts/predictor_diagnostics.py",
+      "tests/test_predictor_diagnostics.py",
+      "docs/catalog/PREDICTOR_DIAGNOSTICS.md",
+      "docs/catalog/BIOME_STORAGE_VERIFICATION.md",
+      "CODEX_HANDOFF.md"
+    ],
+    "whitespace_warning": "Preexisting native/bridge.c:536 blank EOF line; native hash unchanged"
+  },
+  "publication": {
+    "errors": [],
+    "result": {
+      "excluded_candidates": 2,
+      "layouts": 48600,
+      "ledger_sha256": "c7e33a51fc2efe5c2449e79dbd4105e0e37a51b490737d4ad121fbb03ed9fad7",
+      "rebound_evidence_worlds": 4,
+      "recomputed_layouts": 243,
+      "revision": "catalog-reviewed-exclusions-v1",
+      "snapshot_id": "ab4089d3ccd9c4cbb9fec395382cf5c277be8370e287cde8c91abe8ea81b24da",
+      "source_snapshot_id": "3d964acd07729a1aa50c23ba90e90a37754c009fc685f0313cc6cf0157eddd6a",
+      "unchanged_numeric_layouts": 48357,
+      "worlds": 200
+    },
+    "samples": 103,
+    "wall_seconds": 206.2342787439702
+  },
+  "verification": {
+    "browser_qa": "deferred by user",
+    "catalog_and_predictor_tests": 395,
+    "counts_overlap": true,
+    "final_corrections_and_historical_diagnostics": 29,
+    "final_focused_seconds": 1.14,
+    "observer_syntax": "3 node --check passed",
+    "seconds": 162.41,
+    "stdlib_replay": "passed",
+    "subtests": 29
+  }
+}

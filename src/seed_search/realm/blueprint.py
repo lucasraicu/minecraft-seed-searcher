@@ -617,12 +617,9 @@ def dynamic_v3_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treas
     # Desert Pyramid (F=1): 2nd=+25, 3rd=+20, 4th+=+15 (Max 60)
     dp=n('desert_pyramid')
     core+=(25 if dp>=2 else 0)+(20 if dp>=3 else 0)+(15 if dp>=4 else 0)
-    # Jungle Temple (F=1): 2nd=+25, 3rd=+20, 4th+=+15 (Max 60)
-    jt=n('jungle_temple')
-    core+=(25 if jt>=2 else 0)+(20 if jt>=3 else 0)+(15 if jt>=4 else 0)
-    # Outpost (F=1): 2nd=+15, 3rd=+15, 4th+=+10 (Max 40)
+    # Outpost (F=1): 2nd=+20, 3rd=+20, 4th+=+10 (Max 50)
     out=n('outpost')
-    core+=(15 if out>=2 else 0)+(15 if out>=3 else 0)+(10 if out>=4 else 0)
+    core+=(20 if out>=2 else 0)+(20 if out>=3 else 0)+(10 if out>=4 else 0)
     # Fortress (F=1): 2nd=+20, 3rd=+15, 4th+=+15 (Max 50)
     fort=n('fortress')
     core+=(20 if fort>=2 else 0)+(15 if fort>=3 else 0)+(15 if fort>=4 else 0)
@@ -640,6 +637,9 @@ def dynamic_v3_score(counts,biome_names=(),hub=0,scenic=0,village_spread=0,treas
     core+=2*min(10,max(0,ms-10))
 
     optional=0
+    # Jungle Temple: 1st=+20, 2nd=+20, 3rd+=+10 (Max 50)
+    jt=opt('jungle_temple')
+    optional+=(20 if jt>=1 else 0)+(20 if jt>=2 else 0)+(10 if jt>=3 else 0)
     # Swamp Hut: 1st=+25, 2nd=+15, 3rd+=+10 (Max 50)
     sh_opt=opt('swamp_hut')
     optional+=(25 if sh_opt>=1 else 0)+(15 if sh_opt>=2 else 0)+(10 if sh_opt>=3 else 0)
@@ -699,7 +699,7 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
     """Independent complete-inventory oracle for the exact dynamic center."""
     import math
     from .baseline import structure_observation
-    from .dynamic import (candidate_centers,grid_candidate_centers,OVERWORLD_NAMES,NETHER_NAMES,OPTIONAL_NAMES,
+    from .dynamic import (candidate_centers,grid_candidate_centers,OVERWORLD_NAMES,OVERWORLD_NAMES_V3,NETHER_NAMES,OPTIONAL_NAMES,OPTIONAL_NAMES_V3,
                           overworld_bounds,nether_bounds,nether_palette,hub_bonus,weighted_radial,PaletteIndex,
                           DYNAMIC_V2_CENTROID_WEIGHTS,hub_bonus_v2,hub_village_v2,weighted_radial_v2,
                           scenic_pair_bonus_v2,village_spread_bonus_v2,treasure_bastion_bonus_v2,
@@ -738,10 +738,13 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     len(inventories.get('outpost',{}).get('predicted_viable',[]))>=cfg['structures']['minimum_counts']['outpost'] and
                     len(inventories.get('fortress',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['fortress'] and
                     len(inventories.get('bastion',{}).get('predicted_viable',[]))>=cfg['structures']['nether_minimum_counts']['bastion']):
-                for name in OVERWORLD_NAMES:
+                ow_names=OVERWORLD_NAMES_V3 if is_v3 else OVERWORLD_NAMES
+                opt_names=OPTIONAL_NAMES_V3 if is_v3 else OPTIONAL_NAMES
+                for name in ow_names:
                     if name not in inventories:
                         inventories[name]=timed('structure_'+name,lambda name=name:structure_observation(backend,name,ow_macro,combined))
-                for name in OPTIONAL_NAMES:
+                for name in opt_names:
+                    if name in inventories:continue
                     ob=structure_observation(backend,name,ow_macro,combined)
                     if name=='igloo':
                         ob['predicted_viable']=[p for p in ob['predicted_viable'] if backend.igloo_basement(*p)]
@@ -777,10 +780,11 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             if is_v2:
                 def center_key_v2(item):
                     center=item.center
+                    opt_names=OPTIONAL_NAMES_V3 if is_v3 else OPTIONAL_NAMES
                     structures={name:[p for p in points if contains(p,overworld_bounds(center,ow_half))]
                                 for name,points in all_points.items() if name in OVERWORLD_NAMES}
                     opt_counts={name:sum(contains(p,overworld_bounds(center,ow_half)) for p in all_points[name])
-                                for name in OPTIONAL_NAMES}
+                                for name in opt_names}
                     get_var=getattr(backend,'bastion_variant',lambda x,z:-1)
                     tb_points,_=treasure_bastion_bonus_v2(all_points.get('bastion',[]),center,get_var,nw_half)
                     scenic_pts,_,_=palette_index.scenic_pair(center)
@@ -828,9 +832,11 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     ob['unfiltered_predicted_viable']=[p for p in source.get('unfiltered_predicted_viable',[]) if contains(p,bounds)]
                     ob['anchor_biome_witnesses']=[row for row in source.get('anchor_biome_witnesses',[]) if contains((row['coordinate'][0],row['coordinate'][2]),bounds)]
                 return ob
-            required={name:trim(name,ow) for name in OVERWORLD_NAMES}
+            ow_names=OVERWORLD_NAMES_V3 if is_v3 else OVERWORLD_NAMES
+            opt_names=OPTIONAL_NAMES_V3 if is_v3 else OPTIONAL_NAMES
+            required={name:trim(name,ow) for name in ow_names}
             nether={name:trim(name,nw) for name in NETHER_NAMES}
-            optional={name:trim(name,ow) for name in OPTIONAL_NAMES}
+            optional={name:trim(name,ow) for name in opt_names}
             for ob in optional.values():ob['count_is_complete']=True
             optional['igloo']['variant_policy']='Pinned MC_26_50 basement PRNG prediction; generated basement unverified'
             all_observations={**required,**nether}
@@ -838,18 +844,18 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
             strict={'stronghold','mansion','monument','outpost','fortress','bastion'}
             deficits=[];fatal=[]
             for name,ob in all_observations.items():
-                observed=len(ob['predicted_viable']);goal=all_ideals[name]
+                observed=len(ob['predicted_viable']);goal=all_ideals.get(name, 0)
                 ob.update(minimum_count=goal,predicted_count=observed,count_is_complete=True,
                           floor_status='PREDICTED' if observed>=goal else 'PENDING')
-                if observed<cfg['structures']['hard_floors'][name]:fatal.append('floor_'+name)
+                if observed<cfg['structures']['hard_floors'].get(name, 0):fatal.append('floor_'+name)
                 elif observed<goal:
                     if name in strict:fatal.append('count_'+name)
                     else:deficits.append(name)
             actual=required['stronghold']['predicted_viable']
             surface=[row['biome'] for row in biomes['sampling']['samples'] if row['coordinate'][1]==63]
-            structures={name:ob['predicted_viable'] for name,ob in required.items()}
-            density=sum(cfg['search']['density_weights'][name]*len(required[name]['predicted_viable'])
-                        for name in cfg['search']['density_weights'])
+            structures={name:ob['predicted_viable'] for name,ob in {**required,**optional}.items()}
+            density=sum(cfg['search']['density_weights'][name]*len({**required,**optional}[name]['predicted_viable'])
+                        for name in cfg['search']['density_weights'] if name in {**required,**optional})
             if is_v2:
                 hub=hub_bonus_v3(structures,selected) if is_v3 else hub_bonus_v2(structures,selected)
                 hub_village=hub_village_v2(structures,selected)
@@ -975,6 +981,15 @@ def evaluate_dynamic_seed(index,seed,cfg,*,backend_factory=Backend,combined=True
                     anchor['weighted_radial_dist']=radial
                     anchor['origin_distance']=float(np.hypot(*selected))
                 anchors=[anchor]
+                refinement=getattr(backend,'center_refinement',None)
+                if refinement is not None:
+                    anchor['center_selection']=dict(refinement)
+                    anchor['centroid_unrefined']=list(refinement['centroid_unrefined'])
+                    anchor['sweep_centroid']={'evaluation_center':list(refinement['centroid_unrefined']),
+                                              'score':refinement['sweep_score']}
+                    anchor['refined_center']=list(anchor['evaluation_center'])
+                    anchor['refinement_gain']=refinement['refinement_gain']
+                    anchor['grid_step']=refinement['grid_step']
                 if center_grid_step is not None:
                     anchor['center_selection']={'revision':f'exhaustive-grid-{center_grid_step}-v1',
                         'grid_step':center_grid_step,'scope':'complete eligible grid under pinned predictor; actual generation unverified',

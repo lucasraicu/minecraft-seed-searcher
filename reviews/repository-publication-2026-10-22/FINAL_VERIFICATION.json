@@ -1,0 +1,40 @@
+{
+  "status": "pre-push verification PASS",
+  "baseline_preservation": {
+    "baseline_files": 2350,
+    "unchanged": 2343,
+    "changed_allowlist": [
+      ".gitignore",
+      "CODEX_HANDOFF.md",
+      "README.md",
+      "REPO_ORGANIZATION_PLAN.md",
+      "docs/REPOSITORY_MAP.md",
+      "reviews/README.md",
+      "tests/README.md"
+    ],
+    "missing": [],
+    "active_links_checked": 539,
+    "broken_links": [],
+    "native_EOF_whitespace": "preexisting retained unchanged; source fingerprint preserved",
+    "no_new_physical_moves": true,
+    "handoff_lines": 199
+  },
+  "staged_regular_files_scanned": 2370,
+  "staged_bytes_scanned": 155609426,
+  "secret_pattern_findings": [],
+  "runtime_file_findings": [],
+  "over_50MiB": [],
+  "scan_limits": "Heuristic patterns only; earlier assignment-pattern scan and archive-name inventory retained. Generated hash/verification metadata added after scanning. Not proof of absence of secrets.",
+  "local_python_tests": "66 passed, known fork warning",
+  "staged_export_tests": "65 passed, 1 OpenMP skip for portable serial build; initial missing-extension attempts retained. Existing dependency environment reused.",
+  "frontend": "10 Node suites + build pass",
+  "live_processes_preserved": [
+    91321,
+    22035,
+    17880
+  ],
+  "new_feature_source_changes": false,
+  "gpu_or_database_activation": false,
+  "expected_remote_base": "fd36d4dc3b86581858ff75e91df187eac088862c",
+  "publication_scope": "All completed nonignored implementation/evidence plus routine documentation. Normal explicitly authorized push; no force."
+}

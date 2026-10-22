@@ -1,0 +1,428 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "trial": 0,
+      "mode": "before",
+      "seconds": 35.15283019701019,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-0-before.json",
+      "pipeline": {
+        "parent_cpu_seconds": 13.365726,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714387.420609376,
+            "extraction_ended": 714410.325794283,
+            "extraction_seconds": 22.90518516895827,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.2345615669619292,
+            "extension_points": 3200,
+            "summary_seconds": 6.7445034380070865,
+            "summary_rows": 246,
+            "publication_started": 714419.718930439,
+            "publication_ended": 714421.233288508,
+            "publication_seconds": 1.514358449028805,
+            "snapshot_id": "ba4479a9770a82bfdf6b137878e9e928234ef61d7bd56e62d9f3b7cb4abdbbb9",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 33.92752384999767,
+        "seconds_per_world": 33.92752384999767,
+        "worlds_per_second": 0.02947459426810096,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 33.81358326296322,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "a798c57f85b23996e4df01c355a0f7b8726d9e10f023a958d0735cba7c4e3afd",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    },
+    {
+      "trial": 0,
+      "mode": "after",
+      "seconds": 25.164338955073617,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-v2-0-after.json",
+      "pipeline": {
+        "parent_cpu_seconds": 8.19005,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714632.46864179,
+            "extraction_ended": 714650.094351656,
+            "extraction_seconds": 17.625710054067895,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.2166569900000468,
+            "extension_points": 3200,
+            "summary_seconds": 2.3285048619145527,
+            "summary_rows": 246,
+            "publication_started": 714654.965372342,
+            "publication_ended": 714656.46984026,
+            "publication_seconds": 1.5044682179577649,
+            "snapshot_id": "352588ba40eb5fb235c907cf0ec36b3cf69735b572ca615f864d8bb02418a727",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 24.128197979996912,
+        "seconds_per_world": 24.128197979996912,
+        "worlds_per_second": 0.04144528326686616,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 24.002319557010196,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "ec51dd74a8aa4a2d15bcd33fe7f32abfc6380f7c1f314f767e9320871bd55f7c",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "e9dca0cbdba075b03ec80fdd38d3076aa8e250db5344a937442a462c01da7bcd",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    },
+    {
+      "trial": 1,
+      "mode": "after",
+      "seconds": 24.867921745055355,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-v2-1-after.json",
+      "pipeline": {
+        "parent_cpu_seconds": 8.178334999999999,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714657.50678384,
+            "extraction_ended": 714674.738828657,
+            "extraction_seconds": 17.232045040931553,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.21002632193267345,
+            "extension_points": 3200,
+            "summary_seconds": 2.4587173209292814,
+            "summary_rows": 246,
+            "publication_started": 714679.900345089,
+            "publication_ended": 714681.285284099,
+            "publication_seconds": 1.384939280920662,
+            "snapshot_id": "d5113b396ae8284f5ad8e7b718c635e5de72d9559231894180b768687b6d2877",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 23.882238499005325,
+        "seconds_per_world": 23.882238499005325,
+        "worlds_per_second": 0.041872121829854815,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 23.7798716010293,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "7c4026966592873ee2747124095a05ea9ff85cb2cf667c4e06da94b96703ee0f",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "e9dca0cbdba075b03ec80fdd38d3076aa8e250db5344a937442a462c01da7bcd",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    },
+    {
+      "trial": 1,
+      "mode": "before",
+      "seconds": 34.54623601795174,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-v2-1-before.json",
+      "pipeline": {
+        "parent_cpu_seconds": 12.970336999999999,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714682.459786295,
+            "extraction_ended": 714705.162288674,
+            "extraction_seconds": 22.702502652071416,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.2080725289415568,
+            "extension_points": 3200,
+            "summary_seconds": 6.570614350028336,
+            "summary_rows": 246,
+            "publication_started": 714714.386839775,
+            "publication_ended": 714715.866064584,
+            "publication_seconds": 1.4792251409962773,
+            "snapshot_id": "33bf54538fc6f237289d0c0bbe9c8f991ae01bcbf769042ed38767b7d5cf8383",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 33.5086846469203,
+        "seconds_per_world": 33.5086846469203,
+        "worlds_per_second": 0.029843009671580992,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 33.406872858991846,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "0cf3fc2402656da64a0b665fe4be77a33f41482b9e929c7f9e285ae0a5413648",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    },
+    {
+      "trial": 2,
+      "mode": "before",
+      "seconds": 34.03256981295999,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-v2-2-before.json",
+      "pipeline": {
+        "parent_cpu_seconds": 12.797341000000001,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714717.059271728,
+            "extraction_ended": 714739.376312449,
+            "extraction_seconds": 22.317040910944343,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.210601003956981,
+            "extension_points": 3200,
+            "summary_seconds": 6.454516618978232,
+            "summary_rows": 246,
+            "publication_started": 714748.513894802,
+            "publication_ended": 714749.907490153,
+            "publication_seconds": 1.3935956280911341,
+            "snapshot_id": "61397f9ed3c74b78d47f40c7d7ef0edb5432f4a7e78130996fd6dd76ac858ce4",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 32.957863109069876,
+        "seconds_per_world": 32.957863109069876,
+        "worlds_per_second": 0.03034177296903706,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 32.85008772299625,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "e553df88afb5e6aa772c86a4ef00a37374d758249a0df4e009651df90e755921",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    },
+    {
+      "trial": 2,
+      "mode": "after",
+      "seconds": 24.974805415025912,
+      "exit_status": 0,
+      "report": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/pre-gpu-readiness-approved-20261022/record-v2-2-after.json",
+      "pipeline": {
+        "parent_cpu_seconds": 8.176439,
+        "profiled": false,
+        "status": "PASS",
+        "rows": [
+          {
+            "seed": "8395430397596713336",
+            "extraction_started": 714750.958373548,
+            "extraction_ended": 714768.382699044,
+            "extraction_seconds": 17.424325705040246,
+            "biome_points": {
+              "nether": 400,
+              "overworld": 102515
+            },
+            "feature_families": 31,
+            "resource_stop": null,
+            "native_threads": 1,
+            "numeric_threads": 1,
+            "extension_seconds": 0.23876670794561505,
+            "extension_points": 3200,
+            "summary_seconds": 2.4371564280008897,
+            "summary_rows": 246,
+            "publication_started": 714773.436208914,
+            "publication_ended": 714774.860651426,
+            "publication_seconds": 1.4244427949888632,
+            "snapshot_id": "f05c8e0357b37b7df47b781dab0af18b8e08d8055b6347fb53393d16f429d525",
+            "population_worlds": 1,
+            "retained_worlds": 1
+          }
+        ],
+        "seconds": 24.004891364020295,
+        "seconds_per_world": 24.004891364020295,
+        "worlds_per_second": 0.04165817644560762,
+        "result": {
+          "completed": 1,
+          "failed": 0,
+          "stop_reason": "max_worlds",
+          "maintenance": null,
+          "control": {
+            "state": "active",
+            "consumed": 23.902874644030817,
+            "reason": null
+          },
+          "queue": {
+            "revision": "catalog-harvest-status-v1",
+            "jobs": {
+              "complete": 1
+            },
+            "campaigns": [
+              {
+                "id": "d7bed707255092a43c56d111a5fdeffafab7217f5a8e908adb806105528ac0f0",
+                "state": "active",
+                "scheduled_samples": 1,
+                "target_count": "1"
+              }
+            ]
+          }
+        },
+        "policy_revision": "e9dca0cbdba075b03ec80fdd38d3076aa8e250db5344a937442a462c01da7bcd",
+        "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+        "scope": "Current configured v3 native/Realm/spawn/height extraction,summary,products,7543objectives2Kretention,immutablepublication;fresh private catalog,not222world incremental history"
+      }
+    }
+  ],
+  "cumulative_extraction_seconds": 179.73126939998474,
+  "cap_seconds": 600,
+  "seed": "8395430397596713336",
+  "distinct_existing_worlds": 1,
+  "median_seconds": {
+    "before": 34.54623601795174,
+    "after": 24.974805415025912
+  },
+  "scope": "3counterbalanced paired fullrecords ononeexistingworld;no newseedsearch;wallbudget-limited8192 metadata maydiffer;fixed-observationderivationparity separate;notpopulation throughput"
+}

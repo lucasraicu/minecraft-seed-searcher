@@ -25,6 +25,6 @@ export function buildSweepRequest(config: SearchConfig) {
   const biomes = config.selectedBiomes;
   if (new Set(biomes).size !== biomes.length || biomes.some(id => !policy.requiredBiomes.includes(id))) throw new Error('Select supported biome families');
   if (config.profile !== 'dynamic1664' && config.profile !== 'dynamic2048' && (biomes.length !== policy.requiredBiomes.length || policy.requiredBiomes.some(id => !biomes.includes(id)))) throw new Error('Historical profiles keep their fixed biome requirements');
-  return { biomes, count: config.sweepSeedCount, startIndex: config.startIndex, threads: config.openmpThreads,
+  return { ...(config.publicCatalogHarvest?{catalogEnabled:true,catalogRoot:config.publicCatalogRoot?.trim()}:{}),biomes, count: config.sweepSeedCount, startIndex: config.startIndex, threads: config.openmpThreads,
     batchSize: config.batchSize, maxMisses, counts, profile: config.profile };
 }

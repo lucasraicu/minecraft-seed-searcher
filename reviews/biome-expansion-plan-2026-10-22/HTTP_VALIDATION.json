@@ -1,0 +1,288 @@
+{
+  "snapshot_id": "9637bc21753fa249775f0b11e84ec7a9a92d3872d7982f8e3dfd9a2be4859421",
+  "queries": [
+    {
+      "label": "legacy-mixed:2048:origin",
+      "seconds": 2.606407164945267,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:2048:recommended",
+      "seconds": 4.063423941028304,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:2048:world_spawn_estimated",
+      "seconds": 2.5966138500953093,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:4096:origin",
+      "seconds": 2.9166976279811934,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:4096:recommended",
+      "seconds": 4.585926030995324,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:4096:world_spawn_estimated",
+      "seconds": 2.811437018914148,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:8192:origin",
+      "seconds": 3.096465475973673,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:8192:recommended",
+      "seconds": 4.983928111032583,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "legacy-mixed:8192:world_spawn_estimated",
+      "seconds": 3.2578013580059633,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "v3:12-rows-16-alternatives",
+      "seconds": 6.150716608040966,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 222,
+      "unresolved": 0
+    },
+    {
+      "label": "v3:mixed-height-same-anchor-AND",
+      "seconds": 5.045748215052299,
+      "http": 200,
+      "result_cache_hit": false,
+      "matches": 216,
+      "unresolved": 6
+    }
+  ],
+  "stress": [
+    "12rows+16any_of"
+  ],
+  "compatibility": {
+    "disjoint_pagination": true,
+    "v3_xyz_detail": {
+      "seconds": 4.823928107041866,
+      "world_id": "72af1f2623ccb6456a785e8d13c710d0ae33a7de583a245dcd9faa62d0502be1",
+      "layout_id": "75749ae523a6e9f7d67f11765fcfd08bb81a079d5e71cee0d65c814632c69f3b"
+    },
+    "historical_capability_error": true
+  },
+  "products": [
+    {
+      "id": "realm.v2.qualified",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "realm.v2.qualified_4096",
+      "primary": 2,
+      "reserve": 0
+    },
+    {
+      "id": "realm.v2.qualified_8192",
+      "primary": 21,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.six_pack",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.loot_run",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.mansion_village",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.triple_start",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.temple_rush",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.nether_duo",
+      "primary": 3,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.cherry_haven",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.meadow_cherry",
+      "primary": 5,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.bamboo_temple",
+      "primary": 4,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.frozen_frontier",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.badlands_desert",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.village_two_shipwrecks",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.mushroom_monument",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.villagers_pillagers",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.witch_next_door",
+      "primary": 1,
+      "reserve": 0
+    },
+    {
+      "id": "preset.v2.warped_bastion",
+      "primary": 19,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.village_density",
+      "primary": 100,
+      "reserve": 100
+    },
+    {
+      "id": "record.v2.trial_chamber_density",
+      "primary": 100,
+      "reserve": 100
+    },
+    {
+      "id": "record.v2.ancient_city_density",
+      "primary": 100,
+      "reserve": 60
+    },
+    {
+      "id": "record.v2.outpost_density",
+      "primary": 100,
+      "reserve": 99
+    },
+    {
+      "id": "record.v2.ruined_portal_density",
+      "primary": 100,
+      "reserve": 100
+    },
+    {
+      "id": "record.v2.desert_pyramid_density",
+      "primary": 86,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.shipwreck_density",
+      "primary": 100,
+      "reserve": 100
+    },
+    {
+      "id": "record.v2.fortress_density",
+      "primary": 100,
+      "reserve": 70
+    },
+    {
+      "id": "record.v2.bastion_density",
+      "primary": 100,
+      "reserve": 100
+    },
+    {
+      "id": "record.v2.mansion_proximity",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.ancient_city_proximity",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.monument_proximity",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.four_type_cluster",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.four_hut_cluster",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.monument_cluster",
+      "primary": 8,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.fortress_bastion",
+      "primary": 0,
+      "reserve": 0
+    },
+    {
+      "id": "record.v2.biome_sampler",
+      "primary": 0,
+      "reserve": 0
+    }
+  ],
+  "complete": true
+}

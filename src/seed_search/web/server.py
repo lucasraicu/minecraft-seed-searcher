@@ -10,6 +10,7 @@ Endpoints:
 """
 
 import contextlib
+import hashlib
 import http.server
 import json
 import math
@@ -40,18 +41,55 @@ DIST_DIR = PROJECT_ROOT / "web-ui" / "dist"
 RUNS_DIR = PROJECT_ROOT / "runs"
 OPTIMIZED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-mansion-bound-2026-10-16'
 from seed_search.realm.native_identity import compatible_native_build
+REFINEMENT_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-refinement-2026-10-16'
 FIXED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-fixed-2026-10-16'
+RESTORED_NATIVE_BUILD = PROJECT_ROOT / 'runs' / 'dynamic-baseline-2048' / 'native-corrected-openmp-2026-10-21'
 def select_native_build():
     override=os.environ.get('SEED_SEARCH_NATIVE_BUILD')
     if override:return Path(override)  # An explicit invalid override fails at launch.
-    for directory in (FIXED_NATIVE_BUILD, OPTIMIZED_NATIVE_BUILD,
+    for directory in (RESTORED_NATIVE_BUILD, REFINEMENT_NATIVE_BUILD, FIXED_NATIVE_BUILD, OPTIMIZED_NATIVE_BUILD,
                       PROJECT_ROOT/'runs/dynamic-baseline-2048/native',
                       PROJECT_ROOT/'runs/dynamic-baseline-1664/native'):
         if compatible_native_build(directory):return directory
-    return FIXED_NATIVE_BUILD  # Give a concrete rebuild target when none is current.
+    return REFINEMENT_NATIVE_BUILD  # Give a concrete rebuild target when none is current.
 
 
 DEFAULT_NATIVE_BUILD = select_native_build()
+
+PROCESS_STARTED_AT = time.time()
+SERVER_SOURCE_PATH = Path(__file__).resolve()
+try:
+    LOADED_SERVER_SOURCE_SHA256 = hashlib.sha256(SERVER_SOURCE_PATH.read_bytes()).hexdigest()
+except Exception:
+    LOADED_SERVER_SOURCE_SHA256 = None
+
+
+def _init_native_build_identity():
+    build_path = DEFAULT_NATIVE_BUILD
+    ident_file = (build_path / "identity.json") if isinstance(build_path, Path) else (Path(str(build_path)) / "identity.json")
+    digest = None
+    identity = None
+    if ident_file.is_file():
+        try:
+            identity = json.loads(ident_file.read_text())
+            digest = identity.get("digest") or identity.get("extension_sha256")
+        except Exception:
+            pass
+    return {
+        "path": str(build_path),
+        "digest": digest,
+        "loaded": False,
+        "source": "selected_on_disk",
+    }
+
+
+RUNTIME_IDENTITY = {
+    "processStartedAt": PROCESS_STARTED_AT,
+    "processStartedAtSource": "server_module_initialization",
+    "pid": os.getpid(),
+    "loadedServerSourceSha256": LOADED_SERVER_SOURCE_SHA256,
+    "nativeBuild": _init_native_build_identity(),
+}
 
 
 class SweepManager:
@@ -140,7 +178,6 @@ class SweepManager:
             self.candidate_total = 0
             self._last_candidates_sig = None
             self._query_sqlite_progress()
-            self._query_sqlite_candidates()
             self.logs.insert(0, f'Viewing {run_id}: {completed:,} durable inputs')
             return {'ok': True, 'runId': run_id, 'status': self.status, 'scannedCount': completed}
 
@@ -189,14 +226,27 @@ class SweepManager:
         return cfg,start_index
 
     @staticmethod
-    def _scan_command(policy_path, run_dir, count, start_index, threads, batch_size, max_misses):
+    def _public_catalog_root(enabled,root=None):
+        if type(enabled) is not bool:raise ValueError('Public catalog selection must be boolean')
+        if not enabled:return None
+        root=root or os.environ.get('SEED_SEARCH_CATALOG_ROOT')
+        if not isinstance(root,str) or not root or len(root)>4096 or not Path(root).is_absolute():
+            raise ValueError('Select an absolute configured public catalog folder')
+        from seed_search.catalog.automation import configuration
+        if configuration(root) is None:raise ValueError('Public harvesting is not configured for this catalog folder')
+        return str(Path(root).absolute())
+
+    @staticmethod
+    def _scan_command(policy_path, run_dir, count, start_index, threads, batch_size, max_misses, *, catalog_root=None):
         python = PROJECT_ROOT / '.venv' / 'bin' / 'python'
-        return [str(python) if python.exists() else sys.executable, '-m', 'seed_search',
+        command=[str(python) if python.exists() else sys.executable, '-m', 'seed_search',
                 '--config', str(policy_path), 'scan', '--count', str(count),
                 '--start-index', str(start_index), '--output', str(run_dir), '--executor', 'native',
                 '--native-build', str(DEFAULT_NATIVE_BUILD), '--native-threads', str(threads),
                 '--native-batch-size', str(batch_size), '--retention', 'survivors',
                 '--max-misses', str(max_misses), '--prediction-scale']
+        if catalog_root:command += ['--catalog-root',str(catalog_root),'--catalog-sample-cap','100']
+        return command
 
     @staticmethod
     def _launch_environment():
@@ -223,6 +273,7 @@ class SweepManager:
 
     def preview_sweep(self, **kwargs):
         try:
+            catalog_root=self._public_catalog_root(kwargs.pop('catalog_enabled',False),kwargs.pop('catalog_root',None))
             profile = kwargs.get('profile', 'dynamic2048')
             default_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
             if kwargs.get('max_misses') is None:
@@ -234,9 +285,9 @@ class SweepManager:
             self._check_sweep_disk(cfg, controls['count'])
             directory = RUNS_DIR / '<new-run>'
             cmd = self._scan_command(directory/'policy.yaml', directory, controls['count'], first,
-                                     controls['threads'], controls['batch_size'], controls['max_misses'])
+                                     controls['threads'], controls['batch_size'], controls['max_misses'],catalog_root=catalog_root)
             return {'ok': True, 'effectiveConfig': cfg,
-                    'launch': self._launch_receipt(cmd, cfg, controls, 'preview')}
+                    'launch': self._launch_receipt(cmd, cfg,dict(controls,catalog_enabled=catalog_root is not None,catalog_root=catalog_root), 'preview')}
         except (ValueError, KeyError, TypeError, OSError, RuntimeError) as exc:
             return {'ok': False, 'error': str(exc)}
 
@@ -250,11 +301,14 @@ class SweepManager:
         start_index: int | str = 0,
         profile: str = 'dynamic2048',
         biomes: list | None = None,
+        catalog_enabled: bool = False,
+        catalog_root: str | None = None,
     ) -> dict:
         default_misses = 0 if profile == 'dynamic2048' else (3 if profile == 'dynamic1664' else 2)
         if max_misses is None:
             max_misses = default_misses
         try:
+            catalog_root=self._public_catalog_root(catalog_enabled,catalog_root)
             cfg,start_index=self._resolve_sweep(count,threads,batch_size,max_misses,counts,start_index,profile,biomes)
             if not (DEFAULT_NATIVE_BUILD/'identity.json').is_file():raise ValueError('Native search build is unavailable; rebuild the active engine')
             from seed_search.realm.native_batch import Prototype
@@ -296,11 +350,12 @@ class SweepManager:
                 self.candidates = []
                 self.candidate_total = 0
 
-                cmd = self._scan_command(policy_path, self.run_dir, count, start_index, threads, batch_size, max_misses)
+                cmd = self._scan_command(policy_path, self.run_dir, count, start_index, threads, batch_size, max_misses,catalog_root=catalog_root)
                 receipt = self._launch_receipt(cmd, cfg, {
                     'count': count, 'start_index': str(start_index), 'threads': threads,
                     'batch_size': batch_size, 'max_misses': max_misses, 'profile': profile,
                     'biomes': cfg['biomes']['required_families'],
+                    'catalog_enabled':catalog_root is not None,'catalog_root':catalog_root,
                 }, 'scan')
                 (self.run_dir/'launch.json').write_text(json.dumps(receipt, indent=2)+'\n')
 
@@ -423,7 +478,8 @@ class SweepManager:
                 self.start_time=time.time();self.end_time=0.;self.seeds_per_sec=0.;self.history=[0]*12
                 self.status='running';self.error_message=None
                 self._last_candidates_sig=None
-                self._query_sqlite_candidates()
+                self.candidates = []
+                self._query_sqlite_progress()
                 python=PROJECT_ROOT/'.venv'/'bin'/'python'
                 cmd=[str(python) if python.exists() else sys.executable,'-m','seed_search','resume',
                      '--run',str(directory),'--native-build',str(identity['native_build']),'--prediction-scale']
@@ -482,7 +538,6 @@ class SweepManager:
             self.status = 'paused'
             self.process = None
             self._query_sqlite_progress()
-            self._query_sqlite_candidates()
             self.logs.insert(0, f'Sweep paused at {self.scanned_count:,} durable inputs; unfinished leases remain retryable')
             return {'ok': True, 'status': 'paused', 'scannedCount': self.scanned_count, 'runId': self.run_id}
 
@@ -508,7 +563,6 @@ class SweepManager:
             elapsed = max(0.001, self.end_time - self.start_time)
             # Sync from SQLite
             self._query_sqlite_progress()
-            self._query_sqlite_candidates()
             self.seeds_per_sec=round(max(0,self.scanned_count-self.resume_baseline)/elapsed)
             self._record_throughput(self.seeds_per_sec)
 
@@ -529,7 +583,31 @@ class SweepManager:
                     )
 
     def _query_sqlite_progress(self):
-        """Queries realm.sqlite for exact progress."""
+        """Read bounded scalar telemetry from one durable snapshot; preserve stale values on error."""
+        if not self.run_dir:
+            self.progress_read_error = None
+            return
+        db_path = self.run_dir / "realm.sqlite"
+        conn = None
+        try:
+            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True, timeout=0.2)
+            conn.execute('BEGIN')
+            row = conn.execute("SELECT value FROM meta WHERE key='completed_seeds'").fetchone()
+            if row is None:
+                raise ValueError('Durable progress is unavailable')
+            completed = int(row[0])
+            count = conn.execute('SELECT count(*) FROM candidates').fetchone()[0]
+            self.scanned_count, self.candidate_total = completed, int(count)
+            self.progress_updated_at = time.time()
+            self.progress_read_error = None
+        except (sqlite3.Error, OSError, ValueError, TypeError) as exc:
+            self.progress_read_error = f'Durable telemetry unavailable: {exc}'
+        finally:
+            if conn is not None:
+                conn.close()
+
+    def _query_sqlite_candidate_count(self):
+        """Lightweight count query without scanning or parsing candidate rows."""
         if not self.run_dir:
             return
         db_path = self.run_dir / "realm.sqlite"
@@ -537,12 +615,12 @@ class SweepManager:
             return
         conn = None
         try:
-            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True, timeout=0.2)
             cur = conn.cursor()
-            cur.execute("SELECT value FROM meta WHERE key = 'completed_seeds'")
-            row = cur.fetchone()
-            if row and row[0]:
-                self.scanned_count = int(row[0])
+            cur.execute("SELECT count(*) FROM candidates")
+            crow = cur.fetchone()
+            if crow and crow[0] is not None:
+                self.candidate_total = int(crow[0])
         except Exception:
             pass
         finally:
@@ -596,63 +674,73 @@ class SweepManager:
             self.process = None
             return {'ok': True, 'status': 'stopped'}
 
-    def candidate_page(self, limit=100, offset=0):
+    def candidate_page(self, limit=100, offset=0, *, view="primary"):
         if type(limit) is not int or not 1 <= limit <= 250 or type(offset) is not int or not 0 <= offset <= 2**53-1:
             raise ValueError('Candidate pages require limit 1–250 and a nonnegative safe integer offset')
+        if view not in ("primary", "reserve"):
+            raise ValueError("Expected primary or reserve candidate view")
         with self.lock:
-            return self._query_sqlite_candidates(limit, offset, publish=False)
+            run_dir = self.run_dir
+            run_id = self.run_id
+            generation = self.generation
 
-    def _query_sqlite_candidates(self, limit=250, offset=0, *, publish=True):
-        """Read one bounded, canonically ordered page from the durable leaderboard."""
-        empty = {'candidates': [], 'total': 0, 'offset': offset, 'limit': limit,
-                 'runId': getattr(self, 'run_id', None)}
-        if not self.run_dir:
+        empty = {
+            'candidates': [],
+            'total': 0,
+            'offset': offset,
+            'limit': limit,
+            'runId': run_id,
+            'generation': generation,
+        }
+        if not run_dir:
             return empty
-        db_path = self.run_dir / "realm.sqlite"
+
+        # Query outside manager lock
+        page = (self._read_candidate_page(run_dir, run_id, generation, limit, offset) if view=="primary" else self._read_candidate_page(run_dir, run_id, generation, limit, offset, view=view))
+
+        # Only publish total to manager if run/generation has not changed
+        total = page.get('total')
+        if total is not None and view == 'primary':
+            with self.lock:
+                if self.generation == generation and self.run_dir == run_dir:
+                    self.candidate_total = total
+
+        return page
+
+    def _read_candidate_page(self, run_dir, run_id, generation, limit=100, offset=0, *, view="primary"):
+        empty = {
+            'candidates': [],
+            'total': 0,
+            'offset': offset,
+            'limit': limit,
+            'runId': run_id,
+            'generation': generation,
+        }
+        if not run_dir:
+            return empty
+        db_path = Path(run_dir) / "realm.sqlite"
         if not db_path.exists():
             return empty
 
         conn = None
         try:
-            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True, timeout=0.2)
             conn.execute("BEGIN")  # Count and page share one WAL read snapshot.
             cur = conn.cursor()
 
-            wal_path = self.run_dir / "realm.sqlite-wal"
-            wal_stat = (wal_path.stat().st_mtime_ns if wal_path.exists() else 0,
-                        wal_path.stat().st_size if wal_path.exists() else 0)
-            db_mtime = db_path.stat().st_mtime_ns
-
-            cur.execute("PRAGMA data_version")
-            data_ver = cur.fetchone()[0]
-
-            # Dirtiness check before re-parsing
             cur.execute("SELECT count(*) FROM candidates")
             cand_sig = cur.fetchone()
+            total = cand_sig[0] if cand_sig and cand_sig[0] is not None else 0
+
             cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='variants'")
             has_variants = bool(cur.fetchone())
-            var_sig = None
-            if has_variants:
-                cur.execute("SELECT count(*), max(rowid) FROM variants")
-                var_sig = cur.fetchone()
-            cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='observations'")
-            has_obs = bool(cur.fetchone())
-            obs_sig = None
-            if has_obs:
-                cur.execute("SELECT count(*), max(rowid) FROM observations")
-                obs_sig = cur.fetchone()
-
-            sig = (str(self.run_dir), cand_sig, var_sig, obs_sig, db_mtime, wal_stat, data_ver)
-            if publish and getattr(self, '_last_candidates_sig', None) == sig and self.candidates:
-                return
-            if publish:
-                self._last_candidates_sig = sig
 
             from seed_search.realm.leaderboard import order_for
             try:
                 order = order_for(conn)
             except Exception:
                 order = "ranking_tier,unmet_requirements,smart_score DESC,id"
+
             cur.execute(f"""
                 SELECT id, seed, smart_score, result,
                        ranking_tier, unmet_requirements
@@ -660,6 +748,26 @@ class SweepManager:
                 ORDER BY {order} LIMIT ? OFFSET ?
             """, (limit, offset))
             top_rows = cur.fetchall()
+            reserve_meta = {}
+            policy_row = conn.execute("SELECT value FROM meta WHERE key='top_selection'").fetchone()
+            if policy_row:
+                from seed_search.realm.reserve import selection_policy
+                saved = json.loads(policy_row[0])
+                policy = selection_policy(saved['top_k'], saved=saved)
+                if policy['reserve_factor'] == 2 and policy['top_k']:
+                    total_retained = conn.execute("SELECT count(*) FROM top_candidates").fetchone()[0]
+                    primary_count = min(policy['top_k'], total_retained)
+                    reserve_count = max(0,total_retained-policy['top_k'])
+                    lo,hi = (0,policy['top_k']) if view == 'primary' else (policy['top_k'],policy['candidate_capacity'])
+                    retained = conn.execute("SELECT rank,seed,score,result FROM top_candidates WHERE rank>? AND rank<=? ORDER BY rank LIMIT ? OFFSET ?", (lo,hi,limit,offset)).fetchall()
+                    top_rows=[]
+                    for rank,seed,score,raw in retained:
+                        record=json.loads(raw); anchor=record['anchors'][0]
+                        top_rows.append((anchor.get('id',seed),seed,score,json.dumps(anchor),record.get('ranking_tier',anchor.get('ranking_tier')),record.get('unmet_requirements',anchor.get('unmet_requirements',0))))
+                    total = primary_count if view == 'primary' else reserve_count
+                    reserve_meta = dict(candidate_policy=policy,primary_count=primary_count,reserve_count=reserve_count,view=view,evidence_status='predicted')
+            if view == 'reserve' and not reserve_meta:
+                top_rows=[];total=0
 
             v_map = {}
             if has_variants and top_rows:
@@ -728,36 +836,56 @@ class SweepManager:
                 if cand:
                     parsed.append(cand)
 
-            if publish:
-                self.candidates = parsed
-                self.candidate_total = cand_sig[0]
-            return {**empty, 'candidates': parsed, 'total': cand_sig[0]}
-        except Exception as e:
-            if not publish:
-                raise
-            self.logs.insert(0, f"Error reading candidates DB: {e}")
+            return {
+                'candidates': parsed,
+                **reserve_meta,
+                'total': total,
+                'offset': offset,
+                'limit': limit,
+                'runId': run_id,
+                'generation': generation,
+            }
         finally:
             if conn:
                 try: conn.close()
                 except Exception: pass
 
-    def get_status(self) -> dict:
+    def _query_sqlite_candidates(self, limit=250, offset=0, *, publish=True):
+        """Read one bounded, canonically ordered page from the durable leaderboard."""
+        empty = {'candidates': [], 'total': 0, 'offset': offset, 'limit': limit,
+                 'runId': getattr(self, 'run_id', None), 'generation': getattr(self, 'generation', 0)}
+        if not self.run_dir:
+            return empty
+        try:
+            res = self._read_candidate_page(self.run_dir, self.run_id, self.generation, limit, offset)
+            if publish:
+                self.candidates = res['candidates']
+                self.candidate_total = res['total']
+            return res
+        except Exception as e:
+            if not publish:
+                raise
+            self.logs.insert(0, f"Error reading candidates DB: {e}")
+            return empty
+
+    def get_status(self, include_candidates: bool = False) -> dict:
         with self.lock:
             now = time.time()
             if self.status == "running":
                 elapsed = max(0, now - self.start_time)
                 self._query_sqlite_progress()
-                self._query_sqlite_candidates()
                 if self.status == "running":
-                    self.seeds_per_sec=round(max(0,self.scanned_count-self.resume_baseline)/max(0.001,elapsed))
+                    self.seeds_per_sec = round(max(0, self.scanned_count - self.resume_baseline) / max(0.001, elapsed))
                 else:
                     self.seeds_per_sec = 0
             elif self.end_time > 0:
                 elapsed = self.end_time - self.start_time
-                if self.scanned_count == 0 and self.run_dir:
+                if self.run_dir:
                     self._query_sqlite_progress()
             else:
                 elapsed = 0
+                if self.run_dir:
+                    self._query_sqlite_progress()
 
             active_pid = getattr(self.process, 'pid', None) if self.status == 'running' and self.process is not None and self.process.poll() is None else None
             resources = process_tree_resources(active_pid) if active_pid is not None else {'available': False}
@@ -772,7 +900,26 @@ class SweepManager:
                 else 0
             )
 
+            candidates = []
+            if include_candidates:
+                try:
+                    candidates = self._query_sqlite_candidates(limit=100, publish=False).get('candidates', [])
+                except Exception:
+                    candidates = []
+
             return {
+                "statusSchemaVersion": 2,
+                "runtimeIdentity": {
+                    "processStartedAt": RUNTIME_IDENTITY["processStartedAt"],
+                    "pid": RUNTIME_IDENTITY["pid"],
+                    "processStartedAtSource": RUNTIME_IDENTITY["processStartedAtSource"],
+                    "loadedServerSourceSha256": RUNTIME_IDENTITY["loadedServerSourceSha256"],
+                    "nativeBuild": dict(RUNTIME_IDENTITY["nativeBuild"]),
+                },
+                "generation": self.generation,
+                "candidatePageUrl": "/api/candidates",
+                "progressReadError": getattr(self, "progress_read_error", None),
+                "progressUpdatedAt": getattr(self, "progress_updated_at", None),
                 "status": self.status,
                 "error": self.error_message,
                 "runId": self.run_id,
@@ -787,12 +934,12 @@ class SweepManager:
                 "sweepProgress": min(100.0, progress_pct),
                 "memoryRssGib": rss_gib,
                 "activeThreads": self.threads if self.status == "running" else 0,
-                "throughputScope":"new durable SQLite completed inputs / current invocation wall seconds",
-                "effectiveConfig":self.effective_config,
-                "launch":self.launch_receipt,
+                "throughputScope": "new durable SQLite completed inputs / current invocation wall seconds",
+                "effectiveConfig": self.effective_config,
+                "launch": self.launch_receipt,
                 "history": list(self.history),
                 "logs": self.logs[:30],
-                "candidates": self.candidates,
+                "candidates": candidates,
             }
 
     def verify_bds_candidate(self, seed: str | int | None = None, candidate_id: str | None = None) -> dict:
@@ -1197,11 +1344,19 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
         url = urlparse(self.path)
         path = url.path
 
+        if path.startswith('/api/catalog/'):
+            from .catalog_routes import get
+            get(self)
+            return
+
         if path == "/api/sweep/status":
+            params = parse_qs(url.query)
+            embed_candidates = params.get('embed_candidates', ['0'])[0] in ('1', 'true', 'True') or \
+                               params.get('include_candidates', ['0'])[0] in ('1', 'true', 'True')
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            status = MANAGER.get_status()
+            status = MANAGER.get_status(include_candidates=True) if embed_candidates else MANAGER.get_status()
             self.wfile.write(json.dumps(status).encode("utf-8"))
             return
 
@@ -1217,7 +1372,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
             try:
                 limit = int(params.get('limit', ['100'])[0])
                 offset = int(params.get('offset', ['0'])[0])
-                page = MANAGER.candidate_page(limit, offset)
+                page = MANAGER.candidate_page(limit, offset, view=params.get("view", ["primary"])[0])
             except ValueError as exc:
                 self.send_response(400)
                 self.send_header("Content-Type", "application/json")
@@ -1358,6 +1513,16 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 reject("Referer is not allowed", 403)
                 return
 
+        if path in ('/api/catalog/query', '/api/catalog/product-results', '/api/catalog/biome-scope', '/api/catalog/automation-control'):
+            from .catalog_routes import read_body, post
+            try:
+                payload = read_body(self)
+            except (ValueError, UnicodeError):
+                reject('Invalid Catalog JSON request')
+                return
+            post(self, payload)
+            return
+
         if path not in ('/api/sweep/start', '/api/sweep/preview', '/api/sweep/stop', '/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/pause', '/api/sweep/continue', '/api/bds/verify'):
             reject('Unknown endpoint', 404)
             return
@@ -1379,7 +1544,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 if not isinstance(req_data, dict):
                     raise ValueError('JSON body must be an object')
                 allowed = (
-                    {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts', 'profile', 'biomes'}
+                    {'count', 'startIndex', 'threads', 'batchSize', 'maxMisses', 'counts', 'profile', 'biomes', 'catalogEnabled', 'catalogRoot'}
                     if path in ('/api/sweep/start','/api/sweep/preview')
                     else {'runId'}
                     if path in ('/api/sweep/resume', '/api/sweep/select-run', '/api/sweep/continue')
@@ -1413,6 +1578,7 @@ class WebSearchHandler(http.server.SimpleHTTPRequestHandler):
                 start_index=req_data.get('startIndex',0),
                 profile=profile,
                 biomes=req_data.get('biomes'),
+                catalog_enabled=req_data.get('catalogEnabled',False),catalog_root=req_data.get('catalogRoot'),
             )
             self.send_response(200 if result.get("ok") else 400)
             self.send_header("Content-Type", "application/json")

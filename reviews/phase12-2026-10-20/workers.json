@@ -1,0 +1,126 @@
+{
+  "successful_coding_workers": [
+    {
+      "scope": "evidence",
+      "task_id": "d3e3ccf38827",
+      "state": "succeeded",
+      "model": "gemini-3.8-flash-high",
+      "reasoning_effort": "high",
+      "launch_effort": "high",
+      "provider_status": "SUCCESS",
+      "process_exit": 0,
+      "denied_actions": [],
+      "changed_files": [
+        "scripts/bds_verify_finalist.py",
+        "scripts/calibrate_player_weights.py",
+        "scripts/extract_player_metrics.py",
+        "src/seed_search/realm/structure_accuracy.py",
+        "tests/test_evidence_calibration_contracts.py",
+        "tests/test_player_calibration.py",
+        "tests/test_structure_accuracy.py"
+      ],
+      "coordinator_checks": [
+        {
+          "argv": [
+            "python3",
+            "-c",
+            "import sys,os;sys.path.insert(0,'/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-deps');import seed_search;seed_search.__path__.append('/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-native');os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1';import pytest;raise SystemExit(pytest.main(['tests/test_evidence_calibration_contracts.py','-q','-p','no:cacheprovider','--basetemp',os.environ['TMPDIR']+'/checks']))"
+          ],
+          "exit_status": 0,
+          "stdout_tail": ".....................                                                    [100%]\n21 passed in 1.47s\n",
+          "stderr_tail": ""
+        }
+      ],
+      "usage": {
+        "input_tokens": 133784,
+        "output_tokens": 56697,
+        "thinking_tokens": 33602,
+        "cache_read_tokens": 1118203,
+        "total_tokens": 190481
+      },
+      "codex_review": "Reviewed baseline-safe integration; follow-up integration fixes and independent checks documented in REPORT.md"
+    },
+    {
+      "scope": "telemetry",
+      "task_id": "5a3257ab3dce",
+      "state": "succeeded",
+      "model": "gemini-3.8-flash-high",
+      "reasoning_effort": "high",
+      "launch_effort": "high",
+      "provider_status": "SUCCESS",
+      "process_exit": 0,
+      "denied_actions": [],
+      "changed_files": [
+        "src/seed_search/web/server.py",
+        "tests/test_telemetry_contracts.py"
+      ],
+      "coordinator_checks": [
+        {
+          "argv": [
+            "python3",
+            "-c",
+            "import sys,os;sys.path.insert(0,'/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-deps');import seed_search;seed_search.__path__.append('/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-native');os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1';import pytest;raise SystemExit(pytest.main(['tests/test_telemetry_contracts.py','-q','-p','no:cacheprovider','--basetemp',os.environ['TMPDIR']+'/checks']))"
+          ],
+          "exit_status": 0,
+          "stdout_tail": ".......                                                                  [100%]\n7 passed in 0.26s\n",
+          "stderr_tail": ""
+        }
+      ],
+      "usage": {
+        "input_tokens": 205859,
+        "output_tokens": 60035,
+        "thinking_tokens": 44498,
+        "cache_read_tokens": 3239788,
+        "total_tokens": 265894
+      },
+      "codex_review": "Reviewed baseline-safe integration; follow-up integration fixes and independent checks documented in REPORT.md"
+    },
+    {
+      "scope": "frontend",
+      "task_id": "c8f303db26d4",
+      "state": "succeeded",
+      "model": "gemini-3.8-flash-high",
+      "reasoning_effort": "high",
+      "launch_effort": "high",
+      "provider_status": "SUCCESS",
+      "process_exit": 0,
+      "denied_actions": [],
+      "changed_files": [
+        "tests/test_network_contracts.cjs",
+        "web-ui/src/App.tsx",
+        "web-ui/src/components/MapCanvas.tsx",
+        "web-ui/src/components/TelemetryBar.tsx",
+        "web-ui/src/types.ts",
+        "web-ui/src/utils/network.ts"
+      ],
+      "coordinator_checks": [
+        {
+          "argv": [
+            "node",
+            "-e",
+            "process.env.SEED_SEARCH_TYPESCRIPT_PATH='/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-web-node_modules/typescript';require('./tests/test_network_contracts.cjs')"
+          ],
+          "exit_status": 0,
+          "stdout_tail": "Running test suite for network contracts...\n\u2713 Test 1: Successful GET request passed\n\u2713 Test 2: Successful POST request passed\n\u2713 Test 3: Hung fetch timeout passed\n\u2713 Test 4: External signal abort passed\n\u2713 Test 5: Explicit HTTP 503 error handling passed\n\u2713 Test 6: Malformed response error handling passed\n\u2713 Test 7: Bounded polling backoff passed\n\u2713 Test 8: Connection status determination & recovery passed\n\u2713 Test 9: Generation and runId stale response guards passed\n\u2713 Test 10: Last contact timestamp formatting passed\n\u2713 Test 11: End-to-end failure and recovery cycle passed\n\u2713 Test 12: Scoped syntax/transpile verification of all owned files passed\n\nAll 12 network contract and frontend contract tests passed successfully!\n",
+          "stderr_tail": ""
+        }
+      ],
+      "usage": {
+        "input_tokens": 374645,
+        "output_tokens": 77416,
+        "thinking_tokens": 38435,
+        "cache_read_tokens": 4285588,
+        "total_tokens": 452061
+      },
+      "codex_review": "Reviewed baseline-safe integration; follow-up integration fixes and independent checks documented in REPORT.md"
+    }
+  ],
+  "additional_task": {
+    "task_id": "f362223e0a6e",
+    "scope": "preexisting diagnostic builder repair",
+    "state": "failed",
+    "reason": "timeout",
+    "accepted_patch": false,
+    "resolution": "Codex repaired and independently verified fresh build and 405 comparisons"
+  }
+}

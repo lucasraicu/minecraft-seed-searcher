@@ -514,8 +514,9 @@ static NBBatch *nb_run(const uint64_t *seeds,const NBFixture *fixtures,int count
         if(p->dynamic_v2 && (p->required_biome_mask & ~8191u))return NULL;
         int is_v3 = (p->overworld_half == 1024);
         if(is_v3 && !p->dynamic_v2) return NULL;
+        if(p->refine_centers<0||p->refine_centers>1||(!is_v3&&p->refine_centers))return NULL;
         const int floors_v2[13]={1,2,2,1,3,8,7,5,4,12,2,2,2};
-        const int floors_v3[13]={1,1,1,1,2,6,8,8,4,10,1,2,1};
+        const int floors_v3[13]={1,0,1,1,2,6,8,8,4,10,1,2,1};
         const unsigned int flexible=(1u<<1)|(1u<<2)|(1u<<4)|(1u<<5)|
             (1u<<6)|(1u<<7)|(1u<<8)|(1u<<9);
         const int *expected_floors = is_v3 ? floors_v3 : floors_v2;

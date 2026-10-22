@@ -5,6 +5,99 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <float.h>
+#include <limits.h>
+
+#if defined(__FAST_MATH__)
+#error "Biome selection requires IEEE float ordering; fast-math is unsupported"
+#endif
+
+static int floorEight(int v)
+{
+    return v / 8 - (v < 0 && v % 8 != 0);
+}
+
+int getBedrockBiomeQuart(uint64_t seed, int x, int y, int z, int out[3])
+{
+    if (!out) return -1;
+    int base[3] = {floorEight(x), floorEight(y), floorEight(z)};
+    float t[3] = {((uint32_t)x & 7) * 0.125f,
+                  ((uint32_t)y & 7) * 0.125f,
+                  ((uint32_t)z & 7) * 0.125f};
+    float best = FLT_MAX;
+    for (int dx = 0; dx < 2; dx++)
+    for (int dz = 0; dz < 2; dz++)
+    for (int dy = 0; dy < 2; dy++)
+    {
+        int cx = base[0] + dx, cy = base[1] + dy, cz = base[2] + dz;
+        /* The X/Y part truncates to int32 before sign extension. The Z
+         * product and subsequent quadratic/LCG steps wrap at 64 bits. */
+        uint32_t a = (uint32_t)cx * UINT32_C(3129871) ^ (uint32_t)cy;
+        int64_t sx = (a & UINT32_C(0x80000000)) ?
+                     (int64_t)a - INT64_C(4294967296) : (int64_t)a;
+        uint64_t n = (uint64_t)sx ^ ((uint64_t)(int64_t)cz * UINT64_C(116129781));
+        n *= n * UINT64_C(42317861) + 11;
+        uint64_t state = (n >> 16) ^ ((uint64_t)(uint32_t)seed ^ UINT64_C(0x5deece66d));
+        float jitter[3];
+        for (int i = 0; i < 3; i++)
+        {
+            state = state * UINT64_C(0x5deece66d) + 11;
+            float unit = (float)((state >> 24) & UINT64_C(0xffffff)) * 0x1p-24f;
+            jitter[i] = (unit - 0.5f) * 0.9f;
+        }
+        float vx = (t[0] - dx) + jitter[0];
+        float vy = (t[1] - dy) + jitter[1];
+        float vz = (t[2] - dz) + jitter[2];
+        /* Explicit rounding also prevents contraction on FMA-capable hosts. */
+        volatile float xx = vx * vx, yy = vy * vy, zz = vz * vz;
+        volatile float xy = xx + yy;
+        float distance = xy + zz;
+        if (distance < best)
+        {
+            best = distance;
+            out[0] = cx * 2; out[1] = cy * 2; out[2] = cz * 2;
+        }
+    }
+    return 0;
+}
+
+int getBedrockNetherQuart(uint64_t seed, int x, int z, int out[2])
+{
+    /* Source: Bedrock 26.50 Pos2d Zoom4xVoronoi. Keep the subtract-two,
+     * corner coordinates and coordinate*4 representable in signed int. */
+    if (!out || x < INT_MIN + 2 || z < INT_MIN + 2 ||
+        x > INT_MAX - 5 || z > INT_MAX - 5)
+        return -1;
+    int bx = floordiv(x - 2, 4), bz = floordiv(z - 2, 4);
+    float fx = (x - 2) - 4 * bx, fz = (z - 2) - 4 * bz;
+    uint64_t salt = getStartSalt(seed, getLayerSalt(10));
+    uint64_t start = mcStepSeed(salt, 0);
+    float distance[4];
+    for (int k = 0; k < 4; k++)
+    {
+        int dx = k & 1, dz = k >> 1;
+        uint64_t state = getChunkSeed(start, (bx + dx) * 4, (bz + dz) * 4);
+        /* The original chunk state supplies X; its next step supplies Z.
+         * Explicit binary32 rounding prevents host FMA contraction. */
+        volatile float ux = ((state >> 24) & 1023) * 0x1p-10f;
+        volatile float sx = ux - 0.5f;
+        volatile float jx = sx * 3.6f;
+        state = mcStepSeed(state, salt);
+        volatile float uz = ((state >> 24) & 1023) * 0x1p-10f;
+        volatile float sz = uz - 0.5f;
+        volatile float jz = sz * 3.6f;
+        float vx = fx - (jx + dx * 4.0f);
+        float vz = fz - (jz + dz * 4.0f);
+        volatile float xx = vx * vx, zz = vz * vz;
+        distance[k] = xx + zz;
+    }
+    /* Strict comparisons, including the source's final-corner tie fallback. */
+    int k = distance[0] < distance[1] && distance[0] < distance[2] && distance[0] < distance[3] ? 0 :
+            distance[1] < distance[0] && distance[1] < distance[2] && distance[1] < distance[3] ? 1 :
+            distance[2] < distance[0] && distance[2] < distance[1] && distance[2] < distance[3] ? 2 : 3;
+    out[0] = bx + (k & 1); out[1] = bz + (k >> 1);
+    return 0;
+}
 
 
 int mapOceanMixMod(const Layer * l, int * out, int x, int z, int w, int h)
@@ -254,6 +347,25 @@ int genBiomes(const Generator *g, int *cache, Range r)
         }
         else if (g->mc >= MC_1_18)
         {
+            if (g->mc == MC_26_50 && r.scale == 1)
+            {
+                int sy = r.sy ? r.sy : 1;
+                if (r.sx < 1 || r.sz < 1 || sy < 1 ||
+                    (int64_t)r.x + r.sx - 1 > INT_MAX ||
+                    (int64_t)r.y + sy - 1 > INT_MAX ||
+                    (int64_t)r.z + r.sz - 1 > INT_MAX)
+                    return -1;
+                size_t index = 0;
+                for (int iy = 0; iy < sy; iy++)
+                for (int iz = 0; iz < r.sz; iz++)
+                for (int ix = 0; ix < r.sx; ix++)
+                {
+                    int q[3];
+                    getBedrockBiomeQuart(g->seed, r.x + ix, r.y + iy, r.z + iz, q);
+                    cache[index++] = sampleBiomeNoise(&g->bn, NULL, q[0], q[1], q[2], NULL, 0);
+                }
+                return 0;
+            }
             return genBiomeNoiseScaled(&g->bn, cache, r, g->sha);
         }
         else // g->mc <= MC_B1_7
@@ -279,6 +391,26 @@ int genBiomes(const Generator *g, int *cache, Range r)
     }
     else if (g->dim == DIM_NETHER)
     {
+        if (g->mc == MC_26_50 && r.scale == 1)
+        {
+            int sy = r.sy ? r.sy : 1;
+            if (!cache || r.sx < 1 || r.sz < 1 || sy < 1 ||
+                (int64_t)r.x + r.sx - 1 > INT_MAX ||
+                (int64_t)r.z + r.sz - 1 > INT_MAX)
+                return -1;
+            size_t plane = (size_t)r.sx * r.sz, index = 0;
+            if (plane > SIZE_MAX / (size_t)sy / sizeof(*cache)) return -1;
+            for (int iz = 0; iz < r.sz; iz++)
+            for (int ix = 0; ix < r.sx; ix++)
+            {
+                int q[2];
+                if (getBedrockNetherQuart(g->seed, r.x + ix, r.z + iz, q)) return -1;
+                cache[index++] = getNetherBiome(&g->nn, q[0], 0, q[1], NULL);
+            }
+            for (int iy = 1; iy < sy; iy++)
+                memcpy(cache + (size_t)iy * plane, cache, plane * sizeof(*cache));
+            return 0;
+        }
         return genNetherScaled(&g->nn, cache, r, g->mc, g->sha);
     }
     else if (g->dim == DIM_END)

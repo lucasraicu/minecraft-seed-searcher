@@ -1,0 +1,41 @@
+{
+  "identity": {
+    "edition": "bedrock",
+    "extractor_revision": "cpu-catalog-reference-v1",
+    "game_build_id": "research:26.50",
+    "model_id": "26.50",
+    "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+    "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+    "seed": "0",
+    "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+    "world_settings_id": "default"
+  },
+  "options": {
+    "native_build": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-corrected-openmp-2026-10-21",
+    "native_pin": {
+      "extension_sha256": "3fbb286e4f06a4726e3c1e7216a5aad4d30f2abc6b0bf7b97532bf085b372687",
+      "policy_sha256": "4472d9225853df396bb8fb236516f46c1fbcf555547882df5913d19401eadb02",
+      "record_adapter_sha256": "6620bd89e2d3622976ec8d29fea12aaca39c64b4dff3b9e02ed18fb73b4db382",
+      "record_sources_sha256": {
+        "native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808",
+        "native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49"
+      },
+      "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6"
+    },
+    "spawn": {
+      "binary_sha256": "7763211a78bf626caaa645a19b9293af6d9cd4eec14f9a88c2039728f8a27704",
+      "executable": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/spawn-correction-approved-20261021/world-spawn-reference",
+      "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a"
+    }
+  },
+  "policy_contract": "0fe1c271856420827d1c8330bbd0d8a13e3f19aaa4bc0af475192d0a26d71ec0",
+  "policy_revision": "1b3ff7b9cd1897444ff3747825c7f1ac6eba4ccbcc544b2a0f6ff23a39835e9b",
+  "registry_artifact": {
+    "byte_length": 2589,
+    "codec": "gzip",
+    "relative_key": "af/af9c30a7076cef93aa9bb96bbe7d315b71aab35f03f02ad258cf86a4e0cf33c1.json.gz",
+    "sha256": "af9c30a7076cef93aa9bb96bbe7d315b71aab35f03f02ad258cf86a4e0cf33c1",
+    "uncompressed_length": 23478
+  },
+  "revision": "catalog-automation-config-v3"
+}

@@ -1,0 +1,34 @@
+{
+  "validate_queries.py": {
+    "script": "validate_queries.py",
+    "exit": 0,
+    "failure": null,
+    "wall_seconds": 95.39851189299952,
+    "sampled_peak_aggregate_rss_bytes": 263405568,
+    "max_children_including_tracker": 3,
+    "scope": "Owned benchmark parent+descendants+monitor RSS sampled at100ms,600s/2GiB/512MiB limits; no seed generation"
+  },
+  "accuracy_http.py": {
+    "script": "accuracy_http.py",
+    "exit": 0,
+    "failure": null,
+    "wall_seconds": 19.968704847968183,
+    "sampled_peak_aggregate_rss_bytes": 321945600,
+    "max_children_including_tracker": 3,
+    "scope": "Owned benchmark parent+descendants+monitor RSS sampled at100ms,600s/2GiB/512MiB limits; no seed generation"
+  },
+  "cpu_pair.py": {
+    "script": "cpu_pair.py",
+    "exit": 0,
+    "failure": null,
+    "wall_seconds": 8.771381361992098,
+    "sampled_peak_aggregate_rss_bytes": 277233664,
+    "max_children_including_tracker": 3,
+    "scope": "Owned benchmark parent+descendants+monitor RSS sampled at100ms,600s/2GiB/512MiB limits; no seed generation"
+  },
+  "request_overhead": {
+    "description": "HTTP cold wall minus child query wall: includes IPC, serialization, scheduling and HTTP, not pure IPC",
+    "median_seconds": 0.0059323429595679045,
+    "maximum_seconds": 0.007900206022895873
+  }
+}

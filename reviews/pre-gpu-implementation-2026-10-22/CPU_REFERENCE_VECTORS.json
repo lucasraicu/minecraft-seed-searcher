@@ -1,0 +1,1319 @@
+{
+  "revision": "cpu-gpu-reference-vectors-v1",
+  "snapshot_id": "cd76367cbd7a679322048d534821f3017e98c9d7f57e7569568f65183074109d",
+  "registry_revision": "c65202c6f9f3da17be52d095308f4bd3748e6b3b7caf15d499f3588a717eb707",
+  "personal_config": {
+    "schema_version": 5,
+    "game": {
+      "edition": "bedrock",
+      "target_version": "26.52",
+      "backend_model": "MC_26_50",
+      "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+      "bds_version": "1.26.52.3"
+    },
+    "deployment": {
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 1024
+    },
+    "discovery": {
+      "overworld_bounds": [
+        -2000,
+        -2000,
+        2000,
+        2000
+      ],
+      "nether_bounds": [
+        -634,
+        -634,
+        634,
+        634
+      ]
+    },
+    "search": {
+      "mode": "prediction",
+      "sequence": "permutation",
+      "run_key": "0",
+      "workers": 30,
+      "max_workers": 36,
+      "numeric_threads_per_worker": 1,
+      "native_threads_per_worker": 1,
+      "batch_size": 32,
+      "pilot_limit": 1000,
+      "inventory_mode": "eligibility",
+      "memory_target_gib": 25,
+      "memory_ceiling_gib": 30,
+      "docker_reserve_gib": 8,
+      "run_disk_limit_bytes": 137438953472,
+      "free_disk_reserve_bytes": 17179869184,
+      "projected_bytes_per_seed": 65536,
+      "structure_order": [
+        "outpost",
+        "desert_pyramid",
+        "jungle_temple",
+        "ruined_portal",
+        "trial_chamber",
+        "mansion",
+        "ancient_city",
+        "village",
+        "mineshaft"
+      ],
+      "max_misses": 0,
+      "density_weights": {
+        "village": 3,
+        "trial_chamber": 2,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "outpost": 1
+      },
+      "centroid_weights": {
+        "village": 2,
+        "trial_chamber": 1,
+        "ruined_portal": 0,
+        "ancient_city": 2,
+        "outpost": 1,
+        "desert_pyramid": 2,
+        "jungle_temple": 2,
+        "mansion": 2,
+        "monument": 1,
+        "stronghold": 3,
+        "shipwreck": 0
+      },
+      "top_k": 50
+    },
+    "structures": {
+      "required": [
+        "stronghold",
+        "mansion",
+        "village",
+        "trial_chamber",
+        "ancient_city",
+        "desert_pyramid",
+        "jungle_temple",
+        "monument",
+        "ruined_portal",
+        "shipwreck",
+        "mineshaft",
+        "outpost"
+      ],
+      "minimum_counts": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1
+      },
+      "nether_required": [
+        "fortress",
+        "bastion"
+      ],
+      "nether_minimum_counts": {
+        "fortress": 1,
+        "bastion": 2
+      },
+      "optional_bonuses": {},
+      "deferred_until_coastal_terrain": [],
+      "hard_floors": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1,
+        "fortress": 1,
+        "bastion": 2
+      }
+    },
+    "biomes": {
+      "spacing": 64,
+      "sample_y": 63,
+      "lattice": "world",
+      "gate_batch_size": 16,
+      "refinement_budget": 128,
+      "wooded_minimum_families": 2,
+      "family_bonuses": {},
+      "variant_bonuses": {},
+      "sample_y_levels": [
+        63,
+        -48,
+        0,
+        160
+      ],
+      "required_families": [
+        "plains",
+        "desert",
+        "forest",
+        "taiga",
+        "jungle",
+        "swamp",
+        "snowy_ice",
+        "dark_forest",
+        "peaks",
+        "stony_shore",
+        "lush_caves",
+        "dripstone_caves",
+        "deep_dark"
+      ],
+      "include_frozen_peaks": true,
+      "nether_required": [
+        "nether_wastes",
+        "crimson_forest",
+        "warped_forest",
+        "soul_sand_valley",
+        "basalt_deltas"
+      ]
+    },
+    "scoring": {
+      "geometry_weight": 0.8,
+      "biome_fit_weight": 0.1,
+      "baseline_weight": 0.1,
+      "baseline_quality_cap": 60
+    },
+    "terrain": {
+      "variants": [],
+      "native_threads": 1,
+      "scheduler": "rotation",
+      "resolutions": [
+        128,
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "center_spacing": 64,
+      "refine_center_spacing": 16,
+      "rays": 32,
+      "maximum_refinements_per_anchor": 8
+    },
+    "bds": {
+      "enabled": true,
+      "version": "1.26.52.3",
+      "docker_cli": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "image": "bedrock-verification-poc:1.26.52.3",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "cpus": 4,
+      "memory_gib": 6,
+      "verification_budget": 20,
+      "persist_snapshot": false,
+      "compare_reference": true,
+      "maximum_region_side": 256
+    },
+    "caves": {
+      "automatic": false,
+      "y_levels": [
+        0,
+        -16,
+        -32,
+        -48
+      ],
+      "spacing": 64,
+      "maximum_samples": 10000
+    },
+    "contract": "master_seed_blueprint_v1",
+    "screening_revision": "dynamic-envelope-2048-v3"
+  },
+  "vectors": {
+    "full64": [
+      {
+        "index": "0",
+        "run_key": "0",
+        "seed": "0"
+      },
+      {
+        "index": "0",
+        "run_key": "2026101630",
+        "seed": "4866628588689169376"
+      },
+      {
+        "index": "0",
+        "run_key": "18446744073709551615",
+        "seed": "-5417735806833148549"
+      },
+      {
+        "index": "1",
+        "run_key": "0",
+        "seed": "6238072747940578789"
+      },
+      {
+        "index": "1",
+        "run_key": "2026101630",
+        "seed": "-3572271023798875124"
+      },
+      {
+        "index": "1",
+        "run_key": "18446744073709551615",
+        "seed": "0"
+      },
+      {
+        "index": "4294967295",
+        "run_key": "0",
+        "seed": "-8416449211058173572"
+      },
+      {
+        "index": "4294967295",
+        "run_key": "2026101630",
+        "seed": "5880694483245150497"
+      },
+      {
+        "index": "4294967295",
+        "run_key": "18446744073709551615",
+        "seed": "-7119326968386638323"
+      },
+      {
+        "index": "4294967296",
+        "run_key": "0",
+        "seed": "-2873094350627079873"
+      },
+      {
+        "index": "4294967296",
+        "run_key": "2026101630",
+        "seed": "-2532454922475788910"
+      },
+      {
+        "index": "4294967296",
+        "run_key": "18446744073709551615",
+        "seed": "-8416449211058173572"
+      },
+      {
+        "index": "9223372036854775807",
+        "run_key": "0",
+        "seed": "6514504133438201533"
+      },
+      {
+        "index": "9223372036854775807",
+        "run_key": "2026101630",
+        "seed": "-4900824828602016521"
+      },
+      {
+        "index": "9223372036854775807",
+        "run_key": "18446744073709551615",
+        "seed": "-4598122867410206937"
+      },
+      {
+        "index": "18446744073709551615",
+        "run_key": "0",
+        "seed": "-5417735806833148549"
+      },
+      {
+        "index": "18446744073709551615",
+        "run_key": "2026101630",
+        "seed": "628324203105586869"
+      },
+      {
+        "index": "18446744073709551615",
+        "run_key": "18446744073709551615",
+        "seed": "-2727240531557807870"
+      }
+    ],
+    "strided": [
+      {
+        "index": "0",
+        "low32": "0",
+        "seed": "0"
+      },
+      {
+        "index": "0",
+        "low32": "-1",
+        "seed": "4294967295"
+      },
+      {
+        "index": "0",
+        "low32": "2147483647",
+        "seed": "2147483647"
+      },
+      {
+        "index": "0",
+        "low32": "-9223372036854775808",
+        "seed": "0"
+      },
+      {
+        "index": "1",
+        "low32": "0",
+        "seed": "4294967296"
+      },
+      {
+        "index": "1",
+        "low32": "-1",
+        "seed": "8589934591"
+      },
+      {
+        "index": "1",
+        "low32": "2147483647",
+        "seed": "6442450943"
+      },
+      {
+        "index": "1",
+        "low32": "-9223372036854775808",
+        "seed": "4294967296"
+      },
+      {
+        "index": "4294967295",
+        "low32": "0",
+        "seed": "-4294967296"
+      },
+      {
+        "index": "4294967295",
+        "low32": "-1",
+        "seed": "-1"
+      },
+      {
+        "index": "4294967295",
+        "low32": "2147483647",
+        "seed": "-2147483649"
+      },
+      {
+        "index": "4294967295",
+        "low32": "-9223372036854775808",
+        "seed": "-4294967296"
+      }
+    ],
+    "signed_identity": [
+      {
+        "seed": "-9223372036854775808",
+        "little_endian_u64_hex": "0000000000000080"
+      },
+      {
+        "seed": "-1",
+        "little_endian_u64_hex": "ffffffffffffffff"
+      },
+      {
+        "seed": "0",
+        "little_endian_u64_hex": "0000000000000000"
+      },
+      {
+        "seed": "1",
+        "little_endian_u64_hex": "0100000000000000"
+      },
+      {
+        "seed": "9223372036854775807",
+        "little_endian_u64_hex": "ffffffffffffff7f"
+      }
+    ],
+    "floor8": [
+      {
+        "overworld": -30000000,
+        "nether": -3750000
+      },
+      {
+        "overworld": -9,
+        "nether": -2
+      },
+      {
+        "overworld": -8,
+        "nether": -1
+      },
+      {
+        "overworld": -7,
+        "nether": -1
+      },
+      {
+        "overworld": -1,
+        "nether": -1
+      },
+      {
+        "overworld": 0,
+        "nether": 0
+      },
+      {
+        "overworld": 1,
+        "nether": 0
+      },
+      {
+        "overworld": 7,
+        "nether": 0
+      },
+      {
+        "overworld": 8,
+        "nether": 1
+      },
+      {
+        "overworld": 9,
+        "nether": 1
+      },
+      {
+        "overworld": 30000000,
+        "nether": 3750000
+      }
+    ],
+    "borders": [
+      {
+        "anchor": [
+          -9,
+          -1
+        ],
+        "side": 2048,
+        "bounds": [
+          -1033,
+          -1025,
+          1015,
+          1023
+        ],
+        "points": [
+          {
+            "point": [
+              -1033,
+              -1025
+            ],
+            "inside": true,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              1015,
+              1023
+            ],
+            "inside": false,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              1014,
+              1022
+            ],
+            "inside": true,
+            "distance_squared": 2093058
+          },
+          {
+            "point": [
+              -9,
+              -1
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          -9,
+          -1
+        ],
+        "side": 4096,
+        "bounds": [
+          -2057,
+          -2049,
+          2039,
+          2047
+        ],
+        "points": [
+          {
+            "point": [
+              -2057,
+              -2049
+            ],
+            "inside": true,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              2039,
+              2047
+            ],
+            "inside": false,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              2038,
+              2046
+            ],
+            "inside": true,
+            "distance_squared": 8380418
+          },
+          {
+            "point": [
+              -9,
+              -1
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          -9,
+          -1
+        ],
+        "side": 8192,
+        "bounds": [
+          -4105,
+          -4097,
+          4087,
+          4095
+        ],
+        "points": [
+          {
+            "point": [
+              -4105,
+              -4097
+            ],
+            "inside": true,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              4087,
+              4095
+            ],
+            "inside": false,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              4086,
+              4094
+            ],
+            "inside": true,
+            "distance_squared": 33538050
+          },
+          {
+            "point": [
+              -9,
+              -1
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          0,
+          0
+        ],
+        "side": 2048,
+        "bounds": [
+          -1024,
+          -1024,
+          1024,
+          1024
+        ],
+        "points": [
+          {
+            "point": [
+              -1024,
+              -1024
+            ],
+            "inside": true,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              1024,
+              1024
+            ],
+            "inside": false,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              1023,
+              1023
+            ],
+            "inside": true,
+            "distance_squared": 2093058
+          },
+          {
+            "point": [
+              0,
+              0
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          0,
+          0
+        ],
+        "side": 4096,
+        "bounds": [
+          -2048,
+          -2048,
+          2048,
+          2048
+        ],
+        "points": [
+          {
+            "point": [
+              -2048,
+              -2048
+            ],
+            "inside": true,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              2048,
+              2048
+            ],
+            "inside": false,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              2047,
+              2047
+            ],
+            "inside": true,
+            "distance_squared": 8380418
+          },
+          {
+            "point": [
+              0,
+              0
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          0,
+          0
+        ],
+        "side": 8192,
+        "bounds": [
+          -4096,
+          -4096,
+          4096,
+          4096
+        ],
+        "points": [
+          {
+            "point": [
+              -4096,
+              -4096
+            ],
+            "inside": true,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              4096,
+              4096
+            ],
+            "inside": false,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              4095,
+              4095
+            ],
+            "inside": true,
+            "distance_squared": 33538050
+          },
+          {
+            "point": [
+              0,
+              0
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          30000000,
+          -30000000
+        ],
+        "side": 2048,
+        "bounds": [
+          29998976,
+          -30001024,
+          30001024,
+          -29998976
+        ],
+        "points": [
+          {
+            "point": [
+              29998976,
+              -30001024
+            ],
+            "inside": true,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              30001024,
+              -29998976
+            ],
+            "inside": false,
+            "distance_squared": 2097152
+          },
+          {
+            "point": [
+              30001023,
+              -29998977
+            ],
+            "inside": true,
+            "distance_squared": 2093058
+          },
+          {
+            "point": [
+              30000000,
+              -30000000
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          30000000,
+          -30000000
+        ],
+        "side": 4096,
+        "bounds": [
+          29997952,
+          -30002048,
+          30002048,
+          -29997952
+        ],
+        "points": [
+          {
+            "point": [
+              29997952,
+              -30002048
+            ],
+            "inside": true,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              30002048,
+              -29997952
+            ],
+            "inside": false,
+            "distance_squared": 8388608
+          },
+          {
+            "point": [
+              30002047,
+              -29997953
+            ],
+            "inside": true,
+            "distance_squared": 8380418
+          },
+          {
+            "point": [
+              30000000,
+              -30000000
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      },
+      {
+        "anchor": [
+          30000000,
+          -30000000
+        ],
+        "side": 8192,
+        "bounds": [
+          29995904,
+          -30004096,
+          30004096,
+          -29995904
+        ],
+        "points": [
+          {
+            "point": [
+              29995904,
+              -30004096
+            ],
+            "inside": true,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              30004096,
+              -29995904
+            ],
+            "inside": false,
+            "distance_squared": 33554432
+          },
+          {
+            "point": [
+              30004095,
+              -29995905
+            ],
+            "inside": true,
+            "distance_squared": 33538050
+          },
+          {
+            "point": [
+              30000000,
+              -30000000
+            ],
+            "inside": true,
+            "distance_squared": 0
+          }
+        ]
+      }
+    ],
+    "native_raw_village_attempts": [
+      {
+        "seed": "8395430397596713336",
+        "region": [
+          -2,
+          -1
+        ],
+        "position": [
+          -824,
+          -456
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "8395430397596713336",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "8395430397596713336",
+        "region": [
+          -1,
+          0
+        ],
+        "position": [
+          -264,
+          72
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "8395430397596713336",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "8395430397596713336",
+        "region": [
+          0,
+          0
+        ],
+        "position": [
+          200,
+          296
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "8395430397596713336",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "8395430397596713336",
+        "region": [
+          1,
+          1
+        ],
+        "position": [
+          760,
+          856
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "8395430397596713336",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "7486790262472894905",
+        "region": [
+          -2,
+          -1
+        ],
+        "position": [
+          -968,
+          -520
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "7486790262472894905",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "7486790262472894905",
+        "region": [
+          -1,
+          0
+        ],
+        "position": [
+          -360,
+          152
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "7486790262472894905",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "7486790262472894905",
+        "region": [
+          0,
+          0
+        ],
+        "position": [
+          88,
+          184
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "7486790262472894905",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "7486790262472894905",
+        "region": [
+          1,
+          1
+        ],
+        "position": [
+          936,
+          792
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "7486790262472894905",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-347580053263252472",
+        "region": [
+          -2,
+          -1
+        ],
+        "position": [
+          -872,
+          -312
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-347580053263252472",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-347580053263252472",
+        "region": [
+          -1,
+          0
+        ],
+        "position": [
+          -200,
+          280
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-347580053263252472",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-347580053263252472",
+        "region": [
+          0,
+          0
+        ],
+        "position": [
+          40,
+          360
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-347580053263252472",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-347580053263252472",
+        "region": [
+          1,
+          1
+        ],
+        "position": [
+          872,
+          872
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-347580053263252472",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-3598141075129417261",
+        "region": [
+          -2,
+          -1
+        ],
+        "position": [
+          -776,
+          -360
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-3598141075129417261",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-3598141075129417261",
+        "region": [
+          -1,
+          0
+        ],
+        "position": [
+          -392,
+          264
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-3598141075129417261",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-3598141075129417261",
+        "region": [
+          0,
+          0
+        ],
+        "position": [
+          248,
+          248
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-3598141075129417261",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-3598141075129417261",
+        "region": [
+          1,
+          1
+        ],
+        "position": [
+          616,
+          664
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-3598141075129417261",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-2826197591883477302",
+        "region": [
+          -2,
+          -1
+        ],
+        "position": [
+          -744,
+          -424
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-2826197591883477302",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-2826197591883477302",
+        "region": [
+          -1,
+          0
+        ],
+        "position": [
+          -392,
+          248
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-2826197591883477302",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-2826197591883477302",
+        "region": [
+          0,
+          0
+        ],
+        "position": [
+          248,
+          136
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-2826197591883477302",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      },
+      {
+        "seed": "-2826197591883477302",
+        "region": [
+          1,
+          1
+        ],
+        "position": [
+          568,
+          728
+        ],
+        "source_identity": {
+          "edition": "bedrock",
+          "extractor_revision": "cpu-catalog-reference-v1",
+          "game_build_id": "research:26.50",
+          "model_id": "26.50",
+          "native_sha256": "c18610aa8008a27eb130808b18d69099d023771182b55b8c731054883d765f63",
+          "registry_revision": "fe40dc8d937d0491c2e006af3d2b48db2fc7425ee711e0125416e4b2ccbb4bf9",
+          "seed": "-2826197591883477302",
+          "source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+          "world_settings_id": "default"
+        }
+      }
+    ]
+  },
+  "scope": "CPU-only seed/index/coordinate/rawvillage oracle; rawpositions are notviability/absence/gamecertification;5existingworlds20single-regionrawattempts,notcompleteextractions"
+}

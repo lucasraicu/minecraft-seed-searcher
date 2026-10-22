@@ -1,0 +1,1055 @@
+{
+  "schema": "phase2-bounded-profile-v1",
+  "started_at": 1792491521.350799,
+  "scope": "Pinned predictor diagnostics, not actual-world validation or public extraction",
+  "controls": {
+    "count": 8192,
+    "trials": 3,
+    "threads": 4,
+    "run_key": 20261020,
+    "max_input_evaluations": 74012,
+    "warmup_count": 256
+  },
+  "hardware": {
+    "platform": "macOS-15.8-x86_64-i386-64bit-Mach-O",
+    "processor": "i386",
+    "logical_cpus": 36,
+    "load_average": [
+      3.33447265625,
+      3.111328125,
+      3.017578125
+    ]
+  },
+  "native_source_fingerprint": "e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70",
+  "source_sha256": {
+    "scripts/profile_phase2.py": "951d5e28bac1326c43009beba27ea67435385741cd5af53fec11ad693e021bd6",
+    "src/seed_search/realm/blueprint.py": "b1920f0d6441a48b6ab2559f82b26dcb784d9fddf52e2f2aca25c7f202162001",
+    "src/seed_search/realm/native_batch.py": "2865730921c9850263d97eb9e5620f0a456d6a065fb3305bbbf5a6a4dc12d9cc",
+    "src/seed_search/realm/store.py": "18416825de7df05055f4a803da7fc0b5ccdad9c880758ca7a8309f981da0428c",
+    "src/seed_search/realm/config.py": "f299593b5df646b60191de1405737e98c9718f1c586229ef3d807f694571f7ed"
+  },
+  "kernel": [
+    {
+      "trial": 0,
+      "cohort_sha256_le_i64": "0c91adb7dae019826cad95871d42d011c585166c2e99961b66376c6f8a8fa2a4",
+      "refinement": false,
+      "seconds": 0.3418017950025387,
+      "inputs_per_second": 23967.10643353747,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "ba39b3f9a2bee000ddce1a23184ed11b4ebe005a8ee92482ebef1dfaa824054b",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2272,
+        1141,
+        304,
+        263,
+        200,
+        11,
+        9,
+        9,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "trial": 0,
+      "cohort_sha256_le_i64": "0c91adb7dae019826cad95871d42d011c585166c2e99961b66376c6f8a8fa2a4",
+      "refinement": true,
+      "seconds": 0.37547650100896135,
+      "inputs_per_second": 21817.610364395307,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "ba39b3f9a2bee000ddce1a23184ed11b4ebe005a8ee92482ebef1dfaa824054b",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2272,
+        1141,
+        304,
+        263,
+        200,
+        11,
+        9,
+        9,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "trial": 1,
+      "cohort_sha256_le_i64": "4c5d93ad485169cce0ad5abba75dd7aba4e5c49b1942b2e2c7125f5f51544567",
+      "refinement": true,
+      "seconds": 0.28762305597774684,
+      "inputs_per_second": 28481.722274148317,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "9fb86037ea77aee00ce1d4d38355cfc2354088546336bf4b23a7c622495c439a",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2273,
+        1154,
+        347,
+        291,
+        231,
+        10,
+        10,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "trial": 1,
+      "cohort_sha256_le_i64": "4c5d93ad485169cce0ad5abba75dd7aba4e5c49b1942b2e2c7125f5f51544567",
+      "refinement": false,
+      "seconds": 0.2779407370253466,
+      "inputs_per_second": 29473.909034259115,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "9fb86037ea77aee00ce1d4d38355cfc2354088546336bf4b23a7c622495c439a",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2273,
+        1154,
+        347,
+        291,
+        231,
+        10,
+        10,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "trial": 2,
+      "cohort_sha256_le_i64": "4f6e8a45e23af2472dadd3e6d58cfeedb11b5c940c618f54096119288b735f9a",
+      "refinement": false,
+      "seconds": 0.38035866303835064,
+      "inputs_per_second": 21537.566502525067,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "feb5f89f634e31ae9e80c7736b85a57421b5646bf820286a489ed501782fa0cf",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2263,
+        1226,
+        354,
+        307,
+        234,
+        13,
+        12,
+        12,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "trial": 2,
+      "cohort_sha256_le_i64": "4f6e8a45e23af2472dadd3e6d58cfeedb11b5c940c618f54096119288b735f9a",
+      "refinement": true,
+      "seconds": 0.3806294650421478,
+      "inputs_per_second": 21522.2434214148,
+      "receipt": {
+        "version": "native-retention-receipt-v1",
+        "inputs": 8192,
+        "input_decisions_sha256": "feb5f89f634e31ae9e80c7736b85a57421b5646bf820286a489ed501782fa0cf",
+        "retained_inputs": 0,
+        "retained_anchors": 0,
+        "discovered_anchors": 0
+      },
+      "funnel_counts_native_order": [
+        8192,
+        2263,
+        1226,
+        354,
+        307,
+        234,
+        13,
+        12,
+        12,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "durable_rejections": [
+    {
+      "trial": 0,
+      "cohort_sha256_le_i64": "0c91adb7dae019826cad95871d42d011c585166c2e99961b66376c6f8a8fa2a4",
+      "wall_seconds": 0.4218841409892775,
+      "input_seeds_per_second": 19417.653341485064,
+      "newly_committed": 8192,
+      "native_seconds": 0.3972331280237995,
+      "record_seconds": 0.00016141502419486642,
+      "preparation_wall_seconds": 0.002116207033395767,
+      "writer_wall_seconds": 0.0049015849945135415,
+      "queue_wait_seconds": 0.32681141316425055,
+      "shutdown_seconds": 0.0014093709760345519,
+      "peak_process_tree_rss_bytes": 68042752,
+      "max_prepared_owned_estimate_bytes": 566,
+      "checkpoint_bytes": 225287,
+      "retained_candidates": null
+    },
+    {
+      "trial": 1,
+      "cohort_sha256_le_i64": "4c5d93ad485169cce0ad5abba75dd7aba4e5c49b1942b2e2c7125f5f51544567",
+      "wall_seconds": 0.34232598601374775,
+      "input_seeds_per_second": 23930.40649759791,
+      "newly_committed": 8192,
+      "native_seconds": 0.3212816569721326,
+      "record_seconds": 0.000149720988702029,
+      "preparation_wall_seconds": 0.0023320469772443175,
+      "writer_wall_seconds": 0.005342328979168087,
+      "queue_wait_seconds": 0.2515344659332186,
+      "shutdown_seconds": 0.0012703579850494862,
+      "peak_process_tree_rss_bytes": 73666560,
+      "max_prepared_owned_estimate_bytes": 570,
+      "checkpoint_bytes": 225287,
+      "retained_candidates": null
+    },
+    {
+      "trial": 2,
+      "cohort_sha256_le_i64": "4f6e8a45e23af2472dadd3e6d58cfeedb11b5c940c618f54096119288b735f9a",
+      "wall_seconds": 0.4366495690192096,
+      "input_seeds_per_second": 18761.039930488532,
+      "newly_committed": 8192,
+      "native_seconds": 0.41604617692064494,
+      "record_seconds": 0.00012123608030378819,
+      "preparation_wall_seconds": 0.0015119250165298581,
+      "writer_wall_seconds": 0.006887786963488907,
+      "queue_wait_seconds": 0.3453999900375493,
+      "shutdown_seconds": 0.001292916014790535,
+      "peak_process_tree_rss_bytes": 77365248,
+      "max_prepared_owned_estimate_bytes": 570,
+      "checkpoint_bytes": 225287,
+      "retained_candidates": null
+    }
+  ],
+  "positive": [
+    {
+      "trial": 0,
+      "seed": "-3336796033057908633",
+      "policy_exception": "required Overworld palette empty",
+      "wall_seconds": 0.36315116798505187,
+      "input_seeds_per_second": 2.75367419454689,
+      "newly_committed": 1,
+      "native_seconds": 0.11516159295570105,
+      "record_seconds": 0.04138913797214627,
+      "preparation_wall_seconds": 0.0065271989442408085,
+      "writer_wall_seconds": 0.032433740969281644,
+      "queue_wait_seconds": 0.16432378598256037,
+      "shutdown_seconds": 0.0826063469867222,
+      "peak_process_tree_rss_bytes": 175263744,
+      "max_prepared_owned_estimate_bytes": 578738,
+      "checkpoint_bytes": 2308498,
+      "retained_candidates": 1,
+      "rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "persisted_seed_stage_seconds": {
+        "biome_palette_4y": 0.00018099998123943806,
+        "dynamic_center_search": 0.09851900005014613,
+        "final_nether_pair": 0.0001170000177808106,
+        "stronghold": 0.00037999998312443495,
+        "structure_ancient_city": 0.0005070000188425183,
+        "structure_desert_pyramid": 0.00021999998716637492,
+        "structure_jungle_temple": 0.0002080000122077763,
+        "structure_mansion": 0.0008079999824985862,
+        "structure_mineshaft": 0.008613000041805208,
+        "structure_monument": 0.0015029999776743352,
+        "structure_outpost": 3.400002606213093e-05,
+        "structure_ruined_portal": 3.4999975468963385e-05,
+        "structure_shipwreck": 0.0026310000102967024,
+        "structure_trial_chamber": 0.00022600003285333514,
+        "structure_village": 0.0004770000232383609
+      },
+      "seed_and_anchor_json_bytes": 288839,
+      "coarse_oracle_rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "resume_seconds": 0.1051406140322797,
+      "resume_newly_committed": 0
+    },
+    {
+      "trial": 1,
+      "seed": "-3336796033057908633",
+      "policy_exception": "required Overworld palette empty",
+      "wall_seconds": 0.39626707596471533,
+      "input_seeds_per_second": 2.523550556314809,
+      "newly_committed": 1,
+      "native_seconds": 0.1140598839847371,
+      "record_seconds": 0.04156448697904125,
+      "preparation_wall_seconds": 0.0066128880134783685,
+      "writer_wall_seconds": 0.060743904032278806,
+      "queue_wait_seconds": 0.1634235079982318,
+      "shutdown_seconds": 0.08771215396700427,
+      "peak_process_tree_rss_bytes": 190029824,
+      "max_prepared_owned_estimate_bytes": 578736,
+      "checkpoint_bytes": 2308497,
+      "retained_candidates": 1,
+      "rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "persisted_seed_stage_seconds": {
+        "biome_palette_4y": 0.00018199998885393143,
+        "dynamic_center_search": 0.0978960000211373,
+        "final_nether_pair": 0.00011600001016631722,
+        "stronghold": 0.0003980000037699938,
+        "structure_ancient_city": 0.00047500000800937414,
+        "structure_desert_pyramid": 0.00020699994638562202,
+        "structure_jungle_temple": 0.00020599999697878957,
+        "structure_mansion": 0.000838999985717237,
+        "structure_mineshaft": 0.008526999969035387,
+        "structure_monument": 0.0015400000265799463,
+        "structure_outpost": 3.300001844763756e-05,
+        "structure_ruined_portal": 3.300001844763756e-05,
+        "structure_shipwreck": 0.0025470000109635293,
+        "structure_trial_chamber": 0.00021199998445808887,
+        "structure_village": 0.0004830000107176602
+      },
+      "seed_and_anchor_json_bytes": 288838,
+      "coarse_oracle_rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "resume_seconds": 0.10899360099574551,
+      "resume_newly_committed": 0
+    },
+    {
+      "trial": 2,
+      "seed": "-3336796033057908633",
+      "policy_exception": "required Overworld palette empty",
+      "wall_seconds": 0.389728237001691,
+      "input_seeds_per_second": 2.5658905489972517,
+      "newly_committed": 1,
+      "native_seconds": 0.11194844200508669,
+      "record_seconds": 0.041763458983041346,
+      "preparation_wall_seconds": 0.006489138992037624,
+      "writer_wall_seconds": 0.034037489036563784,
+      "queue_wait_seconds": 0.16081180196488276,
+      "shutdown_seconds": 0.10512009897502139,
+      "peak_process_tree_rss_bytes": 198098944,
+      "max_prepared_owned_estimate_bytes": 578744,
+      "checkpoint_bytes": 2308501,
+      "retained_candidates": 1,
+      "rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "persisted_seed_stage_seconds": {
+        "biome_palette_4y": 0.00018700002692639828,
+        "dynamic_center_search": 0.09476499998709187,
+        "final_nether_pair": 0.00012099999003112316,
+        "stronghold": 0.00039000000106170774,
+        "structure_ancient_city": 0.0004900000058114529,
+        "structure_desert_pyramid": 0.00021500000730156898,
+        "structure_jungle_temple": 0.00031700002728030086,
+        "structure_mansion": 0.0007680000271648169,
+        "structure_mineshaft": 0.008904999995138496,
+        "structure_monument": 0.0017449999577365816,
+        "structure_outpost": 3.3999967854470015e-05,
+        "structure_ruined_portal": 3.5999983083456755e-05,
+        "structure_shipwreck": 0.0027100000297650695,
+        "structure_trial_chamber": 0.00022899999748915434,
+        "structure_village": 0.0005200000014156103
+      },
+      "seed_and_anchor_json_bytes": 288842,
+      "coarse_oracle_rank": [
+        -336,
+        851304967,
+        230400,
+        -480,
+        0
+      ],
+      "resume_seconds": 0.11091118399053812,
+      "resume_newly_committed": 0
+    }
+  ],
+  "synthetic_grid": [
+    {
+      "grid_step": 16,
+      "seconds": {
+        "samples": [
+          0.006045311980415136,
+          0.007534805976320058,
+          0.00804292201064527
+        ],
+        "median": 0.007534805976320058,
+        "minimum": 0.006045311980415136,
+        "maximum": 0.00804292201064527
+      },
+      "rank": [
+        -105,
+        104727273,
+        1024,
+        32,
+        0
+      ],
+      "coarse_points": 15129,
+      "fine_points": 0
+    },
+    {
+      "grid_step": 0,
+      "seconds": {
+        "samples": [
+          0.008792851003818214,
+          0.006574728002306074,
+          0.008417839999310672
+        ],
+        "median": 0.008417839999310672,
+        "minimum": 0.006574728002306074,
+        "maximum": 0.008792851003818214
+      },
+      "rank": [
+        -105,
+        104727273,
+        1024,
+        32,
+        0
+      ],
+      "coarse_points": 15129,
+      "fine_points": 480
+    },
+    {
+      "grid_step": 8,
+      "seconds": {
+        "samples": [
+          0.013036598975304514,
+          0.013945078011602163,
+          0.011364967038389295
+        ],
+        "median": 0.013036598975304514,
+        "minimum": 0.011364967038389295,
+        "maximum": 0.013945078011602163
+      },
+      "rank": [
+        -105,
+        104727273,
+        1024,
+        32,
+        0
+      ],
+      "coarse_points": 60025,
+      "fine_points": 0
+    }
+  ],
+  "limitations": [
+    "Shared local host; background activity is not controlled.",
+    "Positive fixture has an empty required Overworld palette; not a default-blueprint survivor.",
+    "No generated-world correctness/recall, GPU speed, catalog extraction or storage-size conclusion.",
+    "Small stage samples are conditional diagnostics, not a production bottleneck distribution.",
+    "Full-run process RSS includes adapters and retained objects; it is not per-record memory."
+  ],
+  "build_identity": {
+    "extension": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/dynamic-baseline-2048/native-refinement-2026-10-16/_blueprint_batch.cpython-313-darwin.so",
+    "extension_sha256": "e1f825bade5044a0018d89112ce161f6cc232529b1c1e3ea1b617b4e2284e924",
+    "inputs": {
+      "scripts/build_blueprint_batch.py": "8d90adc6509ea44dc5f71b7dece65cbf6dbb0db27a5b1764d65eeafdfdba762e",
+      "native/bridge.c": "090f073a2778a4baab274c58f259cd0076625cfbf7eb94a25c38d25506365092",
+      "native/bridge.h": "eb7c6c03b2f216feb9434ed22e5e16d95755f8ce7e84cd1530527bab62be34cb",
+      "native/blueprint_batch.h": "4bf9dd342c24ba22ff08ffa46baa2ad34ee0dde1cd0feeffb99f8c2a9b82263a",
+      "native/blueprint_profile.h": "4ea140baeacc51ec6366f9eb59bf250be000379db5362af71b128ab9b0617942",
+      "native/filters.inc": "b977c1adc171b9731c0fa80db9b3333b5f6c980bea3a3912523471b7e9f63e9a",
+      "native/blueprint_batch.inc": "3ea1ffada61c5c9171e1ea12f4be7b430af1d249a8246c8ed1a5e62eba6eff0b",
+      "native/blueprint_dynamic.inc": "8d234d10aaf39bd683769661c4b80d2fd88304f566819bbaa7970ae7d26060d2",
+      "vendor/cubiomes-bedrock/noise.h": "49f4ade8403f4d4fc5b57d36af492c889012076866d344960cf14110356f72ec",
+      "vendor/cubiomes-bedrock/finders.h": "b91dae02e695274c32ac9f65423d40dcee967b99fe2336fbc29f6cf3a0fb1b78",
+      "vendor/cubiomes-bedrock/quadbase.h": "a0d252b926baa456d399f50077ea63452e63c4eff16dd912ad8316b37321a57a",
+      "vendor/cubiomes-bedrock/biomes.h": "3231c509e8129d2f6782e8dcfa83fc4e039e688fdf5c0c6e24cbdaea17fe45a4",
+      "vendor/cubiomes-bedrock/rng.h": "1342594d0d26f0a3f7436b386ab46491181f8035778fdd257427d8caed9277ed",
+      "vendor/cubiomes-bedrock/biomenoise.h": "88bf0c88bd714e7a4ab1c56a9bbd75afeb439870d407e95a725a867350835492",
+      "vendor/cubiomes-bedrock/util.h": "6625e4ed1900723d5a030f4503dc615c2d09bdeea724b276b3b18996f2253943",
+      "vendor/cubiomes-bedrock/mt.h": "0b57101051936d69d9b66e0bdeca4a77d70204bc2fa9804fd575b7c0c22745b2",
+      "vendor/cubiomes-bedrock/cave.h": "2b39e7e56ad3e76aca0d6566b94c69d437fd556ca210be2ece6cdcba2fec12b1",
+      "vendor/cubiomes-bedrock/generator.h": "6f0a9ffef0a977cbf2ceb5c541dec513e14b4d65afbe008ad06efa3333b3e0f0",
+      "vendor/cubiomes-bedrock/layers.h": "22bb14b45657a196e166c0bbebc122d736be81ea109b087dabb9766f1cea06a6",
+      "vendor/cubiomes-bedrock/tables/btree263.h": "9cdebbd5406caed67152657e5e556b136bf19698efede16bfd839cf49013710c",
+      "vendor/cubiomes-bedrock/tables/btree19.h": "a5dc2ad87a80436fc80816dc62060e784d8a4b6a33284e429ae71f46fb11d916",
+      "vendor/cubiomes-bedrock/tables/btree264.h": "272f6d9e9fe73016b796ebb823571c06c707acf8039f01ea29264110da8adba7",
+      "vendor/cubiomes-bedrock/tables/btree215.h": "2bcadc16af275c49689f0071e8df277ab3c655eea56aafdb666c2cd792c22d4c",
+      "vendor/cubiomes-bedrock/tables/btree20.h": "8efd25b3165f457d30f9f7fe41f565cba842aa8513038a7e5ed273e481f2aa3b",
+      "vendor/cubiomes-bedrock/tables/btree21wd.h": "ce8cc83f9be7e2bd6e61589bfb5c401451ac01c49032f51949ad7de0cfb303d9",
+      "vendor/cubiomes-bedrock/tables/btree192.h": "9447413e158d57348262faf62d91576973e39d682488f188a1aee8abe369416d",
+      "vendor/cubiomes-bedrock/tables/btree266.h": "94bb762e4e27d862f8053b0c20e9e77eef8d329eedcf0295a1378fcc9cdb04b6",
+      "vendor/cubiomes-bedrock/tables/btree262.h": "64b96107cd62021d2a6beff6621783cb66a76f89f7a04408800f0afc28e9ad5a",
+      "vendor/cubiomes-bedrock/tables/btree18.h": "c7bbd595cf096f471f88b3f279941b69e4cbb2f320dfdf531f4a6aeaa0095fad",
+      "vendor/cubiomes-bedrock/noise.c": "2494ccfe8a02aa37252d806623595831ae1a166c4e6dde2e272d362edd2858db",
+      "vendor/cubiomes-bedrock/biomes.c": "61cd1c00a30de610f2f86974db32e6c1a2c688bdacd285aa6228a930942fc92e",
+      "vendor/cubiomes-bedrock/layers.c": "60274d97f424b898690297ba7dfad564499a337b708b5ea4961f46a5967a3c9a",
+      "vendor/cubiomes-bedrock/biomenoise.c": "90f571a731665fde0ecbdcf274eeb2ce77f57e16e12be5a59174fc6be4447a33",
+      "vendor/cubiomes-bedrock/cave.c": "60e7cf3080d6e743b9d8b4b2c83d5806971e0980d801fce8f67bf444f15fb8ce",
+      "vendor/cubiomes-bedrock/generator.c": "4123a3a28c1298af8449cd11de1c4687ed4bcd87329b200a189fec9d665b6247",
+      "vendor/cubiomes-bedrock/finders.c": "7a76a74fdb412673d54cdbb5bb35336e119d33085ae22b79fd2e42635d1d0315",
+      "vendor/cubiomes-bedrock/util.c": "473423346c6f5a1071e82ce87489e4a5f63905aa3abfe555bf4824a25bee426a",
+      "vendor/cubiomes-bedrock/quadbase.c": "52ba0d1a660cc3d81a3ab09adc9bc2dcb2af2069786bde03b8f2a1c471a094d8",
+      "vendor/cubiomes-bedrock/mt.c": "d7ac7183f7816654815488624c29bc86c458bd9ae41f9b355d1171b83ef10fe0"
+    },
+    "source_digest": "de799b43a1d81ec65b06f6a7c3c126e465df76f288663789f4d04908b842ac76",
+    "build_seconds": 11.248038846999407,
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fwrapv",
+      "-DNB_WORK_CHUNK=16",
+      "-DNB_EXPERIMENT_ORDER=0",
+      "-DNB_STRONGHOLD_AFTER=4",
+      "-DNB_DYNAMIC_PREFLIGHT=1",
+      "-DSS_SOURCE_FINGERPRINT=\"e7b7fd0f2d9905a091348d9131cff2937eba704e370f162892dd71a2499eaf70\"",
+      "-march=native",
+      "-mavx2",
+      "-mfma",
+      "-flto",
+      "-Xpreprocessor",
+      "-fopenmp",
+      "-DSS_OPENMP_LIBRARY=\"/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib\""
+    ],
+    "openmp": true,
+    "runtime": "/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib/libomp.dylib",
+    "runtime_sha256": "af4f16ce7fb34f8e444d328b105adead0b655768e32aadbf438972d8e79f92f6",
+    "links": [
+      "-flto",
+      "-Wl,-rpath,/Users/lucasraicu/Downloads/minecraft-seed-searcher/runs/master-implementation-2026-10-10/openmp/install/lib"
+    ],
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+    "configured_cc": "clang",
+    "configured_ldshared": "clang -bundle -undefined dynamic_lookup   -arch x86_64 -arch x86_64",
+    "environment_flags": {
+      "CC": null,
+      "CFLAGS": null,
+      "LDFLAGS": null,
+      "ARCHFLAGS": null,
+      "MACOSX_DEPLOYMENT_TARGET": null
+    },
+    "linker": "@(#)PROGRAM:ld PROJECT:ld-1230.1\nBUILD 10:12:58 Jan  9 2026\nconfigured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main\nwill use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em\nLTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)\nTAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)",
+    "python": "3.13.15 (v3.13.15:4061bc4c35f, Aug  5 2026, 09:08:51) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "arch": "x86_64",
+    "cpu_native": true,
+    "avx2": true,
+    "lto": true,
+    "pgo_generate": false,
+    "pgo_profile_sha256": null,
+    "production_extension_replaced": false,
+    "profiling": false,
+    "mansion_cache": true,
+    "work_chunk": 16,
+    "experiment_order": 0,
+    "stronghold_after": 4,
+    "dynamic_preflight": true,
+    "scope": "private complete blueprint baseline prototype",
+    "record_adapter_sha256": "2865730921c9850263d97eb9e5620f0a456d6a065fb3305bbbf5a6a4dc12d9cc",
+    "record_sources_sha256": {
+      "native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49",
+      "native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+    },
+    "policy_sha256": "4472d9225853df396bb8fb236516f46c1fbcf555547882df5913d19401eadb02",
+    "record_computation_identity": {
+      "model": {
+        "model": "26.50",
+        "structure_rng": {
+          "trial_chamber": 1,
+          "stronghold": 0,
+          "mineshaft": 0,
+          "ancient_city": 0,
+          "village": 0,
+          "ruined_portal": 0,
+          "shipwreck": 0,
+          "monument": 0,
+          "outpost": 0,
+          "fortress": 0,
+          "bastion": 0,
+          "desert_pyramid": 0,
+          "jungle_temple": 0,
+          "swamp_hut": 0,
+          "igloo": 0,
+          "ocean_ruin": 0,
+          "mansion": 0,
+          "buried_treasure": 0,
+          "trail_ruins": 1,
+          "abandoned_camp": 1,
+          "ruined_portal_nether": 0,
+          "end_city": 0
+        }
+      },
+      "native_runtime": {
+        "openmp": false,
+        "runtime_sha256": null,
+        "policy": "outer-columns-static-min256-v1"
+      },
+      "sha256": {
+        "src/seed_search/_native.abi3.so": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+        "vendor/backend.json": "1f8979c4e7649017c95b03ebceaf7bc35d4f2be20b2842e08b8b6cbfff833369",
+        "native/bridge.c": "090f073a2778a4baab274c58f259cd0076625cfbf7eb94a25c38d25506365092",
+        "native/bridge.h": "eb7c6c03b2f216feb9434ed22e5e16d95755f8ce7e84cd1530527bab62be34cb",
+        "native/filters.inc": "b977c1adc171b9731c0fa80db9b3333b5f6c980bea3a3912523471b7e9f63e9a",
+        "native/blueprint_batch.h": "4bf9dd342c24ba22ff08ffa46baa2ad34ee0dde1cd0feeffb99f8c2a9b82263a",
+        "native/blueprint_batch.inc": "3ea1ffada61c5c9171e1ea12f4be7b430af1d249a8246c8ed1a5e62eba6eff0b",
+        "native/blueprint_dynamic.inc": "8d234d10aaf39bd683769661c4b80d2fd88304f566819bbaa7970ae7d26060d2",
+        "src/seed_search/backend.py": "bbdd9b83f7ab76e6b4b2b5619dbd13b975099538b256b1396162e7c15274a662",
+        "src/seed_search/seeds.py": "18db63920f310af50b5813a539f50b03002ddefcf801ec881e3a6759ad368665",
+        "src/seed_search/realm/baseline.py": "cb2632bfd150d46fbb53408eba7448f8145b310b18c661f65947ad040bc02a5d",
+        "src/seed_search/realm/blueprint.py": "b1920f0d6441a48b6ab2559f82b26dcb784d9fddf52e2f2aca25c7f202162001",
+        "src/seed_search/realm/dynamic.py": "db945e39db47842bbe878684316864913d53ddb82353d4704e66cd8ede6a296c",
+        "src/seed_search/realm/coastal.py": "f416ffbf5b4966d42066cb555b6385a9350808b08cefffc4c86e2b9d4d7ea511",
+        "src/seed_search/realm/marine.py": "a1b273d3d397a46b9f2fbdaa7aa8bacb451d0f7c14445142995d1b3b87f6fff3",
+        "src/seed_search/realm/spawn.py": "4f2a2b8b7397cd3a5b4919416f272c240a20cb121ba92d3a044b6d582418a792",
+        "src/seed_search/realm/bounds.py": "8516e3dbbec7c2ceed04d1623808da2c46a3af7a4c77c9edfdc6f5a265b39aaf",
+        "src/seed_search/realm/biomes.py": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+        "src/seed_search/realm/sampling.py": "8fe1b29488cfce4595d5741995cd49d22e466fd5cc31b0729fac817c3fcb06ad",
+        "src/seed_search/realm/inventory.py": "b7d00ab4777b8b2b3e1bfabfba830ac42e619de31945bcc548a5b8337264cfbd",
+        "src/seed_search/realm/raw.py": "c4d2b25589d2da308080cc4c883717f4cb796c894622510db76a8c8d4b142d33",
+        "src/seed_search/realm/siblings.py": "90f5e4607f26dd0f7fe415705f1aecfb821bd24b365242d8c794d5155b6dc77b",
+        "src/seed_search/realm/config.py": "f299593b5df646b60191de1405737e98c9718f1c586229ef3d807f694571f7ed",
+        "src/seed_search/realm/runner.py": "a000428cbec22a867887a7a6eaa895b76d78769bca512f3833ad70677ddd7163",
+        "src/seed_search/realm/store.py": "18416825de7df05055f4a803da7fc0b5ccdad9c880758ca7a8309f981da0428c",
+        "src/seed_search/realm/resources.py": "bdb54d6afde9b592b2e7b3b72cc1d223a476f3ba4bd24a0d357995b82921ed89",
+        "src/seed_search/realm/native_batch.py": "2865730921c9850263d97eb9e5620f0a456d6a065fb3305bbbf5a6a4dc12d9cc",
+        "src/seed_search/realm/native_records.py": "ab5e936e07601c125d8642793d87405fc054ff51a15e4c539f16bfdb6d0cdc49",
+        "src/seed_search/realm/native_encoding.py": "508a471ab44b82a7e12a87aab243e431e154f8cfc25415af443d1a8c606f9808"
+      }
+    }
+  },
+  "default_policy": {
+    "schema_version": 5,
+    "game": {
+      "edition": "bedrock",
+      "target_version": "26.52",
+      "backend_model": "MC_26_50",
+      "backend_commit": "294c72ab0392dd818a91d293dbd5774d4874d64b",
+      "bds_version": "1.26.52.3"
+    },
+    "deployment": {
+      "overworld_side_blocks": 2048,
+      "nether_side_blocks": 1024
+    },
+    "discovery": {
+      "overworld_bounds": [
+        -2000,
+        -2000,
+        2000,
+        2000
+      ],
+      "nether_bounds": [
+        -634,
+        -634,
+        634,
+        634
+      ]
+    },
+    "search": {
+      "mode": "prediction",
+      "sequence": "permutation",
+      "run_key": "0",
+      "workers": 30,
+      "max_workers": 36,
+      "numeric_threads_per_worker": 1,
+      "native_threads_per_worker": 1,
+      "batch_size": 32,
+      "pilot_limit": 1000,
+      "inventory_mode": "eligibility",
+      "memory_target_gib": 25,
+      "memory_ceiling_gib": 30,
+      "docker_reserve_gib": 8,
+      "run_disk_limit_bytes": 137438953472,
+      "free_disk_reserve_bytes": 17179869184,
+      "projected_bytes_per_seed": 65536,
+      "structure_order": [
+        "outpost",
+        "desert_pyramid",
+        "jungle_temple",
+        "ruined_portal",
+        "trial_chamber",
+        "mansion",
+        "ancient_city",
+        "village",
+        "mineshaft"
+      ],
+      "max_misses": 0,
+      "density_weights": {
+        "village": 3,
+        "trial_chamber": 2,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "jungle_temple": 1,
+        "outpost": 1
+      },
+      "centroid_weights": {
+        "village": 2,
+        "trial_chamber": 1,
+        "ruined_portal": 0,
+        "ancient_city": 2,
+        "outpost": 1,
+        "desert_pyramid": 2,
+        "jungle_temple": 2,
+        "mansion": 2,
+        "monument": 1,
+        "stronghold": 3,
+        "shipwreck": 0
+      },
+      "top_k": 50
+    },
+    "structures": {
+      "required": [
+        "stronghold",
+        "mansion",
+        "village",
+        "trial_chamber",
+        "ancient_city",
+        "desert_pyramid",
+        "jungle_temple",
+        "monument",
+        "ruined_portal",
+        "shipwreck",
+        "mineshaft",
+        "outpost"
+      ],
+      "minimum_counts": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1
+      },
+      "nether_required": [
+        "fortress",
+        "bastion"
+      ],
+      "nether_minimum_counts": {
+        "fortress": 1,
+        "bastion": 2
+      },
+      "optional_bonuses": {},
+      "deferred_until_coastal_terrain": [],
+      "hard_floors": {
+        "stronghold": 1,
+        "mansion": 1,
+        "village": 6,
+        "trial_chamber": 8,
+        "ancient_city": 2,
+        "desert_pyramid": 1,
+        "monument": 1,
+        "ruined_portal": 8,
+        "shipwreck": 4,
+        "mineshaft": 10,
+        "outpost": 1,
+        "fortress": 1,
+        "bastion": 2
+      }
+    },
+    "biomes": {
+      "spacing": 64,
+      "sample_y": 63,
+      "lattice": "world",
+      "gate_batch_size": 16,
+      "refinement_budget": 128,
+      "wooded_minimum_families": 2,
+      "family_bonuses": {},
+      "variant_bonuses": {},
+      "sample_y_levels": [
+        63,
+        -48,
+        0,
+        160
+      ],
+      "required_families": [
+        "plains",
+        "desert",
+        "forest",
+        "taiga",
+        "jungle",
+        "swamp",
+        "snowy_ice",
+        "dark_forest",
+        "peaks",
+        "stony_shore",
+        "lush_caves",
+        "dripstone_caves",
+        "deep_dark"
+      ],
+      "include_frozen_peaks": true,
+      "nether_required": [
+        "nether_wastes",
+        "crimson_forest",
+        "warped_forest",
+        "soul_sand_valley",
+        "basalt_deltas"
+      ]
+    },
+    "scoring": {
+      "geometry_weight": 0.8,
+      "biome_fit_weight": 0.1,
+      "baseline_weight": 0.1,
+      "baseline_quality_cap": 60
+    },
+    "terrain": {
+      "variants": [],
+      "native_threads": 1,
+      "scheduler": "rotation",
+      "resolutions": [
+        128,
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "center_spacing": 64,
+      "refine_center_spacing": 16,
+      "rays": 32,
+      "maximum_refinements_per_anchor": 8
+    },
+    "bds": {
+      "enabled": true,
+      "version": "1.26.52.3",
+      "docker_cli": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "image": "bedrock-verification-poc:1.26.52.3",
+      "image_id": "sha256:cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+      "cpus": 4,
+      "memory_gib": 6,
+      "verification_budget": 20,
+      "persist_snapshot": false,
+      "compare_reference": true,
+      "maximum_region_side": 256
+    },
+    "caves": {
+      "automatic": false,
+      "y_levels": [
+        0,
+        -16,
+        -32,
+        -48
+      ],
+      "spacing": 64,
+      "maximum_samples": 10000
+    },
+    "contract": "master_seed_blueprint_v1",
+    "screening_revision": "dynamic-envelope-2048-v3"
+  },
+  "elapsed_seconds": 8.594003656005953,
+  "independent_full_seed_acceptance": {
+    "refinement": false,
+    "checks": [
+      {
+        "seed": "-9223372036854775808",
+        "accepted": false
+      },
+      {
+        "seed": "9223372036854775807",
+        "accepted": false
+      },
+      {
+        "seed": "0",
+        "accepted": false
+      },
+      {
+        "seed": "1",
+        "accepted": false
+      },
+      {
+        "seed": "-1",
+        "accepted": false
+      },
+      {
+        "seed": "12345",
+        "accepted": false
+      },
+      {
+        "seed": "123456789",
+        "accepted": false
+      },
+      {
+        "seed": "-3336796033057908633",
+        "accepted": false
+      }
+    ],
+    "default_policy_positives": 0,
+    "scope": "Independent fresh Python observations vs native; fixed spot checks, not complete recall"
+  },
+  "full_retention_stage_seconds": {
+    "stronghold": {
+      "entered": 8,
+      "seconds_sum": 0.0015689998981542885
+    },
+    "mansion": {
+      "entered": 4,
+      "seconds_sum": 0.0011870000162161887
+    },
+    "jungle_temple": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "desert_pyramid": {
+      "entered": 1,
+      "seconds_sum": 0.00018999999156221747
+    },
+    "monument": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "ancient_city": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "village": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "trial_chamber": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "ruined_portal": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "shipwreck": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "mineshaft": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "nether_pair": {
+      "entered": 8,
+      "seconds_sum": 0.00036500010173767805
+    },
+    "biome_palette": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "center_search": {
+      "entered": 0,
+      "seconds_sum": 0.0
+    },
+    "outpost": {
+      "entered": 1,
+      "seconds_sum": 3.200001083314419e-05
+    }
+  },
+  "full_retention_stage_scope": "Eight full-retention diagnostics; early-outs still apply; not compact production cost attribution",
+  "independent_center_parity": {
+    "centers": 51,
+    "passed": true,
+    "scope": "Complete synthetic inventory, not game observations"
+  },
+  "positive_python_coarse_oracle_seconds": 0.6269072709837928,
+  "summary": {
+    "kernel_refinement_on_inputs_per_second": {
+      "samples": [
+        21817.610364395307,
+        28481.722274148317,
+        21522.2434214148
+      ],
+      "median": 21817.610364395307,
+      "minimum": 21522.2434214148,
+      "maximum": 28481.722274148317
+    },
+    "kernel_refinement_off_inputs_per_second": {
+      "samples": [
+        23967.10643353747,
+        29473.909034259115,
+        21537.566502525067
+      ],
+      "median": 23967.10643353747,
+      "minimum": 21537.566502525067,
+      "maximum": 29473.909034259115
+    },
+    "durable_rejection_inputs_per_second": {
+      "samples": [
+        19417.653341485064,
+        23930.40649759791,
+        18761.039930488532
+      ],
+      "median": 19417.653341485064,
+      "minimum": 18761.039930488532,
+      "maximum": 23930.40649759791
+    },
+    "positive_record_wall_seconds": {
+      "samples": [
+        0.36315116798505187,
+        0.39626707596471533,
+        0.389728237001691
+      ],
+      "median": 0.389728237001691,
+      "minimum": 0.36315116798505187,
+      "maximum": 0.39626707596471533
+    }
+  },
+  "resources": {
+    "available": true,
+    "rss_bytes": 198852608,
+    "cpu_percent": 76.5,
+    "processes": [
+      {
+        "pid": 88696,
+        "rss_bytes": 196853760,
+        "cpu_percent": 76.5
+      },
+      {
+        "pid": 88757,
+        "rss_bytes": 1998848,
+        "cpu_percent": 0.0
+      }
+    ],
+    "shared_memory_caveat": "RSS sum can double-count shared pages",
+    "sampled_at": 1792491529.944441
+  },
+  "process_cpu_seconds": 21.937311,
+  "complete": true
+}

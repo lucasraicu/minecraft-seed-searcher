@@ -1,0 +1,21 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/catalog/test_ingestion_optimization.py",
+    "tests/catalog/test_guarded_read_views.py",
+    "tests/catalog/test_versioned_derivation.py",
+    "tests/catalog/test_reserve_v3.py",
+    "tests/test_personal_reserve.py",
+    "tests/test_readiness_reserve_capacity.py",
+    "tests/test_native_runtime_guard.py",
+    "tests/test_native_refinement_parity.py",
+    "tests/test_v3_optimizations_parity.py",
+    "--basetemp=/Users/lucasraicu/.local/share/antigravity-worker-mcp/repository-publication-20261022/pytest-publication"
+  ],
+  "exit_code": 0,
+  "output": "..................................................................       [100%]\n=============================== warnings summary ===============================\ntests/test_native_runtime_guard.py::test_fork_resets_lock_and_runtime_validation\n  /Users/lucasraicu/Downloads/minecraft-seed-searcher/tests/test_native_runtime_guard.py:195: DeprecationWarning: This process (pid=56242) is multi-threaded, use of fork() may lead to deadlocks in the child.\n    pid=os.fork()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n66 passed, 1 warning in 31.68s\n",
+  "note": "Bounded offline fixture/regression checks, no live search or BDS. Known fork DeprecationWarning retained."
+}

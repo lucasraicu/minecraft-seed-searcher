@@ -1,6 +1,7 @@
 #include "finders.h"
 #include "biomes.h"
 #include "util.h"
+#include "cave.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -1550,6 +1551,34 @@ static int monumentNearby(Generator *g, int chunkX, int chunkZ)
     return 0;
 }
 
+/* Bedrock checks raw 3D biomes at a preliminary density height, rather than
+ * the actual surface or sky. Keep the seed-independent spline local so calls
+ * from independent search threads share no mutable initialization state. */
+static int viablePreliminaryBiomes(int type, const Generator *g, int cx, int cz,
+                                  int radius, int *centerId)
+{
+    TerrainShaper shaper;
+    initTerrainShaper(&shaper);
+    int height = getPreliminarySurfaceLevel(&g->bn, &shaper, cx * 4, cz * 4);
+    int lo = height - radius, hi = height + radius;
+    if (lo < -64) lo = -64;
+    if (hi > 319) hi = 319;
+    *centerId = 1;
+    for (int dx = -radius; dx <= radius; dx += 4)
+    for (int y = lo; y <= hi; y += 4)
+    for (int dz = -radius; dz <= radius; dz += 4)
+    {
+        int id = sampleBiomeNoiseAtBlockY(&g->bn, NULL,
+                            floordiv(cx * 16 + 8 + dx, 4), y,
+                            floordiv(cz * 16 + 8 + dz, 4), NULL, 0);
+        if (id < 0 || !isViableFeatureBiome(g->mc, type, id)) return 0;
+    }
+    if (lo <= hi)
+        *centerId = sampleBiomeNoiseAtBlockY(&g->bn, NULL,
+                            cx * 4 + 2, height, cz * 4 + 2, NULL, 0);
+    return 1;
+}
+
 int isViableStructurePos(int structureType, Generator *g, int x, int z, uint32_t flags)
 {
     int approx = 0; // enables approximation levels
@@ -1570,6 +1599,17 @@ int isViableStructurePos(int structureType, Generator *g, int x, int z, uint32_t
             return 0;
         if (structureType == Ruined_Portal_N)
             return 1;
+        if (structureType == Bastion && g->mc == MC_26_50)
+        {
+            /* containsOnly(origin, Y=1, radius=2) on the raw Pos2d
+             * biome source covers four quart cells, not the variant center. */
+            for (int qx = chunkX * 4 - 1; qx <= chunkX * 4; qx++)
+            for (int qz = chunkZ * 4 - 1; qz <= chunkZ * 4; qz++)
+                if (!isViableFeatureBiome(g->mc, Bastion,
+                        getNetherBiome(&g->nn, qx, 0, qz, NULL)))
+                    return 0;
+            return 1;
+        }
         if (structureType == Fortress)
         {   // in 1.18+ fortresses generate everywhere, where bastions don't
             StructureConfig sc;
@@ -1718,6 +1758,13 @@ L_feature:
 
     case Village:
     {
+        if (g->mc == MC_26_50)
+        {
+            if (!viablePreliminaryBiomes(Village, g, (int)chunkX, (int)chunkZ, 2, &id))
+                goto L_not_viable;
+            viable = id;
+            goto L_viable;
+        }
         if (g->mc < MC_1_18)
         {
             if (g->mc < MC_1_11)
@@ -1766,6 +1813,12 @@ L_feature:
 
     case Outpost:
     {
+        if (g->mc == MC_26_50)
+        {
+            if (!viablePreliminaryBiomes(Outpost, g, (int)chunkX, (int)chunkZ, 0, &id))
+                goto L_not_viable;
+            goto L_viable;
+        }
         if (g->mc <= MC_1_10)
             goto L_not_viable;
         if (g->mc >= MC_1_18)
@@ -1849,7 +1902,11 @@ L_feature:
 
     case Ancient_City:
         if (g->mc <= MC_1_18) goto L_not_viable;
-        id = getBiomeAt(g, 0, x>>2, -27>>2, z>>2);
+        if (g->mc == MC_26_50)
+            id = sampleBiomeNoiseAtBlockY(&g->bn, NULL,
+                    chunkX * 4, -27, chunkZ * 4, NULL, 0);
+        else
+            id = getBiomeAt(g, 0, x>>2, -27>>2, z>>2);
         if (id < 0 || !isViableFeatureBiome(g->mc, structureType, id))
             goto L_not_viable;
         goto L_viable;

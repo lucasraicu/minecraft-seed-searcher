@@ -1,0 +1,42 @@
+{
+  "measure_personal.py-resources.json": {
+    "script": "measure_personal.py",
+    "exit_status": 1,
+    "failure": null,
+    "wall_seconds": 1.5141099030151963,
+    "sampled_peak_owned_rss_bytes": 86663168,
+    "scope": "Owned benchmark parent/descendants,100ms sampling;4GiB RSS,512MiB total task output,600s phase wall;no changes to running servers/live catalogs"
+  },
+  "measure_catalog.py-resources.json": {
+    "script": "measure_catalog.py",
+    "exit_status": 0,
+    "failure": null,
+    "wall_seconds": 8.069773979019374,
+    "sampled_peak_owned_rss_bytes": 123191296,
+    "scope": "Owned benchmark parent/descendants,100ms sampling;4GiB RSS,512MiB total task output,600s phase wall;no changes to running servers/live catalogs"
+  },
+  "measure_personal.py.retry1-resources.json": {
+    "script": "measure_personal.py",
+    "exit_status": 0,
+    "failure": null,
+    "wall_seconds": 9.744315164978616,
+    "sampled_peak_owned_rss_bytes": 175624192,
+    "scope": "Owned benchmark parent/descendants,100ms sampling;4GiB RSS,512MiB total task output,600s phase wall;no changes to running servers/live catalogs"
+  },
+  "measure_active.py-resources.json": {
+    "script": "measure_active.py",
+    "exit_status": 1,
+    "failure": null,
+    "wall_seconds": 10.303181701921858,
+    "sampled_peak_owned_rss_bytes": 663064576,
+    "scope": "Owned benchmark parent/descendants,100ms sampling;4GiB RSS,512MiB total task output,600s phase wall;no changes to running servers/live catalogs"
+  },
+  "measure_active.py.retry1-resources.json": {
+    "script": "measure_active.py",
+    "exit_status": 0,
+    "failure": null,
+    "wall_seconds": 19.41465651197359,
+    "sampled_peak_owned_rss_bytes": 663248896,
+    "scope": "Owned benchmark parent/descendants,100ms sampling;4GiB RSS,512MiB total task output,600s phase wall;no changes to running servers/live catalogs"
+  }
+}

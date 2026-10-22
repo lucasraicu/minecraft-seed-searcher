@@ -1,0 +1,47 @@
+{
+  "status": "prepared_NOT_EXECUTED_awaiting_approval",
+  "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/repo-organization-proposed-20261022/batch1-originals.tar.gz",
+  "backup_sha256": "79df182f248ac2ab1f2586211dcfdf9af678916820bbf6d591bbdfc36cbbc755",
+  "backup_extraction_verified": true,
+  "moves": [
+    {
+      "source": "CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "destination": "docs/specs/CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "sha256": "b2644818151f81c2f70edf92dbe989ba2974197b7793c21cf74c5d2e38efe910",
+      "mode": "0o644",
+      "bytes": 34964
+    },
+    {
+      "source": "DIAGRAMS.md",
+      "destination": "docs/specs/DIAGRAMS.md",
+      "sha256": "64b984e1750737a1676c2b95d585aac7979c195567654d396bafbb7847bce453",
+      "mode": "0o644",
+      "bytes": 6054
+    },
+    {
+      "source": "MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "destination": "docs/blueprints/archive/MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "sha256": "629813fe7fb5d59027300c77362886221042a1b0465bae5452a9c9988e59d798",
+      "mode": "0o644",
+      "bytes": 47466
+    },
+    {
+      "source": "AUDIT_CONTEXT.md",
+      "destination": "docs/audits/AUDIT_CONTEXT.md",
+      "sha256": "32218d743176897ba7bba1adf2478bf9899b1dcc554449797b2e9c1b98ed0c0a",
+      "mode": "0o644",
+      "bytes": 30599
+    }
+  ],
+  "edits": [
+    "docs/REPOSITORY_MAP.md: add canonical links to four destinations",
+    "REPO_ORGANIZATION_PLAN.md and CODEX_HANDOFF.md: record actual approved batch/results"
+  ],
+  "constraints": "No deletion, redirect needed, source/native/test/script/runtime changes, commit or push. Historical original paths remain documented in immutable backup and inverse map. Stop on drift or collisions.",
+  "checks": [
+    "Pre-move drift, destination collision and writer checks",
+    "Moved payload SHA/mode equality and inverse map",
+    "451 existing navigation links plus four new links",
+    "No unrelated changes or live process restarts"
+  ]
+}

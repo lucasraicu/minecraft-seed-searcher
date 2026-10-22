@@ -1,0 +1,188 @@
+{
+  "scope": "Completed CPU query process plan and existing OpenMP restoration; ignored binaries intentionally updated only after catalog preservation stage",
+  "query_evidence_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021",
+  "openmp_evidence_root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021",
+  "files": {
+    "src/seed_search/catalog/query_workers.py": {
+      "bytes": 15615,
+      "sha256": "b7e0305019f17dd6d8b19cbdcbc45fff46edfc7364e8d3c168917951396ae1a5"
+    },
+    "src/seed_search/catalog/service.py": {
+      "bytes": 24613,
+      "sha256": "669cb000948235ff2a3f409c5806ea99535f67514d14f806ffc49b50073cb5f1"
+    },
+    "src/seed_search/catalog/http_server.py": {
+      "bytes": 3523,
+      "sha256": "7075f2a4100f44d2e33de7c6abb7481dc69aad66132ea6fb31d34f66646c894b"
+    },
+    "tests/catalog/test_query_workers.py": {
+      "bytes": 16372,
+      "sha256": "2f9ad2153b9b008076532424a38c167f560c2ac704bc709b5d4a923f86f661be"
+    },
+    "src/seed_search/web/server.py": {
+      "bytes": 82931,
+      "sha256": "18654d066837aeb773b99a620835b3140a52145c8c97d552e301b260655c38f3"
+    },
+    "README.md": {
+      "bytes": 55684,
+      "sha256": "6ef9b6922bce71b1ab631e0e4a007c4c075c5979bef27e04a7d8b0c1916f5ad0"
+    },
+    "reviews/catalog-query-processes-2026-10-21/LIVE_CATALOG_STAGE.json": {
+      "bytes": 1802,
+      "sha256": "ba6ee6338f5c89cb245aecc6a10e1ebf7d9e2a1d5edb6e9e0363dd59aa393ad0"
+    },
+    "reviews/catalog-query-processes-2026-10-21/NATIVE_TESTS.txt": {
+      "bytes": 585,
+      "sha256": "39dd5c30d4b84933cc2d2b0c9c7c3ee4e4695da1e1d9f5b96e7bc7ffd6c18ed3"
+    },
+    "reviews/catalog-query-processes-2026-10-21/CPU_PAIR.json": {
+      "bytes": 581,
+      "sha256": "bf967cdfd577b41ef5e1791dc763386c3e10b30b44b9b1f3348a6a39d59160f2"
+    },
+    "reviews/catalog-query-processes-2026-10-21/REPORT.md": {
+      "bytes": 9521,
+      "sha256": "cccf64e7d1fdde8e200da8d6603d2b4bb0acc9f40aa741e8704042645c1de369"
+    },
+    "reviews/catalog-query-processes-2026-10-21/ACCURACY_HTTP.json": {
+      "bytes": 2372,
+      "sha256": "b7dbde2d4d0ed54ab26faa6903d9c5ca676526f3bc51efd16992967ad4f33925"
+    },
+    "reviews/catalog-query-processes-2026-10-21/WORKER_OPENMP_REVIEW.json": {
+      "bytes": 9525,
+      "sha256": "92b26dc3ac9541337bb70c7d09b827c5ef298b2d28dd9f0aeb93d058c847ba8b"
+    },
+    "reviews/catalog-query-processes-2026-10-21/POOL_NARROW_CONTEXT.md": {
+      "bytes": 9780,
+      "sha256": "3ebb35e1655ff7ff11d08727531f4a07a6a8361fdc7439a91aefebf6ff845aa2"
+    },
+    "reviews/catalog-query-processes-2026-10-21/WORKER_ACTIVATION_REVIEW.json": {
+      "bytes": 9044,
+      "sha256": "4d5356c0aa393dfc511b91e2d98a907eaf3dce16e463f0c36b625dcf84a25172"
+    },
+    "reviews/catalog-query-processes-2026-10-21/RESOURCES.json": {
+      "bytes": 1298,
+      "sha256": "46dbd7a9c64b361569e48ef7364b16f8f502caaff0b46bf161be93d485dbb04b"
+    },
+    "reviews/catalog-query-processes-2026-10-21/CATALOG_TESTS.txt": {
+      "bytes": 100,
+      "sha256": "259bb7e83ba93cfbef72db56d9cb897f42b4ee9f91ee2ac6462c66bd523645fe"
+    },
+    "reviews/catalog-query-processes-2026-10-21/WORKER_POOL_REVIEW.json": {
+      "bytes": 7915,
+      "sha256": "d8dfde650150bf96cfb676396bb68fb247788892d9aabef36e9da9f2d8b5e6d9"
+    },
+    "reviews/catalog-query-processes-2026-10-21/QUERY_RESULTS.json": {
+      "bytes": 10264,
+      "sha256": "6183566f9fc2c2be1dca4127ba8e1b02f0999d9feda481140f4a8d347090e76e"
+    },
+    "reviews/catalog-query-processes-2026-10-21/LIVE_FINAL.json": {
+      "bytes": 1861,
+      "sha256": "482fe71061b12c319554628a5dfb5309cecbb6660743138ab26783cc20c7553a"
+    },
+    "reviews/catalog-query-processes-2026-10-21/ADMITTED_PAIRS.json": {
+      "bytes": 783,
+      "sha256": "815aa283c676b2a7ba6fa400bc578095cbb370c32c1bcd9e2bc23c7b7d0778fc"
+    },
+    "reviews/catalog-query-processes-2026-10-21/OPENMP_ACTIVATION.md": {
+      "bytes": 3550,
+      "sha256": "dc667332e1d5d04a6510b6418c53fb9217c0f5af5191f34010e4b897643d2e5a"
+    },
+    "reviews/catalog-query-processes-2026-10-21/POOL_REVIEW_CONTEXT.md": {
+      "bytes": 5214,
+      "sha256": "e74a7982809df5490d25d325769d5209d2a780c9cc351abf68890e7b7c5e1a45"
+    },
+    "reviews/catalog-query-processes-2026-10-21/CLEANUP_TESTS.txt": {
+      "bytes": 113,
+      "sha256": "cadb1df06f201e93bd35b8f3e669e2a4dd254d507734e973e2c1f42ed5fe3e84"
+    },
+    "reviews/catalog-query-processes-2026-10-21/IPC_ENVELOPE.json": {
+      "bytes": 554,
+      "sha256": "14ae369cd321ebcb25c80fe6bcb8da6123767268dbaf3190f20ef28a4daf779a"
+    },
+    "reviews/catalog-query-processes-2026-10-21/OPENMP_RESULTS.json": {
+      "bytes": 5790,
+      "sha256": "da91303babc22bf8bab641b58d621bd3af359b097a1a2d56d0d21b2a0dc45951"
+    },
+    "reviews/catalog-query-processes-2026-10-21/WORKER_POOL_TIMEOUT.json": {
+      "bytes": 237,
+      "sha256": "41544e1e39759c5c79f28275381748253b07740b6d24b081dcab3270e259fbef"
+    },
+    "reviews/catalog-query-processes-2026-10-21/OPENMP_CONTEXT.md": {
+      "bytes": 16484,
+      "sha256": "903d4f76c163dfb18260452e9d2f4674dbd61dad8bc4c45749c3b6c40f8ac9de"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/admitted_pairs.py": {
+      "bytes": 2325,
+      "sha256": "e620333809f16822b14cae78f4b6586c607fae3edfeaf147364639a30c393824"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/validate_queries.py": {
+      "bytes": 4206,
+      "sha256": "a41e5892347d1bc56b5e5dc346f06d3bd67691b9aaad39e10c28ecdfd109fcf8"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/run_bounded.py": {
+      "bytes": 1968,
+      "sha256": "ee2aa23561f7f81754f5699b5155b3a8d4301e2ec2ab54079aeb5bd6cbbd41db"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/accuracy_http.py": {
+      "bytes": 4161,
+      "sha256": "263b6c667c9ed2622f96c10414e55fac3920a3930587c759d1d918ba593bfda1"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/cpu_pair.py": {
+      "bytes": 2904,
+      "sha256": "98f99e056d03ae9c9215497a095e8d1f608fdd3b15925ca889c5b6279fa525c8"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/verify_live.py": {
+      "bytes": 5535,
+      "sha256": "3a7d2a20aa23f3cd21cf4f6012c21190dd8f101ebecd8ba5c293f4b63d3d0994"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/catalog-query-processes-20261021/verify_post_openmp.py": {
+      "bytes": 5630,
+      "sha256": "f68e2790d55f3eb25511f26bed838a4bdabf2c992b9994caaf48c09c1c1091f9"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/validate_runtime.py": {
+      "bytes": 2845,
+      "sha256": "8aae28dcd822a2b9fc9bf738a31cbbec3ba319ed658752e91fb495278b6351ea"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/general-build.log": {
+      "bytes": 3760,
+      "sha256": "4b9e80f0cb259f9532367d80ad97e744525baf2708dbfab754ff44654a05bb59"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/blueprint-build.log": {
+      "bytes": 3647,
+      "sha256": "428dbff2c313de39abcecc56142edf399b0404e6fb5398910a5f73f3a76868a3"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/openmp-validation.json": {
+      "bytes": 51961171,
+      "sha256": "994382b366266bd1b99818f941ee61cf152bbc87b5ce7378fd3967362d365209"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/serial-validation.json": {
+      "bytes": 51960444,
+      "sha256": "0cfe55fd9be39e1b8e6d4bbcf694de7e8093022cafd0ed9f65c63a7fe0bf54bb"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/activation.json": {
+      "bytes": 1175,
+      "sha256": "251da95c633d5a64ffb73c59f71eb17dc772e32e1b069094d7e9a854e23575dc"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/previous-primary/_native.abi3.so": {
+      "bytes": 2133520,
+      "sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/previous-primary/_blueprint_batch.abi3.so": {
+      "bytes": 2254072,
+      "sha256": "f9bd5e3370aacde03cb0529d3e17a1777a5a06a5aa73a824f0dd9438cb0cc233"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/check_parallel_threshold.py": {
+      "bytes": 1224,
+      "sha256": "760daa4b8b35042ac6f86738f95b49c95da1a0a781cf4727072b1c17014e996e"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/threshold-openmp.json": {
+      "bytes": 544,
+      "sha256": "60dc86d02cf5b74a0b983d8b2156190d474ec29905589b75ee920e52620315b1"
+    },
+    "/Users/lucasraicu/.local/share/antigravity-worker-mcp/openmp-restoration-20261021/threshold-serial.json": {
+      "bytes": 364,
+      "sha256": "60ddfc22d2bfaa4aa8413976520d7db9fb05208d0cb1d9920881dae9b2a2c27d"
+    }
+  },
+  "baseline": "Existing dirty workspace preserved; source and tests additive/scoped, no reset/commit/push. Historical failed measurements retained."
+}

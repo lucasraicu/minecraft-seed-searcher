@@ -1,0 +1,3188 @@
+{
+  "status": "planning_only_no_moves",
+  "scanned_files": 2732,
+  "scanned_bytes": 28570157,
+  "skipped_large": [
+    "reviews/framework-fixes-2026-10-16/refined-natural-final.json",
+    "reviews/framework-fixes-2026-10-16/refined-natural.json"
+  ],
+  "seconds": 10.961745379958302,
+  "candidates": [
+    {
+      "source": "MASTER_PLATFORM_SPECIFICATION.md",
+      "destination": "docs/specs/MASTER_PLATFORM_SPECIFICATION.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 16,
+          "kind": "relative_link",
+          "text": "Platform/product plans: [MASTER_PLATFORM_SPECIFICATION.md](MASTER_PLATFORM_SPECIFICATION.md),"
+        },
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 19,
+          "kind": "relative_link",
+          "text": "Personal search behavior follows the versioned configuration/source and [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md). The current public query/storage vocabulary follows [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CAT"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 134,
+          "kind": "mention",
+          "text": "| MASTER_PLATFORM_SPECIFICATION.md | docs/specs/ |"
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 43,
+          "kind": "relative_link",
+          "text": "  campaigns. [Master platform proposal](../MASTER_PLATFORM_SPECIFICATION.md)"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 15,
+          "kind": "mention",
+          "text": "Platform/product plans: [MASTER_PLATFORM_SPECIFICATION.md](MASTER_PLATFORM_SPECIFICATION.md),"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 1349,
+          "kind": "mention",
+          "text": "MASTER_PLATFORM_SPECIFICATION.md preset/record definitions, current public query"
+        },
+        {
+          "path": "reviews/catalog-validation-2026-10-20/verification.json",
+          "line": 79,
+          "kind": "mention",
+          "text": "      \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/phase12-2026-10-20/verification.json",
+          "line": 32,
+          "kind": "mention",
+          "text": "      \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/phase12-2026-10-20/verification.json",
+          "line": 83,
+          "kind": "mention",
+          "text": "    \"MASTER_PLATFORM_SPECIFICATION.md\": \"70ed1fe6649c0f546a462565e90ab7f3e64402b7df557ee84715ec6be6131f39\","
+        },
+        {
+          "path": "reviews/phase3-reference-2026-10-20/verification.json",
+          "line": 16,
+          "kind": "mention",
+          "text": "      \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 12,
+          "kind": "mention",
+          "text": "      \"source\": \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 13,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/specs/MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 19,
+          "kind": "mention",
+          "text": "          \"text\": \"Platform/product plans: [MASTER_PLATFORM_SPECIFICATION.md](MASTER_PLATFORM_SPECIFICATION.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 31,
+          "kind": "mention",
+          "text": "          \"text\": \"| MASTER_PLATFORM_SPECIFICATION.md | docs/specs/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 37,
+          "kind": "mention",
+          "text": "          \"text\": \"  campaigns. [Master platform proposal](../MASTER_PLATFORM_SPECIFICATION.md)\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 43,
+          "kind": "mention",
+          "text": "          \"text\": \"Platform/product plans: [MASTER_PLATFORM_SPECIFICATION.md](MASTER_PLATFORM_SPECIFICATION.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 49,
+          "kind": "mention",
+          "text": "          \"text\": \"MASTER_PLATFORM_SPECIFICATION.md preset/record definitions, current public query\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 55,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"MASTER_PLATFORM_SPECIFICATION.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 61,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"MASTER_PLATFORM_SPECIFICATION.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 67,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"MASTER_PLATFORM_SPECIFICATION.md\\\": \\\"70ed1fe6649c0f546a462565e90ab7f3e64402b7df557ee84715ec6be6131f39\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 73,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"MASTER_PLATFORM_SPECIFICATION.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 79,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"MASTER_PLATFORM_SPECIFICATION.md\\\": \\\"4c2d8c5c07812240f198a0d2b198b2d78fbf869b76377f823bb31889c7d63d5d\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 85,
+          "kind": "mention",
+          "text": "          \"text\": \"| `MASTER_PLATFORM_SPECIFICATION.md` | `docs/specs/PLATFORM_SPECIFICATION.md` | Core engine platform architecture |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 97,
+          "kind": "mention",
+          "text": "          \"text\": \" M MASTER_PLATFORM_SPECIFICATION.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 310,
+          "kind": "mention",
+          "text": "          \"path\": \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 316,
+          "kind": "mention",
+          "text": "          \"path\": \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 970,
+          "kind": "mention",
+          "text": "          \"path\": \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1062,
+          "kind": "mention",
+          "text": "          \"path\": \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1096,
+          "kind": "mention",
+          "text": "        \"MASTER_PLATFORM_SPECIFICATION.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 16,
+          "kind": "mention",
+          "text": "    \"MASTER_PLATFORM_SPECIFICATION.md\": \"4c2d8c5c07812240f198a0d2b198b2d78fbf869b76377f823bb31889c7d63d5d\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 64,
+          "kind": "mention",
+          "text": "| `MASTER_PLATFORM_SPECIFICATION.md` | `docs/specs/PLATFORM_SPECIFICATION.md` | Core engine platform architecture |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/e2ba9f7c5ff9.json",
+          "line": 5,
+          "kind": "mention",
+          "text": "      \"text\": \"{\\n  \\\"task_id\\\": \\\"e2ba9f7c5ff9\\\",\\n  \\\"role\\\": \\\"review\\\",\\n  \\\"state\\\": \\\"succeeded\\\",\\n  \\\"created\\\": 1792668186.938197,\\n  \\\"updated\\\": 1792668244.666995,\\n  \\\"worker_id\\\": \\\"gemini-1\\\",\\n  \\\"objectiv"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 4,
+          "kind": "mention",
+          "text": " M MASTER_PLATFORM_SPECIFICATION.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 16
+        },
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 19
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 43
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "4c2d8c5c07812240f198a0d2b198b2d78fbf869b76377f823bb31889c7d63d5d",
+      "mode": "0o644",
+      "bytes": 41936,
+      "destination_exists": false,
+      "outgoing_links": [
+        "docs/PROJECT_STATUS.md",
+        "reviews/catalog-validation-2026-10-20/REPORT.md",
+        "Public_Catalog_Master_Plan.md"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "destination": "docs/specs/CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md",
+      "references": [
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 135,
+          "kind": "mention",
+          "text": "| CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md | docs/specs/ |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 131,
+          "kind": "mention",
+          "text": "      \"source\": \"CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 132,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/specs/CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 138,
+          "kind": "mention",
+          "text": "          \"text\": \"| CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md | docs/specs/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 144,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md\\\": \\\"b2644818151f81c2f70edf92dbe989ba2974197b7793c21cf74c5d2e38efe910\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 150,
+          "kind": "mention",
+          "text": "          \"text\": \"| `CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md` | `docs/specs/WEB_ARCHITECTURE_SPEC.md` | Web UI & API architecture |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 10,
+          "kind": "mention",
+          "text": "    \"CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md\": \"b2644818151f81c2f70edf92dbe989ba2974197b7793c21cf74c5d2e38efe910\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 65,
+          "kind": "mention",
+          "text": "| `CATALOG_WEB_ARCHITECTURE_AND_INTERFACE_SPEC.md` | `docs/specs/WEB_ARCHITECTURE_SPEC.md` | Web UI & API architecture |"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "b2644818151f81c2f70edf92dbe989ba2974197b7793c21cf74c5d2e38efe910",
+      "mode": "0o644",
+      "bytes": 34964,
+      "destination_exists": false,
+      "outgoing_links": [],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "destination": "docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 20,
+          "kind": "relative_link",
+          "text": "[DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md](DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md)."
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 136,
+          "kind": "mention",
+          "text": "| DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md | docs/specs/ |"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 19,
+          "kind": "mention",
+          "text": "[DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md](DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md)."
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 9,
+          "kind": "mention",
+          "text": "Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gate, observation-cost"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 19,
+          "kind": "mention",
+          "text": "`DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md:79\u201387` requires raw villages >=6, mansion >=1, and trials >=8 before either consumer sees a seed. That discards, for example, an excellent village/cherry seed without a mansion. "
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 168,
+          "kind": "mention",
+          "text": "| `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` | Asynchronous batches, independent final consumers, bulk storage plus serving-index separation | Remove shared personal rejection, free-extraction claims, unsupported perform"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/checks.json",
+          "line": 66,
+          "kind": "mention",
+          "text": "    \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\": \"cab2f55fd1f01605a2a08b8a994c5a8f6e3cbc3ff63a5d53379907bb551d6661\","
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/verify_review.py",
+          "line": 62,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\", \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 167,
+          "kind": "mention",
+          "text": "      \"source\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 168,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/specs/DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 174,
+          "kind": "mention",
+          "text": "          \"text\": \"[DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md](DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 180,
+          "kind": "mention",
+          "text": "          \"text\": \"| DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md | docs/specs/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 186,
+          "kind": "mention",
+          "text": "          \"text\": \"[DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md](DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 192,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 198,
+          "kind": "mention",
+          "text": "          \"text\": \"`DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md:79\\u201387` requires raw villages >=6, mansion >=1, and trials >=8 before either consumer sees a seed. That discards, for example, an excellent village/cherry "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 204,
+          "kind": "mention",
+          "text": "          \"text\": \"| `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` | Asynchronous batches, independent final consumers, bulk storage plus serving-index separation | Remove shared personal rejection, free-extraction claims, "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 210,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\": \\\"cab2f55fd1f01605a2a08b8a994c5a8f6e3cbc3ff63a5d53379907bb551d6661\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 216,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 222,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\": \\\"62fffa1ba974db69eb3be46c99f733b021a018987b32e1b824616d9ce313c958\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 228,
+          "kind": "mention",
+          "text": "          \"text\": \"| `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` | `docs/specs/GPU_HARVEST_ARCHITECTURE.md` | Future GPU architecture proposal |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 298,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 424,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 720,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 726,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 759,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 777,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1125,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1131,
+          "kind": "mention",
+          "text": "          \"path\": \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1350,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1386,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 18,
+          "kind": "mention",
+          "text": "    \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\": \"62fffa1ba974db69eb3be46c99f733b021a018987b32e1b824616d9ce313c958\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 66,
+          "kind": "mention",
+          "text": "| `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` | `docs/specs/GPU_HARVEST_ARCHITECTURE.md` | Future GPU architecture proposal |"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 20
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "62fffa1ba974db69eb3be46c99f733b021a018987b32e1b824616d9ce313c958",
+      "mode": "0o644",
+      "bytes": 15671,
+      "destination_exists": false,
+      "outgoing_links": [
+        "PUBLIC_CATALOG_SYSTEM_SPEC.md"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "DIAGRAMS.md",
+      "destination": "docs/specs/DIAGRAMS.md",
+      "references": [
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 137,
+          "kind": "mention",
+          "text": "| DIAGRAMS.md | docs/specs/ |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 252,
+          "kind": "mention",
+          "text": "      \"source\": \"DIAGRAMS.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 253,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/specs/DIAGRAMS.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 259,
+          "kind": "mention",
+          "text": "          \"text\": \"| DIAGRAMS.md | docs/specs/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 265,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"DIAGRAMS.md\\\": \\\"64b984e1750737a1676c2b95d585aac7979c195567654d396bafbb7847bce453\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 271,
+          "kind": "mention",
+          "text": "          \"text\": \"| `DIAGRAMS.md` | `docs/specs/SYSTEM_DIAGRAMS.md` | Architectural Mermaid diagrams |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 11,
+          "kind": "mention",
+          "text": "    \"DIAGRAMS.md\": \"64b984e1750737a1676c2b95d585aac7979c195567654d396bafbb7847bce453\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 67,
+          "kind": "mention",
+          "text": "| `DIAGRAMS.md` | `docs/specs/SYSTEM_DIAGRAMS.md` | Architectural Mermaid diagrams |"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "64b984e1750737a1676c2b95d585aac7979c195567654d396bafbb7847bce453",
+      "mode": "0o644",
+      "bytes": 6054,
+      "destination_exists": false,
+      "outgoing_links": [],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_SYSTEM_SPEC.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 17,
+          "kind": "relative_link",
+          "text": "[PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md),"
+        },
+        {
+          "path": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "> Superseded public-system proposal: use [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md). The shared personal GPU rejection gate, free-harvest assumptions, authoritative 64-byte record and performance fore"
+        },
+        {
+          "path": "IMPLEMENTATION_PLAN.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "> Public-catalog work is separately proposed in [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md) and its [contract artifacts](docs/catalog/v1/README.md). Completion statuses in this historical personal-fram"
+        },
+        {
+          "path": "MASTER_PLATFORM_SPECIFICATION.md",
+          "line": 13,
+          "kind": "mention",
+          "text": "> semantics follow `PUBLIC_CATALOG_SYSTEM_SPEC.md` and `docs/catalog/v1/` contracts."
+        },
+        {
+          "path": "MASTER_PLATFORM_SPECIFICATION.md",
+          "line": 86,
+          "kind": "mention",
+          "text": "As established in `PUBLIC_CATALOG_SYSTEM_SPEC.md` (Line 354), the production platform has access to:"
+        },
+        {
+          "path": "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "> Current consolidated proposal: [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md), with [versioned contract artifacts](docs/catalog/v1/README.md). It supersedes conflicting public sizes, anchor-mode activat"
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 12,
+          "kind": "relative_link",
+          "text": "> Current consolidated proposal: [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md). It defines the exact three border sizes, current Origin/Recommended modes with spawn gated on cost/accuracy, complete UI, r"
+        },
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 19,
+          "kind": "relative_link",
+          "text": "Personal search behavior follows the versioned configuration/source and [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md). The current public query/storage vocabulary follows [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CAT"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 138,
+          "kind": "mention",
+          "text": "| PUBLIC_CATALOG_SYSTEM_SPEC.md | docs/catalog/ |"
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 36,
+          "kind": "relative_link",
+          "text": "- Public pilot query/storage vocabulary: [system specification](../PUBLIC_CATALOG_SYSTEM_SPEC.md),"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 16,
+          "kind": "mention",
+          "text": "[PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md),"
+        },
+        {
+          "path": "docs/catalog/v1/README.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "Design authority: [PUBLIC_CATALOG_SYSTEM_SPEC.md](../../../PUBLIC_CATALOG_SYSTEM_SPEC.md). These artifacts define the v1 vocabulary read by the private CPU/serving reference and Catalog tab. Public capability/billing fla"
+        },
+        {
+          "path": "docs/catalog/v1/validate_spec.py",
+          "line": 179,
+          "kind": "mention",
+          "text": "    checked_docs = [ROOT/'PUBLIC_CATALOG_SYSTEM_SPEC.md',HERE/'README.md']"
+        },
+        {
+          "path": "reviews/argon-master-plan-review-2026-10-20/REVIEW.md",
+          "line": 149,
+          "kind": "mention",
+          "text": "   PUBLIC_CATALOG_SYSTEM_SPEC.md and docs/catalog/v1 as the proposed contract"
+        },
+        {
+          "path": "reviews/catalog-cpu-plan-2026-10-20/PLAN.md",
+          "line": 25,
+          "kind": "mention",
+          "text": "  consolidated PUBLIC_CATALOG_SYSTEM_SPEC.md over conflicting older plans."
+        },
+        {
+          "path": "reviews/catalog-validation-2026-10-20/verification.json",
+          "line": 80,
+          "kind": "mention",
+          "text": "      \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/phase3-reference-2026-10-20/NEXT_VALIDATION_PLAN.md",
+          "line": 40,
+          "kind": "mention",
+          "text": "Implement the existing PUBLIC_CATALOG_SYSTEM_SPEC.md section7 objective families,"
+        },
+        {
+          "path": "reviews/phase3-reference-2026-10-20/verification.json",
+          "line": 17,
+          "kind": "mention",
+          "text": "      \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 25,
+          "kind": "mention",
+          "text": "          \"text\": \"Personal search behavior follows the versioned configuration/source and [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md). The current public query/storage vocabulary follows [PUBLIC_CATALOG_SYSTEM_"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 245,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_SYSTEM_SPEC.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 288,
+          "kind": "mention",
+          "text": "      \"source\": \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 289,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 295,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 301,
+          "kind": "mention",
+          "text": "          \"text\": \"> Superseded public-system proposal: use [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md). The shared personal GPU rejection gate, free-harvest assumptions, authoritative 64-byte record a"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 307,
+          "kind": "mention",
+          "text": "          \"text\": \"> Public-catalog work is separately proposed in [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md) and its [contract artifacts](docs/catalog/v1/README.md). Completion statuses in this histo"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 313,
+          "kind": "mention",
+          "text": "          \"text\": \"> semantics follow `PUBLIC_CATALOG_SYSTEM_SPEC.md` and `docs/catalog/v1/` contracts.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 319,
+          "kind": "mention",
+          "text": "          \"text\": \"As established in `PUBLIC_CATALOG_SYSTEM_SPEC.md` (Line 354), the production platform has access to:\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 325,
+          "kind": "mention",
+          "text": "          \"text\": \"> Current consolidated proposal: [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md), with [versioned contract artifacts](docs/catalog/v1/README.md). It supersedes conflicting public sizes, "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 331,
+          "kind": "mention",
+          "text": "          \"text\": \"> Current consolidated proposal: [PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md). It defines the exact three border sizes, current Origin/Recommended modes with spawn gated on cost/accur"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 337,
+          "kind": "mention",
+          "text": "          \"text\": \"Personal search behavior follows the versioned configuration/source and [MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md). The current public query/storage vocabulary follows [PUBLIC_CATALOG_SYSTEM_"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 343,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_SYSTEM_SPEC.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 349,
+          "kind": "mention",
+          "text": "          \"text\": \"- Public pilot query/storage vocabulary: [system specification](../PUBLIC_CATALOG_SYSTEM_SPEC.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 355,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_SYSTEM_SPEC.md](PUBLIC_CATALOG_SYSTEM_SPEC.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 361,
+          "kind": "mention",
+          "text": "          \"text\": \"Design authority: [PUBLIC_CATALOG_SYSTEM_SPEC.md](../../../PUBLIC_CATALOG_SYSTEM_SPEC.md). These artifacts define the v1 vocabulary read by the private CPU/serving reference and Catalog tab. Public cap"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 367,
+          "kind": "mention",
+          "text": "          \"text\": \"    checked_docs = [ROOT/'PUBLIC_CATALOG_SYSTEM_SPEC.md',HERE/'README.md']\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 373,
+          "kind": "mention",
+          "text": "          \"text\": \"   PUBLIC_CATALOG_SYSTEM_SPEC.md and docs/catalog/v1 as the proposed contract\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 379,
+          "kind": "mention",
+          "text": "          \"text\": \"  consolidated PUBLIC_CATALOG_SYSTEM_SPEC.md over conflicting older plans.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 385,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"PUBLIC_CATALOG_SYSTEM_SPEC.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 391,
+          "kind": "mention",
+          "text": "          \"text\": \"Implement the existing PUBLIC_CATALOG_SYSTEM_SPEC.md section7 objective families,\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 397,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"PUBLIC_CATALOG_SYSTEM_SPEC.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 403,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_SYSTEM_SPEC.md\\\": \\\"dc0b826dd9916341a7042752413e1d1674d60ce8b6b1a008e6d10d1420d8cbc1\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 409,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_SYSTEM_SPEC.md` | `docs/catalog/SYSTEM_SPEC.md` | Public catalog system specification |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 415,
+          "kind": "mention",
+          "text": "          \"text\": \" M PUBLIC_CATALOG_SYSTEM_SPEC.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 554,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 814,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 982,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1021,
+          "kind": "mention",
+          "text": "          \"text\": \"Design authority: [PUBLIC_CATALOG_SYSTEM_SPEC.md](../../../PUBLIC_CATALOG_SYSTEM_SPEC.md). These artifacts define the v1 vocabulary read by the private CPU/serving reference and Catalog tab. Public cap"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1070,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1094,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1470,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_SYSTEM_SPEC.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 27,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_SYSTEM_SPEC.md\": \"dc0b826dd9916341a7042752413e1d1674d60ce8b6b1a008e6d10d1420d8cbc1\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 68,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_SYSTEM_SPEC.md` | `docs/catalog/SYSTEM_SPEC.md` | Public catalog system specification |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 7,
+          "kind": "mention",
+          "text": " M PUBLIC_CATALOG_SYSTEM_SPEC.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 17
+        },
+        {
+          "path": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+          "line": 3
+        },
+        {
+          "path": "IMPLEMENTATION_PLAN.md",
+          "line": 3
+        },
+        {
+          "path": "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+          "line": 3
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 12
+        },
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 19
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 36
+        },
+        {
+          "path": "docs/catalog/v1/README.md",
+          "line": 3
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "dc0b826dd9916341a7042752413e1d1674d60ce8b6b1a008e6d10d1420d8cbc1",
+      "mode": "0o644",
+      "bytes": 47247,
+      "destination_exists": false,
+      "outgoing_links": [
+        "reviews/catalog-private-pilot-2026-10-20/REPORT.md",
+        "docs/catalog/PRIVATE_PILOT.md",
+        "docs/catalog/FOUR_PILLARS_AND_HARVEST.md",
+        "Public_Catalog_Master_Plan.md",
+        "MASTER_SEED_BLUEPRINT.md",
+        "docs/catalog/v1/README.md",
+        "reviews/catalog-system-spec-2026-10-17/spawn-timing.json",
+        "reviews/catalog-system-spec-2026-10-17/spawn_timing.c",
+        "reviews/spawn-validation-2026-10-17/README.md",
+        "docs/catalog/v1/ui_presets.json",
+        "docs/catalog/v1/feature_registry.json",
+        "docs/catalog/v1/request_schema.json",
+        "docs/catalog/v1/example_request.json",
+        "docs/catalog/v1/public_policy.json",
+        "docs/catalog/v1/catalog_schema.sql",
+        "docs/catalog/v1/storage_layout.json",
+        "https://duckdb.org/docs/current/data/parquet/overview",
+        "https://arrow.apache.org/docs/format/Columnar.html",
+        "https://www.sqlite.org/rtree.html",
+        "https://github.com/facebook/rocksdb/wiki/Basic-Operations",
+        "https://docs.stripe.com/billing/subscriptions/webhooks",
+        "https://docs.stripe.com/webhooks",
+        "https://www.sqlite.org/wal.html"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_PLAYER_POLICY.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 18,
+          "kind": "relative_link",
+          "text": "[PUBLIC_CATALOG_PLAYER_POLICY.md](PUBLIC_CATALOG_PLAYER_POLICY.md),"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 139,
+          "kind": "mention",
+          "text": "| PUBLIC_CATALOG_PLAYER_POLICY.md | docs/catalog/ |"
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 37,
+          "kind": "relative_link",
+          "text": "  [player policy](../PUBLIC_CATALOG_PLAYER_POLICY.md) and"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 17,
+          "kind": "mention",
+          "text": "[PUBLIC_CATALOG_PLAYER_POLICY.md](PUBLIC_CATALOG_PLAYER_POLICY.md),"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 328,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 436,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 489,
+          "kind": "mention",
+          "text": "      \"source\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 490,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 496,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_PLAYER_POLICY.md](PUBLIC_CATALOG_PLAYER_POLICY.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 502,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_PLAYER_POLICY.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 508,
+          "kind": "mention",
+          "text": "          \"text\": \"  [player policy](../PUBLIC_CATALOG_PLAYER_POLICY.md) and\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 514,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_PLAYER_POLICY.md](PUBLIC_CATALOG_PLAYER_POLICY.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 520,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_PLAYER_POLICY.md\\\": \\\"3ea2bdf53072f3aa5f257648bda95ab43e0b8c89af531a8e24e8f5f69d009b08\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 526,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_PLAYER_POLICY.md` | `docs/catalog/PLAYER_POLICY.md` | Player retention & quota policy |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 532,
+          "kind": "mention",
+          "text": "          \"text\": \" M PUBLIC_CATALOG_PLAYER_POLICY.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 738,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 802,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 976,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1066,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1137,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_PLAYER_POLICY.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 17,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_PLAYER_POLICY.md\": \"3ea2bdf53072f3aa5f257648bda95ab43e0b8c89af531a8e24e8f5f69d009b08\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 69,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_PLAYER_POLICY.md` | `docs/catalog/PLAYER_POLICY.md` | Player retention & quota policy |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 6,
+          "kind": "mention",
+          "text": " M PUBLIC_CATALOG_PLAYER_POLICY.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 18
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 37
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "3ea2bdf53072f3aa5f257648bda95ab43e0b8c89af531a8e24e8f5f69d009b08",
+      "mode": "0o644",
+      "bytes": 29341,
+      "destination_exists": false,
+      "outgoing_links": [
+        "docs/catalog/ACCURACY.md",
+        "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+        "Public_Catalog_Master_Plan.md",
+        "docs/catalog/FOUR_PILLARS_AND_HARVEST.md",
+        "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+        "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+        "reviews/spawn-validation-2026-10-17/README.md",
+        "https://www.chunkbase.com/apps/seed-finder",
+        "https://mcseedmap.com/seed-finder"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_AUTOMATION_PLAN.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_AUTOMATION_PLAN.md",
+      "references": [
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "**Completed local automation milestone (2026-10-21):** [release report](reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md) and [implementation contract](PUBLIC_CATALOG_AUTOMATION_PLAN.md). The existing UI now "
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 140,
+          "kind": "mention",
+          "text": "| PUBLIC_CATALOG_AUTOMATION_PLAN.md | docs/catalog/ |"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 249,
+          "kind": "mention",
+          "text": "COMPLETED LOCAL AUTOMATION MILESTONE2026-10-21. This checkpoint supersedes earlier in-progress records below; they remain historical. Approved PUBLIC_CATALOG_AUTOMATION_PLAN.md, fullUI and larger-size calibration/expande"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 447,
+          "kind": "mention",
+          "text": "ACTIVE IMPLEMENTATION 2026-10-21: user explicitly authorizes carrying out PUBLIC_CATALOG_AUTOMATION_PLAN.md via persistent goal; fully updated existing Sweep UI is explicitly included. Earlier plan-only/pending approval "
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 451,
+          "kind": "mention",
+          "text": "Created PUBLIC_CATALOG_AUTOMATION_PLAN.md and linked it from the public master"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 2578,
+          "kind": "mention",
+          "text": "LATEST 2026-10-21: deliver/link PUBLIC_CATALOG_AUTOMATION_PLAN.md for the requested"
+        },
+        {
+          "path": "docs/catalog/v2/INTERFACES.md",
+          "line": 4,
+          "kind": "mention",
+          "text": "goal. Use PUBLIC_CATALOG_AUTOMATION_PLAN.md; do not invent terrain/BDS guarantees."
+        },
+        {
+          "path": "docs/catalog/v2/README.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "The supported contract is [PUBLIC_CATALOG_AUTOMATION_PLAN.md](../../../PUBLIC_CATALOG_AUTOMATION_PLAN.md). This is the existing Sweep application's catalog tab; GPU, custom database engines, billing and public hosting ar"
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/IMPLEMENTATION_PLAN_RECONCILIATION.md",
+          "line": 4,
+          "kind": "mention",
+          "text": "specific plan. Deliverable: `PUBLIC_CATALOG_AUTOMATION_PLAN.md` at repository root."
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/PLAN.md",
+          "line": 5,
+          "kind": "relative_link",
+          "text": "[PUBLIC_CATALOG_AUTOMATION_PLAN.md](../../PUBLIC_CATALOG_AUTOMATION_PLAN.md)"
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "Completed2026-10-21. Approved scope: [implementation plan](../../PUBLIC_CATALOG_AUTOMATION_PLAN.md), including the full existing UI and calibrated larger Realm boards. No GPU port, custom database engine, payment activat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 568,
+          "kind": "mention",
+          "text": "      \"source\": \"PUBLIC_CATALOG_AUTOMATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 569,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/PUBLIC_CATALOG_AUTOMATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 575,
+          "kind": "mention",
+          "text": "          \"text\": \"**Completed local automation milestone (2026-10-21):** [release report](reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md) and [implementation contract](PUBLIC_CATALOG_AUTOMATION_PLAN.md). T"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 581,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_AUTOMATION_PLAN.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 587,
+          "kind": "mention",
+          "text": "          \"text\": \"COMPLETED LOCAL AUTOMATION MILESTONE2026-10-21. This checkpoint supersedes earlier in-progress records below; they remain historical. Approved PUBLIC_CATALOG_AUTOMATION_PLAN.md, fullUI and larger-size "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 593,
+          "kind": "mention",
+          "text": "          \"text\": \"ACTIVE IMPLEMENTATION 2026-10-21: user explicitly authorizes carrying out PUBLIC_CATALOG_AUTOMATION_PLAN.md via persistent goal; fully updated existing Sweep UI is explicitly included. Earlier plan-onl"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 599,
+          "kind": "mention",
+          "text": "          \"text\": \"Created PUBLIC_CATALOG_AUTOMATION_PLAN.md and linked it from the public master\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 611,
+          "kind": "mention",
+          "text": "          \"text\": \"LATEST 2026-10-21: deliver/link PUBLIC_CATALOG_AUTOMATION_PLAN.md for the requested\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 617,
+          "kind": "mention",
+          "text": "          \"text\": \"goal. Use PUBLIC_CATALOG_AUTOMATION_PLAN.md; do not invent terrain/BDS guarantees.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 629,
+          "kind": "mention",
+          "text": "          \"text\": \"The supported contract is [PUBLIC_CATALOG_AUTOMATION_PLAN.md](../../../PUBLIC_CATALOG_AUTOMATION_PLAN.md). This is the existing Sweep application's catalog tab; GPU, custom database engines, billing an"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 635,
+          "kind": "mention",
+          "text": "          \"text\": \"specific plan. Deliverable: `PUBLIC_CATALOG_AUTOMATION_PLAN.md` at repository root.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 641,
+          "kind": "relative_link",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_AUTOMATION_PLAN.md](../../PUBLIC_CATALOG_AUTOMATION_PLAN.md)\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 647,
+          "kind": "relative_link",
+          "text": "          \"text\": \"Completed2026-10-21. Approved scope: [implementation plan](../../PUBLIC_CATALOG_AUTOMATION_PLAN.md), including the full existing UI and calibrated larger Realm boards. No GPU port, custom database engi"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 653,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_AUTOMATION_PLAN.md\\\": \\\"c12806a6ebaa65abc53bd722bb2199e4afd567a7fa67e6bda27dc719d9aa05f3\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 659,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_AUTOMATION_PLAN.md` | `docs/catalog/AUTOMATION_PLAN.md` | Automated sweep & harvest plan |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 665,
+          "kind": "mention",
+          "text": "          \"text\": \"?? PUBLIC_CATALOG_AUTOMATION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1091,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_AUTOMATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 29,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_AUTOMATION_PLAN.md\": \"c12806a6ebaa65abc53bd722bb2199e4afd567a7fa67e6bda27dc719d9aa05f3\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 70,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_AUTOMATION_PLAN.md` | `docs/catalog/AUTOMATION_PLAN.md` | Automated sweep & harvest plan |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 52,
+          "kind": "mention",
+          "text": "?? PUBLIC_CATALOG_AUTOMATION_PLAN.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "Public_Catalog_Master_Plan.md",
+          "line": 3
+        },
+        {
+          "path": "docs/catalog/v2/README.md",
+          "line": 3
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/PLAN.md",
+          "line": 5
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md",
+          "line": 3
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 641
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 647
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "c12806a6ebaa65abc53bd722bb2199e4afd567a7fa67e6bda27dc719d9aa05f3",
+      "mode": "0o644",
+      "bytes": 28893,
+      "destination_exists": false,
+      "outgoing_links": [
+        "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md"
+      ],
+      "frozen_links": [
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/PLAN.md",
+          "line": 5
+        },
+        {
+          "path": "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md",
+          "line": 3
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 641
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 647
+        }
+      ],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "defer_for_dependency_review"
+    },
+    {
+      "source": "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 19,
+          "kind": "relative_link",
+          "text": "[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),"
+        },
+        {
+          "path": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+          "line": 64,
+          "kind": "mention",
+          "text": "  2. **Play Style Archetypes:** Computes integer dot-products against the 16 normalized profile vectors defined in `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (e.g., *Ocean Explorer*, *Trial Adventurer*, *Archaeology*). Seed"
+        },
+        {
+          "path": "DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md",
+          "line": 203,
+          "kind": "mention",
+          "text": "* **Scope:** Follows `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (Phases 0\u20133)."
+        },
+        {
+          "path": "IMPLEMENTATION_PLAN.md",
+          "line": 273,
+          "kind": "relative_link",
+          "text": "The separate [Personal Blueprint + Public Seed Catalog Implementation Plan](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md) specifies preservation of the current personal bonus policy, independent public retention, exact customer"
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 23,
+          "kind": "relative_link",
+          "text": "Date: 2026-10-17. Status: proposed product contract; not implemented or validated demand. Audience: a broad catalog across play styles, as selected by Lucas. This elaborates [PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 141,
+          "kind": "mention",
+          "text": "| PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md | docs/catalog/ |"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 18,
+          "kind": "mention",
+          "text": "[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 9,
+          "kind": "mention",
+          "text": "Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gate, observation-cost"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 167,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | Independent policies, exact user predicates, evidence limits, bounded retention, full-observation reference and held-out recall tests | Add advertised-biome retention objective"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/checks.json",
+          "line": 65,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\": \"5e6e46550bd389d456483e7d13aac6da9021d1e0dea08115598c1f291abe9d94\","
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/verify_review.py",
+          "line": 62,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\", \"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 192,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 216,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 322,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 432,
+          "kind": "mention",
+          "text": "          \"path\": \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 557,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 710,
+          "kind": "mention",
+          "text": "      \"source\": \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 711,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 717,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 723,
+          "kind": "mention",
+          "text": "          \"text\": \"  2. **Play Style Archetypes:** Computes integer dot-products against the 16 normalized profile vectors defined in `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (e.g., *Ocean Explorer*, *Trial Adventurer*, *"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 729,
+          "kind": "mention",
+          "text": "          \"text\": \"* **Scope:** Follows `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (Phases 0\\u20133).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 735,
+          "kind": "mention",
+          "text": "          \"text\": \"The separate [Personal Blueprint + Public Seed Catalog Implementation Plan](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md) specifies preservation of the current personal bonus policy, independent public retent"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 741,
+          "kind": "mention",
+          "text": "          \"text\": \"Date: 2026-10-17. Status: proposed product contract; not implemented or validated demand. Audience: a broad catalog across play styles, as selected by Lucas. This elaborates [PUBLIC_CATALOG_IMPLEMENTAT"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 747,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 753,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 759,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 765,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | Independent policies, exact user predicates, evidence limits, bounded retention, full-observation reference and held-out recall tests | Add advertised-biome "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 771,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\": \\\"5e6e46550bd389d456483e7d13aac6da9021d1e0dea08115598c1f291abe9d94\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 777,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 783,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\": \\\"959b7a6eedd27fdad6fc90b30bbfd9297d0ff33fa72b015c96f83f404cbcd4dd\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 789,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1122,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1128,
+          "kind": "mention",
+          "text": "          \"text\": \"  2. **Play Style Archetypes:** Computes integer dot-products against the 16 normalized profile vectors defined in `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (e.g., *Ocean Explorer*, *Trial Adventurer*, *"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1134,
+          "kind": "mention",
+          "text": "          \"text\": \"* **Scope:** Follows `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` (Phases 0\\u20133).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1140,
+          "kind": "mention",
+          "text": "          \"text\": \"Date: 2026-10-17. Status: proposed product contract; not implemented or validated demand. Audience: a broad catalog across play styles, as selected by Lucas. This elaborates [PUBLIC_CATALOG_IMPLEMENTAT"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1164,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1182,
+          "kind": "mention",
+          "text": "          \"text\": \"[PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md](PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md),\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1350,
+          "kind": "mention",
+          "text": "          \"text\": \"Build the catalog branch. Use `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` as the starting product contract. Revise `DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md` before implementation: its shared rejection gat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1362,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | Independent policies, exact user predicates, evidence limits, bounded retention, full-observation reference and held-out recall tests | Add advertised-biome "
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1374,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\": \\\"5e6e46550bd389d456483e7d13aac6da9021d1e0dea08115598c1f291abe9d94\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1386,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\", \\\"DUAL_HARVEST_GPU_CATALOG_ARCHITECTURE.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1416,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\\\": \\\"959b7a6eedd27fdad6fc90b30bbfd9297d0ff33fa72b015c96f83f404cbcd4dd\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1428,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1478,
+          "kind": "mention",
+          "text": "        \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 14,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md\": \"959b7a6eedd27fdad6fc90b30bbfd9297d0ff33fa72b015c96f83f404cbcd4dd\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 71,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 19
+        },
+        {
+          "path": "IMPLEMENTATION_PLAN.md",
+          "line": 273
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 23
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "959b7a6eedd27fdad6fc90b30bbfd9297d0ff33fa72b015c96f83f404cbcd4dd",
+      "mode": "0o644",
+      "bytes": 27502,
+      "destination_exists": false,
+      "outgoing_links": [
+        "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+        "docs/catalog/v1/README.md"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md",
+      "destination": "docs/catalog/PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 47,
+          "kind": "mention",
+          "text": "PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md including section 5a 2x reserve and expandable"
+        },
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 58,
+          "kind": "mention",
+          "text": "PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md; no runtime changes. For target K retain 2K"
+        },
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 76,
+          "kind": "relative_link",
+          "text": "Active approved plan: [PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md](PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md)."
+        },
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 118,
+          "kind": "mention",
+          "text": "Key uncommitted reference files: `SERVER_SETUP_GUIDE.md`, `PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md`,"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 142,
+          "kind": "mention",
+          "text": "| PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md | docs/catalog/ |"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 27,
+          "kind": "mention",
+          "text": "PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md including section5a 2x reserve and expandable"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 39,
+          "kind": "mention",
+          "text": "of PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md; no runtime changes. For targetK retain"
+        },
+        {
+          "path": "docs/catalog/v3/INTERFACES.md",
+          "line": 3,
+          "kind": "mention",
+          "text": "User approved PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md and section5a on 2026-10-22."
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/GEMINI_CORE_ATTEMPT.json",
+          "line": 1,
+          "kind": "mention",
+          "text": "{\"conversation_id\":\"faf7ed7b-d827-471a-8d23-c0c3de3512c1\",\"status\":\"SUCCESS\",\"response\":\"### Outcome\\nImplemented the approved v3 biome core in exact accordance with [`docs/catalog/v3/INTERFACES.md`](file:///Users/lucasr"
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/GEMINI_METHOD_REVIEW.json",
+          "line": 8,
+          "kind": "mention",
+          "text": "  \"objective\": \"High independent neutral critique of proposed PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md, primarily biome correctness, sampling/activation criteria, false-negative retention, OR/AND semantics, scope and compu"
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/GEMINI_RESERVE_REVIEW.json",
+          "line": 8,
+          "kind": "mention",
+          "text": "  \"objective\": \"High narrow independent critique of section5a whole-sweep2x reserve amendment in PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md and actual RESERVE_REVIEW_CONTEXT.md. Other sections already reviewed, do not repeat"
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/GEMINI_STORAGE_UI_REVIEW.json",
+          "line": 8,
+          "kind": "mention",
+          "text": "  \"objective\": \"High independent neutral critique of proposed PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md, primarily storage/snapshot migration, overlapping atomic/group filters, heaps/checkpoints/retention capacity and exist"
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/workers/4b117af27f1f.json",
+          "line": 5,
+          "kind": "mention",
+          "text": "      \"text\": \"{\\n  \\\"task_id\\\": \\\"4b117af27f1f\\\",\\n  \\\"role\\\": \\\"code\\\",\\n  \\\"state\\\": \\\"succeeded\\\",\\n  \\\"created\\\": 1792656580.456788,\\n  \\\"updated\\\": 1792657591.655045,\\n  \\\"worker_id\\\": \\\"gemini-1\\\",\\n  \\\"objective\\"
+        },
+        {
+          "path": "reviews/biome-expansion-plan-2026-10-22/workers/b9c67897078b.json",
+          "line": 5,
+          "kind": "mention",
+          "text": "      \"text\": \"{\\n  \\\"task_id\\\": \\\"b9c67897078b\\\",\\n  \\\"role\\\": \\\"research\\\",\\n  \\\"state\\\": \\\"succeeded\\\",\\n  \\\"created\\\": 1792656784.527309,\\n  \\\"updated\\\": 1792657223.326901,\\n  \\\"worker_id\\\": \\\"gemini-3\\\",\\n  \\\"object"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 822,
+          "kind": "mention",
+          "text": "      \"source\": \"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 823,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 829,
+          "kind": "mention",
+          "text": "          \"text\": \"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md including section 5a 2x reserve and expandable\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 835,
+          "kind": "mention",
+          "text": "          \"text\": \"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md; no runtime changes. For target K retain 2K\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 841,
+          "kind": "mention",
+          "text": "          \"text\": \"Active approved plan: [PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md](PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 847,
+          "kind": "mention",
+          "text": "          \"text\": \"Key uncommitted reference files: `SERVER_SETUP_GUIDE.md`, `PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md`,\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 853,
+          "kind": "mention",
+          "text": "          \"text\": \"| PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md | docs/catalog/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 859,
+          "kind": "mention",
+          "text": "          \"text\": \"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md including section5a 2x reserve and expandable\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 865,
+          "kind": "mention",
+          "text": "          \"text\": \"of PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md; no runtime changes. For targetK retain\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 877,
+          "kind": "mention",
+          "text": "          \"text\": \"User approved PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md and section5a on 2026-10-22.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 889,
+          "kind": "mention",
+          "text": "          \"text\": \"  \\\"objective\\\": \\\"High independent neutral critique of proposed PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md, primarily biome correctness, sampling/activation criteria, false-negative retention, OR/AND sema"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 895,
+          "kind": "mention",
+          "text": "          \"text\": \"  \\\"objective\\\": \\\"High narrow independent critique of section5a whole-sweep2x reserve amendment in PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md and actual RESERVE_REVIEW_CONTEXT.md. Other sections already r"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 901,
+          "kind": "mention",
+          "text": "          \"text\": \"  \\\"objective\\\": \\\"High independent neutral critique of proposed PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md, primarily storage/snapshot migration, overlapping atomic/group filters, heaps/checkpoints/retent"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 919,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\\\": \\\"1c5d2efedc2ec85310c6bff5efd126740cd095372a1696775cb10b6521d7f67d\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 925,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md` | `docs/catalog/BIOME_EXPANSION_PLAN.md` | 56-biome expansion plan |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 931,
+          "kind": "mention",
+          "text": "          \"text\": \"?? PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 937,
+          "kind": "mention",
+          "text": "          \"text\": \" * - Conforms to docs/catalog/v3/INTERFACES.md and PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 960,
+          "kind": "mention",
+          "text": "          \"text\": \" * - Conforms to docs/catalog/v3/INTERFACES.md and PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 12,
+          "kind": "mention",
+          "text": "    \"PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md\": \"1c5d2efedc2ec85310c6bff5efd126740cd095372a1696775cb10b6521d7f67d\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 72,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md` | `docs/catalog/BIOME_EXPANSION_PLAN.md` | 56-biome expansion plan |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 53,
+          "kind": "mention",
+          "text": "?? PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md"
+        },
+        {
+          "path": "tests/test_catalog_biome_expansion.cjs",
+          "line": 3,
+          "kind": "mention",
+          "text": " * - Conforms to docs/catalog/v3/INTERFACES.md and PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 76
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "1c5d2efedc2ec85310c6bff5efd126740cd095372a1696775cb10b6521d7f67d",
+      "mode": "0o644",
+      "bytes": 25772,
+      "destination_exists": false,
+      "outgoing_links": [],
+      "frozen_links": [],
+      "source_references": [
+        {
+          "path": "tests/test_catalog_biome_expansion.cjs",
+          "line": 3,
+          "kind": "mention",
+          "text": " * - Conforms to docs/catalog/v3/INTERFACES.md and PUBLIC_CATALOG_BIOME_EXPANSION_PLAN.md"
+        }
+      ],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "defer_for_dependency_review"
+    },
+    {
+      "source": "Public_Catalog_Master_Plan.md",
+      "destination": "docs/catalog/proposals/Public_Catalog_Master_Plan.md",
+      "references": [
+        {
+          "path": "MASTER_PLATFORM_SPECIFICATION.md",
+          "line": 24,
+          "kind": "relative_link",
+          "text": "> **Reconciliation update (2026-10-20):** [Public_Catalog_Master_Plan.md](Public_Catalog_Master_Plan.md)"
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 15,
+          "kind": "relative_link",
+          "text": "> [Public_Catalog_Master_Plan.md](Public_Catalog_Master_Plan.md). Realm/Server,"
+        },
+        {
+          "path": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+          "line": 18,
+          "kind": "relative_link",
+          "text": "The [reconciled master plan](Public_Catalog_Master_Plan.md) defines the four product"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 143,
+          "kind": "mention",
+          "text": "| Public_Catalog_Master_Plan.md | docs/catalog/proposals/ |"
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 41,
+          "kind": "relative_link",
+          "text": "  [reconciled public master plan](../Public_Catalog_Master_Plan.md). It preserves"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 1328,
+          "kind": "mention",
+          "text": "Public_Catalog_Master_Plan.md preserving the four pillars and proposed commercial"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 1347,
+          "kind": "mention",
+          "text": "LATEST REVIEW: user updated Public_Catalog_Master_Plan.md and asked whether it"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 1423,
+          "kind": "mention",
+          "text": "User then supplied Public_Catalog_Master_Plan.md from Gemini Argon and requested"
+        },
+        {
+          "path": "docs/catalog/v1/README.md",
+          "line": 3,
+          "kind": "relative_link",
+          "text": "Design authority: [PUBLIC_CATALOG_SYSTEM_SPEC.md](../../../PUBLIC_CATALOG_SYSTEM_SPEC.md). These artifacts define the v1 vocabulary read by the private CPU/serving reference and Catalog tab. Public capability/billing fla"
+        },
+        {
+          "path": "reviews/argon-master-plan-review-2026-10-20/REVIEW.md",
+          "line": 1,
+          "kind": "mention",
+          "text": "# Review of Argon's Public_Catalog_Master_Plan.md"
+        },
+        {
+          "path": "reviews/argon-master-plan-review-2026-10-20/gemini-review.json",
+          "line": 5,
+          "kind": "mention",
+          "text": "      \"text\": \"{\\n  \\\"task_id\\\": \\\"7c8bfba0c9fe\\\",\\n  \\\"role\\\": \\\"review\\\",\\n  \\\"state\\\": \\\"succeeded\\\",\\n  \\\"created\\\": 1792494178.662194,\\n  \\\"updated\\\": 1792494259.433084,\\n  \\\"worker_id\\\": \\\"gemini-1\\\",\\n  \\\"objectiv"
+        },
+        {
+          "path": "reviews/catalog-four-pillars-bridge-2026-10-20/PLAN.md",
+          "line": 14,
+          "kind": "mention",
+          "text": "Source inspected: Public_Catalog_Master_Plan.md stages B/C; platform sections 4/5;"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 22,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 106,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 124,
+          "kind": "mention",
+          "text": "        \"Public_Catalog_Master_Plan.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 334,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 440,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 463,
+          "kind": "mention",
+          "text": "        \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 555,
+          "kind": "mention",
+          "text": "        \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 572,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 670,
+          "kind": "mention",
+          "text": "          \"path\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 966,
+          "kind": "mention",
+          "text": "      \"source\": \"Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 967,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/catalog/proposals/Public_Catalog_Master_Plan.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 973,
+          "kind": "mention",
+          "text": "          \"text\": \"> **Reconciliation update (2026-10-20):** [Public_Catalog_Master_Plan.md](Public_Catalog_Master_Plan.md)\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 979,
+          "kind": "mention",
+          "text": "          \"text\": \"> [Public_Catalog_Master_Plan.md](Public_Catalog_Master_Plan.md). Realm/Server,\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 985,
+          "kind": "mention",
+          "text": "          \"text\": \"The [reconciled master plan](Public_Catalog_Master_Plan.md) defines the four product\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 991,
+          "kind": "mention",
+          "text": "          \"text\": \"| Public_Catalog_Master_Plan.md | docs/catalog/proposals/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 997,
+          "kind": "mention",
+          "text": "          \"text\": \"  [reconciled public master plan](../Public_Catalog_Master_Plan.md). It preserves\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1003,
+          "kind": "mention",
+          "text": "          \"text\": \"Public_Catalog_Master_Plan.md preserving the four pillars and proposed commercial\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1009,
+          "kind": "mention",
+          "text": "          \"text\": \"LATEST REVIEW: user updated Public_Catalog_Master_Plan.md and asked whether it\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1015,
+          "kind": "mention",
+          "text": "          \"text\": \"User then supplied Public_Catalog_Master_Plan.md from Gemini Argon and requested\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1027,
+          "kind": "mention",
+          "text": "          \"text\": \"# Review of Argon's Public_Catalog_Master_Plan.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1039,
+          "kind": "mention",
+          "text": "          \"text\": \"Source inspected: Public_Catalog_Master_Plan.md stages B/C; platform sections 4/5;\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1045,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"Public_Catalog_Master_Plan.md\\\": \\\"84cc7a7b5a157828147329066c0be93c78affb71db08b8b0127cab2ea1dd5c11\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1051,
+          "kind": "mention",
+          "text": "          \"text\": \"| `Public_Catalog_Master_Plan.md` | `docs/catalog/proposals/ARGON_MASTER_PLAN.md` | Gemini Argon external proposal |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1057,
+          "kind": "mention",
+          "text": "          \"text\": \"?? Public_Catalog_Master_Plan.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 15,
+          "kind": "mention",
+          "text": "    \"Public_Catalog_Master_Plan.md\": \"84cc7a7b5a157828147329066c0be93c78affb71db08b8b0127cab2ea1dd5c11\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 73,
+          "kind": "mention",
+          "text": "| `Public_Catalog_Master_Plan.md` | `docs/catalog/proposals/ARGON_MASTER_PLAN.md` | Gemini Argon external proposal |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 54,
+          "kind": "mention",
+          "text": "?? Public_Catalog_Master_Plan.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "MASTER_PLATFORM_SPECIFICATION.md",
+          "line": 24
+        },
+        {
+          "path": "PUBLIC_CATALOG_PLAYER_POLICY.md",
+          "line": 15
+        },
+        {
+          "path": "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+          "line": 18
+        },
+        {
+          "path": "docs/PROJECT_STATUS.md",
+          "line": 41
+        },
+        {
+          "path": "docs/catalog/v1/README.md",
+          "line": 3
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "84cc7a7b5a157828147329066c0be93c78affb71db08b8b0127cab2ea1dd5c11",
+      "mode": "0o644",
+      "bytes": 30224,
+      "destination_exists": false,
+      "outgoing_links": [
+        "reviews/public-automation-scope-2026-10-21/RELEASE_REPORT.md",
+        "PUBLIC_CATALOG_AUTOMATION_PLAN.md",
+        "reviews/accuracy-advanced-products-2026-10-21/PLAN.md",
+        "MASTER_SEED_BLUEPRINT.md",
+        "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+        "docs/catalog/v1/README.md",
+        "MASTER_PLATFORM_SPECIFICATION.md",
+        "docs/catalog/PRIVATE_PILOT.md",
+        "reviews/catalog-private-pilot-2026-10-20/REPORT.md",
+        "reviews/spawn-validation-2026-10-17/README.md",
+        "reviews/catalog-four-pillars-bridge-2026-10-20/PLAN.md",
+        "reviews/catalog-four-pillars-bridge-2026-10-20/REPORT.md",
+        "docs/catalog/FOUR_PILLARS_AND_HARVEST.md"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "IMPLEMENTATION_PLAN.md",
+      "destination": "docs/roadmaps/IMPLEMENTATION_PLAN.md",
+      "references": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 15,
+          "kind": "relative_link",
+          "text": "[MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md), [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)."
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 144,
+          "kind": "mention",
+          "text": "| IMPLEMENTATION_PLAN.md | docs/roadmaps/ |"
+        },
+        {
+          "path": "docs/archive/CODEX_HANDOFF_ARCHIVE_20261022.md",
+          "line": 14,
+          "kind": "mention",
+          "text": "[MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md), [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)."
+        },
+        {
+          "path": "docs/historical_reports/SWEEP_READY_HANDOFF.md",
+          "line": 26,
+          "kind": "mention",
+          "text": "Read `BEDROCK_COMPATIBILITY_AUDIT.md`, `CHUNKBASE_WORKFLOW.md`, `search.example.yaml`, `SEARCH_TARGETS.md`, `IMPLEMENTATION_PLAN.md`, `PREFLIGHT_STATUS.md`, `GOAL.md`, and `runs/accuracy-audit/REPORT.md`, then inspect im"
+        },
+        {
+          "path": "exports/gemini-current-2026-10-11/SOURCE_MANIFEST.json",
+          "line": 14,
+          "kind": "mention",
+          "text": "    \"IMPLEMENTATION_PLAN.md\": \"c345e20bb36d90cb58f807fae6c7a176e67160c258444ead1f6dce84b08a4100\","
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 53,
+          "kind": "mention",
+          "text": "**Change:** distinguish implemented code, validated prediction, and actual-world evidence. Use a predictive status for passing heuristics; reserve BDS-verified claims for recorded, bounded actual-generation checks. Repor"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/REVIEW.md",
+          "line": 169,
+          "kind": "mention",
+          "text": "| `IMPLEMENTATION_PLAN.md` | Native center-refinement work and explicit declared-grid scope | Correct all-pillars-complete/certified and cross-validation claims; distinguish a Docker readiness hook from a working BDS ora"
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/checks.json",
+          "line": 67,
+          "kind": "mention",
+          "text": "    \"IMPLEMENTATION_PLAN.md\": \"51d2e86e319958c7bd67846bbb7c95245e9c544433309a819472d5ac953e7afa\","
+        },
+        {
+          "path": "reviews/catalog-architecture-2026-10-17/verify_review.py",
+          "line": 63,
+          "kind": "mention",
+          "text": "        \"IMPLEMENTATION_PLAN.md\", \"MASTER_SEED_BLUEPRINT.md\", \"native/blueprint_dynamic.inc\","
+        },
+        {
+          "path": "reviews/native-refinement-2026-10-16/IMPLEMENTATION.md",
+          "line": 3,
+          "kind": "mention",
+          "text": "Implements Pillar 3 of `IMPLEMENTATION_PLAN.md` against base commit `02f041e`."
+        },
+        {
+          "path": "reviews/phase12-2026-10-20/verification.json",
+          "line": 31,
+          "kind": "mention",
+          "text": "      \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/phase12-2026-10-20/verification.json",
+          "line": 82,
+          "kind": "mention",
+          "text": "    \"IMPLEMENTATION_PLAN.md\": \"02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 304,
+          "kind": "mention",
+          "text": "          \"path\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 428,
+          "kind": "mention",
+          "text": "          \"path\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 732,
+          "kind": "mention",
+          "text": "          \"path\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 789,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 798,
+          "kind": "mention",
+          "text": "          \"path\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1109,
+          "kind": "mention",
+          "text": "      \"source\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1110,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/roadmaps/IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1116,
+          "kind": "mention",
+          "text": "          \"text\": \"[MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md), [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1170,
+          "kind": "mention",
+          "text": "          \"text\": \"| IMPLEMENTATION_PLAN.md | docs/roadmaps/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1176,
+          "kind": "mention",
+          "text": "          \"text\": \"[MASTER_SEED_BLUEPRINT.md](MASTER_SEED_BLUEPRINT.md), [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1185,
+          "kind": "mention",
+          "text": "          \"path\": \"docs/historical_reports/IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1191,
+          "kind": "mention",
+          "text": "          \"path\": \"docs/historical_reports/IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1290,
+          "kind": "mention",
+          "text": "          \"text\": \"Read `BEDROCK_COMPATIBILITY_AUDIT.md`, `CHUNKBASE_WORKFLOW.md`, `search.example.yaml`, `SEARCH_TARGETS.md`, `IMPLEMENTATION_PLAN.md`, `PREFLIGHT_STATUS.md`, `GOAL.md`, and `runs/accuracy-audit/REPORT.m"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1332,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"IMPLEMENTATION_PLAN.md\\\": \\\"c345e20bb36d90cb58f807fae6c7a176e67160c258444ead1f6dce84b08a4100\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1368,
+          "kind": "mention",
+          "text": "          \"text\": \"| `IMPLEMENTATION_PLAN.md` | Native center-refinement work and explicit declared-grid scope | Correct all-pillars-complete/certified and cross-validation claims; distinguish a Docker readiness hook fro"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1380,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"IMPLEMENTATION_PLAN.md\\\": \\\"51d2e86e319958c7bd67846bbb7c95245e9c544433309a819472d5ac953e7afa\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1392,
+          "kind": "mention",
+          "text": "          \"text\": \"        \\\"IMPLEMENTATION_PLAN.md\\\", \\\"MASTER_SEED_BLUEPRINT.md\\\", \\\"native/blueprint_dynamic.inc\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1398,
+          "kind": "mention",
+          "text": "          \"text\": \"Implements Pillar 3 of `IMPLEMENTATION_PLAN.md` against base commit `02f041e`.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1404,
+          "kind": "mention",
+          "text": "          \"text\": \"      \\\"IMPLEMENTATION_PLAN.md\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1410,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"IMPLEMENTATION_PLAN.md\\\": \\\"02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1422,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"IMPLEMENTATION_PLAN.md\\\": \\\"02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1428,
+          "kind": "mention",
+          "text": "          \"text\": \"| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1434,
+          "kind": "mention",
+          "text": "          \"text\": \" M IMPLEMENTATION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1452,
+          "kind": "mention",
+          "text": "          \"text\": \"IMPLEMENTATION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1498,
+          "kind": "mention",
+          "text": "          \"text\": \"IMPLEMENTATION_PLAN.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1558,
+          "kind": "mention",
+          "text": "          \"path\": \"IMPLEMENTATION_PLAN.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 31,
+          "kind": "mention",
+          "text": "    \"IMPLEMENTATION_PLAN.md\": \"02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 71,
+          "kind": "mention",
+          "text": "| `PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md` | `docs/catalog/IMPLEMENTATION_PLAN.md` | Step-by-step catalog roadmap |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 3,
+          "kind": "mention",
+          "text": " M IMPLEMENTATION_PLAN.md"
+        },
+        {
+          "path": "src/bedrock_island_preflight.egg-info/SOURCES.txt",
+          "line": 2,
+          "kind": "mention",
+          "text": "IMPLEMENTATION_PLAN.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "CODEX_HANDOFF.md",
+          "line": 15
+        }
+      ],
+      "hash_pins": [
+        "reviews/phase12-2026-10-20/verification.json",
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "02a94cd69fdc7696dc955b8e62c721cea0e7420ab9eb516f93fef56a5bd57918",
+      "mode": "0o644",
+      "bytes": 19968,
+      "destination_exists": false,
+      "outgoing_links": [
+        "PUBLIC_CATALOG_SYSTEM_SPEC.md",
+        "docs/catalog/v1/README.md",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/framework-audit-3a83220/REPORT.md",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/capabilities.py#L19-L35",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/CENTER_WEIGHT_RESEARCH.md",
+        "reviews/native-refinement-2026-10-16/IMPLEMENTATION.md",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/reviews/framework-audit-3a83220/REPORT.md#L65-L81",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/scripts/refine_candidate_centers.py",
+        "PUBLIC_CATALOG_IMPLEMENTATION_PLAN.md"
+      ],
+      "frozen_links": [],
+      "source_references": [
+        {
+          "path": "src/bedrock_island_preflight.egg-info/SOURCES.txt",
+          "line": 2,
+          "kind": "mention",
+          "text": "IMPLEMENTATION_PLAN.md"
+        }
+      ],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [
+        "reviews/phase12-2026-10-20/verification.json"
+      ],
+      "disposition": "defer_for_dependency_review"
+    },
+    {
+      "source": "MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "destination": "docs/blueprints/archive/MASTER_SEED_BLUEPRINT_1664_V2.md",
+      "references": [
+        {
+          "path": "MASTER_SEED_BLUEPRINT.md",
+          "line": 5,
+          "kind": "mention",
+          "text": "> **Historical Archive Notice:** The previous $1664 \\times 1664$ Overworld / $832 \\times 832$ Nether specification is preserved as historical reference at [`MASTER_SEED_BLUEPRINT_1664_V2.md`](file:///Users/lucasraicu/Dow"
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 145,
+          "kind": "mention",
+          "text": "| MASTER_SEED_BLUEPRINT_1664_V2.md | docs/blueprints/archive/ |"
+        },
+        {
+          "path": "archive/historical_1664_v2/README.md",
+          "line": 9,
+          "kind": "mention",
+          "text": "- `MASTER_SEED_BLUEPRINT_1664_V2.md`: The approved engineering specification for the 1664 realm size."
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1504,
+          "kind": "mention",
+          "text": "      \"source\": \"MASTER_SEED_BLUEPRINT_1664_V2.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1505,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/blueprints/archive/MASTER_SEED_BLUEPRINT_1664_V2.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1511,
+          "kind": "mention",
+          "text": "          \"text\": \"> **Historical Archive Notice:** The previous $1664 \\\\times 1664$ Overworld / $832 \\\\times 832$ Nether specification is preserved as historical reference at [`MASTER_SEED_BLUEPRINT_1664_V2.md`](file://"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1517,
+          "kind": "mention",
+          "text": "          \"text\": \"| MASTER_SEED_BLUEPRINT_1664_V2.md | docs/blueprints/archive/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1523,
+          "kind": "mention",
+          "text": "          \"text\": \"- `MASTER_SEED_BLUEPRINT_1664_V2.md`: The approved engineering specification for the 1664 realm size.\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1529,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"MASTER_SEED_BLUEPRINT_1664_V2.md\\\": \\\"629813fe7fb5d59027300c77362886221042a1b0465bae5452a9c9988e59d798\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1535,
+          "kind": "mention",
+          "text": "          \"text\": \"| `MASTER_SEED_BLUEPRINT_1664_V2.md` | `docs/blueprints/archive/BLUEPRINT_1664_V2.md` | Superseded seed blueprint v2 |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 25,
+          "kind": "mention",
+          "text": "    \"MASTER_SEED_BLUEPRINT_1664_V2.md\": \"629813fe7fb5d59027300c77362886221042a1b0465bae5452a9c9988e59d798\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 74,
+          "kind": "mention",
+          "text": "| `MASTER_SEED_BLUEPRINT_1664_V2.md` | `docs/blueprints/archive/BLUEPRINT_1664_V2.md` | Superseded seed blueprint v2 |"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "629813fe7fb5d59027300c77362886221042a1b0465bae5452a9c9988e59d798",
+      "mode": "0o644",
+      "bytes": 47466,
+      "destination_exists": false,
+      "outgoing_links": [
+        "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-world-border"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "CENTER_WEIGHT_RESEARCH.md",
+      "destination": "docs/research/CENTER_WEIGHT_RESEARCH.md",
+      "references": [
+        {
+          "path": "IMPLEMENTATION_PLAN.md",
+          "line": 113,
+          "kind": "mention",
+          "text": "While [CENTER_WEIGHT_RESEARCH.md](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/CENTER_WEIGHT_RESEARCH.md) established that these weights are a coherent provisional policy, it revealed critical empirical dis"
+        },
+        {
+          "path": "README.md",
+          "line": 20,
+          "kind": "relative_link",
+          "text": "[CENTER_WEIGHT_RESEARCH.md](CENTER_WEIGHT_RESEARCH.md)."
+        },
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 146,
+          "kind": "mention",
+          "text": "| CENTER_WEIGHT_RESEARCH.md | docs/research/ |"
+        },
+        {
+          "path": "reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md",
+          "line": 47,
+          "kind": "relative_link",
+          "text": "The separate [weight investigation](../../CENTER_WEIGHT_RESEARCH.md) tested 27 settings plus repeated controls in four cases. It leaves production weights unchanged and records proposed calibration work. The implementati"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1474,
+          "kind": "mention",
+          "text": "        \"file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/CENTER_WEIGHT_RESEARCH.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1554,
+          "kind": "mention",
+          "text": "      \"source\": \"CENTER_WEIGHT_RESEARCH.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1555,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/research/CENTER_WEIGHT_RESEARCH.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1561,
+          "kind": "mention",
+          "text": "          \"text\": \"While [CENTER_WEIGHT_RESEARCH.md](file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/CENTER_WEIGHT_RESEARCH.md) established that these weights are a coherent provisional policy, it revealed cri"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1567,
+          "kind": "mention",
+          "text": "          \"text\": \"[CENTER_WEIGHT_RESEARCH.md](CENTER_WEIGHT_RESEARCH.md).\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1573,
+          "kind": "mention",
+          "text": "          \"text\": \"| CENTER_WEIGHT_RESEARCH.md | docs/research/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1579,
+          "kind": "relative_link",
+          "text": "          \"text\": \"The separate [weight investigation](../../CENTER_WEIGHT_RESEARCH.md) tested 27 settings plus repeated controls in four cases. It leaves production weights unchanged and records proposed calibration wor"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1585,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"CENTER_WEIGHT_RESEARCH.md\\\": \\\"2945a992d8d389701b62264f5ee46d896e7aa854f742af7e347a1d374e20e24c\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1591,
+          "kind": "mention",
+          "text": "          \"text\": \"| `CENTER_WEIGHT_RESEARCH.md` | `docs/research/CENTER_WEIGHT_RESEARCH.md` | Center-weight algorithm research |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1597,
+          "kind": "mention",
+          "text": "          \"text\": \" M CENTER_WEIGHT_RESEARCH.md\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 28,
+          "kind": "mention",
+          "text": "    \"CENTER_WEIGHT_RESEARCH.md\": \"2945a992d8d389701b62264f5ee46d896e7aa854f742af7e347a1d374e20e24c\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 75,
+          "kind": "mention",
+          "text": "| `CENTER_WEIGHT_RESEARCH.md` | `docs/research/CENTER_WEIGHT_RESEARCH.md` | Center-weight algorithm research |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/git-status-before.txt",
+          "line": 2,
+          "kind": "mention",
+          "text": " M CENTER_WEIGHT_RESEARCH.md"
+        }
+      ],
+      "links": [
+        {
+          "path": "README.md",
+          "line": 20
+        },
+        {
+          "path": "reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md",
+          "line": 47
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1579
+        }
+      ],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "2945a992d8d389701b62264f5ee46d896e7aa854f742af7e347a1d374e20e24c",
+      "mode": "0o644",
+      "bytes": 10919,
+      "destination_exists": false,
+      "outgoing_links": [
+        "reviews/center-weights-2026-10-16/results.json",
+        "reviews/center-weights-2026-10-16/investigation.log",
+        "reviews/center-weights-2026-10-16/verification.json",
+        "reviews/native-refinement-2026-10-16/IMPLEMENTATION.md"
+      ],
+      "frozen_links": [
+        {
+          "path": "reviews/framework-fixes-2026-10-16/IMPLEMENTATION.md",
+          "line": 47
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1579
+        }
+      ],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "defer_for_dependency_review"
+    },
+    {
+      "source": "AUDIT_CONTEXT.md",
+      "destination": "docs/audits/AUDIT_CONTEXT.md",
+      "references": [
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 147,
+          "kind": "mention",
+          "text": "| AUDIT_CONTEXT.md | docs/audits/ |"
+        },
+        {
+          "path": "reviews/native-algorithm-audit-2026-10-16/REPORT.md",
+          "line": 15,
+          "kind": "mention",
+          "text": "Audited the dirty working tree based on `173765c3723cd56741304b68034adc7f8e3bb20c`, not the older commit named in `AUDIT_CONTEXT.md`. Existing user changes were preserved. All experimental C changes and builds are isolat"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1633,
+          "kind": "mention",
+          "text": "      \"source\": \"AUDIT_CONTEXT.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1634,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/audits/AUDIT_CONTEXT.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1640,
+          "kind": "mention",
+          "text": "          \"text\": \"| AUDIT_CONTEXT.md | docs/audits/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1646,
+          "kind": "mention",
+          "text": "          \"text\": \"Audited the dirty working tree based on `173765c3723cd56741304b68034adc7f8e3bb20c`, not the older commit named in `AUDIT_CONTEXT.md`. Existing user changes were preserved. All experimental C changes an"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1652,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"AUDIT_CONTEXT.md\\\": \\\"32218d743176897ba7bba1adf2478bf9899b1dcc554449797b2e9c1b98ed0c0a\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1658,
+          "kind": "mention",
+          "text": "          \"text\": \"| `AUDIT_CONTEXT.md` | `docs/audits/AUDIT_CONTEXT.md` | Pre-flight audit context |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 24,
+          "kind": "mention",
+          "text": "    \"AUDIT_CONTEXT.md\": \"32218d743176897ba7bba1adf2478bf9899b1dcc554449797b2e9c1b98ed0c0a\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 76,
+          "kind": "mention",
+          "text": "| `AUDIT_CONTEXT.md` | `docs/audits/AUDIT_CONTEXT.md` | Pre-flight audit context |"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "32218d743176897ba7bba1adf2478bf9899b1dcc554449797b2e9c1b98ed0c0a",
+      "mode": "0o644",
+      "bytes": 30599,
+      "destination_exists": false,
+      "outgoing_links": [
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/config.py#L382-L408",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/native/blueprint_dynamic.inc#L316-L525",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/blueprint.py#L588-L695",
+        "file:///Users/lucasraicu/Downloads/minecraft-seed-searcher/src/seed_search/realm/top_tracker.py#L61-L220"
+      ],
+      "frozen_links": [],
+      "source_references": [],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "candidate_with_active_link_updates"
+    },
+    {
+      "source": "AUDIT_CRITICAL_CODE.md",
+      "destination": "docs/audits/AUDIT_CRITICAL_CODE.md",
+      "references": [
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 148,
+          "kind": "mention",
+          "text": "| AUDIT_CRITICAL_CODE.md | docs/audits/ |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1680,
+          "kind": "mention",
+          "text": "      \"source\": \"AUDIT_CRITICAL_CODE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1681,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/audits/AUDIT_CRITICAL_CODE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1687,
+          "kind": "mention",
+          "text": "          \"text\": \"| AUDIT_CRITICAL_CODE.md | docs/audits/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1693,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"AUDIT_CRITICAL_CODE.md\\\": \\\"9d4e1b6fe7a71689e0dc1912139a4b69f3189f7f2ba2494e255d449bbb292247\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1699,
+          "kind": "mention",
+          "text": "          \"text\": \"| `AUDIT_CRITICAL_CODE.md` | `docs/audits/AUDIT_CRITICAL_CODE.md` | Core algorithm audit bundle |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1705,
+          "kind": "mention",
+          "text": "          \"text\": \"\\\"\\\"\\\"Bundle all crucial active production code files into AUDIT_CRITICAL_CODE.md for Claude.\\\"\\\"\\\"\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1711,
+          "kind": "mention",
+          "text": "          \"text\": \"target = Path(\\\"AUDIT_CRITICAL_CODE.md\\\")\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1745,
+          "kind": "mention",
+          "text": "          \"text\": \"\\\"\\\"\\\"Bundle all crucial active production code files into AUDIT_CRITICAL_CODE.md for Claude.\\\"\\\"\\\"\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1751,
+          "kind": "mention",
+          "text": "          \"text\": \"target = Path(\\\"AUDIT_CRITICAL_CODE.md\\\")\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 22,
+          "kind": "mention",
+          "text": "    \"AUDIT_CRITICAL_CODE.md\": \"9d4e1b6fe7a71689e0dc1912139a4b69f3189f7f2ba2494e255d449bbb292247\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 77,
+          "kind": "mention",
+          "text": "| `AUDIT_CRITICAL_CODE.md` | `docs/audits/AUDIT_CRITICAL_CODE.md` | Core algorithm audit bundle |"
+        },
+        {
+          "path": "scripts/bundle_critical_code.py",
+          "line": 1,
+          "kind": "mention",
+          "text": "\"\"\"Bundle all crucial active production code files into AUDIT_CRITICAL_CODE.md for Claude.\"\"\""
+        },
+        {
+          "path": "scripts/bundle_critical_code.py",
+          "line": 83,
+          "kind": "mention",
+          "text": "target = Path(\"AUDIT_CRITICAL_CODE.md\")"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "9d4e1b6fe7a71689e0dc1912139a4b69f3189f7f2ba2494e255d449bbb292247",
+      "mode": "0o644",
+      "bytes": 397262,
+      "destination_exists": false,
+      "outgoing_links": [
+        "#file-1",
+        "#file-2",
+        "#file-3",
+        "#file-4",
+        "#file-5",
+        "#file-6",
+        "#file-7",
+        "#file-8",
+        "#file-9",
+        "#file-10",
+        "#file-11",
+        "#file-12",
+        "#file-13",
+        "#file-14",
+        "#file-15"
+      ],
+      "frozen_links": [],
+      "source_references": [
+        {
+          "path": "scripts/bundle_critical_code.py",
+          "line": 1,
+          "kind": "mention",
+          "text": "\"\"\"Bundle all crucial active production code files into AUDIT_CRITICAL_CODE.md for Claude.\"\"\""
+        },
+        {
+          "path": "scripts/bundle_critical_code.py",
+          "line": 83,
+          "kind": "mention",
+          "text": "target = Path(\"AUDIT_CRITICAL_CODE.md\")"
+        }
+      ],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "defer_for_dependency_review"
+    },
+    {
+      "source": "AUDIT_SOURCE_BUNDLE.md",
+      "destination": "docs/audits/AUDIT_SOURCE_BUNDLE.md",
+      "references": [
+        {
+          "path": "REPO_ORGANIZATION_PLAN.md",
+          "line": 149,
+          "kind": "mention",
+          "text": "| AUDIT_SOURCE_BUNDLE.md | docs/audits/ |"
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1757,
+          "kind": "mention",
+          "text": "      \"source\": \"AUDIT_SOURCE_BUNDLE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1758,
+          "kind": "mention",
+          "text": "      \"destination\": \"docs/audits/AUDIT_SOURCE_BUNDLE.md\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1764,
+          "kind": "mention",
+          "text": "          \"text\": \"| AUDIT_SOURCE_BUNDLE.md | docs/audits/ |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1770,
+          "kind": "mention",
+          "text": "          \"text\": \"    \\\"AUDIT_SOURCE_BUNDLE.md\\\": \\\"a092a8dd6dbc44cfc85e46b4efee7ce8d256e1744cb97dad42ea4296d0bb674f\\\",\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1776,
+          "kind": "mention",
+          "text": "          \"text\": \"| `AUDIT_SOURCE_BUNDLE.md` | `docs/audits/AUDIT_SOURCE_BUNDLE.md` | Aggregated source audit bundle |\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1788,
+          "kind": "mention",
+          "text": "          \"text\": \"target = Path('AUDIT_SOURCE_BUNDLE.md')\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+          "line": 1812,
+          "kind": "mention",
+          "text": "          \"text\": \"target = Path('AUDIT_SOURCE_BUNDLE.md')\""
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json",
+          "line": 23,
+          "kind": "mention",
+          "text": "    \"AUDIT_SOURCE_BUNDLE.md\": \"a092a8dd6dbc44cfc85e46b4efee7ce8d256e1744cb97dad42ea4296d0bb674f\","
+        },
+        {
+          "path": "reviews/variant-controls-and-organization-2026-10-22/ORIGINAL_REPO_ORGANIZATION_PLAN.md",
+          "line": 78,
+          "kind": "mention",
+          "text": "| `AUDIT_SOURCE_BUNDLE.md` | `docs/audits/AUDIT_SOURCE_BUNDLE.md` | Aggregated source audit bundle |"
+        },
+        {
+          "path": "scripts/bundle_audit_sources.py",
+          "line": 27,
+          "kind": "mention",
+          "text": "target = Path('AUDIT_SOURCE_BUNDLE.md')"
+        }
+      ],
+      "links": [],
+      "hash_pins": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "sha256": "a092a8dd6dbc44cfc85e46b4efee7ce8d256e1744cb97dad42ea4296d0bb674f",
+      "mode": "0o644",
+      "bytes": 179663,
+      "destination_exists": false,
+      "outgoing_links": [],
+      "frozen_links": [],
+      "source_references": [
+        {
+          "path": "scripts/bundle_audit_sources.py",
+          "line": 27,
+          "kind": "mention",
+          "text": "target = Path('AUDIT_SOURCE_BUNDLE.md')"
+        }
+      ],
+      "baseline_only_hash_records": [
+        "reviews/variant-controls-and-organization-2026-10-22/DOC_MOVE_DEPENDENCIES.json",
+        "reviews/variant-controls-and-organization-2026-10-22/INVENTORY.json"
+      ],
+      "historical_hash_pins": [],
+      "disposition": "defer_for_dependency_review"
+    }
+  ]
+}

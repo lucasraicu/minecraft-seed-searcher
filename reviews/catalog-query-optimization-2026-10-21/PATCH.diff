@@ -1,0 +1,112 @@
+--- a/src/seed_search/catalog/index.py
++++ b/src/seed_search/catalog/index.py
+@@ -7,6 +7,7 @@
+ - validate_index(index, *, layouts=None, trusted=False) -> bool
+ """
+ import hashlib
++import re
+ from .registry import (
+     STRUCTURES, BIOMES, SIDES, RADII, FEATURE_IDS,
+     REGISTRY_REVISION, POLICY, digest, canonical_json
+@@ -16,6 +17,7 @@
+ from .request import validate_request, load_request
+ 
+ INDEX_REVISION = 'catalog-bitmap-index-v1'
++_LOWER_HEX_RE = re.compile(r'[0-9a-f]*')
+ POLICY_REVISION = digest(POLICY)
+ RADII_MAP = {r: i for i, r in enumerate(RADII)}
+ RADII_SQUARED = tuple(r * r for r in RADII)
+@@ -58,7 +60,7 @@
+     expected_hex_len = byte_len * 2
+     if len(hex_str) != expected_hex_len:
+         raise ValueError(f'Bitset length mismatch: expected {expected_hex_len}, got {len(hex_str)}')
+-    if any(c not in '0123456789abcdef' for c in hex_str):
++    if _LOWER_HEX_RE.fullmatch(hex_str) is None:
+         raise ValueError('Bitset must be lowercase hex')
+     val = int(hex_str, 16) if hex_str else 0
+     if num_rows == 0:
+--- a/src/seed_search/catalog/segments.py
++++ b/src/seed_search/catalog/segments.py
+@@ -816,6 +816,9 @@
+     def iter_segments(self, snapshot_id: str | None = None, *, request=None, layout_key=None):
+         """Stream read leaf segments with fully validated summary dicts."""
+         self._check_open()
++        if request is not None:
++            from .request import load_request, validate_request
++            request = load_request(request) if isinstance(request, str) else validate_request(request)
+         if layout_key is not None and (not isinstance(layout_key,tuple) or len(layout_key)!=2 or
+             any(not isinstance(value,str) or not _HEX64_RE.fullmatch(value) for value in layout_key)):
+             raise ValueError('Invalid exact layout key')
+@@ -825,6 +828,7 @@
+         leaf_rows=self._verified_membership(sid)
+         obs_refs={r[0]:(r[1],r[2]) for r in self.conn.execute('SELECT world_id,observation_id,seed FROM observation_ref WHERE snapshot_id=?',(sid,))}
+         seen=set()
++        world_ids_by_seed={}
+ 
+         for seg_id, sha, rk, bl, ul, codec_name in leaf_rows:
+             manifest = {
+@@ -847,7 +851,7 @@
+             index=None
+             selected=range(len(raw_layouts))
+             if leaf_json.get('index_manifest') is not None:
+-                from .index import validate_index,filter_index,INDEX_REVISION
++                from .index import validate_index,_select_index,INDEX_REVISION
+                 index=self.artifacts.get_json(leaf_json['index_manifest'])
+                 validate_index(index)
+                 # Recompute row ordering/content binding from saved metadata and
+@@ -857,7 +861,9 @@
+                 expected=registry.digest(dict(geometry_revision=models.GEOMETRY_REVISION,index_revision=INDEX_REVISION,
+                     layouts=entries,policy_revision=registry.digest(registry.POLICY),registry_revision=registry.REGISTRY_REVISION))
+                 if index['content_digest']!=expected or index['num_rows']!=len(raw_layouts):raise ValueError('Leaf index row/content mismatch')
+-                if request is not None:selected=filter_index(index,request)
++                # The index and request are already fully validated here. Public
++                # filter_index keeps its independent validation boundary.
++                if request is not None:selected=_select_index(index,request)
+             if layout_key is not None:
+                 selected=[i for i in selected if (raw_layouts[i]['world_id'],raw_layouts[i]['layout_id'])==layout_key]
+             decoded_layouts = []
+@@ -865,7 +871,12 @@
+                 item=raw_layouts[position]
+                 if obs_refs.get(item['world_id'])!=(item['observation_id'],item['seed']):
+                     raise ValueError('Layout/observation membership identity mismatch')
+-                if models.world_id(dict(resolved_info['header'],seed=item['seed']))!=item['world_id']:
++                # The header is fixed for this iterator. Reuse only its derived
++                # world identity for identical, membership-checked seed strings.
++                seed=item['seed']
++                if seed not in world_ids_by_seed:
++                    world_ids_by_seed[seed]=models.world_id(dict(resolved_info['header'],seed=seed))
++                if world_ids_by_seed[seed]!=item['world_id']:
+                     raise ValueError('Layout/build identity mismatch')
+                 geometry_key=(item['world_id'],item['border_side'],*item['anchor'])
+                 if geometry_key in seen:raise ValueError('Duplicate geometry across snapshot leaves')
+@@ -894,12 +905,9 @@
+                 if metadata["revision"] != models.SUMMARY_REVISION:
+                     raise ValueError(f"Incompatible summary revision in layout {item['layout_id']}")
+ 
+-                expected_lid = codec.layout_id(metadata["observation_id"], metadata["anchor"], metadata["border_side"])
+-                if metadata["layout_id"] != expected_lid:
+-                    raise ValueError(f"Layout ID mismatch in {item['layout_id']}")
+-
+                 summary = codec.unpack_summary(packed_blob, metadata)
+-                codec.validate_summary(summary)
++                # unpack_summary validates the schema, numeric payload and the
++                # layout ID derived from observation, anchor and border side.
+                 decoded_layouts.append(summary)
+ 
+             yield {"segment_id":seg_id,"layouts":decoded_layouts,"index":index,
+--- a/src/seed_search/catalog/accuracy_query.py
++++ b/src/seed_search/catalog/accuracy_query.py
+@@ -68,7 +68,12 @@
+             observation={'identity':dict(info['header'],seed=layout['seed'])}
+             wid=layout['world_id']
+             if wid not in fine:fine[wid]=model_witnesses(observation,bundle['tiles'])
+-            row,witnesses=apply_witnesses(layout,fine[wid])
++            if any(fine[wid].values()):
++                row,witnesses=apply_witnesses(layout,fine[wid])
++            else:
++                # Query-local rows remain read-only during scoring. Isolate the
++                # top-level mapping without copying unused nested inventories.
++                row,witnesses=dict(layout),[]
+             by_layout[row['layout_id']]=row;fine_rows[row['layout_id']]=witnesses
+         if req['anchor_mode'] in ('origin','recommended'):
+             baseline=dict(req,request_revision='catalog-query-v1',evidence_policy='predicted_observations_v1');baseline.pop('accuracy_generation')

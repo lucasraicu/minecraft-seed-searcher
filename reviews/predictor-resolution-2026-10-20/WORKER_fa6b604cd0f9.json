@@ -1,0 +1,26 @@
+{
+  "task_id": "fa6b604cd0f9",
+  "role": "review",
+  "state": "failed",
+  "created": 1792541052.287124,
+  "updated": 1792541296.9432619,
+  "worker_id": "gemini-1",
+  "objective": "Independent High reasoning TOOL-FREE review of implemented reviewed catalog exclusions. Read supplied module/tests/contract, identify concrete correctness/provenance/atomicity/performance defects. No edits/commands. Do not assume synthetic tests use production-pinned ledger; refresh pins ledger SHA.",
+  "result": {
+    "worker_id": "gemini-1",
+    "model": "gemini-3.8-flash-high",
+    "reasoning_effort": "high",
+    "baseline_digest": "4529fcd956f4eedf5f6174d378a02cc5c8c2b4bcafe906369fbb1150c9a76a19",
+    "baseline_head": "fd36d4dc3b86581858ff75e91df187eac088862c",
+    "attempt": 1,
+    "started": 1792541056.489488,
+    "error": "timeout",
+    "completed": 1792541296.942868,
+    "resource_usage": {
+      "peak_process_tree_rss_bytes": 181133312
+    }
+  },
+  "artifacts": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/state/jobs/fa6b604cd0f9",
+  "needs_codex_review": true,
+  "integration_status": "not_integrated"
+}

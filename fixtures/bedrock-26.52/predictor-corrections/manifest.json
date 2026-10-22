@@ -1,0 +1,196 @@
+{
+  "revision": "predictor-regressions-v1",
+  "game_build": "1.26.52.3",
+  "script_api": "2.10.0",
+  "image_sha256": "cf479afd0ab8a8bb095f7aa71fd42064cf5ba7aff6c8a8f4f5503aac826511d8",
+  "prediction_revision": "cubiomes-bedrock-26.50",
+  "reports": [
+    "direct-f9a3dff6c7d1",
+    "direct-af0d21387ea3",
+    "direct-7864106d5732",
+    "direct-b4feb9db0151",
+    "direct-73e0c6645652"
+  ],
+  "comparisons": {
+    "cohort": "cohort-biome-scale-comparison.json",
+    "pilot": "biome-scale-comparison.json",
+    "vertical": "vertical-summary.json"
+  },
+  "aliases": {
+    "forest_hills": "forest",
+    "birch_forest_mutated": "old_growth_birch_forest",
+    "birch_forest_hills_mutated": "old_growth_birch_forest",
+    "roofed_forest": "dark_forest",
+    "roofed_forest_mutated": "dark_forest",
+    "cold_taiga": "snowy_taiga",
+    "cold_taiga_hills": "snowy_taiga",
+    "cold_taiga_mutated": "snowy_taiga",
+    "mega_taiga": "old_growth_pine_taiga",
+    "mega_taiga_hills": "old_growth_pine_taiga",
+    "mega_spruce_taiga": "old_growth_spruce_taiga",
+    "mega_spruce_taiga_mutated": "old_growth_spruce_taiga",
+    "mega_taiga_mutated": "taiga",
+    "redwood_taiga_mutated": "taiga",
+    "redwood_taiga_hills_mutated": "taiga",
+    "taiga_mutated": "taiga",
+    "jungle_mutated": "jungle",
+    "jungle_edge_mutated": "sparse_jungle",
+    "extreme_hills_plus_trees": "windswept_forest",
+    "extreme_hills_plus_trees_mutated": "windswept_forest",
+    "extreme_hills": "windswept_hills",
+    "extreme_hills_mutated": "windswept_gravelly_hills",
+    "extreme_hills_edge": "mountain_edge",
+    "swampland": "swamp",
+    "swampland_mutated": "swamp",
+    "ice_plains": "snowy_plains",
+    "ice_plains_spikes": "ice_spikes",
+    "ice_mountains": "snowy_mountains",
+    "stone_beach": "stony_shore",
+    "cold_beach": "snowy_beach",
+    "mushroom_island": "mushroom_fields",
+    "mushroom_island_shore": "mushroom_field_shore",
+    "legacy_frozen_ocean": "frozen_ocean",
+    "savanna_mutated": "windswept_savanna",
+    "savanna_plateau_mutated": "windswept_savanna",
+    "mesa": "badlands",
+    "mesa_bryce": "eroded_badlands",
+    "mesa_mutated": "badlands",
+    "mesa_plateau": "badlands_plateau",
+    "mesa_plateau_mutated": "modified_badlands_plateau",
+    "mesa_plateau_stone": "wooded_badlands",
+    "mesa_plateau_stone_mutated": "wooded_badlands",
+    "desert_mutated": "desert_lakes",
+    "wooded_hills": "forest",
+    "birch_forest_hills": "birch_forest",
+    "tall_birch_forest": "old_growth_birch_forest",
+    "tall_birch_hills": "old_growth_birch_forest",
+    "wooded_mountains": "windswept_forest",
+    "taiga_hills": "taiga",
+    "taiga_mountains": "taiga",
+    "snowy_taiga_hills": "snowy_taiga",
+    "snowy_taiga_mountains": "snowy_taiga",
+    "giant_tree_taiga": "old_growth_pine_taiga",
+    "giant_tree_taiga_hills": "old_growth_pine_taiga",
+    "giant_spruce_taiga": "old_growth_spruce_taiga",
+    "giant_spruce_taiga_hills": "old_growth_spruce_taiga",
+    "jungle_hills": "jungle",
+    "modified_jungle": "jungle",
+    "jungle_edge": "sparse_jungle",
+    "modified_jungle_edge": "sparse_jungle",
+    "bamboo_jungle_hills": "bamboo_jungle",
+    "dark_forest_hills": "dark_forest",
+    "snowy_tundra": "snowy_plains",
+    "stone_shore": "stony_shore",
+    "shattered_savanna": "windswept_savanna",
+    "shattered_savanna_plateau": "windswept_savanna"
+  },
+  "files": {
+    "direct-f9a3dff6c7d1/report.json": {
+      "sha256": "5c8edb06f2cc6498e101309e624bdb59abf2bcce392472555c66ff1cf3a86501",
+      "bytes": 54589
+    },
+    "direct-f9a3dff6c7d1/server.properties": {
+      "sha256": "8d0b6fa4e0fe9e9dad4bfa28f76152e62a4eb9804a83a2815ca57334f383f363",
+      "bytes": 561
+    },
+    "direct-f9a3dff6c7d1/console.log": {
+      "sha256": "9aa6d396089b3183cac6115ef293a61061f5fa645adb44a626dd486a188c15df",
+      "bytes": 29596
+    },
+    "direct-af0d21387ea3/report.json": {
+      "sha256": "4fe6b53cc23813272fd87d4ff737d88e8451c8c27994bd2bd55cefbab5eaf46c",
+      "bytes": 86122
+    },
+    "direct-af0d21387ea3/server.properties": {
+      "sha256": "a6a630af2faca71f956ea38dde8c25547a8c01c7c8824ce69c553e6c882fa13e",
+      "bytes": 562
+    },
+    "direct-af0d21387ea3/console.log": {
+      "sha256": "e813ff998fcb7abd615e8ea4843b952d26a84f04b59fb5ec2afe5d4999a854ba",
+      "bytes": 48934
+    },
+    "direct-7864106d5732/report.json": {
+      "sha256": "ecc8a388d70b54593b7f1ccad430fbf6ca7c26678423ecf4c9d72c9aa03fb147",
+      "bytes": 86894
+    },
+    "direct-7864106d5732/server.properties": {
+      "sha256": "858def6dbc827ccc5850c28e77633877202722d7042ce6cab61cd6b46b91263a",
+      "bytes": 562
+    },
+    "direct-7864106d5732/console.log": {
+      "sha256": "81b35cc542e70bb7991402d7f94d60159aed668f92658aac43b3e1a3af408db5",
+      "bytes": 49178
+    },
+    "direct-b4feb9db0151/report.json": {
+      "sha256": "ad7339ca501d1e37f9260b9691051a07a00c9ad4f899912b24a9ed3bab71f70c",
+      "bytes": 59515
+    },
+    "direct-b4feb9db0151/server.properties": {
+      "sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+      "bytes": 562
+    },
+    "direct-b4feb9db0151/console.log": {
+      "sha256": "e9a31dd3d93ad17828d2ce98bb454d0916b20db19d53dcf45c7b2ee765a8f2be",
+      "bytes": 35742
+    },
+    "direct-73e0c6645652/report.json": {
+      "sha256": "b38d498c2c48afe0153a04ceae00ea61abdd31b1d6f5f13e8f374b65a63fcbc1",
+      "bytes": 9038
+    },
+    "direct-73e0c6645652/server.properties": {
+      "sha256": "c331654719eddf9a263a6236530e2a9ff9e00625deaa25abc616145f49a6643a",
+      "bytes": 562
+    },
+    "direct-73e0c6645652/console.log": {
+      "sha256": "a915bf57b3343ee564919efd91883bf25fbc7fcf82caaa7306187b6958e29c93",
+      "bytes": 6372
+    },
+    "cohort-biome-scale-comparison.json": {
+      "sha256": "1f468ae7f6c5c26f15e1578a54baf96d7bdcb13abf82591da1ccba887127fd67",
+      "bytes": 111998
+    },
+    "biome-scale-comparison.json": {
+      "sha256": "0c2c9fc86880b8e1c33089d3b93efc07f098bd210b088becac5c8f782f3a6fef",
+      "bytes": 57105
+    },
+    "vertical-summary.json": {
+      "sha256": "8435e60e6e67abb38130d1613bcda3780c78097391097aaa583005b3a041302f",
+      "bytes": 7757
+    },
+    "biome-scale-build.json": {
+      "sha256": "736fee4d4950377cfbdccb1e308e3891f266fc467903cbeaf6f4c42a325fd37b",
+      "bytes": 3160
+    },
+    "observer.js": {
+      "sha256": "3f04175b9f91ca89b9b25191ff4bfa58cfc8b51074488f32f3f9f7595156af9f",
+      "bytes": 1517
+    },
+    "biome_scale_probe.c": {
+      "sha256": "2dc4d7eed956525d9ec035796fdfff315c551ac14e186df20df7a1b4019b80c4",
+      "bytes": 509
+    },
+    "predictor-source/backend.json": {
+      "sha256": "1f8979c4e7649017c95b03ebceaf7bc35d4f2be20b2842e08b8b6cbfff833369",
+      "bytes": 8073
+    },
+    "predictor-source/bridge.c": {
+      "sha256": "090f073a2778a4baab274c58f259cd0076625cfbf7eb94a25c38d25506365092",
+      "bytes": 22421
+    },
+    "predictor-source/biomes.py": {
+      "sha256": "54fc5005978c39064741d159c89565ef6a9d81ba6fb00fa246e2188295030f04",
+      "bytes": 12055
+    },
+    "discovery-predictor-points.json": {
+      "bytes": 188674,
+      "sha256": "3097ab87428e2ea1a35888387f0bde348261dec86df09c24b0b1dc7ce4cb2394"
+    }
+  },
+  "loaded_field_semantics": "true = harness created a ticking area after first query threw; false = API returned directly. Not a world-generation or chunk-completeness flag. See observer.js.",
+  "limitations": [
+    "BDS locate references do not certify physical completeness or exhaustive recall.",
+    "Name normalization is the frozen current project policy, not authoritative Bedrock numeric-ID conversion.",
+    "Predictor MC26_50 and BDS1.26.52.3 differ; parity is empirical and scoped.",
+    "Checksums establish fixture integrity, not independent truth or authenticity."
+  ]
+}

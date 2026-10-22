@@ -1,0 +1,452 @@
+{
+  "revision": "practical-accuracy-completion-v1",
+  "scope": "User-approved first/practical option; exact initial-player landing and physical-instance census remain gated",
+  "live": {
+    "status": "passed",
+    "surfaces": [
+      {
+        "port": 3001,
+        "snapshot": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+        "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f",
+        "query_worlds": 200,
+        "detail_ok": true,
+        "anchor_roles_ok": true,
+        "invalid_scope_rejected": true,
+        "research_preview_ok": true
+      },
+      {
+        "port": 5173,
+        "snapshot": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+        "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f",
+        "query_worlds": 200,
+        "detail_ok": true,
+        "anchor_roles_ok": true,
+        "invalid_scope_rejected": true,
+        "research_preview_ok": true
+      }
+    ],
+    "personal": {
+      "status": "completed",
+      "runId": "web-sweep-20261020-143452-e5161c27",
+      "totalScanned": 1,
+      "candidatesFound": 1
+    },
+    "personal_candidates": [
+      {
+        "seed": "-3336796033057908633",
+        "score": 336.0
+      }
+    ],
+    "personal_process": "60144 Fri Oct 16 12:39:02 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u -m seed_search.web.server 3000\n",
+    "primary_binary_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+    "old_snapshots_preserved": true,
+    "old_immutable_files_checked": 1881,
+    "changed_old_files": []
+  },
+  "publication": {
+    "published": true,
+    "snapshot_id": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+    "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f",
+    "estimated_worlds": 200,
+    "observed_worlds": 3,
+    "anchor_layouts": 609,
+    "tiles": 18,
+    "old_immutable_files_checked": 1881,
+    "changed_old_files": []
+  },
+  "refresh_numeric_validation": {
+    "snapshot_id": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+    "root": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/correction-plan-20261021/catalog-refresh-final/rehearsal-16d9d069ea3d",
+    "verifier_sha256": "7be22eb840c6af802b10f2b4c20507a6c88baff6af4e6ee6464d6bf5918b7864",
+    "worlds": 200,
+    "layouts": 48600,
+    "biome_points": 5120000,
+    "structure_points": 516226,
+    "evidence_worlds": 4,
+    "all_numeric_fields_match": true,
+    "same_anchor_and_border_scope": true,
+    "all_preview_rankings_match": true,
+    "query_paths_match": true,
+    "query_measurements": [
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.6291968189179897
+      },
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.471421943977475
+      },
+      {
+        "side": 2048,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.5924606369808316
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 6.184811732033268
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.7546196930343285
+      },
+      {
+        "side": 2048,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.374482903047465
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.6105446140281856
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.3948706400115043
+      },
+      {
+        "side": 4096,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.5620841240743175
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.7327435510233045
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.6456369910156354
+      },
+      {
+        "side": 4096,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.914155512000434
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "general",
+        "seconds": 2.60151699394919
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "required",
+        "seconds": 2.5451493950095028
+      },
+      {
+        "side": 8192,
+        "mode": "origin",
+        "scenario": "preferred",
+        "seconds": 2.8777256719768047
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "general",
+        "seconds": 5.773754872032441
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "required",
+        "seconds": 2.6722151610301808
+      },
+      {
+        "side": 8192,
+        "mode": "recommended",
+        "scenario": "preferred",
+        "seconds": 5.470180028001778
+      }
+    ],
+    "perturbation_detected": true,
+    "wall_seconds": 235.53595365700312
+  },
+  "refresh_deltas": {
+    "structure.ancient_city": {
+      "added": 281,
+      "removed": 540
+    },
+    "structure.desert_pyramid": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.igloo": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.jungle_temple": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.mansion": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.mineshaft": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.monument": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.outpost": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.ruined_portal": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.shipwreck": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.swamp_hut": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.trail_ruins": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.trial_chamber": {
+      "added": 0,
+      "removed": 0
+    },
+    "structure.village": {
+      "added": 271,
+      "removed": 0
+    }
+  },
+  "accuracy_http": {
+    "status": "passed",
+    "snapshot_id": "18ca9deb3da9ed0d9dec553cf1447d3ffbf9ac2ed003d1dccc5a0d5af336ba93",
+    "accuracy_generation": "9d474e733f4b2bbe4b663bd76e55e8cac9a564ecd55a6622a054e5a55592051f",
+    "queries": [
+      {
+        "mode": "origin",
+        "side": 2048,
+        "cold_seconds": 2.617116048000753,
+        "warm_seconds": 0.1075619850307703,
+        "matched": 200
+      },
+      {
+        "mode": "origin",
+        "side": 4096,
+        "cold_seconds": 2.5081611580681056,
+        "warm_seconds": 0.10688894602935761,
+        "matched": 200
+      },
+      {
+        "mode": "origin",
+        "side": 8192,
+        "cold_seconds": 2.493023563059978,
+        "warm_seconds": 0.11684539006091654,
+        "matched": 200
+      },
+      {
+        "mode": "recommended",
+        "side": 2048,
+        "cold_seconds": 7.2300634710118175,
+        "warm_seconds": 0.10945154004730284,
+        "matched": 200
+      },
+      {
+        "mode": "recommended",
+        "side": 4096,
+        "cold_seconds": 7.1299362879944965,
+        "warm_seconds": 0.10836782609112561,
+        "matched": 200
+      },
+      {
+        "mode": "recommended",
+        "side": 8192,
+        "cold_seconds": 7.172288366011344,
+        "warm_seconds": 0.10995432792697102,
+        "matched": 200
+      },
+      {
+        "mode": "world_spawn_estimated",
+        "side": 2048,
+        "cold_seconds": 0.14066936797462404,
+        "warm_seconds": 0.10736420308239758,
+        "matched": 200
+      },
+      {
+        "mode": "world_spawn_estimated",
+        "side": 4096,
+        "cold_seconds": 0.1388266000431031,
+        "warm_seconds": 0.10652736097108573,
+        "matched": 200
+      },
+      {
+        "mode": "world_spawn_estimated",
+        "side": 8192,
+        "cold_seconds": 0.13840107305441052,
+        "warm_seconds": 0.107548568979837,
+        "matched": 200
+      },
+      {
+        "mode": "world_spawn_observed",
+        "side": 2048,
+        "cold_seconds": 0.10049977200105786,
+        "warm_seconds": 0.11041510291397572,
+        "matched": 3
+      },
+      {
+        "mode": "world_spawn_observed",
+        "side": 4096,
+        "cold_seconds": 0.10102070297580212,
+        "warm_seconds": 0.0973409820580855,
+        "matched": 3
+      },
+      {
+        "mode": "world_spawn_observed",
+        "side": 8192,
+        "cold_seconds": 0.1003215090604499,
+        "warm_seconds": 0.09809805394615978,
+        "matched": 3
+      }
+    ],
+    "pagination_unique_worlds": 200,
+    "scope_http_queries": 18,
+    "seconds": 33.28519320196938
+  },
+  "retention": {
+    "worlds": 500,
+    "layouts": 121500,
+    "objectives": 6931,
+    "experimental_capacities": {
+      "structure_count": 1,
+      "structure_proximity": 1,
+      "biome_proximity": 1,
+      "biome_landmark_pairs": 1,
+      "profiles": 1,
+      "diversity": 1,
+      "reference_sample": 1
+    },
+    "retained_worlds": 329,
+    "exact_oracle_parity": true,
+    "seconds": 225.73708790098317,
+    "peak_rss_bytes": 1432961024,
+    "note": "K1 deliberately oversubscribes retention; no production retention policy/candidates changed"
+  },
+  "killed_writer_recovery": {
+    "cases": [
+      {
+        "boundary": "before_commit",
+        "signal": 9,
+        "old_worlds": 200,
+        "old_layouts": 48600,
+        "recovered_worlds": 201,
+        "recovered_layouts": 48843,
+        "idempotent_replay": true,
+        "sqlite_quick_check": "ok"
+      },
+      {
+        "boundary": "after_commit",
+        "signal": 9,
+        "old_worlds": 200,
+        "old_layouts": 48600,
+        "recovered_worlds": 201,
+        "recovered_layouts": 48843,
+        "idempotent_replay": true,
+        "sqlite_quick_check": "ok"
+      }
+    ],
+    "wall_seconds": 211.44836358493194,
+    "scope": "Actual killed writers on disposable full-layout catalog copies; all original snapshots retained"
+  },
+  "http_500_failed_capacity_gate": {
+    "pagination_parity": true,
+    "pagination_worlds": 500,
+    "concurrent": [
+      {
+        "status": 503,
+        "seconds": 10.013883346109651,
+        "code": "query_timeout"
+      },
+      {
+        "status": 429,
+        "seconds": 0.03230269602499902,
+        "code": "busy"
+      },
+      {
+        "status": 429,
+        "seconds": 0.004490425926633179,
+        "code": "busy"
+      },
+      {
+        "status": 503,
+        "seconds": 10.025802165968344,
+        "code": "query_timeout"
+      },
+      {
+        "status": 429,
+        "seconds": 0.031819297932088375,
+        "code": "busy"
+      },
+      {
+        "status": 429,
+        "seconds": 0.004351383075118065,
+        "code": "busy"
+      },
+      {
+        "status": 429,
+        "seconds": 2.0255726590985432,
+        "code": "busy"
+      },
+      {
+        "status": 429,
+        "seconds": 2.0454543550731614,
+        "code": "busy"
+      }
+    ]
+  },
+  "build_location_incident": {
+    "accidental_binary_sha256": "7b538621b91beaa17916e06de44bff3d9f985a9ce0ec965a912f8d49f8f4dac8",
+    "restored_binary_sha256": "beb32b857a4818c3f9e426f2408a98a5aa54da8eaafd59d30c782dd0e23dedd0",
+    "backup": "/Users/lucasraicu/.local/share/antigravity-worker-mcp/.venv/prepared-project-native/_native.abi3.so",
+    "personal_pid": 60144,
+    "personal_started": "Fri Oct16 12:39:02 2026",
+    "personal_status": "completed",
+    "personal_run": "web-sweep-20261020-143452-e5161c27",
+    "ignored_build_cache_changed": true,
+    "correction": "Exact baseline binary restored atomically; no server restart or catalog activation"
+  },
+  "final_release_checks": {
+    "python": "31 passed in 5.09s",
+    "frontend_node_files": 7,
+    "build": "TypeScript and Vite passed",
+    "lint_exit": 0,
+    "lint_warnings": 9,
+    "interactive_browser_qa": "explicitly waived; not performed"
+  },
+  "portable_evidence": {
+    "revision": "accuracy-expansion-evidence-v2",
+    "archive_sha256": "4b99b4503fe9ca9ddaf7eb51a5332737bf7272dd0d6e4ea376e4dccfdc1c23b4",
+    "members": 101
+  },
+  "native_source_sha256": "72694b1420170b4582358eef577cc252c11e138daec817bbf97d4af68e645c1a",
+  "isolated_binary_sha256": "19a4b81e2ed97ca1d5033db789225a0ad421cc7de2032d9e20be510cde59965e"
+}

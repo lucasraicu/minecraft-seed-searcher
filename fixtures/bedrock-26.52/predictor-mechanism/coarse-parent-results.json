@@ -1,0 +1,212 @@
+{
+  "groups": {
+    "discovery": {
+      "mapped_in_bounds": 3904,
+      "any_vertical_5": 3904,
+      "any_4x8x4_parent": 3897
+    },
+    "spatial_holdout": {
+      "mapped_in_bounds": 1952,
+      "any_vertical_5": 1952,
+      "any_4x8x4_parent": 1942
+    },
+    "seed_holdout": {
+      "mapped_in_bounds": 1037,
+      "any_vertical_5": 1037,
+      "any_4x8x4_parent": 1037
+    }
+  },
+  "prior_missing_witnesses": [
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        332
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "raw_quart": "lush_caves",
+      "java": "lush_caves",
+      "no_bias": "lush_caves",
+      "any_27_carrier": false,
+      "role": "discovery",
+      "expanded_labels": [
+        "lush_caves",
+        "snowy_taiga"
+      ],
+      "coarse_labels": [
+        "lush_caves",
+        "snowy_taiga"
+      ]
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -448,
+        51,
+        335
+      ],
+      "observed": "snowy_taiga",
+      "stored_id": 30,
+      "raw_quart": "lush_caves",
+      "java": "lush_caves",
+      "no_bias": "lush_caves",
+      "any_27_carrier": false,
+      "role": "discovery",
+      "expanded_labels": [
+        "lush_caves",
+        "snowy_taiga"
+      ],
+      "coarse_labels": [
+        "lush_caves",
+        "snowy_taiga"
+      ]
+    },
+    {
+      "seed": "-3509659830737203357",
+      "position": [
+        -64,
+        51,
+        328
+      ],
+      "observed": "snowy_slopes",
+      "stored_id": 184,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "spatial_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "snowy_plains",
+        "snowy_slopes"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "snowy_plains",
+        "snowy_slopes"
+      ]
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        41,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "seed_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "savanna"
+      ]
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "seed_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "savanna"
+      ]
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2022
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "seed_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "savanna"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "savanna"
+      ]
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        42,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "seed_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "plains",
+        "savanna"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "plains",
+        "savanna"
+      ]
+    },
+    {
+      "seed": "-9103892851552028103",
+      "position": [
+        111,
+        43,
+        -2020
+      ],
+      "observed": "savanna",
+      "stored_id": 35,
+      "raw_quart": "dripstone_caves",
+      "java": "dripstone_caves",
+      "no_bias": "dripstone_caves",
+      "any_27_carrier": false,
+      "role": "seed_holdout",
+      "expanded_labels": [
+        "dripstone_caves",
+        "plains",
+        "savanna"
+      ],
+      "coarse_labels": [
+        "dripstone_caves",
+        "plains",
+        "savanna"
+      ]
+    }
+  ],
+  "interpretation": "Membership feasibility only, not a fit or proof of an anisotropic grid. Native nodes were reused; no new queries."
+}
